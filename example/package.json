@@ -11,6 +11,13 @@
     "build-storybook": "build-storybook",
     "prestorybook": "rnstl"
   },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": ["./App", "./App/stories"],
+      "pattern": "**/*.stories.tsx",
+      "outputFile": "./storybook/storyLoader.ts"
+    }
+  },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.7",
     "react": "16.13.1",
