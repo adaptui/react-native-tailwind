@@ -13,7 +13,10 @@
   },
   "config": {
     "react-native-storybook-loader": {
-      "searchDir": ["./App", "./App/stories"],
+      "searchDir": [
+        "./App",
+        "./App/stories"
+      ],
       "pattern": "**/*.stories.tsx",
       "outputFile": "./storybook/storyLoader.ts"
     }
@@ -34,6 +37,8 @@
     "@storybook/addon-ondevice-knobs": "^5.3.25",
     "@storybook/react-native": "^5.3.25",
     "@storybook/react-native-server": "^5.3.23",
+    "@testing-library/jest-native": "^4.0.2",
+    "@testing-library/react-native": "^7.2.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.0.0",
     "metro-react-native-babel-preset": "^0.64.0",
