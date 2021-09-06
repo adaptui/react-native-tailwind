@@ -9,14 +9,13 @@ import {
 import { withKnobs } from '@storybook/addon-knobs';
 
 import './rn-addons';
-import { loadStories } from './storyLoader';
 
 // enables knobs for all stories
 addDecorator(withKnobs);
 
 // import stories
 configure(() => {
-  loadStories();
+  require('../App/stories/Box.stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
