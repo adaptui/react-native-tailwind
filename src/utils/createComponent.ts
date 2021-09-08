@@ -1,14 +1,20 @@
 import * as React from 'react';
+import type { PropsWithChildren } from 'example/node_modules/@types/react';
+import { createElement } from './createElement';
 
 export function createComponent<Props>(
-  Component: React.FunctionComponent<Props>,
+  componentType: React.FunctionComponent<Props>,
   options?: { shouldMemo?: boolean }
 ) {
-  const component = (props: Props) => {
-    // @ts-ignore
-    return React.createElement(Component, props, props?.children);
+  const _component = (props: Props, ref: any) => {
+    return createElement<Props>({
+      componentType,
+      props: { ...props, elementRef: ref },
+    });
   };
-  let ForwardedComponent = React.forwardRef(component);
+  let ForwardedComponent = React.forwardRef<unknown, PropsWithChildren<Props>>(
+    _component
+  );
   if (options?.shouldMemo) {
     // @ts-ignore
     ForwardedComponent = React.memo(ForwardedComponent);

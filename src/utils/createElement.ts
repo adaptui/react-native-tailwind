@@ -1,15 +1,16 @@
 import React from 'react';
 
-interface CreateElementProps {
-  props: any;
-  children: React.ReactNode;
-  component: string | React.ComponentType;
+interface CreateElementProps<Props> {
+  componentType:
+    | React.FunctionComponent<Props>
+    | React.ComponentClass<Props>
+    | string;
+  props: Props;
 }
 
-export function createElement({
+export function createElement<Props>({
+  componentType,
   props,
-  children,
-  component,
-}: CreateElementProps) {
-  return React.createElement(component, props, children);
+}: CreateElementProps<Props>) {
+  return React.createElement(componentType, props);
 }
