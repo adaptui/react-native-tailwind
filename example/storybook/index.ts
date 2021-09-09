@@ -14,7 +14,12 @@ import './rn-addons';
 addDecorator(withKnobs);
 
 // import stories
-configure(() => {}, module);
+configure(() => {
+  require('../App/stories/Box.stories');
+  require('../App/stories/Text.stories');
+  require('../App/stories/Touchable.stories');
+  require('../App/stories/TouchableWithoutFeedback.stories');
+}, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
 // To find allowed options for getStorybookUI
