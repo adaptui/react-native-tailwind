@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Box } from '../../../src/components/Box';
-import { Text } from '../../../src/components/Text';
+import { Box } from '../../../src/primitives/Box';
+import { Text } from '../../../src/primitives/Text';
 
 storiesOf('Box', module).add('Basic', () => (
   <Box style={styles.defaultBox}>

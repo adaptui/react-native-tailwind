@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Text } from '../../../src/components/Text';
+import { Text } from '../../../src/primitives/Text';
 
 storiesOf('Text', module).add('Basic', () => (
   <Text style={styles.defaultText}> This is a Sample Blue Color Text </Text>

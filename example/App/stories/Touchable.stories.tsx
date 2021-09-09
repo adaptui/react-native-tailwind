@@ -1,9 +1,9 @@
+import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
-import { Text } from '../../../src/components/Text';
-import { Touchable } from '../../../src/components/Touchable';
-import { action } from '@storybook/addon-actions';
+import { Text } from '../../../src/primitives/Text';
+import { Touchable } from '../../../src/primitives/Touchable';
 
 const actions = {
   onPressTouchable: () => {
