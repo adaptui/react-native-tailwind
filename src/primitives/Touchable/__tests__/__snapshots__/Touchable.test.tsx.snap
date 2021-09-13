@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic should assign a ref 1`] = `null`;
+
+exports[`basic should render children correctly with blue background 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  elementRef={null}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "blue",
+      "margin": 10,
+      "padding": 4,
+    }
+  }
+>
+  <Text
+    elementRef={null}
+  >
+     This is a Touchable 
+  </Text>
+</View>
+`;
+
+exports[`basic should render correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  elementRef={null}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <Text
+    elementRef={null}
+  >
+    Hello, World
+  </Text>
+</View>
+`;
+
+exports[`basic should render correctly with a style prop 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  elementRef={null}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "red",
+      "margin": 10,
+      "padding": 4,
+    }
+  }
+>
+  <Text
+    elementRef={null}
+  >
+    Hello, World
+  </Text>
+</View>
+`;
