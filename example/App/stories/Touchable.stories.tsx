@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   pressedTouchableContainer: {
     backgroundColor: '#739fef',
     padding: 4,
+    margin: 10,
   },
   touchableText: {
     color: 'white',
