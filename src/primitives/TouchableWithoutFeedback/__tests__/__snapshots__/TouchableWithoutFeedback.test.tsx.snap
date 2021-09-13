@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic should assign a ref 1`] = `null`;
+
+exports[`basic should render children correctly with blue background 1`] = `
+<Text
+  accessible={true}
+  elementRef={null}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+   This is a TouchableWithoutFeedback 
+</Text>
+`;
+
+exports[`basic should render correctly 1`] = `
+<Text
+  accessible={true}
+  elementRef={null}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  Hello, World
+</Text>
+`;
+
+exports[`basic should render correctly with a style prop 1`] = `
+<Text
+  accessible={true}
+  elementRef={null}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  Hello, World
+</Text>
+`;
