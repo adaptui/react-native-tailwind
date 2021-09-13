@@ -22,7 +22,7 @@
     "!ios/build"
   ],
   "scripts": {
-    "test": "jest -u",
+    "test": "jest",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
