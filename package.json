@@ -22,7 +22,7 @@
     "!ios/build"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest -u",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
@@ -50,6 +50,8 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@release-it/conventional-changelog": "^2.0.0",
+    "@testing-library/jest-native": "^4.0.2",
+    "@testing-library/react-native": "^7.2.0",
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
     "@types/react-native": "^0.65.0",
@@ -76,6 +78,9 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
     ]
   },
   "husky": {
@@ -144,5 +149,9 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-test-renderer": "^17.0.2"
   }
 }
