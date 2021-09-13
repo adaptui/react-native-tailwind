@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic should assign a ref 1`] = `null`;
+
+exports[`basic should render children correctly 1`] = `
+<Text
+  elementRef={null}
+  style={
+    Object {
+      "color": "tomato",
+      "margin": 10,
+      "padding": 4,
+    }
+  }
+>
+  <Text
+    elementRef={null}
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 18,
+        "textAlign": "center",
+      }
+    }
+  >
+    This is a Text with Text Inside
+  </Text>
+  This is outside Text
+</Text>
+`;
+
+exports[`basic should render correctly 1`] = `
+<Text
+  elementRef={null}
+>
+  Hello, World
+</Text>
+`;
+
+exports[`basic should render correctly with a style prop 1`] = `
+<Text
+  elementRef={null}
+  style={
+    Object {
+      "color": "tomato",
+      "margin": 10,
+      "padding": 4,
+    }
+  }
+/>
+`;
