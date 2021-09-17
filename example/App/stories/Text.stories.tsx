@@ -14,7 +14,3 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-export default {
-  title: 'Design System/Atoms/Button',
-};
