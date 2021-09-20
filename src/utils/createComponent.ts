@@ -3,13 +3,18 @@ import type { PropsWithChildren } from 'example/node_modules/@types/react';
 import { createElement } from './createElement';
 
 export function createComponent<Props>(
-  componentType: React.FunctionComponent<Props>,
+  componentType:
+    | React.FunctionComponent<Props>
+    | React.ComponentClass<Props>
+    | string,
   options?: { shouldMemo?: boolean }
-) {
+):
+  | React.ForwardRefExoticComponent<Props & React.RefAttributes<any>>
+  | typeof componentType {
   const _component = (props: Props, ref: any) => {
     return createElement<Props>({
       componentType,
-      props: { ...props, elementRef: ref },
+      props: { ...props, ref },
     });
   };
   let ForwardedComponent = React.forwardRef<unknown, PropsWithChildren<Props>>(
@@ -19,5 +24,7 @@ export function createComponent<Props>(
     // @ts-ignore
     ForwardedComponent = React.memo(ForwardedComponent);
   }
-  return ForwardedComponent;
+  return ForwardedComponent as unknown as
+    | React.ForwardRefExoticComponent<Props & React.RefAttributes<any>>
+    | typeof componentType;
 }
