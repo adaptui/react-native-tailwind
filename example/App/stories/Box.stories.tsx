@@ -1,14 +1,19 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Box } from '../../../src/primitives/Box';
+import { StyleSheet, View } from 'react-native';
+import { Box } from '../../../src/primitives';
 import { Text } from '../../../src/primitives/Text';
 
-storiesOf('Box', module).add('Basic', () => (
-  <Box style={styles.defaultBox}>
-    <Text style={styles.defaultText}> This is a Box with Text Inside </Text>
-  </Box>
-));
+const BoxComponent = () => {
+  const boxRef = React.createRef<View>();
+  return (
+    <Box ref={boxRef} style={styles.defaultBox}>
+      <Text style={styles.defaultText}> This is a Box with Text Inside </Text>
+    </Box>
+  );
+};
+
+storiesOf('Box', module).add('Basic', () => <BoxComponent />);
 
 const styles = StyleSheet.create({
   defaultBox: {
