@@ -1344,7 +1344,7 @@ TouchableWithoutFeedback {
               "effects": null,
               "firstBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
@@ -1358,7 +1358,7 @@ TouchableWithoutFeedback {
               },
               "lastBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
@@ -4047,7 +4047,7 @@ TouchableWithoutFeedback {
               "effects": null,
               "firstBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
@@ -4061,7 +4061,7 @@ TouchableWithoutFeedback {
               },
               "lastBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
@@ -7150,7 +7150,7 @@ TouchableWithoutFeedback {
               "effects": null,
               "firstBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
@@ -7164,7 +7164,7 @@ TouchableWithoutFeedback {
               },
               "lastBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
@@ -9853,7 +9853,7 @@ TouchableWithoutFeedback {
               "effects": null,
               "firstBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
@@ -9867,7 +9867,7 @@ TouchableWithoutFeedback {
               },
               "lastBaseUpdate": Object {
                 "callback": null,
-                "eventTime": 194,
+                "eventTime": 173,
                 "lane": 1,
                 "next": null,
                 "payload": Object {
