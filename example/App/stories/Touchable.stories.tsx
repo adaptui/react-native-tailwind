@@ -1,7 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
+import { useTailwindThemeContext } from 'react-native-system';
 import { Text } from '../../../src/primitives/Text';
 import { Touchable } from '../../../src/primitives/Touchable';
 
@@ -12,31 +13,21 @@ const actions = {
   },
 };
 
-storiesOf('Touchable', module).add('Basic', () => (
-  <Touchable
-    onPress={actions.onPressTouchable}
-    style={({ pressed }) => [
-      pressed ? styles.pressedTouchableContainer : styles.touchableContainer,
-    ]}
-  >
-    <Text style={styles.touchableText}>Text wrapped inside Touchable </Text>
-  </Touchable>
-));
+const TouchableComponent = () => {
+  const tailwind = useTailwindThemeContext();
+  return (
+    <Touchable
+      onPress={actions.onPressTouchable}
+      style={({ pressed }) => [
+        tailwind.style('p-1 m-2 rounded-md'),
+        pressed ? tailwind.style('bg-blue-800') : tailwind.style('bg-blue-600'),
+      ]}
+    >
+      <Text style={tailwind.style('text-center text-white text-lg')}>
+        Text wrapped inside Touchable{' '}
+      </Text>
+    </Touchable>
+  );
+};
 
-const styles = StyleSheet.create({
-  touchableContainer: {
-    backgroundColor: 'cornflowerblue',
-    padding: 4,
-    margin: 10,
-  },
-  pressedTouchableContainer: {
-    backgroundColor: '#739fef',
-    padding: 4,
-    margin: 10,
-  },
-  touchableText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 18,
-  },
-});
+storiesOf('Touchable', module).add('Basic', () => <TouchableComponent />);
