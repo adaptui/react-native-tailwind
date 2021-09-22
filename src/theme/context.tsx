@@ -3,23 +3,12 @@ import React from 'react';
 import { useColorScheme } from 'react-native';
 import { tw } from './tailwind';
 
-export interface ProviderProps {
-  children:
-    | boolean
-    | React.ReactChild
-    | React.ReactFragment
-    | React.ReactPortal
-    | React.ReactNode;
-  // <--TODO--> Add TailwindFN type from Library
-  style?: any;
-  getColor?: any;
-  setColorScheme?: any;
-}
+type TWType = typeof tw;
 
 interface TailwindContextType {
-  style?: any;
-  getColor?: any;
-  setColorScheme?: any;
+  style: TWType['style'];
+  getColor: TWType['color'];
+  setColorScheme: TWType['setColorScheme'];
 }
 
 const [ThemeProvider, useTailwindThemeContext, TailwindThemeContext] =
@@ -28,7 +17,9 @@ const [ThemeProvider, useTailwindThemeContext, TailwindThemeContext] =
     strict: true,
   });
 
-const TailwindThemeProvider: React.FC<ProviderProps> = (props) => {
+const TailwindThemeProvider: React.FC<Partial<TailwindContextType>> = (
+  props
+) => {
   const colorScheme = useColorScheme();
   tw.setColorScheme(colorScheme);
 
