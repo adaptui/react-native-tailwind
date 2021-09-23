@@ -11,12 +11,18 @@ import { withKnobs } from '@storybook/addon-knobs';
 
 import './rn-addons';
 import { TailwindThemeProvider } from 'react-native-system';
+// <----- For Custom Tailwind Theme ----->
+// import { myTailwindTheme } from '../customTheme/tailwind';
 
 // enables knobs for all stories
 addDecorator(withKnobs);
 addDecorator((getStory) => (
-  // @ts-ignore
-  <TailwindThemeProvider>{getStory()}</TailwindThemeProvider>
+  <TailwindThemeProvider
+  // style={myTailwindTheme.style}
+  >
+    {/* @ts-ignore */}
+    {getStory()}
+  </TailwindThemeProvider>
 ));
 
 // import stories
