@@ -158,6 +158,8 @@
   "dependencies": {
     "metro-react-native-babel-preset": "^0.66.2",
     "react-test-renderer": "^17.0.2",
-    "tailwind-react-native-classnames": "^1.5.0"
+    "tailwind-react-native-classnames": "^1.5.0",
+    "tailwindcss": "^2.2.15",
+    "twrnc": "^2.0.0-beta.3"
   }
 }

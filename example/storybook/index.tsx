@@ -1,5 +1,6 @@
 // if you use expo remove this line
 import { AppRegistry } from 'react-native';
+import React from 'react';
 
 import {
   getStorybookUI,
@@ -9,9 +10,20 @@ import {
 import { withKnobs } from '@storybook/addon-knobs';
 
 import './rn-addons';
+import { TailwindThemeProvider } from 'react-native-system';
+// <----- For Custom Tailwind Theme ----->
+// import { myTailwindTheme } from '../customTheme/tailwind';
 
 // enables knobs for all stories
 addDecorator(withKnobs);
+addDecorator((getStory) => (
+  <TailwindThemeProvider
+  // style={myTailwindTheme.style}
+  >
+    {/* @ts-ignore */}
+    {getStory()}
+  </TailwindThemeProvider>
+));
 
 // import stories
 configure(() => {
