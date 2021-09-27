@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react';
 import type { PropsWithChildren } from 'example/node_modules/@types/react';
 import { createElement } from './createElement';
@@ -9,9 +10,9 @@ export function createComponent<Props>(
     | string,
   options?: { shouldMemo?: boolean }
 ):
-  | React.ForwardRefExoticComponent<Props & React.RefAttributes<any>>
+  | React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>
   | typeof componentType {
-  const _component = (props: Props, ref: any) => {
+  const _component = (props: Props, ref: unknown) => {
     return createElement<Props>({
       componentType,
       props: { ...props, ref },
@@ -25,6 +26,6 @@ export function createComponent<Props>(
     ForwardedComponent = React.memo(ForwardedComponent);
   }
   return ForwardedComponent as unknown as
-    | React.ForwardRefExoticComponent<Props & React.RefAttributes<any>>
+    | React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>
     | typeof componentType;
 }

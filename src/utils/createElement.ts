@@ -11,6 +11,9 @@ interface CreateElementProps<Props> {
 export function createElement<Props>({
   componentType,
   props,
-}: CreateElementProps<Props>) {
+}: CreateElementProps<Props>): React.ReactElement<
+  Props,
+  string | React.JSXElementConstructor<unknown>
+> {
   return React.createElement(componentType, props);
 }
