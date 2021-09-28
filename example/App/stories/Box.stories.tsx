@@ -16,4 +16,16 @@ const BoxComponent = () => {
   );
 };
 
-storiesOf('Box', module).add('Basic', () => <BoxComponent />);
+const StyledBoxComponent = () => {
+  const boxRef = React.createRef<typeof Box>();
+  const tailwind = useTailwindThemeContext();
+  return (
+    <Box ref={boxRef} style={tailwind.style('bg-red-400 dark:bg-black rounded-md m-4')}>
+      <Text style={tailwind.style('text-white text-center p-4')}>
+        This is styled Box with Text Inside
+      </Text>
+    </Box>
+  );
+};
+
+storiesOf('Box', module).add('Basic', () => <BoxComponent />).add('Styled', () => <StyledBoxComponent />);
