@@ -75,7 +75,8 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-reanimated": ">=2.2.0"
+    "react-native-reanimated": ">=2.2.0",
+    "react-native-gesture-handler": ">=1.10.3"
   },
   "jest": {
     "preset": "react-native",
@@ -161,6 +162,7 @@
   },
   "dependencies": {
     "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.2.2",
     "react-test-renderer": "^17.0.2",
     "tailwind-react-native-classnames": "^1.5.0",
