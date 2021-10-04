@@ -31,6 +31,7 @@ configure(() => {
   require('../App/stories/Text.stories');
   require('../App/stories/Touchable.stories');
   require('../App/stories/TouchableWithoutFeedback.stories');
+  require('../App/stories/AnimatedBox.stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
