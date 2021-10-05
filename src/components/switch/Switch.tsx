@@ -127,7 +127,8 @@ export const Switch: React.FC<SwitchProps> = ({
 
   return (
     <TapGestureHandler
-      maxDist={10}
+      maxDurationMs={99999999}
+      shouldCancelWhenOutside={false}
       onHandlerStateChange={(event) => {
         if (event.nativeEvent.state === State.BEGAN) {
           if (isOn) {
