@@ -4,40 +4,59 @@ import { View } from 'react-native';
 import tailwind from 'twrnc';
 import { Switch } from '../../../src';
 
-const SwitchSmall = () => {
+const ControllableExample = () => {
   const [switchState, setSwitchState] = useState(false);
+  return <Switch state={switchState} onStateChange={setSwitchState} />;
+};
 
-  return (
-    <Switch size='sm' isOn={switchState} onValueChange={(value) => setSwitchState(value)}  />
-  );
+const SwitchSmall = () => {
+  return <Switch size="md" />;
 };
 
 const SwitchMedium = () => {
-  const [switchState, setSwitchState] = useState(false);
-
-  return (
-    <Switch size='md' isOn={switchState} onValueChange={(value) => setSwitchState(value)}  />
-  );
+  return <Switch size="md" />;
 };
 
 const SwitchLarge = () => {
-  const [switchState, setSwitchState] = useState(false);
-
-  return (
-    <Switch size='lg' isOn={switchState} onValueChange={(value) => setSwitchState(value)}  />
-  );
+  return <Switch size="lg" />;
 };
 
 const SwitchExtraLarge = () => {
-  const [switchState, setSwitchState] = useState(false);
+  return <Switch size="xl" />;
+};
+
+const SwitchDisabled = () => {
   return (
-    <Switch size='xl' onTrackColor={tailwind.color('bg-green-500')} isOn={switchState} onValueChange={(value) => setSwitchState(value)} />
+    <Switch disabled size="xl" offStateColor={tailwind.color('bg-green-500')} />
+  );
+};
+
+const Customised = () => {
+  return (
+    <Switch
+      onStateColor={tailwind.color('bg-green-500')}
+      offStateColor={tailwind.color('bg-green-100')}
+    />
   );
 };
 
 storiesOf('Switch', module)
-  .addDecorator((getStory) => <View style={{flexDirection:'row', flex:1, justifyContent:'center', alignItems:'center'}}>{getStory()}</View>)
+  .addDecorator((getStory) => (
+    <View
+      style={{
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      {getStory()}
+    </View>
+  ))
   .add('Small', () => <SwitchSmall />)
   .add('Medium', () => <SwitchMedium />)
   .add('Large', () => <SwitchLarge />)
-  .add('Extra Large', () => <SwitchExtraLarge />);
+  .add('Extra Large', () => <SwitchExtraLarge />)
+  .add('ControllableExample', () => <ControllableExample />)
+  .add('Disabled', () => <SwitchDisabled />)
+  .add('Customised', () => <Customised />);
