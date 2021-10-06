@@ -96,11 +96,11 @@ export const Switch: React.FC<SwitchProps> = ({
    */
   const onStateColor = disabled
     ? (tailwind.getColor('bg-gray-500') as string)
-    : offStateColorProp || (tailwind.getColor('bg-gray-800') as string);
+    : onStateColorProp || (tailwind.getColor('bg-gray-800') as string);
 
   const offStateColor = disabled
     ? (tailwind.getColor('bg-gray-300') as string)
-    : onStateColorProp || (tailwind.getColor('bg-gray-200') as string);
+    : offStateColorProp || (tailwind.getColor('bg-gray-200') as string);
 
   const offStatePressedColor =
     offStatePressedColorProp || (tailwind.getColor('bg-gray-300') as string);
