@@ -1,3 +1,4 @@
+import { useControllableState } from '@chakra-ui/hooks';
 import React from 'react';
 import { State, TapGestureHandler } from 'react-native-gesture-handler';
 import {
@@ -20,25 +21,37 @@ import {
 
 export interface SwitchProps {
   /**
+   * Default Value of the switch
+   */
+  defaultState?: boolean;
+  /**
    * Value of the switch, true means 'on', false means 'off'.
    */
-  isOn: boolean;
+  state?: boolean;
+  /**
+   * Callback called with the new value when it changes.
+   */
+  onStateChange?: (value: boolean) => void;
   /**
    * Disable the switch
    */
   disabled?: boolean;
   /**
-   * Callback called with the new value when it changes.
-   */
-  onValueChange: (value: boolean) => void;
-  /**
    * The color used to tint the appearance of the switch when it’s in the on position.
    */
-  onTrackColor?: string;
+  onStateColor?: string;
   /**
    * The color used to tint the appearance of the switch when it’s in the off position.
    */
-  initTrackColor?: string;
+  offStateColor?: string;
+  /**
+   * The color used to tint the appearance of the switch when it’s in the pressed on state.
+   */
+  onStatePressedColor?: string;
+  /**
+   * The color used to tint the appearance of the switch when it’s in the pressed off state.
+   */
+  offStatePressedColor?: string;
   /**
    * The color used to tint the appearance of the thumb.
    */
@@ -61,23 +74,41 @@ const SPRING_CONFIG = {
 };
 
 export const Switch: React.FC<SwitchProps> = ({
-  onValueChange,
-  isOn,
+  onStateChange,
+  state,
+  defaultState,
   size = 'xl',
-  onTrackColor,
-  initTrackColor,
+  onStateColor: onStateColorProp,
+  offStateColor: offStateColorProp,
+  disabled = false,
+  offStatePressedColor: offStatePressedColorProp,
+  onStatePressedColor: onStatePressedColorProp,
 }) => {
   const tailwind = useTailwindThemeContext();
+  const [switchState, setSwitchState] = useControllableState({
+    defaultValue: defaultState,
+    value: state,
+    onChange: onStateChange,
+  });
 
   /**
    * setting track on color and initial track color from props also having a default fallback
    */
-  const trackOnColor = onTrackColor || tailwind.getColor('bg-gray-800') || '';
-  const trackInitColor =
-    initTrackColor || tailwind.getColor('bg-gray-200') || '';
+  const onStateColor = disabled
+    ? (tailwind.getColor('bg-gray-500') as string)
+    : offStateColorProp || (tailwind.getColor('bg-gray-800') as string);
+
+  const offStateColor = disabled
+    ? (tailwind.getColor('bg-gray-300') as string)
+    : onStateColorProp || (tailwind.getColor('bg-gray-200') as string);
+
+  const offStatePressedColor =
+    offStatePressedColorProp || (tailwind.getColor('bg-gray-300') as string);
+  const onStatePressedColor =
+    onStatePressedColorProp || (tailwind.getColor('bg-gray-700') as string);
 
   /**
-   * The interpolated widths based on size of switch
+   * The Switch Animation Helpers
    */
   const interpolatedWidths = switchInterpolateWidths[size];
 
@@ -91,7 +122,7 @@ export const Switch: React.FC<SwitchProps> = ({
       backgroundColor: interpolateColor(
         thumbAnimated.value,
         [0, 0.3, 0.7, 1],
-        [trackInitColor, trackInitColor, trackOnColor, trackOnColor]
+        [offStateColor, offStatePressedColor, onStatePressedColor, onStateColor]
       ),
     };
   });
@@ -120,30 +151,30 @@ export const Switch: React.FC<SwitchProps> = ({
     };
   });
 
-  const memoizedOnSwitchPressCallback = React.useCallback(
-    () => onValueChange(!isOn),
-    [isOn, onValueChange]
-  );
+  const memoizedOnSwitchPressCallback = React.useCallback(() => {
+    setSwitchState(!switchState);
+  }, [switchState, setSwitchState]);
 
   return (
     <TapGestureHandler
+      enabled={!disabled}
       maxDurationMs={99999999}
       shouldCancelWhenOutside={false}
       onHandlerStateChange={(event) => {
         if (event.nativeEvent.state === State.BEGAN) {
-          if (isOn) {
+          if (switchState) {
             thumbAnimated.value = withSpring(0.7, SPRING_CONFIG);
           } else {
             thumbAnimated.value = withSpring(0.3, SPRING_CONFIG);
           }
         } else if (event.nativeEvent.state === State.FAILED) {
-          if (isOn) {
+          if (switchState) {
             thumbAnimated.value = withSpring(1, SPRING_CONFIG);
           } else {
             thumbAnimated.value = withSpring(0, SPRING_CONFIG);
           }
         } else if (event.nativeEvent.state === State.END) {
-          if (isOn) {
+          if (switchState) {
             thumbAnimated.value = withSpring(0, SPRING_CONFIG);
           } else {
             thumbAnimated.value = withSpring(1, SPRING_CONFIG);
