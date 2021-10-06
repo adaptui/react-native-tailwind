@@ -14,6 +14,7 @@ import { useTheme } from '../../theme';
 export interface SwitchProps {
   /**
    * Default Value of the switch
+   * @default false
    */
   defaultState?: boolean;
   /**
@@ -26,28 +27,34 @@ export interface SwitchProps {
   onStateChange?: (value: boolean) => void;
   /**
    * Disable the switch
+   * @default false
    */
   disabled?: boolean;
   /**
    * The color used to tint the appearance of the switch when it’s in the on position.
+   * @default 'bg-gray-800'
    */
   onStateColor?: string;
   /**
    * The color used to tint the appearance of the switch when it’s in the off position.
+   * @default 'bg-gray-200'
    */
   offStateColor?: string;
   /**
    * The color used to tint the appearance of the switch when it’s in the pressed on state.
+   * @default 'bg-gray-200'
    */
   onStatePressedColor?: string;
   /**
    * The color used to tint the appearance of the switch when it’s in the pressed off state.
+   * @default 'bg-gray-300'
    */
   offStatePressedColor?: string;
   /**
    * The color used to tint the appearance of the thumb.
+   * @default 'white'
    */
-  thummbTintColor?: string;
+  knobColor?: string;
   /**
    * The size of the switch component.
    * Recomended size for Mobile
@@ -68,13 +75,14 @@ const SPRING_CONFIG = {
 export const Switch: React.FC<SwitchProps> = ({
   onStateChange,
   state,
-  defaultState,
+  defaultState = false,
   size = 'xl',
   onStateColor: onStateColorProp,
   offStateColor: offStateColorProp,
   disabled = false,
   offStatePressedColor: offStatePressedColorProp,
   onStatePressedColor: onStatePressedColorProp,
+  knobColor = 'white',
 }) => {
   const tailwind = useTheme();
   const switchStyles = useTheme('switchTheme');
@@ -125,6 +133,7 @@ export const Switch: React.FC<SwitchProps> = ({
 
   const animatedThumbStyle = useAnimatedStyle(() => {
     return {
+      backgroundColor: knobColor,
       width: interpolate(
         thumbAnimated.value,
         [0, 0.3, 0.7, 1],
@@ -146,10 +155,6 @@ export const Switch: React.FC<SwitchProps> = ({
       ],
     };
   });
-
-  const memoizedOnSwitchPressCallback = React.useCallback(() => {
-    setSwitchState(!switchState);
-  }, [switchState, setSwitchState]);
 
   return (
     <TapGestureHandler
@@ -175,7 +180,7 @@ export const Switch: React.FC<SwitchProps> = ({
           } else {
             thumbAnimated.value = withSpring(1, SPRING_CONFIG);
           }
-          setTimeout(memoizedOnSwitchPressCallback, 50);
+          setTimeout(() => setSwitchState(!switchState), 50);
         }
       }}
     >
