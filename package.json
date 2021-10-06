@@ -74,9 +74,7 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*",
-    "react-native-reanimated": ">=2.2.0",
-    "react-native-gesture-handler": ">=1.10.3"
+    "react-native": "*"
   },
   "jest": {
     "preset": "react-native",
@@ -161,6 +159,7 @@
     ]
   },
   "dependencies": {
+    "@chakra-ui/hooks": "^1.6.0",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.2.2",
