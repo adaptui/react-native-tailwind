@@ -5,11 +5,11 @@ export const defaultSwitchContainerStyle = {
   xl: 'w-[48px] h-7 rounded-full py-[2px]',
 };
 
-export const defaultThumbStyle = {
-  sm: 'h-[11px] bg-white rounded-full',
-  md: 'h-[13px] bg-white rounded-full',
-  lg: 'h-[17px] bg-white rounded-full',
-  xl: 'w-6 h-6 bg-white rounded-full',
+export const defaultKnobStyle = {
+  sm: 'h-[11px] rounded-full',
+  md: 'h-[13px] rounded-full',
+  lg: 'h-[17px] rounded-full',
+  xl: 'w-6 h-6 rounded-full',
 };
 
 export const switchInterpolateWidths = {
