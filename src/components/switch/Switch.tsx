@@ -19,6 +19,18 @@ import {
   thumbTranslateValue,
 } from './switchStyles';
 
+const thumbShadowStyle = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 1,
+    height: 1,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.5,
+
+  elevation: 5,
+};
+
 export interface SwitchProps {
   /**
    * Default Value of the switch
@@ -190,7 +202,11 @@ export const Switch: React.FC<SwitchProps> = ({
         ]}
       >
         <AnimatedBox
-          style={[tailwind.style(defaultThumbStyle[size]), animatedThumbStyle]}
+          style={[
+            tailwind.style(defaultThumbStyle[size]),
+            animatedThumbStyle,
+            thumbShadowStyle,
+          ]}
         />
       </AnimatedBox>
     </TapGestureHandler>
