@@ -34,6 +34,14 @@ export interface ProgressProps {
    * @default null
    */
   value?: number | null;
+  /**
+   * Track color containing the progress
+   */
+  trackColor?: string;
+  /**
+   * Track color of the progress value
+   */
+  progressTrackColor?: string;
 }
 
 const SPRING_CONFIG = {
@@ -48,10 +56,16 @@ const SPRING_CONFIG = {
 export const ProgressBar: React.FC<ProgressProps> = ({
   size = 'xl',
   value,
+  trackColor: trackColorProp,
+  progressTrackColor: progressTrackColorProp,
 }) => {
   const tailwind = useTailwindThemeContext();
   const isIndeterminate = value === null || value === undefined;
   const width = Dimensions.get('window').width;
+  const trackColor =
+    trackColorProp || (tailwind.getColor('bg-gray-800') as string);
+  const progressTrackColor =
+    progressTrackColorProp || (tailwind.getColor('bg-gray-200') as string);
 
   // Mapping value to width %
   const progressValue = useDerivedValue(
@@ -97,8 +111,9 @@ export const ProgressBar: React.FC<ProgressProps> = ({
     <AnimatedBox
       style={[
         tailwind.style(
-          `w-full h-[${progressBarHeight[size]}px] rounded-full bg-gray-200 overflow-hidden`
+          `w-full h-[${progressBarHeight[size]}px] rounded-full overflow-hidden`
         ),
+        { backgroundColor: trackColor },
       ]}
     >
       <AnimatedBox
@@ -106,6 +121,7 @@ export const ProgressBar: React.FC<ProgressProps> = ({
           tailwind.style(
             `absolute h-[${progressBarHeight[size]}px] bg-gray-800 rounded-full`
           ),
+          { backgroundColor: progressTrackColor },
           isIndeterminate ? translatingStyle : animatingWidth,
         ]}
       />
