@@ -27,12 +27,13 @@ addDecorator((getStory) => (
 
 // import stories
 configure(() => {
-  require('../App/stories/Box.stories');
-  require('../App/stories/Text.stories');
-  require('../App/stories/Touchable.stories');
-  require('../App/stories/TouchableWithoutFeedback.stories');
-  require('../App/stories/AnimatedBox.stories');
+  // require('../App/stories/Box.stories');
+  // require('../App/stories/Text.stories');
+  // require('../App/stories/Touchable.stories');
+  // require('../App/stories/TouchableWithoutFeedback.stories');
+  // require('../App/stories/AnimatedBox.stories');
   require('../App/stories/Switch.stories');
+  require('../App/stories/Progress.stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
