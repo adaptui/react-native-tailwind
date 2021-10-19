@@ -8,28 +8,8 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { useTailwindThemeContext } from '../../';
 import { AnimatedBox } from '../../primitives';
-import {
-  defaultSwitchContainerStyle,
-  defaultThumbStyle,
-  switchInterpolateWidths,
-  thumbInitTranslateValue,
-  thumbIntermediateTranslateValue,
-  thumbTranslateValue,
-} from './switchStyles';
-
-const thumbShadowStyle = {
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 1,
-    height: 1,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.5,
-
-  elevation: 5,
-};
+import { useTheme } from '../../theme';
 
 export interface SwitchProps {
   /**
@@ -96,7 +76,9 @@ export const Switch: React.FC<SwitchProps> = ({
   offStatePressedColor: offStatePressedColorProp,
   onStatePressedColor: onStatePressedColorProp,
 }) => {
-  const tailwind = useTailwindThemeContext();
+  const tailwind = useTheme();
+  const switchStyles = useTheme('switchTheme');
+
   const [switchState, setSwitchState] = useControllableState({
     defaultValue: defaultState,
     value: state,
@@ -122,11 +104,13 @@ export const Switch: React.FC<SwitchProps> = ({
   /**
    * The Switch Animation Helpers
    */
-  const interpolatedWidths = switchInterpolateWidths[size];
+  const interpolatedWidths = switchStyles.switchInterpolateWidths[size];
 
-  const translatedThumbDistance = thumbTranslateValue[size];
-  const initTranslatedThumbDistance = thumbInitTranslateValue[size];
-  const intermediateThumbTranslateValue = thumbIntermediateTranslateValue[size];
+  const translatedThumbDistance = switchStyles.thumbTranslateValue[size];
+  const initTranslatedThumbDistance =
+    switchStyles.thumbInitTranslateValue[size];
+  const intermediateThumbTranslateValue =
+    switchStyles.thumbIntermediateTranslateValue[size];
   const thumbAnimated = useSharedValue(0);
 
   const animatedSwitchBackground = useAnimatedStyle(() => {
@@ -197,15 +181,14 @@ export const Switch: React.FC<SwitchProps> = ({
     >
       <AnimatedBox
         style={[
-          tailwind.style(defaultSwitchContainerStyle[size]),
+          tailwind.style(switchStyles.defaultSwitchContainerStyle[size]),
           animatedSwitchBackground,
         ]}
       >
         <AnimatedBox
           style={[
-            tailwind.style(defaultThumbStyle[size]),
+            tailwind.style(switchStyles.defaultThumbStyle[size]),
             animatedThumbStyle,
-            thumbShadowStyle,
           ]}
         />
       </AnimatedBox>
