@@ -24,8 +24,8 @@ export const badge = {
     },
   },
   size: {
-    sm: 'px-[6px] py-px text-xs font-medium',
-    md: 'px-[6px] py-[3px] text-xs font-medium',
+    sm: 'px-1.5 py-px text-xs font-medium',
+    md: 'px-1.5 py-[3px] text-xs font-medium',
     lg: 'px-2 py-[4.5px] text-cxs font-medium',
   },
   textVariants: {
