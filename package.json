@@ -160,12 +160,13 @@
   },
   "dependencies": {
     "@chakra-ui/hooks": "^1.6.0",
+    "lodash": "^4.17.21",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.2.2",
     "react-test-renderer": "^17.0.2",
-    "tailwind-react-native-classnames": "^1.5.0",
+    "tailwind-merge": "^0.7.0",
     "tailwindcss": "^2.2.15",
-    "twrnc": "^2.0.0-beta.3"
+    "twrnc": "^2.0.0-rc.4"
   }
 }
