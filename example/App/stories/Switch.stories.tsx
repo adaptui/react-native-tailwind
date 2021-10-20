@@ -1,7 +1,7 @@
+import { boolean, color, radios } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import tailwind from 'twrnc';
 import { Switch } from '../../../src';
 
 const ControllableExample = () => {
@@ -9,54 +9,31 @@ const ControllableExample = () => {
   return <Switch state={switchState} onStateChange={setSwitchState} />;
 };
 
-const SwitchSmall = () => {
-  return <Switch size="md" />;
-};
+const switchStories = storiesOf('Switch', module);
 
-const SwitchMedium = () => {
-  return <Switch size="md" />;
-};
+switchStories.addDecorator((getStory) => (
+  <View
+    style={{
+      flexDirection: 'row',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    {getStory()}
+  </View>
+));
 
-const SwitchLarge = () => {
-  return <Switch size="lg" />;
-};
+switchStories.add('BasicSwitch', () => (
+  <Switch
+    disabled={boolean('disabled', false)}
+    onStateColor={color('onStateColor', '')}
+    offStateColor={color('offStateColor', '')}
+    onStatePressedColor={color('onStatePressedColor', '')}
+    offStatePressedColor={color('offStatePressedColor', '')}
+    thummbTintColor={color('thummbTintColor', '')}
+    size={radios('size', { sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' }, 'xl')}
+  />
+));
 
-const SwitchExtraLarge = () => {
-  return <Switch size="xl" />;
-};
-
-const SwitchDisabled = () => {
-  return (
-    <Switch disabled size="xl" offStateColor={tailwind.color('bg-green-500')} />
-  );
-};
-
-const Customised = () => {
-  return (
-    <Switch
-      onStateColor={tailwind.color('bg-green-500')}
-      offStateColor={tailwind.color('bg-green-100')}
-    />
-  );
-};
-
-storiesOf('Switch', module)
-  .addDecorator((getStory) => (
-    <View
-      style={{
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      {getStory()}
-    </View>
-  ))
-  .add('Small', () => <SwitchSmall />)
-  .add('Medium', () => <SwitchMedium />)
-  .add('Large', () => <SwitchLarge />)
-  .add('Extra Large', () => <SwitchExtraLarge />)
-  .add('ControllableExample', () => <ControllableExample />)
-  .add('Disabled', () => <SwitchDisabled />)
-  .add('Customised', () => <Customised />);
+switchStories.add('ControllableExample', () => <ControllableExample />);
