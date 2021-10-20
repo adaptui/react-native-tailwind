@@ -54,7 +54,7 @@ export interface SwitchProps {
    * The color used to tint the appearance of the thumb.
    * @default 'white'
    */
-  knobColor?: string;
+  thumbTintColor?: string;
   /**
    * The size of the switch component.
    * Recomended size for Mobile
@@ -82,7 +82,7 @@ export const Switch: React.FC<SwitchProps> = ({
   disabled = false,
   offStatePressedColor: offStatePressedColorProp,
   onStatePressedColor: onStatePressedColorProp,
-  knobColor = 'white',
+  thumbTintColor = 'white',
 }) => {
   const tailwind = useTheme();
   const switchStyles = useTheme('switchTheme');
@@ -133,7 +133,7 @@ export const Switch: React.FC<SwitchProps> = ({
 
   const animatedThumbStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor: knobColor,
+      backgroundColor: thumbTintColor,
       width: interpolate(
         thumbAnimated.value,
         [0, 0.3, 0.7, 1],
