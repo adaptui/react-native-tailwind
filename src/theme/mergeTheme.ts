@@ -12,7 +12,7 @@ import type {
   PartialDefaultTheme,
 } from './index';
 
-import { twMerge } from 'tailwind-merge/src';
+import { twMerge } from 'tailwind-merge';
 
 export function mergeThemes(themes: PartialDefaultTheme[]) {
   return {
