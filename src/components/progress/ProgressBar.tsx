@@ -12,20 +12,12 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { AnimatedBox } from '../../primitives/AnimatedBox';
-import { useTailwindThemeContext } from '../../theme/context';
-
-export const progressBarHeight = {
-  sm: 2,
-  md: 4,
-  lg: 8,
-  xl: 12,
-};
+import { useTheme } from '../../theme/context';
 
 export interface ProgressProps {
   /**
    * The size of the Progress Bar component.
-   * Recomended size for Mobile
-   * @default xl
+   * @default lg
    */
   size?: 'sm' | 'md' | 'lg' | 'xl';
   /**
@@ -36,10 +28,12 @@ export interface ProgressProps {
   value?: number | null;
   /**
    * Track color containing the progress
+   * @default 'bg-gray-200'
    */
   trackColor?: string;
   /**
    * Track color of the progress value
+   * @default 'bg-gray-800'
    */
   progressTrackColor?: string;
 }
@@ -54,22 +48,28 @@ const SPRING_CONFIG = {
 };
 
 export const ProgressBar: React.FC<ProgressProps> = ({
-  size = 'xl',
+  size = 'lg',
   value,
   trackColor: trackColorProp,
   progressTrackColor: progressTrackColorProp,
 }) => {
-  const tailwind = useTailwindThemeContext();
-  const isIndeterminate = value === null || value === undefined;
+  const tailwind = useTheme();
+  const progressStyles = useTheme('progress');
+
+  const isIndeterminate = React.useMemo(
+    () => value === null || value === undefined,
+    [value]
+  );
   const width = Dimensions.get('window').width;
   const trackColor =
-    trackColorProp || (tailwind.getColor('bg-gray-800') as string);
+    trackColorProp ||
+    (tailwind.getColor(progressStyles.defaultTrackColor) as string);
   const progressTrackColor =
-    progressTrackColorProp || (tailwind.getColor('bg-gray-200') as string);
+    progressTrackColorProp ||
+    (tailwind.getColor(progressStyles.defaultProgressTrackColor) as string);
 
-  // Mapping value to width %
-  const progressValue = useDerivedValue(
-    () => `${isIndeterminate ? 0 : value}%`
+  const progressValue = useDerivedValue(() =>
+    !isIndeterminate ? `${value || 0}%` : '0%'
   );
   const animatingWidth = useAnimatedStyle(() => {
     return {
@@ -92,6 +92,7 @@ export const ProgressBar: React.FC<ProgressProps> = ({
       )
     );
   }, [progressTranslate]);
+
   const translatingStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -110,21 +111,28 @@ export const ProgressBar: React.FC<ProgressProps> = ({
   return (
     <AnimatedBox
       style={[
-        tailwind.style(
-          `w-full h-[${progressBarHeight[size]}px] rounded-full overflow-hidden`
-        ),
+        tailwind.style(progressStyles.container[size]),
         { backgroundColor: trackColor },
       ]}
     >
-      <AnimatedBox
-        style={[
-          tailwind.style(
-            `absolute h-[${progressBarHeight[size]}px] bg-gray-800 rounded-full`
-          ),
-          { backgroundColor: progressTrackColor },
-          isIndeterminate ? translatingStyle : animatingWidth,
-        ]}
-      />
+      {isIndeterminate && (
+        <AnimatedBox
+          style={[
+            tailwind.style(progressStyles.bar[size]),
+            { backgroundColor: progressTrackColor },
+            translatingStyle,
+          ]}
+        />
+      )}
+      {!isIndeterminate && (
+        <AnimatedBox
+          style={[
+            tailwind.style(progressStyles.bar[size]),
+            { backgroundColor: progressTrackColor },
+            animatingWidth,
+          ]}
+        />
+      )}
     </AnimatedBox>
   );
 };
