@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import { useTailwindThemeContext } from 'react-native-system';
+import { useTheme } from 'react-native-system';
 import { Text } from '../../../src/primitives/Text';
 
 const TextComponent = () => {
-  const tailwind = useTailwindThemeContext();
+  const tailwind = useTheme();
 
   return (
     <Text style={tailwind.style('text-blue-600 text-center text-lg')}>

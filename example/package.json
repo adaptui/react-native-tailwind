@@ -33,8 +33,8 @@
     "typescript": "4.4.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/runtime": "^7.12.5",
+    "@babel/core": "^7.15.8",
+    "@babel/runtime": "^7.15.4",
     "@storybook/addon-actions": "^5.3",
     "@storybook/addon-knobs": "^5.3",
     "@storybook/addon-links": "^5.3",
@@ -44,8 +44,8 @@
     "@storybook/react-native-server": "^5.3.23",
     "@testing-library/jest-native": "^4.0.2",
     "@testing-library/react-native": "^7.2.0",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-module-resolver": "^4.1.0",
     "metro-react-native-babel-preset": "^0.64.0",
     "react-dom": "16.13.1",
     "react-native-storybook-loader": "^2.0.4"

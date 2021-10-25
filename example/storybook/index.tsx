@@ -34,6 +34,7 @@ configure(() => {
   // require('../App/stories/AnimatedBox.stories');
   require('../App/stories/Switch.stories');
   require('../App/stories/Badge.stories');
+  require('../App/stories/Progress.stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters

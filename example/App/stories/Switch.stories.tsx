@@ -31,7 +31,7 @@ switchStories.add('BasicSwitch', () => (
     offStateColor={color('offStateColor', '')}
     onStatePressedColor={color('onStatePressedColor', '')}
     offStatePressedColor={color('offStatePressedColor', '')}
-    thummbTintColor={color('thummbTintColor', '')}
+    thumbTintColor={color('thumbTintColor', 'white')}
     size={radios('size', { sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' }, 'xl')}
   />
 ));
