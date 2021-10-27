@@ -23,24 +23,25 @@ export const avatar = {
     },
   },
   status: {
+    outerBorderRadius: { borderWidth: 1.5 },
+    size: {
+      'xs': 'h-[5.5px] w-[5.5px]',
+      'sm': 'h-[7.5px] w-[7.5px]',
+      'md': 'h-[9.5px] w-[9.5px]',
+      'lg': 'h-[10.5px] w-[10.5px]',
+      'xl': 'h-[11.5px] w-[11.5px]',
+      '2xl': 'h-[13.5px] w-[13.5px]',
+      '3xl': 'h-[14.5px] w-[14.5px]',
+    },
     active: {
       base: 'absolute bg-green-500 shadow-sm border-white rounded-full bottom-0 right-0',
-      size: {
-        'xs': 'h-[5px] w-[5px] border',
-        'sm': 'h-1.5 w-1.5 border',
-        'md': 'h-[7px] w-[7px] border',
-        'lg': 'h-2 w-2 border',
-        'xl': 'h-[10px] w-[10px] border-2',
-        '2xl': 'h-[12px] w-[12px] border-2',
-        '3xl': 'h-[13px] w-[13px] border-2',
-      },
     },
     away: {
-      base: 'absolute shadow-sm border-white rounded-full bg-white',
+      base: 'absolute shadow-sm border-white rounded-full bg-white bottom-0 right-0',
       innerBox: {
         base: 'rounded-full w-full h-full border-gray-500',
         size: {
-          'xs': { borderWidth: 1.3 },
+          'xs': { borderWidth: 1.5 },
           'sm': { borderWidth: 1.5 },
           'md': { borderWidth: 1.5 },
           'lg': { borderWidth: 2 },
@@ -49,24 +50,9 @@ export const avatar = {
           '3xl': { borderWidth: 2 },
         },
       },
-      position: {
-        'xs': { right: 0, bottom: -0.5 },
-        'sm': { right: -0.5, bottom: -0.5 },
-        'md': { right: -0.5, bottom: -0.5 },
-        'lg': { right: -0.5, bottom: -0.5 },
-        'xl': { right: -2, bottom: -2 },
-        '2xl': { right: -0.5, bottom: -1 },
-        '3xl': { right: -0.5, bottom: -1 },
-      },
-      size: {
-        'xs': 'h-1.5 w-1.5 border',
-        'sm': 'h-[7px] w-[7px] border',
-        'md': 'h-2 w-2 border',
-        'lg': 'h-[9px] w-[9px] border',
-        'xl': 'h-[12px] w-[12px] border-2',
-        '2xl': 'h-[14px] w-[14px] border-2',
-        '3xl': 'h-[15px] w-[15px] border-2',
-      },
+    },
+    sleep: {
+      base: 'absolute items-center justify-center shadow-sm border-white rounded-full bg-white bottom-0 right-0',
     },
   },
 };
