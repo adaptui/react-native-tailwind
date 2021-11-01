@@ -1,4 +1,4 @@
-import { object, radios, text } from '@storybook/addon-knobs';
+import { boolean, object, radios, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Avatar, Box } from 'react-native-system';
@@ -19,6 +19,7 @@ avatarStories.addDecorator((getStory) => (
 
 avatarStories.add('Default', () => (
   <Avatar
+    circular={boolean('circular', true)}
     size={radios(
       'size',
       {
@@ -30,12 +31,13 @@ avatarStories.add('Default', () => (
         '2xl': '2xl',
         '3xl': '3xl',
       },
-      'xl'
+      '3xl'
     )}
   />
 ));
 avatarStories.add('With Name', () => (
   <Avatar
+    circular={boolean('circular', true)}
     size={radios(
       'size',
       {
@@ -47,7 +49,7 @@ avatarStories.add('With Name', () => (
         '2xl': '2xl',
         '3xl': '3xl',
       },
-      'xl'
+      '3xl'
     )}
     name={text('name', 'Richard Hendricks')}
   />
@@ -55,6 +57,7 @@ avatarStories.add('With Name', () => (
 
 avatarStories.add('With Src', () => (
   <Avatar
+    circular={boolean('circular', true)}
     size={radios(
       'size',
       {
@@ -66,7 +69,7 @@ avatarStories.add('With Src', () => (
         '2xl': '2xl',
         '3xl': '3xl',
       },
-      'xl'
+      '3xl'
     )}
     src={object('src', { uri: 'https://bit.ly/ryan-florence' })}
   />
@@ -74,6 +77,7 @@ avatarStories.add('With Src', () => (
 
 avatarStories.add('With Src and Name', () => (
   <Avatar
+    circular={boolean('circular', true)}
     size={radios(
       'size',
       {
@@ -85,7 +89,7 @@ avatarStories.add('With Src and Name', () => (
         '2xl': '2xl',
         '3xl': '3xl',
       },
-      'xl'
+      '3xl'
     )}
     src={object('src', { uri: 'https://bit.ly/ryan-florence' })}
     name={text('name', 'S P')}
@@ -94,6 +98,7 @@ avatarStories.add('With Src and Name', () => (
 
 avatarStories.add('With Status', () => (
   <Avatar
+    circular={boolean('circular', true)}
     size={radios(
       'size',
       {
@@ -105,20 +110,19 @@ avatarStories.add('With Status', () => (
         '2xl': '2xl',
         '3xl': '3xl',
       },
-      'xl'
+      '3xl'
     )}
     src={object('src', { uri: 'https://bit.ly/ryan-florence' })}
     name={text('name', 'S P')}
     status={radios(
       'status',
       {
-        'active': 'active',
-        'away': 'away',
-        'typing-sm': 'typing-sm',
-        'sleep': 'sleep',
-        'typing-large': 'typing-large',
+        active: 'active',
+        away: 'away',
+        sleep: 'sleep',
+        typing: 'typing',
       },
-      'sleep'
+      'typing'
     )}
   />
 ));
