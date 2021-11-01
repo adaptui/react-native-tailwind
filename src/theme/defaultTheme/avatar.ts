@@ -24,6 +24,7 @@ export const avatar = {
   },
   status: {
     outerBorderRadius: { borderWidth: 1.5 },
+    position: { bottom: -1 },
     size: {
       'xs': 'h-[5.5px] w-[5.5px]',
       'sm': 'h-[7.5px] w-[7.5px]',
@@ -53,6 +54,31 @@ export const avatar = {
     },
     sleep: {
       base: 'absolute items-center justify-center shadow-sm border-white rounded-full bg-white bottom-0 right-0',
+    },
+    typing: {
+      base: 'absolute border-2 border-white shadow-sm flex-row rounded-full items-center justify-evenly right-0 bottom-0 bg-gray-500',
+      position: { bottom: -2, right: -2 },
+      size: {
+        'xs': 'w-3 h-[9px]',
+        'sm': 'w-[13px] h-[9.62px]',
+        'md': 'w-[14px] h-[10.25px]',
+        'lg': 'w-[15px] h-[10.88px]',
+        'xl': 'w-[18px] h-[12.17px]',
+        '2xl': 'w-5 h-[13.33px]',
+        '3xl': 'w-[21px] h-[13.92px]',
+      },
+      innerDots: {
+        base: 'bg-white rounded-full',
+        size: {
+          'xs': 'w-[2px] h-[2px]',
+          'sm': 'w-[2.25px] h-[2.25px]',
+          'md': 'w-[2.5px] h-[2.5px]',
+          'lg': 'w-[2.75px] h-[2.75px]',
+          'xl': 'w-[2.33px] h-[2.33px]',
+          '2xl': 'w-[2.67px] h-[2.67px]',
+          '3xl': 'w-[2.83px] h-[2.83px]',
+        },
+      },
     },
   },
 };
