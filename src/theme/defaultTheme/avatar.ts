@@ -1,5 +1,5 @@
 export const avatar = {
-  base: 'relative items-center rounded-full justify-center bg-gray-100',
+  base: 'relative items-center rounded-lg justify-center bg-gray-100',
   size: {
     'xs': 'h-4 w-4',
     'sm': 'h-5 w-5',
@@ -9,7 +9,8 @@ export const avatar = {
     '2xl': 'h-10 w-10',
     '3xl': 'h-12 w-12',
   },
-  image: 'rounded-full w-full h-full',
+  image: 'rounded-lg w-full h-full',
+  circular: 'rounded-full',
   initials: {
     base: 'text-center uppercase text-gray-500',
     size: {
