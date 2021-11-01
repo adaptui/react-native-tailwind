@@ -18,6 +18,7 @@ interface AvatarProps {
    */
   size?: AvatarSizes;
   status?: AvatarStatusType;
+  circular?: boolean;
 }
 
 function getInitials(name?: string, size?: AvatarSizes) {
@@ -36,6 +37,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   name,
   size = 'xl',
   status,
+  circular = false,
 }) => {
   const tailwind = useTheme();
   const avatarTheme = useTheme('avatar');
@@ -44,11 +46,20 @@ export const Avatar: React.FC<AvatarProps> = ({
   const loadFallback = () => setImageAvailable(false);
 
   return (
-    <Box style={tailwind.style([avatarTheme.base, avatarTheme.size[size]])}>
+    <Box
+      style={tailwind.style([
+        avatarTheme.base,
+        avatarTheme.size[size],
+        circular ? avatarTheme.circular : '',
+      ])}
+    >
       {imageAvailable && src ? (
         <Image
           source={src}
-          style={tailwind.style(avatarTheme.image)}
+          style={tailwind.style([
+            avatarTheme.image,
+            circular ? avatarTheme.circular : '',
+          ])}
           onError={loadFallback}
           {...imageProps}
         />
