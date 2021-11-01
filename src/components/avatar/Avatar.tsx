@@ -5,12 +5,7 @@ import { DefaultUser } from '../../assets';
 import { AvatarStatus } from './AvatarStatus';
 
 export type AvatarSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
-export type AvatarStatusType =
-  | 'active'
-  | 'away'
-  | 'typing-sm'
-  | 'sleep'
-  | 'typing-large';
+export type AvatarStatusType = 'active' | 'away' | 'sleep' | 'typing';
 
 interface AvatarProps {
   imageProps?: Omit<ImageProps, 'source'>;
