@@ -1,6 +1,6 @@
 import React from 'react';
-import { AvatarSizes } from 'react-native-system';
 import Svg, { Path } from 'react-native-svg';
+import { AvatarSizes } from '../../components/avatar/types';
 
 interface DefaultUserProps {
   size: AvatarSizes;
