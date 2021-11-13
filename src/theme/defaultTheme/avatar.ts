@@ -82,4 +82,19 @@ export const avatar = {
       },
     },
   },
+  group: {
+    base: 'flex-row justify-center items-center',
+    avatarWrapper: {
+      base: 'rounded-full border-2 border-white',
+      size: {
+        'xs': '-ml-[5px]',
+        'sm': '-ml-1.5',
+        'md': '-ml-1.5',
+        'lg': '-ml-1.5',
+        'xl': '-ml-2',
+        '2xl': '-ml-[10px]',
+        '3xl': '-ml-[12px]',
+      },
+    },
+  },
 };
