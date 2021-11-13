@@ -1,7 +1,7 @@
-import { boolean, object, radios, text } from '@storybook/addon-knobs';
+import { boolean, number, object, radios, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import { Avatar, Box } from 'react-native-system';
+import { Avatar, Box, AvatarGroup } from 'react-native-system';
 
 const avatarStories = storiesOf('Avatar', module);
 avatarStories.addDecorator((getStory) => (
@@ -125,4 +125,56 @@ avatarStories.add('With Status', () => (
       'typing'
     )}
   />
+));
+
+const avatarProps = [
+  {
+    name: 'Leanne Graham',
+    src: { uri: 'https://i.pravatar.cc/300?img=1' },
+  },
+  {
+    name: 'Ervin Howell',
+    src: { uri: 'https://i.pravatar.cc/300?img=11' },
+  },
+  {
+    name: 'Clementine Bauch',
+    src: { uri: 'https://i.pravatar.cc/300?img=21' },
+  },
+  {
+    name: 'Patricia Lebsack',
+    src: { uri: 'https://i.pravatar.cc/300?img=31' },
+  },
+  {
+    name: 'Chelsey Dietrich',
+    src: { uri: 'https://i.pravatar.cc/300?img=41' },
+  },
+  {
+    name: 'Dennis Schulist',
+    src: { uri: 'https://i.pravatar.cc/300?img=51' },
+  },
+];
+
+avatarStories.add('Avatar Group', () => (
+  <Box>
+    <AvatarGroup
+      size={radios(
+        'size',
+        {
+          'xs': 'xs',
+          'sm': 'sm',
+          'md': 'md',
+          'lg': 'lg',
+          'xl': 'xl',
+          '2xl': '2xl',
+          '3xl': '3xl',
+        },
+        'lg'
+      )}
+      max={number('max', 5)}
+    >
+      {avatarProps.map((item) => (
+        <Avatar key={item.name} name={item.name} src={item.src} />
+      ))}
+    </AvatarGroup>
+  </Box>
 ));
