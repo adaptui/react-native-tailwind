@@ -1,81 +1,64 @@
 import React, { useState } from 'react';
-import { Image, ImageProps, ImageSourcePropType } from 'react-native';
 import { Box, Text, useTheme } from 'react-native-system';
 import { DefaultUser } from '../../assets';
+import { AvatarImage } from './AvatarImage';
+import { useAvatarProps } from './AvatarProps';
 import { AvatarStatus } from './AvatarStatus';
+import { AvatarProps, AvatarSizes } from './types';
 
-export type AvatarSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
-export type AvatarStatusType = 'active' | 'away' | 'sleep' | 'typing';
-
-interface AvatarProps {
-  imageProps?: Omit<ImageProps, 'source'>;
-  src?: ImageSourcePropType;
-  name?: string;
-  /**
-   * The size of the Avatar component.
-   * Recomended size for Mobile
-   * @default xl
-   */
-  size?: AvatarSizes;
-  status?: AvatarStatusType;
-  circular?: boolean;
-}
-
-function getInitials(name?: string, size?: AvatarSizes) {
+function getInitials(name: string, size: AvatarSizes) {
   if (!name) {
     return;
   }
   const [firstName, lastName] = name.split(' ');
-  return firstName && lastName && size !== 'xs'
-    ? `${firstName.charAt(0)}${lastName.charAt(0)}`
-    : firstName.charAt(0);
+  const oneLetterInitialSizes = ['xs', 'sm', 'md'];
+
+  const initials =
+    firstName && lastName
+      ? `${firstName.charAt(0)}${lastName.charAt(0)}`
+      : `${firstName.charAt(0)}${firstName.charAt(1)}`;
+
+  return oneLetterInitialSizes.includes(size)
+    ? initials.toUpperCase().charAt(0)
+    : initials.toUpperCase();
 }
 
-export const Avatar: React.FC<AvatarProps> = ({
-  imageProps,
-  src,
-  name,
-  size = 'xl',
-  status,
-  circular = false,
-}) => {
+export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
   const tailwind = useTheme();
   const avatarTheme = useTheme('avatar');
-  const isSourceAvailable = React.useMemo(() => (src ? true : false), [src]);
+  const { _imageProps, _basicProps, _otherProps, _statusProps } =
+    useAvatarProps(props);
+  const isSourceAvailable = React.useMemo(
+    () => (_imageProps?.src ? true : false),
+    [_imageProps?.src]
+  );
   const [imageAvailable, setImageAvailable] = useState(isSourceAvailable);
   const loadFallback = () => setImageAvailable(false);
-
   return (
     <Box
       style={tailwind.style([
         avatarTheme.base,
-        avatarTheme.size[size],
-        circular ? avatarTheme.circular : '',
+        avatarTheme.size[_basicProps.size],
+        _basicProps.circular ? avatarTheme.circular : '',
       ])}
     >
-      {imageAvailable && src ? (
-        <Image
-          source={src}
-          style={tailwind.style([
-            avatarTheme.image,
-            circular ? avatarTheme.circular : '',
-          ])}
-          onError={loadFallback}
-          {...imageProps}
-        />
-      ) : name ? (
+      {imageAvailable && _imageProps.src ? (
+        <AvatarImage {..._imageProps} handleFallback={loadFallback} />
+      ) : _otherProps.name ? (
         <Text
           style={tailwind.style([
             avatarTheme.initials.base,
-            avatarTheme.initials.size[size],
+            avatarTheme.initials.size[_basicProps.size],
           ])}
         >
-          {getInitials(name, size)}
+          {getInitials(_otherProps.name, _basicProps.size)}
         </Text>
       ) : (
-        <DefaultUser size={size} />
+        <DefaultUser size={_basicProps.size} />
       )}
-      {status && <AvatarStatus size={size} status={status} />}
+      {_statusProps.status && (
+        <AvatarStatus size={_basicProps.size} status={_statusProps.status} />
+      )}
     </Box>
   );
 };
