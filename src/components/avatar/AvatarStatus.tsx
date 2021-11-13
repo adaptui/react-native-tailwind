@@ -8,14 +8,9 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-import {
-  AnimatedBox,
-  AvatarSizes,
-  AvatarStatusType,
-  Box,
-  useTheme,
-} from 'react-native-system';
+import { AnimatedBox, Box, useTheme } from 'react-native-system';
 import { SleepIndicator } from '../../assets';
+import { AvatarSizes, AvatarStatusType } from './types';
 
 interface AvatarStatusProps {
   status?: AvatarStatusType;
@@ -33,11 +28,11 @@ const TypingComponent: React.FC<TypingStatusProps> = ({ size }) => {
   const progressTranslate = useSharedValue(-1);
   React.useEffect(() => {
     progressTranslate.value = withDelay(
-      700,
+      500,
       withRepeat(
         withTiming(1, {
           easing: Easing.linear,
-          duration: 500,
+          duration: 700,
         }),
         -1,
         false
