@@ -36,11 +36,14 @@ export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
   const loadFallback = () => setImageAvailable(false);
   return (
     <Box
-      style={tailwind.style([
-        avatarTheme.base,
-        avatarTheme.size[_basicProps.size],
-        _basicProps.circular ? avatarTheme.circular : '',
-      ])}
+      style={[
+        avatarTheme.borderRadius.size[_basicProps.size],
+        tailwind.style([
+          avatarTheme.base,
+          avatarTheme.size[_basicProps.size],
+          _basicProps.circular ? avatarTheme.circular : '',
+        ]),
+      ]}
     >
       {imageAvailable && _imageProps.src ? (
         <AvatarImage {..._imageProps} handleFallback={loadFallback} />

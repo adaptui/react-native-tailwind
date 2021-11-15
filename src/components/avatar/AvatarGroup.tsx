@@ -46,10 +46,14 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
       <AvatarGroupWrapper size={size} {...rest}>
         {childrenWithinMax.map((renderElement, index) => (
           <Box
-            style={tailwind.style([
-              avatarTheme.group.avatarWrapper.base,
-              index !== 0 ? avatarTheme.group.avatarWrapper.size[size] : '',
-            ])}
+            style={[
+              avatarTheme.borderRadius.size[size],
+              tailwind.style([
+                avatarTheme.group.avatarWrapper.base,
+                index !== 0 ? avatarTheme.group.avatarWrapper.size[size] : '',
+                circular ? avatarTheme.group.avatarWrapper.circular : '',
+              ]),
+            ]}
             key={index}
           >
             {renderElement}
@@ -57,10 +61,14 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
         ))}
         {excess > 0 ? (
           <Box
-            style={tailwind.style([
-              avatarTheme.group.avatarWrapper.base,
-              avatarTheme.group.avatarWrapper.size[size],
-            ])}
+            style={[
+              avatarTheme.borderRadius.size[size],
+              tailwind.style([
+                avatarTheme.group.avatarWrapper.base,
+                avatarTheme.group.avatarWrapper.size[size],
+                circular ? avatarTheme.group.avatarWrapper.circular : '',
+              ]),
+            ]}
           >
             <Avatar name={excess.toString()} />
           </Box>
