@@ -24,10 +24,28 @@ export type AvatarGroupProps = BoxProps &
      *
      */
     max?: number;
+    /**
+     * A ring around the Avatar Component. If true, the Avatar will show a border around it.
+     *
+     */
+    showRing?: boolean;
+    /**
+     * Color of the ring around the Avatar Component.
+     *
+     */
+    ringColor?: string;
   };
 
 export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
-  const { circular = true, size = 'xl', children, max, ...rest } = props;
+  const {
+    circular = true,
+    size = 'xl',
+    showRing = false,
+    ringColor = 'white',
+    children,
+    max,
+    ...rest
+  } = props;
   const validChildren = getValidChildren(children);
   const tailwind = useTheme();
   const avatarTheme = useTheme('avatar');
@@ -49,10 +67,13 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
             style={[
               avatarTheme.borderRadius.size[size],
               tailwind.style([
-                avatarTheme.group.avatarWrapper.base,
                 index !== 0 ? avatarTheme.group.avatarWrapper.size[size] : '',
                 circular ? avatarTheme.group.avatarWrapper.circular : '',
+                showRing ? avatarTheme.group.avatarWrapper.ringStyle : '',
               ]),
+              showRing
+                ? { borderColor: ringColor, backgroundColor: ringColor }
+                : {},
             ]}
             key={index}
           >
@@ -64,10 +85,13 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
             style={[
               avatarTheme.borderRadius.size[size],
               tailwind.style([
-                avatarTheme.group.avatarWrapper.base,
                 avatarTheme.group.avatarWrapper.size[size],
                 circular ? avatarTheme.group.avatarWrapper.circular : '',
+                showRing ? avatarTheme.group.avatarWrapper.ringStyle : '',
               ]),
+              showRing
+                ? { borderColor: ringColor, backgroundColor: ringColor }
+                : {},
             ]}
           >
             <Avatar name={excess.toString()} />
