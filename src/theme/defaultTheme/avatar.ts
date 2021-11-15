@@ -97,7 +97,7 @@ export const avatar = {
   group: {
     base: 'flex-row items-center',
     avatarWrapper: {
-      base: 'border-2 border-white bg-gray-100',
+      ringStyle: 'border-2',
       circular: 'rounded-full',
       // Adding +4 to the negative margin including the borderWidth(2) value
       size: {
