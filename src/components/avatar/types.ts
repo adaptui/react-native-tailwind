@@ -7,6 +7,7 @@ export interface AvatarImageBasicProps {
   imageProps: Omit<ImageProps, 'source'>;
   src: ImageSourcePropType;
   handleFallback: () => void;
+  size: AvatarSizes;
 }
 
 export interface AvatarBasicProps {

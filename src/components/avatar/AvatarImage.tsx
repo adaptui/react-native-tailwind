@@ -8,16 +8,20 @@ export const AvatarImage: React.FC<AvatarImageProps> = ({
   src,
   handleFallback,
   circular,
+  size,
 }) => {
   const tailwind = useTheme();
   const avatarTheme = useTheme('avatar');
   return (
     <Image
       source={src}
-      style={tailwind.style([
-        avatarTheme.image,
-        circular ? avatarTheme.circular : '',
-      ])}
+      style={[
+        avatarTheme.borderRadius.size[size],
+        tailwind.style([
+          avatarTheme.image,
+          circular ? avatarTheme.circular : '',
+        ]),
+      ]}
       onError={handleFallback}
       {...imageProps}
     />

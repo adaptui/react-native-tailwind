@@ -3,6 +3,7 @@ export const AVATAR_IMAGE_KEYS = [
   'src',
   'handleFallback',
   'circular',
+  'size',
 ];
 
 export const AVATAR_BASIC_KEYS = ['size', 'circular', 'name'];
