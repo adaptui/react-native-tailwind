@@ -27,7 +27,6 @@ export const useAvatarProps = (
 ): AvatarPropsReturnType => {
   let _props = { ...props };
   const avatarGroupProps = useAvatarGroup();
-  console.log(avatarGroupProps);
   if (!_props.size) {
     _props = { ..._props, size: avatarGroupProps.size || 'xl' };
   }
