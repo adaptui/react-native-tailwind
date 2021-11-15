@@ -1,5 +1,5 @@
 export const avatar = {
-  base: 'relative items-center rounded-lg justify-center bg-gray-100',
+  base: 'relative items-center justify-center bg-gray-100',
   size: {
     'xs': 'h-4 w-4',
     'sm': 'h-5 w-5',
@@ -9,7 +9,19 @@ export const avatar = {
     '2xl': 'h-10 w-10',
     '3xl': 'h-12 w-12',
   },
-  image: 'rounded-lg w-full h-full',
+  image: 'w-full h-full',
+  // Having style objects because specific value not present as tailwind classnames
+  borderRadius: {
+    size: {
+      'xs': { borderRadius: 4 },
+      'sm': { borderRadius: 5 },
+      'md': { borderRadius: 5 },
+      'lg': { borderRadius: 6 },
+      'xl': { borderRadius: 6 },
+      '2xl': { borderRadius: 8 },
+      '3xl': { borderRadius: 10 },
+    },
+  },
   circular: 'rounded-full',
   initials: {
     base: 'text-center uppercase text-gray-500',
@@ -83,9 +95,11 @@ export const avatar = {
     },
   },
   group: {
-    base: 'flex-row justify-center items-center',
+    base: 'flex-row items-center',
     avatarWrapper: {
-      base: 'rounded-full border-2 border-white',
+      base: 'border-2 border-white bg-gray-100',
+      circular: 'rounded-full',
+      // Adding +4 to the negative margin including the borderWidth(2) value
       size: {
         'xs': '-ml-[5px]',
         'sm': '-ml-1.5',
