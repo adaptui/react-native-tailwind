@@ -48,7 +48,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
           <Box
             style={tailwind.style([
               avatarTheme.group.avatarWrapper.base,
-              avatarTheme.group.avatarWrapper.size[size],
+              index !== 0 ? avatarTheme.group.avatarWrapper.size[size] : '',
             ])}
             key={index}
           >
