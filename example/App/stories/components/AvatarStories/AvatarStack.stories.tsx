@@ -1,4 +1,4 @@
-import { number } from '@storybook/addon-knobs';
+import { boolean, color, number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Avatar, AvatarGroup, Box } from 'react-native-system';
@@ -109,5 +109,108 @@ avatarStackStories.add('Avatar Stack Circular', () => (
         <Avatar key={item.name} name={item.name} src={item.src} />
       ))}
     </AvatarGroup>
+  </Box>
+));
+
+avatarStackStories.add('Avatar Stack with Background', () => (
+  <Box
+    style={{
+      flex: 1,
+      justifyContent: 'center',
+      paddingHorizontal: 12,
+      backgroundColor: '#47E6C6',
+    }}
+  >
+    <Box style={{ marginVertical: 12 }}>
+      <AvatarGroup
+        circular={boolean('circular', false)}
+        showRing={boolean('showRing', true)}
+        ringColor={color('ringColor', '#47E6C6')}
+        size="xs"
+        max={number('max', 3)}
+      >
+        {avatarProps.map((item) => (
+          <Avatar key={item.name} name={item.name} src={item.src} />
+        ))}
+      </AvatarGroup>
+    </Box>
+    <Box style={{ marginVertical: 12 }}>
+      <AvatarGroup
+        circular={boolean('circular', false)}
+        showRing={boolean('showRing', true)}
+        ringColor={color('ringColor', '#47E6C6')}
+        size="sm"
+        max={number('max', 3)}
+      >
+        {avatarProps.map((item) => (
+          <Avatar key={item.name} name={item.name} src={item.src} />
+        ))}
+      </AvatarGroup>
+    </Box>
+    <Box style={{ marginVertical: 12 }}>
+      <AvatarGroup
+        circular={boolean('circular', false)}
+        showRing={boolean('showRing', true)}
+        ringColor={color('ringColor', '#47E6C6')}
+        size="md"
+        max={number('max', 3)}
+      >
+        {avatarProps.map((item) => (
+          <Avatar key={item.name} name={item.name} src={item.src} />
+        ))}
+      </AvatarGroup>
+    </Box>
+    <Box style={{ marginVertical: 12 }}>
+      <AvatarGroup
+        circular={boolean('circular', false)}
+        showRing={boolean('showRing', true)}
+        ringColor={color('ringColor', '#47E6C6')}
+        size="lg"
+        max={number('max', 3)}
+      >
+        {avatarProps.map((item) => (
+          <Avatar key={item.name} name={item.name} src={item.src} />
+        ))}
+      </AvatarGroup>
+    </Box>
+    <Box style={{ marginVertical: 12 }}>
+      <AvatarGroup
+        circular={boolean('circular', false)}
+        showRing={boolean('showRing', true)}
+        ringColor={color('ringColor', '#47E6C6')}
+        size="xl"
+        max={number('max', 3)}
+      >
+        {avatarProps.map((item) => (
+          <Avatar key={item.name} name={item.name} src={item.src} />
+        ))}
+      </AvatarGroup>
+    </Box>
+    <Box style={{ marginVertical: 12 }}>
+      <AvatarGroup
+        circular={boolean('circular', false)}
+        showRing={boolean('showRing', true)}
+        ringColor={color('ringColor', '#47E6C6')}
+        size="2xl"
+        max={number('max', 3)}
+      >
+        {avatarProps.map((item) => (
+          <Avatar key={item.name} name={item.name} src={item.src} />
+        ))}
+      </AvatarGroup>
+    </Box>
+    <Box style={{ marginVertical: 12 }}>
+      <AvatarGroup
+        circular={boolean('circular', false)}
+        showRing={boolean('showRing', true)}
+        ringColor={color('ringColor', '#47E6C6')}
+        size="3xl"
+        max={number('max', 3)}
+      >
+        {avatarProps.map((item) => (
+          <Avatar key={item.name} name={item.name} src={item.src} />
+        ))}
+      </AvatarGroup>
+    </Box>
   </Box>
 ));

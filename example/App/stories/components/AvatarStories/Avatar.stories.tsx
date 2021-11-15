@@ -1,4 +1,11 @@
-import { boolean, number, object, radios, text } from '@storybook/addon-knobs';
+import {
+  boolean,
+  color,
+  number,
+  object,
+  radios,
+  text,
+} from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Avatar, Box, AvatarGroup } from 'react-native-system';
@@ -171,6 +178,9 @@ avatarStories.add('Avatar Group', () => (
         'lg'
       )}
       max={number('max', 5)}
+      circular={boolean('circular', false)}
+      showRing={boolean('showRing', false)}
+      ringColor={color('ringColor', 'white')}
     >
       {avatarProps.map((item) => (
         <Avatar key={item.name} name={item.name} src={item.src} />
