@@ -59,9 +59,7 @@ export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
       ) : (
         <DefaultUser size={_basicProps.size} />
       )}
-      {_statusProps.status && (
-        <AvatarStatus size={_basicProps.size} status={_statusProps.status} />
-      )}
+      {_statusProps.status && <AvatarStatus {..._statusProps} />}
     </Box>
   );
 };
