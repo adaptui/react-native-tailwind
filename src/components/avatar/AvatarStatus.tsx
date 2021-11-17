@@ -10,18 +10,16 @@ import {
 } from 'react-native-reanimated';
 import { AnimatedBox, Box, useTheme } from 'react-native-system';
 import { SleepIndicator } from '../../assets';
-import { AvatarSizes, AvatarStatusType } from './types';
-
-interface AvatarStatusProps {
-  status?: AvatarStatusType;
-  size?: AvatarSizes;
-}
-
+import { AvatarSizes, AvatarStatusProps } from './types';
 interface TypingStatusProps {
   size: Partial<AvatarSizes>;
+  parentsBackground: string;
 }
 
-const TypingComponent: React.FC<TypingStatusProps> = ({ size }) => {
+const TypingComponent: React.FC<TypingStatusProps> = ({
+  size,
+  parentsBackground,
+}) => {
   const tailwind = useTheme();
   const avatarStatusTheme = useTheme('avatar');
   const noOfDots = size === 'xl' || size === '2xl' || size === '3xl' ? 3 : 2;
@@ -72,6 +70,7 @@ const TypingComponent: React.FC<TypingStatusProps> = ({ size }) => {
           avatarStatusTheme.status.typing.size[size]
         ),
         avatarStatusTheme.status.typing.position,
+        { borderColor: parentsBackground },
       ]}
     >
       {noOfDots === 2 && (
@@ -134,6 +133,7 @@ const TypingComponent: React.FC<TypingStatusProps> = ({ size }) => {
 export const AvatarStatus: React.FC<AvatarStatusProps> = ({
   status,
   size = 'xl',
+  parentsBackground = 'white',
 }) => {
   const tailwind = useTheme();
   const avatarStatusTheme = useTheme('avatar');
@@ -148,6 +148,7 @@ export const AvatarStatus: React.FC<AvatarStatusProps> = ({
             ]),
             avatarStatusTheme.status.outerBorderRadius,
             avatarStatusTheme.status.position,
+            { borderColor: parentsBackground },
           ]}
         />
       );
@@ -162,6 +163,10 @@ export const AvatarStatus: React.FC<AvatarStatusProps> = ({
             ]),
             avatarStatusTheme.status.outerBorderRadius,
             avatarStatusTheme.status.position,
+            {
+              borderColor: parentsBackground,
+              backgroundColor: parentsBackground,
+            },
           ]}
         >
           <Box
@@ -183,6 +188,10 @@ export const AvatarStatus: React.FC<AvatarStatusProps> = ({
             ]),
             avatarStatusTheme.status.outerBorderRadius,
             avatarStatusTheme.status.position,
+            {
+              borderColor: parentsBackground,
+              backgroundColor: parentsBackground,
+            },
           ]}
         >
           <SleepIndicator size={size} />
@@ -190,7 +199,9 @@ export const AvatarStatus: React.FC<AvatarStatusProps> = ({
       );
     }
     case 'typing': {
-      return <TypingComponent size={size} />;
+      return (
+        <TypingComponent size={size} parentsBackground={parentsBackground} />
+      );
     }
   }
   return null;
