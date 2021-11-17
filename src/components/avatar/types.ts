@@ -20,6 +20,8 @@ export type AvatarImageProps = AvatarImageBasicProps &
 
 export interface AvatarStatusProps {
   status: AvatarStatusType;
+  parentsBackground: string;
+  size: AvatarSizes;
 }
 
 export interface AvatarOtherProps {
