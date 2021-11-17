@@ -9,6 +9,7 @@ import {
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Avatar, Box, AvatarGroup } from 'react-native-system';
+import tailwind from 'twrnc';
 
 const avatarStories = storiesOf('Avatar', module);
 avatarStories.addDecorator((getStory) => (
@@ -132,6 +133,45 @@ avatarStories.add('With Status', () => (
       'typing'
     )}
   />
+));
+
+avatarStories.add('With Status With Background', () => (
+  <Box
+    style={tailwind.style('bg-gray-200 w-30 h-30 justify-center items-center')}
+  >
+    <Avatar
+      circular={boolean('circular', true)}
+      size={radios(
+        'size',
+        {
+          'xs': 'xs',
+          'sm': 'sm',
+          'md': 'md',
+          'lg': 'lg',
+          'xl': 'xl',
+          '2xl': '2xl',
+          '3xl': '3xl',
+        },
+        '3xl'
+      )}
+      parentsBackground={color(
+        'parentsBackground',
+        tailwind.color('bg-gray-200') || 'white'
+      )}
+      src={object('src', { uri: 'https://bit.ly/ryan-florence' })}
+      name={text('name', 'S P')}
+      status={radios(
+        'status',
+        {
+          active: 'active',
+          away: 'away',
+          sleep: 'sleep',
+          typing: 'typing',
+        },
+        'active'
+      )}
+    />
+  </Box>
 ));
 
 const avatarProps = [
