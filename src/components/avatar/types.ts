@@ -6,7 +6,6 @@ export type AvatarStatusType = 'active' | 'away' | 'sleep' | 'typing' | null;
 export interface AvatarImageBasicProps {
   imageProps: Omit<ImageProps, 'source'>;
   src: ImageSourcePropType;
-  handleFallback: () => void;
   size: AvatarSizes;
 }
 

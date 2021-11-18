@@ -2,8 +2,11 @@ import React from 'react';
 import { Image } from 'react-native';
 import { useTheme } from 'react-native-system';
 import { AvatarImageProps } from './types';
+interface CAvatarImageProps extends AvatarImageProps {
+  handleFallback: () => void;
+}
 
-export const AvatarImage: React.FC<AvatarImageProps> = ({
+export const AvatarImage: React.FC<CAvatarImageProps> = ({
   imageProps,
   src,
   handleFallback,

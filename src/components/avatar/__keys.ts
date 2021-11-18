@@ -1,10 +1,4 @@
-export const AVATAR_IMAGE_KEYS = [
-  'imageProps',
-  'src',
-  'handleFallback',
-  'circular',
-  'size',
-];
+export const AVATAR_IMAGE_KEYS = ['imageProps', 'src', 'circular', 'size'];
 
 export const AVATAR_BASIC_KEYS = ['size', 'circular', 'name'];
 
