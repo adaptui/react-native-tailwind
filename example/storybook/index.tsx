@@ -37,6 +37,7 @@ configure(() => {
   require('../App/stories/Progress.stories');
   require('../App/stories/components/AvatarStories/Avatar.stories');
   require('../App/stories/components/AvatarStories/AvatarStack.stories');
+  require('../App/stories/components/ButtonStories/Button.stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
