@@ -42,6 +42,22 @@ export const button = {
       },
     },
   },
+  icon: {
+    variant: {
+      default: {
+        solid: 'text-white',
+        subtle: 'text-gray-600',
+        outline: 'text-gray-600',
+        ghost: 'text-gray-600',
+      },
+      disabled: {
+        solid: 'text-gray-400',
+        subtle: 'text-gray-400',
+        outline: 'text-gray-400',
+        ghost: 'text-gray-400',
+      },
+    },
+  },
   size: {
     default: {
       sm: 'px-2 py-[6.5px] min-h-[26px] min-w-[26px] rounded-lg',
@@ -49,5 +65,17 @@ export const button = {
       lg: 'px-3 py-[10px] min-h-9 min-w-9 rounded-[10px]',
       xl: 'px-4 py-[13px] min-h-11 min-w-11 rounded-xl',
     },
+  },
+  prefix: {
+    sm: 'w-3 mr-1.5',
+    md: 'w-3 mr-1.5',
+    lg: 'w-3 mr-1.5',
+    xl: 'w-4 mr-1.5',
+  },
+  suffix: {
+    sm: 'w-3 ml-1.5',
+    md: 'w-3 ml-1.5',
+    lg: 'w-3 ml-1.5',
+    xl: 'w-4 ml-1.5',
   },
 };
