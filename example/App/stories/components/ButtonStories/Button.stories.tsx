@@ -5,6 +5,7 @@ import { Alert } from 'react-native';
 import { Box, Button, Text } from 'react-native-system';
 import { ButtonSizes, ButtonVariants } from 'src/components/button/buttonTypes';
 import tailwind from 'twrnc';
+import { CaretRight, Clock } from '../../../../../src/assets';
 
 const buttonStories = storiesOf('Button', module);
 const buttonVariants = [
@@ -17,7 +18,7 @@ const buttonSizes = ['sm', 'md', 'lg', 'xl'] as ButtonSizes[];
 
 buttonStories.add('Default', () => {
   return (
-    <Box style={tailwind.style('mx-2 flex-1 justify-center')}>
+    <Box style={tailwind.style('mx-2 flex-1 justify-center items-center')}>
       <Button
         onPress={() => Alert.alert('Button Click')}
         disabled={boolean('disabled', false)}
@@ -42,7 +43,110 @@ buttonStories.add('Default', () => {
           'solid'
         )}
       >
-        Button
+        Continue
+      </Button>
+    </Box>
+  );
+});
+
+buttonStories.add('Button With Suffix', () => {
+  return (
+    <Box style={tailwind.style('mx-2 flex-1 justify-center items-center')}>
+      <Button
+        onPress={() => Alert.alert('Button Click')}
+        disabled={boolean('disabled', false)}
+        size={radios(
+          'size',
+          {
+            sm: 'sm',
+            md: 'md',
+            lg: 'lg',
+            xl: 'xl',
+          },
+          'sm'
+        )}
+        variant={radios(
+          'variant',
+          {
+            solid: 'solid',
+            subtle: 'subtle',
+            outline: 'outline',
+            ghost: 'ghost',
+          },
+          'solid'
+        )}
+        suffix={<CaretRight />}
+      >
+        Continue
+      </Button>
+    </Box>
+  );
+});
+
+buttonStories.add('Button With Prefix', () => {
+  return (
+    <Box style={tailwind.style('mx-2 flex-1 justify-center items-center')}>
+      <Button
+        onPress={() => Alert.alert('Button Click')}
+        disabled={boolean('disabled', false)}
+        size={radios(
+          'size',
+          {
+            sm: 'sm',
+            md: 'md',
+            lg: 'lg',
+            xl: 'xl',
+          },
+          'sm'
+        )}
+        variant={radios(
+          'variant',
+          {
+            solid: 'solid',
+            subtle: 'subtle',
+            outline: 'outline',
+            ghost: 'ghost',
+          },
+          'solid'
+        )}
+        prefix={<Clock />}
+      >
+        Continue
+      </Button>
+    </Box>
+  );
+});
+
+buttonStories.add('Button Suffix Prefix', () => {
+  return (
+    <Box style={tailwind.style('mx-2 flex-1 justify-center items-center')}>
+      <Button
+        onPress={() => Alert.alert('Button Click')}
+        disabled={boolean('disabled', false)}
+        size={radios(
+          'size',
+          {
+            sm: 'sm',
+            md: 'md',
+            lg: 'lg',
+            xl: 'xl',
+          },
+          'sm'
+        )}
+        variant={radios(
+          'variant',
+          {
+            solid: 'solid',
+            subtle: 'subtle',
+            outline: 'outline',
+            ghost: 'ghost',
+          },
+          'solid'
+        )}
+        prefix={<Clock />}
+        suffix={<CaretRight />}
+      >
+        Continue
       </Button>
     </Box>
   );
