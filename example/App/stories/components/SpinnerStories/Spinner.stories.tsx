@@ -7,7 +7,7 @@ import { Spinner } from '../../../../../src/components';
 
 const spinnerStories = storiesOf('Spinner', module);
 
-spinnerStories.add('Default Light', () => (
+spinnerStories.add('Default', () => (
   <Box style={tailwind.style('flex-1 justify-center items-center')}>
     <Spinner
       size={'xs'}
@@ -25,10 +25,8 @@ spinnerStories.add('Default Light', () => (
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
-      style={tailwind.style(
-        'border-red-600 border-b-red-300 border-l-red-300 my-5'
-      )}
-    />
+      style={tailwind.style('my-5')}
+    ></Spinner>
     <Spinner
       size={'md'}
       stroke={radios(
@@ -45,9 +43,7 @@ spinnerStories.add('Default Light', () => (
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
-      style={tailwind.style(
-        'my-5 border-green-600 border-b-green-300 border-l-green-300'
-      )}
+      style={tailwind.style('my-5')}
     />
     <Spinner
       size={'xl'}
@@ -56,6 +52,39 @@ spinnerStories.add('Default Light', () => (
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
+      style={tailwind.style('my-5')}
+    />
+  </Box>
+));
+
+spinnerStories.add('Customised', () => (
+  <Box style={tailwind.style('flex-1 justify-center items-center')}>
+    <Spinner
+      size={'xs'}
+      style={tailwind.style(
+        'border-indigo-600 border-b-indigo-300 border-l-indigo-300 my-5'
+      )}
+    />
+    <Spinner
+      size={'sm'}
+      style={tailwind.style(
+        'border-red-600 border-b-red-300 border-l-red-300 my-5'
+      )}
+    ></Spinner>
+    <Spinner
+      size={'md'}
+      style={tailwind.style(
+        'border-yellow-600 border-b-yellow-300 border-l-yellow-300 my-5'
+      )}
+    />
+    <Spinner
+      size={'lg'}
+      style={tailwind.style(
+        'my-5 rounded-none border-green-600 border-b-green-300 border-l-green-300'
+      )}
+    />
+    <Spinner
+      size={'xl'}
       style={tailwind.style(
         'my-5 border-blue-600 border-b-blue-300 border-l-blue-300'
       )}
