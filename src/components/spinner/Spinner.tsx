@@ -10,7 +10,7 @@ import {
 import { AnimatedBox, useTheme } from 'react-native-system';
 import { useSpinnerProps } from './SpinnerProps';
 
-type SpinnerSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type SpinnerSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface SpinnerLibProps {
   size: SpinnerSizes;
@@ -20,10 +20,10 @@ export interface SpinnerLibProps {
 export interface SpinnerProps extends SpinnerLibProps, ViewProps {}
 
 export const Spinner: React.FC<Partial<SpinnerProps>> = (props) => {
-  const { _spinnerProps } = useSpinnerProps(props);
-  const ring = useSharedValue(0);
+  const { _spinnerLibProps } = useSpinnerProps(props);
+  const spinnerLoopAnimation = useSharedValue(0);
   useEffect(() => {
-    ring.value = withRepeat(
+    spinnerLoopAnimation.value = withRepeat(
       withTiming(360, {
         duration: 1000,
         easing: Easing.linear,
@@ -31,12 +31,12 @@ export const Spinner: React.FC<Partial<SpinnerProps>> = (props) => {
       -1,
       false
     );
-  }, [ring]);
+  }, [spinnerLoopAnimation]);
   const spinnerLoadingStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          rotate: `${ring.value}deg`,
+          rotate: `${spinnerLoopAnimation.value}deg`,
         },
       ],
     };
@@ -49,10 +49,10 @@ export const Spinner: React.FC<Partial<SpinnerProps>> = (props) => {
       style={[
         tailwind.style([
           spinnerTheme.base,
-          spinnerTheme.stroke[_spinnerProps.stroke],
-          spinnerTheme.size[_spinnerProps.size],
+          spinnerTheme.stroke[_spinnerLibProps.stroke],
+          spinnerTheme.size[_spinnerLibProps.size],
         ]),
-        props.style,
+        props.style, // Accepts View Style to overide the Default Spinner Style
         spinnerLoadingStyle,
       ]}
     />
