@@ -203,3 +203,31 @@ buttonStories.add('Disabled', () => (
     })}
   </Box>
 ));
+
+buttonStories.add('Loading', () => (
+  <Box style={tailwind.style('justify-center flex-1')}>
+    {buttonVariants.map((variant, index) => {
+      return (
+        <Box key={index} style={tailwind.style('my-2 mx-2 justify-center')}>
+          <Button
+            disabled={boolean('disabled', false)}
+            loading={boolean('loading', false)}
+            size={radios(
+              'size',
+              {
+                sm: 'sm',
+                md: 'md',
+                lg: 'lg',
+                xl: 'xl',
+              },
+              'sm'
+            )}
+            variant={variant}
+          >
+            Continue
+          </Button>
+        </Box>
+      );
+    })}
+  </Box>
+));
