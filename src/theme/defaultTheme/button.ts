@@ -78,4 +78,13 @@ export const button = {
     lg: 'w-3 ml-1.5',
     xl: 'w-4 ml-1.5',
   },
+  loading: {
+    size: {
+      sm: 'md',
+      md: 'md',
+      lg: 'md',
+      xl: 'lg',
+    },
+    default: 'border-gray-400',
+  },
 };
