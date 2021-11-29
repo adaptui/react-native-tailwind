@@ -5,4 +5,6 @@ export const CIRCULAR_PROGRESS_LIB_KEYS = [
   'trackColor',
   'value',
   'max',
+  'min',
+  'hint',
 ];

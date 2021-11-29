@@ -14,7 +14,9 @@ export const useCircularProgressProps = (
   props = {
     size: 'md',
     strokeWidth: 2,
+    min: 0,
     max: 100,
+    hint: false,
     progressTrackColor: tailwind.getColor(
       circularProgressTheme.progressTrackColor
     ),
