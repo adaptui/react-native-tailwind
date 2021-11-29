@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedProps,
@@ -10,10 +11,13 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Circle, G } from 'react-native-svg';
-import { useTheme } from 'react-native-system';
+import { Box, useTheme } from 'react-native-system';
 import { useCircularProgressProps } from './CircularProgressProps';
 
+Animated.addWhitelistedNativeProps({ text: true });
+
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 export type CircularProgressSizes = 'sm' | 'md' | 'lg' | 'xl';
 
@@ -35,17 +39,27 @@ export interface CircularProgressProps {
    */
   trackColor: string;
   /**
-   * The progress value
-   * If null makes it indeterminate
+   * The `value` of the progress indicator.
+   *
+   * If `null` the circular progress will be in `indeterminate` state
    * @default null
    */
   value?: number | null;
   /**
-   * The max progress value
-   * Helps in relative calculation of the progress with the value
+   * The minimum value of the progress
+   * @default 0
+   */
+  min: number;
+  /**
+   * The maximum value of the
    * @default 100
    */
   max: number;
+  /**
+   * Should show progress value
+   * @default false
+   */
+  hint: boolean;
 }
 
 const SPRING_CONFIG = {
@@ -64,12 +78,15 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
     _circularProgressProps: {
       value,
       size,
+      min,
       max,
       progressTrackColor,
       trackColor,
       strokeWidth,
+      hint,
     },
   } = useCircularProgressProps(props);
+  const tailwindStyle = useTheme().style;
   const circularProgressTheme = useTheme('circularProgress');
 
   // Indeterminate Check
@@ -79,7 +96,11 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
   );
 
   // Circle parameters
-  const radius = circularProgressTheme.size[size];
+  const radius = isIndeterminate
+    ? circularProgressTheme.defaultSize[size]
+    : hint
+    ? circularProgressTheme.withHintSize[size]
+    : circularProgressTheme.defaultSize[size];
   const halfCircle = radius + strokeWidth;
   const circleCircumference = 2 * Math.PI * radius;
 
@@ -88,7 +109,14 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
     !isIndeterminate ? value || 0 : 0
   );
   const animatedCircleProps = useAnimatedProps(() => {
-    const maxPercentage = (100 * progressValue.value) / max;
+    /**
+     * Converting a value to percentage based on lower and upper bound values from props
+     *
+     * value => the value in number
+     * min => the minimum value
+     * max => the maximum value
+     */
+    const maxPercentage = ((progressValue.value - min) * 100) / (max - min);
     const strokeDashoffset =
       circleCircumference - (circleCircumference * maxPercentage) / 100;
     return {
@@ -104,7 +132,7 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
       300,
       withRepeat(
         withTiming(0, {
-          duration: 1500,
+          duration: 1800,
           easing: Easing.linear,
         }),
         -1,
@@ -117,49 +145,68 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
       strokeDashoffset: circularTranslate.value * multiplier,
     };
   });
-
+  const animatedTextProps = useAnimatedProps(() => {
+    return { text: `${progressValue.value}%` } as unknown as TextInputProps;
+  });
   return (
-    <Svg
-      width={radius * 2}
-      height={radius * 2}
-      viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
-    >
-      <G rotation={'-90'} origin={`${halfCircle}, ${halfCircle}`}>
-        <Circle
-          stroke={trackColor}
-          strokeWidth={strokeWidth}
-          fill="transparent"
-          r={radius}
-          cx="50%"
-          cy="50%"
+    <Box>
+      <Svg
+        width={radius * 2}
+        height={radius * 2}
+        viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
+      >
+        <G rotation={'-90'} origin={`${halfCircle}, ${halfCircle}`}>
+          <Circle
+            stroke={trackColor}
+            strokeWidth={strokeWidth}
+            fill="transparent"
+            r={radius}
+            cx="50%"
+            cy="50%"
+          />
+          {isIndeterminate && (
+            <AnimatedCircle
+              stroke={progressTrackColor}
+              strokeWidth={strokeWidth}
+              fill="transparent"
+              r={radius}
+              cx="50%"
+              cy="50%"
+              strokeDasharray={circleCircumference}
+              strokeLinecap="round"
+              animatedProps={indeterminateAnimatedCircleProps}
+            />
+          )}
+          {!isIndeterminate && (
+            <AnimatedCircle
+              stroke={progressTrackColor}
+              strokeWidth={strokeWidth}
+              fill="transparent"
+              r={radius}
+              cx="50%"
+              cy="50%"
+              strokeDasharray={circleCircumference}
+              strokeLinecap="round"
+              animatedProps={animatedCircleProps}
+            />
+          )}
+        </G>
+      </Svg>
+      {!isIndeterminate && hint && (
+        <AnimatedTextInput
+          underlineColorAndroid="transparent"
+          editable={false}
+          value={`${progressValue.value}%`}
+          style={[
+            StyleSheet.absoluteFillObject,
+            tailwindStyle([
+              circularProgressTheme.text.base,
+              circularProgressTheme.text.size[size],
+            ]),
+          ]}
+          animatedProps={animatedTextProps}
         />
-        {isIndeterminate && (
-          <AnimatedCircle
-            stroke={progressTrackColor}
-            strokeWidth={strokeWidth}
-            fill="transparent"
-            r={radius}
-            cx="50%"
-            cy="50%"
-            strokeDasharray={circleCircumference}
-            strokeLinecap="round"
-            animatedProps={indeterminateAnimatedCircleProps}
-          />
-        )}
-        {!isIndeterminate && (
-          <AnimatedCircle
-            stroke={progressTrackColor}
-            strokeWidth={strokeWidth}
-            fill="transparent"
-            r={radius}
-            cx="50%"
-            cy="50%"
-            strokeDasharray={circleCircumference}
-            strokeLinecap="round"
-            animatedProps={animatedCircleProps}
-          />
-        )}
-      </G>
-    </Svg>
+      )}
+    </Box>
   );
 };
