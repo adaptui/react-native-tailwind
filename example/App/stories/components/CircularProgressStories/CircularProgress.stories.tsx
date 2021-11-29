@@ -79,7 +79,7 @@ const CircularProgressWithHint: React.FC = () => {
 };
 
 const CircularProgressWithCustomisation: React.FC = () => {
-  const [progressValue, setProgressValue] = useProgressState();
+  const [progressValue, setProgressValue] = useProgressState(0, 2);
   return (
     <Box style={tailwind.style('flex-1 justify-center items-center')}>
       <Touchable
