@@ -196,7 +196,7 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
         <AnimatedTextInput
           underlineColorAndroid="transparent"
           editable={false}
-          value={`${progressValue.value}%`}
+          defaultValue={`${progressValue.value}%`}
           style={[
             StyleSheet.absoluteFillObject,
             tailwindStyle([
