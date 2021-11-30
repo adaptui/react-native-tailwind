@@ -60,10 +60,10 @@ export const button = {
   },
   size: {
     default: {
-      sm: 'px-2 py-[6.5px] min-h-[26px] min-w-[26px] rounded-lg',
-      md: 'px-2.5 py-[7px] min-h-[30px] min-w-[30px] rounded-lg',
-      lg: 'px-3 py-[10px] min-h-9 min-w-9 rounded-[10px]',
-      xl: 'px-4 py-[13px] min-h-11 min-w-11 rounded-xl',
+      sm: 'px-2 min-h-[26px] min-w-[26px] rounded-lg',
+      md: 'px-2.5 min-h-[30px] min-w-[30px] rounded-lg',
+      lg: 'px-3 min-h-9 min-w-9 rounded-[10px]',
+      xl: 'px-4 min-h-11 min-w-11 rounded-xl',
     },
   },
   prefix: {
@@ -80,10 +80,10 @@ export const button = {
   },
   loading: {
     size: {
-      sm: 'md',
-      md: 'md',
-      lg: 'md',
-      xl: 'lg',
+      sm: 'sm',
+      md: 'sm',
+      lg: 'sm',
+      xl: 'md',
     },
     default: 'border-gray-400',
   },
