@@ -11,8 +11,8 @@ spinnerStories.add('Default', () => (
   <Box style={tailwind.style('flex-1 justify-center items-center')}>
     <Spinner
       size={'xs'}
-      stroke={radios(
-        'stroke',
+      track={radios(
+        'track',
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
@@ -20,8 +20,8 @@ spinnerStories.add('Default', () => (
     />
     <Spinner
       size={'sm'}
-      stroke={radios(
-        'stroke',
+      track={radios(
+        'track',
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
@@ -29,8 +29,8 @@ spinnerStories.add('Default', () => (
     ></Spinner>
     <Spinner
       size={'md'}
-      stroke={radios(
-        'stroke',
+      track={radios(
+        'track',
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
@@ -38,8 +38,8 @@ spinnerStories.add('Default', () => (
     />
     <Spinner
       size={'lg'}
-      stroke={radios(
-        'stroke',
+      track={radios(
+        'track',
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
@@ -47,8 +47,8 @@ spinnerStories.add('Default', () => (
     />
     <Spinner
       size={'xl'}
-      stroke={radios(
-        'stroke',
+      track={radios(
+        'track',
         { visible: 'visible', transparent: 'transparent' },
         'transparent'
       )}
