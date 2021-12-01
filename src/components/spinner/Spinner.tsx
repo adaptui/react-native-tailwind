@@ -14,7 +14,7 @@ export type SpinnerSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface SpinnerLibProps {
   size: SpinnerSizes;
-  stroke: 'visible' | 'transparent';
+  track: 'visible' | 'transparent';
 }
 
 export interface SpinnerProps extends SpinnerLibProps, ViewProps {}
@@ -49,7 +49,7 @@ export const Spinner: React.FC<Partial<SpinnerProps>> = (props) => {
       style={[
         tailwind.style([
           spinnerTheme.base,
-          spinnerTheme.stroke[_spinnerLibProps.stroke],
+          spinnerTheme.track[_spinnerLibProps.track],
           spinnerTheme.size[_spinnerLibProps.size],
         ]),
         props.style, // Accepts View Style to overide the Default Spinner Style

@@ -9,7 +9,7 @@ interface SpinnerPropsReturnType {
 export const useSpinnerProps = (
   props: React.PropsWithChildren<Partial<SpinnerProps>>
 ): SpinnerPropsReturnType => {
-  props = { size: 'md', stroke: 'transparent', ...props };
+  props = { size: 'md', track: 'transparent', ...props };
   const _spinnerLibProps = pick(props, SPINNER_LIB_KEYS) as SpinnerLibProps;
   return { _spinnerLibProps };
 };

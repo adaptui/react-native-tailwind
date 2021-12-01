@@ -1,1 +1,1 @@
-export const SPINNER_LIB_KEYS = ['size', 'stroke'];
+export const SPINNER_LIB_KEYS = ['size', 'track'];
