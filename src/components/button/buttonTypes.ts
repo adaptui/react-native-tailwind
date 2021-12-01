@@ -13,6 +13,8 @@ export interface ButtonOptionProps {
   suffix: RenderPropType;
   prefix: RenderPropType;
   loading: boolean;
+  icon: RenderPropType;
+  spinner: RenderPropType;
 }
 
 export interface ButtonProps
