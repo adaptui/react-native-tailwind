@@ -43,6 +43,12 @@ export const button = {
     },
   },
   icon: {
+    size: {
+      sm: 'w-4',
+      md: 'w-4',
+      lg: 'w-4',
+      xl: 'w-5',
+    },
     variant: {
       default: {
         solid: 'text-white',
@@ -80,9 +86,9 @@ export const button = {
   },
   loading: {
     size: {
-      sm: 'sm',
-      md: 'sm',
-      lg: 'sm',
+      sm: 'xs',
+      md: 'xs',
+      lg: 'xs',
       xl: 'md',
     },
     default: 'border-gray-400',
