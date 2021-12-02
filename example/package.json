@@ -10,7 +10,11 @@
     "pods": "cd ios && pod install && cd ..",
     "storybook": "start-storybook -p 7007",
     "build-storybook": "build-storybook",
-    "prestorybook": "rnstl"
+    "prestorybook": "rnstl",
+    "expo:android": "expo run:android",
+    "expo:ios": "expo run:ios",
+    "expo:start": "expo start",
+    "expo:web": "expo start:web"
   },
   "config": {
     "react-native-storybook-loader": {
@@ -24,8 +28,9 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.7",
+    "expo": "^43.0.3",
     "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react-native": "^0.66.3",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.2.2",
     "react-native-svg": "^12.1.1",
@@ -48,7 +53,7 @@
     "babel-loader": "^8.2.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "metro-react-native-babel-preset": "^0.64.0",
-    "react-dom": "16.13.1",
+    "react-dom": "^17.0.2",
     "react-native-storybook-loader": "^2.0.4"
   }
 }
