@@ -13,29 +13,32 @@ import {
 } from 'react-native-reanimated';
 import { AnimatedBox } from '../../primitives/AnimatedBox';
 import { useTheme } from '../../theme/context';
+import { useProgressBarProps } from './ProgressProps';
+
+export type ProgressBarSizes = 'sm' | 'md' | 'lg' | 'xl';
 
 export interface ProgressProps {
   /**
    * The size of the Progress Bar component.
    * @default lg
    */
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size: ProgressBarSizes;
   /**
    * The progress value
    * If null makes it indeterminate
    * @default null
    */
-  value?: number | null;
+  value: number | null;
   /**
    * Track color containing the progress
    * @default 'bg-gray-200'
    */
-  trackColor?: string;
+  trackColor: string;
   /**
    * Track color of the progress value
    * @default 'bg-gray-800'
    */
-  progressTrackColor?: string;
+  progressTrackColor: string;
 }
 
 const SPRING_CONFIG = {
@@ -47,26 +50,16 @@ const SPRING_CONFIG = {
   restDisplacementThreshold: 0.001,
 };
 
-export const ProgressBar: React.FC<ProgressProps> = ({
-  size = 'lg',
-  value,
-  trackColor: trackColorProp,
-  progressTrackColor: progressTrackColorProp,
-}) => {
+export const ProgressBar: React.FC<Partial<ProgressProps>> = (props) => {
   const tailwind = useTheme();
   const progressStyles = useTheme('progress');
-
+  const { trackColor, progressTrackColor, value, size } =
+    useProgressBarProps(props);
   const isIndeterminate = React.useMemo(
     () => value === null || value === undefined,
     [value]
   );
   const width = Dimensions.get('window').width;
-  const trackColor =
-    trackColorProp ||
-    (tailwind.getColor(progressStyles.defaultTrackColor) as string);
-  const progressTrackColor =
-    progressTrackColorProp ||
-    (tailwind.getColor(progressStyles.defaultProgressTrackColor) as string);
 
   const progressValue = useDerivedValue(() =>
     !isIndeterminate ? `${value || 0}%` : '0%'
