@@ -24,9 +24,16 @@ export const badge = {
     },
   },
   size: {
-    sm: 'px-1.5 py-px text-xs font-medium',
-    md: 'px-1.5 py-[3px] text-xs font-medium',
-    lg: 'px-2 py-[4.5px] text-cxs font-medium',
+    text: {
+      sm: 'text-xs text-center font-medium',
+      md: 'text-xs text-center font-medium',
+      lg: 'text-cxs text-center font-medium',
+    },
+    container: {
+      sm: 'px-1.5 min-h-4',
+      md: 'px-1.5 min-h-5',
+      lg: 'px-2 min-h-6',
+    },
   },
   textVariants: {
     solid: {
