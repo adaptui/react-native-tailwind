@@ -4,10 +4,6 @@ import { RenderPropType } from 'react-native-system';
 export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
 export type ButtonVariants = 'outline' | 'ghost' | 'solid' | 'subtle';
 
-export interface ButtonBasicProps {
-  loading: boolean;
-}
-
 export interface ButtonLibraryProps {
   size: ButtonSizes;
   variant: ButtonVariants;
@@ -16,10 +12,12 @@ export interface ButtonLibraryProps {
 export interface ButtonOptionProps {
   suffix: RenderPropType;
   prefix: RenderPropType;
+  loading: boolean;
+  icon: RenderPropType;
+  spinner: RenderPropType;
 }
 
 export interface ButtonProps
-  extends ButtonBasicProps,
-    ButtonLibraryProps,
+  extends ButtonLibraryProps,
     ButtonOptionProps,
     PressableProps {}
