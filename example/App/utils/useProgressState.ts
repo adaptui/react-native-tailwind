@@ -1,7 +1,8 @@
 import React from 'react';
 
 export const useProgressState = (
-  initialValue: number | null = 0
+  initialValue: number | null = 0,
+  stepUpValue: number = 5
 ): [number | null, React.Dispatch<React.SetStateAction<number | null>>] => {
   const [value, setValue] = React.useState<number | null>(initialValue);
 
@@ -11,7 +12,7 @@ export const useProgressState = (
         if (prevValue === null) {
           return prevValue;
         }
-        return prevValue + 5;
+        return prevValue + stepUpValue;
       });
     }, 500);
 

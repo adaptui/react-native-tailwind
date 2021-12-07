@@ -1,6 +1,7 @@
 import { avatar } from './avatar';
 import { badge } from './badge';
 import { button } from './button';
+import { circularProgress } from './circularProgress';
 import { progress } from './progress';
 import { spinner } from './spinner';
 import { switchTheme } from './switch';
@@ -12,6 +13,7 @@ const extendedTheme = {
   avatar,
   button,
   spinner,
+  circularProgress,
 };
 
 export default extendedTheme;
