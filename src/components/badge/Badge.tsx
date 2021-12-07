@@ -1,46 +1,70 @@
 import React from 'react';
+import { TextStyle, ViewStyle } from 'react-native';
 import { Box, Text, useTheme } from 'react-native-system';
+import { useBadgeProps } from './BadgeProps';
 
+export type BadgeSizes = 'sm' | 'md' | 'lg';
+export type BadgeTheme =
+  | 'primary'
+  | 'secondary'
+  | 'default'
+  | 'success'
+  | 'danger';
+export type BadgeVariants = 'outline' | 'solid' | 'subtle';
 export interface BadgeProps {
   /**
    * The size of the Badge component.
    * @default lg
    */
-  size?: 'sm' | 'md' | 'lg';
+  size: BadgeSizes;
   /**
    * The themeColor of the Badge component.
    * @default default
    */
-  themeColor?: 'primary' | 'secondary' | 'default' | 'success' | 'danger';
+  themeColor: BadgeTheme;
   /**
    * The variant of the Badge component.
    * @default solid
    */
-  variant?: 'outline' | 'solid' | 'subtle';
+  variant: BadgeVariants;
+  /**
+   * The Container style of the Badge component.
+   * @default {}
+   */
+  containerStyle: ViewStyle;
+  /**
+   * The Text style of the Badge component.
+   * @default {}
+   */
+  textStyle: TextStyle;
 }
 
-export const Badge: React.FC<BadgeProps> = ({
-  size = 'md',
-  themeColor = 'default',
-  variant = 'solid',
-  ...props
-}) => {
+export const Badge: React.FC<Partial<BadgeProps>> = (props) => {
   const tailwind = useTheme();
   const badgeStyles = useTheme('badge');
-
+  const {
+    _badgeLibProps: { size, variant, themeColor },
+  } = useBadgeProps(props);
   return (
     <Box
-      style={tailwind.style([
-        badgeStyles.baseContainer,
-        badgeStyles.containerVariants[variant][themeColor],
-      ])}
+      style={[
+        tailwind.style([
+          badgeStyles.baseContainer,
+          badgeStyles.containerVariants[variant][themeColor],
+          badgeStyles.size.container[size],
+        ]),
+        { ...props.containerStyle },
+      ]}
     >
       {typeof props.children === 'string' ? (
         <Text
-          style={tailwind.style([
-            badgeStyles.size[size],
-            badgeStyles.textVariants[variant][themeColor],
-          ])}
+          style={[
+            tailwind.style([
+              badgeStyles.size.text[size],
+              badgeStyles.textVariants[variant][themeColor],
+            ]),
+            { ...props.textStyle },
+          ]}
         >
           {props.children}
         </Text>
