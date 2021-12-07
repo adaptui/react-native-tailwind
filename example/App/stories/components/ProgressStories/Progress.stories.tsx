@@ -2,9 +2,9 @@ import { color, radios } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { View } from 'react-native';
-import { Text, Touchable, useTheme } from 'react-native-system';
-import { ProgressBar } from '../../../src/components/progress/ProgressBar';
-import { useProgressState } from '../utils/useProgressState';
+import { Text, Touchable, useTheme } from '../../../../../src';
+import { ProgressBar } from '../../../../../src/components/progress/ProgressBar';
+import { useProgressState } from '../../../utils/useProgressState';
 
 const ProgressBarDefault = () => {
   const tailwind = useTheme();

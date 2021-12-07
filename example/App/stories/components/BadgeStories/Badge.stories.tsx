@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { ScrollView, View } from 'react-native';
 import tailwind from 'twrnc';
-import { Badge, BadgeTheme, BadgeVariants, Box } from '../../../src';
+import { Badge, BadgeTheme, BadgeVariants, Box } from '../../../../../src';
 
 const badgeStories = storiesOf('Badge', module);
 

@@ -1,16 +1,15 @@
 // if you use expo remove this line
-import { AppRegistry } from 'react-native';
-import React from 'react';
-
-import {
-  getStorybookUI,
-  configure,
-  addDecorator,
-} from '@storybook/react-native';
 import { withKnobs } from '@storybook/addon-knobs';
-
+import {
+  addDecorator,
+  configure,
+  getStorybookUI,
+} from '@storybook/react-native';
+import React from 'react';
+import { AppRegistry } from 'react-native';
+import { TailwindThemeProvider } from '../../src';
 import './rn-addons';
-import { TailwindThemeProvider } from 'react-native-system';
+
 // <----- For Custom Tailwind Theme ----->
 // import { myTailwindTheme } from '../customTheme/tailwind';
 
@@ -33,8 +32,8 @@ configure(() => {
   // require('../App/stories/TouchableWithoutFeedback.stories');
   // require('../App/stories/AnimatedBox.stories');
   require('../App/stories/Switch.stories');
-  require('../App/stories/Badge.stories');
-  require('../App/stories/Progress.stories');
+  require('../App/stories/components/BadgeStories/Badge.stories');
+  require('../App/stories/components/ProgressStories/Progress.stories');
   require('../App/stories/components/AvatarStories/Avatar.stories');
   require('../App/stories/components/AvatarStories/AvatarStack.stories');
   require('../App/stories/components/ButtonStories/Button.stories');
