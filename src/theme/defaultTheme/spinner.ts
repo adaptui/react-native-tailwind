@@ -1,6 +1,6 @@
 export const spinner = {
   base: 'border-2 border-solid rounded-full border-gray-800',
-  stroke: {
+  track: {
     transparent: 'border-b-transparent border-l-transparent',
     visible: 'border-b-gray-300 border-l-gray-300',
   },

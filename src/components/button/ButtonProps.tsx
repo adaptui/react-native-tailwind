@@ -1,8 +1,8 @@
 import { pick } from 'lodash';
 import {
+  ButtonLibraryProps,
   ButtonOptionProps,
   ButtonProps,
-  ButtonLibraryProps,
 } from './buttonTypes';
 import { BUTTON_BASIC_KEYS, BUTTON_OPTION_KEYS } from './__keys';
 

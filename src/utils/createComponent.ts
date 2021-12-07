@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react';
-import type { PropsWithChildren } from 'example/node_modules/@types/react';
+import type { PropsWithChildren } from 'react';
 import { createElement } from './createElement';
 
 export function createComponent<Props>(
