@@ -9,3 +9,15 @@ export type DeepDictionary<K> = {
 export type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
 };
+
+export type RenderPropType<T = unknown> =
+  | React.ReactNode
+  | ((args: T) => JSX.Element);
+
+export type RenderProp<T> = {
+  children?: RenderPropType<T>;
+};
+
+export type IconProps = {
+  stroke?: string;
+};
