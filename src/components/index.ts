@@ -5,3 +5,4 @@ export * from './button';
 export * from './spinner';
 export * from './circularProgress';
 export * from './icon';
+export * from './tag';
