@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Text, useTheme } from 'react-native-system';
+import { Box, Icon, Text, useTheme } from 'react-native-system';
 import { DefaultUser } from '../../assets';
 import { AvatarImage } from './AvatarImage';
 import { useAvatarProps } from './AvatarProps';
@@ -57,7 +57,10 @@ export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
           {getInitials(_otherProps.name, _basicProps.size)}
         </Text>
       ) : (
-        <DefaultUser size={_basicProps.size} />
+        <Icon
+          icon={<DefaultUser />}
+          style={tailwind.style(avatarTheme.defaultUserIcon[_basicProps.size])}
+        />
       )}
       {_statusProps.status && <AvatarStatus {..._statusProps} />}
     </Box>

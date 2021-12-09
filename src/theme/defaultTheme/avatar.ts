@@ -23,6 +23,16 @@ export const avatar = {
     },
   },
   circular: 'rounded-full',
+  // SVG Icon Scaling with respect to Container Width
+  defaultUserIcon: {
+    'xs': 'w-2.5',
+    'sm': 'w-2.5',
+    'md': 'w-3',
+    'lg': 'w-3',
+    'xl': 'w-4',
+    '2xl': 'w-4',
+    '3xl': 'w-5',
+  },
   initials: {
     base: 'text-center uppercase text-gray-500',
     size: {
