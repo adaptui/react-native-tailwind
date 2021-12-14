@@ -2,10 +2,18 @@ import { boolean, radios } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Alert } from 'react-native';
-import { Box, Button, Icon, Spinner, Text } from '../../../../../src';
-import { ButtonSizes, ButtonVariants } from '../../../../../src';
 import tailwind from 'twrnc';
-import { Avatar } from '../../../../../src';
+import {
+  Avatar,
+  AvatarGroup,
+  Box,
+  Button,
+  ButtonSizes,
+  ButtonVariants,
+  Icon,
+  Spinner,
+  Text,
+} from '../../../../../src';
 import { CaretRight, Clock } from '../../../../../src/assets';
 
 const buttonStories = storiesOf('Button', module);
@@ -76,7 +84,7 @@ buttonStories.add('Button With Suffix', () => {
           },
           'solid'
         )}
-        suffix={<CaretRight />}
+        suffix={<Icon icon={<CaretRight />} />}
       >
         Continue
       </Button>
@@ -110,7 +118,7 @@ buttonStories.add('Button With Prefix', () => {
           },
           'solid'
         )}
-        prefix={<Clock />}
+        prefix={<Icon icon={<Clock />} />}
       >
         Continue
       </Button>
@@ -144,8 +152,8 @@ buttonStories.add('Button Suffix Prefix', () => {
           },
           'solid'
         )}
-        prefix={<Clock />}
-        suffix={<CaretRight />}
+        prefix={<Icon icon={<Clock />} />}
+        suffix={<Icon icon={<CaretRight />} />}
       >
         Continue
       </Button>
@@ -278,7 +286,7 @@ buttonStories.add('Button Suffix With Loading', () => {
                       size={size}
                       loading={boolean('loading', false)}
                       variant={variant}
-                      suffix={<CaretRight />}
+                      suffix={<Icon icon={<CaretRight />} />}
                     >
                       Continue
                     </Button>
@@ -307,7 +315,7 @@ buttonStories.add('Button Prefix With Loading', () => {
                       loading={boolean('loading', false)}
                       size={size}
                       variant={variant}
-                      prefix={<Clock />}
+                      prefix={<Icon icon={<Clock />} />}
                     >
                       Waiting
                     </Button>
@@ -335,8 +343,8 @@ buttonStories.add('Button Suffix/Prefix With Loading', () => {
                     <Button
                       size={size}
                       variant={variant}
-                      prefix={<Clock />}
-                      suffix={<CaretRight />}
+                      prefix={<Icon icon={<Clock />} />}
+                      suffix={<Icon icon={<CaretRight />} />}
                       loading={boolean('loading', false)}
                       disabled={boolean('disabled', false)}
                     >
@@ -366,8 +374,8 @@ buttonStories.add('Button Suffix/Prefix With Custom Loading', () => {
                     <Button
                       size={size}
                       variant={variant}
-                      prefix={<Clock />}
-                      suffix={<CaretRight />}
+                      prefix={<Icon icon={<Clock />} />}
+                      suffix={<Icon icon={<CaretRight />} />}
                       loading={boolean('loading', false)}
                       spinner={
                         <Spinner
@@ -396,40 +404,70 @@ buttonStories.add('Button Customised', () => {
     <Box style={tailwind.style('mx-2 flex-1 justify-center items-start')}>
       <Box style={tailwind.style('my-2')}>
         <Button
-          prefix={
-            <Avatar
-              size="xs"
-              circular
-              src={{ uri: 'https://i.pravatar.cc/300' }}
+          size={'lg'}
+          variant={'subtle'}
+          prefix={<Icon icon={<Clock />} />}
+          suffix={<Icon icon={<CaretRight />} />}
+          loading={boolean('loading', false)}
+          spinner={
+            <Spinner
+              track="visible"
+              style={tailwind.style(
+                'border-indigo-600 border-b-indigo-300 border-l-indigo-300'
+              )}
             />
           }
         >
-          Customised With Avatar
+          Continue
         </Button>
       </Box>
       <Box style={tailwind.style('my-2')}>
         <Button
-          size="lg"
-          prefix={
-            <Avatar
-              size="xs"
-              circular
-              src={{ uri: 'https://i.pravatar.cc/300' }}
-            />
-          }
-          suffix={<CaretRight />}
-        >
-          Customised With Avatar
-        </Button>
-      </Box>
-      <Box style={tailwind.style('my-2')}>
-        <Button
-          size="lg"
+          size={'lg'}
+          variant={'solid'}
           prefix={<Avatar size="xs" circular />}
-          suffix={<CaretRight />}
-          loading={true}
+          loading={boolean('loading', false)}
+          spinner={
+            <Spinner
+              track="visible"
+              style={tailwind.style(
+                'border-indigo-600 border-b-indigo-300 border-l-indigo-300'
+              )}
+            />
+          }
         >
-          Customised With Default Avatar
+          With Avatar as Prefix
+        </Button>
+      </Box>
+      <Box style={tailwind.style('my-2')}>
+        <Button
+          size={'xl'}
+          variant={'solid'}
+          prefix={
+            <AvatarGroup size="sm" circular>
+              <Avatar src={{ uri: 'https://i.pravatar.cc/300' }} />
+              <Avatar src={{ uri: 'https://i.pravatar.cc/300' }} />
+              <Avatar src={{ uri: 'https://i.pravatar.cc/300' }} />
+            </AvatarGroup>
+          }
+          suffix={
+            <Avatar
+              size="xs"
+              circular
+              src={{ uri: 'https://i.pravatar.cc/300' }}
+            />
+          }
+          loading={boolean('loading', false)}
+          spinner={
+            <Spinner
+              track="visible"
+              style={tailwind.style(
+                'border-indigo-600 border-b-indigo-300 border-l-indigo-300'
+              )}
+            />
+          }
+        >
+          With Avatar Group as Prefix
         </Button>
       </Box>
     </Box>
