@@ -30,7 +30,7 @@ export const Icon: React.FC<IconComponentProps> = (props) => {
   const sizer = size ? `w-[${size}px]` : '';
   return (
     <Box
-      style={[tailwind.style(sizer), { aspectRatio: iconAspectRatio }, style]}
+      style={[tailwind.style(sizer), style, { aspectRatio: iconAspectRatio }]}
     >
       {/* @ts-ignore */}
       {React.cloneElement(icon, { fill: color })}
