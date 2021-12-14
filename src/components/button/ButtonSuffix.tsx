@@ -13,15 +13,8 @@ export const ButtonSuffix: React.FC<ButtonSuffixProps> = ({
   const tailwind = useTheme();
   const buttonTheme = useTheme('button');
 
-  const iconAspectRatio = 1;
-
   return (
-    <Box
-      style={[
-        tailwind.style(buttonTheme.suffix[size]),
-        { aspectRatio: iconAspectRatio },
-      ]}
-    >
+    <Box style={[tailwind.style(buttonTheme.suffix[size])]}>
       {props.children}
     </Box>
   );

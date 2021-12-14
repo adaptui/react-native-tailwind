@@ -13,15 +13,8 @@ export const ButtonPrefix: React.FC<ButtonPrefixProps> = ({
   const tailwind = useTheme();
   const buttonTheme = useTheme('button');
 
-  const iconAspectRatio = 1;
-
   return (
-    <Box
-      style={[
-        tailwind.style(buttonTheme.prefix[size]),
-        { aspectRatio: iconAspectRatio },
-      ]}
-    >
+    <Box style={[tailwind.style(buttonTheme.prefix[size])]}>
       {props.children}
     </Box>
   );
