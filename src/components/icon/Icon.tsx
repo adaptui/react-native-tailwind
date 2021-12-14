@@ -25,14 +25,15 @@ export interface IconComponentProps {
 
 export const Icon: React.FC<IconComponentProps> = (props) => {
   const tailwind = useTheme();
-  const { icon, style, size } = props;
+  const { icon, style, size, color } = props;
   const iconAspectRatio = 1;
   const sizer = size ? `w-[${size}px]` : '';
   return (
     <Box
       style={[tailwind.style(sizer), { aspectRatio: iconAspectRatio }, style]}
     >
-      {icon}
+      {/* @ts-ignore */}
+      {React.cloneElement(icon, { fill: color })}
     </Box>
   );
 };
