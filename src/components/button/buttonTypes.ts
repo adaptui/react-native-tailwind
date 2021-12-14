@@ -1,4 +1,4 @@
-import { PressableProps } from 'react-native';
+import { PressableProps, TextStyle } from 'react-native';
 import { RenderPropType } from 'react-native-system';
 
 export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
@@ -15,6 +15,7 @@ export interface ButtonOptionProps {
   loading: boolean;
   icon: RenderPropType;
   spinner: RenderPropType;
+  textStyle: TextStyle;
 }
 
 export interface ButtonProps
