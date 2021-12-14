@@ -2,9 +2,10 @@ import { boolean, radios } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Alert } from 'react-native';
-import { Box, Button, Spinner, Text } from 'react-native-system';
-import { ButtonSizes, ButtonVariants } from 'src/components/button/buttonTypes';
+import { Box, Button, Icon, Spinner, Text } from '../../../../../src';
+import { ButtonSizes, ButtonVariants } from '../../../../../src';
 import tailwind from 'twrnc';
+import { Avatar } from '../../../../../src';
 import { CaretRight, Clock } from '../../../../../src/assets';
 
 const buttonStories = storiesOf('Button', module);
@@ -248,9 +249,10 @@ buttonStories.add('Icon Only Variants', () => (
                 <Box key={index} style={tailwind.style('px-1 my-3')}>
                   <Button
                     loading={boolean('loading', false)}
+                    disabled={boolean('disabled', false)}
                     size={size}
                     variant={variant}
-                    icon={<Clock />}
+                    icon={<Icon icon={<Clock />} />}
                   />
                 </Box>
               );
@@ -336,6 +338,7 @@ buttonStories.add('Button Suffix/Prefix With Loading', () => {
                       prefix={<Clock />}
                       suffix={<CaretRight />}
                       loading={boolean('loading', false)}
+                      disabled={boolean('disabled', false)}
                     >
                       Continue
                     </Button>
@@ -368,6 +371,7 @@ buttonStories.add('Button Suffix/Prefix With Custom Loading', () => {
                       loading={boolean('loading', false)}
                       spinner={
                         <Spinner
+                          track="visible"
                           style={tailwind.style(
                             'border-indigo-600 border-b-indigo-300 border-l-indigo-300'
                           )}
@@ -382,6 +386,51 @@ buttonStories.add('Button Suffix/Prefix With Custom Loading', () => {
             </Box>
           );
         })}
+      </Box>
+    </Box>
+  );
+});
+
+buttonStories.add('Button Customised', () => {
+  return (
+    <Box style={tailwind.style('mx-2 flex-1 justify-center items-start')}>
+      <Box style={tailwind.style('my-2')}>
+        <Button
+          prefix={
+            <Avatar
+              size="xs"
+              circular
+              src={{ uri: 'https://i.pravatar.cc/300' }}
+            />
+          }
+        >
+          Customised With Avatar
+        </Button>
+      </Box>
+      <Box style={tailwind.style('my-2')}>
+        <Button
+          size="lg"
+          prefix={
+            <Avatar
+              size="xs"
+              circular
+              src={{ uri: 'https://i.pravatar.cc/300' }}
+            />
+          }
+          suffix={<CaretRight />}
+        >
+          Customised With Avatar
+        </Button>
+      </Box>
+      <Box style={tailwind.style('my-2')}>
+        <Button
+          size="lg"
+          prefix={<Avatar size="xs" circular />}
+          suffix={<CaretRight />}
+          loading={true}
+        >
+          Customised With Default Avatar
+        </Button>
       </Box>
     </Box>
   );
