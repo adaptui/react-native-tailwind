@@ -1,3 +1,5 @@
+import { PathProps } from 'react-native-svg';
+
 export type Dict<T = unknown> = Record<string, T>;
 
 export type DeepDictionary<K> = {
@@ -18,6 +20,4 @@ export type RenderProp<T> = {
   children?: RenderPropType<T>;
 };
 
-export type IconProps = {
-  stroke?: string;
-};
+export type IconProps = PathProps;
