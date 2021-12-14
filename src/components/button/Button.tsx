@@ -74,7 +74,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
   const prefix =
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    _buttonOptions.prefix.type === Icon ? (
+    _buttonOptions.prefix?.type === Icon ? (
       createButtonIcon({
         icon: _buttonOptions.prefix,
         iconFill: tailwind.getColor(
@@ -95,7 +95,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
   const suffix =
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    _buttonOptions.suffix.type === Icon ? (
+    _buttonOptions.suffix?.type === Icon ? (
       createButtonIcon({
         icon: _buttonOptions.suffix,
         iconFill: tailwind.getColor(
