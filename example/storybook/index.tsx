@@ -31,14 +31,14 @@ configure(() => {
   // require('../App/stories/Touchable.stories');
   // require('../App/stories/TouchableWithoutFeedback.stories');
   // require('../App/stories/AnimatedBox.stories');
-  // require('../App/stories/Switch.stories');
-  // require('../App/stories/components/BadgeStories/Badge.stories');
-  // require('../App/stories/components/ProgressStories/Progress.stories');
-  // require('../App/stories/components/AvatarStories/Avatar.stories');
-  // require('../App/stories/components/AvatarStories/AvatarStack.stories');
-  // require('../App/stories/components/ButtonStories/Button.stories');
-  // require('../App/stories/components/SpinnerStories/Spinner.stories');
-  // require('../App/stories/components/CircularProgressStories/CircularProgress.stories');
+  require('../App/stories/Switch.stories');
+  require('../App/stories/components/BadgeStories/Badge.stories');
+  require('../App/stories/components/ProgressStories/Progress.stories');
+  require('../App/stories/components/AvatarStories/Avatar.stories');
+  require('../App/stories/components/AvatarStories/AvatarStack.stories');
+  require('../App/stories/components/ButtonStories/Button.stories');
+  require('../App/stories/components/SpinnerStories/Spinner.stories');
+  require('../App/stories/components/CircularProgressStories/CircularProgress.stories');
   require('../App/stories/components/TagStories/Tag.stories');
 }, module);
 
