@@ -7,7 +7,9 @@ import {
   Touchable,
   useTheme,
 } from 'react-native-system';
+import { Icon } from '..';
 import { Close } from '../../assets';
+import { createIcon } from '../create-icon/createIcon';
 import { useTagProps } from './TagProps';
 
 export type TagSizes = 'sm' | 'md' | 'lg' | 'xl';
@@ -49,7 +51,6 @@ export interface TagProps extends PressableProps {
 export const Tag: React.FC<Partial<TagProps>> = (props) => {
   const tailwind = useTheme();
   const tagTheme = useTheme('tag');
-  const iconAspectRatio = 1;
 
   const {
     _tagLibProps: { size, variant, closable, prefix },
@@ -68,23 +69,24 @@ export const Tag: React.FC<Partial<TagProps>> = (props) => {
       ]}
       {...props}
     >
-      {prefix && (
-        <Box
-          style={[
-            tailwind.style(tagTheme.size.prefix[size]),
-            { aspectRatio: iconAspectRatio },
-          ]}
-        >
-          {/* @ts-ignore */}
-          {React.cloneElement(prefix, {
-            stroke: tailwind.getColor(
+      {prefix &&
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        (prefix?.type === Icon ? (
+          createIcon({
+            icon: prefix,
+            iconFill: tailwind.getColor(
               props.disabled
                 ? tagTheme.variant.icon.disabled[variant]
                 : tagTheme.variant.icon.default[variant]
             ),
-          })}
-        </Box>
-      )}
+            iconStyle: tailwind.style(tagTheme.size.prefix[size]),
+          })
+        ) : (
+          <Box style={[tailwind.style(tagTheme.size.prefix[size])]}>
+            {prefix}
+          </Box>
+        ))}
       {typeof props.children === 'string' ? (
         <Text
           style={[
@@ -104,22 +106,15 @@ export const Tag: React.FC<Partial<TagProps>> = (props) => {
         props.children
       )}
       {closable && (
-        <Box
-          style={[
-            tailwind.style(tagTheme.size.closable[size]),
-            { aspectRatio: iconAspectRatio },
-            // TODO: Increasing the size of Icon based on Text Font Size
-            // props.textStyle && { width: props.textStyle.fontSize },
-          ]}
-        >
-          <Close
-            stroke={tailwind.getColor(
-              props.disabled
-                ? tagTheme.variant.icon.disabled[variant]
-                : tagTheme.variant.icon.default[variant]
-            )}
-          />
-        </Box>
+        <Icon
+          style={tailwind.style(tagTheme.size.closable[size])}
+          color={tailwind.getColor(
+            props.disabled
+              ? tagTheme.variant.icon.disabled[variant]
+              : tagTheme.variant.icon.default[variant]
+          )}
+          icon={<Close />}
+        />
       )}
     </Touchable>
   );
