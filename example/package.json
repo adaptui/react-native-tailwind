@@ -18,11 +18,11 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.7",
-    "expo": "^43.0.3",
+    "expo": "^43.0.4",
     "react": "16.13.1",
     "react-native": "^0.64.3",
     "react-native-gesture-handler": "~1.10.2",
-    "react-native-reanimated": "^2.2.2",
+    "react-native-reanimated": "^2.3.1",
     "react-native-svg": "^12.1.1",
     "tailwindcss": "^2.2.19",
     "twrnc": "^2.1.1",
