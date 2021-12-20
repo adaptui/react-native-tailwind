@@ -8,7 +8,7 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-import { AnimatedBox, Box, useTheme } from 'react-native-system';
+import { AnimatedBox, Box, useTheme } from '../../index';
 import { SleepIndicator } from '../../assets';
 import { AvatarSizes, AvatarStatusProps } from './types';
 interface TypingStatusProps {

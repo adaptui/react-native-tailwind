@@ -1,6 +1,6 @@
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
-import { IconProps } from 'react-native-system';
+import { IconProps } from '../../index';
 
 export const Close: React.FC<IconProps> = ({ stroke = '#52525B' }) => {
   return (

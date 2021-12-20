@@ -1,4 +1,4 @@
-import { useTheme } from 'react-native-system';
+import { useTheme } from '../../index';
 import { ProgressProps } from './ProgressBar';
 
 export const useProgressBarProps = (

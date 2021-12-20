@@ -1,5 +1,5 @@
 import { pick } from 'lodash';
-import { SpinnerLibProps, SpinnerProps } from 'react-native-system';
+import { SpinnerLibProps, SpinnerProps } from '../../index';
 import { SPINNER_LIB_KEYS } from './__keys';
 
 interface SpinnerPropsReturnType {
