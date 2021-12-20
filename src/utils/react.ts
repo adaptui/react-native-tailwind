@@ -1,4 +1,4 @@
-import { Dict, RenderPropType } from 'react-native-system';
+import { Dict, RenderPropType } from '../index';
 import React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/ban-types

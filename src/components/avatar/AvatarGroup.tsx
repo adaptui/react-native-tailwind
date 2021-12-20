@@ -1,6 +1,6 @@
 import { isUndefined } from 'lodash';
 import React from 'react';
-import { getValidChildren, useTheme } from 'react-native-system';
+import { getValidChildren, useTheme } from '../../index';
 import { Box, BoxProps } from '../../primitives/Box';
 import { createContext } from '../../utils/createContext';
 import { Avatar } from './Avatar';

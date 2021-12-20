@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
-import { Box } from '../../Box';
+import { Box } from '../Box';
 import { Text } from '../../Text';
 
 describe('basic', () => {

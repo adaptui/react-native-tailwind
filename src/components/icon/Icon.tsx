@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
-import { RenderPropType, useTheme } from 'react-native-system';
+import { RenderPropType, useTheme } from '../../index';
 import { Box } from '../../primitives/Box';
 
 export interface IconComponentProps {
