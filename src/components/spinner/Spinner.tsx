@@ -7,7 +7,7 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-import { AnimatedBox, useTheme } from 'react-native-system';
+import { AnimatedBox, useTheme } from '../../index';
 import { useSpinnerProps } from './SpinnerProps';
 
 export type SpinnerSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';

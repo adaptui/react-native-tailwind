@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Icon, Text, useTheme } from 'react-native-system';
+import { Box, Icon, Text, useTheme } from '../../index';
 import { DefaultUser } from '../../assets';
 import { AvatarImage } from './AvatarImage';
 import { useAvatarProps } from './AvatarProps';
