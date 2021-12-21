@@ -1,7 +1,9 @@
-import { SafeAreaView, StatusBar, LogBox } from 'react-native';
-import StorybookUIRoot from './.ondevice/Storybook';
 import React from 'react';
+import { LogBox, SafeAreaView, StatusBar } from 'react-native';
+import 'react-native-gesture-handler';
 import tailwind from 'twrnc';
+import StorybookUIRoot from './.ondevice/Storybook';
+
 LogBox.ignoreAllLogs();
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
