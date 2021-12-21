@@ -1,10 +1,13 @@
 import React from 'react';
 import { PressableProps, TextStyle, ViewStyle } from 'react-native';
-import { Box, RenderPropType, Text, Touchable, useTheme } from '../../index';
-import { Icon } from '..';
-import { Close } from '../../assets';
-import { createIcon } from '../create-icon/createIcon';
+import { Box } from '../../primitives/Box';
+import { Text } from '../../primitives/Text';
+import { Touchable } from '../../primitives/Touchable';
+import { useTheme } from '../../theme';
+import { RenderPropType } from '../../utils';
+import { createIcon } from '../create-icon';
 import { useTagProps } from './TagProps';
+import { Icon } from '../icon';
 
 export type TagSizes = 'sm' | 'md' | 'lg' | 'xl';
 export type TagVariant = 'solid' | 'subtle' | 'outline';
@@ -22,21 +25,26 @@ export interface TagProps extends PressableProps {
   variant: TagVariant;
   /**
    * A Prefix Element.
-   * If added, the Tag will show an icon before the Tag's text.
+   * If added, the Tag will show a prefix Element before the Tag's text.
    */
   prefix: RenderPropType;
   /**
-   * Does Tag have a Suffix.
-   * If yes, the Tag will show a Close Icon after the Tag's text.
+   * A Suffix Element.
+   * If added, the Tag will show a suffix Element after the Tag's text.
+   */
+  suffix: RenderPropType;
+  /**
+   * Is Tag Closable/Removable.
+   * If yes, the Tag will show a Close Icon after the Tag's text or Suffix.
    */
   closable: boolean;
   /**
-   * The Container style of the Badge component.
+   * The Container style of the Tag component.
    * @default {}
    */
-  containerStyle: ViewStyle;
+  touchableContainerStyle: ViewStyle;
   /**
-   * The Text style of the Badge component.
+   * The Text style of the Tag component.
    * @default {}
    */
   textStyle: TextStyle;
@@ -47,7 +55,8 @@ export const Tag: React.FC<Partial<TagProps>> = (props) => {
   const tagTheme = useTheme('tag');
 
   const {
-    _tagLibProps: { size, variant, closable, prefix },
+    _tagLibProps: { size, variant },
+    _tagOptions: { suffix, prefix },
   } = useTagProps(props);
   return (
     <Touchable
@@ -59,7 +68,7 @@ export const Tag: React.FC<Partial<TagProps>> = (props) => {
           pressed && tagTheme.variant.pressed[variant],
           props.disabled && tagTheme.variant.disabled[variant]
         ),
-        { ...props.containerStyle },
+        { ...props.touchableContainerStyle },
       ]}
       {...props}
     >
@@ -99,17 +108,24 @@ export const Tag: React.FC<Partial<TagProps>> = (props) => {
       ) : (
         props.children
       )}
-      {closable && (
-        <Icon
-          style={tailwind.style(tagTheme.size.closable[size])}
-          color={tailwind.getColor(
-            props.disabled
-              ? tagTheme.variant.icon.disabled[variant]
-              : tagTheme.variant.icon.default[variant]
-          )}
-          icon={<Close />}
-        />
-      )}
+      {suffix &&
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        (suffix?.type === Icon ? (
+          createIcon({
+            icon: suffix,
+            iconFill: tailwind.getColor(
+              props.disabled
+                ? tagTheme.variant.icon.disabled[variant]
+                : tagTheme.variant.icon.default[variant]
+            ),
+            iconStyle: tailwind.style(tagTheme.size.suffix[size]),
+          })
+        ) : (
+          <Box style={[tailwind.style(tagTheme.size.suffix[size])]}>
+            {suffix}
+          </Box>
+        ))}
     </Touchable>
   );
 };
