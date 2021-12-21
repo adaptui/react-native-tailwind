@@ -15,11 +15,11 @@ import { useTheme } from '../../../theme';
 import { Box } from '../../Box';
 
 export default {
-  title: 'components/AnimatedBox',
+  title: 'primitives/AnimatedBox',
   component: AnimatedBox,
 } as ComponentMeta<typeof AnimatedBox>;
 
-export const Basic: ComponentStory<typeof AnimatedBox> = () => {
+export const Default: ComponentStory<typeof AnimatedBox> = () => {
   const boxRef = React.createRef<typeof Box>();
   const tailwind = useTheme();
 
@@ -65,6 +65,4 @@ export const Basic: ComponentStory<typeof AnimatedBox> = () => {
   );
 };
 
-Basic.args = {
-  style: {},
-};
+Default.args = {};
