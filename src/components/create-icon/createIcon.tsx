@@ -1,5 +1,5 @@
 import { ViewStyle } from 'react-native';
-import { passProps, RenderPropType } from '../../index';
+import { passProps, RenderPropType } from '../../utils';
 
 interface CreateIconOptions {
   icon: RenderPropType;
