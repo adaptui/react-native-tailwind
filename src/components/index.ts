@@ -1,4 +1,4 @@
-export * from './switch/Switch';
+export * from './switch';
 export * from './badge/Badge';
 export * from './avatar';
 export * from './button';
@@ -6,3 +6,4 @@ export * from './spinner';
 export * from './circularProgress';
 export * from './icon';
 export * from './tag';
+export * from './create-icon';
