@@ -28,6 +28,7 @@ argsEnhancers.forEach((enhancer) => addArgsEnhancer(enhancer));
 
 const getStories = () => {
   return [
+    require("../src/components/switch/stories/Switch.stories.tsx"),
     require("../src/components/tag/stories/Tag.stories.tsx"),
     require("../src/components/tag/stories/TagStack.stories.tsx"),
     require("../src/primitives/AnimatedBox/stories/AnimatedBox.stories.tsx"),
