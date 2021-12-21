@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useTheme } from 'react-native-system';
+import { Box, useTheme } from '../../index';
 import { AvatarSizes } from './types';
 
 export interface AvatarGroupWrapperProps {

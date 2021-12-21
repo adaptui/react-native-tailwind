@@ -1,12 +1,6 @@
 import React from 'react';
 import { PressableProps, TextStyle, ViewStyle } from 'react-native';
-import {
-  Box,
-  RenderPropType,
-  Text,
-  Touchable,
-  useTheme,
-} from 'react-native-system';
+import { Box, RenderPropType, Text, Touchable, useTheme } from '../../index';
 import { Icon } from '..';
 import { Close } from '../../assets';
 import { createIcon } from '../create-icon/createIcon';

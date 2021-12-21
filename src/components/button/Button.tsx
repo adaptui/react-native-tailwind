@@ -6,7 +6,7 @@ import {
   Text,
   Touchable,
   useTheme,
-} from 'react-native-system';
+} from '../../index';
 import { Icon } from '../icon';
 import { ButtonPrefix } from './ButtonPrefix';
 import { useButtonProps } from './ButtonProps';

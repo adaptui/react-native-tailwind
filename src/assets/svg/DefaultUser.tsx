@@ -1,6 +1,6 @@
 import React from 'react';
 import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
-import { IconProps } from 'react-native-system';
+import { IconProps } from '../../index';
 
 export const DefaultUser: React.FC<IconProps> = ({ fill = '#52525B' }) => {
   return (
