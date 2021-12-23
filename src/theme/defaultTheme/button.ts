@@ -73,16 +73,16 @@ export const button = {
     },
   },
   prefix: {
-    sm: 'min-w-3 mr-1.5 items-center justify-center',
-    md: 'min-w-3 mr-1.5 items-center justify-center',
-    lg: 'min-w-3 mr-1.5 items-center justify-center',
-    xl: 'min-w-4 mr-1.5 items-center justify-center',
+    sm: 'w-3 mr-1.5 items-center justify-center',
+    md: 'w-3 mr-1.5 items-center justify-center',
+    lg: 'w-3 mr-1.5 items-center justify-center',
+    xl: 'w-4 mr-1.5 items-center justify-center',
   },
   suffix: {
-    sm: 'min-w-3 ml-1.5 items-center justify-center',
-    md: 'min-w-3 ml-1.5 items-center justify-center',
-    lg: 'min-w-3 ml-1.5 items-center justify-center',
-    xl: 'min-w-4 ml-1.5 items-center justify-center',
+    sm: 'w-3 ml-1.5 items-center justify-center',
+    md: 'w-3 ml-1.5 items-center justify-center',
+    lg: 'w-3 ml-1.5 items-center justify-center',
+    xl: 'w-4 ml-1.5 items-center justify-center',
   },
   loading: {
     size: {
