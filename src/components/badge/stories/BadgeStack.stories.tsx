@@ -47,10 +47,10 @@ export const Default: BadgeStackStoryType = () => (
         <Box style={tailwind.style('flex-row flex-wrap m-2')} key={size}>
           {badgeVariants.map((variant) => {
             return (
-              <Box key={variant} style={tailwind.style('flex-wrap m-1')}>
+              <Box key={variant} style={tailwind.style('m-1')}>
                 {badgeTheme.map((theme) => {
                   return (
-                    <Box key={theme} style={tailwind.style('flex-wrap m-1')}>
+                    <Box key={theme} style={tailwind.style('m-1')}>
                       <BadgeBasic
                         size={size}
                         variant={variant}
