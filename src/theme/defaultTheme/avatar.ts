@@ -119,7 +119,7 @@ export const avatar = {
       ringStyle: 'border-2',
       circular: 'rounded-full',
       // Adding +4 to the negative margin including the borderWidth(2) value
-      size: {
+      spacing: {
         'xs': '-ml-[5px]',
         'sm': '-ml-1.5',
         'md': '-ml-1.5',
