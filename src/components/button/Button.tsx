@@ -147,7 +147,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
             />
           </ButtonPrefix>
         ) : (
-          prefix
+          !_buttonOptions.icon && prefix
         ))}
       {children}
       {_buttonOptions.suffix &&
@@ -159,7 +159,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
             />
           </ButtonSuffix>
         ) : (
-          suffix
+          !_buttonOptions.icon && suffix
         ))}
     </Touchable>
   );
