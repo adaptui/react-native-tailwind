@@ -3,7 +3,8 @@ import React from 'react';
 import { Box, BoxProps } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createContext, getValidChildren } from '../../utils';
-import { Avatar, AvatarProps } from '../avatar';
+import { Avatar } from '../avatar/Avatar';
+import { AvatarProps } from '../avatar/avatarPropTypes';
 import { AvatarGroupWrapper } from './AvatarGroupWrapper';
 
 const [AvatarGroupProvider, useAvatarGroup] =
