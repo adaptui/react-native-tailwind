@@ -4,8 +4,8 @@ import { Box, BoxProps } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createContext, getValidChildren } from '../../utils';
 import { AvatarGroupWrapper } from './AvatarGroupWrapper';
-import { Avatar } from './Avatar';
-import { AvatarProps } from './avatarPropTypes';
+import { Avatar } from '../avatar/Avatar';
+import { AvatarProps } from '../avatar/avatarPropTypes';
 
 const [AvatarGroupProvider, useAvatarGroup] =
   createContext<AvatarGroupSharedProps>({

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box } from '../../primitives/Box';
 import { useTheme } from '../../theme';
-import { AvatarSizes } from './index';
+import { AvatarSizes } from '../avatar/avatarPropTypes';
+
 export interface AvatarGroupWrapperProps {
   size?: AvatarSizes;
   showRing?: boolean;

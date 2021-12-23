@@ -15,7 +15,7 @@ import {
   AVATAR_STATUS_KEYS,
 } from './__keys';
 
-import { useAvatarGroup } from './AvatarGroup';
+import { useAvatarGroup } from '../avatar-group/AvatarGroup';
 interface AvatarPropsReturnType {
   _imageProps: AvatarImageProps;
   _basicProps: AvatarBasicProps;
