@@ -85,12 +85,12 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
         {excess > 0 ? (
           <Box
             style={[
+              avatarTheme.borderRadius.size[size],
               tailwind.style([
                 avatarTheme.group.avatarWrapper.spacing[size],
                 circular ? avatarTheme.group.avatarWrapper.circular : '',
                 showRing ? avatarTheme.group.avatarWrapper.ringStyle : '',
               ]),
-              avatarTheme.borderRadius.size[size],
               showRing
                 ? { borderColor: ringColor, backgroundColor: ringColor }
                 : {},
