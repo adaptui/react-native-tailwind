@@ -1,11 +1,11 @@
 import { isUndefined } from 'lodash';
 import React from 'react';
-import { getValidChildren, useTheme } from '../../index';
-import { Box, BoxProps } from '../../primitives/Box';
-import { createContext } from '../../utils/createContext';
-import { Avatar } from './Avatar';
+import { Box, BoxProps } from '../../primitives';
+import { useTheme } from '../../theme';
+import { createContext, getValidChildren } from '../../utils';
 import { AvatarGroupWrapper } from './AvatarGroupWrapper';
-import { AvatarProps } from './types';
+import { Avatar } from './Avatar';
+import { AvatarProps } from './avatarPropTypes';
 
 const [AvatarGroupProvider, useAvatarGroup] =
   createContext<AvatarGroupSharedProps>({

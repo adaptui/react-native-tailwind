@@ -1,7 +1,8 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { useTheme } from '../../index';
-import { AvatarImageProps } from './types';
+import { useTheme } from '../../theme';
+import { AvatarImageProps } from './avatarPropTypes';
+
 interface CAvatarImageProps extends AvatarImageProps {
   handleFallback: () => void;
 }
