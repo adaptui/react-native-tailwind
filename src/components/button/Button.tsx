@@ -1,19 +1,14 @@
 import React from 'react';
-import {
-  Box,
-  Spinner,
-  SpinnerSizes,
-  Text,
-  Touchable,
-  useTheme,
-} from '../../index';
+import { createIcon } from '../create-icon';
+import { useTheme } from '../../theme';
+import { Spinner, SpinnerSizes } from '../spinner';
+import { Box, Text, Touchable } from '../../primitives';
 import { Icon } from '../icon';
 import { ButtonPrefix } from './ButtonPrefix';
 import { useButtonProps } from './ButtonProps';
 import { ButtonSpinner } from './ButtonSpinner';
 import { ButtonSuffix } from './ButtonSuffix';
 import { ButtonProps } from './buttonTypes';
-import { createButtonIcon } from './createButtonIcon';
 
 export const Button: React.FC<Partial<ButtonProps>> = (props) => {
   const tailwind = useTheme();
@@ -75,7 +70,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     _buttonOptions.prefix?.type === Icon ? (
-      createButtonIcon({
+      createIcon({
         icon: _buttonOptions.prefix,
         iconFill: tailwind.getColor(
           isButtonDisabled
@@ -96,7 +91,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     _buttonOptions.suffix?.type === Icon ? (
-      createButtonIcon({
+      createIcon({
         icon: _buttonOptions.suffix,
         iconFill: tailwind.getColor(
           isButtonDisabled
