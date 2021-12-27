@@ -1,20 +1,21 @@
 import { pick } from 'lodash';
 import React from 'react';
-import { useAvatarGroup } from './AvatarGroup';
 import {
-  AvatarBasicProps,
   AvatarImageProps,
+  AvatarBasicProps,
   AvatarOtherProps,
-  AvatarProps,
   AvatarStatusProps,
-} from './types';
+  AvatarProps,
+} from './avatarPropTypes';
+
 import {
-  AVATAR_BASIC_KEYS,
   AVATAR_IMAGE_KEYS,
+  AVATAR_BASIC_KEYS,
   AVATAR_OTHER_KEYS,
   AVATAR_STATUS_KEYS,
 } from './__keys';
 
+import { useAvatarGroup } from '../avatar-group/AvatarGroup';
 interface AvatarPropsReturnType {
   _imageProps: AvatarImageProps;
   _basicProps: AvatarBasicProps;

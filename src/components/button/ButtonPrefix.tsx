@@ -1,4 +1,4 @@
-import { Box, useTheme } from 'react-native-system';
+import { Box, useTheme } from '../../index';
 import React from 'react';
 import { ButtonSizes } from './buttonTypes';
 

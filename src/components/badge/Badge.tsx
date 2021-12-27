@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextStyle, ViewStyle } from 'react-native';
-import { Box, Text, useTheme } from 'react-native-system';
+import { useTheme } from '../../theme';
+import { Box, Text } from '../../primitives';
 import { useBadgeProps } from './BadgeProps';
 
 export type BadgeSizes = 'sm' | 'md' | 'lg';

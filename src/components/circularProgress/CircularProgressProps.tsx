@@ -1,5 +1,5 @@
 import { pick } from 'lodash';
-import { CircularProgressProps, useTheme } from 'react-native-system';
+import { CircularProgressProps, useTheme } from '../../index';
 import { CIRCULAR_PROGRESS_LIB_KEYS } from './__keys';
 
 interface CircularProgressPropsReturnType {

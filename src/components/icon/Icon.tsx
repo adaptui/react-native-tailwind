@@ -1,8 +1,8 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
-import { RenderPropType, useTheme } from 'react-native-system';
+import { RenderPropType } from '../../utils';
 import { Box } from '../../primitives/Box';
-
+import { useTheme } from '../../theme/context';
 export interface IconComponentProps {
   /**
    * Svg Icon
