@@ -54,6 +54,17 @@ export default {
       </Box>
     ),
   ],
+  argTypes: {
+    showRing: {
+      control: { type: 'boolean' },
+    },
+    circular: {
+      control: { type: 'boolean' },
+    },
+    parentsBackground: {
+      control: { type: 'color' },
+    },
+  },
 } as ComponentMeta<typeof AvatarGroup>;
 
 export const MaxCount: ComponentStory<typeof AvatarGroup> = () => (
@@ -88,12 +99,12 @@ export const SquaredMaxCount: ComponentStory<typeof AvatarGroup> = () => (
   </Box>
 );
 
-export const Default: ComponentStory<typeof AvatarGroup> = () => (
+export const Default: ComponentStory<typeof AvatarGroup> = (args) => (
   <Box>
     {avatar_sizes.map((size) => {
       return (
         <Box style={tailwind.style('flex-row flex-wrap m-2')} key={size}>
-          <AvatarGroup size={size}>
+          <AvatarGroup {...args} size={size}>
             {avatarProps.map((item) => (
               <Avatar src={item.src} key={item.name} />
             ))}
