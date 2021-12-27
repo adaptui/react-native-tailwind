@@ -36,6 +36,7 @@ const getStories = () => {
     require("../src/components/button/stories/Button.stories.tsx"),
     require("../src/components/button/stories/ButtonStack.stories.tsx"),
     require("../src/components/progress/stories/ProgressBasic.stories.tsx"),
+    require("../src/components/spinner/stories/SpinnerBasic.stories.tsx"),
     require("../src/components/switch/stories/Switch.stories.tsx"),
     require("../src/components/tag/stories/Tag.stories.tsx"),
     require("../src/components/tag/stories/TagStack.stories.tsx"),
