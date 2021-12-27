@@ -33,6 +33,7 @@ const getStories = () => {
     require("../src/components/avatar/stories/AvatarStack.stories.tsx"),
     require("../src/components/badge/stories/Badge.stories.tsx"),
     require("../src/components/badge/stories/BadgeStack.stories.tsx"),
+    require("../src/components/button/stories/Button.stories.tsx"),
     require("../src/components/switch/stories/Switch.stories.tsx"),
     require("../src/components/tag/stories/Tag.stories.tsx"),
     require("../src/components/tag/stories/TagStack.stories.tsx"),
