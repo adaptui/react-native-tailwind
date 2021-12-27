@@ -17,9 +17,7 @@ export default {
   ],
 } as ComponentMeta<typeof Switch>;
 
-export const Default: ComponentStory<typeof Switch> = (args) => (
-  <Switch {...args} />
-);
+export const Default: ComponentStory<typeof Switch> = () => <Switch />;
 
 Default.args = {
   size: 'xl',
