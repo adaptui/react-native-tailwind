@@ -6,7 +6,6 @@ import {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
-  withDelay,
   withRepeat,
   withSpring,
   withTiming,
@@ -73,16 +72,13 @@ export const ProgressBar: React.FC<Partial<ProgressProps>> = (props) => {
   // Loop Translation progress when value is null
   const progressTranslate = useSharedValue(-1);
   React.useEffect(() => {
-    progressTranslate.value = withDelay(
-      400,
-      withRepeat(
-        withTiming(1, {
-          duration: 1200,
-          easing: Easing.linear,
-        }),
-        -1,
-        false
-      )
+    progressTranslate.value = withRepeat(
+      withTiming(1, {
+        duration: 1500,
+        easing: Easing.linear,
+      }),
+      -1,
+      false
     );
   }, [progressTranslate]);
 
