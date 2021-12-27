@@ -34,3 +34,15 @@ Customised.args = {
   onStatePressedColor: '#339178',
   offStatePressedColor: '#d39885',
 };
+
+export const IOS: ComponentStory<typeof Switch> = (args) => (
+  <Switch {...args} />
+);
+
+IOS.args = {
+  size: 'xl',
+  onStateColor: '#35C759',
+  offStateColor: '#E8E9EB',
+  onStatePressedColor: '#5bd379',
+  offStatePressedColor: '#d6d8db',
+};
