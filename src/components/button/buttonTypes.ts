@@ -1,5 +1,5 @@
-import { PressableProps } from 'react-native';
-import { RenderPropType } from 'react-native-system';
+import { PressableProps, TextStyle } from 'react-native';
+import { RenderPropType } from '../../index';
 
 export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
 export type ButtonVariants = 'outline' | 'ghost' | 'solid' | 'subtle';
@@ -15,6 +15,7 @@ export interface ButtonOptionProps {
   loading: boolean;
   icon: RenderPropType;
   spinner: RenderPropType;
+  textStyle: TextStyle;
 }
 
 export interface ButtonProps

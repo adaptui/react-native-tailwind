@@ -1,11 +1,6 @@
 import { isValidElement } from 'react';
 import React from 'react';
-import {
-  RenderPropType,
-  Spinner,
-  SpinnerSizes,
-  useTheme,
-} from 'react-native-system';
+import { RenderPropType, Spinner, SpinnerSizes, useTheme } from '../../index';
 import { ButtonSizes } from './buttonTypes';
 
 interface ButtonSpinnerProps {

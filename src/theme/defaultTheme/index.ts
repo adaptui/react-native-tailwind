@@ -5,6 +5,7 @@ import { circularProgress } from './circularProgress';
 import { progress } from './progress';
 import { spinner } from './spinner';
 import { switchTheme } from './switch';
+import { tag } from './tag';
 
 const extendedTheme = {
   badge,
@@ -14,6 +15,7 @@ const extendedTheme = {
   button,
   spinner,
   circularProgress,
+  tag,
 };
 
 export default extendedTheme;

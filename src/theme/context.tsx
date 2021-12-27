@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash';
 import { useColorScheme } from 'react-native';
 import { tw } from './tailwind';
 import defaultTheme from './defaultTheme';
-import type { DeepDictionary, DeepPartial } from 'src/utils/types';
+import type { DeepDictionary, DeepPartial } from '../../src/utils/types';
 import { mergeExtensions, mergeThemes } from './mergeTheme';
 
 export type DefaultTheme = typeof defaultTheme;

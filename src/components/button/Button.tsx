@@ -1,14 +1,13 @@
 import React from 'react';
-import {
-  Box,
-  Spinner,
-  SpinnerSizes,
-  Text,
-  Touchable,
-  useTheme,
-} from 'react-native-system';
+import { createIcon } from '../create-icon';
+import { useTheme } from '../../theme';
+import { Spinner, SpinnerSizes } from '../spinner';
+import { Box, Text, Touchable } from '../../primitives';
+import { Icon } from '../icon';
+import { ButtonPrefix } from './ButtonPrefix';
 import { useButtonProps } from './ButtonProps';
 import { ButtonSpinner } from './ButtonSpinner';
+import { ButtonSuffix } from './ButtonSuffix';
 import { ButtonProps } from './buttonTypes';
 
 export const Button: React.FC<Partial<ButtonProps>> = (props) => {
@@ -17,6 +16,9 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
   const { _buttonProps, _buttonOptions } = useButtonProps(props);
   const iconAspectRatio = 1;
   const isButtonDisabled = props.disabled || props.loading;
+  /**
+   * Button Children
+   */
   const children = _buttonOptions.icon ? (
     <Box
       style={[
@@ -29,7 +31,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
     >
       {/* @ts-ignore */}
       {React.cloneElement(_buttonOptions.icon, {
-        stroke: tailwind.getColor(
+        color: tailwind.getColor(
           isButtonDisabled
             ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
             : buttonTheme.icon.variant.default[_buttonProps.variant]
@@ -53,6 +55,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
             ? 'opacity-0'
             : '',
         ]),
+        props.textStyle,
       ]}
     >
       {props.children}
@@ -60,6 +63,49 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
   ) : (
     props.children
   );
+  /**
+   * Button Prefix Component
+   */
+  const prefix =
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    _buttonOptions.prefix?.type === Icon ? (
+      createIcon({
+        icon: _buttonOptions.prefix,
+        iconFill: tailwind.getColor(
+          isButtonDisabled
+            ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
+            : buttonTheme.icon.variant.default[_buttonProps.variant]
+        ),
+        iconStyle: tailwind.style(buttonTheme.prefix[_buttonProps.size]),
+      })
+    ) : (
+      <ButtonPrefix size={_buttonProps.size}>
+        {_buttonOptions.prefix}
+      </ButtonPrefix>
+    );
+  /**
+   * Button Suffix Component
+   */
+  const suffix =
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    _buttonOptions.suffix?.type === Icon ? (
+      createIcon({
+        icon: _buttonOptions.suffix,
+        iconFill: tailwind.getColor(
+          isButtonDisabled
+            ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
+            : buttonTheme.icon.variant.default[_buttonProps.variant]
+        ),
+        iconStyle: tailwind.style(buttonTheme.suffix[_buttonProps.size]),
+      })
+    ) : (
+      <ButtonSuffix size={_buttonProps.size}>
+        {_buttonOptions.suffix}
+      </ButtonSuffix>
+    );
+
   return (
     <Touchable
       style={({ pressed }) => [
@@ -87,59 +133,29 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
             />
           </Box>
         )}
-      {_buttonOptions.prefix && (
-        <Box
-          style={[
-            tailwind.style(buttonTheme.prefix[_buttonProps.size]),
-            { aspectRatio: iconAspectRatio },
-          ]}
-        >
-          {_buttonOptions.loading && !_buttonOptions.suffix ? (
+      {_buttonOptions.prefix &&
+        (_buttonOptions.loading && !_buttonOptions.suffix ? (
+          <ButtonPrefix size={_buttonProps.size}>
             <ButtonSpinner
               size={_buttonProps.size}
               spinner={_buttonOptions.spinner}
             />
-          ) : (
-            <>
-              {/* @ts-ignore */}
-              {React.cloneElement(_buttonOptions.prefix, {
-                stroke: tailwind.getColor(
-                  isButtonDisabled
-                    ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-                    : buttonTheme.icon.variant.default[_buttonProps.variant]
-                ),
-              })}
-            </>
-          )}
-        </Box>
-      )}
+          </ButtonPrefix>
+        ) : (
+          !_buttonOptions.icon && prefix
+        ))}
       {children}
-      {_buttonOptions.suffix && (
-        <Box
-          style={[
-            tailwind.style(buttonTheme.suffix[_buttonProps.size]),
-            { aspectRatio: iconAspectRatio },
-          ]}
-        >
-          {_buttonOptions.loading ? (
+      {_buttonOptions.suffix &&
+        (_buttonOptions.loading ? (
+          <ButtonSuffix size={_buttonProps.size}>
             <ButtonSpinner
               size={_buttonProps.size}
               spinner={_buttonOptions.spinner}
             />
-          ) : (
-            <>
-              {/* @ts-ignore */}
-              {React.cloneElement(_buttonOptions.suffix, {
-                stroke: tailwind.getColor(
-                  isButtonDisabled
-                    ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-                    : buttonTheme.icon.variant.default[_buttonProps.variant]
-                ),
-              })}
-            </>
-          )}
-        </Box>
-      )}
+          </ButtonSuffix>
+        ) : (
+          !_buttonOptions.icon && suffix
+        ))}
     </Touchable>
   );
 };

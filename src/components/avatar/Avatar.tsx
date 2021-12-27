@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Text, useTheme } from 'react-native-system';
 import { DefaultUser } from '../../assets';
+import { Box, Text } from '../../primitives';
+import { useTheme } from '../../theme';
+import { Icon } from '../icon';
 import { AvatarImage } from './AvatarImage';
-import { useAvatarProps } from './AvatarProps';
 import { AvatarStatus } from './AvatarStatus';
-import { AvatarProps, AvatarSizes } from './types';
+import { useAvatarProps } from './AvatarProps';
+import { AvatarProps, AvatarSizes } from './avatarPropTypes';
 
 function getInitials(name: string, size: AvatarSizes) {
   if (!name) {
@@ -53,11 +55,16 @@ export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
             avatarTheme.initials.base,
             avatarTheme.initials.size[_basicProps.size],
           ])}
+          adjustsFontSizeToFit
+          allowFontScaling={false}
         >
           {getInitials(_otherProps.name, _basicProps.size)}
         </Text>
       ) : (
-        <DefaultUser size={_basicProps.size} />
+        <Icon
+          icon={<DefaultUser />}
+          style={tailwind.style(avatarTheme.defaultUserIcon[_basicProps.size])}
+        />
       )}
       {_statusProps.status && <AvatarStatus {..._statusProps} />}
     </Box>
