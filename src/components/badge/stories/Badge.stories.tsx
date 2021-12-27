@@ -34,15 +34,15 @@ export default {
   argTypes: {
     size: {
       options: badgeSizes,
-      control: { type: 'radios' },
+      control: { type: 'radio' },
     },
     themeColor: {
       options: badgeTheme,
-      control: { type: 'radios' },
+      control: { type: 'radio' },
     },
     variant: {
       options: badgeVariants,
-      control: { type: 'radios' },
+      control: { type: 'radio' },
     },
   },
   decorators: [

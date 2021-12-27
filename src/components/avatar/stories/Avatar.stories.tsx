@@ -27,11 +27,11 @@ export default {
   argTypes: {
     size: {
       options: avatar_sizes,
-      control: { type: 'radios' },
+      control: { type: 'radio' },
     },
     status: {
       options: avatar_status,
-      control: { type: 'radios' },
+      control: { type: 'radio' },
     },
     circular: {
       control: { type: 'boolean' },
