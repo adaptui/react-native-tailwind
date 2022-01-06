@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "typescript": "tsc --noEmit",
+    "typescript": "tsc",
     "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
@@ -195,6 +195,7 @@
   },
   "dependencies": {
     "@chakra-ui/hooks": "^1.7.1",
+    "@react-native-aria/overlays": "^0.3.2",
     "lodash": "^4.17.21",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-native-gesture-handler": "^1.10.2",
@@ -203,6 +204,7 @@
     "react-test-renderer": "^17.0.2",
     "tailwind-merge": "^1.1.1",
     "tailwindcss": "^2.2.19",
-    "twrnc": "^2.1.1"
+    "twrnc": "^2.1.1",
+    "yarn": "^1.22.17"
   }
 }
