@@ -5,7 +5,11 @@ import tailwind from 'twrnc';
 import { Box } from '../../../primitives/Box';
 import { Avatar } from '../Avatar';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 type Meta = ComponentMeta<typeof Avatar>;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 type AvatarStoryType = ComponentStory<typeof Avatar>;
 
 const avatar_sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'];

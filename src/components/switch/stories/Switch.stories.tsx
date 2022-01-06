@@ -5,6 +5,13 @@ import tailwind from 'twrnc';
 import { Box } from '../../../primitives/Box';
 import { Switch } from '../Switch';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+type Meta = ComponentMeta<typeof Switch>;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+type SwitchStoryType = ComponentStory<typeof Switch>;
+
 export default {
   title: 'components/Switch',
   component: Switch,
@@ -15,17 +22,15 @@ export default {
       </Box>
     ),
   ],
-} as ComponentMeta<typeof Switch>;
+} as Meta;
 
-export const Default: ComponentStory<typeof Switch> = () => <Switch />;
+export const Default: SwitchStoryType = () => <Switch />;
 
 Default.args = {
   size: 'xl',
 };
 
-export const Customised: ComponentStory<typeof Switch> = (args) => (
-  <Switch {...args} />
-);
+export const Customised: SwitchStoryType = (args) => <Switch {...args} />;
 
 Customised.args = {
   size: 'xl',
@@ -35,9 +40,7 @@ Customised.args = {
   offStatePressedColor: '#d39885',
 };
 
-export const IOS: ComponentStory<typeof Switch> = (args) => (
-  <Switch {...args} />
-);
+export const IOS: SwitchStoryType = (args) => <Switch {...args} />;
 
 IOS.args = {
   size: 'xl',

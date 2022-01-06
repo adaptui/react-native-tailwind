@@ -5,6 +5,13 @@ import tailwind from 'twrnc';
 import { Box } from '../../../primitives/Box';
 import { Spinner } from '../Spinner';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+type Meta = ComponentMeta<typeof Spinner>;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+type SpinnerStoryType = ComponentStory<typeof Spinner>;
+
 export default {
   title: 'feedback/Spinner/Basic',
   component: Spinner,
@@ -15,64 +22,50 @@ export default {
       </Box>
     ),
   ],
-} as ComponentMeta<typeof Spinner>;
+} as Meta;
 
-export const Default: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
+export const Default: SpinnerStoryType = (args) => <Spinner {...args} />;
 
 Default.args = {};
 
-export const ExtraSmall: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
+export const ExtraSmall: SpinnerStoryType = (args) => <Spinner {...args} />;
 
 ExtraSmall.args = {
   size: 'xs',
 };
 
-export const Small: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
+export const Small: SpinnerStoryType = (args) => <Spinner {...args} />;
 
 Small.args = {
   size: 'sm',
 };
 
-export const Medium: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
+export const Medium: SpinnerStoryType = (args) => <Spinner {...args} />;
 
 Medium.args = {
   size: 'md',
 };
 
-export const Large: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
+export const Large: SpinnerStoryType = (args) => <Spinner {...args} />;
 
 Large.args = {
   size: 'lg',
 };
 
-export const ExtraLarge: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
+export const ExtraLarge: SpinnerStoryType = (args) => <Spinner {...args} />;
 
 ExtraLarge.args = {
   size: 'xl',
 };
 
-export const StrokeVisible: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
-);
+export const StrokeVisible: SpinnerStoryType = (args) => <Spinner {...args} />;
 
 StrokeVisible.args = {
   size: 'xl',
   track: 'visible',
 };
 
-export const Customised: ComponentStory<typeof Spinner> = () => (
+export const Customised: SpinnerStoryType = () => (
   <Box style={tailwind.style('flex-1 justify-center items-center')}>
     <Spinner
       size={'xs'}

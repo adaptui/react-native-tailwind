@@ -17,8 +17,12 @@ import { Box } from '../../Box';
 export default {
   title: 'primitives/AnimatedBox',
   component: AnimatedBox,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
 } as ComponentMeta<typeof AnimatedBox>;
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const Default: ComponentStory<typeof AnimatedBox> = () => {
   const boxRef = React.createRef<typeof Box>();
   const tailwind = useTheme();
