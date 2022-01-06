@@ -1,16 +1,20 @@
-import React from 'react';
-import { createIcon } from '../create-icon';
-import { useTheme } from '../../theme';
-import { Spinner, SpinnerSizes } from '../spinner';
+import React, { forwardRef } from 'react';
 import { Box, Text, Touchable } from '../../primitives';
+import { useTheme } from '../../theme';
+import { createComponent } from '../../utils';
+import { createIcon } from '../create-icon';
 import { Icon } from '../icon';
+import { Spinner, SpinnerSizes } from '../spinner';
 import { ButtonPrefix } from './ButtonPrefix';
 import { useButtonProps } from './ButtonProps';
 import { ButtonSpinner } from './ButtonSpinner';
 import { ButtonSuffix } from './ButtonSuffix';
 import { ButtonProps } from './buttonTypes';
 
-export const Button: React.FC<Partial<ButtonProps>> = (props) => {
+const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
+  typeof Touchable,
+  Partial<ButtonProps>
+>((props, ref) => {
   const tailwind = useTheme();
   const buttonTheme = useTheme('button');
   const { _buttonProps, _buttonOptions } = useButtonProps(props);
@@ -42,6 +46,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
     <Text
       adjustsFontSizeToFit
       allowFontScaling={false}
+      selectable={false}
       style={[
         tailwind.style([
           buttonTheme.text.size[_buttonProps.size],
@@ -120,6 +125,7 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
         ),
       ]}
       {...props}
+      ref={ref}
       disabled={isButtonDisabled}
     >
       {!_buttonOptions.prefix &&
@@ -158,4 +164,10 @@ export const Button: React.FC<Partial<ButtonProps>> = (props) => {
         ))}
     </Touchable>
   );
-};
+});
+
+RNButton.displayName = 'RNButton';
+
+export const Button = createComponent<Partial<ButtonProps>>(RNButton, {
+  shouldMemo: true,
+});

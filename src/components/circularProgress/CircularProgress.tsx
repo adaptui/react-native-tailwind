@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 import Animated, {
   Easing,
@@ -11,7 +11,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Circle, G } from 'react-native-svg';
-import { Box, useTheme } from '../../index';
+import { Box } from '../../primitives';
+import { useTheme } from '../../theme';
+import { createComponent } from '../../utils';
 import { useCircularProgressProps } from './CircularProgressProps';
 
 Animated.addWhitelistedNativeProps({ text: true });
@@ -71,9 +73,10 @@ const SPRING_CONFIG = {
   restDisplacementThreshold: 0.001,
 };
 
-export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
-  props
-) => {
+const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
+  typeof Box,
+  Partial<CircularProgressProps>
+>((props, ref) => {
   const {
     _circularProgressProps: {
       value,
@@ -149,7 +152,7 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
     return { text: `${progressValue.value}%` } as unknown as TextInputProps;
   });
   return (
-    <Box>
+    <Box ref={ref}>
       <Svg
         width={radius * 2}
         height={radius * 2}
@@ -209,4 +212,13 @@ export const CircularProgress: React.FC<Partial<CircularProgressProps>> = (
       )}
     </Box>
   );
-};
+});
+
+RNCircularProgress.displayName = 'RNCircularProgress';
+
+export const CircularProgress = createComponent<Partial<CircularProgressProps>>(
+  RNCircularProgress,
+  {
+    shouldMemo: true,
+  }
+);

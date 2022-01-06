@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Dimensions } from 'react-native';
 import {
   Easing,
@@ -12,6 +12,7 @@ import {
 } from 'react-native-reanimated';
 import { AnimatedBox } from '../../primitives/AnimatedBox';
 import { useTheme } from '../../theme/context';
+import { createComponent } from '../../utils';
 import { useProgressBarProps } from './ProgressProps';
 
 export type ProgressBarSizes = 'sm' | 'md' | 'lg' | 'xl';
@@ -49,7 +50,10 @@ const SPRING_CONFIG = {
   restDisplacementThreshold: 0.001,
 };
 
-export const ProgressBar: React.FC<Partial<ProgressProps>> = (props) => {
+export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
+  typeof AnimatedBox,
+  Partial<ProgressProps>
+>((props, ref) => {
   const tailwind = useTheme();
   const progressStyles = useTheme('progress');
   const { trackColor, progressTrackColor, value, size } =
@@ -99,6 +103,7 @@ export const ProgressBar: React.FC<Partial<ProgressProps>> = (props) => {
 
   return (
     <AnimatedBox
+      ref={ref}
       style={[
         tailwind.style(progressStyles.container[size]),
         { backgroundColor: trackColor },
@@ -124,4 +129,13 @@ export const ProgressBar: React.FC<Partial<ProgressProps>> = (props) => {
       )}
     </AnimatedBox>
   );
-};
+});
+
+RNProgressBar.displayName = 'RNProgressBar';
+
+export const ProgressBar = createComponent<Partial<ProgressProps>>(
+  RNProgressBar,
+  {
+    shouldMemo: true,
+  }
+);

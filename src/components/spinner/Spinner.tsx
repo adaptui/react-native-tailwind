@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { ViewProps } from 'react-native';
 import {
   Easing,
@@ -7,7 +7,9 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-import { AnimatedBox, useTheme } from '../../index';
+import { AnimatedBox } from '../../primitives';
+import { useTheme } from '../../theme';
+import { createComponent } from '../../utils';
 import { useSpinnerProps } from './SpinnerProps';
 
 export type SpinnerSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -19,7 +21,10 @@ export interface SpinnerLibProps {
 
 export interface SpinnerProps extends SpinnerLibProps, ViewProps {}
 
-export const Spinner: React.FC<Partial<SpinnerProps>> = (props) => {
+const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
+  typeof AnimatedBox,
+  Partial<SpinnerProps>
+>((props, ref) => {
   const { _spinnerLibProps } = useSpinnerProps(props);
   const spinnerLoopAnimation = useSharedValue(0);
   useEffect(() => {
@@ -46,6 +51,7 @@ export const Spinner: React.FC<Partial<SpinnerProps>> = (props) => {
   const spinnerTheme = useTheme('spinner');
   return (
     <AnimatedBox
+      ref={ref}
       style={[
         tailwind.style([
           spinnerTheme.base,
@@ -57,4 +63,10 @@ export const Spinner: React.FC<Partial<SpinnerProps>> = (props) => {
       ]}
     />
   );
-};
+});
+
+RNSpinner.displayName = 'RNSpinner';
+
+export const Spinner = createComponent<Partial<SpinnerProps>>(RNSpinner, {
+  shouldMemo: true,
+});

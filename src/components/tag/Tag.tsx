@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { PressableProps, TextStyle, ViewStyle } from 'react-native';
 import { Box } from '../../primitives/Box';
 import { Text } from '../../primitives/Text';
 import { Touchable } from '../../primitives/Touchable';
 import { useTheme } from '../../theme';
-import { RenderPropType } from '../../utils';
+import { createComponent, RenderPropType } from '../../utils';
 import { createIcon } from '../create-icon';
-import { useTagProps } from './TagProps';
 import { Icon } from '../icon';
+import { useTagProps } from './TagProps';
 
 export type TagSizes = 'sm' | 'md' | 'lg' | 'xl';
 export type TagVariant = 'solid' | 'subtle' | 'outline';
@@ -50,7 +50,10 @@ export interface TagProps extends PressableProps {
   textStyle: TextStyle;
 }
 
-export const Tag: React.FC<Partial<TagProps>> = (props) => {
+const RNTag: React.FC<Partial<TagProps>> = forwardRef<
+  typeof Touchable,
+  Partial<TagProps>
+>((props, ref) => {
   const tailwind = useTheme();
   const tagTheme = useTheme('tag');
 
@@ -60,6 +63,7 @@ export const Tag: React.FC<Partial<TagProps>> = (props) => {
   } = useTagProps(props);
   return (
     <Touchable
+      ref={ref}
       style={({ pressed }) => [
         tailwind.style(
           tagTheme.base,
@@ -128,4 +132,10 @@ export const Tag: React.FC<Partial<TagProps>> = (props) => {
         ))}
     </Touchable>
   );
-};
+});
+
+RNTag.displayName = 'RNTag';
+
+export const Tag = createComponent<Partial<TagProps>>(RNTag, {
+  shouldMemo: true,
+});

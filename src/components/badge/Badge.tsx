@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { TextStyle, ViewStyle } from 'react-native';
-import { useTheme } from '../../theme';
 import { Box, Text } from '../../primitives';
+import { useTheme } from '../../theme';
+import { createComponent } from '../../utils';
 import { useBadgeProps } from './BadgeProps';
 
 export type BadgeSizes = 'sm' | 'md' | 'lg';
@@ -40,7 +41,10 @@ export interface BadgeProps {
   textStyle: TextStyle;
 }
 
-export const Badge: React.FC<Partial<BadgeProps>> = (props) => {
+const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
+  typeof Box,
+  Partial<BadgeProps>
+>((props, ref) => {
   const tailwind = useTheme();
   const badgeStyles = useTheme('badge');
   const {
@@ -48,6 +52,7 @@ export const Badge: React.FC<Partial<BadgeProps>> = (props) => {
   } = useBadgeProps(props);
   return (
     <Box
+      ref={ref}
       style={[
         tailwind.style([
           badgeStyles.baseContainer,
@@ -74,4 +79,10 @@ export const Badge: React.FC<Partial<BadgeProps>> = (props) => {
       )}
     </Box>
   );
-};
+});
+
+RNBadge.displayName = 'RNBadge';
+
+export const Badge = createComponent<Partial<BadgeProps>>(RNBadge, {
+  shouldMemo: true,
+});

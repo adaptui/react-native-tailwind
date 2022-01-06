@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { DefaultUser } from '../../assets';
 import { Box, Text } from '../../primitives';
 import { useTheme } from '../../theme';
+import { createComponent } from '../../utils';
 import { Icon } from '../icon';
 import { AvatarImage } from './AvatarImage';
-import { AvatarStatus } from './AvatarStatus';
 import { useAvatarProps } from './AvatarProps';
 import { AvatarProps, AvatarSizes } from './avatarPropTypes';
+import { AvatarStatus } from './AvatarStatus';
 
 function getInitials(name: string, size: AvatarSizes) {
   if (!name) {
@@ -25,7 +26,10 @@ function getInitials(name: string, size: AvatarSizes) {
     : initials.toUpperCase();
 }
 
-export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
+const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
+  typeof Box,
+  Partial<AvatarProps>
+>((props, ref) => {
   const tailwind = useTheme();
   const avatarTheme = useTheme('avatar');
   const { _imageProps, _basicProps, _otherProps, _statusProps } =
@@ -46,6 +50,7 @@ export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
           _basicProps.circular ? avatarTheme.circular : '',
         ]),
       ]}
+      ref={ref}
     >
       {imageAvailable && _imageProps.src ? (
         <AvatarImage {..._imageProps} handleFallback={loadFallback} />
@@ -69,4 +74,10 @@ export const Avatar: React.FC<Partial<AvatarProps>> = (props) => {
       {_statusProps.status && <AvatarStatus {..._statusProps} />}
     </Box>
   );
-};
+});
+
+RNAvatar.displayName = 'RNAvatar';
+
+export const Avatar = createComponent<Partial<AvatarProps>>(RNAvatar, {
+  shouldMemo: true,
+});
