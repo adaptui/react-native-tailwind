@@ -87,7 +87,7 @@ export const input = {
           disabled: 'text-gray-500',
           interactions: 'text-gray-500 ',
           hover: 'text-gray-500',
-          focus: 'text-red-500',
+          focus: 'text-gray-500',
         },
       },
     },
