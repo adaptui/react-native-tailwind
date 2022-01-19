@@ -1,10 +1,14 @@
 import { useHover } from '@react-native-aria/interactions';
-import React, { forwardRef, useMemo, useState } from 'react';
+import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import { TextInputProps, ViewStyle } from 'react-native';
+import { createIcon, Icon } from '..';
 import { Box, RNTextInput } from '../../primitives';
 import { useTheme } from '../../theme';
-import { RenderPropType } from '../../utils';
+import { RenderPropType, runIfFn } from '../../utils';
 import { createComponent } from '../../utils/createComponent';
+import { mergeRefs } from '../../utils/mergeRefs';
+import { Spinner } from '../spinner';
+import { InputSuffix } from './InputSuffix';
 
 export type InputVariants = 'outline' | 'subtle' | 'underline' | 'ghost';
 export type InputSizes = 'sm' | 'md' | 'lg' | 'xl';
@@ -37,7 +41,23 @@ export interface InputProps extends TextInputProps {
    * @default false
    */
   invalid: boolean;
+  /**
+   * Set to True, if the input is loading.
+   * @default false
+   */
+  loading: boolean;
 }
+
+interface DefaultInputSpinnerProps extends Pick<InputProps, 'size'> {
+  spinnerStroke: ViewStyle;
+}
+
+export const DefaultInputSpinner = (
+  state: DefaultInputSpinnerProps
+): JSX.Element => {
+  const { size, spinnerStroke } = state;
+  return <Spinner size={size !== 'xl' ? 'xs' : 'md'} style={spinnerStroke} />;
+};
 
 const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   typeof RNTextInput,
@@ -47,8 +67,9 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
 
   const handleOnFocus = () => setIsFocussed(true);
   const handleOnBlur = () => setIsFocussed(false);
-
-  const { isHovered, hoverProps } = useHover({}, ref);
+  const inputRef = useRef<typeof RNTextInput>(null);
+  const inputMergedRef = mergeRefs([ref, inputRef]);
+  const { isHovered, hoverProps } = useHover({}, inputMergedRef);
 
   const {
     size = 'md',
@@ -58,9 +79,13 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     suffix,
     invalid = false,
     editable = true,
+    loading,
   } = props;
   const tailwind = useTheme();
   const inputTheme = useTheme('input');
+
+  const [suffixWidth, setSuffixWidth] = React.useState(0);
+  // const [prefixWidth, setPrefixWidth] = React.useState(0);
 
   React.useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -69,7 +94,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     ref?.current?.setNativeProps?.({
       text: props.value,
     });
-  }, [ref, props.value]);
+  }, [ref, props.value, suffixWidth]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = React.useMemo(() => props.value, []);
@@ -87,11 +112,57 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocussed, isHovered, editable]);
 
+  const _suffix: InputProps['suffix'] = React.useMemo(() => {
+    const inputSuffix =
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      suffix?.type === Icon
+        ? createIcon({
+            icon: suffix,
+            iconFill: tailwind.getColor(
+              editable
+                ? invalid
+                  ? inputTheme.suffix.variant[variant].invalid
+                  : isFocussed
+                  ? inputTheme.suffix.variant[variant].focus
+                  : isHovered
+                  ? inputTheme.suffix.variant[variant].hover
+                  : inputTheme.suffix.variant[variant].fill
+                : inputTheme.suffix.variant[variant].disabled
+            ),
+            iconStyle: tailwind.style([
+              inputTheme.suffix.variant[variant].common,
+            ]),
+            iconSize: size === 'xl' ? 16 : 12,
+          })
+        : suffix;
+
+    const spinnerStroke = tailwind.style(
+      editable
+        ? invalid
+          ? inputTheme.spinner.variant[variant].invalid
+          : inputTheme.spinner.variant[variant].default
+        : inputTheme.spinner.variant[variant].disabled
+    );
+    const inputLoading = runIfFn(DefaultInputSpinner, {
+      size,
+      spinnerStroke,
+    });
+    return loading ? inputLoading : inputSuffix;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    editable,
+    loading,
+    size,
+    suffix,
+    variant,
+    invalid,
+    isFocussed,
+    isHovered,
+  ]);
+
   return (
-    <Box
-      ref={ref}
-      style={[tailwind.style([inputTheme.wrapper]), textInputWrapper]}
-    >
+    <Box style={[tailwind.style([inputTheme.wrapper]), textInputWrapper]}>
       <RNTextInput
         style={[
           tailwind.style(
@@ -101,7 +172,9 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
             isHovered ? inputTheme.base.variant[variant].hover : '',
             isFocussed ? inputTheme.base.variant[variant].focus : '',
             invalid ? inputTheme.base.variant[variant].invalid : '',
-            editable ? '' : inputTheme.base.variant[variant].disabled
+            editable ? '' : inputTheme.base.variant[variant].disabled,
+            // prefix ? `pl-[${prefixWidth}px]` : '',
+            suffix ? `pr-[${suffixWidth}px]` : ''
           ),
         ]}
         onFocus={handleOnFocus}
@@ -109,8 +182,16 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
         placeholderTextColor={placeholderTextColor}
         {...props}
         defaultValue={defaultValue}
+        ref={inputMergedRef}
         {...hoverProps}
       />
+      <InputSuffix
+        onLayout={(event) => setSuffixWidth(event.nativeEvent.layout.width)}
+        size={size}
+        variant={variant}
+      >
+        {_suffix}
+      </InputSuffix>
     </Box>
   );
 });
