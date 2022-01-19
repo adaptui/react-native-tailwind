@@ -92,4 +92,85 @@ export const input = {
       },
     },
   },
+  spinner: {
+    variant: {
+      outline: {
+        disabled: 'border-gray-400',
+        invalid: 'border-red-500',
+        default: 'border-gray-500',
+      },
+      subtle: {
+        disabled: 'border-gray-400',
+        invalid: 'border-red-500',
+        default: 'border-gray-500',
+      },
+      underline: {
+        disabled: 'border-gray-400',
+        invalid: 'border-red-500',
+        default: 'border-gray-500',
+      },
+      ghost: {
+        disabled: 'border-gray-400',
+        invalid: 'border-red-500',
+        default: 'border-gray-400',
+      },
+    },
+  },
+  suffix: {
+    common:
+      'flex items-center justify-center absolute inset-y-0 right-0 bg-transparent z-10',
+    size: {
+      sm: 'h-[26px] text-xs pr-2 pl-1.5',
+      md: 'h-[30px] text-xs pr-2.5 pl-1.5',
+      lg: 'h-9 text-xs pr-3 pl-1.5',
+      xl: 'h-11 text-base pr-3 pl-2',
+    },
+    // Variants
+    variant: {
+      outline: {
+        common: '',
+        fill: 'text-gray-500',
+        // Interaction Styles
+        hover: 'text-gray-600',
+        focus: 'text-gray-600',
+        interactions: 'peer-active:text-gray-600',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+      subtle: {
+        common: '',
+        fill: 'text-gray-500',
+        // Interaction Styles
+        hover: 'text-gray-600',
+        focus: 'text-gray-600',
+        interactions: 'peer-active:text-gray-600',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+      underline: {
+        common: 'pr-0.5',
+        fill: 'text-gray-500',
+        // Interaction Styles
+        hover: 'text-gray-600',
+        focus: 'text-gray-600',
+        interactions: 'peer-active:text-gray-600',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+      ghost: {
+        common: '',
+        fill: 'text-gray-400',
+        // Interaction Styles
+        hover: 'text-gray-500',
+        focus: 'text-gray-500',
+        interactions: 'peer-active:text-gray-500',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+    },
+  },
 };
