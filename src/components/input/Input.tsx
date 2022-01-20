@@ -1,12 +1,11 @@
 import { useHover } from '@react-native-aria/interactions';
 import React, { forwardRef, useMemo, useRef, useState } from 'react';
-import { TextInputProps, ViewStyle } from 'react-native';
+import { Platform, TextInputProps, ViewStyle } from 'react-native';
 import { createIcon, Icon } from '..';
 import { Box, RNTextInput } from '../../primitives';
 import { useTheme } from '../../theme';
 import { RenderPropType, runIfFn } from '../../utils';
 import { createComponent } from '../../utils/createComponent';
-import { mergeRefs } from '../../utils/mergeRefs';
 import { Spinner } from '../spinner';
 import { InputPrefix } from './InputPrefix';
 import { InputSuffix } from './InputSuffix';
@@ -68,10 +67,9 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
 
   const handleOnFocus = () => setIsFocussed(true);
   const handleOnBlur = () => setIsFocussed(false);
-  const inputRef = useRef<typeof RNTextInput>(null);
-  const inputMergedRef = mergeRefs([ref, inputRef]);
-  const { isHovered, hoverProps } = useHover({}, inputMergedRef);
+  const inputRef = useRef();
 
+  const { isHovered, hoverProps } = useHover({}, inputRef);
   const {
     size = 'md',
     variant = 'outline',
@@ -230,13 +228,25 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
             _prefix ? `pl-[${prefixWidth}px]` : '',
             _suffix ? `pr-[${suffixWidth}px]` : ''
           ),
+          isFocussed &&
+            Platform.select({
+              web: {
+                outlineOffset:
+                  inputTheme.base.variant[variant].focusWeb.outlineOffset,
+                outlineColor: (tailwind.getColor(
+                  inputTheme.base.variant[variant].focusWeb.borderColor
+                ) || undefined) as string,
+                outlineStyle:
+                  inputTheme.base.variant[variant].focusWeb.outlineStyle,
+              },
+            }),
         ]}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         placeholderTextColor={placeholderTextColor}
         {...props}
         defaultValue={defaultValue}
-        ref={inputMergedRef}
+        ref={inputRef}
         {...hoverProps}
       />
       {_suffix && (
