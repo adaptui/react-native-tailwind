@@ -8,6 +8,7 @@ import { RenderPropType, runIfFn } from '../../utils';
 import { createComponent } from '../../utils/createComponent';
 import { mergeRefs } from '../../utils/mergeRefs';
 import { Spinner } from '../spinner';
+import { InputPrefix } from './InputPrefix';
 import { InputSuffix } from './InputSuffix';
 
 export type InputVariants = 'outline' | 'subtle' | 'underline' | 'ghost';
@@ -85,19 +86,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   const inputTheme = useTheme('input');
 
   const [suffixWidth, setSuffixWidth] = React.useState(0);
-  // const [prefixWidth, setPrefixWidth] = React.useState(0);
-
-  React.useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    ref?.current?.setNativeProps?.({
-      text: props.value,
-    });
-  }, [ref, props.value, suffixWidth]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = React.useMemo(() => props.value, []);
+  const [prefixWidth, setPrefixWidth] = React.useState(0);
 
   const placeholderTextColor = useMemo(() => {
     return tailwind.getColor(
@@ -111,6 +100,62 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocussed, isHovered, editable]);
+
+  React.useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    ref?.current?.setNativeProps?.({
+      text: props.value,
+    });
+  }, [
+    ref,
+    props.value,
+    suffixWidth,
+    loading,
+    prefixWidth,
+    placeholderTextColor,
+  ]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const defaultValue = React.useMemo(() => props.value, []);
+
+  const _prefix: InputProps['prefix'] = React.useMemo(() => {
+    const inputPrefix =
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      prefix?.type === Icon
+        ? createIcon({
+            icon: prefix,
+            iconFill: tailwind.getColor(
+              editable
+                ? invalid
+                  ? inputTheme.prefix.variant[variant].invalid
+                  : isFocussed
+                  ? inputTheme.prefix.variant[variant].focus
+                  : isHovered
+                  ? inputTheme.prefix.variant[variant].hover
+                  : inputTheme.prefix.variant[variant].fill
+                : inputTheme.prefix.variant[variant].disabled
+            ),
+            iconStyle: tailwind.style([
+              inputTheme.prefix.variant[variant].common,
+            ]),
+            iconSize: size === 'xl' ? 16 : 12,
+          })
+        : prefix;
+    return inputPrefix;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    editable,
+    loading,
+    size,
+    prefix,
+    variant,
+    invalid,
+    isFocussed,
+    isHovered,
+  ]);
 
   const _suffix: InputProps['suffix'] = React.useMemo(() => {
     const inputSuffix =
@@ -163,6 +208,15 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
 
   return (
     <Box style={[tailwind.style([inputTheme.wrapper]), textInputWrapper]}>
+      {_prefix && (
+        <InputPrefix
+          onLayout={(event) => setPrefixWidth(event.nativeEvent.layout.width)}
+          size={size}
+          variant={variant}
+        >
+          {_prefix}
+        </InputPrefix>
+      )}
       <RNTextInput
         style={[
           tailwind.style(
@@ -173,8 +227,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
             isFocussed ? inputTheme.base.variant[variant].focus : '',
             invalid ? inputTheme.base.variant[variant].invalid : '',
             editable ? '' : inputTheme.base.variant[variant].disabled,
-            // prefix ? `pl-[${prefixWidth}px]` : '',
-            suffix ? `pr-[${suffixWidth}px]` : ''
+            _prefix ? `pl-[${prefixWidth}px]` : '',
+            _suffix ? `pr-[${suffixWidth}px]` : ''
           ),
         ]}
         onFocus={handleOnFocus}
@@ -185,13 +239,15 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
         ref={inputMergedRef}
         {...hoverProps}
       />
-      <InputSuffix
-        onLayout={(event) => setSuffixWidth(event.nativeEvent.layout.width)}
-        size={size}
-        variant={variant}
-      >
-        {_suffix}
-      </InputSuffix>
+      {_suffix && (
+        <InputSuffix
+          onLayout={(event) => setSuffixWidth(event.nativeEvent.layout.width)}
+          size={size}
+          variant={variant}
+        >
+          {_suffix}
+        </InputSuffix>
+      )}
     </Box>
   );
 });
