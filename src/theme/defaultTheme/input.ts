@@ -173,4 +173,61 @@ export const input = {
       },
     },
   },
+  prefix: {
+    common:
+      'flex items-center justify-center absolute inset-y-0 left-0 bg-transparent z-10',
+    size: {
+      sm: 'h-[26px] text-xs pl-2 pr-1.5',
+      md: 'h-[30px] text-xs pl-2.5 pr-1.5',
+      lg: 'h-9 text-xs pl-3 pr-1.5',
+      xl: 'h-11 text-base pl-3 pr-2',
+    },
+    // Variants
+    variant: {
+      outline: {
+        common: '',
+        fill: 'text-gray-500',
+        // Interaction Styles
+        hover: 'text-gray-600',
+        focus: 'text-gray-600',
+        interactions: 'peer-active:text-gray-600',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+      subtle: {
+        common: '',
+        fill: 'text-gray-500',
+        // Interaction Styles
+        hover: 'text-gray-600',
+        focus: 'text-gray-600',
+        interactions: 'peer-active:text-gray-600',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+      underline: {
+        common: 'pl-0.5',
+        fill: 'text-gray-500',
+        // Interaction Styles
+        hover: 'text-gray-600',
+        focus: 'text-gray-600',
+        interactions: 'peer-active:text-gray-600',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+      ghost: {
+        common: '',
+        fill: 'text-gray-400',
+        // Interaction Styles
+        hover: 'text-gray-500',
+        focus: 'text-gray-500',
+        interactions: 'peer-active:text-gray-500',
+        // Interaction Styles
+        disabled: 'text-gray-400',
+        invalid: 'text-red-500',
+      },
+    },
+  },
 };
