@@ -37,6 +37,11 @@ export const input = {
           hover: 'text-gray-500',
           focus: 'text-gray-500',
         },
+        focusWeb: {
+          borderColor: 'text-gray-200',
+          outlineOffset: 0.7,
+          outlineStyle: 'auto',
+        },
       },
       subtle: {
         common: 'bg-gray-100 text-gray-700 border border-transparent',
@@ -53,6 +58,11 @@ export const input = {
           interactions: 'text-gray-500',
           hover: 'text-gray-500',
           focus: 'text-gray-500',
+        },
+        focusWeb: {
+          borderColor: 'text-gray-200',
+          outlineOffset: 0.7,
+          outlineStyle: 'auto',
         },
       },
       underline: {
@@ -72,6 +82,11 @@ export const input = {
           hover: 'text-gray-500',
           focus: 'text-gray-500',
         },
+        focusWeb: {
+          borderColor: '',
+          outlineOffset: 0.7,
+          outlineStyle: 'none',
+        },
       },
       ghost: {
         common: 'bg-white text-gray-700',
@@ -88,6 +103,11 @@ export const input = {
           interactions: 'text-gray-500 ',
           hover: 'text-gray-500',
           focus: 'text-gray-500',
+        },
+        focusWeb: {
+          borderColor: 'text-gray-100',
+          outlineOffset: 0.7,
+          outlineStyle: 'none',
         },
       },
     },
