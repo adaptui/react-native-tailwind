@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, BoxProps } from '../../primitives';
+import { Touchable, TouchableProps } from '../../primitives';
 import { useTheme } from '../../theme';
 import { InputProps } from './Input';
 
 interface InputPrefixProps
   extends Pick<InputProps, 'size' | 'variant'>,
-    BoxProps {}
+    TouchableProps {}
 
 export const InputPrefix: React.FC<InputPrefixProps> = ({
   size,
@@ -16,7 +16,7 @@ export const InputPrefix: React.FC<InputPrefixProps> = ({
   const inputTheme = useTheme('input');
 
   return (
-    <Box
+    <Touchable
       style={[
         tailwind.style(
           inputTheme.prefix.common,
@@ -27,6 +27,6 @@ export const InputPrefix: React.FC<InputPrefixProps> = ({
       {...props}
     >
       {props.children}
-    </Box>
+    </Touchable>
   );
 };
