@@ -2,10 +2,11 @@ import { useHover } from '@react-native-aria/interactions';
 import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import { Platform, TextInputProps, ViewStyle } from 'react-native';
 import { createIcon, Icon } from '..';
-import { Box, RNTextInput } from '../../primitives';
+import { Box, RNTextInput, TouchableProps } from '../../primitives';
 import { useTheme } from '../../theme';
 import { RenderPropType, runIfFn } from '../../utils';
 import { createComponent } from '../../utils/createComponent';
+import { composeEventHandlers } from '../../utils/mergeRefs';
 import { Spinner } from '../spinner';
 import { InputPrefix } from './InputPrefix';
 import { InputSuffix } from './InputSuffix';
@@ -46,6 +47,14 @@ export interface InputProps extends TextInputProps {
    * @default false
    */
   loading: boolean;
+  /**
+   * Prefix wrapper props extends Touchable Props
+   */
+  _prefixProps: TouchableProps;
+  /**
+   * Suffix wrapper props extends Touchable Props
+   */
+  _suffixProps: TouchableProps;
 }
 
 interface DefaultInputSpinnerProps extends Pick<InputProps, 'size'> {
@@ -79,6 +88,12 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     invalid = false,
     editable = true,
     loading,
+    _prefixProps,
+    _suffixProps,
+    value,
+    onFocus,
+    onBlur,
+    ...restProps
   } = props;
   const tailwind = useTheme();
   const inputTheme = useTheme('input');
@@ -104,19 +119,12 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     ref?.current?.setNativeProps?.({
-      text: props.value,
+      text: value,
     });
-  }, [
-    ref,
-    props.value,
-    suffixWidth,
-    loading,
-    prefixWidth,
-    placeholderTextColor,
-  ]);
+  }, [ref, value, suffixWidth, loading, prefixWidth, placeholderTextColor]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = React.useMemo(() => props.value, []);
+  const defaultValue = React.useMemo(() => value, []);
 
   const _prefix: InputProps['prefix'] = React.useMemo(() => {
     const inputPrefix =
@@ -211,6 +219,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
           onLayout={(event) => setPrefixWidth(event.nativeEvent.layout.width)}
           size={size}
           variant={variant}
+          {..._prefixProps}
         >
           {_prefix}
         </InputPrefix>
@@ -241,10 +250,11 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
               },
             }),
         ]}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
         placeholderTextColor={placeholderTextColor}
-        {...props}
+        editable={editable}
+        {...restProps}
+        onFocus={composeEventHandlers(onFocus, handleOnFocus)}
+        onBlur={composeEventHandlers(onBlur, handleOnBlur)}
         defaultValue={defaultValue}
         ref={inputRef}
         {...hoverProps}
@@ -254,6 +264,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
           onLayout={(event) => setSuffixWidth(event.nativeEvent.layout.width)}
           size={size}
           variant={variant}
+          {..._suffixProps}
         >
           {_suffix}
         </InputSuffix>
