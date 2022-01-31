@@ -3,6 +3,7 @@ import { badge } from './badge';
 import { button } from './button';
 import { circularProgress } from './circularProgress';
 import { progress } from './progress';
+import { slider } from './slider';
 import { spinner } from './spinner';
 import { switchTheme } from './switch';
 import { tag } from './tag';
@@ -18,6 +19,7 @@ const extendedTheme = {
   circularProgress,
   tag,
   tooltip,
+  slider,
 };
 
 export default extendedTheme;
