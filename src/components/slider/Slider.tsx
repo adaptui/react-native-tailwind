@@ -1,3 +1,7 @@
+/**
+ * Some of the code was taken from existing open source
+ * Thanks to -> https://github.com/nghinv-software/react-native-slider
+ */
 import React, { forwardRef, useCallback, useRef } from 'react';
 import { LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -13,18 +17,45 @@ import Animated, {
 import { AnimatedBox, Box } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createComponent } from '../../utils';
+import { SliderFilledTrack } from './SliderFilledTrack';
+import { SliderTrack } from './SliderTrack';
 
 Animated.addWhitelistedNativeProps({ text: true });
 
 export type SliderSizes = 'sm' | 'md' | 'lg' | 'xl';
-
 export interface SliderProps {
+  /**
+   * The size of Slider and Knob
+   * @default md
+   */
   size: SliderSizes;
+  /**
+   * Default Value of Slider
+   * @default 0
+   */
   defaultValue: number;
+  /**
+   * On Knob Dragging callback with value
+   */
   onDragValue: (value: number) => void;
+  /**
+   * On Knob Drag End callback with value
+   */
   onDragEndValue: (value: number) => void;
+  /**
+   * Minimum Value of Slider
+   * @default 0
+   */
   minValue: number;
+  /**
+   * Maximum Value of Slider
+   * @default 100
+   */
   maxValue: number;
+  /**
+   * Step Value of Slider
+   * @default 1
+   */
   step: number;
 }
 
@@ -83,10 +114,9 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
 
   const isKnobDragging = useSharedValue(false);
 
-  const activeKnobColor = tailwind.getColor(sliderTheme.knob.active);
   const animatedKnobStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: dragginPosition.value }],
-    borderColor: isKnobDragging.value ? activeKnobColor : 'transparent',
+    borderWidth: isKnobDragging.value ? withTiming(2) : withTiming(0),
   }));
 
   const animatedFilledTrackStyle = useAnimatedStyle(() => ({
@@ -172,24 +202,10 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       style={tailwind.style(sliderTheme.wrapper)}
       ref={ref}
     >
-      <AnimatedBox
-        style={[
-          tailwind.style([
-            sliderTheme.track.common,
-            sliderTheme.track.size[size],
-          ]),
-          sliderTheme.track.position[size],
-        ]}
-      />
-      <AnimatedBox
-        style={[
-          tailwind.style([
-            sliderTheme.filledTrack.common,
-            sliderTheme.filledTrack.size[size],
-          ]),
-          sliderTheme.filledTrack.position[size],
-          animatedFilledTrackStyle,
-        ]}
+      <SliderTrack size={size} />
+      <SliderFilledTrack
+        size={size}
+        animatedStyles={animatedFilledTrackStyle}
       />
       <GestureDetector gesture={gesturePan}>
         <AnimatedBox
