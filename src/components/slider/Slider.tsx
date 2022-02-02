@@ -12,6 +12,7 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { AnimatedBox, Box } from '../../primitives';
@@ -33,15 +34,15 @@ export interface SliderProps {
    * Default Value of Slider
    * @default 0
    */
-  defaultValue: number;
+  defaultValue: number[];
   /**
    * On Knob Dragging callback with value
    */
-  onDragValue: (value: number) => void;
+  onDragValue: (value: number[]) => void;
   /**
    * On Knob Drag End callback with value
    */
-  onDragEndValue: (value: number) => void;
+  onDragEndValue: (value: number[]) => void;
   /**
    * Minimum Value of Slider
    * @default 0
@@ -57,6 +58,11 @@ export interface SliderProps {
    * @default 1
    */
   step: number;
+  /**
+   * Set to true when you need a range slider
+   * @default false
+   */
+  range: boolean;
 }
 
 function computedValue(
@@ -74,7 +80,6 @@ function computedValue(
     [min, max],
     Extrapolate.CLAMP
   );
-
   return Math.round(value / step) * step;
 }
 
@@ -85,7 +90,6 @@ function computedTranslateFromValue(
   max: number
 ) {
   'worklet';
-
   return interpolate(value, [min, max], [0, width], Extrapolate.CLAMP);
 }
 
@@ -99,66 +103,168 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     size = 'md',
     onDragValue,
     onDragEndValue,
-    defaultValue = 0,
+    defaultValue = [0, 0],
     minValue = 0,
     maxValue = 100,
     step = 1,
+    range = false,
   } = props;
-  const knobRef = useRef();
+
+  // Default Values Check
+  if (defaultValue[0] > defaultValue[1]) {
+    throw Error('Default values should be in increasing order');
+  }
+
+  // onDragValue FPS Warning
+  if (onDragValue) {
+    console.warn(
+      'onDragValue gets fired for every pixel moved causing frame drop, onDragEnd is recommended'
+    );
+  }
+
+  const knobOneRef = useRef();
+  const knobTwoRef = useRef();
 
   const zerothPosition = sliderTheme.knob.knobRadius[size];
   const sliderWidth = useSharedValue(0);
 
-  const currentPosition = useSharedValue(0);
-  const dragginPosition = useSharedValue(0);
+  /**
+   * Knob One Animated Variables
+   */
+  const knobOneCurrentPosition = useSharedValue(0);
+  const knobOneDraggingPostion = useSharedValue(0);
 
-  const isKnobDragging = useSharedValue(false);
+  const isKnobOneDragging = useSharedValue(false);
 
-  const animatedKnobStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: dragginPosition.value }],
-    borderWidth: isKnobDragging.value ? withTiming(2) : withTiming(0),
-  }));
+  /**
+   * Knob Two Animated Variables
+   */
+  const knobTwoCurrentPosition = useSharedValue(0);
+  const knobTwoDraggingPostion = useSharedValue(0);
+
+  const isKnobTwoDragging = useSharedValue(false);
+
+  const animatedKnobOneStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateX: knobOneDraggingPostion.value }],
+      borderWidth: isKnobOneDragging.value ? withSpring(2) : withSpring(0),
+      zIndex: knobOneCurrentPosition.value === sliderWidth.value ? 9999 : 1,
+    }),
+    []
+  );
+
+  const animatedKnobTwoStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateX: knobTwoDraggingPostion.value }],
+      borderWidth: isKnobTwoDragging.value ? withSpring(2) : withSpring(0),
+      zIndex: knobTwoCurrentPosition.value === 0 ? 9999 : 1,
+    }),
+    []
+  );
 
   const animatedFilledTrackStyle = useAnimatedStyle(() => ({
-    width: dragginPosition.value + 9,
+    width: range
+      ? knobTwoDraggingPostion.value - knobOneDraggingPostion.value + 9
+      : knobOneDraggingPostion.value + 9,
+    left: range ? knobOneDraggingPostion.value + 9 : 0,
   }));
 
-  const gesturePan = Gesture.Pan()
-    .onBegin(() => (isKnobDragging.value = true))
+  const knobOnePanGestureHandler = Gesture.Pan()
+    .onBegin(() => (isKnobOneDragging.value = true))
     .shouldCancelWhenOutside(false)
     .minDistance(1)
     .maxPointers(1)
     .onStart(() => {
-      dragginPosition.value = currentPosition.value;
+      knobOneDraggingPostion.value = knobOneCurrentPosition.value;
     })
     .onUpdate((e) => {
-      const newPosition = currentPosition.value + e.translationX;
-      dragginPosition.value = Math.min(
-        sliderWidth.value,
-        Math.max(0, newPosition)
-      );
+      const newPosition = knobOneCurrentPosition.value + e.translationX;
+      if (range) {
+        knobOneDraggingPostion.value = Math.min(
+          knobTwoCurrentPosition.value,
+          Math.max(0, newPosition)
+        );
+      } else {
+        knobOneDraggingPostion.value = Math.min(
+          sliderWidth.value,
+          Math.max(0, newPosition)
+        );
+      }
     })
     .onEnd(() => {
-      currentPosition.value = dragginPosition.value;
-      const value = computedValue(
-        currentPosition,
+      knobOneCurrentPosition.value = knobOneDraggingPostion.value;
+      const knobOneValue = computedValue(
+        knobOneDraggingPostion,
         sliderWidth,
         minValue,
         maxValue,
         step
       );
-      if (onDragEndValue && isKnobDragging.value) {
-        runOnJS(onDragEndValue)(value);
+      const knobTwoValue = computedValue(
+        knobTwoDraggingPostion,
+        sliderWidth,
+        minValue,
+        maxValue,
+        step
+      );
+      if (onDragEndValue && isKnobOneDragging.value) {
+        runOnJS(onDragEndValue)([knobOneValue, knobTwoValue]);
       }
     })
     .onFinalize(() => {
-      isKnobDragging.value = false;
+      isKnobOneDragging.value = false;
+    });
+
+  const knobTwoPanGestureHandler = Gesture.Pan()
+    .onBegin(() => (isKnobTwoDragging.value = true))
+    .shouldCancelWhenOutside(false)
+    .minDistance(1)
+    .maxPointers(1)
+    .onStart(() => {
+      knobTwoDraggingPostion.value = knobTwoCurrentPosition.value;
+    })
+    .onUpdate((e) => {
+      const newPosition = knobTwoCurrentPosition.value + e.translationX;
+      if (range) {
+        knobTwoDraggingPostion.value = Math.min(
+          sliderWidth.value,
+          Math.max(knobOneCurrentPosition.value, newPosition)
+        );
+      } else {
+        knobTwoDraggingPostion.value = Math.min(
+          sliderWidth.value,
+          Math.max(0, newPosition)
+        );
+      }
+    })
+    .onEnd(() => {
+      knobTwoCurrentPosition.value = knobTwoDraggingPostion.value;
+      const knobOneValue = computedValue(
+        knobOneDraggingPostion,
+        sliderWidth,
+        minValue,
+        maxValue,
+        step
+      );
+      const knobTwoValue = computedValue(
+        knobTwoDraggingPostion,
+        sliderWidth,
+        minValue,
+        maxValue,
+        step
+      );
+      if (onDragEndValue && isKnobTwoDragging.value) {
+        runOnJS(onDragEndValue)([knobOneValue, knobTwoValue]);
+      }
+    })
+    .onFinalize(() => {
+      isKnobTwoDragging.value = false;
     });
 
   useAnimatedReaction(
     () => {
       const value = computedValue(
-        dragginPosition,
+        knobOneDraggingPostion,
         sliderWidth,
         minValue,
         maxValue,
@@ -167,8 +273,40 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       return value;
     },
     (newValue, oldValue) => {
-      if (onDragValue && isKnobDragging.value && newValue !== oldValue) {
-        runOnJS(onDragValue)(newValue);
+      if (onDragValue && isKnobOneDragging.value && newValue !== oldValue) {
+        const value = computedValue(
+          knobTwoCurrentPosition,
+          sliderWidth,
+          minValue,
+          maxValue,
+          step
+        );
+        runOnJS(onDragValue)([newValue, value]);
+      }
+    }
+  );
+
+  useAnimatedReaction(
+    () => {
+      const value = computedValue(
+        knobTwoDraggingPostion,
+        sliderWidth,
+        minValue,
+        maxValue,
+        step
+      );
+      return value;
+    },
+    (newValue, oldValue) => {
+      if (onDragValue && isKnobTwoDragging.value && newValue !== oldValue) {
+        const value = computedValue(
+          knobOneCurrentPosition,
+          sliderWidth,
+          minValue,
+          maxValue,
+          step
+        );
+        runOnJS(onDragValue)([value, newValue]);
       }
     }
   );
@@ -176,14 +314,26 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const onLayout = useCallback(
     (event: LayoutChangeEvent) => {
       sliderWidth.value = event.nativeEvent.layout.width - 2 * zerothPosition;
+      const knobOneDefaultValue = defaultValue[0] || 0;
       const transX = computedTranslateFromValue(
-        defaultValue,
+        knobOneDefaultValue,
         event.nativeEvent.layout.width - 2 * zerothPosition,
         minValue,
         maxValue
       );
-      dragginPosition.value = withTiming(transX);
-      currentPosition.value = transX;
+      knobOneDraggingPostion.value = withTiming(transX);
+      knobOneCurrentPosition.value = transX;
+      if (range) {
+        const knobTwoDefaultValue = defaultValue[1] || 0;
+        const transKnob2X = computedTranslateFromValue(
+          knobTwoDefaultValue,
+          event.nativeEvent.layout.width - 2 * zerothPosition,
+          minValue,
+          maxValue
+        );
+        knobTwoDraggingPostion.value = withTiming(transKnob2X);
+        knobTwoCurrentPosition.value = transKnob2X;
+      }
     },
     [
       sliderWidth,
@@ -191,8 +341,11 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       defaultValue,
       minValue,
       maxValue,
-      dragginPosition,
-      currentPosition,
+      knobOneDraggingPostion,
+      knobOneCurrentPosition,
+      range,
+      knobTwoDraggingPostion,
+      knobTwoCurrentPosition,
     ]
   );
 
@@ -207,18 +360,32 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         size={size}
         animatedStyles={animatedFilledTrackStyle}
       />
-      <GestureDetector gesture={gesturePan}>
+      <GestureDetector gesture={knobOnePanGestureHandler}>
         <AnimatedBox
-          ref={knobRef}
+          ref={knobOneRef}
           style={[
             tailwind.style([
               sliderTheme.knob.common,
               sliderTheme.knob.size[size],
             ]),
-            animatedKnobStyle,
+            animatedKnobOneStyle,
           ]}
         />
       </GestureDetector>
+      {range && (
+        <GestureDetector gesture={knobTwoPanGestureHandler}>
+          <AnimatedBox
+            ref={knobTwoRef}
+            style={[
+              tailwind.style([
+                sliderTheme.knob.common,
+                sliderTheme.knob.size[size],
+              ]),
+              animatedKnobTwoStyle,
+            ]}
+          />
+        </GestureDetector>
+      )}
     </AnimatedBox>
   );
 });
