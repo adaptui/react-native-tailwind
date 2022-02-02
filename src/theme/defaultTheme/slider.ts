@@ -31,7 +31,7 @@ export const slider = {
     },
   },
   knob: {
-    common: 'bg-white border-gray-800 shadow-lg rounded-full',
+    common: 'absolute bg-white border-gray-800 shadow-lg rounded-full',
     size: {
       sm: 'h-[18px] w-[18px]',
       md: 'h-5 w-5',
