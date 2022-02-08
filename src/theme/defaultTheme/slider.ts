@@ -9,10 +9,10 @@ export const slider = {
       xl: 'h-2.5',
     },
     position: {
-      sm: { top: 8 },
-      md: { top: 8 },
-      lg: { top: 8 },
-      xl: { top: 9 },
+      sm: { top: 8, zIndex: -1 },
+      md: { top: 8, zIndex: -1 },
+      lg: { top: 8, zIndex: -1 },
+      xl: { top: 9, zIndex: -1 },
     },
   },
   track: {
@@ -24,14 +24,14 @@ export const slider = {
       xl: 'h-2.5',
     },
     position: {
-      sm: { top: 8 },
-      md: { top: 8 },
-      lg: { top: 8 },
-      xl: { top: 9 },
+      sm: { top: 8, zIndex: -1 },
+      md: { top: 8, zIndex: -1 },
+      lg: { top: 8, zIndex: -1 },
+      xl: { top: 9, zIndex: -1 },
     },
   },
   knob: {
-    common: 'absolute bg-white border-gray-800 shadow-lg rounded-full',
+    common: 'absolute bg-white border-gray-800 shadow-md rounded-full',
     size: {
       sm: 'h-[18px] w-[18px]',
       md: 'h-5 w-5',
@@ -44,5 +44,8 @@ export const slider = {
       lg: 12,
       xl: 14,
     },
+  },
+  tooltip: {
+    common: 'text-cxs text-white text-center font-normal leading-4',
   },
 };
