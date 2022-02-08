@@ -18,7 +18,9 @@ import Animated, {
 } from 'react-native-reanimated';
 import { AnimatedBox, Box } from '../../primitives';
 import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
+import { createComponent, RenderPropType } from '../../utils';
+import { createIcon } from '../create-icon';
+import { Icon } from '../icon';
 import { SliderFilledTrack } from './SliderFilledTrack';
 import { SliderTooltip } from './SliderTooltip';
 import { SliderTrack } from './SliderTrack';
@@ -63,6 +65,14 @@ export interface SliderProps {
    * @default false
    */
   range: boolean;
+  /**
+   * An Icon to render inside Knob or a Component to replace the Knob
+   */
+  knobIcon: RenderPropType;
+  /**
+   * Is Slider Disabled
+   */
+  disabled: boolean;
 }
 
 function computedValue(
@@ -111,6 +121,8 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     maxValue = 100,
     step = 1,
     range = false,
+    knobIcon,
+    disabled = false,
   } = props;
 
   // Default Values Check
@@ -139,6 +151,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const knobTwoDraggingPostion = useSharedValue(0);
 
   const isKnobTwoDragging = useSharedValue(false);
+
   const animatedKnobOneStyle = useAnimatedStyle(
     () => ({
       transform: [{ translateX: knobOneDraggingPostion.value }],
@@ -177,6 +190,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const knobOnePanGestureHandler = Gesture.Pan()
     .onBegin(() => (isKnobOneDragging.value = true))
     .shouldCancelWhenOutside(false)
+    .enabled(disabled ? !disabled : true)
     .minDistance(1)
     .maxPointers(1)
     .onStart(() => {
@@ -225,6 +239,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const knobTwoPanGestureHandler = Gesture.Pan()
     .onBegin(() => (isKnobTwoDragging.value = true))
     .shouldCancelWhenOutside(false)
+    .enabled(disabled ? !disabled : true)
     .minDistance(1)
     .maxPointers(1)
     .onStart(() => {
@@ -403,10 +418,24 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
               tailwind.style([
                 sliderTheme.knob.common,
                 sliderTheme.knob.size[size],
+                disabled ? sliderTheme.knob.disabled : '',
               ]),
               animatedKnobOneStyle,
             ]}
-          />
+          >
+            {/* @ts-ignore */}
+            {knobIcon && knobIcon?.type === Icon
+              ? createIcon({
+                  icon: knobIcon,
+                  iconStyle: tailwind.style(sliderTheme.knobIcon.size[size]),
+                  iconFill: tailwind.getColor(
+                    disabled
+                      ? sliderTheme.knobIcon.disabled
+                      : sliderTheme.knobIcon.activeFill
+                  ),
+                })
+              : knobIcon}
+          </AnimatedBox>
         </GestureDetector>
         <SliderTooltip
           triggerRef={knobOneRef}
@@ -432,10 +461,24 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
                 tailwind.style([
                   sliderTheme.knob.common,
                   sliderTheme.knob.size[size],
+                  disabled ? sliderTheme.knob.disabled : '',
                 ]),
                 animatedKnobTwoStyle,
               ]}
-            />
+            >
+              {/* @ts-ignore */}
+              {knobIcon && knobIcon?.type === Icon
+                ? createIcon({
+                    icon: knobIcon,
+                    iconStyle: tailwind.style(sliderTheme.knobIcon.size[size]),
+                    iconFill: tailwind.getColor(
+                      disabled
+                        ? sliderTheme.knobIcon.disabled
+                        : sliderTheme.knobIcon.activeFill
+                    ),
+                  })
+                : knobIcon}
+            </AnimatedBox>
           </GestureDetector>
           <SliderTooltip
             triggerRef={knobTwoRef}
