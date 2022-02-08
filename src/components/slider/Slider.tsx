@@ -73,6 +73,10 @@ export interface SliderProps {
    * Is Slider Disabled
    */
   disabled: boolean;
+  /**
+   * Should show tooltip having Slider Value
+   */
+  showTooltip: boolean;
 }
 
 function computedValue(
@@ -123,6 +127,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     range = false,
     knobIcon,
     disabled = false,
+    showTooltip = false,
   } = props;
 
   // Default Values Check
@@ -437,20 +442,22 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
               : knobIcon}
           </AnimatedBox>
         </GestureDetector>
-        <SliderTooltip
-          triggerRef={knobOneRef}
-          knobRadius={zerothPosition}
-          content={
-            <AnimatedTextInput
-              underlineColorAndroid="transparent"
-              editable={false}
-              style={[tailwind.style(sliderTheme.tooltip.common)]}
-              animatedProps={knobOneAnimatedTextProps}
-            />
-          }
-          draggingValue={knobOneDraggingPostion}
-          isDragging={isKnobOneDragging}
-        />
+        {showTooltip && (
+          <SliderTooltip
+            triggerRef={knobOneRef}
+            knobRadius={zerothPosition}
+            content={
+              <AnimatedTextInput
+                underlineColorAndroid="transparent"
+                editable={false}
+                style={[tailwind.style(sliderTheme.tooltip.common)]}
+                animatedProps={knobOneAnimatedTextProps}
+              />
+            }
+            draggingValue={knobOneDraggingPostion}
+            isDragging={isKnobOneDragging}
+          />
+        )}
       </AnimatedBox>
       {range && (
         <AnimatedBox style={[tailwind.style('relative'), knobTwoZIndexValue]}>
@@ -480,20 +487,22 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
                 : knobIcon}
             </AnimatedBox>
           </GestureDetector>
-          <SliderTooltip
-            triggerRef={knobTwoRef}
-            knobRadius={zerothPosition}
-            content={
-              <AnimatedTextInput
-                underlineColorAndroid="transparent"
-                editable={false}
-                style={[tailwind.style(sliderTheme.tooltip.common)]}
-                animatedProps={knobTwoAnimatedTextProps}
-              />
-            }
-            draggingValue={knobTwoDraggingPostion}
-            isDragging={isKnobTwoDragging}
-          />
+          {showTooltip && (
+            <SliderTooltip
+              triggerRef={knobTwoRef}
+              knobRadius={zerothPosition}
+              content={
+                <AnimatedTextInput
+                  underlineColorAndroid="transparent"
+                  editable={false}
+                  style={[tailwind.style(sliderTheme.tooltip.common)]}
+                  animatedProps={knobTwoAnimatedTextProps}
+                />
+              }
+              draggingValue={knobTwoDraggingPostion}
+              isDragging={isKnobTwoDragging}
+            />
+          )}
         </AnimatedBox>
       )}
     </AnimatedBox>
