@@ -3,12 +3,13 @@
  * Thanks to -> https://github.com/nghinv-software/react-native-slider
  */
 import React, { forwardRef, useCallback, useRef } from 'react';
-import { LayoutChangeEvent } from 'react-native';
+import { LayoutChangeEvent, TextInput, TextInputProps } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
   interpolate,
   runOnJS,
+  useAnimatedProps,
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
@@ -19,9 +20,8 @@ import { AnimatedBox, Box } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createComponent } from '../../utils';
 import { SliderFilledTrack } from './SliderFilledTrack';
+import { SliderTooltip } from './SliderTooltip';
 import { SliderTrack } from './SliderTrack';
-
-Animated.addWhitelistedNativeProps({ text: true });
 
 export type SliderSizes = 'sm' | 'md' | 'lg' | 'xl';
 export interface SliderProps {
@@ -93,6 +93,9 @@ function computedTranslateFromValue(
   return interpolate(value, [min, max], [0, width], Extrapolate.CLAMP);
 }
 
+Animated.addWhitelistedNativeProps({ text: true });
+const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
+
 const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   typeof Box,
   Partial<SliderProps>
@@ -113,13 +116,6 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   // Default Values Check
   if (defaultValue[0] > defaultValue[1]) {
     throw Error('Default values should be in increasing order');
-  }
-
-  // onDragValue FPS Warning
-  if (onDragValue) {
-    console.warn(
-      'onDragValue gets fired for every pixel moved causing frame drop, onDragEnd is recommended'
-    );
   }
 
   const knobOneRef = useRef();
@@ -143,24 +139,33 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const knobTwoDraggingPostion = useSharedValue(0);
 
   const isKnobTwoDragging = useSharedValue(false);
-
   const animatedKnobOneStyle = useAnimatedStyle(
     () => ({
       transform: [{ translateX: knobOneDraggingPostion.value }],
       borderWidth: isKnobOneDragging.value ? withSpring(2) : withSpring(0),
-      zIndex: knobOneCurrentPosition.value === sliderWidth.value ? 9999 : 1,
     }),
-    []
+    [knobOneCurrentPosition]
   );
 
   const animatedKnobTwoStyle = useAnimatedStyle(
     () => ({
       transform: [{ translateX: knobTwoDraggingPostion.value }],
       borderWidth: isKnobTwoDragging.value ? withSpring(2) : withSpring(0),
-      zIndex: knobTwoCurrentPosition.value === 0 ? 9999 : 1,
     }),
-    []
+    [knobOneCurrentPosition]
   );
+
+  const knobOneZIndexValue = useAnimatedStyle(() => {
+    return {
+      zIndex: knobOneCurrentPosition.value === sliderWidth.value ? 9999 : 1,
+    };
+  });
+
+  const knobTwoZIndexValue = useAnimatedStyle(() => {
+    return {
+      zIndex: knobTwoCurrentPosition.value === sliderWidth.value ? -1 : 9999,
+    };
+  });
 
   const animatedFilledTrackStyle = useAnimatedStyle(() => ({
     width: range
@@ -178,6 +183,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       knobOneDraggingPostion.value = knobOneCurrentPosition.value;
     })
     .onUpdate((e) => {
+      'worklet';
       const newPosition = knobOneCurrentPosition.value + e.translationX;
       if (range) {
         knobOneDraggingPostion.value = Math.min(
@@ -192,6 +198,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       }
     })
     .onEnd(() => {
+      'worklet';
       knobOneCurrentPosition.value = knobOneDraggingPostion.value;
       const knobOneValue = computedValue(
         knobOneDraggingPostion,
@@ -224,6 +231,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       knobTwoDraggingPostion.value = knobTwoCurrentPosition.value;
     })
     .onUpdate((e) => {
+      'worklet';
       const newPosition = knobTwoCurrentPosition.value + e.translationX;
       if (range) {
         knobTwoDraggingPostion.value = Math.min(
@@ -238,6 +246,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       }
     })
     .onEnd(() => {
+      'worklet';
       knobTwoCurrentPosition.value = knobTwoDraggingPostion.value;
       const knobOneValue = computedValue(
         knobOneDraggingPostion,
@@ -311,6 +320,32 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     }
   );
 
+  const knobOneAnimatedTextProps = useAnimatedProps(() => {
+    const computedDraggingValue = computedValue(
+      knobOneDraggingPostion,
+      sliderWidth,
+      minValue,
+      maxValue,
+      step
+    );
+    return {
+      text: `${computedDraggingValue}`,
+    } as unknown as TextInputProps;
+  });
+
+  const knobTwoAnimatedTextProps = useAnimatedProps(() => {
+    const computedDraggingValue = computedValue(
+      knobTwoDraggingPostion,
+      sliderWidth,
+      minValue,
+      maxValue,
+      step
+    );
+    return {
+      text: `${computedDraggingValue}`,
+    } as unknown as TextInputProps;
+  });
+
   const onLayout = useCallback(
     (event: LayoutChangeEvent) => {
       sliderWidth.value = event.nativeEvent.layout.width - 2 * zerothPosition;
@@ -360,31 +395,63 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         size={size}
         animatedStyles={animatedFilledTrackStyle}
       />
-      <GestureDetector gesture={knobOnePanGestureHandler}>
-        <AnimatedBox
-          ref={knobOneRef}
-          style={[
-            tailwind.style([
-              sliderTheme.knob.common,
-              sliderTheme.knob.size[size],
-            ]),
-            animatedKnobOneStyle,
-          ]}
-        />
-      </GestureDetector>
-      {range && (
-        <GestureDetector gesture={knobTwoPanGestureHandler}>
+      <AnimatedBox style={[tailwind.style('relative'), knobOneZIndexValue]}>
+        <GestureDetector gesture={knobOnePanGestureHandler}>
           <AnimatedBox
-            ref={knobTwoRef}
+            ref={knobOneRef}
             style={[
               tailwind.style([
                 sliderTheme.knob.common,
                 sliderTheme.knob.size[size],
               ]),
-              animatedKnobTwoStyle,
+              animatedKnobOneStyle,
             ]}
           />
         </GestureDetector>
+        <SliderTooltip
+          triggerRef={knobOneRef}
+          knobRadius={zerothPosition}
+          content={
+            <AnimatedTextInput
+              underlineColorAndroid="transparent"
+              editable={false}
+              style={[tailwind.style(sliderTheme.tooltip.common)]}
+              animatedProps={knobOneAnimatedTextProps}
+            />
+          }
+          draggingValue={knobOneDraggingPostion}
+          isDragging={isKnobOneDragging}
+        />
+      </AnimatedBox>
+      {range && (
+        <AnimatedBox style={[tailwind.style('relative'), knobTwoZIndexValue]}>
+          <GestureDetector gesture={knobTwoPanGestureHandler}>
+            <AnimatedBox
+              ref={knobTwoRef}
+              style={[
+                tailwind.style([
+                  sliderTheme.knob.common,
+                  sliderTheme.knob.size[size],
+                ]),
+                animatedKnobTwoStyle,
+              ]}
+            />
+          </GestureDetector>
+          <SliderTooltip
+            triggerRef={knobTwoRef}
+            knobRadius={zerothPosition}
+            content={
+              <AnimatedTextInput
+                underlineColorAndroid="transparent"
+                editable={false}
+                style={[tailwind.style(sliderTheme.tooltip.common)]}
+                animatedProps={knobTwoAnimatedTextProps}
+              />
+            }
+            draggingValue={knobTwoDraggingPostion}
+            isDragging={isKnobTwoDragging}
+          />
+        </AnimatedBox>
       )}
     </AnimatedBox>
   );
