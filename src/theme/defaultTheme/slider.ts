@@ -31,7 +31,9 @@ export const slider = {
     },
   },
   knob: {
-    common: 'absolute bg-white border-gray-800 shadow-md rounded-full',
+    common:
+      'absolute justify-center items-center bg-white border-gray-800 shadow-md rounded-full',
+    disabled: 'bg-gray-200',
     size: {
       sm: 'h-[18px] w-[18px]',
       md: 'h-5 w-5',
@@ -47,5 +49,16 @@ export const slider = {
   },
   tooltip: {
     common: 'text-cxs text-white text-center font-normal leading-4',
+  },
+  knobIcon: {
+    fill: 'text-gray-500',
+    activeFill: 'text-gray-800',
+    disabled: 'text-gray-400',
+    size: {
+      sm: 'w-2.5 h-2.5',
+      md: 'w-2.5 h-2.5',
+      lg: 'w-3 h-3',
+      xl: 'w-4 h-4',
+    },
   },
 };
