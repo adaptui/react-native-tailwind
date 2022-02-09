@@ -7,6 +7,7 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import { SliderSizes } from './Slider';
 import { AnimatedBox, Box } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createComponent } from '../../utils';
@@ -18,6 +19,7 @@ interface SliderTooltipProps extends TooltipProps {
   draggingValue: SharedValue<number>;
   isDragging: SharedValue<boolean>;
   knobRadius: number;
+  size: SliderSizes;
 }
 
 const SPRING_CONFIG = {
@@ -45,9 +47,12 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
     draggingValue = defaultDraggingValue,
     isDragging = defaultIsDraggingValue,
     knobRadius = 0,
+    size = 'md',
   } = props;
 
   const tailwind = useTheme();
+  const sliderTheme = useTheme('slider');
+
   const tooltipRef = useRef();
   const tooltipAnimation = useSharedValue(0);
   useEffect(() => {
@@ -69,7 +74,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
       top: undefined,
       left: tooltipWidth.value / 2 - defaultArrowWidth / 2,
     };
-  }, []);
+  }, [tooltipWidth.value]);
 
   const tooltipAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -78,10 +83,11 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
         { scale: interpolate(tooltipAnimation.value, [0, 1], [0.95, 1]) },
         { translateX: draggingValue.value },
       ],
+      display: isDragging.value ? 'flex' : 'none',
       left: knobRadius - tooltipWidth.value / 2,
-      bottom: 0,
+      bottom: sliderTheme.knob.position[size] * 2,
     };
-  });
+  }, [tooltipWidth.value]);
 
   return (
     <AnimatedBox
