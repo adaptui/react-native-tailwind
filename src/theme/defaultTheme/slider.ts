@@ -1,39 +1,33 @@
 export const slider = {
   wrapper: 'relative w-full',
   filledTrack: {
-    common: 'absolute bg-gray-800 rounded-tl-2xl rounded-bl-2xl',
+    common: 'w-full absolute bg-gray-800 rounded-2xl',
     size: {
-      sm: 'h-[2px]',
-      md: 'h-1',
-      lg: 'h-2',
-      xl: 'h-2.5',
-    },
-    position: {
-      sm: { top: 8, zIndex: -1 },
-      md: { top: 8, zIndex: -1 },
-      lg: { top: 8, zIndex: -1 },
-      xl: { top: 9, zIndex: -1 },
+      sm: 'h-[2px] mx-[9px]',
+      md: 'h-1 mx-2.5',
+      lg: 'h-2 mx-3',
+      xl: 'h-2.5 mx-[14px]',
     },
   },
   track: {
-    common: 'absolute w-full bg-gray-200 rounded-2xl',
+    common: 'relative bg-gray-200 rounded-2xl',
     size: {
-      sm: 'h-[2px]',
-      md: 'h-1',
-      lg: 'h-2',
-      xl: 'h-2.5',
-    },
-    position: {
-      sm: { top: 8, zIndex: -1 },
-      md: { top: 8, zIndex: -1 },
-      lg: { top: 8, zIndex: -1 },
-      xl: { top: 9, zIndex: -1 },
+      sm: 'h-[2px] mx-[9px]',
+      md: 'h-1 mx-2.5',
+      lg: 'h-2 mx-3',
+      xl: 'h-2.5 mx-[14px]',
     },
   },
   knob: {
     common:
       'absolute justify-center items-center bg-white border-gray-800 shadow-md rounded-full',
     disabled: 'bg-gray-200',
+    position: {
+      sm: (18 - 2) / 2,
+      md: (20 - 4) / 2,
+      lg: (24 - 8) / 2,
+      xl: (28 - 10) / 2,
+    },
     size: {
       sm: 'h-[18px] w-[18px]',
       md: 'h-5 w-5',
