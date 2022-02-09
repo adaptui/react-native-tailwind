@@ -181,15 +181,15 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
 
   const knobTwoZIndexValue = useAnimatedStyle(() => {
     return {
-      zIndex: knobTwoCurrentPosition.value === sliderWidth.value ? -1 : 9999,
+      zIndex: knobTwoCurrentPosition.value === sliderWidth.value ? 1 : 9999,
     };
   });
 
   const animatedFilledTrackStyle = useAnimatedStyle(() => ({
     width: range
-      ? knobTwoDraggingPostion.value - knobOneDraggingPostion.value + 9
-      : knobOneDraggingPostion.value + 9,
-    left: range ? knobOneDraggingPostion.value + 9 : 0,
+      ? knobTwoDraggingPostion.value - knobOneDraggingPostion.value
+      : knobOneDraggingPostion.value,
+    left: range ? knobOneDraggingPostion.value : 0,
   }));
 
   const knobOnePanGestureHandler = Gesture.Pan()
@@ -455,6 +455,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
                 sliderTheme.knob.size[size],
                 disabled ? sliderTheme.knob.disabled : '',
               ]),
+              { bottom: -sliderTheme.knob.position[size] },
               animatedKnobOneStyle,
             ]}
           >
@@ -474,6 +475,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         </GestureDetector>
         {showTooltip && (
           <SliderTooltip
+            size={size}
             triggerRef={knobOneRef}
             knobRadius={zerothPosition}
             content={
@@ -500,6 +502,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
                   sliderTheme.knob.size[size],
                   disabled ? sliderTheme.knob.disabled : '',
                 ]),
+                { bottom: -sliderTheme.knob.position[size] },
                 animatedKnobTwoStyle,
               ]}
             >
@@ -519,6 +522,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           </GestureDetector>
           {showTooltip && (
             <SliderTooltip
+              size={size}
               triggerRef={knobTwoRef}
               knobRadius={zerothPosition}
               content={
