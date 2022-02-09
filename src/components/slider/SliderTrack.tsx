@@ -14,7 +14,6 @@ export const SliderTrack: React.FC<Pick<SliderProps, 'size'>> = ({ size }) => {
           sliderTheme.track.common,
           sliderTheme.track.size[size],
         ]),
-        sliderTheme.track.position[size],
       ]}
     />
   );

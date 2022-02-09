@@ -23,7 +23,6 @@ export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({
           sliderTheme.filledTrack.common,
           sliderTheme.filledTrack.size[size],
         ]),
-        sliderTheme.filledTrack.position[size],
         animatedStyles,
       ]}
     />
