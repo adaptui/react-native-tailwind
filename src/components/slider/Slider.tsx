@@ -215,6 +215,21 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           Math.max(0, newPosition)
         );
       }
+      if (step > zerothPosition) {
+        const knobOneValue = computedValue(
+          knobOneDraggingPostion,
+          sliderWidth,
+          minValue,
+          maxValue,
+          step
+        );
+        knobOneDraggingPostion.value = computedTranslateFromValue(
+          knobOneValue,
+          sliderWidth.value,
+          minValue,
+          maxValue
+        );
+      }
     })
     .onEnd(() => {
       'worklet';
@@ -262,6 +277,21 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         knobTwoDraggingPostion.value = Math.min(
           sliderWidth.value,
           Math.max(0, newPosition)
+        );
+      }
+      if (step > zerothPosition) {
+        const knobTwoValue = computedValue(
+          knobTwoDraggingPostion,
+          sliderWidth,
+          minValue,
+          maxValue,
+          step
+        );
+        knobTwoDraggingPostion.value = computedTranslateFromValue(
+          knobTwoValue,
+          sliderWidth.value,
+          minValue,
+          maxValue
         );
       }
     })
