@@ -85,7 +85,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
       ],
       display: isDragging.value ? 'flex' : 'none',
       left: knobRadius - tooltipWidth.value / 2,
-      bottom: sliderTheme.knob.position[size] * 2,
+      bottom: sliderTheme.tooltip.position[size] * 2 + 6,
     };
   }, [tooltipWidth.value]);
 
