@@ -23,10 +23,10 @@ export const slider = {
       'absolute justify-center items-center bg-white border-gray-800 shadow-md rounded-full',
     disabled: 'bg-gray-200',
     position: {
-      sm: (18 - 2) / 2,
-      md: (20 - 4) / 2,
-      lg: (24 - 8) / 2,
-      xl: (28 - 10) / 2,
+      sm: 18 / 2 - 2 / 2,
+      md: 20 / 2 - 4 / 2,
+      lg: 24 / 2 - 8 / 2,
+      xl: 28 / 2 - 10 / 2,
     },
     size: {
       sm: 'h-[18px] w-[18px]',
@@ -43,6 +43,12 @@ export const slider = {
   },
   tooltip: {
     common: 'text-cxs text-white text-center font-normal leading-4',
+    position: {
+      sm: (18 - 2) / 2,
+      md: (20 - 4) / 2,
+      lg: (24 - 8) / 2,
+      xl: (28 - 10) / 2,
+    },
   },
   knobIcon: {
     fill: 'text-gray-500',
