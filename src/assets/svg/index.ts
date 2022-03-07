@@ -5,3 +5,4 @@ export * from './Clock';
 export * from './Close';
 export * from './Equals';
 export * from './Check';
+export * from './Dash';
