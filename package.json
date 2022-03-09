@@ -195,11 +195,11 @@
   },
   "dependencies": {
     "@chakra-ui/hooks": "^1.7.1",
-    "@react-native-aria/interactions": "^0.2.8",
-    "@react-native-aria/overlays": "^0.3.2",
     "@react-stately/overlays": "^3.1.3",
+    "@react-stately/toggle": "^3.2.5",
     "lodash": "^4.17.21",
     "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-aria": "^0.2.3",
     "react-native-gesture-handler": "2.1.0",
     "react-native-popper": "^0.3.2",
     "react-native-reanimated": "^2.2.0",
@@ -207,7 +207,7 @@
     "react-test-renderer": "^17.0.2",
     "tailwind-merge": "^1.1.1",
     "tailwindcss": "^2.2.19",
-    "twrnc": "^2.1.1",
+    "twrnc": "^3.0.2",
     "yarn": "^1.22.17"
   }
 }
