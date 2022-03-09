@@ -1,6 +1,7 @@
 import { avatar } from './avatar';
 import { badge } from './badge';
 import { button } from './button';
+import { checkbox } from './checkbox';
 import { circularProgress } from './circularProgress';
 import { progress } from './progress';
 import { slider } from './slider';
@@ -20,6 +21,7 @@ const extendedTheme = {
   tag,
   tooltip,
   slider,
+  checkbox,
 };
 
 export default extendedTheme;
