@@ -9,3 +9,4 @@ export * from './spinner';
 export * from './switch';
 export * from './tag';
 export * from './tooltip';
+export * from './checkbox';
