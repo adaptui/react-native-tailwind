@@ -97,8 +97,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
 
   const checkboxGroupState = useCheckboxGroupContext();
 
-  console.log(checkboxGroupState);
-
   const checkRef = useRef(null);
   const checkboxRef = mergeRefs([
     ref,
@@ -205,7 +203,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
             iconStyle: tailwind.style(checkboxTheme.icon.iconSize[size]),
           })}
       </Box>
-      <Box>
+      <Box style={checkboxTheme.labelDescWrapper}>
         {label && (
           <Text
             style={[

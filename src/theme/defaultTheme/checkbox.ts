@@ -64,6 +64,7 @@ export const checkbox = {
       invalid: 'bg-red-600 border-red-600',
     },
   },
+  labelDescWrapper: { flexShrink: 1 },
   text: {
     common: 'text-gray-700 font-medium select-none',
     size: {
