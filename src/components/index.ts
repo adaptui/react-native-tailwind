@@ -7,3 +7,4 @@ export * from './circularProgress';
 export * from './icon';
 export * from './tag';
 export * from './create-icon';
+export * from './tooltip';
