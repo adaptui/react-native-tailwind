@@ -47,7 +47,7 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
 >((props, ref) => {
   const {
     orientation = 'vertical',
-    size,
+    size = 'md',
     value,
     defaultValue,
     isDisabled = false,
