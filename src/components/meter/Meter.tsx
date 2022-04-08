@@ -3,24 +3,9 @@ import { Box, Text } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createComponent } from '../../utils';
 import { MeterBar } from './MeterBar';
+import { useMeterState, valueToPercent } from './MeterState';
 
 export type MeterSizes = 'sm' | 'md' | 'lg' | 'xl';
-
-/**
- * Convert a value to percentage based on lower and upper bound values
- *
- * @param value the value in number
- * @param min the minimum value
- * @param max the maximum value
- */
-export function valueToPercent(
-  value: number,
-  min: number,
-  max: number
-): number {
-  return ((value - min) * 100) / (max - min);
-}
-
 export interface MeterProps {
   /**
    * Meter Sizes
@@ -82,30 +67,16 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
   typeof Box,
   Partial<MeterProps>
 >((props, ref) => {
-  const {
-    value = 0,
-    // min = 0,
-    max,
-    // low,
-    // high,
-    // optimum,
-    size = 'md',
-    intervals = 1,
-    // flatBorders = false,
-    label,
-    hint,
-  } = props;
   const tailwind = useTheme();
   const meterTheme = useTheme('meter');
   const [meterWidth, setMeterWidth] = useState<number>(0);
-  // The Max Value is  set to the no. of intervals or (intervals * step)
-  const maxValue = max ? max : intervals;
+  const { label, hint, size = 'md', intervals = 1 } = props;
+  const { value, max } = useMeterState(props);
 
   const spaceBetweenSegmentsInPixel = 4;
   const intervalSpacing = (intervals - 1) * spaceBetweenSegmentsInPixel;
   const segmentWidth = (meterWidth - intervalSpacing) / intervals;
-
-  const maxMultiplier = maxValue / intervals;
+  const maxMultiplier = max / intervals;
   const intervalValue = value / maxMultiplier;
 
   return (
