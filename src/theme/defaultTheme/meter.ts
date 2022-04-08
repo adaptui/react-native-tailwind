@@ -11,7 +11,7 @@ export const meter = {
     hasHint: 'flex-1',
   },
   hint: {
-    common: 'ml-3 text-end mb-3 text-gray-500',
+    common: 'ml-3 text-right mb-3 text-gray-500',
     size: {
       sm: 'text-cxs',
       md: 'text-sm',
