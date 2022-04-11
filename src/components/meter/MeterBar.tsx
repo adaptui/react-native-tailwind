@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { ViewStyle } from 'react-native';
 import {
   useAnimatedStyle,
   useDerivedValue,
@@ -8,11 +9,15 @@ import { AnimatedBox, Box } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createComponent } from '../../utils';
 
-export interface MeterBarProps {
+interface MeterBarProps {
   /**
    * Width of the Meter Bar
    */
   percent: number;
+  /**
+   * Conditional Styles for Meter Bar
+   */
+  barStyle: ViewStyle[];
 }
 
 const SPRING_CONFIG = {
@@ -28,7 +33,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
   typeof Box,
   Partial<MeterBarProps>
 >((props, ref) => {
-  const { percent } = props;
+  const { percent, barStyle } = props;
   const percentValue = useDerivedValue(() => (percent ? percent : 0));
   const tailwind = useTheme();
   const meterTheme = useTheme('meter');
@@ -40,7 +45,11 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
   return (
     <AnimatedBox
       ref={ref}
-      style={[tailwind.style([meterTheme.bar.common]), animatedMeterStyle]}
+      style={[
+        tailwind.style([meterTheme.bar.common]),
+        animatedMeterStyle,
+        barStyle,
+      ]}
     />
   );
 });

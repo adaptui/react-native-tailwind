@@ -28,10 +28,19 @@ export const meter = {
       lg: 'h-2',
       xl: 'h-3',
     },
-    flatBroders: 'rounded-none',
+  },
+  borderNone: 'rounded-none',
+  flatBorders: {
+    flatLeftBorders: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    flatRightBorders: {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
   },
   bar: {
     common: 'h-full bg-gray-800 rounded-2xl',
-    flatBroders: 'rounded-none',
   },
 };

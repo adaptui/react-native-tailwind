@@ -70,7 +70,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
   const tailwind = useTheme();
   const meterTheme = useTheme('meter');
   const [meterWidth, setMeterWidth] = useState<number>(0);
-  const { label, hint, size = 'md', intervals = 1 } = props;
+  const { label, hint, size = 'md', intervals = 1, flatBorders } = props;
   const { value, max } = useMeterState(props);
 
   const spaceBetweenSegmentsInPixel = 4;
@@ -120,14 +120,38 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
                 return (
                   <Box
                     key={`interval-${interval}`}
-                    style={tailwind.style([
-                      meterTheme.track.common,
-                      meterTheme.track.size[size],
-                      `w-[${segmentWidth}px]`,
-                    ])}
+                    style={[
+                      tailwind.style([
+                        meterTheme.track.common,
+                        meterTheme.track.size[size],
+                        `w-[${segmentWidth}px]`,
+                      ]),
+                      flatBorders
+                        ? i === 0
+                          ? meterTheme.flatBorders.flatRightBorders
+                          : i === intervals - 1
+                          ? meterTheme.flatBorders.flatLeftBorders
+                          : i !== 0 && i !== intervals - 1
+                          ? tailwind.style(meterTheme.borderNone)
+                          : {}
+                        : {},
+                    ]}
                   >
                     {intervalValue >= i ? (
-                      <MeterBar percent={percentValue} />
+                      <MeterBar
+                        percent={percentValue}
+                        barStyle={[
+                          flatBorders
+                            ? i === 0
+                              ? meterTheme.flatBorders.flatRightBorders
+                              : i === intervals - 1
+                              ? meterTheme.flatBorders.flatLeftBorders
+                              : i !== 0 && i !== intervals - 1
+                              ? tailwind.style(meterTheme.borderNone)
+                              : {}
+                            : {},
+                        ]}
+                      />
                     ) : null}
                   </Box>
                 );
