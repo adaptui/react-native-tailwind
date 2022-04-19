@@ -1,5 +1,7 @@
+import { VisuallyHidden } from '@react-aria/visually-hidden';
 import React, { forwardRef, useRef } from 'react';
-import { useRadio } from 'react-native-aria';
+import { Platform } from 'react-native';
+import { useFocusRing, useRadio } from 'react-native-aria';
 import { Box, Text, Touchable } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createComponent } from '../../utils';
@@ -91,20 +93,10 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   const radioProps: RadioAriaProps = inputProps as RadioAriaProps;
 
-  return (
-    <Touchable
-      {...radioProps}
-      style={({ pressed }) => [
-        tailwind.style([
-          radioTheme.label.common,
-          description ? radioTheme.label.withDescription : '',
-          radioTheme.label.size[size],
-          radioTheme.label.disabled,
-          pressed ? radioTheme.label.pressed : '',
-        ]),
-      ]}
-      ref={radioboxRef}
-    >
+  const { focusProps } = useFocusRing();
+
+  const children = (
+    <>
       <Box
         style={[
           tailwind.style([
@@ -172,6 +164,43 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
           </Text>
         )}
       </Box>
+    </>
+  );
+
+  return Platform.OS === 'web' ? (
+    <Box
+      style={tailwind.style([
+        radioTheme.label.common,
+        description ? radioTheme.label.withDescription : '',
+        radioTheme.label.size[size],
+        radioTheme.label.disabled,
+      ])}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      accessibilityRole="label"
+      ref={radioboxRef}
+      accessible={true}
+    >
+      <VisuallyHidden>
+        <input {...inputProps} {...focusProps} ref={radioboxRef} />
+      </VisuallyHidden>
+      {children}
+    </Box>
+  ) : (
+    <Touchable
+      {...radioProps}
+      style={({ pressed }) => [
+        tailwind.style([
+          radioTheme.label.common,
+          description ? radioTheme.label.withDescription : '',
+          radioTheme.label.size[size],
+          radioTheme.label.disabled,
+          pressed ? radioTheme.label.pressed : '',
+        ]),
+      ]}
+      ref={radioboxRef}
+    >
+      {children}
     </Touchable>
   );
 });
