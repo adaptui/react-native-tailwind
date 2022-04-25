@@ -1,7 +1,7 @@
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import React, { forwardRef, useRef } from 'react';
 import { Platform } from 'react-native';
-import { useFocusRing, useRadio } from 'react-native-aria';
+import { useFocusRing, useHover, useRadio } from 'react-native-aria';
 import { Box, Text, Touchable } from '../../primitives';
 import { useTheme } from '../../theme';
 import { createComponent } from '../../utils';
@@ -95,77 +95,87 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   const { focusProps } = useFocusRing();
 
-  const children = (
-    <>
-      <Box
-        style={[
-          tailwind.style([
-            radioTheme.icon.common,
-            radioTheme.icon.wrapperSize[size],
-            radioProps.checked
-              ? radioTheme.icon.checked.default
-              : radioTheme.icon.unChecked.default,
-            isInvalid
-              ? radioProps.checked
-                ? radioTheme.icon.checked.invalid
-                : radioTheme.icon.unChecked.invalid
-              : '',
-            radioProps.disabled
-              ? radioProps.checked
-                ? radioTheme.icon.checked.disabled
-                : radioTheme.icon.unChecked.disabled
-              : '',
-          ]),
-          { borderWidth: radioTheme.icon.border },
-        ]}
-      >
+  const children = (pressedOrHovered: boolean) => {
+    return (
+      <>
         <Box
           style={[
             tailwind.style([
-              radioTheme.icon.innerCircle.size[size],
+              radioTheme.icon.common,
+              radioTheme.icon.wrapperSize[size],
               radioProps.checked
-                ? radioTheme.icon.innerCircle.checked.default
-                : radioTheme.icon.innerCircle.unChecked.default,
+                ? radioTheme.icon.checked.default
+                : radioTheme.icon.unChecked.default,
+              isInvalid
+                ? radioProps.checked
+                  ? radioTheme.icon.checked.invalid
+                  : radioTheme.icon.unChecked.invalid
+                : '',
               radioProps.disabled
                 ? radioProps.checked
-                  ? radioTheme.icon.innerCircle.checked.disabled
-                  : radioTheme.icon.innerCircle.unChecked.disabled
+                  ? radioTheme.icon.checked.disabled
+                  : radioTheme.icon.unChecked.disabled
+                : '',
+              pressedOrHovered
+                ? radioProps.checked
+                  ? radioTheme.icon.checked.pressedOrHovered
+                  : radioTheme.icon.unChecked.pressedOrHovered
                 : '',
             ]),
+            { borderWidth: radioTheme.icon.border },
           ]}
-        />
-      </Box>
-      <Box style={radioTheme.labelDescWrapper}>
-        {label && (
-          <Text
+        >
+          <Box
             style={[
-              tailwind.style(
-                radioTheme.text.common,
-                radioTheme.text.size[size]
-              ),
-              description
-                ? { lineHeight: radioTheme.text.lineHeight[size] }
-                : {},
+              tailwind.style([
+                radioTheme.icon.innerCircle.size[size],
+                radioProps.checked
+                  ? radioTheme.icon.innerCircle.checked.default
+                  : radioTheme.icon.innerCircle.unChecked.default,
+                radioProps.disabled
+                  ? radioProps.checked
+                    ? radioTheme.icon.innerCircle.checked.disabled
+                    : radioTheme.icon.innerCircle.unChecked.disabled
+                  : '',
+              ]),
             ]}
-          >
-            {label}
-          </Text>
-        )}
-        {description && (
-          <Text
-            style={[
-              tailwind.style(
-                radioTheme.description.common,
-                radioTheme.description.size[size]
-              ),
-            ]}
-          >
-            {description}
-          </Text>
-        )}
-      </Box>
-    </>
-  );
+          />
+        </Box>
+        <Box style={radioTheme.labelDescWrapper}>
+          {label && (
+            <Text
+              style={[
+                tailwind.style(
+                  radioTheme.text.common,
+                  radioTheme.text.size[size]
+                ),
+                description
+                  ? { lineHeight: radioTheme.text.lineHeight[size] }
+                  : {},
+              ]}
+            >
+              {label}
+            </Text>
+          )}
+          {description && (
+            <Text
+              style={[
+                tailwind.style(
+                  radioTheme.description.common,
+                  radioTheme.description.size[size]
+                ),
+              ]}
+            >
+              {description}
+            </Text>
+          )}
+        </Box>
+      </>
+    );
+  };
+  const radioItemRef = React.useRef();
+
+  const { isHovered, hoverProps } = useHover({}, radioItemRef);
 
   return Platform.OS === 'web' ? (
     <Box
@@ -174,17 +184,19 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
         description ? radioTheme.label.withDescription : '',
         radioTheme.label.size[size],
         radioTheme.label.disabled,
+        isHovered ? radioTheme.label.pressed : '',
       ])}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       accessibilityRole="label"
-      ref={radioboxRef}
+      {...hoverProps}
+      ref={radioItemRef}
       accessible={true}
     >
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={radioboxRef} />
       </VisuallyHidden>
-      {children}
+      {children(isHovered)}
     </Box>
   ) : (
     <Touchable
@@ -200,7 +212,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
       ]}
       ref={radioboxRef}
     >
-      {children}
+      {({ pressed }) => children(pressed)}
     </Touchable>
   );
 });
