@@ -60,7 +60,7 @@ export const radio = {
       focus: 'ring-2 ring-gray-300',
       invalid: 'bg-white border-red-600',
       disabled: 'bg-gray-200 border-gray-300',
-      hover: 'border-gray-500 shadow',
+      pressedOrHovered: 'border-gray-500 shadow',
       active: 'border-gray-400',
     },
     checked: {
@@ -68,7 +68,7 @@ export const radio = {
       focus: 'ring-2 ring-gray-300',
       invalid: 'bg-red-600 border-red-600',
       disabled: 'bg-gray-200 border-gray-200',
-      hover: 'bg-gray-700 border-gray-700 shadow',
+      pressedOrHovered: 'bg-gray-700 border-gray-700 shadow',
       active: 'bg-gray-800 border-gray-800',
     },
   },
