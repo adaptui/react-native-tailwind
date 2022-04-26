@@ -1,6 +1,9 @@
+import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
 import { useToggleState } from '@react-stately/toggle';
 import React, { forwardRef, useMemo, useRef } from 'react';
+import { Platform } from 'react-native';
+import { useFocusRing, useHover } from 'react-native-aria';
 import { Check, Dash } from '../../assets';
 import { Box, Text, Touchable } from '../../primitives';
 import { useTheme } from '../../theme';
@@ -153,7 +156,113 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     ) : null;
   }, [checkboxProps.checked, checkboxProps.isIndeterminate]);
 
-  return (
+  const { focusProps } = useFocusRing();
+
+  const children = (pressedOrHovered: boolean) => {
+    return (
+      <>
+        <Box
+          style={[
+            tailwind.style([
+              checkboxTheme.icon.common,
+              checkboxTheme.icon.wrapperSize[size],
+              checkboxProps.checked
+                ? checkboxTheme.icon.checked.default
+                : checkboxTheme.icon.unChecked.default,
+              checkboxProps.isIndeterminate
+                ? checkboxTheme.icon.indeterminate.default
+                : '',
+              isInvalid
+                ? checkboxProps.isIndeterminate
+                  ? checkboxTheme.icon.indeterminate.invalid
+                  : checkboxProps.checked
+                  ? checkboxTheme.icon.checked.invalid
+                  : checkboxTheme.icon.unChecked.invalid
+                : '',
+              isDisabled
+                ? checkboxProps.isIndeterminate
+                  ? checkboxTheme.icon.indeterminate.disabled
+                  : checkboxProps.checked
+                  ? checkboxTheme.icon.checked.disabled
+                  : checkboxTheme.icon.unChecked.disabled
+                : '',
+              pressedOrHovered
+                ? checkboxProps.isIndeterminate
+                  ? checkboxTheme.icon.indeterminate.pressedOrHovered
+                  : checkboxProps.checked
+                  ? checkboxTheme.icon.checked.pressedOrHovered
+                  : checkboxTheme.icon.unChecked.pressedOrHovered
+                : '',
+            ]),
+            { borderWidth: checkboxTheme.icon.border },
+          ]}
+        >
+          {icon &&
+            createIcon({
+              icon,
+              iconFill: tailwind.getColor('text-white'),
+              iconStyle: tailwind.style(checkboxTheme.icon.iconSize[size]),
+            })}
+        </Box>
+        <Box style={checkboxTheme.labelDescWrapper}>
+          {label && (
+            <Text
+              style={[
+                tailwind.style(
+                  checkboxTheme.text.common,
+                  checkboxTheme.text.size[size]
+                ),
+                description
+                  ? { lineHeight: checkboxTheme.text.lineHeight[size] }
+                  : {},
+              ]}
+            >
+              {label}
+            </Text>
+          )}
+          {description && (
+            <Text
+              style={[
+                tailwind.style(
+                  checkboxTheme.description.common,
+                  checkboxTheme.description.size[size]
+                ),
+              ]}
+            >
+              {description}
+            </Text>
+          )}
+        </Box>
+      </>
+    );
+  };
+
+  const checkboxItemRef = React.useRef();
+
+  const { isHovered, hoverProps } = useHover({}, checkboxItemRef);
+
+  return Platform.OS === 'web' ? (
+    <Box
+      style={tailwind.style([
+        checkboxTheme.label.common,
+        description ? checkboxTheme.label.withDescription : '',
+        checkboxTheme.label.size[size],
+        checkboxTheme.label.disabled,
+        isHovered ? checkboxTheme.label.pressed : '',
+      ])}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      accessibilityRole="label"
+      {...hoverProps}
+      ref={checkboxItemRef}
+      accessible={true}
+    >
+      <VisuallyHidden>
+        <input {...inputProps} {...focusProps} ref={checkboxRef} />
+      </VisuallyHidden>
+      {children(isHovered)}
+    </Box>
+  ) : (
     <Touchable
       {...checkboxProps}
       style={({ pressed }) => [
@@ -167,71 +276,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       ]}
       ref={checkboxRef}
     >
-      <Box
-        style={[
-          tailwind.style([
-            checkboxTheme.icon.common,
-            checkboxTheme.icon.wrapperSize[size],
-            checkboxProps.checked
-              ? checkboxTheme.icon.checked.default
-              : checkboxTheme.icon.unChecked.default,
-            checkboxProps.isIndeterminate
-              ? checkboxTheme.icon.indeterminate.default
-              : '',
-            isInvalid
-              ? checkboxProps.isIndeterminate
-                ? checkboxTheme.icon.indeterminate.invalid
-                : checkboxProps.checked
-                ? checkboxTheme.icon.checked.invalid
-                : checkboxTheme.icon.unChecked.invalid
-              : '',
-            isDisabled
-              ? checkboxProps.isIndeterminate
-                ? checkboxTheme.icon.indeterminate.disabled
-                : checkboxProps.checked
-                ? checkboxTheme.icon.checked.disabled
-                : checkboxTheme.icon.unChecked.disabled
-              : '',
-          ]),
-          { borderWidth: checkboxTheme.icon.border },
-        ]}
-      >
-        {icon &&
-          createIcon({
-            icon,
-            iconFill: tailwind.getColor('text-white'),
-            iconStyle: tailwind.style(checkboxTheme.icon.iconSize[size]),
-          })}
-      </Box>
-      <Box style={checkboxTheme.labelDescWrapper}>
-        {label && (
-          <Text
-            style={[
-              tailwind.style(
-                checkboxTheme.text.common,
-                checkboxTheme.text.size[size]
-              ),
-              description
-                ? { lineHeight: checkboxTheme.text.lineHeight[size] }
-                : {},
-            ]}
-          >
-            {label}
-          </Text>
-        )}
-        {description && (
-          <Text
-            style={[
-              tailwind.style(
-                checkboxTheme.description.common,
-                checkboxTheme.description.size[size]
-              ),
-            ]}
-          >
-            {description}
-          </Text>
-        )}
-      </Box>
+      {({ pressed }) => children(pressed)}
     </Touchable>
   );
 });
