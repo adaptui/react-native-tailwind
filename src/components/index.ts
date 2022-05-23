@@ -9,3 +9,5 @@ export * from './tag';
 export * from './create-icon';
 export * from './input';
 export * from './progress';
+export * from './tooltip';
+

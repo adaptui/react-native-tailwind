@@ -42,26 +42,26 @@ export const Top: TagStoryType = (args) => <TooltipBasic {...args} />;
 
 Top.args = {
   content: 'Add your information',
-  placement: 'top',
+  side: 'top',
 };
 
 export const Right: TagStoryType = (args) => <TooltipBasic {...args} />;
 
 Right.args = {
   content: 'Add your information',
-  placement: 'right',
+  side: 'right',
 };
 
 export const Bottom: TagStoryType = (args) => <TooltipBasic {...args} />;
 
 Bottom.args = {
   content: 'Add your information',
-  placement: 'bottom',
+  side: 'bottom',
 };
 
 export const Left: TagStoryType = (args) => <TooltipBasic {...args} />;
 
 Left.args = {
   content: 'Add your information',
-  placement: 'left',
+  side: 'left',
 };

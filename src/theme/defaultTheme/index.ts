@@ -7,6 +7,7 @@ import { progress } from './progress';
 import { spinner } from './spinner';
 import { switchTheme } from './switch';
 import { tag } from './tag';
+import { tooltip } from './tooltip';
 
 const extendedTheme = {
   badge,
@@ -18,6 +19,7 @@ const extendedTheme = {
   circularProgress,
   tag,
   input,
+  tooltip,
 };
 
 export default extendedTheme;

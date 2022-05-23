@@ -3023,6 +3023,17 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@react-aria/focus@^3.2.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.5.3.tgz#0dba6e2219fea86ccc44b88b4e17f6f76d5cee4e"
+  integrity sha512-Bf8Zm30WQx4iWJbNRKhjc7c/5PnT43HxnIbiDcWDDZ9IuWzfAcg/JV9sRPFOViiEcCXIG3D1sHpiGf6pU+Xbow==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/interactions" "^3.8.2"
+    "@react-aria/utils" "^3.11.3"
+    "@react-types/shared" "^3.11.2"
+    clsx "^1.1.1"
+
 "@react-aria/i18n@^3.3.3":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@react-aria/i18n/-/i18n-3.3.4.tgz#172b8bcff0273410e67af31f7d84e49dd3ada463"
@@ -3044,6 +3055,15 @@
     "@babel/runtime" "^7.6.2"
     "@react-aria/utils" "^3.10.0"
     "@react-types/shared" "^3.10.0"
+
+"@react-aria/interactions@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@react-aria/interactions/-/interactions-3.8.2.tgz#fa11833915938e2e539391b5db4670668a830e7f"
+  integrity sha512-AyTTwflthmyNcgIfjzHLdrQTcUJpLer9jMtB7IyTJ90c1eYbd+iy40WbyBZYhQhI8Zkq+q9bfeIOQFlEMDWh8A==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/utils" "^3.11.3"
+    "@react-types/shared" "^3.11.2"
 
 "@react-aria/overlays@^3.7.0":
   version "3.7.3"
@@ -3067,6 +3087,13 @@
   dependencies:
     "@babel/runtime" "^7.6.2"
 
+"@react-aria/ssr@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@react-aria/ssr/-/ssr-3.1.2.tgz#665a6fd56385068c7417922af2d0d71b0618e52d"
+  integrity sha512-amXY11ImpokvkTMeKRHjsSsG7v1yzzs6yeqArCyBIk60J3Yhgxwx9Cah+Uu/804ATFwqzN22AXIo7SdtIaMP+g==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+
 "@react-aria/utils@^3.10.0", "@react-aria/utils@^3.3.0", "@react-aria/utils@^3.6.0", "@react-aria/utils@^3.8.2":
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.11.0.tgz#215ea23a5435672a822cd713bdb8217972c5c80b"
@@ -3076,6 +3103,17 @@
     "@react-aria/ssr" "^3.1.0"
     "@react-stately/utils" "^3.3.0"
     "@react-types/shared" "^3.10.1"
+    clsx "^1.1.1"
+
+"@react-aria/utils@^3.11.3":
+  version "3.11.3"
+  resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.11.3.tgz#fd870e1c4b994967883d5d5dae6b14b4e6da2d16"
+  integrity sha512-EH3SyA3FtbhuOj1cgGveiEYidKe3CgGYkP8D57O46rlTWcgTxhGHUEibGeJw3PFXxmbgm5RIOdBo29YwItvtcQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/ssr" "^3.1.2"
+    "@react-stately/utils" "^3.4.1"
+    "@react-types/shared" "^3.11.2"
     clsx "^1.1.1"
 
 "@react-aria/visually-hidden@^3.2.3":
@@ -3088,6 +3126,13 @@
     "@react-aria/utils" "^3.8.2"
     clsx "^1.1.1"
 
+"@react-native-aria/focus@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/focus/-/focus-0.2.5.tgz#28ff752b28b7dfeb737147856aaf6669de3290f9"
+  integrity sha512-PUTGNL5JMCWJ2dNAehpQqLuSUUdkXcLlFjl52Dv84XcIUTuXRvDl5+jr4OW0jyUSGUS6ooqDNRW/PSza35P+tw==
+  dependencies:
+    "@react-aria/focus" "^3.2.3"
+
 "@react-native-aria/interactions@^0.2.8":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@react-native-aria/interactions/-/interactions-0.2.8.tgz#5ced4bd3391c647699fa79275472f784a44c2488"
@@ -3097,7 +3142,7 @@
     "@react-aria/utils" "^3.6.0"
     "@react-native-aria/utils" "^0.2.6"
 
-"@react-native-aria/overlays@^0.3.2":
+"@react-native-aria/overlays@^0.3.1", "@react-native-aria/overlays@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@react-native-aria/overlays/-/overlays-0.3.2.tgz#fe3fb983b197738237493c3e5af6b30f6da6be9d"
   integrity sha512-sc2attCn+stKugBF8ZBz+EIdGoEHU/+NbJc5agS6lZWeemXL5LcgomNf6Tn7RUlpLfWOTEGBQOAiOZxjZnIQmQ==
@@ -3322,6 +3367,13 @@
   dependencies:
     "@babel/runtime" "^7.6.2"
 
+"@react-stately/utils@^3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@react-stately/utils/-/utils-3.4.1.tgz#56f049aa1704d338968b5973c796ee606e9c0c62"
+  integrity sha512-mjFbKklj/W8KRw1CQSpUJxHd7lhUge4i00NwJTwGxbzmiJgsTWlKKS/1rBf48ey9hUBopXT5x5vG/AxQfWTQug==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+
 "@react-types/button@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.4.1.tgz#715ac9d4997c79233be4d9020b58f85936b8252b"
@@ -3340,6 +3392,11 @@
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.10.1.tgz#16cd3038361dee63f351fa4d0fd25d90480a149b"
   integrity sha512-U3dLJtstvOiZ8XLrWdNv9WXuruoDyfIfSXguTs9N0naDdO+M0MIbt/1Hg7Toe43ueAe56GM14IFL+S0/jhv8ow==
+
+"@react-types/shared@^3.11.2":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.11.2.tgz#b269c0cf6223664ac42d980b7add1b67b51b87d4"
+  integrity sha512-MIjjjkFi/DTzMVmeFJJrpc51eS/PLNzLZEv6o/QJPhQ9uOMElYqA790qAcG75u3tR0XGU2Vv9RyeOC7+ppw8/Q==
 
 "@release-it/conventional-changelog@^2.0.0":
   version "2.0.1"
@@ -14242,6 +14299,14 @@ react-native-modal-selector@^2.0.2:
   integrity sha512-aXOF8tC69XXfI6kbIskRRLe8xcexiYc21GD0s8gNz/Pl1FT8921PuLz647uY2le+fsJsztX6Taaf3mij/Noc+A==
   dependencies:
     prop-types "^15.5.10"
+
+react-native-popper@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-popper/-/react-native-popper-0.3.2.tgz#4582b3bccb85a043c2171c3326dce10f8f1e5c16"
+  integrity sha512-1zBHPZnXQjgKg1N+QvMjNrzV0A17+pkcV5GSzTLYjYJsxUH8fogduIc+FPxvkmedm7U/tb3YbhWNQUMXNhR84Q==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.5"
+    "@react-native-aria/overlays" "^0.3.1"
 
 react-native-reanimated@^2.2.0:
   version "2.3.1"
