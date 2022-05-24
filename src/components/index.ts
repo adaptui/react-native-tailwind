@@ -5,9 +5,11 @@ export * from './button';
 export * from './spinner';
 export * from './circularProgress';
 export * from './icon';
+export * from './select';
+export * from './spinner';
+export * from './switch';
 export * from './tag';
 export * from './create-icon';
 export * from './input';
 export * from './progress';
 export * from './tooltip';
-
