@@ -4,6 +4,7 @@ import { button } from './button';
 import { circularProgress } from './circularProgress';
 import { input } from './input';
 import { progress } from './progress';
+import { select } from './select';
 import { spinner } from './spinner';
 import { switchTheme } from './switch';
 import { tag } from './tag';
@@ -20,6 +21,7 @@ const extendedTheme = {
   tag,
   input,
   tooltip,
+  select,
 };
 
 export default extendedTheme;
