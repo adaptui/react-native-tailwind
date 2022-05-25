@@ -1,5 +1,6 @@
 import { useControllableState } from '@chakra-ui/hooks';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useHover } from '@react-native-aria/interactions';
 import { isUndefined } from 'lodash';
 import React, { forwardRef, useCallback, useMemo, useRef } from 'react';
 import { Box, Text, Touchable } from '../../primitives';
@@ -70,7 +71,7 @@ export { useSelectGroupContext };
 const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
   typeof Touchable,
   Partial<SelectProps>
->((props, ref) => {
+>((props, _ref) => {
   const tailwind = useTheme();
   const selectStyle = useTheme('select');
 
@@ -95,11 +96,15 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
     onChange: onStateChange,
   });
 
+  const selectRef = useRef();
+
+  const { isHovered, hoverProps } = useHover({}, selectRef);
+
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {
     console.log('handleSheetChanges', index);
@@ -122,11 +127,14 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
             selectStyle.base.variant[variant].common,
             invalid ? selectStyle.base.variant[variant].invalid : '',
             disabled ? selectStyle.base.variant[variant].disabled : '',
-            pressed ? selectStyle.base.variant[variant].pressedOrHovered : '',
+            pressed || isHovered
+              ? selectStyle.base.variant[variant].pressedOrHovered
+              : '',
           ]),
         ]}
         disabled={disabled}
-        ref={ref}
+        ref={selectRef}
+        {...hoverProps}
       >
         {({ pressed }) => {
           return (
@@ -140,12 +148,12 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 disabled={disabled}
                 invalid={invalid}
                 prefix={prefix}
-                isPressedOrHovered={pressed}
+                isPressedOrHovered={pressed || isHovered}
               />
               <Text
                 style={tailwind.style([
                   selectStyle.base.text.size[size],
-                  pressed
+                  pressed || isHovered
                     ? selectStyle.base.text.variant[variant].common
                     : disabled
                     ? selectStyle.base.text.variant[variant].disabled
@@ -166,7 +174,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 variant={variant}
                 invalid={invalid}
                 disabled={disabled}
-                isPressedOrHovered={pressed}
+                isPressedOrHovered={pressed || isHovered}
               />
             </>
           );
