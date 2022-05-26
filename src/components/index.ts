@@ -1,5 +1,5 @@
 export * from './avatar';
-export * from './badge/Badge';
+export * from './badge';
 export * from './button';
 export * from './checkbox';
 export * from './circularProgress';
@@ -11,4 +11,6 @@ export * from './slider';
 export * from './spinner';
 export * from './switch';
 export * from './tag';
+export * from './input';
+export * from './progress';
 export * from './tooltip';

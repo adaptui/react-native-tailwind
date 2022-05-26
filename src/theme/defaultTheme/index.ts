@@ -3,6 +3,7 @@ import { badge } from './badge';
 import { button } from './button';
 import { checkbox } from './checkbox';
 import { circularProgress } from './circularProgress';
+import { input } from './input';
 import { meter } from './meter';
 import { progress } from './progress';
 import { radio } from './radio';
@@ -21,6 +22,7 @@ const extendedTheme = {
   spinner,
   circularProgress,
   tag,
+  input,
   tooltip,
   slider,
   checkbox,
