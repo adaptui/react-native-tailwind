@@ -4,3 +4,6 @@ export * from './Clock';
 export * from './Close';
 export * from './DefaultUser';
 export * from './Search';
+export * from './Equals';
+export * from './Check';
+export * from './Dash';
