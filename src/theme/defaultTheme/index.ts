@@ -1,8 +1,11 @@
 import { avatar } from './avatar';
 import { badge } from './badge';
 import { button } from './button';
+import { checkbox } from './checkbox';
 import { circularProgress } from './circularProgress';
+import { meter } from './meter';
 import { progress } from './progress';
+import { radio } from './radio';
 import { slider } from './slider';
 import { spinner } from './spinner';
 import { switchTheme } from './switch';
@@ -20,6 +23,9 @@ const extendedTheme = {
   tag,
   tooltip,
   slider,
+  checkbox,
+  radio,
+  meter,
 };
 
 export default extendedTheme;
