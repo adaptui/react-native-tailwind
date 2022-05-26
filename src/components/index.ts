@@ -5,6 +5,7 @@ export * from './checkbox';
 export * from './circularProgress';
 export * from './create-icon';
 export * from './icon';
+export * from './select';
 export * from './meter';
 export * from './radio';
 export * from './slider';

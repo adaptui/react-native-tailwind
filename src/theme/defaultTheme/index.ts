@@ -6,6 +6,7 @@ import { circularProgress } from './circularProgress';
 import { input } from './input';
 import { meter } from './meter';
 import { progress } from './progress';
+import { select } from './select';
 import { radio } from './radio';
 import { slider } from './slider';
 import { spinner } from './spinner';
@@ -24,6 +25,7 @@ const extendedTheme = {
   tag,
   input,
   tooltip,
+  select,
   slider,
   checkbox,
   radio,
