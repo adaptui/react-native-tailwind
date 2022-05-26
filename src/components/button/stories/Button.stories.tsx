@@ -1,5 +1,5 @@
 // stories/Button.stories.tsx
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 import React from 'react';
 import tailwind from 'twrnc';
 import { CaretRight, Clock, Close } from '../../../assets';

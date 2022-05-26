@@ -1,11 +1,14 @@
-import { TailwindThemeProvider } from '../src/theme/index';
+import { OverlayProvider } from '@react-native-aria/overlays';
 import React from 'react';
+import { TailwindThemeProvider } from '../src/theme/index';
 
 export const decorators = [
   (Story) => {
     return (
       <TailwindThemeProvider>
-        <Story />
+        <OverlayProvider>
+          <Story />
+        </OverlayProvider>
       </TailwindThemeProvider>
     );
   },

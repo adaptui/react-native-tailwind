@@ -35,7 +35,7 @@ function useTheme<T extends ThemeKeys>(
 
   if (!context) {
     throw new Error(
-      'useTheme: `ThemeContext` is undefined. Seems you forgot to wrap component within the RenderlesskitProvider'
+      'useTheme: `ThemeContext` is undefined. Seems you forgot to wrap component within the TailwindThemeProvider'
     );
   }
 

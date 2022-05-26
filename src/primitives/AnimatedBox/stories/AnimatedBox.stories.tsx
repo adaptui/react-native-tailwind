@@ -1,6 +1,6 @@
 // stories/AnimatedBox.stories.tsx
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 
 import { AnimatedBox } from '../AnimatedBox';
 import {
