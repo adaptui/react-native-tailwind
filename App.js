@@ -3,7 +3,8 @@ import { LogBox, SafeAreaView, StatusBar } from 'react-native';
 import 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import tailwind from 'twrnc';
-import StorybookUIRoot from './.ondevice/Storybook';
+import AppRoot from './.ondevice/AppRoot';
+import { TailwindThemeProvider } from './src';
 
 LogBox.ignoreAllLogs();
 
@@ -16,7 +17,9 @@ const App = () => {
           `flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`
         )}
       >
-        <StorybookUIRoot />
+        <TailwindThemeProvider>
+          <AppRoot />
+        </TailwindThemeProvider>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
