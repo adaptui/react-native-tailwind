@@ -1,9 +1,9 @@
-const { getDefaultConfig } = require("expo/metro-config");
+const { getDefaultConfig } = require('expo/metro-config');
 
 const defaultConfig = getDefaultConfig(__dirname);
 
 defaultConfig.resolver.resolverMainFields = [
-  "sbmodern",
+  'sbmodern',
   ...defaultConfig.resolver.resolverMainFields,
 ];
 defaultConfig.transformer.getTransformOptions = async () => ({
@@ -12,5 +12,5 @@ defaultConfig.transformer.getTransformOptions = async () => ({
     inlineRequires: false,
   },
 });
-defaultConfig.watchFolders = [...defaultConfig.watchFolders, "./.storybook"];
+defaultConfig.watchFolders = [...defaultConfig.watchFolders, './.ondevice'];
 module.exports = defaultConfig;
