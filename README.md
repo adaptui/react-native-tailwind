@@ -1,21 +1,19 @@
-# react-native-system
+# react-native-tailwind
 
 Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System
 
 ## Installation
 
 ```sh
-npm install react-native-system
+npm install react-native-tailwind
 ```
 
 ## Usage
 
 ```js
-import System from "react-native-system";
+import { Button } from 'react-native-tailwind';
 
-// ...
-
-const result = await System.multiply(3, 7);
+<Button size="sm">Continue</Button>;
 ```
 
 ## Contributing
