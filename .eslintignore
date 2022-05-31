@@ -1,0 +1,24 @@
+# don't ever lint node_modules
+node_modules
+# don't lint build output (make sure it's set to your correct build folder name)
+lib
+# don't lint nyc coverage output
+coverage
+
+# dont have lint ios and android folders
+ios
+android
+
+# basic js files of react native
+
+.eslintrc.js
+babel.config.js
+jest.config.js
+metro.config.js
+tailwind.config.js
+
+example
+
+scripts
+
+__tests__

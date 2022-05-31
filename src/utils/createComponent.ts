@@ -1,17 +1,31 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react';
+import type { PropsWithChildren } from 'react';
+import { createElement } from './createElement';
 
 export function createComponent<Props>(
-  Component: React.FunctionComponent<Props>,
+  componentType:
+    | React.FunctionComponent<Props>
+    | React.ComponentClass<Props>
+    | string,
   options?: { shouldMemo?: boolean }
-) {
-  const component = (props: Props) => {
-    // @ts-ignore
-    return React.createElement(Component, props, props?.children);
+):
+  | React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>
+  | typeof componentType {
+  const _component = (props: Props, ref: unknown) => {
+    return createElement<Props>({
+      componentType,
+      props: { ...props, ref },
+    });
   };
-  let ForwardedComponent = React.forwardRef(component);
+  let ForwardedComponent = React.forwardRef<unknown, PropsWithChildren<Props>>(
+    _component
+  );
   if (options?.shouldMemo) {
     // @ts-ignore
     ForwardedComponent = React.memo(ForwardedComponent);
   }
-  return ForwardedComponent;
+  return ForwardedComponent as unknown as
+    | React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>
+    | typeof componentType;
 }
