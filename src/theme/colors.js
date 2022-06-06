@@ -1,4 +1,4 @@
-export const adaptUIColors = {
+module.exports = {
   base: {
     50: '#F8F8F8',
     100: '#F3F3F3',

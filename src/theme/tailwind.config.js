@@ -1,5 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
-import { adaptUIColors } from './colors';
+const adaptUIColors = require('./colors');
 
 module.exports = {
   theme: {
