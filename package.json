@@ -27,8 +27,6 @@
     "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
-    "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods",
     "lint": "eslint . \"**/*.{js,ts,tsx}\"",
     "lint-fix": "eslint . \"**/*.{js,ts,tsx}\" --fix",
     "format": "prettier --check **/*.tsx **/*.ts *.js",
