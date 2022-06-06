@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { useTheme } from '../../theme';
+import { cx } from '../../utils';
 import { AvatarImageProps } from './avatarPropTypes';
 
 interface CAvatarImageProps extends AvatarImageProps {
@@ -11,7 +12,7 @@ export const AvatarImage: React.FC<CAvatarImageProps> = ({
   imageProps,
   src,
   handleFallback,
-  circular,
+  squared,
   size,
 }) => {
   const tailwind = useTheme();
@@ -21,10 +22,9 @@ export const AvatarImage: React.FC<CAvatarImageProps> = ({
       source={src}
       style={[
         avatarTheme.borderRadius.size[size],
-        tailwind.style([
-          avatarTheme.image,
-          circular ? avatarTheme.circular : '',
-        ]),
+        tailwind.style(
+          cx(avatarTheme.image, !squared ? avatarTheme.circular : '')
+        ),
       ]}
       onError={handleFallback}
       {...imageProps}

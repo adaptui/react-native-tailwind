@@ -3,4 +3,3 @@ export * from './AvatarImage';
 export * from './AvatarProps';
 export * from './avatarPropTypes';
 export * from './AvatarStatus';
-export * from './__keys';

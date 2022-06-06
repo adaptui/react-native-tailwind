@@ -15,7 +15,7 @@ const [AvatarGroupProvider, useAvatarGroup] =
 
 export { useAvatarGroup };
 
-export type AvatarGroupSharedProps = Pick<AvatarProps, 'size' | 'circular'>;
+export type AvatarGroupSharedProps = Pick<AvatarProps, 'size' | 'squared'>;
 
 export type AvatarGroupProps = BoxProps &
   AvatarGroupSharedProps & {
@@ -38,7 +38,7 @@ export type AvatarGroupProps = BoxProps &
 
 export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
   const {
-    circular = true,
+    squared = false,
     size = 'xl',
     showRing = false,
     ringColor = 'white',
@@ -56,7 +56,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
     ? validChildren
     : validChildren.slice(0, max);
 
-  const context = React.useMemo(() => ({ size, circular }), [size, circular]);
+  const context = React.useMemo(() => ({ size, squared }), [size, squared]);
 
   const excess = isUndefined(max) ? 0 : validChildren.length - max;
   return (
@@ -70,7 +70,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
                 index !== 0
                   ? avatarTheme.group.avatarWrapper.spacing[size]
                   : '',
-                circular ? avatarTheme.group.avatarWrapper.circular : '',
+                !squared ? avatarTheme.group.avatarWrapper.circular : '',
                 showRing ? avatarTheme.group.avatarWrapper.ringStyle : '',
               ]),
               showRing
@@ -88,7 +88,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
               avatarTheme.borderRadius.size[size],
               tailwind.style([
                 avatarTheme.group.avatarWrapper.spacing[size],
-                circular ? avatarTheme.group.avatarWrapper.circular : '',
+                !squared ? avatarTheme.group.avatarWrapper.circular : '',
                 showRing ? avatarTheme.group.avatarWrapper.ringStyle : '',
               ]),
               showRing

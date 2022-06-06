@@ -1,21 +1,14 @@
-import { pick } from 'lodash';
+import { isUndefined } from 'lodash';
 import React from 'react';
+import { useAvatarGroup } from '../avatar-group/AvatarGroup';
 import {
-  AvatarImageProps,
   AvatarBasicProps,
+  AvatarImageProps,
   AvatarOtherProps,
-  AvatarStatusProps,
   AvatarProps,
+  AvatarStatusProps,
 } from './avatarPropTypes';
 
-import {
-  AVATAR_IMAGE_KEYS,
-  AVATAR_BASIC_KEYS,
-  AVATAR_OTHER_KEYS,
-  AVATAR_STATUS_KEYS,
-} from './__keys';
-
-import { useAvatarGroup } from '../avatar-group/AvatarGroup';
 interface AvatarPropsReturnType {
   _imageProps: AvatarImageProps;
   _basicProps: AvatarBasicProps;
@@ -23,18 +16,40 @@ interface AvatarPropsReturnType {
   _statusProps: AvatarStatusProps;
 }
 
-export const useAvatarProps = (
-  props: React.PropsWithChildren<Partial<AvatarProps>>
-): AvatarPropsReturnType => {
+export const useAvatarProps = ({
+  imageProps,
+  size,
+  src,
+  squared = false,
+  status,
+  parentsBackground,
+  name,
+  ...props
+}: React.PropsWithChildren<Partial<AvatarProps>>): AvatarPropsReturnType => {
   const avatarGroupProps = useAvatarGroup();
-  props = {
-    size: avatarGroupProps?.size || 'xl',
-    circular: avatarGroupProps?.circular,
-    ...props,
-  };
-  const _imageProps = pick(props, AVATAR_IMAGE_KEYS) as AvatarImageProps;
-  const _basicProps = pick(props, AVATAR_BASIC_KEYS) as AvatarBasicProps;
-  const _otherProps = pick(props, AVATAR_OTHER_KEYS) as AvatarOtherProps;
-  const _statusProps = pick(props, AVATAR_STATUS_KEYS) as AvatarStatusProps;
+  const isSquared = isUndefined(avatarGroupProps)
+    ? squared
+    : avatarGroupProps.squared;
+  const avatarSize = avatarGroupProps?.size || size || 'xl';
+  const _imageProps = {
+    imageProps,
+    src,
+    size: avatarSize,
+    squared: isSquared,
+  } as AvatarImageProps;
+
+  const _basicProps = {
+    size: avatarSize,
+    squared: isSquared,
+    name,
+  } as AvatarBasicProps;
+
+  const _statusProps = {
+    size: avatarSize,
+    status,
+    parentsBackground,
+  } as AvatarStatusProps;
+
+  const _otherProps = { name, ...props } as AvatarOtherProps;
   return { _imageProps, _basicProps, _otherProps, _statusProps };
 };
