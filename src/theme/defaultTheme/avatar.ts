@@ -49,7 +49,8 @@ export const avatar = {
     outerBorderRadius: { borderWidth: 1.5 },
     position: { bottom: -2.5, right: -2.5 },
     active: {
-      container: 'absolute border-white bg-white rounded-full bottom-0 right-0',
+      container:
+        'absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0',
       base: 'bg-green-500 rounded-full',
       size: {
         'xs': 'h-1 w-1',
@@ -62,8 +63,9 @@ export const avatar = {
       },
     },
     away: {
-      container: 'absolute border-white bg-white rounded-full bottom-0 right-0',
-      base: 'bg-white rounded-full',
+      container:
+        'absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0',
+      base: 'bg-white-900 rounded-full',
       size: {
         'xs': 'h-1 w-1',
         'sm': 'h-[5px] w-[5px]',
@@ -75,8 +77,9 @@ export const avatar = {
       },
     },
     sleep: {
-      container: 'absolute border-white bg-white rounded-full bottom-0 right-0',
-      base: 'bg-white rounded-full',
+      container:
+        'absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0',
+      base: 'bg-white-900 rounded-full',
       size: {
         'xs': 'h-1 w-1',
         'sm': 'h-[5px] w-[5px]',
@@ -88,7 +91,8 @@ export const avatar = {
       },
     },
     typing: {
-      container: 'absolute border-white bg-white rounded-full bottom-0 right-0',
+      container:
+        'absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0',
       base: 'rounded-full flex flex-row justify-evenly items-center bg-gray-500',
       size: {
         'xs': 'w-2 h-[5px]',
@@ -100,7 +104,7 @@ export const avatar = {
         '3xl': 'w-[17px] h-[10px]',
       },
       innerDots: {
-        base: 'h-[2px] w-[2px] rounded-full bg-white',
+        base: 'h-[2px] w-[2px] rounded-full bg-white-900',
         size: {
           'xs': 'h-[2px] w-[2px]',
           'sm': 'h-[2.25px] w-[2.25px]',
