@@ -1,5 +1,7 @@
-import { Box, useTheme } from '../../index';
 import React from 'react';
+import { Box } from '../../primitives';
+import { useTheme } from '../../theme';
+import { cx } from '../../utils';
 import { ButtonSizes } from './buttonTypes';
 
 export interface ButtonSuffixProps {
@@ -14,7 +16,7 @@ export const ButtonSuffix: React.FC<ButtonSuffixProps> = ({
   const buttonTheme = useTheme('button');
 
   return (
-    <Box style={[tailwind.style(buttonTheme.suffix[size])]}>
+    <Box style={[tailwind.style(cx(buttonTheme.suffix[size]))]}>
       {props.children}
     </Box>
   );

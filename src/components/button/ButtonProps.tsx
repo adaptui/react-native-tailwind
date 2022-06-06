@@ -1,30 +1,49 @@
-import { pick } from 'lodash';
+import { PressableProps } from 'react-native';
 import {
   ButtonLibraryProps,
   ButtonOptionProps,
   ButtonProps,
 } from './buttonTypes';
-import { BUTTON_BASIC_KEYS, BUTTON_OPTION_KEYS } from './__keys';
 
 interface ButtonPropsReturnType {
   _buttonProps: ButtonLibraryProps;
   _buttonOptions: ButtonOptionProps;
+  _buttonPressableProps: PressableProps;
 }
 
-export const useButtonProps = (
-  props: React.PropsWithChildren<Partial<ButtonProps>>
-): ButtonPropsReturnType => {
-  props = { size: 'md', variant: 'solid', ...props };
-  const _buttonBasicProps = pick(
-    props,
-    BUTTON_BASIC_KEYS
-  ) as ButtonLibraryProps;
-  const _buttonOptionProps = pick(
-    props,
-    BUTTON_OPTION_KEYS
-  ) as ButtonOptionProps;
+export const useButtonProps = ({
+  size = 'md',
+  variant = 'solid',
+  loading,
+  disabled,
+  prefix,
+  suffix,
+  icon,
+  spinner,
+  textStyle,
+  ...otherProps
+}: React.PropsWithChildren<Partial<ButtonProps>>): ButtonPropsReturnType => {
+  const _buttonBasicProps = {
+    disabled,
+    loading,
+    size,
+    variant,
+  } as ButtonLibraryProps;
+
+  const _buttonOptionProps = {
+    prefix,
+    suffix,
+    icon,
+    spinner,
+    loading,
+    textStyle,
+  } as ButtonOptionProps;
+
+  const _buttonPressableProps = otherProps;
+
   return {
     _buttonProps: _buttonBasicProps,
     _buttonOptions: _buttonOptionProps,
+    _buttonPressableProps,
   };
 };

@@ -1,6 +1,7 @@
-import { isValidElement } from 'react';
-import React from 'react';
-import { RenderPropType, Spinner, SpinnerSizes, useTheme } from '../../index';
+import React, { isValidElement } from 'react';
+import { useTheme } from '../../theme';
+import { cx, RenderPropType } from '../../utils';
+import { Spinner, SpinnerSizes } from '../spinner';
 import { ButtonSizes } from './buttonTypes';
 
 interface ButtonSpinnerProps {
@@ -20,7 +21,7 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   ) : (
     <Spinner
       size={buttonTheme.loading.size[size] as SpinnerSizes}
-      style={tailwind.style(buttonTheme.loading.default)}
+      style={tailwind.style(cx(buttonTheme.loading.default))}
     />
   );
 };
