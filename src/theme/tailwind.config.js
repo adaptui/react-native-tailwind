@@ -4,10 +4,10 @@ const adaptUIColors = require('./colors');
 module.exports = {
   theme: {
     ...defaultTheme,
-    colors: {
-      ...adaptUIColors,
-    },
     extend: {
+      colors: {
+        ...adaptUIColors,
+      },
       fontSize: {
         'xs': '12px',
         'cxs': '13px',
