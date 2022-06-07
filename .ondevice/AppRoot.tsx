@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
 import { Avatar, Badge, Box, Button, Icon, useTheme } from '../src';
-import { Check, Clock, Close } from '../src/assets';
+import { CaretRight, Check, Clock, Close, DefaultUser } from '../src/assets';
 
 function ButtonScreen() {
   const tailwind = useTheme();
@@ -9,7 +9,37 @@ function ButtonScreen() {
     <Box
       style={tailwind.style('flex-1 justify-center items-center bg-white-900')}
     >
-      <Button>Continue</Button>
+      <Button
+        style={tailwind.style('my-1')}
+        suffix={<Icon icon={<CaretRight />} />}
+      >
+        Continue
+      </Button>
+      <Button style={tailwind.style('my-1')} variant="outline">
+        Get Free Resource
+      </Button>
+      <Button
+        style={({ pressed }) => [
+          tailwind.style(
+            `my-1 bg-violet-600 ${pressed ? 'bg-violet-800' : ''}`
+          ),
+        ]}
+      >
+        Reply
+      </Button>
+      <Button
+        prefix={<Icon icon={<DefaultUser />} />}
+        style={({ pressed }) => [
+          tailwind.style(`my-1 bg-green-600 ${pressed ? 'bg-green-800' : ''}`),
+        ]}
+      >
+        Sign In
+      </Button>
+      <Button
+        variant="subtle"
+        icon={<Icon icon={<CaretRight />} />}
+        style={tailwind.style('my-1')}
+      ></Button>
     </Box>
   );
 }
@@ -20,7 +50,28 @@ function AvatarScreen() {
     <Box
       style={tailwind.style('flex-1 justify-center items-center bg-white-900')}
     >
-      <Avatar src={{ uri: 'https://i.pravatar.cc/300??img=9' }} />
+      <Avatar style={tailwind.style('my-1')} />
+      <Avatar style={tailwind.style('my-1')} squared />
+      <Avatar
+        style={tailwind.style('my-1')}
+        src={{ uri: 'https://i.pravatar.cc/300??img=9' }}
+      />
+      <Avatar name="Sandeep Prabhakaran" style={tailwind.style('my-1')} />
+      <Avatar
+        style={tailwind.style('my-1')}
+        src={{ uri: 'https://i.pravatar.cc/300??img=9' }}
+        status="active"
+      />
+      <Avatar
+        style={tailwind.style('my-1')}
+        src={{ uri: 'https://i.pravatar.cc/300??img=9' }}
+        status="away"
+      />
+      <Avatar
+        style={tailwind.style('my-1')}
+        src={{ uri: 'https://i.pravatar.cc/300??img=9' }}
+        status="sleep"
+      />
     </Box>
   );
 }
