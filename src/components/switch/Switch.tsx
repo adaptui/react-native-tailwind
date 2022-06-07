@@ -1,16 +1,17 @@
-import { useControllableState } from '@chakra-ui/hooks';
-import React, { forwardRef } from 'react';
-import { State, TapGestureHandler } from 'react-native-gesture-handler';
+import React, { forwardRef } from "react";
+import { State, TapGestureHandler } from "react-native-gesture-handler";
 import {
   interpolate,
   interpolateColor,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-} from 'react-native-reanimated';
-import { AnimatedBox } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils/createComponent';
+} from "react-native-reanimated";
+import { useControllableState } from "@chakra-ui/hooks";
+
+import { AnimatedBox } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent } from "../../utils/createComponent";
 
 export interface SwitchProps {
   /**
@@ -61,7 +62,7 @@ export interface SwitchProps {
    * Recomended size for Mobile
    * @default xl
    */
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 const SPRING_CONFIG = {
@@ -82,18 +83,18 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
       onStateChange,
       state,
       defaultState = false,
-      size = 'xl',
+      size = "xl",
       onStateColor: onStateColorProp,
       offStateColor: offStateColorProp,
       disabled = false,
       offStatePressedColor: offStatePressedColorProp,
       onStatePressedColor: onStatePressedColorProp,
-      thumbTintColor = 'white',
+      thumbTintColor = "white",
     },
-    ref
+    ref,
   ) => {
     const tailwind = useTheme();
-    const switchStyles = useTheme('switchTheme');
+    const switchStyles = useTheme("switchTheme");
 
     const [switchState, setSwitchState] = useControllableState({
       defaultValue: defaultState,
@@ -105,17 +106,17 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
      * setting track on color and initial track color from props also having a default fallback
      */
     const onStateColor = disabled
-      ? (tailwind.getColor('bg-gray-500') as string)
-      : onStateColorProp || (tailwind.getColor('bg-gray-800') as string);
+      ? (tailwind.getColor("bg-gray-500") as string)
+      : onStateColorProp || (tailwind.getColor("bg-gray-800") as string);
 
     const offStateColor = disabled
-      ? (tailwind.getColor('bg-gray-300') as string)
-      : offStateColorProp || (tailwind.getColor('bg-gray-200') as string);
+      ? (tailwind.getColor("bg-gray-300") as string)
+      : offStateColorProp || (tailwind.getColor("bg-gray-200") as string);
 
     const offStatePressedColor =
-      offStatePressedColorProp || (tailwind.getColor('bg-gray-300') as string);
+      offStatePressedColorProp || (tailwind.getColor("bg-gray-300") as string);
     const onStatePressedColor =
-      onStatePressedColorProp || (tailwind.getColor('bg-gray-700') as string);
+      onStatePressedColorProp || (tailwind.getColor("bg-gray-700") as string);
 
     /**
      * The Switch Animation Helpers
@@ -139,7 +140,7 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
             offStatePressedColor,
             onStatePressedColor,
             onStateColor,
-          ]
+          ],
         ),
       };
     });
@@ -150,7 +151,7 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
         width: interpolate(
           thumbAnimated.value,
           [0, 0.3, 0.7, 1],
-          interpolatedWidths
+          interpolatedWidths,
         ),
         transform: [
           {
@@ -162,7 +163,7 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
                 initTranslatedThumbDistance,
                 translatedThumbDistance - intermediateThumbTranslateValue,
                 translatedThumbDistance,
-              ]
+              ],
             ),
           },
         ],
@@ -175,7 +176,7 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
         enabled={!disabled}
         maxDurationMs={99999999}
         shouldCancelWhenOutside={false}
-        onHandlerStateChange={(event) => {
+        onHandlerStateChange={event => {
           if (event.nativeEvent.state === State.BEGAN) {
             if (switchState) {
               thumbAnimated.value = withSpring(0.7, SPRING_CONFIG);
@@ -213,10 +214,10 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
         </AnimatedBox>
       </TapGestureHandler>
     );
-  }
+  },
 );
 
-RNSwitch.displayName = 'RNSwitch';
+RNSwitch.displayName = "RNSwitch";
 
 export const Switch = createComponent<Partial<SwitchProps>>(RNSwitch, {
   shouldMemo: true,

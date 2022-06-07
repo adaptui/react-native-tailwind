@@ -1,11 +1,13 @@
-import React from 'react';
-import { AnimatedBox } from '../../primitives';
-import { useTheme } from '../../theme';
-import { SliderProps } from './Slider';
+import React from "react";
 
-export const SliderTrack: React.FC<Pick<SliderProps, 'size'>> = ({ size }) => {
+import { AnimatedBox } from "../../primitives";
+import { useTheme } from "../../theme";
+
+import { SliderProps } from "./Slider";
+
+export const SliderTrack: React.FC<Pick<SliderProps, "size">> = ({ size }) => {
   const tailwind = useTheme();
-  const sliderTheme = useTheme('slider');
+  const sliderTheme = useTheme("slider");
 
   return (
     <AnimatedBox

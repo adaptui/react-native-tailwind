@@ -1,21 +1,23 @@
-import { isUndefined } from 'lodash';
-import React from 'react';
-import { Box, BoxProps } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createContext, getValidChildren } from '../../utils';
-import { Avatar } from '../avatar/Avatar';
-import { AvatarProps } from '../avatar/avatarPropTypes';
-import { AvatarGroupWrapper } from './AvatarGroupWrapper';
+import React from "react";
+import { isUndefined } from "lodash";
+
+import { Box, BoxProps } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createContext, getValidChildren } from "../../utils";
+import { Avatar } from "../avatar/Avatar";
+import { AvatarProps } from "../avatar/avatarPropTypes";
+
+import { AvatarGroupWrapper } from "./AvatarGroupWrapper";
 
 const [AvatarGroupProvider, useAvatarGroup] =
   createContext<AvatarGroupSharedProps>({
     strict: false,
-    name: 'AvatarGroupProvider',
+    name: "AvatarGroupProvider",
   });
 
 export { useAvatarGroup };
 
-export type AvatarGroupSharedProps = Pick<AvatarProps, 'size' | 'squared'>;
+export type AvatarGroupSharedProps = Pick<AvatarProps, "size" | "squared">;
 
 export type AvatarGroupProps = BoxProps &
   AvatarGroupSharedProps & {
@@ -36,19 +38,19 @@ export type AvatarGroupProps = BoxProps &
     ringColor?: string;
   };
 
-export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
+export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = props => {
   const {
     squared = false,
-    size = 'xl',
+    size = "xl",
     showRing = false,
-    ringColor = 'white',
+    ringColor = "white",
     children,
     max,
     ...rest
   } = props;
   const validChildren = getValidChildren(children);
   const tailwind = useTheme();
-  const avatarTheme = useTheme('avatar');
+  const avatarTheme = useTheme("avatar");
   /**
    * Get the avatars within the max
    */
@@ -69,9 +71,9 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
               tailwind.style([
                 index !== 0
                   ? avatarTheme.group.avatarWrapper.spacing[size]
-                  : '',
-                !squared ? avatarTheme.group.avatarWrapper.circular : '',
-                showRing ? avatarTheme.group.avatarWrapper.ringStyle : '',
+                  : "",
+                !squared ? avatarTheme.group.avatarWrapper.circular : "",
+                showRing ? avatarTheme.group.avatarWrapper.ringStyle : "",
               ]),
               showRing
                 ? { borderColor: ringColor, backgroundColor: ringColor }
@@ -88,8 +90,8 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = (props) => {
               avatarTheme.borderRadius.size[size],
               tailwind.style([
                 avatarTheme.group.avatarWrapper.spacing[size],
-                !squared ? avatarTheme.group.avatarWrapper.circular : '',
-                showRing ? avatarTheme.group.avatarWrapper.ringStyle : '',
+                !squared ? avatarTheme.group.avatarWrapper.circular : "",
+                showRing ? avatarTheme.group.avatarWrapper.ringStyle : "",
               ]),
               showRing
                 ? { borderColor: ringColor, backgroundColor: ringColor }

@@ -1,8 +1,8 @@
-import Animated from 'react-native-reanimated';
-import { createComponent } from '../../utils';
-import { Box } from '../Box';
+import Animated from "react-native-reanimated";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import { createComponent } from "../../utils";
+import { Box } from "../Box";
+
 // @ts-ignore
 const RNAnimatedBox = Animated.createAnimatedComponent(Box);
 

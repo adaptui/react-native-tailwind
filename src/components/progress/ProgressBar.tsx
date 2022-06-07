@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { Dimensions } from 'react-native';
+import React, { forwardRef } from "react";
+import { Dimensions } from "react-native";
 import {
   Easing,
   interpolate,
@@ -9,13 +9,15 @@ import {
   withRepeat,
   withSpring,
   withTiming,
-} from 'react-native-reanimated';
-import { AnimatedBox } from '../../primitives/AnimatedBox';
-import { useTheme } from '../../theme/context';
-import { createComponent } from '../../utils';
-import { useProgressBarProps } from './ProgressProps';
+} from "react-native-reanimated";
 
-export type ProgressBarSizes = 'sm' | 'md' | 'lg' | 'xl';
+import { AnimatedBox } from "../../primitives/AnimatedBox";
+import { useTheme } from "../../theme/context";
+import { createComponent } from "../../utils";
+
+import { useProgressBarProps } from "./ProgressProps";
+
+export type ProgressBarSizes = "sm" | "md" | "lg" | "xl";
 
 export interface ProgressProps {
   /**
@@ -55,17 +57,17 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   Partial<ProgressProps>
 >((props, ref) => {
   const tailwind = useTheme();
-  const progressStyles = useTheme('progress');
+  const progressStyles = useTheme("progress");
   const { trackColor, progressTrackColor, value, size } =
     useProgressBarProps(props);
   const isIndeterminate = React.useMemo(
     () => value === null || value === undefined,
-    [value]
+    [value],
   );
-  const width = Dimensions.get('window').width;
+  const width = Dimensions.get("window").width;
 
   const progressValue = useDerivedValue(() =>
-    !isIndeterminate ? `${value || 0}%` : '0%'
+    !isIndeterminate ? `${value || 0}%` : "0%",
   );
   const animatingWidth = useAnimatedStyle(() => {
     return {
@@ -82,7 +84,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
         easing: Easing.linear,
       }),
       -1,
-      false
+      false,
     );
   }, [progressTranslate]);
 
@@ -93,7 +95,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
           translateX: interpolate(
             progressTranslate.value,
             [-1, 0, 1],
-            [-width, 0, width]
+            [-width, 0, width],
           ),
         },
       ],
@@ -131,11 +133,11 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   );
 });
 
-RNProgressBar.displayName = 'RNProgressBar';
+RNProgressBar.displayName = "RNProgressBar";
 
 export const ProgressBar = createComponent<Partial<ProgressProps>>(
   RNProgressBar,
   {
     shouldMemo: true,
-  }
+  },
 );

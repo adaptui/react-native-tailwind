@@ -1,4 +1,4 @@
-import { PathProps } from 'react-native-svg';
+import type { PathProps } from "react-native-svg";
 
 export type Dict<T = unknown> = Record<string, T>;
 

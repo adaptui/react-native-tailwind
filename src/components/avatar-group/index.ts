@@ -1,2 +1,2 @@
-export * from './AvatarGroup';
-export * from './AvatarGroupWrapper';
+export * from "./AvatarGroup";
+export * from "./AvatarGroupWrapper";

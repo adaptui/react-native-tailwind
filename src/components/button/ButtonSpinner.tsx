@@ -1,8 +1,10 @@
-import React, { isValidElement } from 'react';
-import { useTheme } from '../../theme';
-import { cx, RenderPropType } from '../../utils';
-import { Spinner, SpinnerSizes } from '../spinner';
-import { ButtonSizes } from './buttonTypes';
+import React, { isValidElement } from "react";
+
+import { useTheme } from "../../theme";
+import { cx, RenderPropType } from "../../utils";
+import { Spinner, SpinnerSizes } from "../spinner";
+
+import { ButtonSizes } from "./buttonTypes";
 
 interface ButtonSpinnerProps {
   size: ButtonSizes;
@@ -12,7 +14,7 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   spinner,
   size,
 }) => {
-  const buttonTheme = useTheme('button');
+  const buttonTheme = useTheme("button");
   const tailwind = useTheme();
   return isValidElement(spinner) ? (
     React.cloneElement(spinner, {

@@ -1,18 +1,20 @@
-import React, { useEffect, useMemo, useRef } from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
+import React, { useEffect, useMemo, useRef } from "react";
+import { StyleSheet, ViewStyle } from "react-native";
 import {
   interpolate,
   SharedValue,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-} from 'react-native-reanimated';
-import Svg, { Path } from 'react-native-svg';
-import { AnimatedBox, Box } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
-import { TooltipProps } from '../tooltip';
-import { SliderSizes } from './Slider';
+} from "react-native-reanimated";
+import Svg, { Path } from "react-native-svg";
+
+import { AnimatedBox, Box } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent } from "../../utils";
+import { TooltipProps } from "../tooltip";
+
+import { SliderSizes } from "./Slider";
 
 const TooltipArrow: React.FC = () => {
   return (
@@ -48,7 +50,7 @@ const getDiagonalLength = (height: number, width: number) => {
   return Math.pow(height * height + width * width, 0.5);
 };
 
-const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
+const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
   const defaultDraggingValue = useSharedValue(0);
   const defaultIsDraggingValue = useSharedValue(0);
   const tooltipWidth = useSharedValue(0);
@@ -57,11 +59,11 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
     draggingValue = defaultDraggingValue,
     isDragging = defaultIsDraggingValue,
     knobRadius = 0,
-    size = 'md',
+    size = "md",
   } = props;
 
   const tailwind = useTheme();
-  const sliderTheme = useTheme('slider');
+  const sliderTheme = useTheme("slider");
 
   const tooltipRef = useRef();
   const tooltipAnimation = useSharedValue(0);
@@ -93,7 +95,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
         { scale: interpolate(tooltipAnimation.value, [0, 1], [0.95, 1]) },
         { translateX: draggingValue.value },
       ],
-      display: isDragging.value ? 'flex' : 'none',
+      display: isDragging.value ? "flex" : "none",
       left: knobRadius - tooltipWidth.value / 2,
       bottom: sliderTheme.tooltip.position[size] * 2 + 6,
     };
@@ -102,15 +104,15 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
   return (
     <AnimatedBox
       ref={tooltipRef}
-      onLayout={(e) =>
+      onLayout={e =>
         (tooltipWidth.value = Math.round(e.nativeEvent.layout.width))
       }
-      style={[tailwind.style('absolute'), tooltipAnimatedStyle]}
+      style={[tailwind.style("absolute"), tooltipAnimatedStyle]}
     >
       <Box
         style={[
           tailwind.style(
-            'px-2 py-1.5 min-w-8 justify-center items-center bg-gray-800 rounded-lg'
+            "px-2 py-1.5 min-w-8 justify-center items-center bg-gray-800 rounded-lg",
           ),
           getContainerStyle,
         ]}
@@ -120,7 +122,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
       <AnimatedBox
         style={[
           StyleSheet.absoluteFill,
-          tailwind.style('w-3 h-3 z-10'),
+          tailwind.style("w-3 h-3 z-10"),
           animatedArrowStyle,
         ]}
       >
@@ -130,11 +132,11 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = (props) => {
   );
 };
 
-RNSliderTooltip.displayName = 'RNSliderTooltip';
+RNSliderTooltip.displayName = "RNSliderTooltip";
 
 export const SliderTooltip = createComponent<Partial<SliderTooltipProps>>(
   RNSliderTooltip,
   {
     shouldMemo: true,
-  }
+  },
 );

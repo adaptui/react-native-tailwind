@@ -1,9 +1,10 @@
 import {
   TouchableWithoutFeedback as RNTouchableWithoutFeedback,
   TouchableWithoutFeedbackProps as RNTouchableWithoutFeedbackProps,
-} from 'react-native';
-import type { Dict } from '../../utils/types';
-import { createComponent } from '../../utils/createComponent';
+} from "react-native";
+
+import { createComponent } from "../../utils/createComponent";
+import type { Dict } from "../../utils/types";
 
 export type LibraryTouchableWithoutFeedbackProps = Dict<unknown>;
 

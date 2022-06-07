@@ -1,1 +1,1 @@
-export * from './AnimatedBox';
+export * from "./AnimatedBox";

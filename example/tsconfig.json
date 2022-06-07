@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@adaptui/react-native-tailwind": ["../src/index"]
+    }
+  },
+  "extends": "expo/tsconfig.base"
+}

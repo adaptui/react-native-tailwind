@@ -1,25 +1,22 @@
 {
   "compilerOptions": {
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": [
-      "esnext"
-    ],
+    "baseUrl": "./",
+    "paths": {
+      "@adaptui/react-native-tailwind": ["./src/index"]
+    },
+    "target": "esnext",
+    "lib": ["esnext"],
     "module": "esnext",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "target": "esnext"
-  },
-  "extends": "expo/tsconfig.base"
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "importHelpers": true
+  }
 }

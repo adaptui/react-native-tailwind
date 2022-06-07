@@ -1,16 +1,18 @@
-import React, { forwardRef } from 'react';
-import { PressableProps, TextStyle, ViewStyle } from 'react-native';
-import { Box } from '../../primitives/Box';
-import { Text } from '../../primitives/Text';
-import { Touchable } from '../../primitives/Touchable';
-import { useTheme } from '../../theme';
-import { createComponent, RenderPropType } from '../../utils';
-import { createIcon } from '../create-icon';
-import { Icon } from '../icon';
-import { useTagProps } from './TagProps';
+import React, { forwardRef } from "react";
+import { PressableProps, TextStyle, ViewStyle } from "react-native";
 
-export type TagSizes = 'sm' | 'md' | 'lg' | 'xl';
-export type TagVariant = 'solid' | 'subtle' | 'outline';
+import { Box } from "../../primitives/Box";
+import { Text } from "../../primitives/Text";
+import { Touchable } from "../../primitives/Touchable";
+import { useTheme } from "../../theme";
+import { createComponent, RenderPropType } from "../../utils";
+import { createIcon } from "../create-icon";
+import { Icon } from "../icon";
+
+import { useTagProps } from "./TagProps";
+
+export type TagSizes = "sm" | "md" | "lg" | "xl";
+export type TagVariant = "solid" | "subtle" | "outline";
 
 export interface TagProps extends PressableProps {
   /**
@@ -55,7 +57,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
   Partial<TagProps>
 >((props, ref) => {
   const tailwind = useTheme();
-  const tagTheme = useTheme('tag');
+  const tagTheme = useTheme("tag");
 
   const {
     _tagLibProps: { size, variant },
@@ -70,14 +72,13 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
           tagTheme.size.default[size],
           tagTheme.variant.default[variant],
           pressed && tagTheme.variant.pressed[variant],
-          props.disabled && tagTheme.variant.disabled[variant]
+          props.disabled && tagTheme.variant.disabled[variant],
         ),
         { ...props.touchableContainerStyle },
       ]}
       {...props}
     >
       {prefix &&
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         (prefix?.type === Icon ? (
           createIcon({
@@ -85,7 +86,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
             iconFill: tailwind.getColor(
               props.disabled
                 ? tagTheme.variant.icon.disabled[variant]
-                : tagTheme.variant.icon.default[variant]
+                : tagTheme.variant.icon.default[variant],
             ),
             iconStyle: tailwind.style(tagTheme.size.prefix[size]),
           })
@@ -94,13 +95,13 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
             {prefix}
           </Box>
         ))}
-      {typeof props.children === 'string' ? (
+      {typeof props.children === "string" ? (
         <Text
           style={[
             tailwind.style(
               tagTheme.size.text[size],
               tagTheme.variant.text.default[variant],
-              props.disabled && tagTheme.variant.text.disabled[variant]
+              props.disabled && tagTheme.variant.text.disabled[variant],
             ),
             { ...props.textStyle },
           ]}
@@ -113,7 +114,6 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
         props.children
       )}
       {suffix &&
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         (suffix?.type === Icon ? (
           createIcon({
@@ -121,7 +121,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
             iconFill: tailwind.getColor(
               props.disabled
                 ? tagTheme.variant.icon.disabled[variant]
-                : tagTheme.variant.icon.default[variant]
+                : tagTheme.variant.icon.default[variant],
             ),
             iconStyle: tailwind.style(tagTheme.size.suffix[size]),
           })
@@ -134,7 +134,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
   );
 });
 
-RNTag.displayName = 'RNTag';
+RNTag.displayName = "RNTag";
 
 export const Tag = createComponent<Partial<TagProps>>(RNTag, {
   shouldMemo: true,

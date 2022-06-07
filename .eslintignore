@@ -1,24 +1,57 @@
-# don't ever lint node_modules
+# dotenv environment variable files
+.env*
+
+# Testing
+/coverage
+
+# Storybook Build
+storybook-static
+
+# Next JS
+/.next/
+/out/
+
+# Vercel folder
+.vercel
+
+# Local Netlify
+.netlify
+.idea
+*.env
+
+# Optional eslint cache
+.eslintcache
+
+# Logs
+*.log*
+
+# Dependency directories
 node_modules
-# don't lint build output (make sure it's set to your correct build folder name)
-lib
-# don't lint nyc coverage output
-coverage
+jspm_packages
 
-# dont have lint ios and android folders
-ios
-android
+# Mac files
+.DS_Store
 
-# basic js files of react native
+# Optional npm cache directory
+.npm
 
-.eslintrc.js
-babel.config.js
-jest.config.js
-metro.config.js
-tailwind.config.js
+# Yarn 2
+.pnp/
+.pnp.*
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.yarn-integrity # Yarn Integrity file
 
-example
+# Lock files
+package-lock.json
+yarn.lock
 
-scripts
-
-__tests__
+## library folder
+lib/
+src/theme/tailwind.config.js
+src/theme/colors.js

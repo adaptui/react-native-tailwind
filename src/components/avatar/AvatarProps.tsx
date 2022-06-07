@@ -1,13 +1,15 @@
-import { isUndefined } from 'lodash';
-import React from 'react';
-import { useAvatarGroup } from '../avatar-group/AvatarGroup';
+import React from "react";
+import { isUndefined } from "lodash";
+
+import { useAvatarGroup } from "../avatar-group/AvatarGroup";
+
 import {
   AvatarBasicProps,
   AvatarImageProps,
   AvatarOtherProps,
   AvatarProps,
   AvatarStatusProps,
-} from './avatarPropTypes';
+} from "./avatarPropTypes";
 
 interface AvatarPropsReturnType {
   _imageProps: AvatarImageProps;
@@ -30,7 +32,7 @@ export const useAvatarProps = ({
   const isSquared = isUndefined(avatarGroupProps)
     ? squared
     : avatarGroupProps.squared;
-  const avatarSize = avatarGroupProps?.size || size || 'xl';
+  const avatarSize = avatarGroupProps?.size || size || "xl";
   const _imageProps = {
     imageProps,
     src,

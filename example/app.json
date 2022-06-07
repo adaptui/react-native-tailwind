@@ -1,0 +1,16 @@
+{
+  "name": "React Native System Playground",
+  "displayName": "React Native System Playground",
+  "expo": {
+    "name": "React Native System Playground",
+    "slug": "react-native-system-playground",
+    "description": "Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System",
+    "version": "1.0.0",
+    "privacy": "public",
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": ["**/*"]
+  }
+}
