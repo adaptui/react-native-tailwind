@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-import { IconProps } from "../../utils/types";
+import { IconProps } from "../utils";
 
 export const Dash: React.FC<IconProps> = ({ fill = "#52525B" }) => {
   return (
