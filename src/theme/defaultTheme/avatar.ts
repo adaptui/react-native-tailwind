@@ -34,7 +34,7 @@ export const avatar = {
     '3xl': 'w-5',
   },
   initials: {
-    base: 'text-center uppercase text-gray-500',
+    base: 'text-center uppercase text-gray-800',
     size: {
       'xs': 'text-xs',
       'sm': 'text-cxs',
