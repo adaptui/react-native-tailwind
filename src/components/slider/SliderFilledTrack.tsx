@@ -1,6 +1,6 @@
 import React from "react";
 import { ViewStyle } from "react-native";
-import { AnimateProps } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 
 import { AnimatedBox } from "../../primitives";
 import { useTheme } from "../../theme";
@@ -8,7 +8,7 @@ import { useTheme } from "../../theme";
 import { SliderProps } from "./Slider";
 
 interface SliderFilledTrackProps extends Pick<SliderProps, "size"> {
-  animatedStyles: AnimateProps<ViewStyle>["style"];
+  animatedStyles: Animated.AnimateStyle<ViewStyle>;
 }
 
 export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({

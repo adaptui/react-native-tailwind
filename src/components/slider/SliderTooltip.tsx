@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { StyleSheet, ViewStyle } from "react-native";
-import {
+import Animated, {
   interpolate,
-  SharedValue,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -28,8 +27,8 @@ const TooltipArrow: React.FC = () => {
 };
 interface SliderTooltipProps extends TooltipProps {
   triggerRef: React.RefObject<unknown>;
-  draggingValue: SharedValue<number>;
-  isDragging: SharedValue<boolean>;
+  draggingValue: Animated.SharedValue<number>;
+  isDragging: Animated.SharedValue<boolean>;
   knobRadius: number;
   size: SliderSizes;
 }
