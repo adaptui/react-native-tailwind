@@ -1,2 +1,2 @@
-export * from './ProgressBar';
-export * from './ProgressProps';
+export * from "./ProgressBar";
+export * from "./ProgressProps";

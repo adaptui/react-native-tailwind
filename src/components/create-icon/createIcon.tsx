@@ -1,5 +1,6 @@
-import { ViewStyle } from 'react-native';
-import { passProps, RenderPropType } from '../../utils';
+import { ViewStyle } from "react-native";
+
+import { passProps, RenderPropType } from "../../utils";
 
 interface CreateIconOptions {
   icon: RenderPropType;
@@ -8,7 +9,6 @@ interface CreateIconOptions {
   iconSize?: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createIcon = (options: CreateIconOptions) => {
   const { icon, iconFill, iconStyle, iconSize } = options;
   return passProps(icon, {

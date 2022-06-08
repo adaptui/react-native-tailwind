@@ -1,19 +1,20 @@
-import { pick } from 'lodash';
-import { TagProps } from './Tag';
-import { TAG_LIB_KEYS, TAG_OPTION_KEYS } from './__keys';
+import { pick } from "lodash";
 
-type TagOptions = Pick<TagProps, 'suffix' | 'prefix' | 'closable'>;
+import { TAG_LIB_KEYS, TAG_OPTION_KEYS } from "./__keys";
+import { TagProps } from "./Tag";
+
+type TagOptions = Pick<TagProps, "suffix" | "prefix" | "closable">;
 interface TagPropsReturnType {
   _tagLibProps: TagProps;
   _tagOptions: TagOptions;
 }
 
 export const useTagProps = (
-  props: React.PropsWithChildren<Partial<TagProps>>
+  props: React.PropsWithChildren<Partial<TagProps>>,
 ): TagPropsReturnType => {
   props = {
-    size: 'lg',
-    variant: 'solid',
+    size: "lg",
+    variant: "solid",
     closable: false,
     ...props,
   };

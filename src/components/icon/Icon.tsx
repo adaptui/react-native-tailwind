@@ -1,8 +1,9 @@
-import React, { forwardRef } from 'react';
-import { ViewStyle } from 'react-native';
-import { Box } from '../../primitives/Box';
-import { useTheme } from '../../theme/context';
-import { createComponent, RenderPropType } from '../../utils';
+import React, { forwardRef } from "react";
+import { ViewStyle } from "react-native";
+
+import { Box } from "../../primitives/Box";
+import { useTheme } from "../../theme/context";
+import { createComponent, RenderPropType } from "../../utils";
 
 export interface IconComponentProps {
   /**
@@ -31,7 +32,7 @@ const RNIcon: React.FC<Partial<IconComponentProps>> = forwardRef<
   const tailwind = useTheme();
   const { icon, style, size, color } = props;
   const iconAspectRatio = 1;
-  const sizer = size ? `w-[${size}px]` : '';
+  const sizer = size ? `w-[${size}px]` : "";
   return (
     <Box
       ref={ref}
@@ -43,7 +44,7 @@ const RNIcon: React.FC<Partial<IconComponentProps>> = forwardRef<
   );
 });
 
-RNIcon.displayName = 'RNIcon';
+RNIcon.displayName = "RNIcon";
 
 export const Icon = createComponent<Partial<IconComponentProps>>(RNIcon, {
   shouldMemo: true,

@@ -1,11 +1,12 @@
-import { ImageProps, ImageSourcePropType } from 'react-native';
-import { BoxProps } from '../../primitives';
+import { ImageProps, ImageSourcePropType } from "react-native";
 
-export type AvatarSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
-export type AvatarStatusType = 'active' | 'away' | 'sleep' | 'typing' | null;
+import { BoxProps } from "../../primitives";
+
+export type AvatarSizes = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+export type AvatarStatusType = "active" | "away" | "sleep" | "typing" | null;
 
 export interface AvatarImageBasicProps {
-  imageProps: Omit<ImageProps, 'source'>;
+  imageProps: Omit<ImageProps, "source">;
   src: ImageSourcePropType;
   size: AvatarSizes;
 }
@@ -16,7 +17,7 @@ export interface AvatarBasicProps {
 }
 
 export type AvatarImageProps = AvatarImageBasicProps &
-  Pick<AvatarBasicProps, 'squared'>;
+  Pick<AvatarBasicProps, "squared">;
 
 export interface AvatarStatusProps {
   status: AvatarStatusType;

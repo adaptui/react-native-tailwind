@@ -1,20 +1,22 @@
-import React, { forwardRef, useState } from 'react';
-import { DefaultUser } from '../../assets';
-import { Box, Text } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent, cx, styleAdapter } from '../../utils';
-import { Icon } from '../icon';
-import { AvatarImage } from './AvatarImage';
-import { useAvatarProps } from './AvatarProps';
-import { AvatarProps, AvatarSizes } from './avatarPropTypes';
-import { AvatarStatus } from './AvatarStatus';
+import React, { forwardRef, useState } from "react";
+
+import { DefaultUser } from "../../icons";
+import { Box, Text } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent, cx, styleAdapter } from "../../utils";
+import { Icon } from "../icon";
+
+import { AvatarImage } from "./AvatarImage";
+import { useAvatarProps } from "./AvatarProps";
+import type { AvatarProps, AvatarSizes } from "./avatarPropTypes";
+import { AvatarStatus } from "./AvatarStatus";
 
 function getInitials(name: string, size: AvatarSizes) {
   if (!name) {
     return;
   }
-  const [firstName, lastName] = name.split(' ');
-  const oneLetterInitialSizes = ['xs', 'sm', 'md'];
+  const [firstName, lastName] = name.split(" ");
+  const oneLetterInitialSizes = ["xs", "sm", "md"];
 
   const initials =
     firstName && lastName
@@ -31,13 +33,13 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
   Partial<AvatarProps>
 >((props, ref) => {
   const tailwind = useTheme();
-  const avatarTheme = useTheme('avatar');
+  const avatarTheme = useTheme("avatar");
   const { _imageProps, _basicProps, _otherProps, _statusProps } =
     useAvatarProps(props);
   const { name, style, ...boxProps } = _otherProps;
   const isSourceAvailable = React.useMemo(
     () => (_imageProps?.src ? true : false),
-    [_imageProps?.src]
+    [_imageProps?.src],
   );
   const [imageAvailable, setImageAvailable] = useState(isSourceAvailable);
   const loadFallback = () => setImageAvailable(false);
@@ -50,15 +52,15 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
           cx(
             avatarTheme.base,
             avatarTheme.size[_basicProps.size],
-            !_basicProps.squared ? avatarTheme.circular : ''
-          )
+            !_basicProps.squared ? avatarTheme.circular : "",
+          ),
         ),
         styleAdapter(
           style,
           {
             pressed: false,
           },
-          false
+          false,
         ),
       ]}
       ref={ref}
@@ -71,8 +73,8 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
           style={tailwind.style(
             cx(
               avatarTheme.initials.base,
-              avatarTheme.initials.size[_basicProps.size]
-            )
+              avatarTheme.initials.size[_basicProps.size],
+            ),
           )}
           adjustsFontSizeToFit
           allowFontScaling={false}
@@ -83,9 +85,9 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
         <Icon
           icon={<DefaultUser />}
           style={tailwind.style(
-            cx(avatarTheme.defaultUserIcon[_basicProps.size])
+            cx(avatarTheme.defaultUserIcon[_basicProps.size]),
           )}
-          color={tailwind.getColor('text-gray-800')}
+          color={tailwind.getColor("text-gray-800")}
         />
       )}
       {_statusProps.status && <AvatarStatus {..._statusProps} />}
@@ -93,7 +95,7 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
   );
 });
 
-RNAvatar.displayName = 'RNAvatar';
+RNAvatar.displayName = "RNAvatar";
 
 export const Avatar = createComponent<Partial<AvatarProps>>(RNAvatar, {
   shouldMemo: true,

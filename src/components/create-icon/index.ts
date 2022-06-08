@@ -1,1 +1,1 @@
-export * from './createIcon';
+export * from "./createIcon";

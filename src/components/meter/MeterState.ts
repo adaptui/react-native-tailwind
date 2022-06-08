@@ -1,4 +1,4 @@
-type Status = 'safe' | 'caution' | 'danger' | undefined;
+type Status = "safe" | "caution" | "danger" | undefined;
 export interface MeterState {
   /**
    * The `value` of the meter indicator.
@@ -51,7 +51,7 @@ export interface MeterState {
 
 export type MeterInitialState = Pick<
   Partial<MeterState>,
-  'value' | 'min' | 'max' | 'low' | 'optimum' | 'high'
+  "value" | "min" | "max" | "low" | "optimum" | "high"
 >;
 
 export type MeterStateReturn = MeterState;
@@ -74,7 +74,7 @@ export function clamp(value: number, min = -Infinity, max = Infinity): number {
 export function valueToPercent(
   value: number,
   min: number,
-  max: number
+  max: number,
 ): number {
   return ((value - min) * 100) / (max - min);
 }
@@ -91,7 +91,7 @@ type CalculateStatusProps = {
   high: number;
 };
 
-export type StatusType = 'safe' | 'caution' | 'safe' | 'danger';
+export type StatusType = "safe" | "caution" | "safe" | "danger";
 
 export const calculateStatus = (props: CalculateStatusProps): StatusType => {
   const { value, optimum, min, max, low, high } = props;
@@ -99,37 +99,37 @@ export const calculateStatus = (props: CalculateStatusProps): StatusType => {
   // This check always comes first
   if (isInRange(optimum, low, high)) {
     if (isInRange(value, low, high)) {
-      return 'safe';
+      return "safe";
     }
-    return 'caution';
+    return "caution";
   }
 
   if (isInRange(optimum, min, low)) {
     if (isInRange(value, min, low)) {
-      return 'safe';
+      return "safe";
     }
     if (value > low && value <= high) {
-      return 'caution';
+      return "caution";
     }
-    return 'danger';
+    return "danger";
   }
 
   if (isInRange(optimum, high, max)) {
     if (isInRange(value, high, max)) {
-      return 'safe';
+      return "safe";
     }
     if (value < high && value >= low) {
-      return 'caution';
+      return "caution";
     }
-    return 'danger';
+    return "danger";
   }
 
   // A safe return
-  return 'safe';
+  return "safe";
 };
 
 export const useMeterState = (
-  props: MeterInitialState = {}
+  props: MeterInitialState = {},
 ): MeterStateReturn => {
   const { value: defaultValue = 0, min = 0, max = 1, ...sealed } = props;
 

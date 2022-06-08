@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 export const getValidChildren = (
-  children: React.ReactNode
+  children: React.ReactNode,
 ): React.ReactElement[] => {
-  return React.Children.toArray(children).filter((child) =>
-    React.isValidElement(child)
+  return React.Children.toArray(children).filter(child =>
+    React.isValidElement(child),
   ) as React.ReactElement[];
 };

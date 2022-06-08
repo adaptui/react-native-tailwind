@@ -1,9 +1,10 @@
-import { PressableProps } from 'react-native';
+import { PressableProps } from "react-native";
+
 import {
   ButtonLibraryProps,
   ButtonOptionProps,
   ButtonProps,
-} from './buttonTypes';
+} from "./buttonTypes";
 
 interface ButtonPropsReturnType {
   _buttonProps: ButtonLibraryProps;
@@ -12,8 +13,8 @@ interface ButtonPropsReturnType {
 }
 
 export const useButtonProps = ({
-  size = 'md',
-  variant = 'solid',
+  size = "md",
+  variant = "solid",
   loading,
   disabled,
   prefix,

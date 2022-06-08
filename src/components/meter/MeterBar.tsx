@@ -1,13 +1,14 @@
-import React, { forwardRef } from 'react';
-import { ViewStyle } from 'react-native';
+import React, { forwardRef } from "react";
+import { ViewStyle } from "react-native";
 import {
   useAnimatedStyle,
   useDerivedValue,
   withSpring,
-} from 'react-native-reanimated';
-import { AnimatedBox, Box } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
+} from "react-native-reanimated";
+
+import { AnimatedBox, Box } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent } from "../../utils";
 
 interface MeterBarProps {
   /**
@@ -36,7 +37,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
   const { percent, barStyle } = props;
   const percentValue = useDerivedValue(() => (percent ? percent : 0));
   const tailwind = useTheme();
-  const meterTheme = useTheme('meter');
+  const meterTheme = useTheme("meter");
   const animatedMeterStyle = useAnimatedStyle(() => {
     return {
       width: withSpring(`${percentValue.value}%`, SPRING_CONFIG),
@@ -54,7 +55,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
   );
 });
 
-RNMeterBar.displayName = 'RNMeterBar';
+RNMeterBar.displayName = "RNMeterBar";
 
 export const MeterBar = createComponent<Partial<MeterBarProps>>(RNMeterBar, {
   shouldMemo: true,

@@ -1,6 +1,7 @@
-import { Text as RNText, TextProps as RNTextProps } from 'react-native';
-import type { Dict } from '../../utils/types';
-import { createComponent } from '../../utils/createComponent';
+import { Text as RNText, TextProps as RNTextProps } from "react-native";
+
+import { createComponent } from "../../utils/createComponent";
+import type { Dict } from "../../utils/types";
 
 export type LibraryTextProps = Dict<unknown>;
 

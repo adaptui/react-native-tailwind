@@ -1,24 +1,25 @@
-# react-native-tailwind
-
-Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System
+# AdaptUI React Native Tailwind
 
 ## Installation
 
 ```sh
-npm install react-native-tailwind
+npm install @adaptui/react-native-tailwind
 ```
 
 ## Usage
 
 ```js
-import { Button } from 'react-native-tailwind';
+import { multiply } from "@adaptui/react-native-tailwind";
 
-<Button size="sm">Continue</Button>;
+// ...
+
+const result = await multiply(3, 7);
 ```
 
 ## Contributing
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the
+repository and the development workflow.
 
 ## License
 

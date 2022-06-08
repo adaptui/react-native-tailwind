@@ -2,14 +2,14 @@
  * Some of the code was taken from existing open source
  * Thanks to -> https://github.com/nghinv-software/react-native-slider
  */
-import React, { forwardRef, useCallback, useRef } from 'react';
+import React, { forwardRef, useCallback, useRef } from "react";
 import {
   LayoutChangeEvent,
   StyleSheet,
   TextInput,
   TextInputProps,
-} from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+} from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   Extrapolate,
   interpolate,
@@ -20,17 +20,19 @@ import Animated, {
   useSharedValue,
   withSpring,
   withTiming,
-} from 'react-native-reanimated';
-import { AnimatedBox, Box } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent, RenderPropType } from '../../utils';
-import { createIcon } from '../create-icon';
-import { Icon } from '../icon';
-import { SliderFilledTrack } from './SliderFilledTrack';
-import { SliderTooltip } from './SliderTooltip';
-import { SliderTrack } from './SliderTrack';
+} from "react-native-reanimated";
 
-export type SliderSizes = 'sm' | 'md' | 'lg' | 'xl';
+import { AnimatedBox, Box } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent, RenderPropType } from "../../utils";
+import { createIcon } from "../create-icon";
+import { Icon } from "../icon";
+
+import { SliderFilledTrack } from "./SliderFilledTrack";
+import { SliderTooltip } from "./SliderTooltip";
+import { SliderTrack } from "./SliderTrack";
+
+export type SliderSizes = "sm" | "md" | "lg" | "xl";
 export interface SliderProps {
   /**
    * The size of Slider and Knob
@@ -89,15 +91,15 @@ function computedValue(
   width: Animated.SharedValue<number>,
   min: number,
   max: number,
-  step: number
+  step: number,
 ) {
-  'worklet';
+  "worklet";
 
   const value = interpolate(
     translateX.value,
     [0, width.value],
     [min, max],
-    Extrapolate.CLAMP
+    Extrapolate.CLAMP,
   );
   return Math.round(value / step) * step;
 }
@@ -106,9 +108,9 @@ function computedTranslateFromValue(
   value: number,
   width: number,
   min: number,
-  max: number
+  max: number,
 ) {
-  'worklet';
+  "worklet";
   return interpolate(value, [min, max], [0, width], Extrapolate.CLAMP);
 }
 
@@ -120,9 +122,9 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   Partial<SliderProps>
 >((props, ref) => {
   const tailwind = useTheme();
-  const sliderTheme = useTheme('slider');
+  const sliderTheme = useTheme("slider");
   const {
-    size = 'md',
+    size = "md",
     onDragValue,
     onDragEndValue,
     defaultValue = [0, 0],
@@ -137,7 +139,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
 
   // Default Values Check
   if (defaultValue[0] > defaultValue[1]) {
-    throw Error('Default values should be in increasing order');
+    throw Error("Default values should be in increasing order");
   }
 
   const knobOneRef = useRef();
@@ -169,7 +171,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       transform: [{ translateX: knobOneDraggingPostion.value }],
       borderWidth: isKnobOneDragging.value ? withSpring(2) : withSpring(0),
     }),
-    [knobOneCurrentPosition]
+    [knobOneCurrentPosition],
   );
 
   const animatedKnobTwoStyle = useAnimatedStyle(
@@ -177,7 +179,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       transform: [{ translateX: knobTwoDraggingPostion.value }],
       borderWidth: isKnobTwoDragging.value ? withSpring(2) : withSpring(0),
     }),
-    [knobTwoCurrentPosition]
+    [knobTwoCurrentPosition],
   );
 
   const knobOneZIndexValue = useAnimatedStyle(() => {
@@ -208,18 +210,18 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     .onStart(() => {
       knobOneDraggingPostion.value = knobOneCurrentPosition.value;
     })
-    .onUpdate((e) => {
-      'worklet';
+    .onUpdate(e => {
+      "worklet";
       const newPosition = knobOneCurrentPosition.value + e.translationX;
       if (range) {
         knobOneDraggingPostion.value = Math.min(
           knobTwoCurrentPosition.value,
-          Math.max(0, newPosition)
+          Math.max(0, newPosition),
         );
       } else {
         knobOneDraggingPostion.value = Math.min(
           sliderWidth.value,
-          Math.max(0, newPosition)
+          Math.max(0, newPosition),
         );
       }
       if (step > zerothPosition) {
@@ -228,32 +230,32 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           sliderWidth,
           minValue,
           maxValue,
-          step
+          step,
         );
         knobOneDraggingPostion.value = computedTranslateFromValue(
           knobOneValue,
           sliderWidth.value,
           minValue,
-          maxValue
+          maxValue,
         );
       }
     })
     .onEnd(() => {
-      'worklet';
+      "worklet";
       knobOneCurrentPosition.value = knobOneDraggingPostion.value;
       const knobOneValue = computedValue(
         knobOneDraggingPostion,
         sliderWidth,
         minValue,
         maxValue,
-        step
+        step,
       );
       const knobTwoValue = computedValue(
         knobTwoDraggingPostion,
         sliderWidth,
         minValue,
         maxValue,
-        step
+        step,
       );
       if (onDragEndValue && isKnobOneDragging.value) {
         runOnJS(onDragEndValue)([knobOneValue, knobTwoValue]);
@@ -272,18 +274,18 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     .onStart(() => {
       knobTwoDraggingPostion.value = knobTwoCurrentPosition.value;
     })
-    .onUpdate((e) => {
-      'worklet';
+    .onUpdate(e => {
+      "worklet";
       const newPosition = knobTwoCurrentPosition.value + e.translationX;
       if (range) {
         knobTwoDraggingPostion.value = Math.min(
           sliderWidth.value,
-          Math.max(knobOneCurrentPosition.value, newPosition)
+          Math.max(knobOneCurrentPosition.value, newPosition),
         );
       } else {
         knobTwoDraggingPostion.value = Math.min(
           sliderWidth.value,
-          Math.max(0, newPosition)
+          Math.max(0, newPosition),
         );
       }
       if (step > zerothPosition) {
@@ -292,32 +294,32 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           sliderWidth,
           minValue,
           maxValue,
-          step
+          step,
         );
         knobTwoDraggingPostion.value = computedTranslateFromValue(
           knobTwoValue,
           sliderWidth.value,
           minValue,
-          maxValue
+          maxValue,
         );
       }
     })
     .onEnd(() => {
-      'worklet';
+      "worklet";
       knobTwoCurrentPosition.value = knobTwoDraggingPostion.value;
       const knobOneValue = computedValue(
         knobOneDraggingPostion,
         sliderWidth,
         minValue,
         maxValue,
-        step
+        step,
       );
       const knobTwoValue = computedValue(
         knobTwoDraggingPostion,
         sliderWidth,
         minValue,
         maxValue,
-        step
+        step,
       );
       if (onDragEndValue && isKnobTwoDragging.value) {
         runOnJS(onDragEndValue)([knobOneValue, knobTwoValue]);
@@ -334,7 +336,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         sliderWidth,
         minValue,
         maxValue,
-        step
+        step,
       );
       return value;
     },
@@ -345,11 +347,11 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           sliderWidth,
           minValue,
           maxValue,
-          step
+          step,
         );
         runOnJS(onDragValue)([newValue, value]);
       }
-    }
+    },
   );
 
   useAnimatedReaction(
@@ -359,7 +361,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         sliderWidth,
         minValue,
         maxValue,
-        step
+        step,
       );
       return value;
     },
@@ -370,11 +372,11 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           sliderWidth,
           minValue,
           maxValue,
-          step
+          step,
         );
         runOnJS(onDragValue)([value, newValue]);
       }
-    }
+    },
   );
 
   const knobOneAnimatedTextProps = useAnimatedProps(() => {
@@ -383,7 +385,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       sliderWidth,
       minValue,
       maxValue,
-      step
+      step,
     );
     return {
       text: `${computedDraggingValue}`,
@@ -396,7 +398,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       sliderWidth,
       minValue,
       maxValue,
-      step
+      step,
     );
     return {
       text: `${computedDraggingValue}`,
@@ -411,7 +413,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         knobOneDefaultValue,
         event.nativeEvent.layout.width - 2 * zerothPosition,
         minValue,
-        maxValue
+        maxValue,
       );
       knobOneDraggingPostion.value = withTiming(transX);
       knobOneCurrentPosition.value = transX;
@@ -421,7 +423,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           knobTwoDefaultValue,
           event.nativeEvent.layout.width - 2 * zerothPosition,
           minValue,
-          maxValue
+          maxValue,
         );
         knobTwoDraggingPostion.value = withTiming(transKnob2X);
         knobTwoCurrentPosition.value = transKnob2X;
@@ -438,7 +440,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       range,
       knobTwoDraggingPostion,
       knobTwoCurrentPosition,
-    ]
+    ],
   );
 
   // Updating Knob One Position using Value
@@ -448,14 +450,14 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         knobOneDraggingValue.value,
         sliderWidth.value,
         minValue,
-        maxValue
+        maxValue,
       );
       return translateValue;
     },
-    (newValue) => {
+    newValue => {
       knobOneDraggingPostion.value = withSpring(newValue);
       knobOneCurrentPosition.value = knobOneDraggingPostion.value;
-    }
+    },
   );
 
   // Feeding on change value to the Talkback/Voiceover
@@ -474,14 +476,14 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         knobTwoDraggingValue.value,
         sliderWidth.value,
         minValue,
-        maxValue
+        maxValue,
       );
       return translateValue;
     },
-    (newValue) => {
+    newValue => {
       knobTwoDraggingPostion.value = withSpring(newValue);
       knobTwoCurrentPosition.value = knobTwoDraggingPostion.value;
-    }
+    },
   );
 
   // Feeding on change value to the Talkback/Voiceover
@@ -504,18 +506,18 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         size={size}
         animatedStyles={animatedFilledTrackStyle}
       />
-      <Box focusable style={tailwind.style('relative')}>
+      <Box focusable style={tailwind.style("relative")}>
         <AnimatedBox
           accessible={true}
           accessibilityRole="adjustable"
-          accessibilityLabel={`Thumb to set ${range ? 'min' : ''} value`}
+          accessibilityLabel={`Thumb to set ${range ? "min" : ""} value`}
           accessibilityActions={[
-            { name: 'increment', label: 'incrementKnobOne' },
-            { name: 'decrement', label: 'decrementKnobOne' },
+            { name: "increment", label: "incrementKnobOne" },
+            { name: "decrement", label: "decrementKnobOne" },
           ]}
-          onAccessibilityAction={(event) => {
+          onAccessibilityAction={event => {
             switch (event.nativeEvent.actionName) {
-              case 'increment':
+              case "increment":
                 // Alert.alert('Increment');
                 if (
                   knobOneDraggingValue.value <
@@ -524,7 +526,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
                   knobOneDraggingValue.value += step;
                 }
                 break;
-              case 'decrement':
+              case "decrement":
                 // Alert.alert('Decrement');
                 if (knobOneDraggingValue.value > minValue) {
                   knobOneDraggingValue.value -= step;
@@ -538,7 +540,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             tailwind.style(
               sliderTheme.knob.common,
               sliderTheme.knob.size[size],
-              disabled ? sliderTheme.knob.disabled : ''
+              disabled ? sliderTheme.knob.disabled : "",
             ),
             knobOneZIndexValue,
 
@@ -550,7 +552,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             <AnimatedBox
               style={[
                 StyleSheet.absoluteFill,
-                tailwind.style('justify-center items-center'),
+                tailwind.style("justify-center items-center"),
               ]}
               ref={knobOneRef}
             >
@@ -562,7 +564,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
                     iconFill: tailwind.getColor(
                       disabled
                         ? sliderTheme.knobIcon.disabled
-                        : sliderTheme.knobIcon.activeFill
+                        : sliderTheme.knobIcon.activeFill,
                     ),
                   })
                 : knobIcon}
@@ -587,25 +589,25 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           />
         )}
       </Box>
-      <Box focusable style={tailwind.style('relative')}>
+      <Box focusable style={tailwind.style("relative")}>
         {range && (
           <AnimatedBox
             accessible={true}
             accessibilityRole="adjustable"
-            accessibilityLabel={'Thumb to set max value'}
+            accessibilityLabel={"Thumb to set max value"}
             accessibilityActions={[
-              { name: 'increment', label: 'incrementKnobTwo' },
-              { name: 'decrement', label: 'decrementKnobTwo' },
+              { name: "increment", label: "incrementKnobTwo" },
+              { name: "decrement", label: "decrementKnobTwo" },
             ]}
-            onAccessibilityAction={(event) => {
+            onAccessibilityAction={event => {
               switch (event.nativeEvent.actionName) {
-                case 'increment':
+                case "increment":
                   // Alert.alert('Increment');
                   if (knobTwoDraggingValue.value < maxValue) {
                     knobTwoDraggingValue.value += step;
                   }
                   break;
-                case 'decrement':
+                case "decrement":
                   // Alert.alert('Decrement');
                   if (knobTwoDraggingValue.value > knobOneDraggingValue.value) {
                     knobTwoDraggingValue.value -= step;
@@ -619,7 +621,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
               tailwind.style(
                 sliderTheme.knob.common,
                 sliderTheme.knob.size[size],
-                disabled ? sliderTheme.knob.disabled : ''
+                disabled ? sliderTheme.knob.disabled : "",
               ),
               knobTwoZIndexValue,
               { bottom: -sliderTheme.knob.position[size] },
@@ -630,7 +632,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
               <AnimatedBox
                 style={[
                   StyleSheet.absoluteFill,
-                  tailwind.style('justify-center items-center'),
+                  tailwind.style("justify-center items-center"),
                 ]}
                 ref={knobTwoRef}
               >
@@ -639,12 +641,12 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
                   ? createIcon({
                       icon: knobIcon,
                       iconStyle: tailwind.style(
-                        sliderTheme.knobIcon.size[size]
+                        sliderTheme.knobIcon.size[size],
                       ),
                       iconFill: tailwind.getColor(
                         disabled
                           ? sliderTheme.knobIcon.disabled
-                          : sliderTheme.knobIcon.activeFill
+                          : sliderTheme.knobIcon.activeFill,
                       ),
                     })
                   : knobIcon}
@@ -674,7 +676,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   );
 });
 
-RNSlider.displayName = 'RNSlider';
+RNSlider.displayName = "RNSlider";
 
 export const Slider = createComponent<Partial<SliderProps>>(RNSlider, {
   shouldMemo: true,

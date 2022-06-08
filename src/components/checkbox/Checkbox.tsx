@@ -1,25 +1,28 @@
-import { VisuallyHidden } from '@react-aria/visually-hidden';
-import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
-import { useToggleState } from '@react-stately/toggle';
-import React, { forwardRef, useMemo, useRef } from 'react';
-import { Platform } from 'react-native';
-import { useFocusRing, useHover } from 'react-native-aria';
-import { Check, Dash } from '../../assets';
-import { Box, Text, Touchable } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
-import { mergeRefs } from '../../utils/mergeRefs';
-import { createIcon } from '../create-icon';
-import { Icon } from '../icon';
-import { useCheckboxGroupContext } from './CheckboxGroup';
+import React, { forwardRef, useMemo, useRef } from "react";
+import { Platform } from "react-native";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { useCheckbox, useCheckboxGroupItem } from "@react-native-aria/checkbox";
+import { useFocusRing } from "@react-native-aria/focus";
+import { useHover } from "@react-native-aria/interactions";
+import { useToggleState } from "@react-stately/toggle";
 
-export type CheckboxSizes = 'sm' | 'md' | 'lg';
+import { Check, Dash } from "../../icons";
+import { Box, Text, Touchable } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent } from "../../utils";
+import { mergeRefs } from "../../utils/mergeRefs";
+import { createIcon } from "../create-icon";
+import { Icon } from "../icon";
+
+import { useCheckboxGroupContext } from "./CheckboxGroup";
+
+export type CheckboxSizes = "sm" | "md" | "lg";
 
 interface CheckboxAriaProps {
   accessibilityLabel: string;
-  accessibilityRole: 'checkbox';
+  accessibilityRole: "checkbox";
   accessibilityState: {
-    checked: 'mixed';
+    checked: "mixed";
     disabled: boolean;
   };
   checked: boolean;
@@ -96,7 +99,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   Partial<CheckboxProps>
 >((props, ref) => {
   const tailwind = useTheme();
-  const checkboxTheme = useTheme('checkbox');
+  const checkboxTheme = useTheme("checkbox");
 
   const checkboxGroupState = useCheckboxGroupContext();
 
@@ -107,7 +110,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   ]) as unknown as React.MutableRefObject<null>;
 
   const {
-    size = 'md',
+    size = "md",
     label,
     description,
     defaultSelected,
@@ -117,7 +120,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     isIndeterminate,
     isInvalid,
     accessibilityLabel,
-    value = '',
+    value = "",
   } = props;
 
   const checkboxToggleState = useToggleState({
@@ -130,18 +133,17 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     isIndeterminate,
     defaultSelected,
     isSelected,
-    'onChange': setSelected,
+    onChange: setSelected,
     isDisabled,
-    'aria-label': accessibilityLabel,
+    "aria-label": accessibilityLabel,
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { inputProps } = checkboxGroupState
     ? // eslint-disable-next-line react-hooks/rules-of-hooks
       useCheckboxGroupItem(
         { ...checkboxSpecificProps, value },
         checkboxGroupState,
-        checkboxRef
+        checkboxRef,
       )
     : // eslint-disable-next-line react-hooks/rules-of-hooks
       useCheckbox(checkboxSpecificProps, checkboxToggleState, checkboxRef);
@@ -171,28 +173,28 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                 : checkboxTheme.icon.unChecked.default,
               checkboxProps.isIndeterminate
                 ? checkboxTheme.icon.indeterminate.default
-                : '',
+                : "",
               isInvalid
                 ? checkboxProps.isIndeterminate
                   ? checkboxTheme.icon.indeterminate.invalid
                   : checkboxProps.checked
                   ? checkboxTheme.icon.checked.invalid
                   : checkboxTheme.icon.unChecked.invalid
-                : '',
+                : "",
               isDisabled
                 ? checkboxProps.isIndeterminate
                   ? checkboxTheme.icon.indeterminate.disabled
                   : checkboxProps.checked
                   ? checkboxTheme.icon.checked.disabled
                   : checkboxTheme.icon.unChecked.disabled
-                : '',
+                : "",
               pressedOrHovered
                 ? checkboxProps.isIndeterminate
                   ? checkboxTheme.icon.indeterminate.pressedOrHovered
                   : checkboxProps.checked
                   ? checkboxTheme.icon.checked.pressedOrHovered
                   : checkboxTheme.icon.unChecked.pressedOrHovered
-                : '',
+                : "",
             ]),
             { borderWidth: checkboxTheme.icon.border },
           ]}
@@ -200,7 +202,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
           {icon &&
             createIcon({
               icon,
-              iconFill: tailwind.getColor('text-white'),
+              iconFill: tailwind.getColor("text-white"),
               iconStyle: tailwind.style(checkboxTheme.icon.iconSize[size]),
             })}
         </Box>
@@ -210,7 +212,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               style={[
                 tailwind.style(
                   checkboxTheme.text.common,
-                  checkboxTheme.text.size[size]
+                  checkboxTheme.text.size[size],
                 ),
                 description
                   ? { lineHeight: checkboxTheme.text.lineHeight[size] }
@@ -225,7 +227,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               style={[
                 tailwind.style(
                   checkboxTheme.description.common,
-                  checkboxTheme.description.size[size]
+                  checkboxTheme.description.size[size],
                 ),
               ]}
             >
@@ -241,16 +243,15 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
 
   const { isHovered, hoverProps } = useHover({}, checkboxItemRef);
 
-  return Platform.OS === 'web' ? (
+  return Platform.OS === "web" ? (
     <Box
       style={tailwind.style([
         checkboxTheme.label.common,
-        description ? checkboxTheme.label.withDescription : '',
+        description ? checkboxTheme.label.withDescription : "",
         checkboxTheme.label.size[size],
         checkboxTheme.label.disabled,
-        isHovered ? checkboxTheme.label.pressed : '',
+        isHovered ? checkboxTheme.label.pressed : "",
       ])}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       accessibilityRole="label"
       {...hoverProps}
@@ -268,10 +269,10 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       style={({ pressed }) => [
         tailwind.style([
           checkboxTheme.label.common,
-          description ? checkboxTheme.label.withDescription : '',
+          description ? checkboxTheme.label.withDescription : "",
           checkboxTheme.label.size[size],
           checkboxTheme.label.disabled,
-          pressed ? checkboxTheme.label.pressed : '',
+          pressed ? checkboxTheme.label.pressed : "",
         ]),
       ]}
       ref={checkboxRef}
@@ -281,7 +282,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   );
 });
 
-RNCheckbox.displayName = 'RNCheckbox';
+RNCheckbox.displayName = "RNCheckbox";
 
 export const Checkbox = createComponent<Partial<CheckboxProps>>(RNCheckbox, {
   shouldMemo: true,

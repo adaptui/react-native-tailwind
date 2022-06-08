@@ -1,10 +1,12 @@
-import React from 'react';
-import Svg, { Path } from 'react-native-svg';
-import { IconProps } from '../../utils';
-import { Icon } from '../icon';
-import { TooltipPlacement } from './Tooltip';
+import React from "react";
+import Svg, { Path } from "react-native-svg";
 
-const UpArrow: React.FC<IconProps> = ({ fill = '#27272A' }) => {
+import { IconProps } from "../../utils";
+import { Icon } from "../icon";
+
+import { TooltipPlacement } from "./Tooltip";
+
+const UpArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   return (
     <Svg width="100%" height="100%" viewBox="0 0 12 5" fill="none">
       <Path
@@ -15,7 +17,7 @@ const UpArrow: React.FC<IconProps> = ({ fill = '#27272A' }) => {
   );
 };
 
-const LeftArrow: React.FC<IconProps> = ({ fill = '#27272A' }) => {
+const LeftArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   return (
     <Svg width="100%" height="100%" viewBox="0 0 5 12" fill="none">
       <Path
@@ -26,7 +28,7 @@ const LeftArrow: React.FC<IconProps> = ({ fill = '#27272A' }) => {
   );
 };
 
-const RightArrow: React.FC<IconProps> = ({ fill = '#27272A' }) => {
+const RightArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   return (
     <Svg width="100%" height="100%" viewBox="0 0 5 12" fill="none">
       <Path
@@ -37,7 +39,7 @@ const RightArrow: React.FC<IconProps> = ({ fill = '#27272A' }) => {
   );
 };
 
-const DownArrow: React.FC<IconProps> = ({ fill = '#27272A' }) => {
+const DownArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   return (
     <Svg width="12" height="5" viewBox="0 0 12 5" fill="none">
       <Path
@@ -53,13 +55,13 @@ interface TooltipArrowProps {
 }
 
 const TooltipArrow: React.FC<TooltipArrowProps> = ({ placement }) => {
-  if (placement.split(' ')[0] === 'top') {
+  if (placement.split(" ")[0] === "top") {
     return <Icon icon={<DownArrow />} size={12} />;
-  } else if (placement.split(' ')[0] === 'left') {
+  } else if (placement.split(" ")[0] === "left") {
     return <Icon icon={<RightArrow />} size={12} />;
-  } else if (placement.split(' ')[0] === 'right') {
+  } else if (placement.split(" ")[0] === "right") {
     return <Icon icon={<LeftArrow />} size={12} />;
-  } else if (placement.split(' ')[0] === 'bottom') {
+  } else if (placement.split(" ")[0] === "bottom") {
     return <Icon icon={<UpArrow />} size={12} />;
   } else {
     return null;

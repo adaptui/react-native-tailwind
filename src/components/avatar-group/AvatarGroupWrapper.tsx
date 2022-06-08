@@ -1,8 +1,9 @@
-import React from 'react';
-import { Box, BoxProps } from '../../primitives';
-import { useTheme } from '../../theme';
-import { styleAdapter } from '../../utils';
-import { AvatarSizes } from '../avatar/avatarPropTypes';
+import React from "react";
+
+import { Box, BoxProps } from "../../primitives";
+import { useTheme } from "../../theme";
+import { styleAdapter } from "../../utils";
+import { AvatarSizes } from "../avatar/avatarPropTypes";
 
 export interface AvatarGroupWrapperProps extends BoxProps {
   size?: AvatarSizes;
@@ -14,7 +15,7 @@ export const AvatarGroupWrapper: React.FC<AvatarGroupWrapperProps> = ({
   style,
   ...props
 }) => {
-  const avatarTheme = useTheme('avatar');
+  const avatarTheme = useTheme("avatar");
   const tailwind = useTheme();
 
   return (

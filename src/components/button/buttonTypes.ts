@@ -1,8 +1,9 @@
-import { PressableProps, TextStyle } from 'react-native';
-import { RenderPropType } from '../../index';
+import { PressableProps, TextStyle } from "react-native";
 
-export type ButtonSizes = 'sm' | 'md' | 'lg' | 'xl';
-export type ButtonVariants = 'outline' | 'ghost' | 'solid' | 'subtle';
+import { RenderPropType } from "../../index";
+
+export type ButtonSizes = "sm" | "md" | "lg" | "xl";
+export type ButtonVariants = "outline" | "ghost" | "solid" | "subtle";
 
 export interface ButtonLibraryProps {
   size: ButtonSizes;

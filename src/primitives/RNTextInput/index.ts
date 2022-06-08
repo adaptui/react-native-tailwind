@@ -1,1 +1,1 @@
-export * from './RNTextInput';
+export * from "./RNTextInput";

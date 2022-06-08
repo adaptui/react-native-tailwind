@@ -1,24 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { defaults, mergeWith } from "lodash";
+import { twMerge } from "tailwind-merge";
 
-import { defaults, mergeWith } from 'lodash';
-
-import { isString, isUndefined } from '../utils';
+import { isString, isUndefined } from "../utils";
 
 import type {
   DefaultTheme,
   ExtendableDefaultTheme,
   PartialDefaultTheme,
-} from './index';
-
-import { twMerge } from 'tailwind-merge';
+} from "./index";
 
 export function mergeThemes(themes: PartialDefaultTheme[]) {
   return {
     ...themes.reduce<DefaultTheme>(
       (merged, theme) => defaults(merged, theme),
-      {} as DefaultTheme
+      {} as DefaultTheme,
     ),
 
     // In order to resolve n config objects, we combine all of their `extend` properties
@@ -56,7 +51,7 @@ export function mergeExtensions({
           return twMerge(merged, value);
         }
         return undefined;
-      }
+      },
     );
   });
 }
