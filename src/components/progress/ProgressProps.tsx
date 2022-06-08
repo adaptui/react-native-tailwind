@@ -1,16 +1,17 @@
-import { useTheme } from '../../index';
-import { ProgressProps } from './ProgressBar';
+import { useTheme } from "../../index";
+
+import { ProgressProps } from "./ProgressBar";
 
 export const useProgressBarProps = (
-  props: React.PropsWithChildren<Partial<ProgressProps>>
+  props: React.PropsWithChildren<Partial<ProgressProps>>,
 ): ProgressProps => {
   const tailwind = useTheme();
-  const progressStyles = useTheme('progress');
+  const progressStyles = useTheme("progress");
   props = {
-    size: 'lg',
+    size: "lg",
     trackColor: tailwind.getColor(progressStyles.defaultTrackColor),
     progressTrackColor: tailwind.getColor(
-      progressStyles.defaultProgressTrackColor
+      progressStyles.defaultProgressTrackColor,
     ),
     ...props,
   };

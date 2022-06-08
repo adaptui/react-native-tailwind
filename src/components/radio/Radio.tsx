@@ -1,19 +1,23 @@
-import { VisuallyHidden } from '@react-aria/visually-hidden';
-import React, { forwardRef, useRef } from 'react';
-import { Platform } from 'react-native';
-import { useFocusRing, useHover, useRadio } from 'react-native-aria';
-import { Box, Text, Touchable } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
-import { mergeRefs } from '../../utils/mergeRefs';
-import { useRadioGroupContext } from './RadioGroup';
+import React, { forwardRef, useRef } from "react";
+import { Platform } from "react-native";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { useFocusRing } from "@react-native-aria/focus";
+import { useHover } from "@react-native-aria/interactions";
+import { useRadio } from "@react-native-aria/radio";
 
-export type RadioSizes = 'sm' | 'md' | 'lg';
+import { Box, Text, Touchable } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent } from "../../utils";
+import { mergeRefs } from "../../utils/mergeRefs";
+
+import { useRadioGroupContext } from "./RadioGroup";
+
+export type RadioSizes = "sm" | "md" | "lg";
 
 // Check https://react-spectrum.adobe.com/react-aria/useRadioGroup.html
 interface RadioAriaProps {
   accessibilityLabel: string;
-  accessibilityRole: 'radio';
+  accessibilityRole: "radio";
   accessibilityState: {
     checked: boolean;
     disabled: boolean;
@@ -67,7 +71,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   } = props;
 
   const tailwind = useTheme();
-  const radioTheme = useTheme('radio');
+  const radioTheme = useTheme("radio");
 
   const radioRef = useRef(null);
   const radioboxRef = mergeRefs([
@@ -82,14 +86,13 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   } = useRadioGroupContext();
 
   const { inputProps } = useRadio(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     { isDisabled, ...props },
     state,
-    radioboxRef
+    radioboxRef,
   );
 
-  const size = inlineRadioSize || sizeFromGroupContext || 'md';
+  const size = inlineRadioSize || sizeFromGroupContext || "md";
 
   const radioProps: RadioAriaProps = inputProps as RadioAriaProps;
 
@@ -110,17 +113,17 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                 ? radioProps.checked
                   ? radioTheme.icon.checked.invalid
                   : radioTheme.icon.unChecked.invalid
-                : '',
+                : "",
               radioProps.disabled
                 ? radioProps.checked
                   ? radioTheme.icon.checked.disabled
                   : radioTheme.icon.unChecked.disabled
-                : '',
+                : "",
               pressedOrHovered
                 ? radioProps.checked
                   ? radioTheme.icon.checked.pressedOrHovered
                   : radioTheme.icon.unChecked.pressedOrHovered
-                : '',
+                : "",
             ]),
             { borderWidth: radioTheme.icon.border },
           ]}
@@ -136,7 +139,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                   ? radioProps.checked
                     ? radioTheme.icon.innerCircle.checked.disabled
                     : radioTheme.icon.innerCircle.unChecked.disabled
-                  : '',
+                  : "",
               ]),
             ]}
           />
@@ -147,7 +150,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
               style={[
                 tailwind.style(
                   radioTheme.text.common,
-                  radioTheme.text.size[size]
+                  radioTheme.text.size[size],
                 ),
                 description
                   ? { lineHeight: radioTheme.text.lineHeight[size] }
@@ -162,7 +165,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
               style={[
                 tailwind.style(
                   radioTheme.description.common,
-                  radioTheme.description.size[size]
+                  radioTheme.description.size[size],
                 ),
               ]}
             >
@@ -177,16 +180,15 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   const { isHovered, hoverProps } = useHover({}, radioItemRef);
 
-  return Platform.OS === 'web' ? (
+  return Platform.OS === "web" ? (
     <Box
       style={tailwind.style([
         radioTheme.label.common,
-        description ? radioTheme.label.withDescription : '',
+        description ? radioTheme.label.withDescription : "",
         radioTheme.label.size[size],
         radioTheme.label.disabled,
-        isHovered ? radioTheme.label.pressed : '',
+        isHovered ? radioTheme.label.pressed : "",
       ])}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       accessibilityRole="label"
       {...hoverProps}
@@ -204,10 +206,10 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
       style={({ pressed }) => [
         tailwind.style([
           radioTheme.label.common,
-          description ? radioTheme.label.withDescription : '',
+          description ? radioTheme.label.withDescription : "",
           radioTheme.label.size[size],
           radioTheme.label.disabled,
-          pressed ? radioTheme.label.pressed : '',
+          pressed ? radioTheme.label.pressed : "",
         ]),
       ]}
       ref={radioboxRef}
@@ -217,7 +219,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   );
 });
 
-RNRadio.displayName = 'RNRadio';
+RNRadio.displayName = "RNRadio";
 
 export const Radio = createComponent<Partial<RadioProps>>(RNRadio, {
   shouldMemo: true,

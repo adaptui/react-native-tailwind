@@ -1,13 +1,15 @@
-import { RadioGroupState, useRadioGroupState } from '@react-stately/radio';
-import React, { forwardRef } from 'react';
-import { useRadioGroup } from 'react-native-aria';
-import { Box } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent, createContext, getValidChildren } from '../../utils';
-import { RadioSizes } from './Radio';
+import React, { forwardRef } from "react";
+import { useRadioGroup } from "@react-native-aria/radio";
+import { RadioGroupState, useRadioGroupState } from "@react-stately/radio";
+
+import { Box } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent, createContext, getValidChildren } from "../../utils";
+
+import type { RadioSizes } from "./Radio";
 
 const [RadioGroupProvider, useRadioGroupContext] = createContext<
-  RadioGroupState & Pick<RadioGroupProps, 'size'>
+  RadioGroupState & Pick<RadioGroupProps, "size">
 >({});
 
 export { useRadioGroupContext };
@@ -21,7 +23,7 @@ export interface RadioGroupProps {
   /**
    * Orientation of Radio Group
    */
-  orientation: 'vertical' | 'horizontal';
+  orientation: "vertical" | "horizontal";
   /**
    * Selected Value of Radio Group - (Controlled)
    * (Controlled)
@@ -46,8 +48,8 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   Partial<RadioGroupProps>
 >((props, ref) => {
   const {
-    orientation = 'vertical',
-    size = 'md',
+    orientation = "vertical",
+    size = "md",
     value,
     defaultValue,
     isDisabled = false,
@@ -63,11 +65,10 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   };
 
   const tailwind = useTheme();
-  const radioGroupTheme = useTheme('radio');
+  const radioGroupTheme = useTheme("radio");
 
   const state = useRadioGroupState(radioBoxGroupProps);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { radioGroupProps } = useRadioGroup(props, state);
 
   const validChildren = getValidChildren(children);
@@ -91,11 +92,11 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   );
 });
 
-RNRadioGroup.displayName = 'RNRadioGroup';
+RNRadioGroup.displayName = "RNRadioGroup";
 
 export const RadioGroup = createComponent<Partial<RadioGroupProps>>(
   RNRadioGroup,
   {
     shouldMemo: true,
-  }
+  },
 );

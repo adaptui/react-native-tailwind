@@ -1,11 +1,13 @@
-import React, { forwardRef, useState } from 'react';
-import { Box, Text } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
-import { MeterBar } from './MeterBar';
-import { useMeterState, valueToPercent } from './MeterState';
+import React, { forwardRef, useState } from "react";
 
-export type MeterSizes = 'sm' | 'md' | 'lg' | 'xl';
+import { Box, Text } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent } from "../../utils";
+
+import { MeterBar } from "./MeterBar";
+import { useMeterState, valueToPercent } from "./MeterState";
+
+export type MeterSizes = "sm" | "md" | "lg" | "xl";
 export interface MeterProps {
   /**
    * Meter Sizes
@@ -68,9 +70,9 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
   Partial<MeterProps>
 >((props, ref) => {
   const tailwind = useTheme();
-  const meterTheme = useTheme('meter');
+  const meterTheme = useTheme("meter");
   const [meterWidth, setMeterWidth] = useState<number>(0);
-  const { label, hint, size = 'md', intervals = 1, flatBorders } = props;
+  const { label, hint, size = "md", intervals = 1, flatBorders } = props;
   const { value, max } = useMeterState(props);
 
   const spaceBetweenSegmentsInPixel = 4;
@@ -81,18 +83,18 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
 
   return (
     <Box
-      onLayout={(event) => setMeterWidth(event.nativeEvent.layout.width)}
+      onLayout={event => setMeterWidth(event.nativeEvent.layout.width)}
       style={tailwind.style([meterTheme.wrapper])}
       ref={ref}
     >
       {(label || hint) && (
-        <Box style={tailwind.style('flex-row')}>
+        <Box style={tailwind.style("flex-row")}>
           {label && (
             <Text
               style={tailwind.style([
                 meterTheme.label.common,
                 meterTheme.label.size[size],
-                hint ? meterTheme.label.hasHint : '',
+                hint ? meterTheme.label.hasHint : "",
               ])}
             >
               {label}
@@ -162,7 +164,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
   );
 });
 
-RNMeter.displayName = 'RNMeter';
+RNMeter.displayName = "RNMeter";
 
 export const Meter = createComponent<Partial<MeterProps>>(RNMeter, {
   shouldMemo: true,

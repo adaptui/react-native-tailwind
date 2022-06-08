@@ -1,14 +1,16 @@
-import React from 'react';
-import { Box, BoxProps } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createIcon } from '../create-icon';
-import { Icon } from '../icon';
-import { SelectProps } from './Select';
+import React from "react";
+
+import { Box, BoxProps } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createIcon } from "../create-icon";
+import { Icon } from "../icon";
+
+import { SelectProps } from "./Select";
 
 interface SelectPrefixProps
   extends Pick<
       SelectProps,
-      'size' | 'variant' | 'disabled' | 'invalid' | 'prefix'
+      "size" | "variant" | "disabled" | "invalid" | "prefix"
     >,
     BoxProps {
   isPressedOrHovered: boolean;
@@ -24,10 +26,9 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
   ...props
 }) => {
   const tailwind = useTheme();
-  const selectPrefixStyles = useTheme('select');
-  const _prefix: SelectProps['prefix'] = React.useMemo(() => {
+  const selectPrefixStyles = useTheme("select");
+  const _prefix: SelectProps["prefix"] = React.useMemo(() => {
     const selectPrefix =
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       prefix?.type === Icon
         ? createIcon({
@@ -40,10 +41,10 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
                 ? selectPrefixStyles.prefix.variant[variant].disabled
                 : isPressedOrHovered
                 ? selectPrefixStyles.prefix.variant[variant].pressedOrHovered
-                : selectPrefixStyles.prefix.variant[variant].default
+                : selectPrefixStyles.prefix.variant[variant].default,
             ),
             iconStyle: tailwind.style(
-              selectPrefixStyles.prefix.variant[variant].common
+              selectPrefixStyles.prefix.variant[variant].common,
             ),
           })
         : prefix;
@@ -55,7 +56,7 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
       style={tailwind.style(
         selectPrefixStyles.prefix.common,
         selectPrefixStyles.prefix.size[size],
-        selectPrefixStyles.prefix.variant[variant].common
+        selectPrefixStyles.prefix.variant[variant].common,
       )}
       {...props}
     >

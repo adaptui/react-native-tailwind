@@ -1,6 +1,7 @@
-import { Pressable, PressableProps } from 'react-native';
-import type { Dict } from '../../utils/types';
-import { createComponent } from '../../utils/createComponent';
+import { Pressable, PressableProps } from "react-native";
+
+import { createComponent } from "../../utils/createComponent";
+import type { Dict } from "../../utils/types";
 
 export type LibraryTouchableProps = Dict<unknown>;
 

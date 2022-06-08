@@ -1,16 +1,18 @@
-import { useControllableState } from '@chakra-ui/hooks';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { useHover } from '@react-native-aria/interactions';
-import { isUndefined } from 'lodash';
-import React, { forwardRef, useCallback, useMemo, useRef } from 'react';
-import { Box, Text, Touchable } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent, createContext, RenderPropType } from '../../utils';
-import { SelectPrefix } from './SelectPrefix';
-import { SelectSuffix } from './SelectSuffix';
+import React, { forwardRef, useCallback, useMemo, useRef } from "react";
+import { useControllableState } from "@chakra-ui/hooks";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useHover } from "@react-native-aria/interactions";
+import { isUndefined } from "lodash";
 
-export type SelectSizes = 'sm' | 'md' | 'lg' | 'xl';
-export type SelectVariants = 'outline' | 'subtle' | 'underline' | 'ghost';
+import { Box, Text, Touchable } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent, createContext, RenderPropType } from "../../utils";
+
+import { SelectPrefix } from "./SelectPrefix";
+import { SelectSuffix } from "./SelectSuffix";
+
+export type SelectSizes = "sm" | "md" | "lg" | "xl";
+export type SelectVariants = "outline" | "subtle" | "underline" | "ghost";
 
 type ItemData = { value: string; disabled: boolean; label: string };
 
@@ -63,7 +65,7 @@ export interface SelectProps {
 
 const [SelectGroupProvider, useSelectGroupContext] = createContext({
   strict: false,
-  name: 'SelectGroupProvider',
+  name: "SelectGroupProvider",
 });
 
 export { useSelectGroupContext };
@@ -73,18 +75,18 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
   Partial<SelectProps>
 >((props, _ref) => {
   const tailwind = useTheme();
-  const selectStyle = useTheme('select');
+  const selectStyle = useTheme("select");
 
   const {
-    size = 'md',
-    variant = 'outline',
+    size = "md",
+    variant = "outline",
     prefix,
     invalid = false,
     disabled = false,
     defaultState,
     state,
     onStateChange,
-    placeholder = 'Select option',
+    placeholder = "Select option",
   } = props;
 
   const [prefixWidth, setPrefixWidth] = React.useState(0);
@@ -104,10 +106,10 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ["25%", "50%"], []);
 
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    console.log("handleSheetChanges", index);
   }, []);
 
   // callbacks
@@ -123,13 +125,13 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
           tailwind.style([
             selectStyle.base.common,
             selectStyle.base.size[size].common,
-            !prefix ? selectStyle.base.size[size].withoutAddon : '',
+            !prefix ? selectStyle.base.size[size].withoutAddon : "",
             selectStyle.base.variant[variant].common,
-            invalid ? selectStyle.base.variant[variant].invalid : '',
-            disabled ? selectStyle.base.variant[variant].disabled : '',
+            invalid ? selectStyle.base.variant[variant].invalid : "",
+            disabled ? selectStyle.base.variant[variant].disabled : "",
             pressed || isHovered
               ? selectStyle.base.variant[variant].pressedOrHovered
-              : '',
+              : "",
           ]),
         ]}
         disabled={disabled}
@@ -140,7 +142,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
           return (
             <>
               <SelectPrefix
-                onLayout={(event) =>
+                onLayout={event =>
                   setPrefixWidth(event.nativeEvent.layout.width)
                 }
                 size={size}
@@ -160,14 +162,14 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                     : isUndefined(selectState)
                     ? selectStyle.base.text.variant[variant].initial
                     : selectStyle.base.text.variant[variant].common,
-                  prefix ? `pl-[${prefixWidth}px]` : '',
+                  prefix ? `pl-[${prefixWidth}px]` : "",
                   `pr-[${suffixWidth}px]`,
                 ])}
               >
                 {isUndefined(selectState) ? placeholder : selectState}
               </Text>
               <SelectSuffix
-                onLayout={(event) =>
+                onLayout={event =>
                   setSuffixWidth(event.nativeEvent.layout.width)
                 }
                 size={size}
@@ -185,15 +187,15 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         index={0}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}
-        style={tailwind.style('rounded-t-lg shadow-lg')}
+        style={tailwind.style("rounded-t-lg shadow-lg")}
       >
-        <Box style={tailwind.style('flex-1')}>{props.children}</Box>
+        <Box style={tailwind.style("flex-1")}>{props.children}</Box>
       </BottomSheetModal>
     </SelectGroupProvider>
   );
 });
 
-RNSelect.displayName = 'RNSelect';
+RNSelect.displayName = "RNSelect";
 
 export const Select = createComponent<Partial<SelectProps>>(RNSelect, {
   shouldMemo: true,

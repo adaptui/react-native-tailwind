@@ -1,12 +1,14 @@
-import React from 'react';
-import { ViewStyle } from 'react-native';
-import { AnimateStyle } from 'react-native-reanimated';
-import { AnimatedBox } from '../../primitives';
-import { useTheme } from '../../theme';
-import { SliderProps } from './Slider';
+import React from "react";
+import { ViewStyle } from "react-native";
+import Animated from "react-native-reanimated";
 
-interface SliderFilledTrackProps extends Pick<SliderProps, 'size'> {
-  animatedStyles: AnimateStyle<ViewStyle>;
+import { AnimatedBox } from "../../primitives";
+import { useTheme } from "../../theme";
+
+import { SliderProps } from "./Slider";
+
+interface SliderFilledTrackProps extends Pick<SliderProps, "size"> {
+  animatedStyles: Animated.AnimateStyle<ViewStyle>;
 }
 
 export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({
@@ -14,7 +16,7 @@ export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({
   animatedStyles,
 }) => {
   const tailwind = useTheme();
-  const sliderTheme = useTheme('slider');
+  const sliderTheme = useTheme("slider");
 
   return (
     <AnimatedBox

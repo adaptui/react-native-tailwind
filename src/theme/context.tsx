@@ -1,11 +1,12 @@
-import React from 'react';
-import { cloneDeep } from 'lodash';
+import React from "react";
+import { useColorScheme } from "react-native";
+import { cloneDeep } from "lodash";
 
-import { useColorScheme } from 'react-native';
-import { tw } from './tailwind';
-import defaultTheme from './defaultTheme';
-import type { DeepDictionary, DeepPartial } from '../../src/utils/types';
-import { mergeExtensions, mergeThemes } from './mergeTheme';
+import type { DeepDictionary, DeepPartial } from "../../src/utils/types";
+
+import defaultTheme from "./defaultTheme";
+import { mergeExtensions, mergeThemes } from "./mergeTheme";
+import { tw } from "./tailwind";
 
 export type DefaultTheme = typeof defaultTheme;
 export type PartialDefaultTheme = DeepPartial<DefaultTheme>;
@@ -14,28 +15,28 @@ export type ExtendableDefaultTheme = PartialDefaultTheme & {
 };
 
 interface ThemeContextType {
-  style: TWType['style'];
-  getColor: TWType['color'];
-  setColorScheme: TWType['setColorScheme'];
+  style: TWType["style"];
+  getColor: TWType["color"];
+  setColorScheme: TWType["setColorScheme"];
   theme?: DeepDictionary<DefaultTheme>;
   extend?: ExtendableDefaultTheme;
 }
 
 const ThemeContext = React.createContext<ThemeContextType | undefined>(
-  undefined
+  undefined,
 );
 
 type ThemeKeys = keyof DefaultTheme;
 function useTheme(): ThemeContextType;
 function useTheme<T extends ThemeKeys>(component?: T): DefaultTheme[T];
 function useTheme<T extends ThemeKeys>(
-  component?: T
+  component?: T,
 ): ThemeContextType | DefaultTheme[T] {
   const context = React.useContext(ThemeContext);
 
   if (!context) {
     throw new Error(
-      'useTheme: `ThemeContext` is undefined. Seems you forgot to wrap component within the TailwindThemeProvider'
+      "useTheme: `ThemeContext` is undefined. Seems you forgot to wrap component within the TailwindThemeProvider",
     );
   }
 
@@ -49,7 +50,7 @@ function useTheme<T extends ThemeKeys>(
 
 type TWType = typeof tw;
 
-const TailwindThemeProvider: React.FC<Partial<ThemeContextType>> = (props) => {
+const TailwindThemeProvider: React.FC<Partial<ThemeContextType>> = props => {
   const colorScheme = useColorScheme();
   tw.setColorScheme(colorScheme);
 
@@ -76,4 +77,4 @@ const TailwindThemeProvider: React.FC<Partial<ThemeContextType>> = (props) => {
   );
 };
 
-export { TailwindThemeProvider, useTheme, ThemeContext };
+export { TailwindThemeProvider, ThemeContext, useTheme };

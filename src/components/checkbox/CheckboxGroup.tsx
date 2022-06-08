@@ -1,23 +1,24 @@
-import { useCheckboxGroup } from '@react-native-aria/checkbox';
+import React, { forwardRef } from "react";
+import { useCheckboxGroup } from "@react-native-aria/checkbox";
 import {
   CheckboxGroupState,
   useCheckboxGroupState,
-} from '@react-stately/checkbox';
-import React, { forwardRef } from 'react';
-import { Box } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent, createContext, getValidChildren } from '../../utils';
+} from "@react-stately/checkbox";
+
+import { Box } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent, createContext, getValidChildren } from "../../utils";
 
 const [CheckboxGroupProvider, useCheckboxGroupContext] =
   createContext<CheckboxGroupState>({
     strict: false,
-    name: 'CheckboxGroupProvider',
+    name: "CheckboxGroupProvider",
   });
 
 export { useCheckboxGroupContext };
 
 export interface CheckboxGroupProps {
-  orientation: 'vertical' | 'horizontal';
+  orientation: "vertical" | "horizontal";
   value: string[];
   defaultValue: string[];
   isDisabled: boolean;
@@ -29,7 +30,7 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
   Partial<CheckboxGroupProps>
 >((props, ref) => {
   const {
-    orientation = 'vertical',
+    orientation = "vertical",
     children,
     value,
     defaultValue,
@@ -44,11 +45,10 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
   };
   const state = useCheckboxGroupState(checkboxGroupProps);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { groupProps } = useCheckboxGroup(checkboxGroupProps, state);
 
   const tailwind = useTheme();
-  const checkboxGroupTheme = useTheme('checkbox');
+  const checkboxGroupTheme = useTheme("checkbox");
 
   const validChildren = getValidChildren(children);
   return (
@@ -62,7 +62,7 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
           <Box
             key={index}
             style={tailwind.style(
-              checkboxGroupTheme.group[orientation].spacing
+              checkboxGroupTheme.group[orientation].spacing,
             )}
           >
             {renderElement}
@@ -73,11 +73,11 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
   );
 });
 
-RNCheckboxGroup.displayName = 'RNCheckboxGroup';
+RNCheckboxGroup.displayName = "RNCheckboxGroup";
 
 export const CheckboxGroup = createComponent<Partial<CheckboxGroupProps>>(
   RNCheckboxGroup,
   {
     shouldMemo: true,
-  }
+  },
 );

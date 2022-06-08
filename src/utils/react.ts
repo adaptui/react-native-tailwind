@@ -1,13 +1,12 @@
-import { Dict, RenderPropType } from '../index';
-import React from 'react';
+import React from "react";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+import { Dict, RenderPropType } from "../index";
+
 function isFunction(value: unknown): value is Function {
-  return typeof value === 'function';
+  return typeof value === "function";
 }
 
 // Merge library & user prop
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const passProps = (component: RenderPropType, props?: Dict) => {
   return React.isValidElement(component)
     ? React.cloneElement(component, {

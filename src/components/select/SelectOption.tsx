@@ -1,6 +1,7 @@
-import React, { forwardRef } from 'react';
-import { Text, Touchable } from '../../primitives';
-import { createComponent } from '../../utils';
+import React, { forwardRef } from "react";
+
+import { Text, Touchable } from "../../primitives";
+import { createComponent } from "../../utils";
 
 export type SelectOptionProps = {
   disabled?: boolean;
@@ -20,7 +21,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
   );
 });
 
-RNSelectOption.displayName = 'RNSelectOption';
+RNSelectOption.displayName = "RNSelectOption";
 
 export const SelectOption = createComponent<SelectOptionProps>(RNSelectOption, {
   shouldMemo: true,

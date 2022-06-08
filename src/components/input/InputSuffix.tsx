@@ -1,10 +1,12 @@
-import React from 'react';
-import { Touchable, TouchableProps } from '../../primitives';
-import { useTheme } from '../../theme';
-import { InputProps } from './Input';
+import React from "react";
+
+import { Touchable, TouchableProps } from "../../primitives";
+import { useTheme } from "../../theme";
+
+import { InputProps } from "./Input";
 
 interface InputSuffixProps
-  extends Pick<InputProps, 'size' | 'variant'>,
+  extends Pick<InputProps, "size" | "variant">,
     TouchableProps {}
 
 export const InputSuffix: React.FC<InputSuffixProps> = ({
@@ -13,7 +15,7 @@ export const InputSuffix: React.FC<InputSuffixProps> = ({
   ...props
 }) => {
   const tailwind = useTheme();
-  const inputTheme = useTheme('input');
+  const inputTheme = useTheme("input");
 
   return (
     <Touchable
@@ -21,7 +23,7 @@ export const InputSuffix: React.FC<InputSuffixProps> = ({
         tailwind.style(
           inputTheme.suffix.common,
           inputTheme.suffix.size[size],
-          inputTheme.suffix.variant[variant].common
+          inputTheme.suffix.variant[variant].common,
         ),
       ]}
       {...props}

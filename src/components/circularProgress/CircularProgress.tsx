@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { StyleSheet, TextInput, TextInputProps } from 'react-native';
+import React, { forwardRef } from "react";
+import { StyleSheet, TextInput, TextInputProps } from "react-native";
 import Animated, {
   Easing,
   useAnimatedProps,
@@ -9,19 +9,21 @@ import Animated, {
   withRepeat,
   withSpring,
   withTiming,
-} from 'react-native-reanimated';
-import Svg, { Circle, G } from 'react-native-svg';
-import { Box } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
-import { useCircularProgressProps } from './CircularProgressProps';
+} from "react-native-reanimated";
+import Svg, { Circle, G } from "react-native-svg";
+
+import { Box } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent } from "../../utils";
+
+import { useCircularProgressProps } from "./CircularProgressProps";
 
 Animated.addWhitelistedNativeProps({ text: true });
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
-export type CircularProgressSizes = 'sm' | 'md' | 'lg' | 'xl';
+export type CircularProgressSizes = "sm" | "md" | "lg" | "xl";
 
 export interface CircularProgressProps {
   /**
@@ -90,12 +92,12 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
     },
   } = useCircularProgressProps(props);
   const tailwindStyle = useTheme().style;
-  const circularProgressTheme = useTheme('circularProgress');
+  const circularProgressTheme = useTheme("circularProgress");
 
   // Indeterminate Check
   const isIndeterminate = React.useMemo(
     () => value === null || value === undefined,
-    [value]
+    [value],
   );
 
   // Circle parameters
@@ -109,7 +111,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
 
   // Animation for value based progress
   const progressValue = useDerivedValue(() =>
-    !isIndeterminate ? value || 0 : 0
+    !isIndeterminate ? value || 0 : 0,
   );
   const animatedCircleProps = useAnimatedProps(() => {
     /**
@@ -139,8 +141,8 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
           easing: Easing.linear,
         }),
         -1,
-        false
-      )
+        false,
+      ),
     );
   }, [circularTranslate]);
   const indeterminateAnimatedCircleProps = useAnimatedProps(() => {
@@ -158,7 +160,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
         height={radius * 2}
         viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
       >
-        <G rotation={'-90'} origin={`${halfCircle}, ${halfCircle}`}>
+        <G rotation={"-90"} origin={`${halfCircle}, ${halfCircle}`}>
           <Circle
             stroke={trackColor}
             strokeWidth={strokeWidth}
@@ -214,11 +216,11 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
   );
 });
 
-RNCircularProgress.displayName = 'RNCircularProgress';
+RNCircularProgress.displayName = "RNCircularProgress";
 
 export const CircularProgress = createComponent<Partial<CircularProgressProps>>(
   RNCircularProgress,
   {
     shouldMemo: true,
-  }
+  },
 );

@@ -1,23 +1,26 @@
-import React, { forwardRef } from 'react';
-import { Box, Text, Touchable } from '../../primitives';
-import { useTheme } from '../../theme';
-import { createComponent } from '../../utils';
-import { createIcon } from '../create-icon';
-import { Icon } from '../icon';
-import { Spinner, SpinnerSizes } from '../spinner';
-import { ButtonPrefix } from './ButtonPrefix';
-import { useButtonProps } from './ButtonProps';
-import { ButtonSpinner } from './ButtonSpinner';
-import { ButtonSuffix } from './ButtonSuffix';
-import { ButtonProps } from './buttonTypes';
+import React, { forwardRef } from "react";
+
+import { Box, Text, Touchable } from "../../primitives";
+import { useTheme } from "../../theme";
+import { createComponent, cx, styleAdapter } from "../../utils";
+import { createIcon } from "../create-icon";
+import { Icon } from "../icon";
+import { Spinner, SpinnerSizes } from "../spinner";
+
+import { ButtonPrefix } from "./ButtonPrefix";
+import { useButtonProps } from "./ButtonProps";
+import { ButtonSpinner } from "./ButtonSpinner";
+import { ButtonSuffix } from "./ButtonSuffix";
+import { ButtonProps } from "./buttonTypes";
 
 const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
   typeof Touchable,
   Partial<ButtonProps>
->((props, ref) => {
+>(({ style, ...props }, ref) => {
   const tailwind = useTheme();
-  const buttonTheme = useTheme('button');
-  const { _buttonProps, _buttonOptions } = useButtonProps(props);
+  const buttonTheme = useTheme("button");
+  const { _buttonProps, _buttonOptions, _buttonPressableProps } =
+    useButtonProps(props);
   const iconAspectRatio = 1;
   const isButtonDisabled = props.disabled || props.loading;
   /**
@@ -26,10 +29,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
   const children = _buttonOptions.icon ? (
     <Box
       style={[
-        tailwind.style([
-          buttonTheme.icon.size[_buttonProps.size],
-          _buttonOptions.loading ? 'opacity-0' : '',
-        ]),
+        tailwind.style(
+          cx(
+            buttonTheme.icon.size[_buttonProps.size],
+            _buttonOptions.loading ? "opacity-0" : "",
+          ),
+        ),
         { aspectRatio: iconAspectRatio },
       ]}
     >
@@ -38,29 +43,31 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         color: tailwind.getColor(
           isButtonDisabled
             ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-            : buttonTheme.icon.variant.default[_buttonProps.variant]
+            : buttonTheme.icon.variant.default[_buttonProps.variant],
         ),
       })}
     </Box>
-  ) : typeof props.children === 'string' ? (
+  ) : typeof props.children === "string" ? (
     <Text
       adjustsFontSizeToFit
       allowFontScaling={false}
       selectable={false}
       style={[
-        tailwind.style([
-          buttonTheme.text.size[_buttonProps.size],
-          buttonTheme.text.variant.default[_buttonProps.variant],
-          isButtonDisabled
-            ? buttonTheme.text.variant.disabled[_buttonProps.variant]
-            : '',
-          _buttonOptions.loading &&
-          !_buttonOptions.prefix &&
-          !_buttonOptions.suffix
-            ? 'opacity-0'
-            : '',
-        ]),
-        props.textStyle,
+        tailwind.style(
+          cx(
+            buttonTheme.text.size[_buttonProps.size],
+            buttonTheme.text.variant.default[_buttonProps.variant],
+            isButtonDisabled
+              ? buttonTheme.text.variant.disabled[_buttonProps.variant]
+              : "",
+            _buttonOptions.loading &&
+              !_buttonOptions.prefix &&
+              !_buttonOptions.suffix
+              ? "opacity-0"
+              : "",
+          ),
+        ),
+        styleAdapter(_buttonOptions.textStyle, { pressed: false }, false),
       ]}
     >
       {props.children}
@@ -72,7 +79,6 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
    * Button Prefix Component
    */
   const prefix =
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     _buttonOptions.prefix?.type === Icon ? (
       createIcon({
@@ -80,9 +86,9 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         iconFill: tailwind.getColor(
           isButtonDisabled
             ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-            : buttonTheme.icon.variant.default[_buttonProps.variant]
+            : buttonTheme.icon.variant.default[_buttonProps.variant],
         ),
-        iconStyle: tailwind.style(buttonTheme.prefix[_buttonProps.size]),
+        iconStyle: tailwind.style(cx(buttonTheme.prefix[_buttonProps.size])),
       })
     ) : (
       <ButtonPrefix size={_buttonProps.size}>
@@ -93,7 +99,6 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
    * Button Suffix Component
    */
   const suffix =
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     _buttonOptions.suffix?.type === Icon ? (
       createIcon({
@@ -101,9 +106,9 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         iconFill: tailwind.getColor(
           isButtonDisabled
             ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-            : buttonTheme.icon.variant.default[_buttonProps.variant]
+            : buttonTheme.icon.variant.default[_buttonProps.variant],
         ),
-        iconStyle: tailwind.style(buttonTheme.suffix[_buttonProps.size]),
+        iconStyle: tailwind.style(cx(buttonTheme.suffix[_buttonProps.size])),
       })
     ) : (
       <ButtonSuffix size={_buttonProps.size}>
@@ -113,27 +118,32 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
 
   return (
     <Touchable
-      style={({ pressed }) => [
-        tailwind.style(
-          buttonTheme.base,
-          buttonTheme.size.default[_buttonProps.size],
-          buttonTheme.variant.default[_buttonProps.variant],
-          isButtonDisabled
-            ? buttonTheme.variant.disabled[_buttonProps.variant]
-            : '',
-          pressed ? buttonTheme.variant.pressed[_buttonProps.variant] : ''
-        ),
-      ]}
-      {...props}
+      style={touchState => {
+        return [
+          tailwind.style(
+            cx(
+              buttonTheme.base,
+              buttonTheme.size.default[_buttonProps.size],
+              buttonTheme.variant.default[_buttonProps.variant],
+              isButtonDisabled
+                ? buttonTheme.variant.disabled[_buttonProps.variant]
+                : "",
+              touchState.pressed
+                ? buttonTheme.variant.pressed[_buttonProps.variant]
+                : "",
+            ),
+          ),
+          styleAdapter(style, touchState, true),
+        ];
+      }}
+      {..._buttonPressableProps}
       ref={ref}
       disabled={isButtonDisabled}
     >
       {!_buttonOptions.prefix &&
         !_buttonOptions.suffix &&
         _buttonOptions.loading && (
-          <Box
-            style={tailwind.style('absolute z-10 items-center justify-center')}
-          >
+          <Box style={tailwind.style(cx(buttonTheme.loading.wrapper))}>
             <Spinner
               size={buttonTheme.loading.size[_buttonProps.size] as SpinnerSizes}
             />
@@ -166,7 +176,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
   );
 });
 
-RNButton.displayName = 'RNButton';
+RNButton.displayName = "RNButton";
 
 export const Button = createComponent<Partial<ButtonProps>>(RNButton, {
   shouldMemo: true,
