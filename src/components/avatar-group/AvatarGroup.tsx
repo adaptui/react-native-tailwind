@@ -42,7 +42,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = props => {
   const {
     squared = false,
     size = "xl",
-    showRing = false,
+    showRing = true,
     ringColor = "white",
     children,
     max,
