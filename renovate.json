@@ -2,13 +2,16 @@
   "extends": ["config:base"],
   "commitMessageAction": "⬆️ update",
   "ignoreDeps": [
-    "react-native-gesture-handler",
-    "react-native-reanimated",
-    "react-native-svg",
-    "@types/react",
-    "@types/react-native",
     "react",
-    "react-native"
+    "@types/react",
+    "react-dom",
+    "react-native",
+    "@types/react-native",
+    "react-native-svg",
+    "react-native-reanimated",
+    "react-native-gesture-handler",
+    "react-native-safe-area-context",
+    "react-native-screens"
   ],
   "packageRules": [
     {
