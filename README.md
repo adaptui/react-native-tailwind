@@ -7,7 +7,7 @@ Collection of components that are accessible, composable, customizable from low 
 <p align="center">
   <a href="https://npmjs.org/package/@adaptui/react-native-tailwind"><img alt="NPM version" src="https://img.shields.io/npm/v/@adaptui/react-native-tailwind.svg" /></a>
   <a href="https://npmjs.org/package/@adaptui/react-native-tailwind"><img alt="NPM downloads" src="https://img.shields.io/npm/dm/@adaptui/react-native-tailwind.svg"></a>
-  <a href="https://github.com/adaptui/react-native-tailwind/actions"><img alt="Build Status" src="https://github.com/adaptui/react-native-tailwind/workflows/Test/badge.svg?event=push&branch=master" /></a><br/>
+  <a href="https://github.com/adaptui/react-native-tailwind/actions"><img alt="Build Status" src="https://github.com/adaptui/react-native-tailwind/actions/workflows/build.yml/badge.svg" /></a><br/>
   <a href="https://github.com/adaptui/react-native-tailwind/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   </a>
   <a target="_blank" href="https://octo-repo-visualization.vercel.app/?repo=adaptui%2Freact-native-tailwind"><img src="https://img.shields.io/badge/Repo-Visualization-orange" alt="Repo Visualization">
