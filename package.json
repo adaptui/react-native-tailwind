@@ -75,7 +75,7 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^1.9.1",
+    "@chakra-ui/hooks": "^2.0.0",
     "@gorhom/bottom-sheet": "^4.3.1",
     "@react-aria/visually-hidden": "^3.3.0",
     "@react-native-aria/checkbox": "^0.2.3",
