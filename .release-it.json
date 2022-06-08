@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "before:init": ["yarn test", "yarn build"]
+    "before:init": ["yarn build"]
   },
   "git": {
     "requireBranch": "main",
