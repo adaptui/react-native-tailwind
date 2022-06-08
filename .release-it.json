@@ -1,6 +1,9 @@
 {
   "hooks": {
-    "before:init": ["yarn build"]
+    "before:init": [
+      "if [ \"$(git log $(git describe --tags --abbrev=0)..HEAD)\" = \"\" ]; then exit 1; fi;",
+      "yarn build"
+    ]
   },
   "git": {
     "requireBranch": "main",
