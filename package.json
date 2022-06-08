@@ -1,6 +1,6 @@
 {
   "name": "@adaptui/react-native-tailwind",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System",
   "keywords": [
     "react-native",
@@ -75,7 +75,7 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^1.9.1",
+    "@chakra-ui/hooks": "^2.0.0",
     "@gorhom/bottom-sheet": "^4.3.1",
     "@react-aria/visually-hidden": "^3.3.0",
     "@react-native-aria/checkbox": "^0.2.3",
