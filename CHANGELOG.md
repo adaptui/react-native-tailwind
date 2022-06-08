@@ -1,5 +1,17 @@
 
 
+## [1.0.0-alpha.1](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.0...1.0.0-alpha.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **deps:** ⬆️ update dependency @chakra-ui/hooks to v2 ([#44](https://github.com/adaptui/react-native-tailwind/issues/44)) ([23c34e6](https://github.com/adaptui/react-native-tailwind/commit/23c34e621cb1c53b35cc565a037f68f548d3d954))
+
+
+### Documentation Changes
+
+* **readme:** :memo: add build badge ([ba0c046](https://github.com/adaptui/react-native-tailwind/commit/ba0c046a34bfaf77239840b4f72df97d4137b88a))
+
 ## 1.0.0-alpha.0 (2022-06-08)
 
 
