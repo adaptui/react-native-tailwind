@@ -3,7 +3,7 @@ import Svg, { Path } from "react-native-svg";
 
 import { IconProps } from "../utils";
 
-export const Check: React.FC<IconProps> = ({ fill = "#52525B" }) => {
+export const Check: React.FC<IconProps> = ({ fill = "#525252" }) => {
   return (
     <Svg width="100%" height="100%" viewBox="0 0 12 12" fill="none">
       <Path
