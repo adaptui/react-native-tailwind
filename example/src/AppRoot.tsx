@@ -10,6 +10,7 @@ import {
   Close,
   DefaultUser,
   Icon,
+  Image,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -51,6 +52,9 @@ function ButtonScreen() {
         icon={<Icon icon={<CaretRight />} />}
         style={tailwind.style("my-1")}
       />
+      <Button style={tailwind.style("my-1")} prefix={<Icon icon={<Image />} />}>
+        Upload Image
+      </Button>
     </Box>
   );
 }
