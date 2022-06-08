@@ -1,0 +1,24 @@
+{
+  "projectName": "react-native-tailwind",
+  "projectOwner": "adaptui",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "Karthik-B-06",
+      "name": "Karthik",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35562287?v=4",
+      "profile": "https://peerlist.io/_iam_karthik",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
