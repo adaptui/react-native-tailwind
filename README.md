@@ -1,20 +1,50 @@
-# AdaptUI React Native Tailwind
+<h1 align="center">AdaptUI React Native Tailwind</h1>
+
+<p align="center">
+Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System 
+</p>
+
+<p align="center">
+  <a href="https://npmjs.org/package/@adaptui/react-native-tailwind"><img alt="NPM version" src="https://img.shields.io/npm/v/@adaptui/react-native-tailwind.svg" /></a>
+  <a href="https://npmjs.org/package/@adaptui/react-native-tailwind"><img alt="NPM downloads" src="https://img.shields.io/npm/dm/@adaptui/react-native-tailwind.svg"></a>
+  <a href="https://github.com/adaptui/react-native-tailwind/actions"><img alt="Build Status" src="https://github.com/adaptui/react-native-tailwind/workflows/Test/badge.svg?event=push&branch=master" /></a><br/>
+  <a href="https://github.com/adaptui/react-native-tailwind/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  </a>
+  <a target="_blank" href="https://octo-repo-visualization.vercel.app/?repo=adaptui%2Freact-native-tailwind"><img src="https://img.shields.io/badge/Repo-Visualization-orange" alt="Repo Visualization">
+  </a>
+</p>
+
+## :rocket: Features
+
+- Accessible :wheelchair:
+- Composable :toolbox:
+- Uses latest Reanimated & Gesture Handler :robot:
+- Easy To Customize, Styled by Tailwind & Extend :nail_care:
 
 ## Installation
 
 ```sh
+# npm
 npm install @adaptui/react-native-tailwind
+
+# Yarn
+yarn add @adaptui/react-native-tailwind
 ```
 
-## Usage
+> Make sure `React Native Reanimated` & `React Native Gesture Handler` is
+> installed
 
-```js
-import { multiply } from "@adaptui/react-native-tailwind";
+## :beginner: Getting started
 
-// ...
+Check out our [getting started docs](/docs/getting-started.md)
 
-const result = await multiply(3, 7);
-```
+## 📑 Component Docs
+
+- [Avatar](docs/avatar.md)
+
+> **Note:** As the 0.#.# version number suggests that we are still very much
+> work in progress, so semantic versioning will not be followed until a v1
+> release. Expect breaking changes to occur on minor version jumps.
 
 ## Contributing
 
