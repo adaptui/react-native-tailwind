@@ -16,7 +16,6 @@ Collection of components that are accessible, composable, customizable from low 
 
 ## :rocket: Features
 
-- Accessible :wheelchair:
 - Composable :toolbox:
 - Uses latest Reanimated & Gesture Handler :robot:
 - Easy To Customize, Styled by Tailwind & Extend :nail_care:
