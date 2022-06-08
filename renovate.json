@@ -1,0 +1,30 @@
+{
+  "extends": ["config:base"],
+  "commitMessageAction": "⬆️ update",
+  "ignoreDeps": [
+    "react-native-gesture-handler",
+    "react-native-reanimated",
+    "react-native-svg",
+    "@types/react",
+    "@types/react-native",
+    "react",
+    "react-native"
+  ],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "dev dependencies (minor)"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "dev dependencies (major)"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "prod dependencies (minor)"
+    }
+  ]
+}
