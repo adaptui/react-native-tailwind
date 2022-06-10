@@ -51,7 +51,7 @@ export const avatar = {
     active: {
       container:
         "absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0",
-      base: "bg-green-500 rounded-full",
+      base: "bg-green-600 rounded-full",
       size: {
         xs: "h-1 w-1",
         sm: "h-[5px] w-[5px]",
