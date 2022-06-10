@@ -5,7 +5,7 @@ export const button = {
       solid: {
         container: {
           wrapper: "bg-gray-900 border border-transparent",
-          pressed: "bg-gray-800",
+          pressed: "bg-gray-700",
           disabled: "bg-gray-200",
         },
         text: {
@@ -16,7 +16,7 @@ export const button = {
       subtle: {
         container: {
           wrapper: "bg-gray-100 border border-transparent",
-          pressed: "bg-gray-200",
+          pressed: "bg-gray-300",
           disabled: "bg-gray-100",
         },
         text: {
@@ -27,7 +27,7 @@ export const button = {
       outline: {
         container: {
           wrapper: "bg-white-900 border border-gray-400",
-          pressed: "border-gray-500 shadow-sm",
+          pressed: "border-gray-500 bg-gray-300",
           disabled: "bg-gray-100 border-gray-400",
         },
         text: {
@@ -38,7 +38,7 @@ export const button = {
       ghost: {
         container: {
           wrapper: "bg-white-900 border border-transparent",
-          pressed: "bg-gray-200",
+          pressed: "bg-gray-300",
           disabled: "",
         },
         text: {
@@ -51,7 +51,7 @@ export const button = {
       solid: {
         container: {
           wrapper: "bg-blue-600 border border-transparent",
-          pressed: "bg-blue-700",
+          pressed: "bg-blue-800",
           disabled: "bg-blue-100",
         },
         text: {
@@ -62,7 +62,7 @@ export const button = {
       subtle: {
         container: {
           wrapper: "bg-blue-100 border border-transparent",
-          pressed: "bg-blue-200",
+          pressed: "bg-blue-300",
           disabled: "bg-blue-100",
         },
         text: {
@@ -73,7 +73,7 @@ export const button = {
       outline: {
         container: {
           wrapper: "bg-white-900 border border-blue-400",
-          pressed: "border-blue-500 shadow-sm",
+          pressed: "border-blue-500 bg-blue-300",
           disabled: "bg-blue-100 border-blue-400",
         },
         text: {
@@ -84,7 +84,7 @@ export const button = {
       ghost: {
         container: {
           wrapper: "bg-white-900 border border-transparent",
-          pressed: "bg-blue-200",
+          pressed: "bg-blue-300",
           disabled: "",
         },
         text: {
@@ -97,7 +97,7 @@ export const button = {
       solid: {
         container: {
           wrapper: "bg-violet-600 border border-transparent",
-          pressed: "bg-violet-700",
+          pressed: "bg-violet-800",
           disabled: "bg-violet-100",
         },
         text: {
@@ -108,7 +108,7 @@ export const button = {
       subtle: {
         container: {
           wrapper: "bg-violet-100 border border-transparent",
-          pressed: "bg-violet-200",
+          pressed: "bg-violet-300",
           disabled: "bg-violet-100",
         },
         text: {
@@ -119,7 +119,7 @@ export const button = {
       outline: {
         container: {
           wrapper: "bg-white-900 border border-violet-400",
-          pressed: "border-violet-500 shadow-sm",
+          pressed: "border-violet-500 bg-violet-300",
           disabled: "bg-violet-100 border-violet-400",
         },
         text: {
@@ -130,7 +130,7 @@ export const button = {
       ghost: {
         container: {
           wrapper: "bg-white-900 border border-transparent",
-          pressed: "bg-violet-200",
+          pressed: "bg-violet-300",
           disabled: "",
         },
         text: {
@@ -143,7 +143,7 @@ export const button = {
       solid: {
         container: {
           wrapper: "bg-green-600 border border-transparent",
-          pressed: "bg-green-700",
+          pressed: "bg-green-800",
           disabled: "bg-green-100",
         },
         text: {
@@ -154,7 +154,7 @@ export const button = {
       subtle: {
         container: {
           wrapper: "bg-green-100 border border-transparent",
-          pressed: "bg-green-200",
+          pressed: "bg-green-300",
           disabled: "bg-green-100",
         },
         text: {
@@ -165,7 +165,7 @@ export const button = {
       outline: {
         container: {
           wrapper: "bg-white-900 border border-green-400",
-          pressed: "border-green-500 shadow-sm",
+          pressed: "border-green-500 bg-green-300",
           disabled: "bg-green-100 border-green-400",
         },
         text: {
@@ -176,7 +176,7 @@ export const button = {
       ghost: {
         container: {
           wrapper: "bg-white-900 border border-transparent",
-          pressed: "bg-green-200",
+          pressed: "bg-green-300",
           disabled: "",
         },
         text: {
@@ -189,7 +189,7 @@ export const button = {
       solid: {
         container: {
           wrapper: "bg-red-600 border border-transparent",
-          pressed: "bg-red-700",
+          pressed: "bg-red-800",
           disabled: "bg-red-100",
         },
         text: {
@@ -200,7 +200,7 @@ export const button = {
       subtle: {
         container: {
           wrapper: "bg-red-100 border border-transparent",
-          pressed: "bg-red-200",
+          pressed: "bg-red-300",
           disabled: "bg-red-100",
         },
         text: {
@@ -211,7 +211,7 @@ export const button = {
       outline: {
         container: {
           wrapper: "bg-white-900 border border-red-400",
-          pressed: "border-red-500 shadow-sm",
+          pressed: "border-red-500 bg-red-300",
           disabled: "bg-red-100 border-red-400",
         },
         text: {
@@ -222,7 +222,7 @@ export const button = {
       ghost: {
         container: {
           wrapper: "bg-white-900 border border-transparent",
-          pressed: "bg-red-200",
+          pressed: "bg-red-300",
           disabled: "",
         },
         text: {
