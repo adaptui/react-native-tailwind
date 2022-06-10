@@ -15,10 +15,7 @@ export default function ButtonScreen() {
     <Box
       style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
     >
-      <Button
-        style={tailwind.style("my-1")}
-        suffix={<Icon icon={<CaretRight />} />}
-      >
+      <Button themeColor="primary" suffix={<Icon icon={<CaretRight />} />}>
         Continue
       </Button>
       <Button style={tailwind.style("my-1")} variant="outline">
