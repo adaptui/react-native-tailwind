@@ -9,9 +9,9 @@ import { Icon } from "../icon";
 export type BadgeSizes = "sm" | "md" | "lg";
 
 export type BadgeTheme =
+  | "base"
   | "primary"
   | "secondary"
-  | "default"
   | "success"
   | "danger";
 
@@ -24,7 +24,7 @@ export interface BadgeProps extends BoxProps {
   size?: BadgeSizes;
   /**
    * How the badge should be themed?
-   * @default default
+   * @default base
    */
   themeColor?: BadgeTheme;
   /**
@@ -50,7 +50,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
   (
     {
       size = "md",
-      themeColor = "default",
+      themeColor = "base",
       variant = "solid",
       textProps = {},
       prefix,
@@ -70,7 +70,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
         createIcon({
           icon: prefix,
           iconFill: tailwind.getColor(
-            badgeStyles.textVariants[variant][themeColor],
+            cx(badgeStyles.themeColor[themeColor]?.[variant]?.text),
           ),
           iconStyle: tailwind.style(cx(badgeStyles.prefix.size[size])),
         })
@@ -87,7 +87,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
           tailwind.style(
             cx(
               badgeStyles.baseContainer,
-              badgeStyles.containerVariants[variant][themeColor],
+              badgeStyles.themeColor[themeColor]?.[variant]?.container,
               badgeStyles.size.container[size],
             ),
           ),
@@ -102,7 +102,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
               tailwind.style(
                 cx(
                   badgeStyles.size.text[size],
-                  badgeStyles.textVariants[variant][themeColor],
+                  badgeStyles.themeColor[themeColor]?.[variant]?.text,
                 ),
               ),
               styleAdapter(textStyle, { pressed: false }, false),
