@@ -15,6 +15,7 @@ interface ButtonPropsReturnType {
 export const useButtonProps = ({
   size = "md",
   variant = "solid",
+  themeColor = "base",
   loading,
   disabled,
   prefix,
@@ -29,6 +30,7 @@ export const useButtonProps = ({
     loading,
     size,
     variant,
+    themeColor,
   } as ButtonLibraryProps;
 
   const _buttonOptionProps = {

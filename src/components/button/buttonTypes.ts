@@ -4,10 +4,16 @@ import { RenderPropType } from "../../index";
 
 export type ButtonSizes = "sm" | "md" | "lg" | "xl";
 export type ButtonVariants = "outline" | "ghost" | "solid" | "subtle";
-
+export type ButtonTheme =
+  | "base"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger";
 export interface ButtonLibraryProps {
   size: ButtonSizes;
   variant: ButtonVariants;
+  themeColor: ButtonTheme;
 }
 
 export interface ButtonOptionProps {

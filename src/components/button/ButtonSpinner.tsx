@@ -4,14 +4,14 @@ import { useTheme } from "../../theme";
 import { cx, RenderPropType } from "../../utils";
 import { Spinner, SpinnerSizes } from "../spinner";
 
-import { ButtonSizes } from "./buttonTypes";
+import { ButtonProps } from "./buttonTypes";
 
-interface ButtonSpinnerProps {
-  size: ButtonSizes;
+interface ButtonSpinnerProps extends Pick<ButtonProps, "size" | "themeColor"> {
   spinner?: RenderPropType;
 }
 export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   spinner,
+  themeColor,
   size,
 }) => {
   const buttonTheme = useTheme("button");
@@ -23,7 +23,7 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   ) : (
     <Spinner
       size={buttonTheme.loading.size[size] as SpinnerSizes}
-      style={tailwind.style(cx(buttonTheme.loading.default))}
+      style={tailwind.style(cx(buttonTheme.loading.themeColor[themeColor]))}
     />
   );
 };

@@ -42,8 +42,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       {React.cloneElement(_buttonOptions.icon, {
         color: tailwind.getColor(
           isButtonDisabled
-            ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-            : buttonTheme.icon.variant.default[_buttonProps.variant],
+            ? buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+                _buttonProps.variant
+              ]?.disabled
+            : buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+                _buttonProps.variant
+              ]?.default,
         ),
       })}
     </Box>
@@ -56,9 +60,13 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         tailwind.style(
           cx(
             buttonTheme.text.size[_buttonProps.size],
-            buttonTheme.text.variant.default[_buttonProps.variant],
+            buttonTheme.themeColor[_buttonProps.themeColor]?.[
+              _buttonProps.variant
+            ]?.text.default,
             isButtonDisabled
-              ? buttonTheme.text.variant.disabled[_buttonProps.variant]
+              ? buttonTheme.themeColor[_buttonProps.themeColor]?.[
+                  _buttonProps.variant
+                ]?.text.disabled
               : "",
             _buttonOptions.loading &&
               !_buttonOptions.prefix &&
@@ -85,8 +93,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         icon: _buttonOptions.prefix,
         iconFill: tailwind.getColor(
           isButtonDisabled
-            ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-            : buttonTheme.icon.variant.default[_buttonProps.variant],
+            ? buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+                _buttonProps.variant
+              ]?.disabled
+            : buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+                _buttonProps.variant
+              ]?.default,
         ),
         iconStyle: tailwind.style(cx(buttonTheme.prefix[_buttonProps.size])),
       })
@@ -105,8 +117,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         icon: _buttonOptions.suffix,
         iconFill: tailwind.getColor(
           isButtonDisabled
-            ? buttonTheme.icon.variant.disabled[_buttonProps.variant]
-            : buttonTheme.icon.variant.default[_buttonProps.variant],
+            ? buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+                _buttonProps.variant
+              ]?.disabled
+            : buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+                _buttonProps.variant
+              ]?.default,
         ),
         iconStyle: tailwind.style(cx(buttonTheme.suffix[_buttonProps.size])),
       })
@@ -124,12 +140,18 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
             cx(
               buttonTheme.base,
               buttonTheme.size.default[_buttonProps.size],
-              buttonTheme.variant.default[_buttonProps.variant],
+              buttonTheme.themeColor[_buttonProps.themeColor]?.[
+                _buttonProps.variant
+              ]?.container.wrapper,
               isButtonDisabled
-                ? buttonTheme.variant.disabled[_buttonProps.variant]
+                ? buttonTheme.themeColor[_buttonProps.themeColor]?.[
+                    _buttonProps.variant
+                  ]?.container.disabled
                 : "",
               touchState.pressed
-                ? buttonTheme.variant.pressed[_buttonProps.variant]
+                ? buttonTheme.themeColor[_buttonProps.themeColor]?.[
+                    _buttonProps.variant
+                  ]?.container.pressed
                 : "",
             ),
           ),
@@ -154,6 +176,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           <ButtonPrefix size={_buttonProps.size}>
             <ButtonSpinner
               size={_buttonProps.size}
+              themeColor={_buttonProps.themeColor}
               spinner={_buttonOptions.spinner}
             />
           </ButtonPrefix>
@@ -166,6 +189,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           <ButtonSuffix size={_buttonProps.size}>
             <ButtonSpinner
               size={_buttonProps.size}
+              themeColor={_buttonProps.themeColor}
               spinner={_buttonOptions.spinner}
             />
           </ButtonSuffix>
