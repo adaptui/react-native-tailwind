@@ -7,7 +7,12 @@ import {
 
 import { Box } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, createContext, getValidChildren } from "../../utils";
+import {
+  createComponent,
+  createContext,
+  cx,
+  getValidChildren,
+} from "../../utils";
 
 const [CheckboxGroupProvider, useCheckboxGroupContext] =
   createContext<CheckboxGroupState>({
@@ -53,7 +58,7 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
   const validChildren = getValidChildren(children);
   return (
     <Box
-      style={tailwind.style(checkboxGroupTheme.group[orientation].common)}
+      style={tailwind.style(cx(checkboxGroupTheme.group[orientation].common))}
       {...groupProps}
       ref={ref}
     >
@@ -62,7 +67,7 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
           <Box
             key={index}
             style={tailwind.style(
-              checkboxGroupTheme.group[orientation].spacing,
+              cx(checkboxGroupTheme.group[orientation].spacing),
             )}
           >
             {renderElement}
