@@ -40,7 +40,7 @@ export default function ButtonScreen() {
       </Button>
       <Button
         variant="subtle"
-        icon={<Icon icon={<CaretRight />} />}
+        iconOnly={<Icon icon={<CaretRight />} />}
         style={tailwind.style("my-1")}
       />
       <Button style={tailwind.style("my-1")} prefix={<Icon icon={<Image />} />}>
