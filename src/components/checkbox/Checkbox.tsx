@@ -9,7 +9,7 @@ import { useToggleState } from "@react-stately/toggle";
 import { Check, Dash } from "../../icons";
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent } from "../../utils";
+import { createComponent, cx } from "../../utils";
 import { mergeRefs } from "../../utils/mergeRefs";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -17,7 +17,9 @@ import { Icon } from "../icon";
 import { useCheckboxGroupContext } from "./CheckboxGroup";
 
 export type CheckboxSizes = "sm" | "md" | "lg";
+export type CheckboxTheme = "base" | "primary" | "danger";
 
+// Props of the useCheckboxGroupItem/useCheckbox Return Type
 interface CheckboxAriaProps {
   accessibilityLabel: string;
   accessibilityRole: "checkbox";
@@ -43,16 +45,20 @@ interface CheckboxAriaProps {
 
 export interface CheckboxProps {
   /**
-   * Checkbox Sizes
+   * How large should the button be?
    * @default md
    */
   size: CheckboxSizes;
   /**
-   * Checkbox Label
+   * Checkbox Theme
+   */
+  themeColor: CheckboxTheme;
+  /**
+   * Label for the Checkbox.
    */
   label: string;
   /**
-   * Checkbox Description
+   * Description for the Checkbox.
    */
   description: string;
   /**
@@ -109,8 +115,9 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     checkRef,
   ]) as unknown as React.MutableRefObject<null>;
 
-  const {
+  let {
     size = "md",
+    themeColor = "base",
     label,
     description,
     defaultSelected,
@@ -119,9 +126,11 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     isDisabled,
     isIndeterminate,
     isInvalid,
-    accessibilityLabel,
+    accessibilityLabel = "Check me",
     value = "",
   } = props;
+
+  themeColor = isInvalid ? "danger" : themeColor;
 
   const checkboxToggleState = useToggleState({
     isSelected,
@@ -160,50 +169,66 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
 
   const { focusProps } = useFocusRing();
 
-  const children = (pressedOrHovered: boolean) => {
+  const children = ({ pressed = false, isHovered = false }) => {
     return (
       <>
         <Box
           style={[
-            tailwind.style([
-              checkboxTheme.icon.common,
-              checkboxTheme.icon.wrapperSize[size],
-              checkboxProps.checked
-                ? checkboxTheme.icon.checked.default
-                : checkboxTheme.icon.unChecked.default,
-              checkboxProps.isIndeterminate
-                ? checkboxTheme.icon.indeterminate.default
-                : "",
-              isInvalid
-                ? checkboxProps.isIndeterminate
-                  ? checkboxTheme.icon.indeterminate.invalid
+            tailwind.style(
+              cx(
+                checkboxTheme.icon.common,
+                checkboxTheme.icon.wrapperSize[size],
+                checkboxProps.isIndeterminate
+                  ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                      .default
                   : checkboxProps.checked
-                  ? checkboxTheme.icon.checked.invalid
-                  : checkboxTheme.icon.unChecked.invalid
-                : "",
-              isDisabled
-                ? checkboxProps.isIndeterminate
-                  ? checkboxTheme.icon.indeterminate.disabled
-                  : checkboxProps.checked
-                  ? checkboxTheme.icon.checked.disabled
-                  : checkboxTheme.icon.unChecked.disabled
-                : "",
-              pressedOrHovered
-                ? checkboxProps.isIndeterminate
-                  ? checkboxTheme.icon.indeterminate.pressedOrHovered
-                  : checkboxProps.checked
-                  ? checkboxTheme.icon.checked.pressedOrHovered
-                  : checkboxTheme.icon.unChecked.pressedOrHovered
-                : "",
-            ]),
+                  ? checkboxTheme.icon.themeColor[themeColor]?.checked.default
+                  : checkboxTheme.icon.themeColor[themeColor]?.unChecked
+                      .default,
+                isDisabled
+                  ? checkboxProps.isIndeterminate
+                    ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                        .disabled
+                    : checkboxProps.checked
+                    ? checkboxTheme.icon.themeColor[themeColor]?.checked
+                        .disabled
+                    : checkboxTheme.icon.themeColor[themeColor]?.unChecked
+                        .disabled
+                  : "",
+                pressed
+                  ? checkboxProps.isIndeterminate
+                    ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                        .press
+                    : checkboxProps.checked
+                    ? checkboxTheme.icon.themeColor[themeColor]?.checked.press
+                    : checkboxTheme.icon.themeColor[themeColor]?.unChecked.press
+                  : "",
+                isHovered
+                  ? checkboxProps.isIndeterminate
+                    ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                        .hover
+                    : checkboxProps.checked
+                    ? checkboxTheme.icon.themeColor[themeColor]?.checked.hover
+                    : checkboxTheme.icon.themeColor[themeColor]?.unChecked.hover
+                  : "",
+              ),
+            ),
             { borderWidth: checkboxTheme.icon.border },
           ]}
         >
           {icon &&
             createIcon({
               icon,
-              iconFill: tailwind.getColor("text-white"),
-              iconStyle: tailwind.style(checkboxTheme.icon.iconSize[size]),
+              iconFill: tailwind.getColor(
+                cx(
+                  checkboxProps.isDisabled
+                    ? checkboxTheme.icon.themeColor[themeColor]?.iconFill
+                        .disabled
+                    : checkboxTheme.icon.themeColor[themeColor]?.iconFill
+                        .default,
+                ),
+              ),
+              iconStyle: tailwind.style(cx(checkboxTheme.icon.iconSize[size])),
             })}
         </Box>
         <Box style={checkboxTheme.labelDescWrapper}>
@@ -211,8 +236,12 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
             <Text
               style={[
                 tailwind.style(
-                  checkboxTheme.text.common,
-                  checkboxTheme.text.size[size],
+                  cx(
+                    checkboxTheme.text.common,
+                    checkboxTheme.text.size[size],
+                    checkboxProps.disabled ? checkboxTheme.text.disabled : "",
+                    description && checkboxTheme.description.labelText,
+                  ),
                 ),
                 description
                   ? { lineHeight: checkboxTheme.text.lineHeight[size] }
@@ -226,8 +255,10 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
             <Text
               style={[
                 tailwind.style(
-                  checkboxTheme.description.common,
-                  checkboxTheme.description.size[size],
+                  cx(
+                    checkboxTheme.description.common,
+                    checkboxTheme.description.size[size],
+                  ),
                 ),
               ]}
             >
@@ -245,13 +276,14 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
 
   return Platform.OS === "web" ? (
     <Box
-      style={tailwind.style([
-        checkboxTheme.label.common,
-        description ? checkboxTheme.label.withDescription : "",
-        checkboxTheme.label.size[size],
-        checkboxTheme.label.disabled,
-        isHovered ? checkboxTheme.label.pressed : "",
-      ])}
+      style={tailwind.style(
+        cx(
+          checkboxTheme.label.common,
+          description ? checkboxTheme.label.withDescription : "",
+          checkboxTheme.label.size[size],
+          isHovered ? checkboxTheme.label.themeColor[themeColor]?.hover : "",
+        ),
+      )}
       // @ts-ignore
       accessibilityRole="label"
       {...hoverProps}
@@ -261,23 +293,28 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={checkboxRef} />
       </VisuallyHidden>
-      {children(isHovered)}
+      {children({ isHovered })}
     </Box>
   ) : (
     <Touchable
       {...checkboxProps}
-      style={({ pressed }) => [
-        tailwind.style([
-          checkboxTheme.label.common,
-          description ? checkboxTheme.label.withDescription : "",
-          checkboxTheme.label.size[size],
-          checkboxTheme.label.disabled,
-          pressed ? checkboxTheme.label.pressed : "",
-        ]),
-      ]}
+      style={({ pressed }) =>
+        tailwind.style(
+          cx(
+            checkboxTheme.label.common,
+            description ? checkboxTheme.label.withDescription : "",
+            checkboxTheme.label.size[size],
+            pressed
+              ? label && !description
+                ? checkboxTheme.label.themeColor[themeColor]?.pressed
+                : ""
+              : "",
+          ),
+        )
+      }
       ref={checkboxRef}
     >
-      {({ pressed }) => children(pressed)}
+      {({ pressed }) => children({ pressed })}
     </Touchable>
   );
 });
