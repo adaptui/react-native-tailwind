@@ -73,22 +73,20 @@ export const badge = {
     },
   },
   size: {
-    text: {
-      sm: "text-xs text-center font-medium",
-      md: "text-xs text-center font-medium",
-      lg: "text-cxs text-center font-medium",
+    sm: {
+      container: "px-1.5 min-h-4",
+      text: "text-xs text-center font-medium",
+      prefix: "w-2 mr-1 items-center justify-center",
     },
-    container: {
-      sm: "px-1.5 min-h-4",
-      md: "px-1.5 min-h-5",
-      lg: "px-2 min-h-6",
+    md: {
+      container: "px-1.5 min-h-5",
+      text: "text-xs text-center font-medium",
+      prefix: "w-2.5 mr-1 items-center justify-center",
     },
-  },
-  prefix: {
-    size: {
-      sm: "w-2 mr-1 items-center justify-center",
-      md: "w-2.5 mr-1 items-center justify-center",
-      lg: "w-3 mr-1 items-center justify-center",
+    lg: {
+      container: "px-2 min-h-6",
+      text: "text-cxs text-center font-medium",
+      prefix: "w-3 mr-1 items-center justify-center",
     },
   },
 };

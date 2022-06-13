@@ -72,10 +72,10 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
           iconFill: tailwind.getColor(
             cx(badgeStyles.themeColor[themeColor]?.[variant]?.text),
           ),
-          iconStyle: tailwind.style(cx(badgeStyles.prefix.size[size])),
+          iconStyle: tailwind.style(cx(badgeStyles.size[size]?.prefix)),
         })
       ) : (
-        <Box style={tailwind.style(cx(badgeStyles.prefix.size[size]))}>
+        <Box style={tailwind.style(cx(badgeStyles.size[size]?.prefix))}>
           {prefix}
         </Box>
       );
@@ -88,7 +88,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
             cx(
               badgeStyles.baseContainer,
               badgeStyles.themeColor[themeColor]?.[variant]?.container,
-              badgeStyles.size.container[size],
+              badgeStyles.size[size]?.container,
             ),
           ),
           styleAdapter(boxStyle, { pressed: false }, false),
@@ -101,7 +101,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
             style={[
               tailwind.style(
                 cx(
-                  badgeStyles.size.text[size],
+                  badgeStyles.size[size]?.text,
                   badgeStyles.themeColor[themeColor]?.[variant]?.text,
                 ),
               ),
