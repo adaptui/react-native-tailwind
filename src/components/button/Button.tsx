@@ -5,7 +5,6 @@ import { useTheme } from "../../theme";
 import { createComponent, cx, styleAdapter } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
-import { Spinner, SpinnerSizes } from "../spinner";
 
 import { ButtonPrefix } from "./ButtonPrefix";
 import { useButtonProps } from "./ButtonProps";
@@ -26,12 +25,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
   /**
    * Button Children
    */
-  const children = _buttonOptions.icon ? (
+  const children = _buttonOptions.iconOnly ? (
     <Box
       style={[
         tailwind.style(
           cx(
-            buttonTheme.icon.size[_buttonProps.size],
+            buttonTheme.size[_buttonProps.size]?.icon,
             _buttonOptions.loading ? "opacity-0" : "",
           ),
         ),
@@ -39,15 +38,15 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       ]}
     >
       {/* @ts-ignore */}
-      {React.cloneElement(_buttonOptions.icon, {
+      {React.cloneElement(_buttonOptions.iconOnly, {
         color: tailwind.getColor(
           isButtonDisabled
-            ? buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+            ? buttonTheme.themeColor[_buttonProps.themeColor]?.[
                 _buttonProps.variant
-              ]?.disabled
-            : buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+              ]?.icon.disabled
+            : buttonTheme.themeColor[_buttonProps.themeColor]?.[
                 _buttonProps.variant
-              ]?.default,
+              ]?.icon.default,
         ),
       })}
     </Box>
@@ -59,7 +58,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       style={[
         tailwind.style(
           cx(
-            buttonTheme.text.size[_buttonProps.size],
+            buttonTheme.size[_buttonProps.size]?.text,
             buttonTheme.themeColor[_buttonProps.themeColor]?.[
               _buttonProps.variant
             ]?.text.default,
@@ -93,14 +92,16 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         icon: _buttonOptions.prefix,
         iconFill: tailwind.getColor(
           isButtonDisabled
-            ? buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+            ? buttonTheme.themeColor[_buttonProps.themeColor]?.[
                 _buttonProps.variant
-              ]?.disabled
-            : buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+              ]?.icon.disabled
+            : buttonTheme.themeColor[_buttonProps.themeColor]?.[
                 _buttonProps.variant
-              ]?.default,
+              ]?.icon.default,
         ),
-        iconStyle: tailwind.style(cx(buttonTheme.prefix[_buttonProps.size])),
+        iconStyle: tailwind.style(
+          cx(buttonTheme.size[_buttonProps.size]?.prefix),
+        ),
       })
     ) : (
       <ButtonPrefix size={_buttonProps.size}>
@@ -117,14 +118,16 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         icon: _buttonOptions.suffix,
         iconFill: tailwind.getColor(
           isButtonDisabled
-            ? buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+            ? buttonTheme.themeColor[_buttonProps.themeColor]?.[
                 _buttonProps.variant
-              ]?.disabled
-            : buttonTheme.icon.themeColor[_buttonProps.themeColor]?.[
+              ]?.icon.disabled
+            : buttonTheme.themeColor[_buttonProps.themeColor]?.[
                 _buttonProps.variant
-              ]?.default,
+              ]?.icon.default,
         ),
-        iconStyle: tailwind.style(cx(buttonTheme.suffix[_buttonProps.size])),
+        iconStyle: tailwind.style(
+          cx(buttonTheme.size[_buttonProps.size]?.suffix),
+        ),
       })
     ) : (
       <ButtonSuffix size={_buttonProps.size}>
@@ -139,7 +142,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           tailwind.style(
             cx(
               buttonTheme.base,
-              buttonTheme.size.default[_buttonProps.size],
+              buttonTheme.size[_buttonProps.size]?.default,
               buttonTheme.themeColor[_buttonProps.themeColor]?.[
                 _buttonProps.variant
               ]?.container.wrapper,
@@ -166,8 +169,11 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         !_buttonOptions.suffix &&
         _buttonOptions.loading && (
           <Box style={tailwind.style(cx(buttonTheme.loading.wrapper))}>
-            <Spinner
-              size={buttonTheme.loading.size[_buttonProps.size] as SpinnerSizes}
+            <ButtonSpinner
+              themeColor={_buttonProps.themeColor}
+              size={_buttonProps.size}
+              variant={_buttonProps.variant}
+              iconOnly
             />
           </Box>
         )}
@@ -176,12 +182,13 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           <ButtonPrefix size={_buttonProps.size}>
             <ButtonSpinner
               size={_buttonProps.size}
+              variant={_buttonProps.variant}
               themeColor={_buttonProps.themeColor}
               spinner={_buttonOptions.spinner}
             />
           </ButtonPrefix>
         ) : (
-          !_buttonOptions.icon && prefix
+          !_buttonOptions.iconOnly && prefix
         ))}
       {children}
       {_buttonOptions.suffix &&
@@ -191,10 +198,11 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
               size={_buttonProps.size}
               themeColor={_buttonProps.themeColor}
               spinner={_buttonOptions.spinner}
+              variant={_buttonProps.variant}
             />
           </ButtonSuffix>
         ) : (
-          !_buttonOptions.icon && suffix
+          !_buttonOptions.iconOnly && suffix
         ))}
     </Touchable>
   );

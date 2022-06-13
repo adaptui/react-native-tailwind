@@ -18,7 +18,7 @@ export const ButtonPrefix: React.FC<ButtonPrefixProps> = ({
   const buttonTheme = useTheme("button");
 
   return (
-    <Box style={[tailwind.style(cx(buttonTheme.prefix[size]))]}>
+    <Box style={[tailwind.style(cx(buttonTheme.size[size]?.prefix))]}>
       {props.children}
     </Box>
   );

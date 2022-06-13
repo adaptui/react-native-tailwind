@@ -20,7 +20,7 @@ export interface ButtonOptionProps {
   suffix: RenderPropType;
   prefix: RenderPropType;
   loading: boolean;
-  icon: RenderPropType;
+  iconOnly: RenderPropType;
   spinner: RenderPropType;
   textStyle: TextStyle;
 }

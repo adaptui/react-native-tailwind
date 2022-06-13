@@ -20,7 +20,7 @@ export const useButtonProps = ({
   disabled,
   prefix,
   suffix,
-  icon,
+  iconOnly,
   spinner,
   textStyle,
   ...otherProps
@@ -36,7 +36,7 @@ export const useButtonProps = ({
   const _buttonOptionProps = {
     prefix,
     suffix,
-    icon,
+    iconOnly,
     spinner,
     loading,
     textStyle,
