@@ -150,7 +150,7 @@ export const checkbox = {
   },
   labelDescWrapper: { flexShrink: 1 },
   text: {
-    common: "text-gray-800 font-medium select-none",
+    common: "text-gray-800 font-medium",
     disabled: "text-gray-500",
     size: {
       sm: "text-cxs ml-1.5",
@@ -164,8 +164,8 @@ export const checkbox = {
     },
   },
   description: {
-    labelText: "text-gray-900 font-medium select-none",
-    common: "text-gray-600 select-none",
+    labelText: "text-gray-900 font-medium",
+    common: "text-gray-600",
     size: {
       sm: "text-cxs mt-1 ml-1.5",
       md: "text-sm mt-1.5 ml-2",
