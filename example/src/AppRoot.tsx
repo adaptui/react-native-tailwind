@@ -6,6 +6,7 @@ import AvatarScreen from "./modules/primitives/AvatarScreen";
 import BadgeScreen from "./modules/primitives/BadgeScreen";
 import ButtonScreen from "./modules/primitives/ButtonScreen";
 import CheckboxScreen from "./modules/primitives/CheckboxScreen";
+import SpinnerScreen from "./modules/primitives/SpinnerScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -36,6 +37,11 @@ const AppRoot = () => {
         options={{ title: "Checkbox" }}
         name="CheckboxScreen"
         component={CheckboxScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Spinner" }}
+        name="SpinnerScreen"
+        component={SpinnerScreen}
       />
     </Drawer.Navigator>
   );
