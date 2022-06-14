@@ -3,9 +3,44 @@
 ## [1.0.0-alpha.2](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.1...1.0.0-alpha.2) (2022-06-14)
 
 
+### Bug Fixes
+
+* **meter:** :bug: set default value for themeColor
+
+### Code Refactors
+
+* **checkbox:** :recycle: wrapped tailwind classnames inside `cx`
+* **badge:** :art: improve theme structure
+* **button:** :recycle: wrap Button Component
+* **button:** :recycle: wrap button component
+
 ### Maintanance Updates
 
 * **deps:** ⬆️ update dependency lint-staged to v13.0.1 ([#46](https://github.com/adaptui/react-native-tailwind/issues/46)) ([2f24edd](https://github.com/adaptui/react-native-tailwind/commit/2f24edd935b226105ae5b1e4f4c375ad35450d33))
+* **avatar:** :lipstick: update active status bg color
+* **badge:** :art: add theme and set default theme to base
+* **button:** :art: add button theme, add themeColor prop & set to `base`
+* **button:** :lipstick: add active styles from figma to pressed state
+* **example-app:** :sparkles: add different Button variant component to Screen
+* **checkbox:** :lipstick: update checkbox theme to have updated colors and other theming
+* **checkbox:** :heavy_minus_sign: removed invalid utility class select-none
+* **checkbox:** :sparkles: wrap checkbox component
+* **example-app:** :sparkles: add Checkbox component screen
+* **spinner:** :sparkles:  wrap spinner component
+* **example-app:** :bug: changed icon prop to iconOnly
+* **example-app:** :sparkles: add Spinner Component Screen
+* **avatar:** :lipstick: update bg of typing container & change font weight of avatar initials
+* **meter:** :sparkles: wrap meter component, add theming to meter & restructured theme
+* **meter:** :adhesive_bandage: change order of props
+* **badge:** :ambulance: fix outline text color, add vertical padding to badge container
+* **example-app:** :sparkles: add outline badge variants to example app
+* **example-app:** :recycle: add common component export, add MeterComponent to drawer screen
+* **spinner:** :adhesive_bandage: change `h-14px` tailwind classname to `h-3.5`
+* **primitives:** :truck: change primitives folder name (#51)
+* **spinner:** :bug: change border-2 tailwind classname to { borderWidth: 1.5 }
+* **checkbox:** :ambulance: add optional chaining for null check
+* **button:** :art: move `opacity-0` tailwind classname to button theme
+* **badge:** :fire: remove badge keys
 
 ## [1.0.0-alpha.1](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.0...1.0.0-alpha.1) (2022-06-08)
 
