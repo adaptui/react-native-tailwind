@@ -1,7 +1,7 @@
 import Animated from "react-native-reanimated";
 
 import { createComponent } from "../../utils";
-import { Box } from "../box";
+import { Box } from "../box-temp";
 
 // @ts-ignore
 const RNAnimatedBox = Animated.createAnimatedComponent(Box);
