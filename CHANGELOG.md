@@ -1,5 +1,12 @@
 
 
+## [1.0.0-alpha.2](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.1...1.0.0-alpha.2) (2022-06-14)
+
+
+### Maintanance Updates
+
+* **deps:** ⬆️ update dependency lint-staged to v13.0.1 ([#46](https://github.com/adaptui/react-native-tailwind/issues/46)) ([2f24edd](https://github.com/adaptui/react-native-tailwind/commit/2f24edd935b226105ae5b1e4f4c375ad35450d33))
+
 ## [1.0.0-alpha.1](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.0...1.0.0-alpha.1) (2022-06-08)
 
 
