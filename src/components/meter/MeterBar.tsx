@@ -36,7 +36,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
   typeof Box,
   Partial<MeterBarProps>
 >((props, ref) => {
-  const { percent, barStyle, themeColor } = props;
+  const { percent, barStyle, themeColor = "base" } = props;
   const percentValue = useDerivedValue(() => (percent ? percent : 0));
   const tailwind = useTheme();
   const meterTheme = useTheme("meter");
