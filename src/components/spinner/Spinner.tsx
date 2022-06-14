@@ -81,6 +81,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
             spinnerTheme.size[size],
           ),
         ),
+        { borderWidth: spinnerTheme.borderWidth },
         styleAdapter(style, { pressed: false }, false), // Accepts View Style to overide the Default Spinner Style
         spinnerLoadingStyle,
       ]}
