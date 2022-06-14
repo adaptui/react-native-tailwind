@@ -21,10 +21,26 @@ export default function BadgeScreen() {
       <Badge
         style={tailwind.style("my-1")}
         themeColor="primary"
+        size="lg"
+        variant="outline"
+      >
+        Assigned
+      </Badge>
+      <Badge
+        style={tailwind.style("my-1")}
+        themeColor="primary"
         variant="subtle"
         prefix={<Icon icon={<Clock />} />}
       >
         On Progress
+      </Badge>
+      <Badge
+        style={tailwind.style("my-1")}
+        size="md"
+        themeColor="secondary"
+        variant="outline"
+      >
+        Confirmed
       </Badge>
       <Badge
         style={tailwind.style("my-1")}
@@ -40,12 +56,14 @@ export default function BadgeScreen() {
       >
         Completed
       </Badge>
+
       <Badge
         style={tailwind.style("my-1")}
-        variant="subtle"
-        themeColor="secondary"
+        size="sm"
+        themeColor="success"
+        variant="outline"
       >
-        Review
+        Done
       </Badge>
     </Box>
   );
