@@ -10,7 +10,9 @@ import { AnimatedBox, Box } from "../../primitives";
 import { useTheme } from "../../theme";
 import { createComponent } from "../../utils";
 
-interface MeterBarProps {
+import { MeterProps } from "./Meter";
+
+interface MeterBarProps extends Pick<MeterProps, "themeColor"> {
   /**
    * Width of the Meter Bar
    */
@@ -34,7 +36,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
   typeof Box,
   Partial<MeterBarProps>
 >((props, ref) => {
-  const { percent, barStyle } = props;
+  const { percent, barStyle, themeColor } = props;
   const percentValue = useDerivedValue(() => (percent ? percent : 0));
   const tailwind = useTheme();
   const meterTheme = useTheme("meter");
@@ -47,7 +49,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
     <AnimatedBox
       ref={ref}
       style={[
-        tailwind.style([meterTheme.bar.common]),
+        tailwind.style([meterTheme.themeColor[themeColor]?.bar.common]),
         animatedMeterStyle,
         barStyle,
       ]}
