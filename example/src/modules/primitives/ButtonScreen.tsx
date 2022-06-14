@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export default function ButtonScreen() {
+export const ButtonScreen = () => {
   const tailwind = useTheme();
   return (
     <Box
@@ -48,4 +48,4 @@ export default function ButtonScreen() {
       </Button>
     </Box>
   );
-}
+};

@@ -6,7 +6,7 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export default function CheckboxScreen() {
+export const CheckboxScreen = () => {
   const tailwind = useTheme();
   const theme: CheckboxTheme[] = ["base", "primary", "danger"];
   return (
@@ -42,4 +42,4 @@ export default function CheckboxScreen() {
       })}
     </Box>
   );
-}
+};

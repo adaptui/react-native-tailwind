@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Box, useTheme } from "@adaptui/react-native-tailwind";
 
-export default function AvatarScreen() {
+export const AvatarScreen = () => {
   const tailwind = useTheme();
   return (
     <Box
@@ -31,4 +31,4 @@ export default function AvatarScreen() {
       />
     </Box>
   );
-}
+};

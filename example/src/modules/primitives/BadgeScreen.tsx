@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export default function BadgeScreen() {
+export const BadgeScreen = () => {
   const tailwind = useTheme();
   return (
     <Box
@@ -67,4 +67,4 @@ export default function BadgeScreen() {
       </Badge>
     </Box>
   );
-}
+};

@@ -6,7 +6,7 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export default function SpinnerScreen() {
+export const SpinnerScreen = () => {
   const tailwind = useTheme();
   const theme: SpinnerTheme[] = [
     "base",
@@ -42,4 +42,4 @@ export default function SpinnerScreen() {
       })}
     </Box>
   );
-}
+};
