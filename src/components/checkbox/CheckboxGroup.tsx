@@ -58,7 +58,7 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
   const validChildren = getValidChildren(children);
   return (
     <Box
-      style={tailwind.style(cx(checkboxGroupTheme.group[orientation].common))}
+      style={tailwind.style(cx(checkboxGroupTheme.group[orientation]?.common))}
       {...groupProps}
       ref={ref}
     >
@@ -67,7 +67,7 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
           <Box
             key={index}
             style={tailwind.style(
-              cx(checkboxGroupTheme.group[orientation].spacing),
+              cx(checkboxGroupTheme.group[orientation]?.spacing),
             )}
           >
             {renderElement}
