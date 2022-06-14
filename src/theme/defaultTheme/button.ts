@@ -2,6 +2,7 @@ export const button = {
   base: "relative flex flex-row items-center justify-center",
   loading: {
     wrapper: "absolute z-10 items-center justify-center",
+    children: "opacity-0",
   },
   themeColor: {
     base: {

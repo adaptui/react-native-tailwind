@@ -31,7 +31,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         tailwind.style(
           cx(
             buttonTheme.size[_buttonProps.size]?.icon,
-            _buttonOptions.loading ? "opacity-0" : "",
+            _buttonOptions.loading ? buttonTheme.loading.children : "",
           ),
         ),
         { aspectRatio: iconAspectRatio },
@@ -70,7 +70,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
             _buttonOptions.loading &&
               !_buttonOptions.prefix &&
               !_buttonOptions.suffix
-              ? "opacity-0"
+              ? buttonTheme.loading.children
               : "",
           ),
         ),
