@@ -10,15 +10,32 @@ import {
 
 import { AnimatedBox } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent } from "../../utils";
-
-import { useSpinnerProps } from "./SpinnerProps";
+import { createComponent, cx, styleAdapter } from "../../utils";
 
 export type SpinnerSizes = "xs" | "sm" | "md" | "lg" | "xl";
+export type SpinnerTheme =
+  | "base"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger";
 
 export interface SpinnerLibProps {
+  /**
+   * How large should the spinner be?
+   * @default md
+   */
   size: SpinnerSizes;
+  /**
+   * How the spinner should be displayed?
+   * @default transparent
+   */
   track: "visible" | "transparent";
+  /**
+   * Spinner Theme
+   * @default base
+   */
+  themeColor: SpinnerTheme;
 }
 
 export interface SpinnerProps extends SpinnerLibProps, ViewProps {}
@@ -26,8 +43,7 @@ export interface SpinnerProps extends SpinnerLibProps, ViewProps {}
 const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
   typeof AnimatedBox,
   Partial<SpinnerProps>
->((props, ref) => {
-  const { _spinnerLibProps } = useSpinnerProps(props);
+>(({ size = "md", track = "transparent", themeColor = "base", style }, ref) => {
   const spinnerLoopAnimation = useSharedValue(0);
   useEffect(() => {
     spinnerLoopAnimation.value = withRepeat(
@@ -55,12 +71,18 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
     <AnimatedBox
       ref={ref}
       style={[
-        tailwind.style([
-          spinnerTheme.base,
-          spinnerTheme.track[_spinnerLibProps.track],
-          spinnerTheme.size[_spinnerLibProps.size],
-        ]),
-        props.style, // Accepts View Style to overide the Default Spinner Style
+        tailwind.style(
+          cx(
+            spinnerTheme.base,
+            spinnerTheme.themeColor[themeColor],
+            track === "visible"
+              ? spinnerTheme.track[track]?.[themeColor]
+              : spinnerTheme.track.transparent,
+            spinnerTheme.size[size],
+          ),
+        ),
+        { borderWidth: spinnerTheme.borderWidth },
+        styleAdapter(style, { pressed: false }, false), // Accepts View Style to overide the Default Spinner Style
         spinnerLoadingStyle,
       ]}
     />

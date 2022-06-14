@@ -8,12 +8,19 @@ import { MeterBar } from "./MeterBar";
 import { useMeterState, valueToPercent } from "./MeterState";
 
 export type MeterSizes = "sm" | "md" | "lg" | "xl";
+export type MeterTheme = "base" | "primary" | "success";
+
 export interface MeterProps {
   /**
    * Meter Sizes
    * @default md
    */
   size: MeterSizes;
+  /**
+   * Meter Theme
+   * @defaul base
+   */
+  themeColor: MeterTheme;
   /**
    * A floating point number that represents the current value of the measured range.
    * This must be between the min and the max value
@@ -72,7 +79,14 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
   const tailwind = useTheme();
   const meterTheme = useTheme("meter");
   const [meterWidth, setMeterWidth] = useState<number>(0);
-  const { label, hint, size = "md", intervals = 1, flatBorders } = props;
+  const {
+    size = "md",
+    intervals = 1,
+    themeColor = "base",
+    label,
+    hint,
+    flatBorders,
+  } = props;
   const { value, max } = useMeterState(props);
 
   const spaceBetweenSegmentsInPixel = 4;
@@ -93,7 +107,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
             <Text
               style={tailwind.style([
                 meterTheme.label.common,
-                meterTheme.label.size[size],
+                meterTheme.size[size]?.label,
                 hint ? meterTheme.label.hasHint : "",
               ])}
             >
@@ -104,7 +118,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
             <Text
               style={tailwind.style([
                 meterTheme.hint.common,
-                meterTheme.hint.size[size],
+                meterTheme.size[size]?.hint,
               ])}
             >
               {hint}
@@ -124,8 +138,8 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
                     key={`interval-${interval}`}
                     style={[
                       tailwind.style([
-                        meterTheme.track.common,
-                        meterTheme.track.size[size],
+                        meterTheme.themeColor[themeColor]?.track.common,
+                        meterTheme.size[size]?.track,
                         `w-[${segmentWidth}px]`,
                       ]),
                       flatBorders
@@ -141,6 +155,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
                   >
                     {intervalValue >= i ? (
                       <MeterBar
+                        themeColor={themeColor}
                         percent={percentValue}
                         barStyle={[
                           flatBorders

@@ -1,68 +1,92 @@
 export const badge = {
   baseContainer: "flex flex-row items-center rounded-2xl",
-  containerVariants: {
-    solid: {
-      default: "bg-gray-900",
-      primary: "bg-blue-600",
-      secondary: "bg-violet-600",
-      success: "bg-green-600",
-      danger: "bg-red-600",
+  themeColor: {
+    base: {
+      solid: {
+        container: "bg-gray-900",
+        text: "text-white-900",
+      },
+      subtle: {
+        container: "bg-gray-100",
+        text: "text-gray-800",
+      },
+      outline: {
+        container: "bg-white-900 border border-gray-400",
+        text: "text-gray-800",
+      },
     },
-    subtle: {
-      default: "bg-gray-100",
-      primary: "bg-blue-100",
-      secondary: "bg-violet-100",
-      success: "bg-green-100",
-      danger: "bg-red-100",
+    primary: {
+      solid: {
+        container: "bg-blue-600",
+        text: "text-white-900",
+      },
+      subtle: {
+        container: "bg-blue-100",
+        text: "text-blue-800",
+      },
+      outline: {
+        container: "bg-white-900 border border-blue-400",
+        text: "text-blue-800",
+      },
     },
-    outline: {
-      default: "bg-white-900 border border-gray-400",
-      primary: "bg-white-900 border border-blue-400",
-      secondary: "bg-white-900 border border-violet-400",
-      success: "bg-white-900 border border-green-400",
-      danger: "bg-white-900 border border-red-400",
+    secondary: {
+      solid: {
+        container: "bg-violet-600",
+        text: "text-white-900",
+      },
+      subtle: {
+        container: "bg-violet-100",
+        text: "text-violet-800",
+      },
+      outline: {
+        container: "bg-white-900 border border-violet-400",
+        text: "text-violet-800",
+      },
+    },
+    success: {
+      solid: {
+        container: "bg-green-600",
+        text: "text-white-900",
+      },
+      subtle: {
+        container: "bg-green-100",
+        text: "text-green-800",
+      },
+      outline: {
+        container: "bg-white-900 border border-green-400",
+        text: "text-green-800",
+      },
+    },
+    danger: {
+      solid: {
+        container: "bg-red-600",
+        text: "text-white-900",
+      },
+      subtle: {
+        container: "bg-red-100",
+        text: "text-red-800",
+      },
+      outline: {
+        container: "bg-white-900 border border-red-400",
+        text: "text-red-800",
+      },
     },
   },
   size: {
-    text: {
-      sm: "text-xs text-center font-medium",
-      md: "text-xs text-center font-medium",
-      lg: "text-cxs text-center font-medium",
+    sm: {
+      container: "px-1.5 py-px min-h-4",
+      text: "text-xs text-center font-medium",
+      prefix: "w-2 mr-1 items-center justify-center",
     },
-    container: {
-      sm: "px-1.5 min-h-4",
-      md: "px-1.5 min-h-5",
-      lg: "px-2 min-h-6",
+    md: {
+      container: "px-1.5 py-[3px] min-h-5",
+      text: "text-xs text-center font-medium",
+      prefix: "w-2.5 mr-1 items-center justify-center",
     },
-  },
-  textVariants: {
-    solid: {
-      default: "text-white-900",
-      primary: "text-white-900",
-      secondary: "text-white-900",
-      success: "text-white-900",
-      danger: "text-white-900",
-    },
-    subtle: {
-      default: "text-gray-800",
-      primary: "text-blue-800",
-      secondary: "text-violet-800",
-      success: "text-green-800",
-      danger: "text-red-800",
-    },
-    outline: {
-      default: "text-gray-600",
-      primary: "text-blue-500",
-      secondary: "text-violet-500",
-      success: "text-emarald-500",
-      danger: "text-red-500",
-    },
-  },
-  prefix: {
-    size: {
-      sm: "w-2 mr-1 items-center justify-center",
-      md: "w-2.5 mr-1 items-center justify-center",
-      lg: "w-3 mr-1 items-center justify-center",
+    lg: {
+      container: "px-2 py-[4.5px] min-h-6",
+      text: "text-cxs text-center font-medium",
+      prefix: "w-3 mr-1 items-center justify-center",
     },
   },
 };

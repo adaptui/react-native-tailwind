@@ -1,9 +1,7 @@
 import React, { forwardRef } from "react";
 import { PressableProps, TextStyle, ViewStyle } from "react-native";
 
-import { Box } from "../../primitives/Box";
-import { Text } from "../../primitives/Text";
-import { Touchable } from "../../primitives/Touchable";
+import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
 import { createComponent, RenderPropType } from "../../utils";
 import { createIcon } from "../create-icon";

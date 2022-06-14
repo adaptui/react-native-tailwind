@@ -9,16 +9,13 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export default function ButtonScreen() {
+export const ButtonScreen = () => {
   const tailwind = useTheme();
   return (
     <Box
       style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
     >
-      <Button
-        style={tailwind.style("my-1")}
-        suffix={<Icon icon={<CaretRight />} />}
-      >
+      <Button themeColor="primary" suffix={<Icon icon={<CaretRight />} />}>
         Continue
       </Button>
       <Button style={tailwind.style("my-1")} variant="outline">
@@ -43,7 +40,7 @@ export default function ButtonScreen() {
       </Button>
       <Button
         variant="subtle"
-        icon={<Icon icon={<CaretRight />} />}
+        iconOnly={<Icon icon={<CaretRight />} />}
         style={tailwind.style("my-1")}
       />
       <Button style={tailwind.style("my-1")} prefix={<Icon icon={<Image />} />}>
@@ -51,4 +48,4 @@ export default function ButtonScreen() {
       </Button>
     </Box>
   );
-}
+};

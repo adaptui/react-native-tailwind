@@ -18,7 +18,7 @@ export const ButtonSuffix: React.FC<ButtonSuffixProps> = ({
   const buttonTheme = useTheme("button");
 
   return (
-    <Box style={[tailwind.style(cx(buttonTheme.suffix[size]))]}>
+    <Box style={[tailwind.style(cx(buttonTheme.size[size]?.suffix))]}>
       {props.children}
     </Box>
   );

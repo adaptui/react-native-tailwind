@@ -11,7 +11,7 @@ import {
   withTiming,
 } from "react-native-reanimated";
 
-import { AnimatedBox } from "../../primitives/AnimatedBox";
+import { AnimatedBox } from "../../primitives";
 import { useTheme } from "../../theme/context";
 import { createComponent } from "../../utils";
 

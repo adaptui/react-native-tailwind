@@ -6,7 +6,7 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export default function AvatarGroupScreen() {
+export const AvatarGroupScreen = () => {
   const tailwind = useTheme();
   return (
     <Box
@@ -67,4 +67,4 @@ export default function AvatarGroupScreen() {
       </AvatarGroup>
     </Box>
   );
-}
+};

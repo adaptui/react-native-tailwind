@@ -1,10 +1,15 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import AvatarGroupScreen from "./modules/primitives/AvatarGroupScreen";
-import AvatarScreen from "./modules/primitives/AvatarScreen";
-import BadgeScreen from "./modules/primitives/BadgeScreen";
-import ButtonScreen from "./modules/primitives/ButtonScreen";
+import {
+  AvatarGroupScreen,
+  AvatarScreen,
+  BadgeScreen,
+  ButtonScreen,
+  CheckboxScreen,
+  MeterComponentScreen,
+  SpinnerScreen,
+} from "./modules/primitives";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +35,21 @@ const AppRoot = () => {
         options={{ title: "Badge" }}
         name="BadgeScreen"
         component={BadgeScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Checkbox" }}
+        name="CheckboxScreen"
+        component={CheckboxScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Spinner" }}
+        name="SpinnerScreen"
+        component={SpinnerScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "MeterComponent" }}
+        name="MeterComponentScreen"
+        component={MeterComponentScreen}
       />
     </Drawer.Navigator>
   );

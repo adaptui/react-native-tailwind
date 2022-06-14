@@ -1,97 +1,410 @@
 export const button = {
   base: "relative flex flex-row items-center justify-center",
-  variant: {
-    default: {
-      solid: "bg-gray-900 border border-transparent",
-      subtle: "bg-gray-100 border border-transparent",
-      outline: "bg-white-900 border border-gray-400",
-      ghost: "bg-white-900 border border-transparent",
-    },
-    pressed: {
-      solid: "bg-gray-800",
-      subtle: "bg-gray-200",
-      outline: "border-gray-500 shadow-sm",
-      ghost: "bg-gray-200",
-    },
-    disabled: {
-      solid: "bg-gray-200",
-      subtle: "bg-gray-100",
-      outline: "bg-gray-100 border-gray-400",
-      ghost: "",
-    },
-  },
-  text: {
-    size: {
-      sm: "text-cxs font-medium",
-      md: "text-sm font-medium",
-      lg: "text-sm font-medium",
-      xl: "text-base font-medium",
-    },
-    variant: {
-      default: {
-        solid: "text-white-900",
-        subtle: "text-gray-800",
-        outline: "text-gray-800",
-        ghost: "text-gray-800",
-      },
-      disabled: {
-        solid: "bg-gray-200 text-gray-500",
-        subtle: "bg-gray-100 text-gray-500",
-        outline: "bg-gray-100 text-gray-500",
-        ghost: "text-gray-500",
-      },
-    },
-  },
-  icon: {
-    size: {
-      sm: "w-4",
-      md: "w-4",
-      lg: "w-4",
-      xl: "w-5",
-    },
-    variant: {
-      default: {
-        solid: "text-white-900",
-        subtle: "text-gray-800",
-        outline: "text-gray-800",
-        ghost: "text-gray-800",
-      },
-      disabled: {
-        solid: "text-gray-500",
-        subtle: "text-gray-500",
-        outline: "text-gray-500",
-        ghost: "text-gray-500",
-      },
-    },
-  },
-  size: {
-    default: {
-      sm: "px-2 min-h-[26px] min-w-[26px] rounded-lg",
-      md: "px-2.5 min-h-[30px] min-w-[30px] rounded-lg",
-      lg: "px-3 min-h-9 min-w-9 rounded-[10px]",
-      xl: "px-4 min-h-11 min-w-11 rounded-xl",
-    },
-  },
-  prefix: {
-    sm: "w-3 mr-1.5 items-center justify-center",
-    md: "w-3 mr-1.5 items-center justify-center",
-    lg: "w-3 mr-1.5 items-center justify-center",
-    xl: "w-4 mr-1.5 items-center justify-center",
-  },
-  suffix: {
-    sm: "w-3 ml-1.5 items-center justify-center",
-    md: "w-3 ml-1.5 items-center justify-center",
-    lg: "w-3 ml-1.5 items-center justify-center",
-    xl: "w-4 ml-1.5 items-center justify-center",
-  },
   loading: {
     wrapper: "absolute z-10 items-center justify-center",
-    size: {
-      sm: "xs",
-      md: "xs",
-      lg: "xs",
-      xl: "md",
+    children: "opacity-0",
+  },
+  themeColor: {
+    base: {
+      solid: {
+        container: {
+          wrapper: "bg-gray-900 border border-transparent",
+          pressed: "bg-gray-700",
+          disabled: "bg-gray-200",
+        },
+        text: {
+          default: "text-white-900",
+          disabled: "bg-gray-200 text-gray-500",
+        },
+        icon: {
+          default: "text-white-900",
+          disabled: "text-gray-500",
+        },
+        spinner: {
+          disabled: "border-gray-500",
+        },
+      },
+      subtle: {
+        container: {
+          wrapper: "bg-gray-100 border border-transparent",
+          pressed: "bg-gray-300",
+          disabled: "bg-gray-100",
+        },
+        text: {
+          default: "text-gray-800",
+          disabled: "bg-gray-100 text-gray-500",
+        },
+        icon: {
+          default: "text-gray-800",
+          disabled: "text-gray-500",
+        },
+        spinner: {
+          disabled: "border-gray-500",
+        },
+      },
+      outline: {
+        container: {
+          wrapper: "bg-white-900 border border-gray-400",
+          pressed: "border-gray-500 bg-gray-300",
+          disabled: "bg-gray-100 border-gray-400",
+        },
+        text: {
+          default: "text-gray-800",
+          disabled: "bg-gray-100 text-gray-500",
+        },
+        icon: {
+          default: "text-gray-800",
+          disabled: "text-gray-500",
+        },
+        spinner: {
+          disabled: "border-gray-500",
+        },
+      },
+      ghost: {
+        container: {
+          wrapper: "bg-white-900 border border-transparent",
+          pressed: "bg-gray-300",
+          disabled: "",
+        },
+        text: {
+          default: "text-gray-800",
+          disabled: "text-gray-500",
+        },
+        icon: {
+          default: "text-gray-800",
+          disabled: "text-gray-500",
+        },
+        spinner: {
+          disabled: "border-gray-500",
+        },
+      },
     },
-    default: "border-gray-500",
+    primary: {
+      solid: {
+        container: {
+          wrapper: "bg-blue-600 border border-transparent",
+          pressed: "bg-blue-800",
+          disabled: "bg-blue-100",
+        },
+        text: {
+          default: "text-white-900",
+          disabled: "text-blue-500",
+        },
+        icon: {
+          default: "text-white-900",
+          disabled: "text-blue-500",
+        },
+        spinner: {
+          disabled: "border-blue-500",
+        },
+      },
+      subtle: {
+        container: {
+          wrapper: "bg-blue-100 border border-transparent",
+          pressed: "bg-blue-300",
+          disabled: "bg-blue-100",
+        },
+        text: {
+          default: "text-blue-800",
+          disabled: "text-blue-500",
+        },
+        icon: {
+          default: "text-blue-800",
+          disabled: "text-blue-500",
+        },
+        spinner: {
+          disabled: "border-blue-500",
+        },
+      },
+      outline: {
+        container: {
+          wrapper: "bg-white-900 border border-blue-400",
+          pressed: "border-blue-500 bg-blue-300",
+          disabled: "bg-blue-100 border-blue-400",
+        },
+        text: {
+          default: "text-blue-800",
+          disabled: "text-blue-500",
+        },
+        icon: {
+          default: "text-blue-800",
+          disabled: "text-blue-500",
+        },
+        spinner: {
+          disabled: "border-blue-500",
+        },
+      },
+      ghost: {
+        container: {
+          wrapper: "bg-white-900 border border-transparent",
+          pressed: "bg-blue-300",
+          disabled: "",
+        },
+        text: {
+          default: "text-blue-800",
+          disabled: "text-blue-500",
+        },
+        icon: {
+          default: "text-blue-800",
+          disabled: "text-blue-500",
+        },
+        spinner: {
+          disabled: "border-blue-500",
+        },
+      },
+    },
+    secondary: {
+      solid: {
+        container: {
+          wrapper: "bg-violet-600 border border-transparent",
+          pressed: "bg-violet-800",
+          disabled: "bg-violet-100",
+        },
+        text: {
+          default: "text-white-900",
+          disabled: "text-violet-500",
+        },
+        icon: {
+          default: "text-white-900",
+          disabled: "text-violet-500",
+        },
+        spinner: {
+          disabled: "border-violet-500",
+        },
+      },
+      subtle: {
+        container: {
+          wrapper: "bg-violet-100 border border-transparent",
+          pressed: "bg-violet-300",
+          disabled: "bg-violet-100",
+        },
+        text: {
+          default: "text-violet-800",
+          disabled: "text-violet-500",
+        },
+        icon: {
+          default: "text-violet-800",
+          disabled: "text-violet-500",
+        },
+        spinner: {
+          disabled: "border-violet-500",
+        },
+      },
+      outline: {
+        container: {
+          wrapper: "bg-white-900 border border-violet-400",
+          pressed: "border-violet-500 bg-violet-300",
+          disabled: "bg-violet-100 border-violet-400",
+        },
+        text: {
+          default: "text-violet-800",
+          disabled: "bg-violet-100 text-violet-500",
+        },
+        icon: {
+          default: "text-violet-800",
+          disabled: "text-violet-500",
+        },
+        spinner: {
+          disabled: "border-violet-500",
+        },
+      },
+      ghost: {
+        container: {
+          wrapper: "bg-white-900 border border-transparent",
+          pressed: "bg-violet-300",
+          disabled: "",
+        },
+        text: {
+          default: "text-violet-800",
+          disabled: "text-violet-500",
+        },
+        icon: {
+          default: "text-violet-800",
+          disabled: "text-violet-500",
+        },
+        spinner: {
+          disabled: "border-violet-500",
+        },
+      },
+    },
+    success: {
+      solid: {
+        container: {
+          wrapper: "bg-green-600 border border-transparent",
+          pressed: "bg-green-800",
+          disabled: "bg-green-100",
+        },
+        text: {
+          default: "text-white-900",
+          disabled: "text-green-500",
+        },
+        icon: {
+          default: "text-white-900",
+          disabled: "text-green-500",
+        },
+        spinner: {
+          disabled: "border-green-500",
+        },
+      },
+      subtle: {
+        container: {
+          wrapper: "bg-green-100 border border-transparent",
+          pressed: "bg-green-300",
+          disabled: "bg-green-100",
+        },
+        text: {
+          default: "text-green-800",
+          disabled: "text-green-500",
+        },
+        icon: {
+          default: "text-green-800",
+          disabled: "text-green-500",
+        },
+        spinner: {
+          disabled: "border-green-500",
+        },
+      },
+      outline: {
+        container: {
+          wrapper: "bg-white-900 border border-green-400",
+          pressed: "border-green-500 bg-green-300",
+          disabled: "bg-green-100 border-green-400",
+        },
+        text: {
+          default: "text-green-800",
+          disabled: "text-green-500",
+        },
+        icon: {
+          default: "text-green-800",
+          disabled: "text-green-500",
+        },
+        spinner: {
+          disabled: "border-green-500",
+        },
+      },
+      ghost: {
+        container: {
+          wrapper: "bg-white-900 border border-transparent",
+          pressed: "bg-green-300",
+          disabled: "",
+        },
+        text: {
+          default: "text-green-800",
+          disabled: "text-green-500",
+        },
+        icon: {
+          default: "text-green-800",
+          disabled: "text-green-500",
+        },
+        spinner: {
+          disabled: "border-green-500",
+        },
+      },
+    },
+    danger: {
+      solid: {
+        container: {
+          wrapper: "bg-red-600 border border-transparent",
+          pressed: "bg-red-800",
+          disabled: "bg-red-100",
+        },
+        text: {
+          default: "text-white-900",
+          disabled: "text-red-500",
+        },
+        icon: {
+          default: "text-white-900",
+          disabled: "text-red-500",
+        },
+        spinner: {
+          disabled: "border-red-500",
+        },
+      },
+      subtle: {
+        container: {
+          wrapper: "bg-red-100 border border-transparent",
+          pressed: "bg-red-300",
+          disabled: "bg-red-100",
+        },
+        text: {
+          default: "text-red-800",
+          disabled: "text-red-500",
+        },
+        icon: {
+          default: "text-red-800",
+          disabled: "text-red-500",
+        },
+        spinner: {
+          disabled: "border-red-500",
+        },
+      },
+      outline: {
+        container: {
+          wrapper: "bg-white-900 border border-red-400",
+          pressed: "border-red-500 bg-red-300",
+          disabled: "bg-red-100 border-red-400",
+        },
+        text: {
+          default: "text-red-800",
+          disabled: "text-red-500",
+        },
+        icon: {
+          default: "text-red-800",
+          disabled: "text-red-500",
+        },
+        spinner: {
+          disabled: "border-red-500",
+        },
+      },
+      ghost: {
+        container: {
+          wrapper: "bg-white-900 border border-transparent",
+          pressed: "bg-red-300",
+          disabled: "",
+        },
+        text: {
+          default: "text-red-800",
+          disabled: "text-red-500",
+        },
+        icon: {
+          default: "text-red-800",
+          disabled: "text-red-500",
+        },
+        spinner: {
+          disabled: "border-red-500",
+        },
+      },
+    },
+  },
+
+  size: {
+    sm: {
+      default: "px-2 min-h-[26px] min-w-[26px] rounded-lg",
+      prefix: "w-3 mr-1.5 items-center justify-center",
+      suffix: "w-3 ml-1.5 items-center justify-center",
+      icon: "w-4",
+      text: "text-cxs font-medium",
+    },
+    md: {
+      default: "px-2.5 min-h-[30px] min-w-[30px] rounded-lg",
+      prefix: "w-3 mr-1.5 items-center justify-center",
+      suffix: "w-3 ml-1.5 items-center justify-center",
+      icon: "w-4",
+      text: "text-sm font-medium",
+    },
+    lg: {
+      default: "px-3 min-h-9 min-w-9 rounded-[10px]",
+      prefix: "w-3 mr-1.5 items-center justify-center",
+      suffix: "w-3 ml-1.5 items-center justify-center",
+      icon: "w-4",
+      text: "text-sm font-medium",
+    },
+    xl: {
+      default: "px-4 min-h-11 min-w-11 rounded-xl",
+      prefix: "w-4 mr-1.5 items-center justify-center",
+      suffix: "w-4 ml-1.5 items-center justify-center",
+      icon: "w-5",
+      text: "text-base font-medium",
+    },
   },
 };

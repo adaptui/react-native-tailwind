@@ -3,7 +3,7 @@ export * from "./avatar-group";
 export * from "./badge";
 export * from "./button";
 export * from "./checkbox";
-export * from "./circularProgress";
+export * from "./circular-progress";
 export * from "./create-icon";
 export * from "./icon";
 export * from "./input";

@@ -34,7 +34,7 @@ export const avatar = {
     "3xl": "w-5",
   },
   initials: {
-    base: "text-center uppercase text-gray-800",
+    base: "text-center uppercase font-medium text-gray-800",
     size: {
       xs: "text-xs",
       sm: "text-cxs",
@@ -51,7 +51,7 @@ export const avatar = {
     active: {
       container:
         "absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0",
-      base: "bg-green-500 rounded-full",
+      base: "bg-green-600 rounded-full",
       size: {
         xs: "h-1 w-1",
         sm: "h-[5px] w-[5px]",
@@ -93,7 +93,7 @@ export const avatar = {
     typing: {
       container:
         "absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0",
-      base: "rounded-full flex flex-row justify-evenly items-center bg-gray-500",
+      base: "rounded-full flex flex-row justify-evenly items-center bg-gray-600",
       size: {
         xs: "w-2 h-[5px]",
         sm: "w-[9px] h-1.5",
