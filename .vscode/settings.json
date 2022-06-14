@@ -1,0 +1,15 @@
+{
+  "conventionalCommits.scopes": [
+    "readme",
+    "tailwind-config",
+    "badge",
+    "button",
+    "example-app",
+    "checkbox",
+    "spinner",
+    "avatar",
+    "meter",
+    "primitives"
+  ],
+  "git.branchProtection": ["main"]
+}
