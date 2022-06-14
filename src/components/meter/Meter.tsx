@@ -80,11 +80,11 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
   const meterTheme = useTheme("meter");
   const [meterWidth, setMeterWidth] = useState<number>(0);
   const {
-    label,
-    hint,
     size = "md",
     intervals = 1,
     themeColor = "base",
+    label,
+    hint,
     flatBorders,
   } = props;
   const { value, max } = useMeterState(props);
