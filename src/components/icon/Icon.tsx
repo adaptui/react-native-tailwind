@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { ViewStyle } from "react-native";
 
-import { Box } from "../../primitives/Box";
+import { Box } from "../../primitives";
 import { useTheme } from "../../theme/context";
 import { createComponent, RenderPropType } from "../../utils";
 
