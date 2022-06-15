@@ -1,12 +1,14 @@
 import React from "react";
+import { ViewStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
+import { useTheme } from "../../theme";
 import { IconProps } from "../../utils";
 import { Icon } from "../icon";
 
 import { TooltipPlacement } from "./Tooltip";
 
-const UpArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
+const UpArrow: React.FC<IconProps> = ({ fill = "#171717" }) => {
   return (
     <Svg width="100%" height="100%" viewBox="0 0 12 5" fill="none">
       <Path
@@ -17,7 +19,7 @@ const UpArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   );
 };
 
-const LeftArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
+const LeftArrow: React.FC<IconProps> = ({ fill = "#171717" }) => {
   return (
     <Svg width="100%" height="100%" viewBox="0 0 5 12" fill="none">
       <Path
@@ -28,7 +30,7 @@ const LeftArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   );
 };
 
-const RightArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
+const RightArrow: React.FC<IconProps> = ({ fill = "#171717" }) => {
   return (
     <Svg width="100%" height="100%" viewBox="0 0 5 12" fill="none">
       <Path
@@ -39,7 +41,7 @@ const RightArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   );
 };
 
-const DownArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
+const DownArrow: React.FC<IconProps> = ({ fill = "#171717" }) => {
   return (
     <Svg width="12" height="5" viewBox="0 0 12 5" fill="none">
       <Path
@@ -50,22 +52,126 @@ const DownArrow: React.FC<IconProps> = ({ fill = "#27272A" }) => {
   );
 };
 
+interface ArrowStyle {
+  style: Pick<ViewStyle, "left" | "top">;
+}
 interface TooltipArrowProps {
-  placement: TooltipPlacement;
+  actualPlacement?: TooltipPlacement;
+  arrowProps?: ArrowStyle;
 }
 
-const TooltipArrow: React.FC<TooltipArrowProps> = ({ placement }) => {
-  if (placement.split(" ")[0] === "top") {
-    return <Icon icon={<DownArrow />} size={12} />;
-  } else if (placement.split(" ")[0] === "left") {
-    return <Icon icon={<RightArrow />} size={12} />;
-  } else if (placement.split(" ")[0] === "right") {
-    return <Icon icon={<LeftArrow />} size={12} />;
-  } else if (placement.split(" ")[0] === "bottom") {
-    return <Icon icon={<UpArrow />} size={12} />;
+const defaultArrowHeight = 12;
+
+const getArrowStyles = (props: {
+  placement: TooltipPlacement;
+  height: number;
+  width: number;
+}) => {
+  let additionalStyles: any = {
+    transform: [],
+  };
+
+  const diagonalLength = getDiagonalLength(
+    defaultArrowHeight,
+    defaultArrowHeight,
+  );
+  if (props.placement === "top" && props.width) {
+    additionalStyles.transform.push({ translateX: -props.width / 2 });
+    additionalStyles.transform.push({ translateY: 4.5 });
+
+    additionalStyles.bottom = Math.ceil(
+      (diagonalLength - defaultArrowHeight) / 2,
+    );
+  }
+
+  if (props.placement === "bottom" && props.width) {
+    additionalStyles.transform.push({ translateX: -props.width / 2 });
+    additionalStyles.transform.push({ translateY: 2.3 });
+    additionalStyles.top = Math.ceil((diagonalLength - defaultArrowHeight) / 2);
+  }
+
+  if (props.placement === "left" && props.height) {
+    additionalStyles.transform.push({ translateY: -props.height / 2 });
+    additionalStyles.transform.push({ translateX: 0.7 });
+    additionalStyles.right = Math.ceil(
+      (diagonalLength - defaultArrowHeight) / 2,
+    );
+  }
+
+  if (props.placement === "right" && props.height) {
+    additionalStyles.transform.push({ translateY: -props.height / 2 });
+    additionalStyles.transform.push({ translateX: 2.3 });
+    additionalStyles.left = Math.ceil(
+      (diagonalLength - defaultArrowHeight) / 2,
+    );
+  }
+
+  return additionalStyles;
+};
+
+const getDiagonalLength = (height: number, width: number) => {
+  return Math.pow(height * height + width * width, 0.5);
+};
+
+const TooltipArrow: React.FC<TooltipArrowProps> = ({
+  actualPlacement = "bottom",
+  arrowProps,
+}) => {
+  const tailwind = useTheme();
+  const additonalArrowStyles = getArrowStyles({
+    placement: actualPlacement,
+    height: 12,
+    width: 12,
+  });
+  const arrowStyles: ViewStyle = {
+    position: "absolute",
+    height: 12,
+    width: 12,
+    ...additonalArrowStyles,
+    ...arrowProps?.style,
+  };
+  console.log(arrowStyles);
+  if (actualPlacement?.split(" ")[0] === "top") {
+    return (
+      <Icon
+        color={tailwind.getColor("text-gray-900")}
+        style={arrowStyles}
+        icon={<DownArrow />}
+        size={12}
+      />
+    );
+  } else if (actualPlacement?.split(" ")[0] === "left") {
+    return (
+      <Icon
+        color={tailwind.getColor("text-gray-900")}
+        style={arrowStyles}
+        icon={<RightArrow />}
+        size={12}
+      />
+    );
+  } else if (actualPlacement?.split(" ")[0] === "right") {
+    return (
+      <Icon
+        color={tailwind.getColor("text-gray-900")}
+        style={arrowStyles}
+        icon={<LeftArrow />}
+        size={12}
+      />
+    );
+  } else if (actualPlacement?.split(" ")[0] === "bottom") {
+    return (
+      <Icon
+        color={tailwind.getColor("text-gray-900")}
+        style={arrowStyles}
+        icon={<UpArrow />}
+        size={12}
+      />
+    );
   } else {
     return null;
   }
 };
+
+TooltipArrow.displayName = "PopperArrow";
 
 export default TooltipArrow;

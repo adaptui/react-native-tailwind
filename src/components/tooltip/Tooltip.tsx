@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Platform } from "react-native";
 import { Popover } from "react-native-popper";
 
@@ -22,23 +22,14 @@ export type TooltipPlacement =
   | "left top"
   | "left bottom";
 
-export type TooltipSide = "top" | "bottom" | "left" | "right";
-
-export type TooltipAlign = "end" | "start" | "center";
-
 export type TooltipTriggerAction = "press" | "hover" | "longPress" | undefined;
 
 export interface TooltipProps {
   /**
-   *  Tooltip/Popover Position
+   *  Tooltip/Popover Placement
    * @default bottom
    */
-  side: TooltipSide;
-  /**
-   * Tooltip/Popover Alignment
-   * @default center
-   */
-  align: TooltipAlign;
+  placement: TooltipPlacement;
   /**
    * Content of Tooltip
    */
@@ -51,7 +42,7 @@ export interface TooltipProps {
    * Action in which to show the Tooltip
    * @default onPress
    */
-  action: "onPress" | "onPressIn" | "onLongPress";
+  action: TooltipTriggerAction;
   /**
    * Distance between popover and trigger's main axis
    * @default 0
@@ -89,87 +80,27 @@ export const RNTooltip: React.FC<Partial<TooltipProps>> = props => {
   const {
     trigger,
     content,
-    side = "bottom",
-    align = "center",
+    placement = "bottom",
     mainOffset = 0,
     crossOffset = 0,
     hasArrow = false,
     shouldFlip = true,
-    action = "onPress",
+    action = Platform.OS === "web" ? "hover" : "press",
   } = props;
 
-  const placement = useMemo(() => {
-    if (align === "center") {
-      return side;
-    } else if (align === "start") {
-      if (side === "top" || side === "bottom") {
-        return `${side} left`;
-      } else {
-        return `${side} top`;
-      }
-    } else {
-      if (side === "top" || side === "bottom") {
-        return `${side} right`;
-      } else {
-        return `${side} bottom`;
-      }
-    }
-  }, [side, align]) as TooltipPlacement;
-
-  const tooltipTriggerAction = useMemo(() => {
-    if (Platform.OS === "web") {
-      return "hover";
-    } else {
-      if (action === "onPress") {
-        return "press";
-      } else {
-        return "longPress";
-      }
-    }
-  }, [action]) as TooltipTriggerAction;
-
-  const getArrowPosition = (arrowPlacement: TooltipPlacement) => {
-    if (arrowPlacement.split(" ")[0] === "top") {
-      return {
-        transform: [{ rotate: "0deg" }, { translateX: -6 }],
-        bottom: -4,
-      };
-    } else if (arrowPlacement?.split(" ")[0] === "bottom") {
-      return {
-        transform: [{ rotate: "0deg" }, { translateX: -6 }],
-      };
-    } else if (arrowPlacement?.split(" ")[0] === "left") {
-      return {
-        transform: [{ rotate: "0deg" }, { translateY: -6 }, { translateX: 5 }],
-      };
-    } else if (arrowPlacement?.split(" ")[0] === "right") {
-      return {
-        transform: [{ rotate: "0deg" }, { translateY: -6 }, { translateX: -1 }],
-      };
-    }
-    return {};
-  };
   return (
     <Popover
       offset={mainOffset}
       crossOffset={crossOffset}
       shouldFlip={shouldFlip}
       placement={placement}
-      on={tooltipTriggerAction}
+      on={action}
       // @ts-ignore
       trigger={trigger}
     >
       {Platform.OS !== "web" && <Popover.Backdrop />}
       <Popover.Content>
-        {hasArrow && (
-          <Popover.Arrow
-            height={16}
-            width={16}
-            style={getArrowPosition(placement)}
-          >
-            <TooltipArrow placement={placement} />
-          </Popover.Arrow>
-        )}
+        {hasArrow && <TooltipArrow />}
         <Box style={tailwind.style(tooltipTheme.contentWrapper)}>
           {typeof content === "string" ? (
             <Text style={tailwind.style(tooltipTheme.content)}>{content}</Text>
