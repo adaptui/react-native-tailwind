@@ -9,7 +9,8 @@
     "spinner",
     "avatar",
     "meter",
-    "primitives"
+    "primitives",
+    "tooltip"
   ],
   "git.branchProtection": ["main"]
 }
