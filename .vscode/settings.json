@@ -11,7 +11,8 @@
     "meter",
     "primitives",
     "tooltip",
-    "tag"
+    "tag",
+    "progress-bar"
   ],
   "git.branchProtection": ["main"]
 }
