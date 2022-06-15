@@ -130,7 +130,6 @@ const TooltipArrow: React.FC<TooltipArrowProps> = ({
     ...additonalArrowStyles,
     ...arrowProps?.style,
   };
-  console.log(arrowStyles);
   if (actualPlacement?.split(" ")[0] === "top") {
     return (
       <Icon
