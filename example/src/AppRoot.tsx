@@ -9,13 +9,14 @@ import {
   CheckboxScreen,
   MeterComponentScreen,
   SpinnerScreen,
-} from "./modules/primitives";
+  TooltipScreen,
+} from "./modules";
 
 const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="AvatarScreen">
+    <Drawer.Navigator initialRouteName="TooltipScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
@@ -50,6 +51,11 @@ const AppRoot = () => {
         options={{ title: "MeterComponent" }}
         name="MeterComponentScreen"
         component={MeterComponentScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Tooltip" }}
+        name="TooltipScreen"
+        component={TooltipScreen}
       />
     </Drawer.Navigator>
   );
