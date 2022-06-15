@@ -9,6 +9,7 @@ import {
   CheckboxScreen,
   MeterComponentScreen,
   SpinnerScreen,
+  TagScreen,
   TooltipScreen,
 } from "./modules";
 
@@ -56,6 +57,11 @@ const AppRoot = () => {
         options={{ title: "Tooltip" }}
         name="TooltipScreen"
         component={TooltipScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "TagScreen" }}
+        name="TagScreen"
+        component={TagScreen}
       />
     </Drawer.Navigator>
   );
