@@ -8,6 +8,7 @@ import {
   ButtonScreen,
   CheckboxScreen,
   MeterComponentScreen,
+  ProgressScreen,
   SpinnerScreen,
   TagScreen,
   TooltipScreen,
@@ -62,6 +63,11 @@ const AppRoot = () => {
         options={{ title: "TagScreen" }}
         name="TagScreen"
         component={TagScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "ProgressScreen" }}
+        name="ProgressScreen"
+        component={ProgressScreen}
       />
     </Drawer.Navigator>
   );
