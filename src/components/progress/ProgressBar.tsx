@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, ViewStyle } from "react-native";
 import {
   Easing,
   interpolate,
@@ -11,20 +11,24 @@ import {
   withTiming,
 } from "react-native-reanimated";
 
-import { AnimatedBox } from "../../primitives";
+import { AnimatedBox, BoxProps } from "../../primitives";
 import { useTheme } from "../../theme/context";
-import { createComponent } from "../../utils";
-
-import { useProgressBarProps } from "./ProgressProps";
+import { createComponent, styleAdapter } from "../../utils";
 
 export type ProgressBarSizes = "sm" | "md" | "lg" | "xl";
+export type ProgressBarTheme = "base" | "primary";
 
-export interface ProgressProps {
+export interface ProgressProps extends BoxProps {
   /**
    * The size of the Progress Bar component.
    * @default lg
    */
   size: ProgressBarSizes;
+  /**
+   * The theme of the Progress Bar component.
+   * @default base
+   */
+  themeColor: ProgressBarTheme;
   /**
    * The progress value
    * If null makes it indeterminate
@@ -32,15 +36,9 @@ export interface ProgressProps {
    */
   value: number | null;
   /**
-   * Track color containing the progress
-   * @default 'bg-gray-200'
+   * The progress track style
    */
-  trackColor: string;
-  /**
-   * Track color of the progress value
-   * @default 'bg-gray-800'
-   */
-  progressTrackColor: string;
+  trackStyle: ViewStyle;
 }
 
 const SPRING_CONFIG = {
@@ -57,9 +55,16 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   Partial<ProgressProps>
 >((props, ref) => {
   const tailwind = useTheme();
-  const progressStyles = useTheme("progress");
-  const { trackColor, progressTrackColor, value, size } =
-    useProgressBarProps(props);
+  const progressTheme = useTheme("progress");
+  const {
+    size = "lg",
+    themeColor = "base",
+    value,
+    style,
+    trackStyle = {},
+    ...otherProps
+  } = props;
+
   const isIndeterminate = React.useMemo(
     () => value === null || value === undefined,
     [value],
@@ -107,15 +112,22 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
     <AnimatedBox
       ref={ref}
       style={[
-        tailwind.style(progressStyles.container[size]),
-        { backgroundColor: trackColor },
+        tailwind.style(
+          progressTheme.size[size]?.container,
+          progressTheme.themeColor[themeColor]?.track,
+        ),
+        styleAdapter(style, { pressed: false }, false),
       ]}
+      {...otherProps}
     >
       {isIndeterminate && (
         <AnimatedBox
           style={[
-            tailwind.style(progressStyles.bar[size]),
-            { backgroundColor: progressTrackColor },
+            tailwind.style(
+              progressTheme.size[size]?.bar,
+              progressTheme.themeColor[themeColor]?.filled,
+            ),
+            styleAdapter(trackStyle, { pressed: false }, false),
             translatingStyle,
           ]}
         />
@@ -123,8 +135,11 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
       {!isIndeterminate && (
         <AnimatedBox
           style={[
-            tailwind.style(progressStyles.bar[size]),
-            { backgroundColor: progressTrackColor },
+            tailwind.style(
+              progressTheme.size[size]?.bar,
+              progressTheme.themeColor[themeColor]?.filled,
+            ),
+            styleAdapter(trackStyle, { pressed: false }, false),
             animatingWidth,
           ]}
         />
