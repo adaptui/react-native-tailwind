@@ -1,16 +1,16 @@
 import React, { forwardRef } from "react";
-import { PressableProps, TextStyle, ViewStyle } from "react-native";
+import { PressableProps, TextStyle } from "react-native";
 
+import { Close } from "../../icons";
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, RenderPropType } from "../../utils";
+import { createComponent, RenderPropType, styleAdapter } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
-import { useTagProps } from "./TagProps";
-
 export type TagSizes = "sm" | "md" | "lg" | "xl";
 export type TagVariant = "solid" | "subtle" | "outline";
+export type TagTheme = "base" | "primary";
 
 export interface TagProps extends PressableProps {
   /**
@@ -23,6 +23,11 @@ export interface TagProps extends PressableProps {
    * @default solid
    */
   variant: TagVariant;
+  /**
+   * The Theme of the Tag component.
+   * @default base
+   */
+  themeColor: TagTheme;
   /**
    * A Prefix Element.
    * If added, the Tag will show a prefix Element before the Tag's text.
@@ -39,11 +44,6 @@ export interface TagProps extends PressableProps {
    */
   closable: boolean;
   /**
-   * The Container style of the Tag component.
-   * @default {}
-   */
-  touchableContainerStyle: ViewStyle;
-  /**
    * The Text style of the Tag component.
    * @default {}
    */
@@ -56,78 +56,100 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
 >((props, ref) => {
   const tailwind = useTheme();
   const tagTheme = useTheme("tag");
-
   const {
-    _tagLibProps: { size, variant },
-    _tagOptions: { suffix, prefix },
-  } = useTagProps(props);
+    size = "md",
+    variant = "solid",
+    themeColor = "base",
+    closable = false,
+    prefix,
+    suffix = closable ? <Icon icon={<Close />} /> : null,
+    style,
+    ...otherProps
+  } = props;
+
+  /* Prefix Slot */
+  const _prefix =
+    prefix &&
+    // @ts-ignore
+    (prefix?.type === Icon ? (
+      createIcon({
+        icon: prefix,
+        iconFill: tailwind.getColor(
+          props.disabled
+            ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
+            : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
+        ),
+        iconStyle: tailwind.style(tagTheme.size[size]?.prefix),
+      })
+    ) : (
+      <Box style={[tailwind.style(tagTheme.size[size]?.prefix)]}>{prefix}</Box>
+    ));
+
+  /* Suffix Slot */
+  const _suffix =
+    suffix &&
+    // @ts-ignore
+    (suffix?.type === Icon ? (
+      createIcon({
+        icon: suffix,
+        iconFill: tailwind.getColor(
+          props.disabled
+            ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
+            : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
+        ),
+        iconStyle: tailwind.style(tagTheme.size[size]?.suffix),
+      })
+    ) : (
+      <Box style={[tailwind.style(tagTheme.size[size]?.suffix)]}>{suffix}</Box>
+    ));
+
+  /**
+   * Tag Children
+   */
+  const children =
+    typeof otherProps.children === "string" ? (
+      <Text
+        style={[
+          tailwind.style(
+            tagTheme.size[size]?.text,
+            tagTheme.themeColor[themeColor]?.[variant]?.text?.default,
+            props.disabled
+              ? tagTheme.themeColor[themeColor]?.[variant]?.text?.disabled
+              : "",
+          ),
+          { ...props.textStyle },
+        ]}
+        adjustsFontSizeToFit
+        allowFontScaling={false}
+      >
+        {props.children}
+      </Text>
+    ) : (
+      props.children
+    );
+
   return (
     <Touchable
       ref={ref}
-      style={({ pressed }) => [
+      style={touchState => [
         tailwind.style(
           tagTheme.base,
-          tagTheme.size.default[size],
-          tagTheme.variant.default[variant],
-          pressed && tagTheme.variant.pressed[variant],
-          props.disabled && tagTheme.variant.disabled[variant],
+          tagTheme.size[size]?.default,
+          tagTheme.themeColor[themeColor]?.[variant]?.container?.wrapper,
+          touchState.pressed
+            ? tagTheme.themeColor[themeColor]?.[variant]?.container?.pressed
+            : "",
+          props.disabled
+            ? tagTheme.themeColor[themeColor]?.[variant]?.container?.disabled
+            : "",
         ),
-        { ...props.touchableContainerStyle },
+        styleAdapter(style, touchState, true),
       ]}
-      {...props}
+      {...otherProps}
     >
-      {prefix &&
-        // @ts-ignore
-        (prefix?.type === Icon ? (
-          createIcon({
-            icon: prefix,
-            iconFill: tailwind.getColor(
-              props.disabled
-                ? tagTheme.variant.icon.disabled[variant]
-                : tagTheme.variant.icon.default[variant],
-            ),
-            iconStyle: tailwind.style(tagTheme.size.prefix[size]),
-          })
-        ) : (
-          <Box style={[tailwind.style(tagTheme.size.prefix[size])]}>
-            {prefix}
-          </Box>
-        ))}
-      {typeof props.children === "string" ? (
-        <Text
-          style={[
-            tailwind.style(
-              tagTheme.size.text[size],
-              tagTheme.variant.text.default[variant],
-              props.disabled && tagTheme.variant.text.disabled[variant],
-            ),
-            { ...props.textStyle },
-          ]}
-          adjustsFontSizeToFit
-          allowFontScaling={false}
-        >
-          {props.children}
-        </Text>
-      ) : (
-        props.children
-      )}
-      {suffix &&
-        // @ts-ignore
-        (suffix?.type === Icon ? (
-          createIcon({
-            icon: suffix,
-            iconFill: tailwind.getColor(
-              props.disabled
-                ? tagTheme.variant.icon.disabled[variant]
-                : tagTheme.variant.icon.default[variant],
-            ),
-            iconStyle: tailwind.style(tagTheme.size.suffix[size]),
-          })
-        ) : (
-          <Box style={[tailwind.style(tagTheme.size.suffix[size])]}>
-            {suffix}
-          </Box>
-        ))}
+      {_prefix}
+      {children}
+      {closable && _suffix}
     </Touchable>
   );
 });
