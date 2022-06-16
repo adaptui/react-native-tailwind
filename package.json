@@ -1,6 +1,6 @@
 {
   "name": "@adaptui/react-native-tailwind",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System",
   "keywords": [
     "react-native",

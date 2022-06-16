@@ -1,4 +1,34 @@
 
+## [1.0.0-alpha.3](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.2...1.0.0-alpha.3) (2022-06-16)
+
+### Feature Updates
+
+* **progress-bar:** :lipstick: wrap tailwind classnames with cx ([f39de78](https://github.com/adaptui/react-native-tailwind/commit/f39de78ae72ef4b265d8a0faf32faacc6ebcbe11))
+* **progress-bar:** :sparkles: wrap progress bar component ([aa84ad2](https://github.com/adaptui/react-native-tailwind/commit/aa84ad21099560378f50528d5e0e15c9952344f7))
+* **tag:** :sparkles: add themeColor for tag, remove TagProps hook, restructured tag render ([d760493](https://github.com/adaptui/react-native-tailwind/commit/d760493f395b91e357521172129a8ffb44a17b05))
+* **tag:** :zap: wrap tailwind classnames with cx, wrap textStyle inside styleAdapter ([b5defc9](https://github.com/adaptui/react-native-tailwind/commit/b5defc987b09c4454049f88fe9f9c0439159e3e0))
+* **tooltip:** :lipstick: updated tooltip theme ([bdc26c2](https://github.com/adaptui/react-native-tailwind/commit/bdc26c29dafdca5f7df5e0b71a84a8012e2c290e))
+* **tooltip:** :mute: remove console.log ([98fa76f](https://github.com/adaptui/react-native-tailwind/commit/98fa76f0bf103a4e4429f50c3dca9c428a60b720))
+* **tooltip:** :sparkles: wrap tailwind classnames with `cx`, move arrow style into tooltip theme ([edf65bd](https://github.com/adaptui/react-native-tailwind/commit/edf65bd8717cbf677df8174531050c6333b91eb7))
+* **tooltip:** :tada: wrap tooltip component ([f3c4c53](https://github.com/adaptui/react-native-tailwind/commit/f3c4c53abea46b28e0388b8e405ad076943e35fc))
+
+### Maintanance Updates
+
+* :wrench: add .vscode folder ([00011fe](https://github.com/adaptui/react-native-tailwind/commit/00011fe1aee63ce911c2b0dc90f4f83fc67ce205))
+* :wrench: add progress-bar to vscode scope ([69fba26](https://github.com/adaptui/react-native-tailwind/commit/69fba26281037848d688a73cce807181574da2a8))
+* :wrench: add tag to vscode scope ([f503c9b](https://github.com/adaptui/react-native-tailwind/commit/f503c9b696cd0052e800acfcaf9efa7eff034eb1))
+* :wrench: add tooltip scope ([7904b2a](https://github.com/adaptui/react-native-tailwind/commit/7904b2a241a19700ea2288f102363ad3fbb2ef28))
+* **changelog:** 🔊 update changelog & kodiak merge logic ([d95a535](https://github.com/adaptui/react-native-tailwind/commit/d95a5358823f93de677dfa9d75046101df7e29a5))
+
+* **example-app:** :package: add react native popper package ([3c2abd4](https://github.com/adaptui/react-native-tailwind/commit/3c2abd4fa2a80d2409f579b5f533de8f0289747f))
+* **example-app:** :sparkles: add popups module, create tooltip component screen with examples ([05864a3](https://github.com/adaptui/react-native-tailwind/commit/05864a33f172a8b2190890ef9ecf36d2c01673d7))
+* **example-app:** :sparkles: create Progress Bar component screen with examples ([5b8592f](https://github.com/adaptui/react-native-tailwind/commit/5b8592f6d937442bb453ca2398076ac412d68e88))
+* **example-app:** :sparkles: create Tag component screen with examples ([8c9e89f](https://github.com/adaptui/react-native-tailwind/commit/8c9e89f9de74d66c6130177bce040709e34eb931))
+
+### Bug Fixes
+
+* **deps:** ⬆️ update dependency react-native-web to v0.18.1 ([da8c34a](https://github.com/adaptui/react-native-tailwind/commit/da8c34a7a589227e793b5a22a8e5889921881f61))
+
 
 ## [1.0.0-alpha.2](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.1...1.0.0-alpha.2) (2022-06-14)
 
