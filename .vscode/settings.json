@@ -12,7 +12,8 @@
     "primitives",
     "tooltip",
     "tag",
-    "progress-bar"
+    "progress-bar",
+    "switch"
   ],
   "git.branchProtection": ["main"]
 }
