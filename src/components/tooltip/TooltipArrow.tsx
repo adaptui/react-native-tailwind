@@ -3,7 +3,7 @@ import { ViewStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
 import { useTheme } from "../../theme";
-import { IconProps } from "../../utils";
+import { cx, IconProps } from "../../utils";
 import { Icon } from "../icon";
 
 import { TooltipPlacement } from "./Tooltip";
@@ -118,22 +118,22 @@ const TooltipArrow: React.FC<TooltipArrowProps> = ({
   arrowProps,
 }) => {
   const tailwind = useTheme();
+  const tooltipTheme = useTheme("tooltip");
+
   const additonalArrowStyles = getArrowStyles({
     placement: actualPlacement,
     height: 12,
     width: 12,
   });
   const arrowStyles: ViewStyle = {
-    position: "absolute",
-    height: 12,
-    width: 12,
+    ...tailwind.style(cx(tooltipTheme.arrow.container)),
     ...additonalArrowStyles,
     ...arrowProps?.style,
   };
   if (actualPlacement?.split(" ")[0] === "top") {
     return (
       <Icon
-        color={tailwind.getColor("text-gray-900")}
+        color={tailwind.getColor(cx(tooltipTheme.arrow.iconColor))}
         style={arrowStyles}
         icon={<DownArrow />}
         size={12}
@@ -142,7 +142,7 @@ const TooltipArrow: React.FC<TooltipArrowProps> = ({
   } else if (actualPlacement?.split(" ")[0] === "left") {
     return (
       <Icon
-        color={tailwind.getColor("text-gray-900")}
+        color={tailwind.getColor(cx(tooltipTheme.arrow.iconColor))}
         style={arrowStyles}
         icon={<RightArrow />}
         size={12}
@@ -151,7 +151,7 @@ const TooltipArrow: React.FC<TooltipArrowProps> = ({
   } else if (actualPlacement?.split(" ")[0] === "right") {
     return (
       <Icon
-        color={tailwind.getColor("text-gray-900")}
+        color={tailwind.getColor(cx(tooltipTheme.arrow.iconColor))}
         style={arrowStyles}
         icon={<LeftArrow />}
         size={12}
@@ -160,7 +160,7 @@ const TooltipArrow: React.FC<TooltipArrowProps> = ({
   } else if (actualPlacement?.split(" ")[0] === "bottom") {
     return (
       <Icon
-        color={tailwind.getColor("text-gray-900")}
+        color={tailwind.getColor(cx(tooltipTheme.arrow.iconColor))}
         style={arrowStyles}
         icon={<UpArrow />}
         size={12}
