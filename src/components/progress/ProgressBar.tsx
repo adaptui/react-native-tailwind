@@ -13,7 +13,7 @@ import {
 
 import { AnimatedBox, BoxProps } from "../../primitives";
 import { useTheme } from "../../theme/context";
-import { createComponent, styleAdapter } from "../../utils";
+import { createComponent, cx, styleAdapter } from "../../utils";
 
 export type ProgressBarSizes = "sm" | "md" | "lg" | "xl";
 export type ProgressBarTheme = "base" | "primary";
@@ -113,8 +113,10 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
       ref={ref}
       style={[
         tailwind.style(
-          progressTheme.size[size]?.container,
-          progressTheme.themeColor[themeColor]?.track,
+          cx(
+            progressTheme.size[size]?.container,
+            progressTheme.themeColor[themeColor]?.track,
+          ),
         ),
         styleAdapter(style, { pressed: false }, false),
       ]}
@@ -124,8 +126,10 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
         <AnimatedBox
           style={[
             tailwind.style(
-              progressTheme.size[size]?.bar,
-              progressTheme.themeColor[themeColor]?.filled,
+              cx(
+                progressTheme.size[size]?.bar,
+                progressTheme.themeColor[themeColor]?.filled,
+              ),
             ),
             styleAdapter(trackStyle, { pressed: false }, false),
             translatingStyle,
@@ -136,8 +140,10 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
         <AnimatedBox
           style={[
             tailwind.style(
-              progressTheme.size[size]?.bar,
-              progressTheme.themeColor[themeColor]?.filled,
+              cx(
+                progressTheme.size[size]?.bar,
+                progressTheme.themeColor[themeColor]?.filled,
+              ),
             ),
             styleAdapter(trackStyle, { pressed: false }, false),
             animatingWidth,
