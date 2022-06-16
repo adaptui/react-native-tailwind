@@ -235,6 +235,7 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
     });
 
     const switchTapGesture = Gesture.Tap()
+      .enabled(!disabled)
       .maxDuration(99999999)
       .shouldCancelWhenOutside(true)
       .onBegin(() => {
@@ -290,7 +291,16 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
           >
             {label && typeof label === "string" ? (
               <Text
-                style={tailwind.style(cx(switchTheme.size[size]?.label?.text))}
+                style={tailwind.style(
+                  cx(
+                    switchTheme.size[size]?.label?.text,
+                    disabled
+                      ? description
+                        ? switchTheme.themeColor[themeColor]?.label.default
+                        : switchTheme.themeColor[themeColor]?.label.disabled
+                      : "",
+                  ),
+                )}
               >
                 {label}
               </Text>
