@@ -10,6 +10,7 @@ import {
   MeterComponentScreen,
   ProgressScreen,
   SpinnerScreen,
+  SwitchComponentScreen,
   TagScreen,
   TooltipScreen,
 } from "./modules";
@@ -18,7 +19,7 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="TooltipScreen">
+    <Drawer.Navigator initialRouteName="SwitchComponentScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
@@ -50,7 +51,7 @@ const AppRoot = () => {
         component={SpinnerScreen}
       />
       <Drawer.Screen
-        options={{ title: "MeterComponent" }}
+        options={{ title: "Meter" }}
         name="MeterComponentScreen"
         component={MeterComponentScreen}
       />
@@ -60,14 +61,19 @@ const AppRoot = () => {
         component={TooltipScreen}
       />
       <Drawer.Screen
-        options={{ title: "TagScreen" }}
+        options={{ title: "Tag " }}
         name="TagScreen"
         component={TagScreen}
       />
       <Drawer.Screen
-        options={{ title: "ProgressScreen" }}
+        options={{ title: "Progress " }}
         name="ProgressScreen"
         component={ProgressScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Switch" }}
+        name="SwitchComponentScreen"
+        component={SwitchComponentScreen}
       />
     </Drawer.Navigator>
   );
