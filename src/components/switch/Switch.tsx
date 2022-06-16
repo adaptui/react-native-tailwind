@@ -14,7 +14,7 @@ import {
 } from "react-native-reanimated";
 import { useControllableState } from "@chakra-ui/hooks";
 
-import { AnimatedBox } from "../../primitives";
+import { AnimatedBox, Box, Text } from "../../primitives";
 import { useTheme } from "../../theme";
 import { cx } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
@@ -74,6 +74,14 @@ export interface SwitchProps {
    * @default base
    */
   themeColor?: "base" | "primary";
+  /**
+   * The Label of the switch component.
+   */
+  label?: string;
+  /**
+   * The Description of the switch component.
+   */
+  description?: string;
 }
 
 const SPRING_CONFIG = {
@@ -102,6 +110,8 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
       onStatePressedColor: onStatePressedColorFromProps,
       thumbTintColor: thumbTintColorFromProps,
       themeColor = "base",
+      label,
+      description,
     },
     _ref,
   ) => {
@@ -177,6 +187,28 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
       };
     });
 
+    const activeContainerState = tailwind.getColor(
+      cx(switchTheme.themeColor[themeColor]?.container?.active),
+    ) as string;
+    const defaultContainerState = tailwind.getColor(
+      cx(switchTheme.themeColor[themeColor]?.container?.default),
+    ) as string;
+
+    const animatedContainerBackground = useAnimatedStyle(() => {
+      return {
+        backgroundColor: interpolateColor(
+          thumbAnimated.value,
+          [0, 0.3, 0.7, 1],
+          [
+            defaultContainerState,
+            activeContainerState,
+            activeContainerState,
+            defaultContainerState,
+          ],
+        ),
+      };
+    });
+
     const animatedThumbStyle = useAnimatedStyle(() => {
       return {
         backgroundColor: thumbTintColor,
@@ -202,7 +234,7 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
       };
     });
 
-    const thumbTapGesture = Gesture.Tap()
+    const switchTapGesture = Gesture.Tap()
       .maxDuration(99999999)
       .shouldCancelWhenOutside(true)
       .onBegin(() => {
@@ -229,19 +261,70 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
       });
 
     return (
-      <GestureDetector gesture={thumbTapGesture}>
+      <GestureDetector gesture={switchTapGesture}>
         <AnimatedBox
           style={[
-            tailwind.style(cx(switchTheme.size[size]?.switchContainerStyle)),
-            animatedSwitchBackground,
+            tailwind.style(
+              cx(
+                label
+                  ? description
+                    ? switchTheme.size[size]?.labelWithDescription.base
+                    : switchTheme.size[size]?.label.base
+                  : "",
+              ),
+            ),
+            label ? (description ? {} : animatedContainerBackground) : {},
           ]}
         >
+          <Box
+            style={tailwind.style(
+              cx(
+                label
+                  ? description
+                    ? switchTheme.size[size]?.labelWithDescription
+                        .labelDescriptionWrapper
+                    : switchTheme.size[size]?.label?.text
+                  : "",
+              ),
+            )}
+          >
+            {label && typeof label === "string" ? (
+              <Text
+                style={tailwind.style(cx(switchTheme.size[size]?.label?.text))}
+              >
+                {label}
+              </Text>
+            ) : (
+              label
+            )}
+            {description && typeof description === "string" ? (
+              <Text
+                style={tailwind.style(
+                  cx(
+                    switchTheme.size[size]?.labelWithDescription
+                      ?.descriptionText,
+                  ),
+                )}
+              >
+                {description}
+              </Text>
+            ) : (
+              description
+            )}
+          </Box>
           <AnimatedBox
             style={[
-              tailwind.style(cx(switchTheme.size[size]?.thumbStyle)),
-              animatedThumbStyle,
+              tailwind.style(cx(switchTheme.size[size]?.switchContainerStyle)),
+              animatedSwitchBackground,
             ]}
-          />
+          >
+            <AnimatedBox
+              style={[
+                tailwind.style(cx(switchTheme.size[size]?.thumbStyle)),
+                animatedThumbStyle,
+              ]}
+            />
+          </AnimatedBox>
         </AnimatedBox>
       </GestureDetector>
     );
