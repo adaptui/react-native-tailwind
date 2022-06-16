@@ -4,7 +4,7 @@ import { PressableProps, TextStyle } from "react-native";
 import { Close } from "../../icons";
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, RenderPropType, styleAdapter } from "../../utils";
+import { createComponent, cx, RenderPropType, styleAdapter } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
@@ -15,7 +15,7 @@ export type TagTheme = "base" | "primary";
 export interface TagProps extends PressableProps {
   /**
    * The size of the Tag component.
-   * @default lg
+   * @default md
    */
   size: TagSizes;
   /**
@@ -64,6 +64,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     prefix,
     suffix = closable ? <Icon icon={<Close />} /> : null,
     style,
+    textStyle,
     ...otherProps
   } = props;
 
@@ -75,14 +76,18 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       createIcon({
         icon: prefix,
         iconFill: tailwind.getColor(
-          props.disabled
-            ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
-            : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
+          cx(
+            props.disabled
+              ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
+              : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
+          ),
         ),
-        iconStyle: tailwind.style(tagTheme.size[size]?.prefix),
+        iconStyle: tailwind.style(cx(tagTheme.size[size]?.prefix)),
       })
     ) : (
-      <Box style={[tailwind.style(tagTheme.size[size]?.prefix)]}>{prefix}</Box>
+      <Box style={tailwind.style(cx(tagTheme.size[size]?.prefix))}>
+        {prefix}
+      </Box>
     ));
 
   /* Suffix Slot */
@@ -93,14 +98,18 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       createIcon({
         icon: suffix,
         iconFill: tailwind.getColor(
-          props.disabled
-            ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
-            : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
+          cx(
+            props.disabled
+              ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
+              : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
+          ),
         ),
-        iconStyle: tailwind.style(tagTheme.size[size]?.suffix),
+        iconStyle: tailwind.style(cx(tagTheme.size[size]?.suffix)),
       })
     ) : (
-      <Box style={[tailwind.style(tagTheme.size[size]?.suffix)]}>{suffix}</Box>
+      <Box style={tailwind.style(cx(tagTheme.size[size]?.suffix))}>
+        {suffix}
+      </Box>
     ));
 
   /**
@@ -111,13 +120,15 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       <Text
         style={[
           tailwind.style(
-            tagTheme.size[size]?.text,
-            tagTheme.themeColor[themeColor]?.[variant]?.text?.default,
-            props.disabled
-              ? tagTheme.themeColor[themeColor]?.[variant]?.text?.disabled
-              : "",
+            cx(
+              tagTheme.size[size]?.text,
+              tagTheme.themeColor[themeColor]?.[variant]?.text?.default,
+              props.disabled
+                ? tagTheme.themeColor[themeColor]?.[variant]?.text?.disabled
+                : "",
+            ),
           ),
-          { ...props.textStyle },
+          styleAdapter(textStyle, { pressed: false }, false),
         ]}
         adjustsFontSizeToFit
         allowFontScaling={false}
@@ -133,15 +144,17 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       ref={ref}
       style={touchState => [
         tailwind.style(
-          tagTheme.base,
-          tagTheme.size[size]?.default,
-          tagTheme.themeColor[themeColor]?.[variant]?.container?.wrapper,
-          touchState.pressed
-            ? tagTheme.themeColor[themeColor]?.[variant]?.container?.pressed
-            : "",
-          props.disabled
-            ? tagTheme.themeColor[themeColor]?.[variant]?.container?.disabled
-            : "",
+          cx(
+            tagTheme.base,
+            tagTheme.size[size]?.default,
+            tagTheme.themeColor[themeColor]?.[variant]?.container?.wrapper,
+            touchState.pressed
+              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.pressed
+              : "",
+            props.disabled
+              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.disabled
+              : "",
+          ),
         ),
         styleAdapter(style, touchState, true),
       ]}
