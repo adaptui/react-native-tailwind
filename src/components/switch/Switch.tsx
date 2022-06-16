@@ -14,12 +14,12 @@ import {
 } from "react-native-reanimated";
 import { useControllableState } from "@chakra-ui/hooks";
 
-import { AnimatedBox, Box, Text } from "../../primitives";
+import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
 import { useTheme } from "../../theme";
-import { cx } from "../../utils";
+import { cx, styleAdapter } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 
-export interface SwitchProps {
+export interface SwitchProps extends BoxProps {
   /**
    * Default Value of the switch
    * @default false
@@ -112,6 +112,8 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
       themeColor = "base",
       label,
       description,
+      style,
+      ...otherProps
     },
     _ref,
   ) => {
@@ -274,8 +276,10 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
                   : "",
               ),
             ),
+            styleAdapter(style, { pressed: false }, false),
             label ? (description ? {} : animatedContainerBackground) : {},
           ]}
+          {...otherProps}
         >
           <Box
             style={tailwind.style(
