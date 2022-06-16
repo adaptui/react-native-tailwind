@@ -4,7 +4,7 @@ import { Popover } from "react-native-popper";
 
 import { Box, Text } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, RenderPropType } from "../../utils";
+import { createComponent, cx, RenderPropType } from "../../utils";
 
 import TooltipArrow from "./TooltipArrow";
 
@@ -101,9 +101,11 @@ export const RNTooltip: React.FC<Partial<TooltipProps>> = props => {
       {Platform.OS !== "web" && <Popover.Backdrop />}
       <Popover.Content>
         {hasArrow && <TooltipArrow />}
-        <Box style={tailwind.style(tooltipTheme.contentWrapper)}>
+        <Box style={tailwind.style(cx(tooltipTheme.contentWrapper))}>
           {typeof content === "string" ? (
-            <Text style={tailwind.style(tooltipTheme.content)}>{content}</Text>
+            <Text style={tailwind.style(cx(tooltipTheme.content))}>
+              {content}
+            </Text>
           ) : (
             content
           )}
