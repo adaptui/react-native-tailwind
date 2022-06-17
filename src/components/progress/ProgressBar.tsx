@@ -11,7 +11,7 @@ import {
   withTiming,
 } from "react-native-reanimated";
 
-import { AnimatedBox, BoxProps } from "../../primitives";
+import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
 import { useTheme } from "../../theme/context";
 import { createComponent, cx, styleAdapter } from "../../utils";
 
@@ -39,6 +39,14 @@ export interface ProgressProps extends BoxProps {
    * The progress track style
    */
   trackStyle: ViewStyle;
+  /**
+   * Label for the Meter
+   */
+  label: string;
+  /**
+   * Hint for the Meter
+   */
+  hint: string;
 }
 
 const SPRING_CONFIG = {
@@ -62,6 +70,8 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
     value,
     style,
     trackStyle = {},
+    label,
+    hint,
     ...otherProps
   } = props;
 
@@ -109,48 +119,80 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   });
 
   return (
-    <AnimatedBox
+    <Box
       ref={ref}
       style={[
-        tailwind.style(
-          cx(
-            progressTheme.size[size]?.container,
-            progressTheme.themeColor[themeColor]?.track,
-          ),
-        ),
+        tailwind.style([progressTheme.wrapper]),
         styleAdapter(style, { pressed: false }, false),
       ]}
       {...otherProps}
     >
-      {isIndeterminate && (
-        <AnimatedBox
-          style={[
-            tailwind.style(
-              cx(
-                progressTheme.size[size]?.bar,
-                progressTheme.themeColor[themeColor]?.filled,
-              ),
-            ),
-            styleAdapter(trackStyle, { pressed: false }, false),
-            translatingStyle,
-          ]}
-        />
+      {(label || hint) && (
+        <Box style={tailwind.style("flex-row")}>
+          {label && (
+            <Text
+              style={tailwind.style(
+                cx(
+                  progressTheme.label.common,
+                  progressTheme.size[size]?.label,
+                  hint ? progressTheme.label.hasHint : "",
+                ),
+              )}
+            >
+              {label}
+            </Text>
+          )}
+          {label && hint && (
+            <Text
+              style={tailwind.style(
+                cx(progressTheme.hint.common, progressTheme.size[size]?.hint),
+              )}
+            >
+              {hint}
+            </Text>
+          )}
+        </Box>
       )}
-      {!isIndeterminate && (
-        <AnimatedBox
-          style={[
-            tailwind.style(
-              cx(
-                progressTheme.size[size]?.bar,
-                progressTheme.themeColor[themeColor]?.filled,
-              ),
+      <AnimatedBox
+        style={[
+          tailwind.style(
+            cx(
+              progressTheme.size[size]?.container,
+              progressTheme.themeColor[themeColor]?.track,
             ),
-            styleAdapter(trackStyle, { pressed: false }, false),
-            animatingWidth,
-          ]}
-        />
-      )}
-    </AnimatedBox>
+          ),
+        ]}
+      >
+        {isIndeterminate && (
+          <AnimatedBox
+            style={[
+              tailwind.style(
+                cx(
+                  progressTheme.size[size]?.bar,
+                  progressTheme.themeColor[themeColor]?.filled,
+                ),
+              ),
+              styleAdapter(trackStyle, { pressed: false }, false),
+              translatingStyle,
+            ]}
+          />
+        )}
+        {!isIndeterminate && (
+          <AnimatedBox
+            style={[
+              tailwind.style(
+                cx(
+                  progressTheme.size[size]?.bar,
+                  progressTheme.themeColor[themeColor]?.filled,
+                ),
+              ),
+              styleAdapter(trackStyle, { pressed: false }, false),
+              animatingWidth,
+            ]}
+          />
+        )}
+      </AnimatedBox>
+    </Box>
   );
 });
 
