@@ -13,7 +13,8 @@
     "tooltip",
     "tag",
     "progress-bar",
-    "switch"
+    "switch",
+    "radio"
   ],
   "git.branchProtection": ["main"]
 }
