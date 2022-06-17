@@ -7,14 +7,13 @@ import { useRadio } from "@react-native-aria/radio";
 
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent } from "../../utils";
+import { createComponent, cx } from "../../utils";
 import { mergeRefs } from "../../utils/mergeRefs";
 
 import { useRadioGroupContext } from "./RadioGroup";
 
-export type RadioSizes = "sm" | "md" | "lg";
-
 // Check https://react-spectrum.adobe.com/react-aria/useRadioGroup.html
+// Props of the useRadio Return Type
 interface RadioAriaProps {
   accessibilityLabel: string;
   accessibilityRole: "radio";
@@ -31,11 +30,6 @@ interface RadioAriaProps {
 }
 
 export interface RadioProps {
-  /**
-   * Radio Sizes
-   * @default md
-   */
-  size: RadioSizes;
   /**
    * Radio Label
    */
@@ -63,11 +57,11 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   typeof Touchable,
   Partial<RadioProps>
 >((props, ref) => {
-  const {
-    size: inlineRadioSize,
+  let {
     label,
     description,
     isInvalid = false,
+    isDisabled: isDisabledFromProps,
   } = props;
 
   const tailwind = useTheme();
@@ -80,68 +74,83 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   ]) as unknown as React.MutableRefObject<null>;
 
   const {
-    isDisabled,
+    themeColor: themeColorFromGroupContext,
     size: sizeFromGroupContext,
+    isDisabled: isDisabledFromGroupContext,
     ...state
   } = useRadioGroupContext();
 
   const { inputProps } = useRadio(
     // @ts-ignore
-    { isDisabled, ...props },
+    { isDisabled: isDisabledFromGroupContext || isDisabledFromProps, ...props },
     state,
     radioboxRef,
   );
 
-  const size = inlineRadioSize || sizeFromGroupContext || "md";
+  const size = sizeFromGroupContext;
+  const themeColor = isInvalid ? "danger" : themeColorFromGroupContext;
 
   const radioProps: RadioAriaProps = inputProps as RadioAriaProps;
 
   const { focusProps } = useFocusRing();
 
-  const children = (pressedOrHovered: boolean) => {
+  const children = ({ pressed = false, isHovered = false }) => {
     return (
       <>
         <Box
           style={[
-            tailwind.style([
-              radioTheme.icon.common,
-              radioTheme.icon.wrapperSize[size],
-              radioProps.checked
-                ? radioTheme.icon.checked.default
-                : radioTheme.icon.unChecked.default,
-              isInvalid
-                ? radioProps.checked
-                  ? radioTheme.icon.checked.invalid
-                  : radioTheme.icon.unChecked.invalid
-                : "",
-              radioProps.disabled
-                ? radioProps.checked
-                  ? radioTheme.icon.checked.disabled
-                  : radioTheme.icon.unChecked.disabled
-                : "",
-              pressedOrHovered
-                ? radioProps.checked
-                  ? radioTheme.icon.checked.pressedOrHovered
-                  : radioTheme.icon.unChecked.pressedOrHovered
-                : "",
-            ]),
-            { borderWidth: radioTheme.icon.border },
+            tailwind.style(
+              cx(
+                radioTheme.icon?.common,
+                radioTheme.size[size]?.icon?.wrapper,
+                radioProps.checked
+                  ? radioTheme.themeColor[themeColor]?.icon.checked.default
+                  : radioTheme.themeColor[themeColor]?.icon.unChecked.default,
+                radioProps.disabled
+                  ? radioProps.checked
+                    ? radioTheme.themeColor[themeColor]?.icon.checked.disabled
+                    : radioTheme.themeColor[themeColor]?.icon.unChecked.disabled
+                  : "",
+                pressed
+                  ? radioProps.checked
+                    ? radioTheme.themeColor[themeColor]?.icon.checked.press
+                    : radioTheme.themeColor[themeColor]?.icon.unChecked.press
+                  : "",
+                isHovered
+                  ? radioProps.checked
+                    ? radioTheme.themeColor[themeColor]?.icon.checked.hover
+                    : radioTheme.themeColor[themeColor]?.icon.unChecked.hover
+                  : "",
+              ),
+            ),
+            { borderWidth: radioTheme?.icon?.border },
           ]}
         >
           <Box
-            style={[
-              tailwind.style([
-                radioTheme.icon.innerCircle.size[size],
+            style={tailwind.style(
+              cx(
+                radioTheme.size[size]?.icon.innerCircle?.default,
                 radioProps.checked
-                  ? radioTheme.icon.innerCircle.checked.default
-                  : radioTheme.icon.innerCircle.unChecked.default,
+                  ? radioTheme.themeColor[themeColor]?.innerCircle.checked
+                      .default
+                  : radioTheme.themeColor[themeColor]?.innerCircle.unChecked
+                      .default,
                 radioProps.disabled
                   ? radioProps.checked
-                    ? radioTheme.icon.innerCircle.checked.disabled
-                    : radioTheme.icon.innerCircle.unChecked.disabled
+                    ? radioTheme.themeColor[themeColor]?.innerCircle.checked
+                        .disabled
+                    : radioTheme.themeColor[themeColor]?.innerCircle.unChecked
+                        .disabled
                   : "",
-              ]),
-            ]}
+                pressed
+                  ? radioProps.checked
+                    ? radioTheme.themeColor[themeColor]?.innerCircle.checked
+                        .press
+                    : radioTheme.themeColor[themeColor]?.innerCircle.unChecked
+                        .press
+                  : "",
+              ),
+            )}
           />
         </Box>
         <Box style={radioTheme.labelDescWrapper}>
@@ -149,11 +158,17 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
             <Text
               style={[
                 tailwind.style(
-                  radioTheme.text.common,
-                  radioTheme.text.size[size],
+                  cx(
+                    radioTheme?.label?.common,
+                    radioTheme.size[size]?.text?.default,
+                    radioProps.disabled
+                      ? radioTheme.label?.text?.disabled
+                      : radioTheme.label?.text?.common,
+                    description && radioTheme?.description?.labelText,
+                  ),
                 ),
                 description
-                  ? { lineHeight: radioTheme.text.lineHeight[size] }
+                  ? { lineHeight: radioTheme.size[size]?.text?.lineHeight }
                   : {},
               ]}
             >
@@ -164,8 +179,10 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
             <Text
               style={[
                 tailwind.style(
-                  radioTheme.description.common,
-                  radioTheme.description.size[size],
+                  cx(
+                    radioTheme.description.common,
+                    radioTheme.size[size]?.description?.default,
+                  ),
                 ),
               ]}
             >
@@ -182,13 +199,16 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   return Platform.OS === "web" ? (
     <Box
-      style={tailwind.style([
-        radioTheme.label.common,
-        description ? radioTheme.label.withDescription : "",
-        radioTheme.label.size[size],
-        radioTheme.label.disabled,
-        isHovered ? radioTheme.label.pressed : "",
-      ])}
+      style={[
+        tailwind.style([
+          cx(
+            radioTheme?.label?.common,
+            description ? radioTheme?.label?.withDescription : "",
+            radioTheme.size[size]?.label?.wrapper,
+            isHovered ? radioTheme.themeColor[themeColor]?.label?.hover : "",
+          ),
+        ]),
+      ]}
       // @ts-ignore
       accessibilityRole="label"
       {...hoverProps}
@@ -196,25 +216,30 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
       accessible={true}
     >
       <VisuallyHidden>
-        <input {...inputProps} {...focusProps} ref={radioboxRef} />
+        <input {...radioProps} {...focusProps} ref={radioboxRef} />
       </VisuallyHidden>
-      {children(isHovered)}
+      {children({ isHovered })}
     </Box>
   ) : (
     <Touchable
       {...radioProps}
-      style={({ pressed }) => [
+      style={touchState => [
         tailwind.style([
-          radioTheme.label.common,
-          description ? radioTheme.label.withDescription : "",
-          radioTheme.label.size[size],
-          radioTheme.label.disabled,
-          pressed ? radioTheme.label.pressed : "",
+          cx(
+            radioTheme?.label?.common,
+            description ? radioTheme?.label?.withDescription : "",
+            radioTheme.size[size]?.label?.wrapper,
+            touchState.pressed
+              ? label && !description
+                ? radioTheme.themeColor[themeColor]?.label?.pressed
+                : ""
+              : "",
+          ),
         ]),
       ]}
       ref={radioboxRef}
     >
-      {({ pressed }) => children(pressed)}
+      {({ pressed }) => children({ pressed })}
     </Touchable>
   );
 });
