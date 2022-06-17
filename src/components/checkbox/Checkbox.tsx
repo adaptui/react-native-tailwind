@@ -243,7 +243,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                     checkboxTheme.size[size]?.text?.default,
                     checkboxProps.disabled
                       ? checkboxTheme.label?.text?.disabled
-                      : "",
+                      : checkboxTheme.label?.text?.common,
                     description && checkboxTheme?.description?.labelText,
                   ),
                 ),
