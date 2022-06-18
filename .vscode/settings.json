@@ -14,7 +14,8 @@
     "tag",
     "progress-bar",
     "switch",
-    "radio"
+    "radio",
+    "slider"
   ],
   "git.branchProtection": ["main"]
 }
