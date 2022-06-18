@@ -302,22 +302,11 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       isKnobTwoDragging.value = false;
     });
 
-  const knobOneZIndexValue = useAnimatedStyle(() => {
-    return {
-      zIndex: knobOneCurrentPosition.value === sliderWidth.value ? 9999 : 10,
-    };
-  }, [knobOneCurrentPosition.value, sliderWidth.value]);
-
-  const knobTwoZIndexValue = useAnimatedStyle(() => {
-    return {
-      zIndex: knobTwoCurrentPosition.value === sliderWidth.value ? 10 : 9999,
-    };
-  }, [knobTwoCurrentPosition.value, sliderWidth.value]);
-
   const animatedKnobOneStyle = useAnimatedStyle(
     () => ({
       transform: [{ translateX: knobOneDraggingPostion.value }],
       borderWidth: isKnobOneDragging.value ? withSpring(2) : withSpring(0),
+      zIndex: knobOneCurrentPosition.value === sliderWidth.value ? 9999 : 10,
     }),
     [
       knobOneCurrentPosition.value,
@@ -330,6 +319,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     () => ({
       transform: [{ translateX: knobTwoDraggingPostion.value }],
       borderWidth: isKnobTwoDragging.value ? withSpring(2) : withSpring(0),
+      zIndex: knobTwoCurrentPosition.value === sliderWidth.value ? 10 : 9999,
     }),
     [
       knobTwoCurrentPosition.value,
@@ -421,30 +411,43 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     } as unknown as TextInputProps;
   });
 
-  const onLayout = useCallback((event: LayoutChangeEvent) => {
-    sliderWidth.value = event.nativeEvent.layout.width - 2 * zerothPosition;
-    const knobOneDefaultValue = defaultValue[0] || 0;
-    const transX = computedTranslateFromValue(
-      knobOneDefaultValue,
-      event.nativeEvent.layout.width - 2 * zerothPosition,
-      minValue,
-      maxValue,
-    );
-    knobOneDraggingPostion.value = withTiming(transX);
-    knobOneCurrentPosition.value = transX;
-    if (range) {
-      const knobTwoDefaultValue = defaultValue[1] || 0;
-      const transKnob2X = computedTranslateFromValue(
-        knobTwoDefaultValue,
+  const onLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      sliderWidth.value = event.nativeEvent.layout.width - 2 * zerothPosition;
+      const knobOneDefaultValue = defaultValue[0] || 0;
+      const transX = computedTranslateFromValue(
+        knobOneDefaultValue,
         event.nativeEvent.layout.width - 2 * zerothPosition,
         minValue,
         maxValue,
       );
-      knobTwoDraggingPostion.value = withTiming(transKnob2X);
-      knobTwoCurrentPosition.value = transKnob2X;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      knobOneDraggingPostion.value = withTiming(transX);
+      knobOneCurrentPosition.value = transX;
+      if (range) {
+        const knobTwoDefaultValue = defaultValue[1] || 0;
+        const transKnob2X = computedTranslateFromValue(
+          knobTwoDefaultValue,
+          event.nativeEvent.layout.width - 2 * zerothPosition,
+          minValue,
+          maxValue,
+        );
+        knobTwoDraggingPostion.value = withTiming(transKnob2X);
+        knobTwoCurrentPosition.value = transKnob2X;
+      }
+    },
+    [
+      defaultValue,
+      knobOneCurrentPosition,
+      knobOneDraggingPostion,
+      knobTwoCurrentPosition,
+      knobTwoDraggingPostion,
+      maxValue,
+      minValue,
+      range,
+      sliderWidth,
+      zerothPosition,
+    ],
+  );
 
   // Updating Knob One Position using Value
   useAnimatedReaction(
@@ -548,7 +551,6 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           ),
           { bottom: -sliderTheme.size[size]?.knob?.position },
           animatedKnobOneStyle,
-          knobOneZIndexValue,
         ]}
       >
         <GestureDetector gesture={knobOnePanGestureHandler}>
@@ -631,7 +633,6 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             ),
             { bottom: -sliderTheme.size[size]?.knob?.position },
             animatedKnobTwoStyle,
-            knobTwoZIndexValue,
           ]}
         >
           <GestureDetector gesture={knobTwoPanGestureHandler}>
