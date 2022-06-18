@@ -24,7 +24,7 @@ import Animated, {
 
 import { AnimatedBox, Box } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, RenderPropType } from "../../utils";
+import { createComponent, cx, RenderPropType } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
@@ -33,12 +33,19 @@ import { SliderTooltip } from "./SliderTooltip";
 import { SliderTrack } from "./SliderTrack";
 
 export type SliderSizes = "sm" | "md" | "lg" | "xl";
+export type SliderTheme = "base" | "primary";
+
 export interface SliderProps {
   /**
    * The size of Slider and Knob
    * @default md
    */
   size: SliderSizes;
+  /**
+   * The size of Slider and Knob
+   * @default base
+   */
+  themeColor: SliderTheme;
   /**
    * Default Value of Slider
    * @default 0
@@ -125,6 +132,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const sliderTheme = useTheme("slider");
   const {
     size = "md",
+    themeColor = "base",
     onDragValue,
     onDragEndValue,
     defaultValue = [0, 0],
@@ -145,7 +153,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const knobOneRef = useRef();
   const knobTwoRef = useRef();
 
-  const zerothPosition = sliderTheme.knob.knobRadius[size];
+  const zerothPosition = sliderTheme.size[size]?.knob?.knobRadius;
   const sliderWidth = useSharedValue(0);
 
   /**
@@ -165,41 +173,6 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   const knobTwoDraggingValue = useSharedValue(defaultValue[0] || minValue);
 
   const isKnobTwoDragging = useSharedValue(false);
-
-  const animatedKnobOneStyle = useAnimatedStyle(
-    () => ({
-      transform: [{ translateX: knobOneDraggingPostion.value }],
-      borderWidth: isKnobOneDragging.value ? withSpring(2) : withSpring(0),
-    }),
-    [knobOneCurrentPosition],
-  );
-
-  const animatedKnobTwoStyle = useAnimatedStyle(
-    () => ({
-      transform: [{ translateX: knobTwoDraggingPostion.value }],
-      borderWidth: isKnobTwoDragging.value ? withSpring(2) : withSpring(0),
-    }),
-    [knobTwoCurrentPosition],
-  );
-
-  const knobOneZIndexValue = useAnimatedStyle(() => {
-    return {
-      zIndex: knobOneCurrentPosition.value === sliderWidth.value ? 9999 : 10,
-    };
-  }, [knobOneCurrentPosition]);
-
-  const knobTwoZIndexValue = useAnimatedStyle(() => {
-    return {
-      zIndex: knobTwoCurrentPosition.value === sliderWidth.value ? 10 : 9999,
-    };
-  }, [knobTwoCurrentPosition]);
-
-  const animatedFilledTrackStyle = useAnimatedStyle(() => ({
-    width: range
-      ? knobTwoDraggingPostion.value - knobOneDraggingPostion.value
-      : knobOneDraggingPostion.value,
-    left: range ? knobOneDraggingPostion.value : 0,
-  }));
 
   const knobOnePanGestureHandler = Gesture.Pan()
     .onBegin(() => (isKnobOneDragging.value = true))
@@ -329,6 +302,49 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       isKnobTwoDragging.value = false;
     });
 
+  const knobOneZIndexValue = useAnimatedStyle(() => {
+    return {
+      zIndex: knobOneCurrentPosition.value === sliderWidth.value ? 9999 : 10,
+    };
+  }, [knobOneCurrentPosition.value, sliderWidth.value]);
+
+  const knobTwoZIndexValue = useAnimatedStyle(() => {
+    return {
+      zIndex: knobTwoCurrentPosition.value === sliderWidth.value ? 10 : 9999,
+    };
+  }, [knobTwoCurrentPosition.value, sliderWidth.value]);
+
+  const animatedKnobOneStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateX: knobOneDraggingPostion.value }],
+      borderWidth: isKnobOneDragging.value ? withSpring(2) : withSpring(0),
+    }),
+    [
+      knobOneCurrentPosition.value,
+      knobTwoCurrentPosition.value,
+      sliderWidth.value,
+    ],
+  );
+
+  const animatedKnobTwoStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateX: knobTwoDraggingPostion.value }],
+      borderWidth: isKnobTwoDragging.value ? withSpring(2) : withSpring(0),
+    }),
+    [
+      knobTwoCurrentPosition.value,
+      knobOneCurrentPosition.value,
+      sliderWidth.value,
+    ],
+  );
+
+  const animatedFilledTrackStyle = useAnimatedStyle(() => ({
+    width: range
+      ? knobTwoDraggingPostion.value - knobOneDraggingPostion.value
+      : knobOneDraggingPostion.value,
+    left: range ? knobOneDraggingPostion.value : 0,
+  }));
+
   useAnimatedReaction(
     () => {
       const value = computedValue(
@@ -405,43 +421,30 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
     } as unknown as TextInputProps;
   });
 
-  const onLayout = useCallback(
-    (event: LayoutChangeEvent) => {
-      sliderWidth.value = event.nativeEvent.layout.width - 2 * zerothPosition;
-      const knobOneDefaultValue = defaultValue[0] || 0;
-      const transX = computedTranslateFromValue(
-        knobOneDefaultValue,
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
+    sliderWidth.value = event.nativeEvent.layout.width - 2 * zerothPosition;
+    const knobOneDefaultValue = defaultValue[0] || 0;
+    const transX = computedTranslateFromValue(
+      knobOneDefaultValue,
+      event.nativeEvent.layout.width - 2 * zerothPosition,
+      minValue,
+      maxValue,
+    );
+    knobOneDraggingPostion.value = withTiming(transX);
+    knobOneCurrentPosition.value = transX;
+    if (range) {
+      const knobTwoDefaultValue = defaultValue[1] || 0;
+      const transKnob2X = computedTranslateFromValue(
+        knobTwoDefaultValue,
         event.nativeEvent.layout.width - 2 * zerothPosition,
         minValue,
         maxValue,
       );
-      knobOneDraggingPostion.value = withTiming(transX);
-      knobOneCurrentPosition.value = transX;
-      if (range) {
-        const knobTwoDefaultValue = defaultValue[1] || 0;
-        const transKnob2X = computedTranslateFromValue(
-          knobTwoDefaultValue,
-          event.nativeEvent.layout.width - 2 * zerothPosition,
-          minValue,
-          maxValue,
-        );
-        knobTwoDraggingPostion.value = withTiming(transKnob2X);
-        knobTwoCurrentPosition.value = transKnob2X;
-      }
-    },
-    [
-      sliderWidth,
-      zerothPosition,
-      defaultValue,
-      minValue,
-      maxValue,
-      knobOneDraggingPostion,
-      knobOneCurrentPosition,
-      range,
-      knobTwoDraggingPostion,
-      knobTwoCurrentPosition,
-    ],
-  );
+      knobTwoDraggingPostion.value = withTiming(transKnob2X);
+      knobTwoCurrentPosition.value = transKnob2X;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Updating Knob One Position using Value
   useAnimatedReaction(
@@ -498,69 +501,154 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   return (
     <AnimatedBox
       onLayout={onLayout}
-      style={tailwind.style(sliderTheme.wrapper)}
+      style={tailwind.style(cx(sliderTheme.wrapper))}
       ref={ref}
     >
-      <SliderTrack size={size} />
+      <SliderTrack size={size} themeColor={themeColor} />
       <SliderFilledTrack
         size={size}
+        themeColor={themeColor}
         animatedStyles={animatedFilledTrackStyle}
       />
-      <Box focusable style={tailwind.style("relative")}>
+      <AnimatedBox
+        accessible={true}
+        accessibilityRole="adjustable"
+        accessibilityLabel={`Thumb to set ${range ? "min" : ""} value`}
+        accessibilityActions={[
+          { name: "increment", label: "incrementKnobOne" },
+          { name: "decrement", label: "decrementKnobOne" },
+        ]}
+        onAccessibilityAction={event => {
+          switch (event.nativeEvent.actionName) {
+            case "increment":
+              if (
+                knobOneDraggingValue.value <
+                (range ? knobTwoDraggingValue.value : maxValue)
+              ) {
+                knobOneDraggingValue.value += step;
+              }
+              break;
+            case "decrement":
+              if (knobOneDraggingValue.value > minValue) {
+                knobOneDraggingValue.value -= step;
+              }
+              break;
+          }
+        }}
+        onMagicTap={() => (isKnobOneDragging.value = true)}
+        animatedProps={knobOneAnimatedProps}
+        style={[
+          tailwind.style(
+            cx(
+              sliderTheme.knob.common,
+              sliderTheme.size[size].knob.size,
+              sliderTheme.themeColor[themeColor]?.knob,
+              disabled ? sliderTheme.knob.disabled : "",
+            ),
+          ),
+          { bottom: -sliderTheme.size[size]?.knob?.position },
+          animatedKnobOneStyle,
+          knobOneZIndexValue,
+        ]}
+      >
+        <GestureDetector gesture={knobOnePanGestureHandler}>
+          <AnimatedBox
+            style={[
+              StyleSheet.absoluteFill,
+              tailwind.style(cx(sliderTheme.iconWrapper)),
+            ]}
+            ref={knobOneRef}
+          >
+            {/* @ts-ignore */}
+            {knobIcon && knobIcon?.type === Icon
+              ? createIcon({
+                  icon: knobIcon,
+                  iconStyle: tailwind.style(
+                    cx(sliderTheme.size[size]?.knobIcon?.default),
+                  ),
+                  iconFill: tailwind.getColor(
+                    cx(
+                      disabled
+                        ? sliderTheme.knobIcon.disabled
+                        : sliderTheme.knobIcon.activeFill,
+                    ),
+                  ),
+                })
+              : knobIcon}
+          </AnimatedBox>
+        </GestureDetector>
+      </AnimatedBox>
+      {showTooltip && (
+        <SliderTooltip
+          size={size}
+          triggerRef={knobOneRef}
+          knobRadius={zerothPosition}
+          content={
+            <AnimatedTextInput
+              underlineColorAndroid="transparent"
+              editable={false}
+              style={[tailwind.style(cx(sliderTheme.tooltip.common))]}
+              animatedProps={knobOneAnimatedTextProps}
+            />
+          }
+          draggingValue={knobOneDraggingPostion}
+          isDragging={isKnobOneDragging}
+        />
+      )}
+      {range && (
         <AnimatedBox
           accessible={true}
           accessibilityRole="adjustable"
-          accessibilityLabel={`Thumb to set ${range ? "min" : ""} value`}
+          accessibilityLabel={"Thumb to set max value"}
           accessibilityActions={[
-            { name: "increment", label: "incrementKnobOne" },
-            { name: "decrement", label: "decrementKnobOne" },
+            { name: "increment", label: "incrementKnobTwo" },
+            { name: "decrement", label: "decrementKnobTwo" },
           ]}
           onAccessibilityAction={event => {
             switch (event.nativeEvent.actionName) {
               case "increment":
-                // Alert.alert('Increment');
-                if (
-                  knobOneDraggingValue.value <
-                  (range ? knobTwoDraggingValue.value : maxValue)
-                ) {
-                  knobOneDraggingValue.value += step;
+                if (knobTwoDraggingValue.value < maxValue) {
+                  knobTwoDraggingValue.value += step;
                 }
                 break;
               case "decrement":
-                // Alert.alert('Decrement');
-                if (knobOneDraggingValue.value > minValue) {
-                  knobOneDraggingValue.value -= step;
+                if (knobTwoDraggingValue.value > knobOneDraggingValue.value) {
+                  knobTwoDraggingValue.value -= step;
                 }
                 break;
             }
           }}
-          onMagicTap={() => (isKnobOneDragging.value = true)}
-          animatedProps={knobOneAnimatedProps}
+          animatedProps={knobTwoAnimatedProps}
+          onMagicTap={() => (isKnobTwoDragging.value = true)}
           style={[
             tailwind.style(
-              sliderTheme.knob.common,
-              sliderTheme.knob.size[size],
-              disabled ? sliderTheme.knob.disabled : "",
+              cx(
+                sliderTheme.knob.common,
+                sliderTheme.size[size]?.knob.size,
+                sliderTheme.themeColor[themeColor]?.knob,
+                disabled ? sliderTheme.knob.disabled : "",
+              ),
             ),
-            knobOneZIndexValue,
-
-            { bottom: -sliderTheme.knob.position[size] },
-            animatedKnobOneStyle,
+            { bottom: -sliderTheme.size[size]?.knob?.position },
+            animatedKnobTwoStyle,
+            knobTwoZIndexValue,
           ]}
         >
-          <GestureDetector gesture={knobOnePanGestureHandler}>
+          <GestureDetector gesture={knobTwoPanGestureHandler}>
             <AnimatedBox
               style={[
                 StyleSheet.absoluteFill,
-                tailwind.style("justify-center items-center"),
+                tailwind.style(cx(sliderTheme.iconWrapper)),
               ]}
-              ref={knobOneRef}
+              ref={knobTwoRef}
             >
               {/* @ts-ignore */}
               {knobIcon && knobIcon?.type === Icon
                 ? createIcon({
                     icon: knobIcon,
-                    iconStyle: tailwind.style(sliderTheme.knobIcon.size[size]),
+                    iconStyle: tailwind.style(
+                      cx(cx(sliderTheme.size[size]?.knobIcon?.default)),
+                    ),
                     iconFill: tailwind.getColor(
                       disabled
                         ? sliderTheme.knobIcon.disabled
@@ -571,107 +659,24 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             </AnimatedBox>
           </GestureDetector>
         </AnimatedBox>
-        {showTooltip && (
-          <SliderTooltip
-            size={size}
-            triggerRef={knobOneRef}
-            knobRadius={zerothPosition}
-            content={
-              <AnimatedTextInput
-                underlineColorAndroid="transparent"
-                editable={false}
-                style={[tailwind.style(sliderTheme.tooltip.common)]}
-                animatedProps={knobOneAnimatedTextProps}
-              />
-            }
-            draggingValue={knobOneDraggingPostion}
-            isDragging={isKnobOneDragging}
-          />
-        )}
-      </Box>
-      <Box focusable style={tailwind.style("relative")}>
-        {range && (
-          <AnimatedBox
-            accessible={true}
-            accessibilityRole="adjustable"
-            accessibilityLabel={"Thumb to set max value"}
-            accessibilityActions={[
-              { name: "increment", label: "incrementKnobTwo" },
-              { name: "decrement", label: "decrementKnobTwo" },
-            ]}
-            onAccessibilityAction={event => {
-              switch (event.nativeEvent.actionName) {
-                case "increment":
-                  // Alert.alert('Increment');
-                  if (knobTwoDraggingValue.value < maxValue) {
-                    knobTwoDraggingValue.value += step;
-                  }
-                  break;
-                case "decrement":
-                  // Alert.alert('Decrement');
-                  if (knobTwoDraggingValue.value > knobOneDraggingValue.value) {
-                    knobTwoDraggingValue.value -= step;
-                  }
-                  break;
-              }
-            }}
-            animatedProps={knobTwoAnimatedProps}
-            onMagicTap={() => (isKnobTwoDragging.value = true)}
-            style={[
-              tailwind.style(
-                sliderTheme.knob.common,
-                sliderTheme.knob.size[size],
-                disabled ? sliderTheme.knob.disabled : "",
-              ),
-              knobTwoZIndexValue,
-              { bottom: -sliderTheme.knob.position[size] },
-              animatedKnobTwoStyle,
-            ]}
-          >
-            <GestureDetector gesture={knobTwoPanGestureHandler}>
-              <AnimatedBox
-                style={[
-                  StyleSheet.absoluteFill,
-                  tailwind.style("justify-center items-center"),
-                ]}
-                ref={knobTwoRef}
-              >
-                {/* @ts-ignore */}
-                {knobIcon && knobIcon?.type === Icon
-                  ? createIcon({
-                      icon: knobIcon,
-                      iconStyle: tailwind.style(
-                        sliderTheme.knobIcon.size[size],
-                      ),
-                      iconFill: tailwind.getColor(
-                        disabled
-                          ? sliderTheme.knobIcon.disabled
-                          : sliderTheme.knobIcon.activeFill,
-                      ),
-                    })
-                  : knobIcon}
-              </AnimatedBox>
-            </GestureDetector>
-          </AnimatedBox>
-        )}
-        {showTooltip && (
-          <SliderTooltip
-            size={size}
-            triggerRef={knobTwoRef}
-            knobRadius={zerothPosition}
-            content={
-              <AnimatedTextInput
-                underlineColorAndroid="transparent"
-                editable={false}
-                style={[tailwind.style(sliderTheme.tooltip.common)]}
-                animatedProps={knobTwoAnimatedTextProps}
-              />
-            }
-            draggingValue={knobTwoDraggingPostion}
-            isDragging={isKnobTwoDragging}
-          />
-        )}
-      </Box>
+      )}
+      {showTooltip && (
+        <SliderTooltip
+          size={size}
+          triggerRef={knobTwoRef}
+          knobRadius={zerothPosition}
+          content={
+            <AnimatedTextInput
+              underlineColorAndroid="transparent"
+              editable={false}
+              style={[tailwind.style(cx(sliderTheme.tooltip.common))]}
+              animatedProps={knobTwoAnimatedTextProps}
+            />
+          }
+          draggingValue={knobTwoDraggingPostion}
+          isDragging={isKnobTwoDragging}
+        />
+      )}
     </AnimatedBox>
   );
 });
