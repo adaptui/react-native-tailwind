@@ -15,7 +15,8 @@
     "progress-bar",
     "switch",
     "radio",
-    "slider"
+    "slider",
+    "circular-progress"
   ],
   "git.branchProtection": ["main"]
 }
