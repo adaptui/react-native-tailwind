@@ -10,6 +10,7 @@ import {
   MeterComponentScreen,
   ProgressScreen,
   RadioScreen,
+  SliderComponentScreen,
   SpinnerScreen,
   SwitchComponentScreen,
   TagScreen,
@@ -20,7 +21,7 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="RadioComponentScreen">
+    <Drawer.Navigator initialRouteName="SliderComponentScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
@@ -80,6 +81,11 @@ const AppRoot = () => {
         options={{ title: "Radio" }}
         name="RadioComponentScreen"
         component={RadioScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Slider" }}
+        name="SliderComponentScreen"
+        component={SliderComponentScreen}
       />
     </Drawer.Navigator>
   );
