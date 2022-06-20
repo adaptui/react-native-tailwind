@@ -21,9 +21,9 @@ export const InputPrefix: React.FC<InputPrefixProps> = ({
     <Touchable
       style={[
         tailwind.style(
-          inputTheme.prefix.common,
-          inputTheme.prefix.size[size],
-          inputTheme.prefix.variant[variant].common,
+          inputTheme.prefixWrapper,
+          inputTheme.size[size]?.prefix,
+          inputTheme.variant[variant]?.prefix?.common,
         ),
       ]}
       {...props}

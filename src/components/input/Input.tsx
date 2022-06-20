@@ -2,9 +2,9 @@ import React, { forwardRef, useMemo, useRef, useState } from "react";
 import { Platform, TextInputProps, ViewStyle } from "react-native";
 import { useHover } from "@react-native-aria/interactions";
 
-import { Box, RNTextInput, TouchableProps } from "../../primitives";
+import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
 import { useTheme } from "../../theme";
-import { RenderPropType, runIfFn } from "../../utils";
+import { cx, RenderPropType, runIfFn, styleAdapter } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 import { composeEventHandlers } from "../../utils/mergeRefs";
 import { Spinner } from "../spinner";
@@ -20,7 +20,7 @@ export interface InputProps extends TextInputProps {
   /**
    * The Input Container Wrapper
    */
-  textInputWrapper: ViewStyle;
+  textInputWrapperProps: BoxProps;
   /**
    * A Component Theme of How the input should look
    * @default outline
@@ -84,7 +84,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   const {
     size = "md",
     variant = "outline",
-    textInputWrapper,
+    textInputWrapperProps = {},
     prefix,
     suffix,
     invalid = false,
@@ -95,23 +95,29 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     value,
     onFocus,
     onBlur,
+    style: textInputStyle,
     ...restProps
   } = props;
   const tailwind = useTheme();
   const inputTheme = useTheme("input");
+
+  const { style: wrapperStyle = {}, ...otherWrapperProps } =
+    textInputWrapperProps;
 
   const [suffixWidth, setSuffixWidth] = React.useState(0);
   const [prefixWidth, setPrefixWidth] = React.useState(0);
 
   const placeholderTextColor = useMemo(() => {
     return tailwind.getColor(
-      editable
-        ? isHovered
-          ? inputTheme.base.variant[variant].placeholder.hover
-          : isFocussed
-          ? inputTheme.base.variant[variant].placeholder.focus
-          : inputTheme.base.variant[variant].placeholder.common
-        : inputTheme.base.variant[variant].placeholder.disabled,
+      cx(
+        editable
+          ? isHovered
+            ? inputTheme.variant[variant]?.base?.placeholder?.hover
+            : isFocussed
+            ? inputTheme.variant[variant]?.base?.placeholder?.focus
+            : inputTheme.variant[variant]?.base?.placeholder?.common
+          : inputTheme.variant[variant]?.base?.placeholder?.disabled,
+      ),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocussed, isHovered, editable]);
@@ -134,19 +140,21 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
         ? createIcon({
             icon: prefix,
             iconFill: tailwind.getColor(
-              editable
-                ? invalid
-                  ? inputTheme.prefix.variant[variant].invalid
-                  : isFocussed
-                  ? inputTheme.prefix.variant[variant].focus
-                  : isHovered
-                  ? inputTheme.prefix.variant[variant].hover
-                  : inputTheme.prefix.variant[variant].fill
-                : inputTheme.prefix.variant[variant].disabled,
+              cx(
+                editable
+                  ? invalid
+                    ? inputTheme.variant[variant]?.prefix?.invalid
+                    : isFocussed
+                    ? inputTheme.variant[variant]?.prefix?.focus
+                    : isHovered
+                    ? inputTheme.variant[variant]?.prefix?.hover
+                    : inputTheme.variant[variant]?.prefix?.fill
+                  : inputTheme.variant[variant]?.prefix?.disabled,
+              ),
             ),
-            iconStyle: tailwind.style([
-              inputTheme.prefix.variant[variant].common,
-            ]),
+            iconStyle: tailwind.style(
+              cx(inputTheme.variant[variant]?.prefix?.common),
+            ),
             iconSize: size === "xl" ? 16 : 12,
           })
         : prefix;
@@ -170,29 +178,31 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
         ? createIcon({
             icon: suffix,
             iconFill: tailwind.getColor(
-              editable
-                ? invalid
-                  ? inputTheme.suffix.variant[variant].invalid
-                  : isFocussed
-                  ? inputTheme.suffix.variant[variant].focus
-                  : isHovered
-                  ? inputTheme.suffix.variant[variant].hover
-                  : inputTheme.suffix.variant[variant].fill
-                : inputTheme.suffix.variant[variant].disabled,
+              cx(
+                editable
+                  ? invalid
+                    ? inputTheme.variant[variant]?.suffix?.invalid
+                    : isFocussed
+                    ? inputTheme.variant[variant]?.suffix?.focus
+                    : isHovered
+                    ? inputTheme.variant[variant]?.suffix?.hover
+                    : inputTheme.variant[variant]?.suffix?.fill
+                  : inputTheme.variant[variant]?.suffix?.disabled,
+              ),
             ),
-            iconStyle: tailwind.style([
-              inputTheme.suffix.variant[variant].common,
-            ]),
+            iconStyle: tailwind.style(
+              cx(inputTheme.variant[variant]?.suffix?.common),
+            ),
             iconSize: size === "xl" ? 16 : 12,
           })
         : suffix;
 
     const spinnerStroke = tailwind.style(
-      editable
-        ? invalid
-          ? inputTheme.spinner.variant[variant].invalid
-          : inputTheme.spinner.variant[variant].default
-        : inputTheme.spinner.variant[variant].disabled,
+      cx(
+        editable
+          ? inputTheme.variant[variant]?.spinner?.default
+          : inputTheme.variant[variant]?.spinner?.disabled,
+      ),
     );
     const inputLoading = runIfFn(DefaultInputSpinner, {
       size,
@@ -212,7 +222,13 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   ]);
 
   return (
-    <Box style={[tailwind.style([inputTheme.wrapper]), textInputWrapper]}>
+    <Box
+      style={[
+        tailwind.style(inputTheme.wrapper),
+        styleAdapter(wrapperStyle, { pressed: false }, false),
+      ]}
+      {...otherWrapperProps}
+    >
       {_prefix && (
         <InputPrefix
           onLayout={event => setPrefixWidth(event.nativeEvent.layout.width)}
@@ -226,13 +242,13 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
       <RNTextInput
         style={[
           tailwind.style(
-            inputTheme.base.size[size].common,
-            !prefix || !suffix ? inputTheme.base.size[size].withoutAddon : "",
-            inputTheme.base.variant[variant].common,
-            isHovered ? inputTheme.base.variant[variant].hover : "",
-            isFocussed ? inputTheme.base.variant[variant].focus : "",
-            invalid ? inputTheme.base.variant[variant].invalid : "",
-            editable ? "" : inputTheme.base.variant[variant].disabled,
+            inputTheme.size[size]?.base?.common,
+            !prefix || !suffix ? inputTheme.size[size]?.base?.withoutAddon : "",
+            inputTheme.variant[variant]?.base?.common,
+            isHovered ? inputTheme.variant[variant]?.base?.hover : "",
+            isFocussed ? inputTheme.variant[variant]?.base?.focus : "",
+            invalid ? inputTheme.variant[variant]?.base?.invalid : "",
+            editable ? "" : inputTheme.variant[variant]?.base?.disabled,
             _prefix ? `pl-[${prefixWidth}px]` : "",
             _suffix ? `pr-[${suffixWidth}px]` : "",
           ),
@@ -240,14 +256,15 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
             Platform.select({
               web: {
                 outlineOffset:
-                  inputTheme.base.variant[variant].focusWeb.outlineOffset,
+                  inputTheme.variant[variant]?.base?.focusWeb?.outlineOffset,
                 outlineColor: (tailwind.getColor(
-                  inputTheme.base.variant[variant].focusWeb.borderColor,
+                  inputTheme.variant[variant]?.base?.focusWeb?.borderColor,
                 ) || undefined) as string,
                 outlineStyle:
-                  inputTheme.base.variant[variant].focusWeb.outlineStyle,
+                  inputTheme.variant[variant]?.base?.focusWeb?.outlineStyle,
               },
             }),
+          styleAdapter(textInputStyle, { pressed: false }, false),
         ]}
         placeholderTextColor={placeholderTextColor}
         editable={editable}

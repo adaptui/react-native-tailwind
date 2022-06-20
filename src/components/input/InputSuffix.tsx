@@ -21,9 +21,9 @@ export const InputSuffix: React.FC<InputSuffixProps> = ({
     <Touchable
       style={[
         tailwind.style(
-          inputTheme.suffix.common,
-          inputTheme.suffix.size[size],
-          inputTheme.suffix.variant[variant].common,
+          inputTheme.suffixWrapper,
+          inputTheme.size[size]?.suffix,
+          inputTheme.variant[variant]?.suffix?.common,
         ),
       ]}
       {...props}
