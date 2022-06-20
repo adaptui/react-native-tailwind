@@ -8,6 +8,7 @@ import {
   ButtonScreen,
   CheckboxScreen,
   CircularProgressScreen,
+  InputScreen,
   MeterComponentScreen,
   ProgressScreen,
   RadioScreen,
@@ -22,7 +23,7 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="CircularProgressScreen">
+    <Drawer.Navigator initialRouteName="InputScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
@@ -89,9 +90,14 @@ const AppRoot = () => {
         component={SliderComponentScreen}
       />
       <Drawer.Screen
-        options={{ title: "CircularProgress" }}
+        options={{ title: "Circular Progress" }}
         name="CircularProgressScreen"
         component={CircularProgressScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Input" }}
+        name="InputScreen"
+        component={InputScreen}
       />
     </Drawer.Navigator>
   );
