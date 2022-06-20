@@ -218,7 +218,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   return (
     <Box
       style={[
-        tailwind.style(inputTheme.wrapper),
+        tailwind.style(cx(inputTheme.wrapper)),
         styleAdapter(wrapperStyle, { pressed: false }, false),
       ]}
       {...otherWrapperProps}
@@ -236,15 +236,19 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
       <RNTextInput
         style={[
           tailwind.style(
-            inputTheme.size[size]?.base?.common,
-            !prefix || !suffix ? inputTheme.size[size]?.base?.withoutAddon : "",
-            inputTheme.variant[variant]?.base?.common,
-            isHovered ? inputTheme.variant[variant]?.base?.hover : "",
-            isFocussed ? inputTheme.variant[variant]?.base?.focus : "",
-            invalid ? inputTheme.variant[variant]?.base?.invalid : "",
-            editable ? "" : inputTheme.variant[variant]?.base?.disabled,
-            _prefix ? `pl-[${prefixWidth}px]` : "",
-            _suffix ? `pr-[${suffixWidth}px]` : "",
+            cx(
+              inputTheme.size[size]?.base?.common,
+              !prefix || !suffix
+                ? inputTheme.size[size]?.base?.withoutAddon
+                : "",
+              inputTheme.variant[variant]?.base?.common,
+              isHovered ? inputTheme.variant[variant]?.base?.hover : "",
+              isFocussed ? inputTheme.variant[variant]?.base?.focus : "",
+              invalid ? inputTheme.variant[variant]?.base?.invalid : "",
+              editable ? "" : inputTheme.variant[variant]?.base?.disabled,
+              _prefix ? `pl-[${prefixWidth}px]` : "",
+              _suffix ? `pr-[${suffixWidth}px]` : "",
+            ),
           ),
           isFocussed &&
             Platform.select({
@@ -252,7 +256,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
                 outlineOffset:
                   inputTheme.variant[variant]?.base?.focusWeb?.outlineOffset,
                 outlineColor: (tailwind.getColor(
-                  inputTheme.variant[variant]?.base?.focusWeb?.borderColor,
+                  cx(inputTheme.variant[variant]?.base?.focusWeb?.borderColor),
                 ) || undefined) as string,
                 outlineStyle:
                   inputTheme.variant[variant]?.base?.focusWeb?.outlineStyle,

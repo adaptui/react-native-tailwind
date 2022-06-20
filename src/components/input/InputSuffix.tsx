@@ -2,6 +2,7 @@ import React from "react";
 
 import { Touchable, TouchableProps } from "../../primitives";
 import { useTheme } from "../../theme";
+import { cx } from "../../utils";
 
 import { InputProps } from "./Input";
 
@@ -21,9 +22,11 @@ export const InputSuffix: React.FC<InputSuffixProps> = ({
     <Touchable
       style={[
         tailwind.style(
-          inputTheme.suffixWrapper,
-          inputTheme.size[size]?.suffix,
-          inputTheme.variant[variant]?.suffix?.common,
+          cx(
+            inputTheme.suffixWrapper,
+            inputTheme.size[size]?.suffix,
+            inputTheme.variant[variant]?.suffix?.common,
+          ),
         ),
       ]}
       {...props}
