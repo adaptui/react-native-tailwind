@@ -122,7 +122,7 @@ export const input = {
           disabled: "text-gray-500",
         },
         focusWeb: {
-          borderColor: "",
+          borderColor: "text-transparent",
           outlineOffset: 0.7,
           outlineStyle: "none",
         },
