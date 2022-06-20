@@ -152,9 +152,6 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
                   : inputTheme.variant[variant]?.prefix?.disabled,
               ),
             ),
-            iconStyle: tailwind.style(
-              cx(inputTheme.variant[variant]?.prefix?.common),
-            ),
             iconSize: size === "xl" ? 16 : 12,
           })
         : prefix;
@@ -189,9 +186,6 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
                     : inputTheme.variant[variant]?.suffix?.fill
                   : inputTheme.variant[variant]?.suffix?.disabled,
               ),
-            ),
-            iconStyle: tailwind.style(
-              cx(inputTheme.variant[variant]?.suffix?.common),
             ),
             iconSize: size === "xl" ? 16 : 12,
           })
