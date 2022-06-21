@@ -2,16 +2,12 @@ export const slider = {
   wrapper: "relative w-full",
   knobWrapper: "relative",
   iconWrapper: "justify-center items-center",
-  filledTrack: {
-    common: "w-full absolute rounded-2xl",
-  },
-  track: {
-    common: "relative rounded-2xl",
-  },
+  filledTrack: "w-full absolute rounded-2xl",
+  track: "relative rounded-2xl",
   size: {
     sm: {
-      filledTrack: "h-[2px] mx-[9px]",
-      track: "h-[2px] mx-[9px]",
+      filledTrack: "h-0.5 mx-[9px]",
+      track: "h-0.5 mx-[9px]",
       knob: {
         position: 18 / 2 - 2 / 2,
         size: "h-[18px] w-[18px]",

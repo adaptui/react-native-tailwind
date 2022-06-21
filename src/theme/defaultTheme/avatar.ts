@@ -104,13 +104,13 @@ export const avatar = {
         "3xl": "w-[17px] h-[10px]",
       },
       innerDots: {
-        base: "h-[2px] w-[2px] rounded-full bg-white-900",
+        base: "h-0.5 w-0.5 rounded-full bg-white-900",
         size: {
-          xs: "h-[2px] w-[2px]",
+          xs: "h-0.5 w-0.5",
           sm: "h-[2.25px] w-[2.25px]",
           md: "h-[2.8px] w-[2.8px]",
           lg: "h-[3.25px] w-[3.25px]",
-          xl: "h-[2px] w-[2px]",
+          xl: "h-0.5 w-0.5",
           "2xl": "h-[2.25px] w-[2.25px]",
           "3xl": "h-[2.5px] w-[2.5px]",
         },

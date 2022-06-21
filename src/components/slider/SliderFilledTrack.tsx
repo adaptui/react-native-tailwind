@@ -26,7 +26,7 @@ export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({
       style={[
         tailwind.style(
           cx(
-            sliderTheme?.filledTrack?.common,
+            sliderTheme?.filledTrack,
             sliderTheme?.size[size]?.filledTrack,
             sliderTheme?.themeColor[themeColor]?.filledTrack,
           ),

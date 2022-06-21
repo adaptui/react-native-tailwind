@@ -626,7 +626,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             tailwind.style(
               cx(
                 sliderTheme.knob.common,
-                sliderTheme.size[size]?.knob.size,
+                sliderTheme.size[size]?.knob?.size,
                 sliderTheme.themeColor[themeColor]?.knob,
                 disabled ? sliderTheme.knob.disabled : "",
               ),

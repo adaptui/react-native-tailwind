@@ -243,7 +243,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
               StyleSheet.absoluteFillObject,
               tailwind.style(
                 cx(
-                  circularProgressTheme.text.base,
+                  circularProgressTheme.text,
                   circularProgressTheme.size[size]?.text,
                 ),
               ),
