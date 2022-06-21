@@ -39,11 +39,11 @@ export default function App() {
   const tailwind = useTheme();
   return (
     <>
-      <Button>Get Started</>
-      <Button themeColor="primary">Register for free</>
-      <Button themeColor="secondary">Watch Demo</>
-      <Button themeColor="success">Subscribe to Newsletter</>
-      <Button themeColor="danger">Delete</>
+      <Button>Get Started</Button>
+      <Button themeColor="primary">Register for free</Button>
+      <Button themeColor="secondary">Watch Demo</Button>
+      <Button themeColor="success">Subscribe to Newsletter</Button>
+      <Button themeColor="danger">Delete</Button>
     </>
   )
 }
@@ -73,10 +73,10 @@ export default function App() {
   const tailwind = useTheme();
   return (
     <>
-      <Button>Buy this Stock</>
-      <Button variant="subtle">Contact Us</>
-      <Button variant="outline">Add Subtask</>
-      <Button variant="ghost">Skip for now</>
+      <Button>Buy this Stock</Button>
+      <Button variant="subtle">Contact Us</Button>
+      <Button variant="outline">Add Subtask</Button>
+      <Button variant="ghost">Skip for now</Button>
     </>
   )
 }
@@ -97,10 +97,10 @@ export default function App() {
   const tailwind = useTheme();
   return (
     <>
-      <Button size="sm">Share</>
-      <Button>Share</>
-      <Button size="lg">Share</>
-      <Button size="xl">Share</>
+      <Button size="sm">Share</Button>
+      <Button>Share</Button>
+      <Button size="lg">Share</Button>
+      <Button size="xl">Share</Button>
     </>
   )
 }
