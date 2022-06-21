@@ -92,7 +92,7 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   const validChildren = getValidChildren(children);
   return (
     <Box
-      style={tailwind.style(cx(radioGroupTheme.group[orientation].common))}
+      style={tailwind.style(cx(radioGroupTheme.group[orientation]?.common))}
       {...radioGroupProps}
       ref={ref}
     >
@@ -101,7 +101,7 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
           <Box
             key={index}
             style={tailwind.style(
-              cx(radioGroupTheme.group[orientation].spacing),
+              cx(radioGroupTheme.group[orientation]?.spacing),
             )}
           >
             {renderElement}

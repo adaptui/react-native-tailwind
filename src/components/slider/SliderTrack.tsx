@@ -17,7 +17,7 @@ export const SliderTrack: React.FC<
       style={[
         tailwind.style(
           cx(
-            sliderTheme?.track?.common,
+            sliderTheme?.track,
             sliderTheme?.size[size]?.track,
             sliderTheme?.themeColor[themeColor]?.track,
           ),

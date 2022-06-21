@@ -239,7 +239,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               style={[
                 tailwind.style(
                   cx(
-                    checkboxTheme.label?.text,
                     checkboxTheme.size[size]?.text?.default,
                     checkboxProps.disabled
                       ? checkboxTheme.label?.text?.disabled
@@ -284,7 +283,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         cx(
           checkboxTheme?.label?.common,
           description ? checkboxTheme?.label?.withDescription : "",
-          checkboxTheme.size[size]?.label.wrapper,
+          checkboxTheme.size[size]?.label?.wrapper,
           isHovered ? checkboxTheme.themeColor[themeColor]?.label?.hover : "",
         ),
       )}
