@@ -96,7 +96,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
       ],
       display: isDragging.value ? "flex" : "none",
       left: knobRadius - tooltipWidth.value / 2,
-      bottom: sliderTheme.tooltip.position[size] * 2 + 6,
+      bottom: sliderTheme.size[size]?.tooltip.position * 2 + 6,
     };
   }, [tooltipWidth.value]);
 
@@ -106,13 +106,14 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
       onLayout={e =>
         (tooltipWidth.value = Math.round(e.nativeEvent.layout.width))
       }
-      style={[tailwind.style("absolute"), tooltipAnimatedStyle]}
+      style={[
+        tailwind.style(sliderTheme?.tooltip?.default),
+        tooltipAnimatedStyle,
+      ]}
     >
       <Box
         style={[
-          tailwind.style(
-            "px-2 py-1.5 min-w-8 justify-center items-center bg-gray-800 rounded-lg",
-          ),
+          tailwind.style(sliderTheme?.tooltip?.wrapper),
           getContainerStyle,
         ]}
       >
@@ -121,7 +122,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
       <AnimatedBox
         style={[
           StyleSheet.absoluteFill,
-          tailwind.style("w-3 h-3 z-10"),
+          tailwind.style(sliderTheme?.tooltip?.arrowWrapper),
           animatedArrowStyle,
         ]}
       >

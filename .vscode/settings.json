@@ -12,7 +12,12 @@
     "primitives",
     "tooltip",
     "tag",
-    "progress-bar"
+    "progress-bar",
+    "switch",
+    "radio",
+    "slider",
+    "circular-progress",
+    "input"
   ],
   "git.branchProtection": ["main"]
 }

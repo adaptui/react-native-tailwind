@@ -4,16 +4,19 @@ import Animated from "react-native-reanimated";
 
 import { AnimatedBox } from "../../primitives";
 import { useTheme } from "../../theme";
+import { cx } from "../../utils";
 
 import { SliderProps } from "./Slider";
 
-interface SliderFilledTrackProps extends Pick<SliderProps, "size"> {
+interface SliderFilledTrackProps
+  extends Pick<SliderProps, "size" | "themeColor"> {
   animatedStyles: Animated.AnimateStyle<ViewStyle>;
 }
 
 export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({
   size,
   animatedStyles,
+  themeColor,
 }) => {
   const tailwind = useTheme();
   const sliderTheme = useTheme("slider");
@@ -21,10 +24,13 @@ export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({
   return (
     <AnimatedBox
       style={[
-        tailwind.style([
-          sliderTheme.filledTrack.common,
-          sliderTheme.filledTrack.size[size],
-        ]),
+        tailwind.style(
+          cx(
+            sliderTheme?.filledTrack?.common,
+            sliderTheme?.size[size]?.filledTrack,
+            sliderTheme?.themeColor[themeColor]?.filledTrack,
+          ),
+        ),
         animatedStyles,
       ]}
     />

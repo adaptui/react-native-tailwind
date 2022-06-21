@@ -6,10 +6,16 @@ import {
   AvatarScreen,
   BadgeScreen,
   ButtonScreen,
+  CheckboxGroupScreen,
   CheckboxScreen,
+  CircularProgressScreen,
+  InputScreen,
   MeterComponentScreen,
   ProgressScreen,
+  RadioScreen,
+  SliderComponentScreen,
   SpinnerScreen,
+  SwitchComponentScreen,
   TagScreen,
   TooltipScreen,
 } from "./modules";
@@ -18,7 +24,7 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="TooltipScreen">
+    <Drawer.Navigator initialRouteName="CheckboxGroupScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
@@ -50,7 +56,7 @@ const AppRoot = () => {
         component={SpinnerScreen}
       />
       <Drawer.Screen
-        options={{ title: "MeterComponent" }}
+        options={{ title: "Meter" }}
         name="MeterComponentScreen"
         component={MeterComponentScreen}
       />
@@ -60,14 +66,44 @@ const AppRoot = () => {
         component={TooltipScreen}
       />
       <Drawer.Screen
-        options={{ title: "TagScreen" }}
+        options={{ title: "Tag " }}
         name="TagScreen"
         component={TagScreen}
       />
       <Drawer.Screen
-        options={{ title: "ProgressScreen" }}
+        options={{ title: "Progress " }}
         name="ProgressScreen"
         component={ProgressScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Switch" }}
+        name="SwitchComponentScreen"
+        component={SwitchComponentScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Radio" }}
+        name="RadioComponentScreen"
+        component={RadioScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Slider" }}
+        name="SliderComponentScreen"
+        component={SliderComponentScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Circular Progress" }}
+        name="CircularProgressScreen"
+        component={CircularProgressScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Input" }}
+        name="InputScreen"
+        component={InputScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Checkbox Group" }}
+        name="CheckboxGroupScreen"
+        component={CheckboxGroupScreen}
       />
     </Drawer.Navigator>
   );

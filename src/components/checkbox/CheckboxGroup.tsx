@@ -27,7 +27,7 @@ export interface CheckboxGroupProps {
   value: string[];
   defaultValue: string[];
   isDisabled: boolean;
-  onChange: (value: string[]) => null;
+  onChange: (value: string[]) => void;
 }
 
 const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<

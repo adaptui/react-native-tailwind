@@ -4,13 +4,25 @@ import { RadioGroupState, useRadioGroupState } from "@react-stately/radio";
 
 import { Box } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, createContext, getValidChildren } from "../../utils";
+import {
+  createComponent,
+  createContext,
+  cx,
+  getValidChildren,
+} from "../../utils";
 
-import type { RadioSizes } from "./Radio";
+export type RadioSizes = "sm" | "md" | "lg";
+export type RadioTheme = "base" | "primary" | "danger";
 
-const [RadioGroupProvider, useRadioGroupContext] = createContext<
-  RadioGroupState & Pick<RadioGroupProps, "size">
->({});
+interface RadioGroupContext
+  extends Pick<RadioGroupProps, "size" | "themeColor">,
+    RadioGroupState {}
+
+const [RadioGroupProvider, useRadioGroupContext] =
+  createContext<RadioGroupContext>({
+    strict: false,
+    name: "RadioGroupProvider",
+  });
 
 export { useRadioGroupContext };
 
@@ -20,6 +32,11 @@ export interface RadioGroupProps {
    * @default md
    */
   size: RadioSizes;
+  /**
+   * Radio Sizes
+   * @default base
+   */
+  themeColor: RadioTheme;
   /**
    * Orientation of Radio Group
    */
@@ -50,6 +67,7 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   const {
     orientation = "vertical",
     size = "md",
+    themeColor = "base",
     value,
     defaultValue,
     isDisabled = false,
@@ -74,15 +92,17 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   const validChildren = getValidChildren(children);
   return (
     <Box
-      style={tailwind.style(radioGroupTheme.group[orientation].common)}
+      style={tailwind.style(cx(radioGroupTheme.group[orientation].common))}
       {...radioGroupProps}
       ref={ref}
     >
-      <RadioGroupProvider value={{ ...state, isDisabled, size }}>
+      <RadioGroupProvider value={{ ...state, isDisabled, size, themeColor }}>
         {validChildren.map((renderElement, index) => (
           <Box
             key={index}
-            style={tailwind.style(radioGroupTheme.group[orientation].spacing)}
+            style={tailwind.style(
+              cx(radioGroupTheme.group[orientation].spacing),
+            )}
           >
             {renderElement}
           </Box>

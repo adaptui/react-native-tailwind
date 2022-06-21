@@ -18,6 +18,12 @@ export const ProgressScreen = () => {
         style={tailwind.style("my-2")}
         trackStyle={tailwind.style("bg-green-600")}
       />
+      {/* With Label and Hint */}
+      <ProgressBar
+        label="Progress"
+        hint="26.6%"
+        style={tailwind.style("my-2")}
+      />
     </Box>
   );
 };

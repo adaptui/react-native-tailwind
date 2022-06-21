@@ -176,44 +176,46 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
           style={[
             tailwind.style(
               cx(
-                checkboxTheme.icon.common,
-                checkboxTheme.icon.wrapperSize[size],
+                checkboxTheme.icon?.common,
+                checkboxTheme.size[size]?.icon?.wrapper,
                 checkboxProps.isIndeterminate
-                  ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                  ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
                       .default
                   : checkboxProps.checked
-                  ? checkboxTheme.icon.themeColor[themeColor]?.checked.default
-                  : checkboxTheme.icon.themeColor[themeColor]?.unChecked
+                  ? checkboxTheme.themeColor[themeColor]?.icon?.checked?.default
+                  : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
                       .default,
                 isDisabled
                   ? checkboxProps.isIndeterminate
-                    ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                    ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
                         .disabled
                     : checkboxProps.checked
-                    ? checkboxTheme.icon.themeColor[themeColor]?.checked
+                    ? checkboxTheme.themeColor[themeColor]?.icon?.checked
                         .disabled
-                    : checkboxTheme.icon.themeColor[themeColor]?.unChecked
+                    : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
                         .disabled
                   : "",
                 pressed
                   ? checkboxProps.isIndeterminate
-                    ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                    ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
                         .press
                     : checkboxProps.checked
-                    ? checkboxTheme.icon.themeColor[themeColor]?.checked.press
-                    : checkboxTheme.icon.themeColor[themeColor]?.unChecked.press
+                    ? checkboxTheme.themeColor[themeColor]?.icon?.checked?.press
+                    : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
+                        .press
                   : "",
                 isHovered
                   ? checkboxProps.isIndeterminate
-                    ? checkboxTheme.icon.themeColor[themeColor]?.indeterminate
+                    ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
                         .hover
                     : checkboxProps.checked
-                    ? checkboxTheme.icon.themeColor[themeColor]?.checked.hover
-                    : checkboxTheme.icon.themeColor[themeColor]?.unChecked.hover
+                    ? checkboxTheme.themeColor[themeColor]?.icon?.checked?.hover
+                    : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
+                        .hover
                   : "",
               ),
             ),
-            { borderWidth: checkboxTheme.icon.border },
+            { borderWidth: checkboxTheme?.icon?.border },
           ]}
         >
           {icon &&
@@ -222,13 +224,13 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               iconFill: tailwind.getColor(
                 cx(
                   checkboxProps.isDisabled
-                    ? checkboxTheme.icon.themeColor[themeColor]?.iconFill
-                        .disabled
-                    : checkboxTheme.icon.themeColor[themeColor]?.iconFill
-                        .default,
+                    ? checkboxTheme.themeColor[themeColor]?.icon?.fill?.disabled
+                    : checkboxTheme.themeColor[themeColor]?.icon?.fill?.default,
                 ),
               ),
-              iconStyle: tailwind.style(cx(checkboxTheme.icon.iconSize[size])),
+              iconStyle: tailwind.style(
+                cx(checkboxTheme.size[size]?.icon?.iconSize),
+              ),
             })}
         </Box>
         <Box style={checkboxTheme.labelDescWrapper}>
@@ -237,14 +239,16 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               style={[
                 tailwind.style(
                   cx(
-                    checkboxTheme.text.common,
-                    checkboxTheme.text.size[size],
-                    checkboxProps.disabled ? checkboxTheme.text.disabled : "",
-                    description && checkboxTheme.description.labelText,
+                    checkboxTheme.label?.text,
+                    checkboxTheme.size[size]?.text?.default,
+                    checkboxProps.disabled
+                      ? checkboxTheme.label?.text?.disabled
+                      : checkboxTheme.label?.text?.common,
+                    description && checkboxTheme?.description?.labelText,
                   ),
                 ),
                 description
-                  ? { lineHeight: checkboxTheme.text.lineHeight[size] }
+                  ? { lineHeight: checkboxTheme.size[size]?.text?.lineHeight }
                   : {},
               ]}
             >
@@ -256,8 +260,8 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               style={[
                 tailwind.style(
                   cx(
-                    checkboxTheme.description.common,
-                    checkboxTheme.description.size[size],
+                    checkboxTheme?.description?.common,
+                    checkboxTheme.size[size]?.description?.default,
                   ),
                 ),
               ]}
@@ -278,10 +282,10 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     <Box
       style={tailwind.style(
         cx(
-          checkboxTheme.label.common,
-          description ? checkboxTheme.label.withDescription : "",
-          checkboxTheme.label.size[size],
-          isHovered ? checkboxTheme.label.themeColor[themeColor]?.hover : "",
+          checkboxTheme?.label?.common,
+          description ? checkboxTheme?.label?.withDescription : "",
+          checkboxTheme.size[size]?.label.wrapper,
+          isHovered ? checkboxTheme.themeColor[themeColor]?.label?.hover : "",
         ),
       )}
       // @ts-ignore
@@ -301,12 +305,12 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       style={({ pressed }) =>
         tailwind.style(
           cx(
-            checkboxTheme.label.common,
-            description ? checkboxTheme.label.withDescription : "",
-            checkboxTheme.label.size[size],
+            checkboxTheme?.label?.common,
+            description ? checkboxTheme?.label?.withDescription : "",
+            checkboxTheme.size[size]?.label?.wrapper,
             pressed
               ? label && !description
-                ? checkboxTheme.label.themeColor[themeColor]?.pressed
+                ? checkboxTheme.themeColor[themeColor]?.label?.pressed
                 : ""
               : "",
           ),

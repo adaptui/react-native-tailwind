@@ -2,6 +2,7 @@ import React from "react";
 
 import { Touchable, TouchableProps } from "../../primitives";
 import { useTheme } from "../../theme";
+import { cx } from "../../utils";
 
 import { InputProps } from "./Input";
 
@@ -21,9 +22,11 @@ export const InputPrefix: React.FC<InputPrefixProps> = ({
     <Touchable
       style={[
         tailwind.style(
-          inputTheme.prefix.common,
-          inputTheme.prefix.size[size],
-          inputTheme.prefix.variant[variant].common,
+          cx(
+            inputTheme.prefixWrapper,
+            inputTheme.size[size]?.prefix,
+            inputTheme.variant[variant]?.prefix?.common,
+          ),
         ),
       ]}
       {...props}
