@@ -283,7 +283,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         cx(
           checkboxTheme?.label?.common,
           description ? checkboxTheme?.label?.withDescription : "",
-          checkboxTheme.size[size]?.label.wrapper,
+          checkboxTheme.size[size]?.label?.wrapper,
           isHovered ? checkboxTheme.themeColor[themeColor]?.label?.hover : "",
         ),
       )}
