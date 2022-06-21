@@ -10,6 +10,7 @@ export * from "./Close";
 export * from "./CloseSmall";
 export * from "./Dash";
 export * from "./DefaultUser";
+export * from "./Delete";
 export * from "./Equals";
 export * from "./FastBackward";
 export * from "./FastForward";

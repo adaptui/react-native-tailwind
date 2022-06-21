@@ -5,7 +5,7 @@ import { IconProps } from "../utils/types";
 
 export const Add: React.FC<IconProps> = ({ fill = "#525252" }) => {
   return (
-    <Svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <Svg width="100%" height="100%" viewBox="0 0 12 12" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
