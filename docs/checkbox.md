@@ -125,5 +125,11 @@ export default function App() {
 | setSelected        | Checkbox onState Change              | (isSelected: boolean) => void |            |
 | isDisabled         | Checkbox Disabled State              | boolean                       | false      |
 | isInvalid          | Checkbox Invalid State               | boolean                       | false      |
-| value              | Checkbox state value (CheckboxGroup) | string                        |            |
+| value\*            | Checkbox state value (CheckboxGroup) | string                        |            |
 | accessibilityLabel | Accessibility Label for Checkbox     | string                        | "Check me" |
+
+> `value` prop is only required when using <Checkbox /> inside of CheckboxGroup
+
+## Also Check
+
+- [CheckboxGroup](checkbox-group.md)
