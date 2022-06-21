@@ -6,6 +6,7 @@ import {
   AvatarScreen,
   BadgeScreen,
   ButtonScreen,
+  CheckboxGroupScreen,
   CheckboxScreen,
   CircularProgressScreen,
   InputScreen,
@@ -23,7 +24,7 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="InputScreen">
+    <Drawer.Navigator initialRouteName="CheckboxGroupScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
@@ -98,6 +99,11 @@ const AppRoot = () => {
         options={{ title: "Input" }}
         name="InputScreen"
         component={InputScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Checkbox Group" }}
+        name="CheckboxGroupScreen"
+        component={CheckboxGroupScreen}
       />
     </Drawer.Navigator>
   );
