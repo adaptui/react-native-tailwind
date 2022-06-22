@@ -3,6 +3,9 @@
 Adapt UI provides three themes for the radio button with three sizes and five
 interaction states.
 
+It can be used when you want to set the selection from a series of option to
+only one.
+
 #### Simple Usage
 
 ```
