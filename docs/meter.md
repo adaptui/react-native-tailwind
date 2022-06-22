@@ -28,7 +28,7 @@ Adapt UI provides three themes for the Meter Component: `base`, `primary` and
 ### Usage
 
 ```
-import { Input, Search, Icon } from "@adaptui/react-native-tailwind"
+import { Meter, Search, Icon } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
     <>
@@ -57,7 +57,7 @@ Based on the hierarchy, you can switch between different sizes.
 ### Usage
 
 ```
-import { Input, useTheme } from "@adaptui/react-native-tailwind"
+import { Meter, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
   const tailwind = useTheme();
