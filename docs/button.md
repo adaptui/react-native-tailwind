@@ -17,7 +17,7 @@ export default function App() {
 ## Table of Contents
 
 - [Themes](#themes)
-- [Style](#style)
+- [Variants](#variants)
 - [Size](#size)
 - [Prefix](#prefix)
 - [Suffix](#suffix)
@@ -50,7 +50,7 @@ export default function App() {
 
 ```
 
-## Style
+## Variants
 
 Adapt UI provides four different styles for buttons, namely `solid`, `subtle`,
 `outline`, and `ghost` buttons. You can use these various styled button
