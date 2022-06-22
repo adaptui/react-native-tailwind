@@ -195,7 +195,7 @@ export default function App() {
 
 ## Props
 
-> Button implements Box accepting all `ViewProps`
+> Button implements `Touchable` accepting all `PressableProps`
 
 | Name       | Description                                                          | Type                                            | Default |
 | ---------- | -------------------------------------------------------------------- | ----------------------------------------------- | ------- |
