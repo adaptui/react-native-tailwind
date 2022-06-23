@@ -7,85 +7,23 @@ initials or a fallback icon to represent a user as a group
   avatars and show a "+X" value (where X is the remaining avatars).
 - To size all the avatars equally, pass the `size` prop.
 
-## Table of Contents
-
-- [Usage](#usage)
-- [Props](#props)
-
-## Usage
+#### Simple Usage
 
 ```
-import React from "react";
-import {
-  Avatar,
-  AvatarGroup,
-  Box,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
-
-export default function AvatarGroupScreen() {
-  const tailwind = useTheme();
+import { AvatarGroup, Avatar } from "@adaptui/react-native-tailwind"
+export default function App() {
   return (
-    <Box
-      style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
-    >
-      <AvatarGroup size="md">
-        <Avatar />
-        <Avatar />
-        <Avatar />
-      </AvatarGroup>
-      <AvatarGroup size="xl">
-        <Avatar />
-        <Avatar />
-        <Avatar />
-        <Avatar />
-      </AvatarGroup>
-      <AvatarGroup size="2xl">
-        <Avatar name={"Navin Moorthy"} />
-        <Avatar name={"Karthik Balasubramanian"} />
-        <Avatar name={"Sandeep Prabhakaran"} />
-        <Avatar name={"Abhishek MG"} />
-        <Avatar name={"Udhaya Chandran"} />
-      </AvatarGroup>
-      <AvatarGroup size="2xl">
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=6" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=13" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=25" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=33" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=45" }} />
-      </AvatarGroup>
-      <AvatarGroup size="2xl" squared>
-        <Avatar name={"Navin Moorthy"} />
-        <Avatar name={"Karthik Balasubramanian"} />
-        <Avatar name={"Sandeep Prabhakaran"} />
-        <Avatar name={"Abhishek MG"} />
-        <Avatar name={"Udhaya Chandran"} />
-      </AvatarGroup>
-      <AvatarGroup max={2}>
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=6" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=13" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=25" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=33" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=45" }} />
-      </AvatarGroup>
-      <AvatarGroup max={3} squared>
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=6" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=13" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=25" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=33" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=45" }} />
-      </AvatarGroup>
-      <AvatarGroup squared>
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=6" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=13" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=25" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=33" }} />
-        <Avatar src={{ uri: "https://i.pravatar.cc/300??img=45" }} />
-      </AvatarGroup>
-    </Box>
-  );
+      <>
+        <AvatarGroup>
+          <Avatar src={{ uri: "https://i.pravatar.cc/300??img=6" }} />
+          <Avatar src={{ uri: "https://i.pravatar.cc/300??img=13" }} />
+          <Avatar src={{ uri: "https://i.pravatar.cc/300??img=25" }} />
+          <Avatar src={{ uri: "https://i.pravatar.cc/300??img=33" }} />
+          <Avatar src={{ uri: "https://i.pravatar.cc/300??img=45" }} />
+        </AvatarGroup>
+      </>
+  )
 }
-
 ```
 
 [![Edit CodeSandbox](https://img.shields.io/badge/Avatar_Group-Open%20On%20Expo-%230971f1?style=for-the-badge&logo=expo&labelColor=151515)](https://snack.expo.dev/@timelessco/avatargroup-component---adaptui)
