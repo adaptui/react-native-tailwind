@@ -14,7 +14,7 @@ import { AvatarGroup, Avatar } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
       <>
-        <AvatarGroup>
+        <AvatarGroup size="3xl">
           <Avatar src={{ uri: "https://i.pravatar.cc/300??img=6" }} />
           <Avatar src={{ uri: "https://i.pravatar.cc/300??img=13" }} />
           <Avatar src={{ uri: "https://i.pravatar.cc/300??img=25" }} />
@@ -25,6 +25,9 @@ export default function App() {
   )
 }
 ```
+
+![simulator_screenshot_4866F248-4CC5-4C3B-BAD1-9CBCBD1C3170](https://user-images.githubusercontent.com/35562287/175233051-7e392f4d-c1d4-4bc2-aa02-2528bb699265.png)
+
 
 [![Edit CodeSandbox](https://img.shields.io/badge/Avatar_Group-Open%20On%20Expo-%230971f1?style=for-the-badge&logo=expo&labelColor=151515)](https://snack.expo.dev/@timelessco/avatargroup-component---adaptui)
 
