@@ -1,4 +1,72 @@
 
+
+## [1.0.0-alpha.4](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.3...1.0.0-alpha.4) (2022-06-21)
+
+
+### Bug Fixes
+
+* **checkbox:** :art: add common label text style ([f5613de](https://github.com/adaptui/react-native-tailwind/commit/f5613de92f9c944ab832d4a255bfcee382e8d118))
+* **checkbox:** 🩹 add optional chaining ([1e1cf3e](https://github.com/adaptui/react-native-tailwind/commit/1e1cf3e5932cd601dfc8ef3d933723a0d3b16e7a))
+* **checkbox:** 🩹 fix providing invalid style strings ([503aab6](https://github.com/adaptui/react-native-tailwind/commit/503aab6bdb0e5832c3dd3c9206f9a992cc96a5f2))
+* **deps:** pin dependency react-native-popper to 0.3.2 ([0303e84](https://github.com/adaptui/react-native-tailwind/commit/0303e84a0d83aed63f28587cbb4e0a703f3abb50))
+
+
+### Feature Updates
+
+* **circular-progress:** :sparkles: wrap circular-progress ([c142d5a](https://github.com/adaptui/react-native-tailwind/commit/c142d5a7618ab12012a7c9106d0e8718c217523e))
+* **input:** :sparkles: wrap input component ([1649594](https://github.com/adaptui/react-native-tailwind/commit/1649594bdf31340a903b3c5ee7df80fe7b4ad70e))
+* **progress-bar:** :sparkles: add label and description to progress bar ([9a92f43](https://github.com/adaptui/react-native-tailwind/commit/9a92f438e2ef72e600b271d2798ff82f86b80dd4))
+* **radio:** :sparkles: wrap radio component ([8aab41d](https://github.com/adaptui/react-native-tailwind/commit/8aab41dc3a0ba75e3ff6df78d74f5db5b29f345c))
+* **slider:** :sparkles: wrap slider component ([3b3d8f3](https://github.com/adaptui/react-native-tailwind/commit/3b3d8f33fb944ce3b6bbc88ba4a88b4950588557))
+* **switch:** :sparkles: add `label` and `description` props, ([f1f632e](https://github.com/adaptui/react-native-tailwind/commit/f1f632e74ce42b89bc11886f85c599327642c59b))
+* **switch:** :sparkles: wrap switch component ([2742774](https://github.com/adaptui/react-native-tailwind/commit/274277423c7132da35e0c48028f4734815143f22))
+
+
+### Maintanance Updates
+
+* :wrench: add circular-progress to vscode scope ([a32a688](https://github.com/adaptui/react-native-tailwind/commit/a32a6884fceeb70f4c218634e933fae5b51e7e22))
+* :wrench: add input to vscode scope ([b400c7b](https://github.com/adaptui/react-native-tailwind/commit/b400c7b64af32727a68e053f923024f8316cb07e))
+* :wrench: add progress-bar to vscode scope ([43cb99d](https://github.com/adaptui/react-native-tailwind/commit/43cb99de0cc0f61e9de5a0e3d6fa2eb248fbb797))
+* :wrench: add radio to vscode scope ([874d99b](https://github.com/adaptui/react-native-tailwind/commit/874d99b8dc77ca0aa46764a2c2c3c284864f2ead))
+* :wrench: add slider to vscode scope ([51d9113](https://github.com/adaptui/react-native-tailwind/commit/51d91139e37beb3cc48e3a0a8669254ad839e145))
+* :wrench: add switch to vscode scope ([7cfdc85](https://github.com/adaptui/react-native-tailwind/commit/7cfdc854740350092dfd5b6bb836446a9a7cf744))
+* :wrench: add tag to vscode scope ([c751878](https://github.com/adaptui/react-native-tailwind/commit/c7518785168fc7da1ebdedb129a167a975363a0c))
+* :wrench: add tooltip scope ([10d479c](https://github.com/adaptui/react-native-tailwind/commit/10d479c03587ab9412f4dd50fde005f74f4dd4f6))
+* **checkbox:** :art: restructure checkbox theme and add optional chaining for tailwind classnames ([1ba2fa9](https://github.com/adaptui/react-native-tailwind/commit/1ba2fa9fc100988515765a023def070cada2dfc9))
+* **example-app:** :package: add react native popper package ([d671fa6](https://github.com/adaptui/react-native-tailwind/commit/d671fa65daacf114ee36ad47eb10be3348f36468))
+* **example-app:** :sparkles: add Circular Progress screen with examples ([4092367](https://github.com/adaptui/react-native-tailwind/commit/4092367db62c6c150f381e9f55a65c7dc8b96d2b))
+* **example-app:** :sparkles: add popups module, create tooltip component screen with examples ([651ef1b](https://github.com/adaptui/react-native-tailwind/commit/651ef1bb0aa22b7510608192d5a4c149afbf1e90))
+* **example-app:** :sparkles: add slider component screen with examples ([c0951a4](https://github.com/adaptui/react-native-tailwind/commit/c0951a407fb2cfe4ea989dc1f47f4e8419e6b116))
+* **example-app:** :sparkles: add Switch Component Screen with examples ([fdbc62c](https://github.com/adaptui/react-native-tailwind/commit/fdbc62c602c3e131117bf31c910bbaabe87ac7b4))
+* **example-app:** :sparkles: create Progress Bar component screen with examples ([fcdb6c1](https://github.com/adaptui/react-native-tailwind/commit/fcdb6c10729f3102122ad4694ab1f52df75c131b))
+* **example-app:** :sparkles: create Tag component screen with examples ([d273f05](https://github.com/adaptui/react-native-tailwind/commit/d273f05d9d2406ea9ddbb0e957d5bb398cd135fb))
+* **example-app:** :truck: move meter component and spinner to feedback folder ([627c3eb](https://github.com/adaptui/react-native-tailwind/commit/627c3eb4c8b2a4d0da875fe8a04c0b795098b30a))
+* **example-app:** :zap: add CheckboxGroup component screen with examples ([79dea75](https://github.com/adaptui/react-native-tailwind/commit/79dea75b9260b4901ce3c1b9c685e759a5f1c810))
+* **example-app:** :zap: add Input component Screen with examples ([2fd73e0](https://github.com/adaptui/react-native-tailwind/commit/2fd73e004fe434494a7d5a72e3dadbfce7148db3))
+* **example-app:** :zap: add ProgressBar example ([6956de5](https://github.com/adaptui/react-native-tailwind/commit/6956de52a51b25132f0ab9f2cc157676710fc963))
+* **example-app:** :zap: add Radio component Screen with examples ([a3eca48](https://github.com/adaptui/react-native-tailwind/commit/a3eca480a79bd06feedb7961388ad82519255455))
+* **progress-bar:** :lipstick: wrap tailwind classnames with cx ([28dd0f9](https://github.com/adaptui/react-native-tailwind/commit/28dd0f9baaffcdf63b39eea9cd125e5d3867f8f0))
+* **progress-bar:** :sparkles: wrap progress bar component ([3f17bcf](https://github.com/adaptui/react-native-tailwind/commit/3f17bcf9df6ea93711e167b2203a926787b7fef7))
+* **tag:** :sparkles: add themeColor for tag, remove TagProps hook, restructured tag render ([9bb582a](https://github.com/adaptui/react-native-tailwind/commit/9bb582a8babce5d7b4913d325eeaefd504d72926))
+* **tag:** :zap: wrap tailwind classnames with cx, wrap textStyle inside styleAdapter ([2135f8d](https://github.com/adaptui/react-native-tailwind/commit/2135f8d58f2669b9a725f5eb329bdbb7f37ffb1f))
+* **tooltip:** :lipstick: updated tooltip theme ([51b13dc](https://github.com/adaptui/react-native-tailwind/commit/51b13dcf62ee27966517ba3da47d294754086593))
+* **tooltip:** :mute: remove console.log ([6e99612](https://github.com/adaptui/react-native-tailwind/commit/6e99612802dcae4bf53fd4b76830ca6b55ed92b8))
+* **tooltip:** :sparkles: wrap tailwind classnames with `cx`, move arrow style into tooltip theme ([d06fb5a](https://github.com/adaptui/react-native-tailwind/commit/d06fb5ad29176d86b67530ca96f4d668f2c8e2e9))
+* **tooltip:** :tada: wrap tooltip component ([ed7d80c](https://github.com/adaptui/react-native-tailwind/commit/ed7d80c95d1c1b3a34c5b1f5ff676cd09b549dfc))
+
+
+### Code Refactors
+
+* :recycle: change "" to `text-transparent` to avoid tailwind classname warning ([8b7b50c](https://github.com/adaptui/react-native-tailwind/commit/8b7b50c007949ae838ed0b1095fd69d854a30c1e))
+* **checkbox:** :recycle: change onChange callback return type to void ([4379078](https://github.com/adaptui/react-native-tailwind/commit/43790784ecc83853d950aa0fc3a2d45be7a175a1))
+* **components:** ♻️ update styles & optional chaining ([dd3edd2](https://github.com/adaptui/react-native-tailwind/commit/dd3edd2e9c419782c54bcbb8666bd4588a4540f4))
+* **input:** :recycle: remove style from icon which is added to prefix and suffix wrapper ([f72b8b4](https://github.com/adaptui/react-native-tailwind/commit/f72b8b462f95368c89e256f4f0dd339b2b143f37))
+* **input:** :see_no_evil: wrap tailwind classnames with cx in missed places ([2d78105](https://github.com/adaptui/react-native-tailwind/commit/2d7810512addb4f3fc5c307bd6089c921ff206d6))
+* **slider:** :zap: combined two useAnimatedStyle style hook for the knob into one ([2cfad02](https://github.com/adaptui/react-native-tailwind/commit/2cfad02ad2bc6b46e99d3a6adee45c15ea95ca1e))
+* **switch:** :label: extend SwitchProps with BoxProps enabling style prop for customising ([399814b](https://github.com/adaptui/react-native-tailwind/commit/399814b304eea8050470860d768ab9d21a43842a))
+* **switch:** :recycle: fix Switch with desc from overflowing out of the screen ([d9d95fe](https://github.com/adaptui/react-native-tailwind/commit/d9d95fe0eb84e2cb60517a076675d257850d8fa8))
+* **switch:** :sparkles: add disabled style to label ([93906aa](https://github.com/adaptui/react-native-tailwind/commit/93906aada4384f3630f7599731b7128561769f1e))
+
 ## [1.0.0-alpha.3](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.2...1.0.0-alpha.3) (2022-06-16)
 
 ### Feature Updates

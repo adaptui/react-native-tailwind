@@ -104,22 +104,23 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                 radioTheme.icon?.common,
                 radioTheme.size[size]?.icon?.wrapper,
                 radioProps.checked
-                  ? radioTheme.themeColor[themeColor]?.icon.checked.default
-                  : radioTheme.themeColor[themeColor]?.icon.unChecked.default,
+                  ? radioTheme.themeColor[themeColor]?.icon?.checked?.default
+                  : radioTheme.themeColor[themeColor]?.icon?.unChecked?.default,
                 radioProps.disabled
                   ? radioProps.checked
-                    ? radioTheme.themeColor[themeColor]?.icon.checked.disabled
-                    : radioTheme.themeColor[themeColor]?.icon.unChecked.disabled
+                    ? radioTheme.themeColor[themeColor]?.icon?.checked?.disabled
+                    : radioTheme.themeColor[themeColor]?.icon?.unChecked
+                        ?.disabled
                   : "",
                 pressed
                   ? radioProps.checked
-                    ? radioTheme.themeColor[themeColor]?.icon.checked.press
-                    : radioTheme.themeColor[themeColor]?.icon.unChecked.press
+                    ? radioTheme.themeColor[themeColor]?.icon?.checked?.press
+                    : radioTheme.themeColor[themeColor]?.icon?.unChecked?.press
                   : "",
                 isHovered
                   ? radioProps.checked
-                    ? radioTheme.themeColor[themeColor]?.icon.checked.hover
-                    : radioTheme.themeColor[themeColor]?.icon.unChecked.hover
+                    ? radioTheme.themeColor[themeColor]?.icon?.checked?.hover
+                    : radioTheme.themeColor[themeColor]?.icon?.unChecked?.hover
                   : "",
               ),
             ),
@@ -129,24 +130,24 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
           <Box
             style={tailwind.style(
               cx(
-                radioTheme.size[size]?.icon.innerCircle?.default,
+                radioTheme.size[size]?.icon?.innerCircle?.default,
                 radioProps.checked
-                  ? radioTheme.themeColor[themeColor]?.innerCircle.checked
+                  ? radioTheme.themeColor[themeColor]?.innerCircle?.checked
                       .default
-                  : radioTheme.themeColor[themeColor]?.innerCircle.unChecked
+                  : radioTheme.themeColor[themeColor]?.innerCircle?.unChecked
                       .default,
                 radioProps.disabled
                   ? radioProps.checked
-                    ? radioTheme.themeColor[themeColor]?.innerCircle.checked
+                    ? radioTheme.themeColor[themeColor]?.innerCircle?.checked
                         .disabled
-                    : radioTheme.themeColor[themeColor]?.innerCircle.unChecked
+                    : radioTheme.themeColor[themeColor]?.innerCircle?.unChecked
                         .disabled
                   : "",
                 pressed
                   ? radioProps.checked
-                    ? radioTheme.themeColor[themeColor]?.innerCircle.checked
+                    ? radioTheme.themeColor[themeColor]?.innerCircle?.checked
                         .press
-                    : radioTheme.themeColor[themeColor]?.innerCircle.unChecked
+                    : radioTheme.themeColor[themeColor]?.innerCircle?.unChecked
                         .press
                   : "",
               ),

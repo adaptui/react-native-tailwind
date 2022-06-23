@@ -55,7 +55,7 @@ export const switchTheme = {
       },
     },
     xl: {
-      switchContainerStyle: "w-[48px] h-7 rounded-full py-[2px]",
+      switchContainerStyle: "w-[48px] h-7 rounded-full py-0.5",
       thumbStyle: "w-6 h-6 bg-white-900 rounded-full shadow-sm",
       switchInterpolateWidths: [24, 27, 27, 24],
       thumbIntermediateTranslateValue: 3,

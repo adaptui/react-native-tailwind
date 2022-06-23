@@ -31,7 +31,5 @@ export const circularProgress = {
       text: "text-xl",
     },
   },
-  text: {
-    base: "absolute font-medium text-gray-900 text-center leading-tight",
-  },
+  text: "absolute font-medium text-gray-900 text-center leading-tight",
 };
