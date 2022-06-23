@@ -42,8 +42,7 @@ import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
 export default function App() {
   const tailwind = useTheme();
   return (
-    <>![simulator_screenshot_62979956-4ADA-4303-BA63-960AF8D738F7](https://user-images.githubusercontent.com/35562287/175295016-bf00eadd-8766-4def-b2fc-7e055357d2d5.png)
-
+    <>
       <Checkbox />
       <Checkbox themeColor="primary" />
       <Checkbox themeColor="danger" />
