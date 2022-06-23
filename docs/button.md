@@ -2,6 +2,9 @@
 
 Adapt UI provides five themes for `Button` with four variant. Use this component to receive a specific request from the user.
 
+![simulator_screenshot_B8B371AC-3850-46D9-96C5-27F1D400A07B](https://user-images.githubusercontent.com/35562287/175280578-b5bfe58b-6129-429e-a120-9e7340f2414d.png)
+
+
 #### Simple Usage
 
 ```
@@ -12,10 +15,6 @@ export default function App() {
   )
 }
 ```
-
-#### Preview
-
-![simulator_screenshot_87AF34BE-0AD1-4B57-860B-5CDFE6CE0259](https://user-images.githubusercontent.com/35562287/175271053-b3a69098-66d5-4b1a-8cbc-785f120067b0.png)
 
 ## Table of Contents
 
