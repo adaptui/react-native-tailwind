@@ -3,9 +3,11 @@
 Adapt UI provides three different themes for the checkbox with three sizes and
 five interaction states.
 
+![simulator_screenshot_05833D67-18AC-4BC6-99B2-9443084EA834](https://user-images.githubusercontent.com/35562287/175283098-3cc71e01-a7b7-4c46-9d9b-cd6d8da114e6.png)
+
 ##### Simple Usage
 
-```
+```js
 import { Checkbox } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -27,15 +29,21 @@ export default function App() {
 Adapt UI provides three themes for the checkbox: `base`, `primary`, and
 `danger`. You can use this themed checkbox based on your specific scenarios.
 
-### Usage
+![simulator_screenshot_6F79193A-DB1E-4C9F-931D-19D1A80D628F](https://user-images.githubusercontent.com/35562287/175284798-0397a3fb-4466-4764-a438-68282d5d146d.png)
 
-```
+<details>
+  <summary>
+    <h3>Usage</h3>
+  </summary>
+
+```js
 import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
   const tailwind = useTheme();
   return (
-    <>
+    <>![simulator_screenshot_62979956-4ADA-4303-BA63-960AF8D738F7](https://user-images.githubusercontent.com/35562287/175295016-bf00eadd-8766-4def-b2fc-7e055357d2d5.png)
+
       <Checkbox />
       <Checkbox themeColor="primary" />
       <Checkbox themeColor="danger" />
@@ -44,15 +52,21 @@ export default function App() {
 }
 
 ```
-
+</details>
+  
 ## Size
 
 There are three different sizes for checkboxes in Adapt UI. Based on the
 hierarchy, you can switch between different sizes.
 
-### Usage
+![simulator_screenshot_0B2CA7D5-32C7-42C7-8EF9-34191C1AA4F3](https://user-images.githubusercontent.com/35562287/175290187-e281a585-d847-4b66-890c-ae59b9d9185e.png)
 
-```
+<details>
+  <summary>
+    <h3>Usage</h3>
+  </summary>
+
+```js
 import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
@@ -67,6 +81,7 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Label
 
@@ -74,9 +89,14 @@ As the name suggests, it provides a label with a checkbox. Since this is an
 independent property, you can have labels with different themes, interactions,
 or even sizes.
 
-### Usage
+![simulator_screenshot_5C491A13-980D-4D28-A67D-65053BF26AD2](https://user-images.githubusercontent.com/35562287/175291595-eea3cab0-8f00-4638-9981-9782c8633d7b.png)
 
-```
+<details>
+  <summary>
+    <h3>Usage</h3>
+  </summary>
+
+```js
 import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
@@ -89,14 +109,20 @@ export default function App() {
 }
 
 ```
-
+</details>
+  
 ## Description
 
 This property can give you description text along with the label.
 
-### Usage
+![simulator_screenshot_0E9496D0-7C24-4379-A2A5-6D43D99763F0](https://user-images.githubusercontent.com/35562287/175295163-39372b1c-0ef7-4ee9-a6e6-abd71f1133b2.png)
 
-```
+<details>
+  <summary>
+    <h3>Usage</h3>
+  </summary>
+
+```js
 import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
@@ -112,6 +138,50 @@ export default function App() {
 }
 
 ```
+</details>
+
+## Indeterminate
+
+In some scenarios, we have a checkbox group under a category. You can use indeterminate property to switch between indeterminate or unchecked states. We will use `<CheckboxGroup />` for the demo purpose. 
+
+![simulator_screenshot_692E2121-905B-4D02-A562-C74042B2DB42](https://user-images.githubusercontent.com/35562287/175297015-a93b669b-d65c-4644-bb13-6e876a4c453d.png)
+
+<details>
+  <summary>
+    <h3>Usage</h3>
+  </summary>
+  
+```
+import {
+  Box,
+  Checkbox,
+  CheckboxGroup,
+  useTheme,
+} from "@adaptui/react-native-tailwind";
+
+export const App = () => {
+  const tailwind = useTheme();
+  return (
+    <Box
+      style={tailwind.style("h-full justify-center items-center bg-white-900")}
+    >
+      <CheckboxGroup>
+        <Checkbox label="Fund Category" isIndeterminate />
+        <Box style={tailwind.style("ml-[25px]")}>
+          <Checkbox value="Equity" label="Equity" />
+          <Checkbox value="Debt" label="Debt" />
+          <Checkbox value="Hybrid" label="Hybrid" />
+          <Checkbox value="International Equity" label="International Equity" />
+          <Checkbox value="Solution Oriented" label="Solution Oriented" />
+        </Box>
+      </CheckboxGroup>
+    </Box>
+  );
+};
+
+```
+  
+</details>
 
 ## Props
 
