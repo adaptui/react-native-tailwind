@@ -1,11 +1,19 @@
 # Checkbox Group
 
-AdaptUI exports a CheckboxGroup component to help manage the checked state of
+AdaptUI exports a `<CheckboxGroup />` component to help manage the checked state of
 its children Checkbox components and conveniently pass a few shared style props
 to each.
 
 See the [props](#props) table at the bottom of this page for a list of the
 shared props.
+
+Also check the Indeterminate case [here.](checkbox.md#indeterminate)
+
+#### Preview
+
+
+https://user-images.githubusercontent.com/35562287/175327232-2f1774b7-8110-4f60-8901-e911fe11af74.mp4
+
 
 #### Simple Usage
 
