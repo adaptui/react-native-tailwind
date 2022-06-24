@@ -40,6 +40,21 @@ Check out our [getting started docs](/docs/getting-started.md)
 ## 📑 Component Docs
 
 - [Avatar](docs/avatar.md)
+- [Avatar Group](docs/avatar-group.md)
+- [Badge](docs/badge.md)
+- [Button](docs/button.md)
+- [Checkbox](docs/checkbox.md)
+- [Checkbox Group](docs/checkbox-group.md)
+- [Circular Progress](docs/circular-progress.md)
+- [Input](docs/input.md)
+- [Meter](docs/meter.md)
+- [Progress Bar](docs/progress-bar.md)
+- [Radio](docs/radio.md)
+- [Slider](docs/slider.md)
+- [Spinner](docs/spinner.md)
+- [Switch](docs/switch.md)
+- [Tag](docs/tag.md)
+- [Tooltip](docs/tooltip.md)
 
 > **Note:** As the 0.#.# version number suggests that we are still very much
 > work in progress, so semantic versioning will not be followed until a v1
