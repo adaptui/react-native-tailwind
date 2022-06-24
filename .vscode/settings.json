@@ -17,7 +17,8 @@
     "radio",
     "slider",
     "circular-progress",
-    "input"
+    "input",
+    "icons"
   ],
   "git.branchProtection": ["main"]
 }
