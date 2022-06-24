@@ -46,6 +46,18 @@ function AvatarComponentScreen() {
 
 ## Component Docs
 
-- [Avatar](avatar.md)
-- [AvatarGroup](avatar-group.md)
+- [Avatar Group](avatar-group.md)
 - [Badge](badge.md)
+- [Button](button.md)
+- [Checkbox](checkbox.md)
+- [Checkbox Group](checkbox-group.md)
+- [Circular Progress](circular-progress.md)
+- [Input](input.md)
+- [Meter](meter.md)
+- [Progress Bar](progress-bar.md)
+- [Radio](radio.md)
+- [Slider](slider.md)
+- [Spinner](spinner.md)
+- [Switch](switch.md)
+- [Tag](tag.md)
+- [Tooltip](tooltip.md)

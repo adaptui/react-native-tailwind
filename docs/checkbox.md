@@ -8,11 +8,9 @@ five interaction states.
 ##### Simple Usage
 
 ```js
-import { Checkbox } from "@adaptui/react-native-tailwind"
+import { Checkbox } from "@adaptui/react-native-tailwind";
 export default function App() {
-  return (
-      <Checkbox label="Fruits" />
-  )
+  return <Checkbox label="Fruits" />;
 }
 ```
 
@@ -37,7 +35,7 @@ Adapt UI provides three themes for the checkbox: `base`, `primary`, and
   </summary>
 
 ```js
-import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
+import { Checkbox, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const tailwind = useTheme();
@@ -47,10 +45,10 @@ export default function App() {
       <Checkbox themeColor="primary" />
       <Checkbox themeColor="danger" />
     </>
-  )
+  );
 }
-
 ```
+
 </details>
   
 ## Size
@@ -66,7 +64,7 @@ hierarchy, you can switch between different sizes.
   </summary>
 
 ```js
-import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
+import { Checkbox, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const tailwind = useTheme();
@@ -76,10 +74,10 @@ export default function App() {
       <Checkbox />
       <Checkbox size="lg" />
     </>
-  )
+  );
 }
-
 ```
+
 </details>
 
 ## Label
@@ -96,7 +94,7 @@ or even sizes.
   </summary>
 
 ```js
-import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
+import { Checkbox, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const tailwind = useTheme();
@@ -104,10 +102,10 @@ export default function App() {
     <>
       <Checkbox label="Contact-less delivery" />
     </>
-  )
+  );
 }
-
 ```
+
 </details>
   
 ## Description
@@ -122,7 +120,7 @@ This property can give you description text along with the label.
   </summary>
 
 ```js
-import { Checkbox, useTheme } from "@adaptui/react-native-tailwind"
+import { Checkbox, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const tailwind = useTheme();
@@ -133,15 +131,17 @@ export default function App() {
         description="Pre-select your food, get more leg room seat and fast check-in. Extra charges apply."
       />
     </>
-  )
+  );
 }
-
 ```
+
 </details>
 
 ## Indeterminate
 
-In some scenarios, we have a checkbox group under a category. You can use indeterminate property to switch between indeterminate or unchecked states. We will use `<CheckboxGroup />` for the demo purpose. 
+In some scenarios, we have a checkbox group under a category. You can use
+indeterminate property to switch between indeterminate or unchecked states. We
+will use `<CheckboxGroup />` for the demo purpose.
 
 ![simulator_screenshot_692E2121-905B-4D02-A562-C74042B2DB42](https://user-images.githubusercontent.com/35562287/175297015-a93b669b-d65c-4644-bb13-6e876a4c453d.png)
 
@@ -158,28 +158,18 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export const App = () => {
-  const tailwind = useTheme();
-  return (
-    <Box
-      style={tailwind.style("h-full justify-center items-center bg-white-900")}
-    >
-      <CheckboxGroup>
-        <Checkbox label="Fund Category" isIndeterminate />
-        <Box style={tailwind.style("ml-[25px]")}>
-          <Checkbox value="Equity" label="Equity" />
-          <Checkbox value="Debt" label="Debt" />
-          <Checkbox value="Hybrid" label="Hybrid" />
-          <Checkbox value="International Equity" label="International Equity" />
-          <Checkbox value="Solution Oriented" label="Solution Oriented" />
-        </Box>
-      </CheckboxGroup>
-    </Box>
-  );
-};
+export const App = () => { const tailwind = useTheme(); return ( <Box
+style={tailwind.style("h-full justify-center items-center bg-white-900")} >
+<CheckboxGroup> <Checkbox label="Fund Category" isIndeterminate /> <Box
+style={tailwind.style("ml-[25px]")}> <Checkbox value="Equity" label="Equity" />
+<Checkbox value="Debt" label="Debt" />
+<Checkbox value="Hybrid" label="Hybrid" />
+<Checkbox value="International Equity" label="International Equity" />
+<Checkbox value="Solution Oriented" label="Solution Oriented" /> </Box>
+</CheckboxGroup> </Box> ); };
 
 ```
-  
+
 </details>
 
 ## Props
@@ -202,3 +192,4 @@ export const App = () => {
 ## Also Check
 
 - [CheckboxGroup](checkbox-group.md)
+```
