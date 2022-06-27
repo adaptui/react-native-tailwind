@@ -11,23 +11,23 @@ export const circularProgress = {
   },
   size: {
     sm: {
-      default: 7,
-      withHintSize: 22,
+      default: 14,
+      withHintSize: 44,
       text: "text-xs",
     },
     md: {
-      default: 8,
-      withHintSize: 28,
+      default: 16,
+      withHintSize: 56,
       text: "text-sm",
     },
     lg: {
-      default: 10,
-      withHintSize: 32,
+      default: 20,
+      withHintSize: 64,
       text: "text-base",
     },
     xl: {
-      default: 14,
-      withHintSize: 40,
+      default: 28,
+      withHintSize: 80,
       text: "text-xl",
     },
   },

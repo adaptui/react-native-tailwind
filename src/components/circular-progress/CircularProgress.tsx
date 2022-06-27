@@ -1,9 +1,10 @@
 import React, { forwardRef } from "react";
-import { StyleSheet, TextInput, TextInputProps } from "react-native";
+import { StyleSheet } from "react-native";
 import Animated, {
   Easing,
   interpolate,
   useAnimatedProps,
+  useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withRepeat,
@@ -12,16 +13,13 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Circle, G } from "react-native-svg";
 
-import { Box, BoxProps } from "../../primitives";
+import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, cx } from "../../utils";
+import { createComponent, cx, styleAdapter } from "../../utils";
 
 Animated.addWhitelistedNativeProps({ text: true });
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const AnimatedG = Animated.createAnimatedComponent(G);
-
-const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 export type CircularProgressSizes = "sm" | "md" | "lg" | "xl";
 export type CircularProgressTheme = "base" | "primary";
@@ -35,10 +33,6 @@ export interface CircularProgressProps extends BoxProps {
    * The size of the Circle
    */
   themeColor: CircularProgressTheme;
-  /**
-   * Stroke Width of the Circle Border
-   */
-  strokeWidth: number;
   /**
    * Color of Progress value
    */
@@ -64,10 +58,9 @@ export interface CircularProgressProps extends BoxProps {
    */
   max: number;
   /**
-   * Should show progress value
-   * @default false
+   * Hint for the Meter
    */
-  hint: boolean;
+  hint: string;
 }
 
 const SPRING_CONFIG = {
@@ -87,13 +80,13 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
     {
       size = "md",
       themeColor = "base",
-      strokeWidth = 2,
       progressTrackColor,
       trackColor,
       value,
       min = 0,
       max = 100,
       hint = false,
+      style,
       ...otherProps
     },
     ref,
@@ -107,13 +100,10 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
       [value],
     );
 
+    const strokeWidth = hint ? 5 : 10;
+
     // Circle parameters
-    const radius = isIndeterminate
-      ? circularProgressTheme.size[size]?.default
-      : hint
-      ? circularProgressTheme.size[size]?.withHintSize
-      : circularProgressTheme.size[size]?.default;
-    const halfCircle = radius + strokeWidth;
+    const radius = 44;
     const circleCircumference = 2 * Math.PI * radius;
 
     // Animation for value based progress
@@ -137,14 +127,24 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
     });
 
     // Indeterminate Progress
-    const progress = useSharedValue(-1);
-
+    const progress = useSharedValue(0);
+    const rotate = useSharedValue(0);
+    const animatedSvgStyle = useAnimatedStyle(() => {
+      const rotateValue = interpolate(rotate.value, [0, 1], [0, 360]);
+      return {
+        transform: [
+          {
+            rotate: `${rotateValue}deg`,
+          },
+        ],
+      };
+    });
     const indeterminateAnimatedCircularProgress = useAnimatedProps(() => {
       return {
         strokeDashoffset: interpolate(
           progress.value,
-          [-1, 1],
-          [circleCircumference, -circleCircumference],
+          [0, 0.5, 1],
+          [0, -276, -(276 * 2)],
         ),
       };
     });
@@ -152,25 +152,43 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
     React.useEffect(() => {
       progress.value = withRepeat(
         withTiming(1, {
-          duration: 1750,
+          duration: 1500,
+          easing: Easing.linear,
+        }),
+        -1,
+        false,
+      );
+      rotate.value = withRepeat(
+        withTiming(1, {
+          duration: 1000,
           easing: Easing.bezier(0.4, 0, 0.2, 1),
         }),
         -1,
         false,
       );
-    }, [progress]);
-    const animatedTextProps = useAnimatedProps(() => {
-      return { text: `${progressValue.value}%` } as unknown as TextInputProps;
-    });
+    }, [progress, rotate]);
+
+    const circularProgressBoxDimensions = {
+      width: hint
+        ? circularProgressTheme.size[size]?.withHintSize
+        : circularProgressTheme.size[size]?.default,
+      height: hint
+        ? circularProgressTheme.size[size]?.withHintSize
+        : circularProgressTheme.size[size]?.default,
+    };
 
     return (
-      <Box ref={ref} {...otherProps}>
-        <Svg
-          width={radius * 2}
-          height={radius * 2}
-          viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
-        >
-          <AnimatedG rotation={"-90"} origin={`${halfCircle}, ${halfCircle}`}>
+      <AnimatedBox
+        ref={ref}
+        style={[
+          circularProgressBoxDimensions,
+          styleAdapter(style, { pressed: false }, false),
+          isIndeterminate && animatedSvgStyle,
+        ]}
+        {...otherProps}
+      >
+        <Svg width="100%" height="100%" viewBox={"0 0 100 100"}>
+          <G rotation={"-90"} origin="50, 50">
             <Circle
               stroke={
                 trackColor
@@ -185,8 +203,8 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
               strokeWidth={strokeWidth}
               fill="transparent"
               r={radius}
-              cx="50%"
-              cy="50%"
+              cx={50}
+              cy={50}
             />
             {isIndeterminate && (
               <AnimatedCircle
@@ -203,10 +221,10 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
                 strokeWidth={strokeWidth}
                 fill="transparent"
                 r={radius}
-                cx="50%"
-                cy="50%"
+                cx={50}
+                cy={50}
                 strokeLinecap="round"
-                strokeDasharray={`${circleCircumference} ${circleCircumference}`}
+                strokeDasharray="276 276"
                 animatedProps={indeterminateAnimatedCircularProgress}
               />
             )}
@@ -225,33 +243,37 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
                 strokeWidth={strokeWidth}
                 fill="transparent"
                 r={radius}
-                cx="50%"
-                cy="50%"
-                strokeDasharray={circleCircumference}
+                cx={50}
+                cy={50}
                 strokeLinecap="round"
+                strokeDasharray={circleCircumference}
                 animatedProps={animatedCircleProps}
               />
             )}
-          </AnimatedG>
+          </G>
         </Svg>
         {!isIndeterminate && hint && (
-          <AnimatedTextInput
-            underlineColorAndroid="transparent"
-            editable={false}
-            defaultValue={`${progressValue.value}`}
+          <Box
             style={[
               StyleSheet.absoluteFillObject,
-              tailwind.style(
-                cx(
-                  circularProgressTheme.text,
-                  circularProgressTheme.size[size]?.text,
-                ),
-              ),
+              tailwind.style("justify-center items-center bg-transparent"),
             ]}
-            animatedProps={animatedTextProps}
-          />
+          >
+            <Text
+              style={[
+                tailwind.style(
+                  cx(
+                    circularProgressTheme.text,
+                    circularProgressTheme.size[size]?.text,
+                  ),
+                ),
+              ]}
+            >
+              {hint}
+            </Text>
+          </Box>
         )}
-      </Box>
+      </AnimatedBox>
     );
   },
 );
