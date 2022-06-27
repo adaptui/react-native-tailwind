@@ -1,5 +1,61 @@
 
 
+## [1.0.0-alpha.5](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.4...1.0.0-alpha.5) (2022-06-27)
+
+
+### Code Refactors
+
+* **icons:** :bento: add Delete Icon, fix Add icon sizing ([08c012f](https://github.com/adaptui/react-native-tailwind/commit/08c012f775c79bcca793e56a8cbaf6eeaf09c583))
+
+
+### Maintanance Updates
+
+* :wrench: add icons to vscode scope ([e1b1d1e](https://github.com/adaptui/react-native-tailwind/commit/e1b1d1eb42349b9559838079c8a3f97e9a9eca7c))
+
+
+### Feature Updates
+
+* **icons:** :bento: add Error icon ([6e1dc8c](https://github.com/adaptui/react-native-tailwind/commit/6e1dc8c610e1f635c89525e166a1fa6d31c4b9bd))
+
+
+### Documentation Changes
+
+* :memo: add avatar & avatar-group file ([276aefb](https://github.com/adaptui/react-native-tailwind/commit/276aefb2387d28aec0dfc3eaf37e2f7cc324f092))
+* :memo: add badge doc file ([217aa36](https://github.com/adaptui/react-native-tailwind/commit/217aa36805061b3d7b1a36e82b445780479fff7e))
+* :memo: add button doc file ([0a858e4](https://github.com/adaptui/react-native-tailwind/commit/0a858e4b2e5c1c8e4b913b172e83f1d0a79e747b))
+* :memo: add checkbox doc file ([ddf54b0](https://github.com/adaptui/react-native-tailwind/commit/ddf54b08b308f57b90bbc45f0e388b92d76f543c))
+* :memo: add checkbox group doc file ([2561cf1](https://github.com/adaptui/react-native-tailwind/commit/2561cf1a94dbba45c4ffc744e476d3987cad407d))
+* :memo: add circular progress doc file ([62a9ffa](https://github.com/adaptui/react-native-tailwind/commit/62a9ffac26053c035d2ddf65fc18bc28919221c5))
+* :memo: add getting-started file ([75c28d9](https://github.com/adaptui/react-native-tailwind/commit/75c28d92293445d4b8198c694fca4e208e291ead))
+* :memo: add input doc file ([5a79364](https://github.com/adaptui/react-native-tailwind/commit/5a79364cb16c18762463275e4fd27cf39603ab97))
+* :memo: add meter component doc file ([d90eb94](https://github.com/adaptui/react-native-tailwind/commit/d90eb94a40b02a745575ac0979182370dba21888))
+* :memo: add progress bar doc file ([0165e09](https://github.com/adaptui/react-native-tailwind/commit/0165e09ef3a352d7025c8467f154cd855ba1a39a))
+* :memo: add Radio component doc file ([c7ca581](https://github.com/adaptui/react-native-tailwind/commit/c7ca5811d7aa7903eb233a45944f116d67cba43e))
+* :memo: add slider component doc file ([16ffe71](https://github.com/adaptui/react-native-tailwind/commit/16ffe7158d97f0dc53d8c30fb7a60db41f8e4bce))
+* :memo: add spinner component doc file ([3cf5b08](https://github.com/adaptui/react-native-tailwind/commit/3cf5b081aaf5405cfaa20af03f1bc95f6f059ed4))
+* :memo: add switch component doc file ([2d999c1](https://github.com/adaptui/react-native-tailwind/commit/2d999c1c01f1195a1913c460ca4b3c6202af0809))
+* :memo: add Tag component doc file ([6cedfd9](https://github.com/adaptui/react-native-tailwind/commit/6cedfd9b4205e40f21dfbe05b55067ba75fb212b))
+* :memo: add tooltip component doc file ([d4a3281](https://github.com/adaptui/react-native-tailwind/commit/d4a32816165f3801bc1dbf62d216c7285b35b287))
+* :memo: update component and getting-started docs ([cc11ffb](https://github.com/adaptui/react-native-tailwind/commit/cc11ffb0bd979204bb7ba1f6cf147e0311c6f26f))
+* :memo: update README.md ([2e9c517](https://github.com/adaptui/react-native-tailwind/commit/2e9c51752bba262cab6817574cf276123b97b440))
+* :pencil2: add desc to radio doc ([f39da77](https://github.com/adaptui/react-native-tailwind/commit/f39da773680d824915095d4aae8cb978f646bfab))
+* :pencil2: change style header to variants ([efcb038](https://github.com/adaptui/react-native-tailwind/commit/efcb0381cc8d695c34b75f141ba8bd6101f548c2))
+* :pencil2: change ViewProps to TouchableProps ([6306052](https://github.com/adaptui/react-native-tailwind/commit/6306052d7d8c6e2aab369c602ab68e767907c206))
+* :pencil2: fix typos ([9ac68fa](https://github.com/adaptui/react-native-tailwind/commit/9ac68fa32654a84b30bfe506fe3b4c33cd499cc0))
+* :recycle: add info regarding CheckboxGroup component ([04937ac](https://github.com/adaptui/react-native-tailwind/commit/04937ac784d1ee877ff362b31e6beb226e17eb9d))
+* :recycle: change avatar doc similar to other component docs ([6c9a808](https://github.com/adaptui/react-native-tailwind/commit/6c9a8086ced106daff83ef3e1a9a507d7bdd7011))
+* :recycle: change avatar-group doc similar to other component docs ([4d196d3](https://github.com/adaptui/react-native-tailwind/commit/4d196d3c4874f73356ff9ca29b99d63d29e9f24b))
+* :recycle: refactor code snippets in button doc ([cd001c5](https://github.com/adaptui/react-native-tailwind/commit/cd001c5b1a9662dd072fd1150b38703464918720))
+* :truck: rename progress doc file ([5e028fe](https://github.com/adaptui/react-native-tailwind/commit/5e028fe02f0cf25da8c64bd2d59674be1691f540))
+* 📝 Update avatar-group.md ([a8601f5](https://github.com/adaptui/react-native-tailwind/commit/a8601f51c275bb636afdfc4fd06efa8383977ca4))
+* 📝 Update avatar.md ([d6dbd6a](https://github.com/adaptui/react-native-tailwind/commit/d6dbd6a1e8f2ede3ee1fd773b2a383d618626a22))
+* 📝 Update badge.md ([a005986](https://github.com/adaptui/react-native-tailwind/commit/a00598625679a1ff1281a3c9bf10948895ceb883))
+* 📝 Update button.md ([d810960](https://github.com/adaptui/react-native-tailwind/commit/d810960ef2aae71ec8398e3d1baf0f236104dc77))
+* 📝 Update button.md ([b76a012](https://github.com/adaptui/react-native-tailwind/commit/b76a0125a2677fdca740f1f2203020525418b955))
+* 📝 Update checkbox-group.md ([7064e1f](https://github.com/adaptui/react-native-tailwind/commit/7064e1f3ce03018ca79bdbb4e3b5f0e2eff25229))
+* 📝 Update checkbox.md ([19c7714](https://github.com/adaptui/react-native-tailwind/commit/19c7714b9de33a7eacd2af32139954e01213821a))
+* 📝 Update checkbox.md ([177edfc](https://github.com/adaptui/react-native-tailwind/commit/177edfc2a39f1f5abcfda8a8477870238750bf3e))
+
 ## [1.0.0-alpha.4](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.3...1.0.0-alpha.4) (2022-06-21)
 
 
