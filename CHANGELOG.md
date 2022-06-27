@@ -1,5 +1,27 @@
 
 
+## [1.0.0-alpha.6](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.5...1.0.0-alpha.6) (2022-06-27)
+
+
+### Code Refactors
+
+* **circular-progress:** :sparkles: wrap circular progress component ([23d0dfd](https://github.com/adaptui/react-native-tailwind/commit/23d0dfd51f9f88bba3ccee8fb55e2ce46cb7a051))
+
+
+### Maintanance Updates
+
+* **example-app:** :sparkles: add component examples to Circular Progress screen ([7859dcc](https://github.com/adaptui/react-native-tailwind/commit/7859dccdba49132f0fefe43729c51b0fd1af1e38))
+
+
+### Documentation Changes
+
+* **circular-progress:** :memo: update circular-progress.md file ([482c418](https://github.com/adaptui/react-native-tailwind/commit/482c418cd3c075a7db5ac09a2537bd1cd6b9c48c))
+
+
+### Build Updates
+
+* :rocket: release v1.0.0-alpha.5 ([ff47b1c](https://github.com/adaptui/react-native-tailwind/commit/ff47b1c14449484ea8077b071e0af2273e91c72e))
+
 ## [1.0.0-alpha.5](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.4...1.0.0-alpha.5) (2022-06-27)
 
 
