@@ -3,7 +3,7 @@
 AdaptUI provides a component Circular Progress which is used to indicate the
 progress for determinate and indeterminate processes.
 
-There are two types of progress indicators: determinate and indeterminate.
+There are two types of progress indicators: `determinate` and `indeterminate`.
 
 - Determinate progress: fills the circular track with color, as the indicator
   moves from 0 to 360 degrees.
@@ -40,6 +40,7 @@ export const CircularProgressScreen = () => {
 
 - [Themes](#themes)
 - [Size](#size)
+- [Customised](#customised)
 - [Props](#props)
 
 ## Themes
@@ -98,6 +99,40 @@ export const CircularProgressScreen = () => {
 
 ```
 
+## Customised
+
+We can easily customise the sizing Circular Progress component with the style
+prop and setting a different color to the prop `progressTrackColor`
+
+### Usage
+
+```
+import React from "react";
+import {
+  Box,
+  CircularProgress,
+  useTheme,
+} from "@adaptui/react-native-tailwind";
+
+export const CircularProgressScreen = () => {
+  const tailwind = useTheme();
+  return (
+    <Box
+      style={tailwind.style(
+        "flex-1 justify-center items-center px-2 bg-white-900",
+      )}
+    >
+      <CircularProgress
+        style={tailwind.style("w-48 h-48")}
+        themeColor="primary"
+        progressTrackColor={tailwind.getColor("text-green-600")}
+      />
+    </Box>
+  );
+};
+
+```
+
 ## Props
 
 > Circular Progress implements Box accepting all `ViewProps`
@@ -112,4 +147,4 @@ export const CircularProgressScreen = () => {
 | value              | The `value` of the progress indicator, If `null` sets it to `indeterminate` state | number              | null    |
 | min                | The minimum value of the progress                                                 | number              | 0       |
 | max                | The maximum value of the progress                                                 | number              | 100     |
-| hint               | Should the Circular Progress show hint, the hint is displayed inside the circle   | boolean             | false   |
+| hint               | The hint positioned inside the circle                                             | string              |         |
