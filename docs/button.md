@@ -7,7 +7,7 @@ to receive a specific request from the user.
 
 #### Simple Usage
 
-```
+```js
 import { Button } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -39,7 +39,7 @@ scenarios.
   <h3>Usage</h3>
 </summary>
   
-```
+```js
 import { Button, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() { const tailwind = useTheme(); return ( <>
@@ -74,7 +74,7 @@ button with a base theme or your tertiary theme.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Button, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -100,7 +100,7 @@ Based on the hierarchy, you can switch between different sizes.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Button, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -127,7 +127,7 @@ property. It’s a frame that hugs the component inside it.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Button, useTheme, Icon, DefaultUser } from
 "@adaptui/react-native-tailwind"
@@ -155,7 +155,7 @@ button component.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Button, useTheme, Icon, CaretRight } from
 "@adaptui/react-native-tailwind"
@@ -182,7 +182,7 @@ slot for your icon.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Button, useTheme, Icon, CaretRight, Add, Delete } from
 "@adaptui/react-native-tailwind"

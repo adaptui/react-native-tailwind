@@ -7,7 +7,7 @@ to show the status of an activity.
 
 #### Simple Usage
 
-```
+```js
 import { Badge } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -39,7 +39,7 @@ You can use this themed badge based on your specific scenarios.
   <h3>Usage</h3>
 </summary>
   
-```
+```js
 import { Badge, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() { const tailwind = useTheme(); return ( <>
@@ -65,7 +65,7 @@ better visual hierarchy.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Badge, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -88,7 +88,7 @@ Adapt UI provides three different sizes for badges, namely `sm`, `md`, and `lg`.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Badge, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -115,7 +115,7 @@ property. It’s a frame that hugs the component inside it.
   <h3>Usage</h3>
 </summary>
 
-```
+```js
 
 import { Badge, useTheme, Icon, Check } from "@adaptui/react-native-tailwind"
 

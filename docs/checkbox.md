@@ -150,7 +150,7 @@ will use `<CheckboxGroup />` for the demo purpose.
     <h3>Usage</h3>
   </summary>
   
-```
+```js
 import {
   Box,
   Checkbox,

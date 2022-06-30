@@ -5,7 +5,7 @@ for status of a task
 
 #### Simple Usage
 
-```
+```js
 import { ProgressBar } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -26,7 +26,7 @@ Adapt UI provides two themes for the Progress Bar Component: `base` & `primary`
 
 ### Usage
 
-```
+```js
 import { ProgressBar, useTheme } from "@adaptui/react-native-tailwind"
 export default function App() {
   const tailwind = useTheme();
@@ -52,7 +52,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import { ProgressBar, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {

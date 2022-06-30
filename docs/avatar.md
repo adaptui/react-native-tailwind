@@ -5,7 +5,7 @@ fallback icon to represent a user
 
 #### Simple Usage
 
-```
+```js
 import { Avatar } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (

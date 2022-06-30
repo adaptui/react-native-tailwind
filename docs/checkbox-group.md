@@ -15,7 +15,7 @@ https://user-images.githubusercontent.com/35562287/175327232-2f1774b7-8110-4f60-
 
 #### Simple Usage
 
-```
+```js
 import React from "react";
 import {
   Box,

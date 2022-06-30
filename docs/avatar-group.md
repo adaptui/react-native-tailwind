@@ -9,7 +9,7 @@ initials or a fallback icon to represent a user as a group
 
 #### Simple Usage
 
-```
+```js
 import { AvatarGroup, Avatar } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (

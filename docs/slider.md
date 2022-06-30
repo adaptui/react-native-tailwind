@@ -5,7 +5,7 @@ options from a given range of values
 
 #### Simple Usage
 
-```
+```js
 import {
   Box,
   Slider,
@@ -39,7 +39,7 @@ scenarios.
 
 ### Usage
 
-```
+```js
 import {
   Box,
   Slider,
@@ -70,7 +70,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import {
   Box,
   Slider,
@@ -104,7 +104,7 @@ Adapt UI provides an option to customize your Slider component which can be used
 when users have to select values of range, like for example, Price Range of
 Product.
 
-```
+```js
 import {
   Box,
   Slider,
