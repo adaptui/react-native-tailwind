@@ -13,7 +13,7 @@ There are two types of progress indicators: `determinate` and `indeterminate`.
 
 #### Simple Usage
 
-```
+```js
 import React from "react";
 import {
   Box,
@@ -51,7 +51,7 @@ You can use this themed Circular Progress based on your specific scenarios.
 
 ### Usage
 
-```
+```js
 import { CircularProgress, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
@@ -73,7 +73,7 @@ Adapt UI provides three different sizes for badges, namely `sm`, `md`, `lg` and
 
 ### Usage
 
-```
+```js
 import React from "react";
 import {
   Box,
@@ -106,7 +106,7 @@ prop and setting a different color to the prop `progressTrackColor`
 
 ### Usage
 
-```
+```js
 import React from "react";
 import {
   Box,

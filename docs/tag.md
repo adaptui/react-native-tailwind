@@ -6,7 +6,7 @@ describe them.
 
 #### Simple Usage
 
-```
+```js
 import { Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -30,7 +30,7 @@ Adapt UI provides three themes for the Tag Component: `base` & `primary`
 
 ### Usage
 
-```
+```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -54,7 +54,7 @@ Adapt UI provides three different styles for Tags, namely `solid`, `subtle` and
 
 ### Usage
 
-```
+```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -83,7 +83,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -115,7 +115,7 @@ property. It’s a frame that hugs the component inside it.
 
 ### Usage
 
-```
+```js
 import { Tag, useTheme, Icon, Location } from "@adaptui/react-native-tailwind"
 
 export default function App() {
@@ -145,7 +145,7 @@ Tag component.
 
 ### Usage
 
-```
+```js
 import { Tag, useTheme, Icon, CaretRight } from "@adaptui/react-native-tailwind"
 
 export default function App() {
@@ -172,7 +172,7 @@ Setting a prop `closable` to true would render a `<Close />` icon.
 
 ### Usage
 
-```
+```js
 import { Tag, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {

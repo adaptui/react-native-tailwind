@@ -6,7 +6,7 @@ It also allows a user to switch between enabled or disabled states.
 
 #### Simple Usage
 
-```
+```js
 import { Switch } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -27,7 +27,7 @@ Adapt UI provides two themes for the Switch Component: `base` & `primary`
 
 ### Usage
 
-```
+```js
 import { Switch, Search, Icon } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -53,7 +53,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import { Switch, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
