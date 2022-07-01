@@ -19,7 +19,7 @@
     "react-native": "0.64.3",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-popper": "0.3.2",
-    "react-native-reanimated": "~2.3.1",
+    "react-native-reanimated": "2.3.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.1",
     "react-native-web": "0.18.1",
@@ -30,11 +30,14 @@
     "@babel/runtime": "7.18.3",
     "@types/react": "17.0.30",
     "@types/react-native": "0.64.24",
+    "babel-loader": "^8.2.5",
     "babel-plugin-module-resolver": "4.1.0",
     "babel-preset-expo": "9.1.0",
     "expo-cli": "5.4.9"
   },
   "resolutions": {
-    "**/@types/react": "17.0.30"
+    "**/@types/react": "17.0.30",
+    "react-error-overlay": "6.0.9",
+    "react-native-reanimated": "2.3.1"
   }
 }
