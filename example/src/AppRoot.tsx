@@ -24,7 +24,7 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="RadioComponentScreen">
+    <Drawer.Navigator initialRouteName="ButtonScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
