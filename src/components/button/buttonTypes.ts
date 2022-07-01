@@ -28,4 +28,6 @@ export interface ButtonOptionProps {
 export interface ButtonProps
   extends ButtonLibraryProps,
     ButtonOptionProps,
-    PressableProps {}
+    PressableProps {
+  accesibilityLabel: string;
+}

@@ -11,6 +11,12 @@ export const button = {
           wrapper: "bg-gray-900 border border-transparent",
           pressed: "bg-gray-700",
           disabled: "bg-gray-200",
+          hover: "bg-gray-800",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
         text: {
           default: "text-white-900",
@@ -29,6 +35,12 @@ export const button = {
           wrapper: "bg-gray-100 border border-transparent",
           pressed: "bg-gray-300",
           disabled: "bg-gray-100",
+          hover: "bg-gray-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
         text: {
           default: "text-gray-800",
@@ -47,6 +59,12 @@ export const button = {
           wrapper: "bg-white-900 border border-gray-400",
           pressed: "border-gray-500 bg-gray-300",
           disabled: "bg-gray-100 border-gray-400",
+          hover: "border-gray-500 shadow shadow-color-opacity-10",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
         text: {
           default: "text-gray-800",
@@ -65,6 +83,12 @@ export const button = {
           wrapper: "bg-white-900 border border-transparent",
           pressed: "bg-gray-300",
           disabled: "",
+          hover: "bg-gray-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
         text: {
           default: "text-gray-800",
@@ -85,6 +109,12 @@ export const button = {
           wrapper: "bg-blue-600 border border-transparent",
           pressed: "bg-blue-800",
           disabled: "bg-blue-100",
+          hover: "bg-blue-700",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
         text: {
           default: "text-white-900",
@@ -103,6 +133,12 @@ export const button = {
           wrapper: "bg-blue-100 border border-transparent",
           pressed: "bg-blue-300",
           disabled: "bg-blue-100",
+          hover: "bg-blue-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
         text: {
           default: "text-blue-800",
@@ -121,6 +157,12 @@ export const button = {
           wrapper: "bg-white-900 border border-blue-400",
           pressed: "border-blue-500 bg-blue-300",
           disabled: "bg-blue-100 border-blue-400",
+          hover: "border-blue-500 shadow shadow-color-opacity-10",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
         text: {
           default: "text-blue-800",
@@ -139,6 +181,12 @@ export const button = {
           wrapper: "bg-white-900 border border-transparent",
           pressed: "bg-blue-300",
           disabled: "",
+          hover: "bg-blue-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
         text: {
           default: "text-blue-800",
@@ -159,6 +207,12 @@ export const button = {
           wrapper: "bg-violet-600 border border-transparent",
           pressed: "bg-violet-800",
           disabled: "bg-violet-100",
+          hover: "bg-violet-700",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-violet-500",
+          },
         },
         text: {
           default: "text-white-900",
@@ -177,6 +231,12 @@ export const button = {
           wrapper: "bg-violet-100 border border-transparent",
           pressed: "bg-violet-300",
           disabled: "bg-violet-100",
+          hover: "bg-violet-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-violet-500",
+          },
         },
         text: {
           default: "text-violet-800",
@@ -195,6 +255,12 @@ export const button = {
           wrapper: "bg-white-900 border border-violet-400",
           pressed: "border-violet-500 bg-violet-300",
           disabled: "bg-violet-100 border-violet-400",
+          hover: "border-violet-500 shadow shadow-color-opacity-10",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-violet-500",
+          },
         },
         text: {
           default: "text-violet-800",
@@ -213,6 +279,12 @@ export const button = {
           wrapper: "bg-white-900 border border-transparent",
           pressed: "bg-violet-300",
           disabled: "",
+          hover: "bg-violet-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-violet-500",
+          },
         },
         text: {
           default: "text-violet-800",
@@ -233,6 +305,12 @@ export const button = {
           wrapper: "bg-green-600 border border-transparent",
           pressed: "bg-green-800",
           disabled: "bg-green-100",
+          hover: "bg-green-700",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-green-500",
+          },
         },
         text: {
           default: "text-white-900",
@@ -251,6 +329,12 @@ export const button = {
           wrapper: "bg-green-100 border border-transparent",
           pressed: "bg-green-300",
           disabled: "bg-green-100",
+          hover: "bg-green-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-green-500",
+          },
         },
         text: {
           default: "text-green-800",
@@ -269,6 +353,12 @@ export const button = {
           wrapper: "bg-white-900 border border-green-400",
           pressed: "border-green-500 bg-green-300",
           disabled: "bg-green-100 border-green-400",
+          hover: "border-green-500 shadow shadow-color-opacity-10",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-green-500",
+          },
         },
         text: {
           default: "text-green-800",
@@ -287,6 +377,12 @@ export const button = {
           wrapper: "bg-white-900 border border-transparent",
           pressed: "bg-green-300",
           disabled: "",
+          hover: "bg-green-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-green-500",
+          },
         },
         text: {
           default: "text-green-800",
@@ -307,6 +403,12 @@ export const button = {
           wrapper: "bg-red-600 border border-transparent",
           pressed: "bg-red-800",
           disabled: "bg-red-100",
+          hover: "bg-red-700",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-danger-500",
+          },
         },
         text: {
           default: "text-white-900",
@@ -325,6 +427,12 @@ export const button = {
           wrapper: "bg-red-100 border border-transparent",
           pressed: "bg-red-300",
           disabled: "bg-red-100",
+          hover: "bg-red-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-danger-500",
+          },
         },
         text: {
           default: "text-red-800",
@@ -343,6 +451,12 @@ export const button = {
           wrapper: "bg-white-900 border border-red-400",
           pressed: "border-red-500 bg-red-300",
           disabled: "bg-red-100 border-red-400",
+          hover: "border-red-500 shadow-sm shadow-color-opacity-10",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-danger-500",
+          },
         },
         text: {
           default: "text-red-800",
@@ -361,6 +475,12 @@ export const button = {
           wrapper: "bg-white-900 border border-transparent",
           pressed: "bg-red-300",
           disabled: "",
+          hover: "bg-red-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-danger-500",
+          },
         },
         text: {
           default: "text-red-800",
