@@ -81,6 +81,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
     selectedValue,
     setSelectedValue,
     setFocusableIndex,
+    orientation,
   } = state;
 
   const isDisabled = isDisabledFromGroupContext || isDisabledFromProps;
@@ -257,6 +258,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
         tailwind.style([
           cx(
             radioTheme?.label?.common,
+            index !== 0 ? radioTheme?.group[orientation]?.spacing : "",
             description ? radioTheme?.label?.withDescription : "",
             radioTheme.size[size]?.label?.wrapper,
             touchState.pressed
