@@ -246,7 +246,6 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   return (
     <Touchable
-      focusable={focusable}
       onPress={handleChange}
       // Web Callbacks
       onHoverIn={onHoverIn}
@@ -317,6 +316,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
         },
         default: undefined,
       })}
+      focusable={Platform.OS === "web" ? focusable : undefined}
     >
       {({ pressed }) =>
         children({
