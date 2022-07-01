@@ -1,8 +1,16 @@
 import React, { forwardRef } from "react";
+import { Platform } from "react-native";
 
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, cx, styleAdapter } from "../../utils";
+import {
+  createComponent,
+  cx,
+  generateBoxShadow,
+  styleAdapter,
+  useOnFocus,
+  useOnHover,
+} from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
@@ -27,12 +35,16 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       spinner,
       textStyle,
       style,
+      accesibilityLabel,
       ...props
     },
     ref,
   ) => {
     const tailwind = useTheme();
     const buttonTheme = useTheme("button");
+
+    const { onHoverIn, onHoverOut, hovered } = useOnHover();
+    const { onFocus, onBlur, focused } = useOnFocus();
 
     const iconAspectRatio = 1;
 
@@ -186,21 +198,56 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
                 buttonTheme.base,
                 buttonTheme.size[size]?.default,
                 buttonTheme.themeColor[themeColor]?.[variant]?.container
-                  .wrapper,
+                  ?.wrapper,
                 isButtonDisabled
                   ? buttonTheme.themeColor[themeColor]?.[variant]?.container
-                      .disabled
+                      ?.disabled
+                  : "",
+                hovered.value
+                  ? buttonTheme.themeColor[themeColor]?.[variant]?.container
+                      ?.hover
                   : "",
                 touchState.pressed
                   ? buttonTheme.themeColor[themeColor]?.[variant]?.container
-                      .pressed
+                      ?.pressed
                   : "",
               ),
             ),
+            focused.value
+              ? Platform.select({
+                  web: {
+                    outline: 0,
+                    boxShadow: `${generateBoxShadow(
+                      buttonTheme.themeColor[themeColor]?.[variant]?.container
+                        ?.focus?.offset,
+                      tailwind.getColor(
+                        cx(
+                          buttonTheme.themeColor[themeColor]?.[variant]
+                            ?.container?.focus?.color,
+                        ),
+                      ) as string,
+                    )}`,
+                    borderColor:
+                      buttonTheme.themeColor[themeColor]?.[variant]?.container
+                        ?.focus?.borderColor,
+                  },
+                })
+              : {},
             styleAdapter(style, touchState, true),
           ];
         }}
         {...props}
+        // Web Callbacks
+        onHoverIn={onHoverIn}
+        onHoverOut={onHoverOut}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        // Web Callbacks
+        // A11y Props
+        accessible
+        accessibilityLabel={accesibilityLabel}
+        accessibilityRole="button"
+        // A11y Props
         ref={ref}
         disabled={isButtonDisabled}
       >
