@@ -42,12 +42,18 @@ scenarios.
 ```js
 import { Button, useTheme } from "@adaptui/react-native-tailwind"
 
-export default function App() { const tailwind = useTheme(); return ( <>
-<Button>Get Started</Button> <Button themeColor="primary">Register for
-free</Button> <Button themeColor="secondary">Watch Demo</Button>
-<Button themeColor="success">Subscribe to Newsletter</Button>
-<Button themeColor="danger">Delete</Button> </> ) }
-
+export default function App() { 
+  const tailwind = useTheme(); 
+  return ( 
+    <>
+      <Button>Get Started</Button> 
+      <Button themeColor="primary">Register for free</Button> 
+      <Button themeColor="secondary">Watch Demo</Button>
+      <Button themeColor="success">Subscribe to Newsletter</Button>
+      <Button themeColor="danger">Delete</Button> 
+    </> 
+) 
+}
 ```
 </details>
 

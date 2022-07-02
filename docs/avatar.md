@@ -6,13 +6,10 @@ fallback icon to represent a user
 #### Simple Usage
 
 ```js
-import { Avatar } from "@adaptui/react-native-tailwind"
+import { Avatar } from "@adaptui/react-native-tailwind";
 export default function App() {
-  return (
-      <Avatar src={{ uri: 'https://i.pravatar.cc/300??img=39' }} />
-  )
+  return <Avatar src={{ uri: "https://i.pravatar.cc/300??img=39" }} />;
 }
-
 ```
 
 ![simulator_screenshot_7BB37E9E-E36F-476F-B559-1EF75CA2F160](https://user-images.githubusercontent.com/35562287/175239509-fec60c4e-7ec2-4afa-b6ec-587feab074d5.png)
