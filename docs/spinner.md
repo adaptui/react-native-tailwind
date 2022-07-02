@@ -5,7 +5,7 @@ processing or awaiting a course change or results.
 
 #### Simple Usage
 
-```
+```js
 import {
   Box,
   Spinner,
@@ -37,7 +37,7 @@ You can use these themed spinner components based for your specific scenarios.
 
 ### Usage
 
-```
+```js
 import {
   Box,
   Slider,
@@ -81,7 +81,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import {
   Box,
   Slider,

@@ -5,7 +5,7 @@ states. Use this component to receive information from the user.
 
 #### Simple Usage
 
-```
+```js
 import { Input } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -27,7 +27,7 @@ Adapt UI provides only one `base` theme for Input.
 
 ### Usage
 
-```
+```js
 import { Input, Search, Icon } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -50,7 +50,7 @@ and style you wish to provide to your design.
 
 ### Usage
 
-```
+```js
 import { Input, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
@@ -75,7 +75,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import { Input, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {

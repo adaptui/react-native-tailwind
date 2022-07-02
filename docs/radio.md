@@ -8,7 +8,7 @@ only one.
 
 #### Simple Usage
 
-```
+```js
 import {
   Box,
   Radio,
@@ -47,7 +47,7 @@ scenarios.
 
 ### Usage
 
-```
+```js
 import { RadioGroup, Radio, Box, useTheme } from "@adaptui/react-native-tailwind"
 export default function App() {
   const tailwind = useTheme();
@@ -88,7 +88,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import { RadioGroup, Radio, Box, useTheme } from "@adaptui/react-native-tailwind"
 export default function App() {
   const tailwind = useTheme();

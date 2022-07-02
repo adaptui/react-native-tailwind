@@ -5,7 +5,7 @@ informative message when a user interacts with an element.
 
 #### Simple Usage
 
-```
+```js
 import { Tooltip, Button } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (

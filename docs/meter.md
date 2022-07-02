@@ -5,7 +5,7 @@ measurement within a known range, or a fractional value.
 
 #### Simple Usage
 
-```
+```js
 import { Meter } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -27,7 +27,7 @@ Adapt UI provides three themes for the Meter Component: `base`, `primary` and
 
 ### Usage
 
-```
+```js
 import { Meter, Search, Icon } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
@@ -56,7 +56,7 @@ Based on the hierarchy, you can switch between different sizes.
 
 ### Usage
 
-```
+```js
 import { Meter, useTheme } from "@adaptui/react-native-tailwind"
 
 export default function App() {
