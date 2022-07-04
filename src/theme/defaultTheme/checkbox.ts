@@ -10,6 +10,26 @@ export const checkbox = {
     },
   },
 
+  label: {
+    common: "relative flex-row items-center",
+    withDescription: "items-start",
+    text: {
+      common: "text-gray-800 font-medium",
+      disabled: "text-gray-500",
+    },
+  },
+
+  labelDescWrapper: { flexShrink: 1 },
+  description: {
+    labelText: "text-gray-900 font-medium",
+    common: "text-gray-600",
+  },
+
+  icon: {
+    common: "items-center justify-center",
+    border: 1.5,
+  },
+
   size: {
     sm: {
       label: {
@@ -63,127 +83,247 @@ export const checkbox = {
 
   themeColor: {
     base: {
-      label: {
-        default: "bg-transparent",
-        hover: "bg-gray-200",
-        pressed: "bg-gray-300",
-        focus: "border-2 border-gray-500",
+      default: {
+        label: "",
+        icon: {
+          unChecked: "bg-white-50 border-gray-500",
+          checked: "bg-gray-900 border-gray-900",
+          indeterminate: "bg-gray-900 border-gray-900",
+        },
+        text: "text-gray-800",
+        description: "text-gray-600",
+        iconFill: "text-white-900",
       },
-      icon: {
-        unChecked: {
-          default: "bg-white-900 border-gray-500",
-          hover: "border-gray-600",
-          press: "border-gray-600 bg-gray-300",
-          focus: "border-2 border-gray-600",
-          disabled: "bg-gray-100 border-gray-400",
+      hover: {
+        label: "bg-gray-200",
+        icon: {
+          unChecked: "border-gray-600",
+          checked: "bg-gray-800 border-gray-800",
+          indeterminate: "bg-gray-800 border-gray-800",
         },
-        checked: {
-          default: "bg-gray-900",
-          hover: "bg-gray-800 border-gray-800",
-          press: "bg-gray-700 border-gray-700",
-          focus: "border-2 border-gray-500",
-          disabled: "bg-gray-200 border-gray-200",
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      press: {
+        label: "bg-gray-300",
+        icon: {
+          unChecked: "bg-gray-300 border-gray-600",
+          checked: "bg-gray-700 border-gray-700",
+          indeterminate: "bg-gray-700 border-gray-700",
         },
-        indeterminate: {
-          default: "bg-gray-900 border-gray-900",
-          hover: "bg-gray-800 border-gray-800",
-          press: "bg-gray-700 border-gray-700",
-          focus: "border-2 border-gray-500",
-          disabled: "bg-gray-200 border-gray-200",
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      focus: {
+        label: {
+          default: "bg-gray-100",
+          boxShadow: {
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
-        fill: {
-          default: "text-white-900",
-          disabled: "text-gray-500",
+        icon: {
+          unChecked: {
+            default: "border-transparent",
+            boxShadow: {
+              offset: 3,
+              color: "bg-grayDark-600",
+            },
+          },
+          checked: {
+            default: "",
+            boxShadow: {
+              offset: 3,
+              color: "bg-gray-500",
+            },
+          },
+          indeterminate: {
+            default: "",
+            boxShadow: {
+              offset: 3,
+              color: "bg-gray-500",
+            },
+          },
         },
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      disabled: {
+        label: "",
+        icon: {
+          unChecked: "bg-gray-100 border-gray-400",
+          checked: "bg-gray-200 border-gray-200",
+          indeterminate: "bg-gray-200 border-gray-200",
+        },
+        text: "text-gray-500",
+        description: "text-gray-500",
+        iconFill: "text-gray-500",
       },
     },
     primary: {
-      label: {
-        default: "bg-transparent",
-        hover: "bg-blue-200",
-        pressed: "bg-blue-300",
-        focus: "border-2 border-blue-500",
+      default: {
+        label: "",
+        icon: {
+          unChecked: "bg-white-50 border-blue-500",
+          checked: "bg-blue-600 border-blue-600",
+          indeterminate: "bg-blue-600 border-blue-600",
+        },
+        text: "text-gray-800",
+        description: "text-gray-600",
+        iconFill: "text-white-900",
       },
-      icon: {
-        unChecked: {
-          default: "bg-white-900 border-blue-500",
-          hover: "border-blue-600",
-          press: "border-blue-600 bg-blue-300",
-          focus: "border-2 border-blue-600",
-          disabled: "bg-blue-100 border-blue-400",
+      hover: {
+        label: "bg-blue-200",
+        icon: {
+          unChecked: "border-blue-600",
+          checked: "bg-blue-700 border-blue-700",
+          indeterminate: "bg-blue-700 border-blue-700",
         },
-        checked: {
-          default: "bg-blue-600 border-blue-600",
-          hover: "bg-blue-700 border-blue-700",
-          press: "bg-blue-800 border-blue-800",
-          focus: "border-2 border-blue-500",
-          disabled: "bg-blue-100 border-blue-100",
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      press: {
+        label: "bg-blue-300",
+        icon: {
+          unChecked: "bg-blue-300 border-blue-600",
+          checked: "bg-blue-800 border-blue-800",
+          indeterminate: "bg-blue-800 border-blue-800",
         },
-        indeterminate: {
-          default: "bg-blue-600 border-blue-600",
-          hover: "bg-blue-700 border-blue-700",
-          press: "bg-blue-800 border-blue-800",
-          focus: "border-2 border-blue-500",
-          disabled: "bg-blue-100 border-blue-100",
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      focus: {
+        label: {
+          default: "bg-blue-100",
+          boxShadow: {
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
-        fill: {
-          default: "text-white-900",
-          disabled: "text-blue-500",
+        icon: {
+          unChecked: {
+            default: "border-transparent",
+            boxShadow: {
+              offset: 3,
+              color: "bg-blue-600",
+            },
+          },
+          checked: {
+            default: "",
+            boxShadow: {
+              offset: 3,
+              color: "bg-blue-500",
+            },
+          },
+          indeterminate: {
+            default: "",
+            boxShadow: {
+              offset: 3,
+              color: "bg-blue-500",
+            },
+          },
         },
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      disabled: {
+        label: "",
+        icon: {
+          unChecked: "bg-blue-100 border-blue-400",
+          checked: "bg-blue-100 border-blue-100 text-blue-500",
+          indeterminate: "bg-blue-100 border-blue-100 text-blue-500",
+        },
+        text: "text-gray-500",
+        description: "text-gray-500",
+        iconFill: "text-blue-500",
       },
     },
     danger: {
-      label: {
-        default: "bg-transparent",
-        hover: "bg-red-200",
-        pressed: "bg-red-300",
-        focus: "border-2 border-red-500",
+      default: {
+        label: "",
+        icon: {
+          unChecked: "bg-white-50 border-red-500 ",
+          checked: "bg-red-600 border-red-600",
+          indeterminate: "bg-red-600 border-red-600",
+        },
+        text: "text-gray-800",
+        description: "text-gray-600",
+        iconFill: "text-white-900",
       },
-      icon: {
-        unChecked: {
-          default: "bg-white-900 border-red-500",
-          hover: "border-red-600",
-          press: "border-red-600 bg-red-300",
-          focus: "border-2 border-red-600",
-          disabled: "bg-red-100 border-red-400",
+      hover: {
+        label: "bg-red-200",
+        icon: {
+          unChecked: "border-red-600",
+          checked: "bg-red-700 border-red-700",
+          indeterminate: "bg-red-700 border-red-700",
         },
-        checked: {
-          default: "bg-red-600 border-red-600",
-          hover: "bg-red-700",
-          press: "bg-red-800 border-red-800",
-          focus: "border-2 border-red-500",
-          disabled: "bg-red-100 border-red-100",
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      press: {
+        label: "bg-red-300",
+        icon: {
+          unChecked: "bg-red-300 border-red-600",
+          checked: "bg-red-800 border-red-800",
+          indeterminate: "bg-red-800 border-red-800",
         },
-        indeterminate: {
-          default: "bg-red-600 border-red-600",
-          hover: "bg-red-700",
-          press: "bg-red-800 border-red-800",
-          focus: "border-2 border-red-500",
-          disabled: "bg-red-100 border-red-100",
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      focus: {
+        label: {
+          default: "bg-red-100",
+          boxShadow: {
+            offset: 3,
+            color: "bg-red-500",
+          },
         },
-        fill: {
-          default: "text-white-900",
-          disabled: "text-red-500",
+        icon: {
+          unChecked: {
+            default: "border-transparent",
+            boxShadow: {
+              offset: 3,
+              color: "bg-red-600",
+            },
+          },
+          checked: {
+            default: "",
+            boxShadow: {
+              offset: 3,
+              color: "bg-red-500",
+            },
+          },
+          indeterminate: {
+            default: "",
+            boxShadow: {
+              offset: 3,
+              color: "bg-red-500",
+            },
+          },
         },
+        text: "",
+        description: "",
+        iconFill: "",
+      },
+      disabled: {
+        label: "",
+        icon: {
+          unChecked: "bg-red-100 border-red-400",
+          checked: "bg-red-100 border-red-100 text-red-500",
+          indeterminate: "bg-red-100 border-red-100 text-red-500",
+        },
+        text: "text-gray-500",
+        description: "text-gray-500",
+        iconFill: "text-red-500",
       },
     },
-  },
-
-  label: {
-    common: "relative flex-row items-center",
-    withDescription: "items-start",
-    text: {
-      common: "text-gray-800 font-medium",
-      disabled: "text-gray-500",
-    },
-  },
-  icon: {
-    common: "items-center justify-center",
-    border: 1.5,
-  },
-  labelDescWrapper: { flexShrink: 1 },
-  description: {
-    labelText: "text-gray-900 font-medium",
-    common: "text-gray-600",
   },
 };
