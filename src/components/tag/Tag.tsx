@@ -128,7 +128,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
                 : "",
             ),
           ),
-          styleAdapter(textStyle, { pressed: false }, false),
+          styleAdapter(textStyle),
         ]}
         adjustsFontSizeToFit
         allowFontScaling={false}
@@ -156,7 +156,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
               : "",
           ),
         ),
-        styleAdapter(style, touchState, true),
+        styleAdapter(style, touchState),
       ]}
       {...otherProps}
     >

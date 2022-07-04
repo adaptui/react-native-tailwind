@@ -276,7 +276,7 @@ const RNSwitch: React.FC<SwitchProps> = forwardRef<
                   : "",
               ),
             ),
-            styleAdapter(style, { pressed: false }, false),
+            styleAdapter(style),
             label ? (description ? {} : animatedContainerBackground) : {},
           ]}
           {...otherProps}

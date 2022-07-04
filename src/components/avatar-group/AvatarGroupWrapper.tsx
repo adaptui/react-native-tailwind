@@ -21,10 +21,7 @@ export const AvatarGroupWrapper: React.FC<AvatarGroupWrapperProps> = ({
   return (
     <Box
       {...props}
-      style={[
-        tailwind.style([avatarTheme.group.base]),
-        styleAdapter(style, { pressed: false }, false),
-      ]}
+      style={[tailwind.style([avatarTheme.group.base]), styleAdapter(style)]}
     >
       {children}
     </Box>
