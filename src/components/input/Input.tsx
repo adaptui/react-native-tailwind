@@ -219,7 +219,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     <Box
       style={[
         tailwind.style(cx(inputTheme.wrapper)),
-        styleAdapter(wrapperStyle, { pressed: false }, false),
+        styleAdapter(wrapperStyle),
       ]}
       {...otherWrapperProps}
     >
@@ -262,7 +262,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
                   inputTheme.variant[variant]?.base?.focusWeb?.outlineStyle,
               },
             }),
-          styleAdapter(textInputStyle, { pressed: false }, false),
+          styleAdapter(textInputStyle),
         ]}
         placeholderTextColor={placeholderTextColor}
         editable={editable}

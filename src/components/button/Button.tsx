@@ -153,7 +153,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
                 : "",
             ),
           ),
-          styleAdapter(textStyle, { pressed: false }, false),
+          styleAdapter(textStyle),
         ]}
       >
         {props.children}
@@ -233,7 +233,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
                   },
                 })
               : {},
-            styleAdapter(style, touchState, true),
+            styleAdapter(style, touchState),
           ];
         }}
         {...props}

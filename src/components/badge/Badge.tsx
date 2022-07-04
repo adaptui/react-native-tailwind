@@ -91,7 +91,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
               badgeStyles.size[size]?.container,
             ),
           ),
-          styleAdapter(boxStyle, { pressed: false }, false),
+          styleAdapter(boxStyle),
         ]}
         {...otherBoxProps}
       >
@@ -105,7 +105,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
                   badgeStyles.themeColor[themeColor]?.[variant]?.text,
                 ),
               ),
-              styleAdapter(textStyle, { pressed: false }, false),
+              styleAdapter(textStyle),
             ]}
             {...otherTextProps}
           >

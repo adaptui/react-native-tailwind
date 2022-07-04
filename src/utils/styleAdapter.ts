@@ -13,10 +13,9 @@ export const styleAdapter = (
   style:
     | StyleProp<ViewStyle>
     | ((state: PressableStateCallbackType) => StyleProp<ViewStyle>),
-  touchState: PressableStateCallbackType,
-  isTouchable: boolean,
+  touchState?: PressableStateCallbackType,
 ): ViewStyle | Falsy | RegisteredStyle<ViewStyle> => {
-  const _style = isTouchable ? runIfFn(style, touchState) : style;
+  const _style = touchState ? runIfFn(style, touchState) : style;
   const __style = !Array.isArray(_style) ? _style : StyleSheet.flatten(_style);
   return __style as ViewStyle | Falsy | RegisteredStyle<ViewStyle>;
 };
