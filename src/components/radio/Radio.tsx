@@ -297,7 +297,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
               },
             })
           : {},
-        styleAdapter(style, touchState, true),
+        styleAdapter(style, touchState),
       ]}
       ref={radioboxRef}
       disabled={isDisabled}
