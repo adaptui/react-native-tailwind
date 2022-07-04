@@ -313,6 +313,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
       onKeyDown={Platform.select({
         web: (e: any) => {
           if (e.code === "Space") {
+            e.preventDefault();
             handleChange();
           }
         },
