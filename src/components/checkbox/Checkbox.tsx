@@ -1,15 +1,24 @@
-import React, { forwardRef, useMemo, useRef } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import { Platform } from "react-native";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { useCheckbox, useCheckboxGroupItem } from "@react-native-aria/checkbox";
-import { useFocusRing } from "@react-native-aria/focus";
-import { useHover } from "@react-native-aria/interactions";
 import { useToggleState } from "@react-stately/toggle";
 
 import { Check, Dash } from "../../icons";
-import { Box, Text, Touchable } from "../../primitives";
+import { Box, Text, Touchable, TouchableProps } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, cx } from "../../utils";
+import {
+  createComponent,
+  cx,
+  generateBoxShadow,
+  styleAdapter,
+  useOnFocus,
+  useOnHover,
+} from "../../utils";
 import { mergeRefs } from "../../utils/mergeRefs";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -19,31 +28,7 @@ import { useCheckboxGroupContext } from "./CheckboxGroup";
 export type CheckboxSizes = "sm" | "md" | "lg";
 export type CheckboxTheme = "base" | "primary" | "danger";
 
-// Props of the useCheckboxGroupItem/useCheckbox Return Type
-interface CheckboxAriaProps {
-  accessibilityLabel: string;
-  accessibilityRole: "checkbox";
-  accessibilityState: {
-    checked: "mixed";
-    disabled: boolean;
-  };
-  checked: boolean;
-  defaultSelected: boolean;
-  disabled: boolean;
-  isDisabled: boolean;
-  isIndeterminate: boolean;
-  isSelected: boolean;
-  name: string;
-  onChange: () => void;
-  onPress: () => void;
-  onPressIn: () => void;
-  onPressOut: () => void;
-  readOnly: boolean;
-  required: boolean;
-  value: boolean;
-}
-
-export interface CheckboxProps {
+export interface CheckboxProps extends TouchableProps {
   /**
    * How large should the button be?
    * @default md
@@ -108,7 +93,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   const checkboxTheme = useTheme("checkbox");
 
   const checkboxGroupState = useCheckboxGroupContext();
-
   const checkRef = useRef(null);
   const checkboxRef = mergeRefs([
     ref,
@@ -116,105 +100,178 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   ]) as unknown as React.MutableRefObject<null>;
 
   let {
-    size = "md",
-    themeColor = "base",
+    size: sizeFromProps,
+    themeColor: themeColoeFromProps,
     label,
     description,
-    defaultSelected,
-    isSelected,
+    defaultSelected: defaultSelectedStateFromProps,
+    isSelected: selectedStateFromProps,
     setSelected,
-    isDisabled,
-    isIndeterminate,
     isInvalid,
     accessibilityLabel = "Check me",
-    value = "",
+    isIndeterminate,
+    isDisabled,
+    style,
   } = props;
+
+  const hasOnlyLabel = label && !description;
+
+  const size = checkboxGroupState
+    ? checkboxGroupState.size
+    : sizeFromProps || "md";
+  let themeColor = checkboxGroupState
+    ? checkboxGroupState.themeColor
+    : themeColoeFromProps || "base";
 
   themeColor = isInvalid ? "danger" : themeColor;
 
+  const isCheckboxSelected = checkboxGroupState
+    ? // @ts-ignore
+      checkboxGroupState.isSelected(props?.value)
+    : selectedStateFromProps;
+
   const checkboxToggleState = useToggleState({
-    isSelected,
-    defaultSelected,
+    isSelected: isCheckboxSelected,
+    defaultSelected: defaultSelectedStateFromProps,
     onChange: setSelected,
   });
 
-  const checkboxSpecificProps = {
-    isIndeterminate,
-    defaultSelected,
-    isSelected,
-    onChange: setSelected,
-    isDisabled,
-    "aria-label": accessibilityLabel,
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const { inputProps } = checkboxGroupState
-    ? // eslint-disable-next-line react-hooks/rules-of-hooks
-      useCheckboxGroupItem(
-        { ...checkboxSpecificProps, value },
-        checkboxGroupState,
-        checkboxRef,
-      )
-    : // eslint-disable-next-line react-hooks/rules-of-hooks
-      useCheckbox(checkboxSpecificProps, checkboxToggleState, checkboxRef);
-
-  const checkboxProps: CheckboxAriaProps = inputProps as CheckboxAriaProps;
+  useEffect(() => {
+    // indeterminate is a property, but it can only be set via javascript
+    // https://css-tricks.com/indeterminate-checkboxes/
+    if (inputRef.current) {
+      // @ts-ignore Web Only Code to set indeterminate state
+      inputRef.current.indeterminate = isIndeterminate;
+    }
+  });
 
   const icon = useMemo(() => {
-    return checkboxProps.isIndeterminate ? (
+    return isIndeterminate ? (
       <Icon icon={<Dash />} />
-    ) : checkboxProps.checked ? (
+    ) : checkboxToggleState.isSelected ? (
       <Icon icon={<Check />} />
     ) : null;
-  }, [checkboxProps.checked, checkboxProps.isIndeterminate]);
+  }, [checkboxToggleState.isSelected, isIndeterminate]);
 
-  const { focusProps } = useFocusRing();
+  const handleChange = useCallback(() => {
+    console.log(checkboxGroupState, props?.value);
+    if (checkboxGroupState) {
+      if (props.value) {
+        if (checkboxToggleState.isSelected) {
+          checkboxGroupState.removeValue(props?.value);
+        } else {
+          checkboxGroupState.addValue(props?.value);
+        }
+      }
+    } else {
+      checkboxToggleState.toggle();
+    }
+  }, [checkboxGroupState, checkboxToggleState, props.value]);
 
-  const children = ({ pressed = false, isHovered = false }) => {
+  const { onHoverIn, onHoverOut, hovered } = useOnHover();
+  const { onFocus, onBlur, focused } = useOnFocus();
+
+  const children = ({
+    pressed = false,
+    isHovered = false,
+    isFocussed = false,
+  }) => {
     return (
       <>
+        {Platform.OS === "web" && (
+          <input
+            hidden
+            ref={inputRef}
+            onChange={handleChange}
+            disabled={isDisabled}
+            type="checkbox"
+            value={props?.value}
+          />
+        )}
         <Box
           style={[
             tailwind.style(
               cx(
                 checkboxTheme.icon?.common,
                 checkboxTheme.size[size]?.icon?.wrapper,
-                checkboxProps.isIndeterminate
-                  ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
-                      .default
-                  : checkboxProps.checked
-                  ? checkboxTheme.themeColor[themeColor]?.icon?.checked?.default
-                  : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
-                      .default,
-                isDisabled
-                  ? checkboxProps.isIndeterminate
-                    ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
-                        .disabled
-                    : checkboxProps.checked
-                    ? checkboxTheme.themeColor[themeColor]?.icon?.checked
-                        .disabled
-                    : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
-                        .disabled
+                isIndeterminate
+                  ? checkboxTheme.themeColor[themeColor]?.default?.icon
+                      ?.indeterminate
+                  : checkboxToggleState.isSelected
+                  ? checkboxTheme.themeColor[themeColor]?.default?.icon?.checked
+                  : checkboxTheme.themeColor[themeColor]?.default?.icon
+                      ?.unChecked,
+                isHovered
+                  ? isIndeterminate
+                    ? checkboxTheme.themeColor[themeColor]?.hover?.icon
+                        ?.indeterminate
+                    : checkboxToggleState.isSelected
+                    ? checkboxTheme.themeColor[themeColor]?.hover?.icon?.checked
+                    : checkboxTheme.themeColor[themeColor]?.hover?.icon
+                        ?.unChecked
                   : "",
                 pressed
-                  ? checkboxProps.isIndeterminate
-                    ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
-                        .press
-                    : checkboxProps.checked
-                    ? checkboxTheme.themeColor[themeColor]?.icon?.checked?.press
-                    : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
-                        .press
+                  ? isIndeterminate
+                    ? checkboxTheme.themeColor[themeColor]?.press?.icon
+                        ?.indeterminate
+                    : checkboxToggleState.isSelected
+                    ? checkboxTheme.themeColor[themeColor]?.press?.icon?.checked
+                    : checkboxTheme.themeColor[themeColor]?.press?.icon
+                        ?.unChecked
                   : "",
-                isHovered
-                  ? checkboxProps.isIndeterminate
-                    ? checkboxTheme.themeColor[themeColor]?.icon?.indeterminate
-                        .hover
-                    : checkboxProps.checked
-                    ? checkboxTheme.themeColor[themeColor]?.icon?.checked?.hover
-                    : checkboxTheme.themeColor[themeColor]?.icon?.unChecked
-                        .hover
+                isFocussed && !hasOnlyLabel
+                  ? isIndeterminate
+                    ? checkboxTheme.themeColor[themeColor]?.focus?.icon
+                        ?.indeterminate?.default
+                    : checkboxToggleState.isSelected
+                    ? checkboxTheme.themeColor[themeColor]?.focus?.icon?.checked
+                        ?.default
+                    : checkboxTheme.themeColor[themeColor]?.focus?.icon
+                        ?.unChecked?.default
+                  : "",
+                isDisabled
+                  ? isIndeterminate
+                    ? checkboxTheme.themeColor[themeColor]?.disabled?.icon
+                        ?.indeterminate
+                    : checkboxToggleState.isSelected
+                    ? checkboxTheme.themeColor[themeColor]?.disabled?.icon
+                        ?.checked
+                    : checkboxTheme.themeColor[themeColor]?.disabled?.icon
+                        ?.unChecked
                   : "",
               ),
             ),
+            isFocussed && !hasOnlyLabel
+              ? Platform.select({
+                  web: {
+                    outline: 0,
+                    boxShadow: `${generateBoxShadow(
+                      isIndeterminate
+                        ? checkboxTheme.themeColor[themeColor]?.focus?.icon
+                            ?.indeterminate?.boxShadow?.offset
+                        : checkboxToggleState.isSelected
+                        ? checkboxTheme.themeColor[themeColor]?.focus?.icon
+                            ?.checked?.boxShadow?.offset
+                        : checkboxTheme.themeColor[themeColor]?.focus?.icon
+                            ?.unChecked?.boxShadow?.offset,
+                      tailwind.getColor(
+                        cx(
+                          isIndeterminate
+                            ? checkboxTheme.themeColor[themeColor]?.focus?.icon
+                                ?.indeterminate?.boxShadow?.color
+                            : checkboxToggleState.isSelected
+                            ? checkboxTheme.themeColor[themeColor]?.focus?.icon
+                                ?.checked?.boxShadow?.color
+                            : checkboxTheme.themeColor[themeColor]?.focus?.icon
+                                ?.unChecked?.boxShadow?.color,
+                        ),
+                      ) as string,
+                    )}`,
+                  },
+                })
+              : {},
             { borderWidth: checkboxTheme?.icon?.border },
           ]}
         >
@@ -223,9 +280,9 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               icon,
               iconFill: tailwind.getColor(
                 cx(
-                  checkboxProps.isDisabled
-                    ? checkboxTheme.themeColor[themeColor]?.icon?.fill?.disabled
-                    : checkboxTheme.themeColor[themeColor]?.icon?.fill?.default,
+                  isDisabled
+                    ? checkboxTheme.themeColor[themeColor]?.disabled?.iconFill
+                    : checkboxTheme.themeColor[themeColor]?.default?.iconFill,
                 ),
               ),
               iconStyle: tailwind.style(
@@ -240,14 +297,14 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                 tailwind.style(
                   cx(
                     checkboxTheme.size[size]?.text?.default,
-                    checkboxProps.disabled
+                    isDisabled
                       ? checkboxTheme.label?.text?.disabled
                       : checkboxTheme.label?.text?.common,
                     description && checkboxTheme?.description?.labelText,
                   ),
                 ),
                 description
-                  ? { lineHeight: checkboxTheme.size[size]?.text?.lineHeight }
+                  ? { lineHeight: checkboxTheme?.size[size]?.text?.lineHeight }
                   : {},
               ]}
             >
@@ -260,7 +317,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                 tailwind.style(
                   cx(
                     checkboxTheme?.description?.common,
-                    checkboxTheme.size[size]?.description?.default,
+                    checkboxTheme?.size[size]?.description?.default,
                   ),
                 ),
               ]}
@@ -273,51 +330,89 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     );
   };
 
-  const checkboxItemRef = React.useRef();
-
-  const { isHovered, hoverProps } = useHover({}, checkboxItemRef);
-
-  return Platform.OS === "web" ? (
-    <Box
-      style={tailwind.style(
-        cx(
-          checkboxTheme?.label?.common,
-          description ? checkboxTheme?.label?.withDescription : "",
-          checkboxTheme.size[size]?.label?.wrapper,
-          isHovered ? checkboxTheme.themeColor[themeColor]?.label?.hover : "",
-        ),
-      )}
-      // @ts-ignore
-      accessibilityRole="label"
-      {...hoverProps}
-      ref={checkboxItemRef}
-      accessible={true}
-    >
-      <VisuallyHidden>
-        <input {...inputProps} {...focusProps} ref={checkboxRef} />
-      </VisuallyHidden>
-      {children({ isHovered })}
-    </Box>
-  ) : (
+  return (
     <Touchable
-      {...checkboxProps}
-      style={({ pressed }) =>
+      onPress={handleChange}
+      // Web Callbacks
+      onHoverIn={onHoverIn}
+      onHoverOut={onHoverOut}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      // Web Callbacks
+      // A11y Props
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="checkbox"
+      accessibilityState={{
+        checked: isIndeterminate ? "mixed" : checkboxToggleState.isSelected,
+      }}
+      accessibilityValue={{ text: props?.value }}
+      onAccessibilityTap={handleChange}
+      // A11y Props
+      style={touchState => [
         tailwind.style(
           cx(
             checkboxTheme?.label?.common,
             description ? checkboxTheme?.label?.withDescription : "",
             checkboxTheme.size[size]?.label?.wrapper,
-            pressed
-              ? label && !description
-                ? checkboxTheme.themeColor[themeColor]?.label?.pressed
+            touchState.pressed
+              ? hasOnlyLabel
+                ? checkboxTheme.themeColor[themeColor]?.press?.label
                 : ""
               : "",
+            hovered.value && hasOnlyLabel
+              ? checkboxTheme.themeColor[themeColor]?.hover?.label
+              : "",
           ),
-        )
-      }
+        ),
+        focused.value
+          ? Platform.select({
+              web: {
+                outline: 0,
+                boxShadow: hasOnlyLabel
+                  ? `${generateBoxShadow(
+                      checkboxTheme.themeColor[themeColor]?.focus?.label
+                        ?.boxShadow?.offset,
+                      tailwind.getColor(
+                        cx(
+                          checkboxTheme.themeColor[themeColor]?.focus?.label
+                            ?.boxShadow?.color,
+                        ),
+                      ) as string,
+                    )}`
+                  : "",
+                backgroundColor: hasOnlyLabel
+                  ? (tailwind.getColor(
+                      cx(
+                        checkboxTheme.themeColor[themeColor]?.focus?.label
+                          ?.default,
+                      ),
+                    ) as string)
+                  : "transparent",
+              },
+            })
+          : {},
+        styleAdapter(style, touchState),
+      ]}
       ref={checkboxRef}
+      //@ts-ignore - Web only - Checkbox toggle on Spacebar Press
+      onKeyDown={Platform.select({
+        web: (e: any) => {
+          if (e.code === "Space") {
+            e.preventDefault();
+            handleChange();
+          }
+        },
+        default: undefined,
+      })}
+      disabled={isDisabled}
     >
-      {({ pressed }) => children({ pressed })}
+      {({ pressed }) =>
+        children({
+          pressed,
+          isHovered: !!hovered.value,
+          isFocussed: !!focused.value,
+        })
+      }
     </Touchable>
   );
 });
