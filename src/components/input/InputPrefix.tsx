@@ -20,12 +20,13 @@ export const InputPrefix: React.FC<InputPrefixProps> = ({
 
   return (
     <Touchable
+      focusable={false}
       style={[
         tailwind.style(
           cx(
             inputTheme.prefixWrapper,
             inputTheme.size[size]?.prefix,
-            inputTheme.variant[variant]?.prefix?.common,
+            inputTheme.variant[variant]?.default?.prefix,
           ),
         ),
       ]}

@@ -20,12 +20,13 @@ export const InputSuffix: React.FC<InputSuffixProps> = ({
 
   return (
     <Touchable
+      focusable={false}
       style={[
         tailwind.style(
           cx(
             inputTheme.suffixWrapper,
             inputTheme.size[size]?.suffix,
-            inputTheme.variant[variant]?.suffix?.common,
+            inputTheme.variant[variant]?.default?.suffix,
           ),
         ),
       ]}
