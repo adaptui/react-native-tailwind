@@ -158,15 +158,23 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
-export const App = () => { const tailwind = useTheme(); return ( <Box
-style={tailwind.style("h-full justify-center items-center bg-white-900")} >
-<CheckboxGroup> <Checkbox label="Fund Category" isIndeterminate /> <Box
-style={tailwind.style("ml-[25px]")}> <Checkbox value="Equity" label="Equity" />
-<Checkbox value="Debt" label="Debt" />
-<Checkbox value="Hybrid" label="Hybrid" />
-<Checkbox value="International Equity" label="International Equity" />
-<Checkbox value="Solution Oriented" label="Solution Oriented" /> </Box>
-</CheckboxGroup> </Box> ); };
+export const App = () => { 
+  const tailwind = useTheme(); 
+  return ( 
+    <Box style={tailwind.style("h-full justify-center items-center bg-white-900")}>
+      <CheckboxGroup> 
+        <Checkbox label="Fund Category" isIndeterminate /> 
+        <Box style={tailwind.style("ml-[25px]")}> 
+          <Checkbox value="Equity" label="Equity" />
+          <Checkbox value="Debt" label="Debt" />
+          <Checkbox value="Hybrid" label="Hybrid" />
+          <Checkbox value="International Equity" label="International Equity" />
+          <Checkbox value="Solution Oriented" label="Solution Oriented" /> 
+        </Box>
+      </CheckboxGroup> 
+    </Box> 
+  ); 
+};
 
 ```
 
@@ -192,4 +200,3 @@ style={tailwind.style("ml-[25px]")}> <Checkbox value="Equity" label="Equity" />
 ## Also Check
 
 - [CheckboxGroup](checkbox-group.md)
-```

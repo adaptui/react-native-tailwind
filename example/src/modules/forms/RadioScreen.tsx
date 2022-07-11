@@ -1,38 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Radio,
   RadioGroup,
+  RadioTheme,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
 export const RadioScreen = () => {
   const tailwind = useTheme();
+  const [value, setValue] = useState("base");
   return (
     <Box
-      style={tailwind.style("flex-1 justify-center items-center  bg-white-900")}
+      style={tailwind.style("flex-1 items-center justify-center bg-white-900")}
     >
-      <RadioGroup>
-        <Radio label="Apple" value="Apple" />
-        <Radio isDisabled label="Orange" value="Orange" />
+      <RadioGroup value={value} onChange={setValue} orientation="horizontal">
+        <Radio value="base" label="Base" />
+        <Radio value="primary" label="Primary" />
+        <Radio value="danger" label="Danger" />
       </RadioGroup>
-
-      <RadioGroup themeColor="danger">
-        <Radio label="Apple" value="Apple" />
-        <Radio label="Orange" value="Orange" />
-      </RadioGroup>
-
-      <RadioGroup themeColor="primary" defaultValue="Apple">
-        <Radio
-          description="Used when the checkbox is selected and will use its value for the form submission."
-          label="Apple"
-          value="Apple"
-        />
-        <Radio
-          description="Used when the checkbox is selected and will use its value for the form submission."
-          label="Orange"
-          value="Orange"
-        />
+      <RadioGroup themeColor={value as RadioTheme}>
+        <Radio value="apple" label="Apple" />
+        <Radio isDisabled value="orange" label="Orange" />
+        <Radio value="watermelon" label="Watermelon" />
+        <Radio value="grapes" label="Grapes" />
+        <Radio value="banana" label="Banana" />
+        <Radio isDisabled value="blueberry" label="Blueberry" />
+        <Radio value="sapota" label="Sapota" />
+        <Radio value="papaya" label="Papaya" />
+        <Radio value="avocado" label="Avocado" />
+        <Radio isDisabled value="strawberry" label="Strawberry" />
+        <Radio value="cherry" label="Cherry" />
+        <Radio value="fig" label="Fig" />
+        <Radio isDisabled value="guava" label="Guava" />
+        <Radio value="mango" label="Mango" />
       </RadioGroup>
     </Box>
   );

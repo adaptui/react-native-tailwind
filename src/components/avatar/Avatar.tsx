@@ -55,13 +55,7 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
             !_basicProps.squared ? avatarTheme.circular : "",
           ),
         ),
-        styleAdapter(
-          style,
-          {
-            pressed: false,
-          },
-          false,
-        ),
+        styleAdapter(style),
       ]}
       ref={ref}
       {...boxProps}

@@ -82,7 +82,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
           ),
         ),
         { borderWidth: spinnerTheme.borderWidth },
-        styleAdapter(style, { pressed: false }, false), // Accepts View Style to overide the Default Spinner Style
+        styleAdapter(style), // Accepts View Style to overide the Default Spinner Style
         spinnerLoadingStyle,
       ]}
     />

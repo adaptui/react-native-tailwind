@@ -18,7 +18,9 @@
     "slider",
     "circular-progress",
     "input",
-    "icons"
+    "icons",
+    "kodiak",
+    "utils"
   ],
   "git.branchProtection": ["main"]
 }

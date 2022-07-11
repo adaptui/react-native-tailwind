@@ -54,3 +54,4 @@ yarn.lock
 # Library files
 CHANGELOG.md
 lib/
+docs/

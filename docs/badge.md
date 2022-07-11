@@ -8,11 +8,9 @@ to show the status of an activity.
 #### Simple Usage
 
 ```js
-import { Badge } from "@adaptui/react-native-tailwind"
+import { Badge } from "@adaptui/react-native-tailwind";
 export default function App() {
-  return (
-      <Badge>Beta</Badge>
-  )
+  return <Badge>Beta</Badge>;
 }
 ```
 
@@ -42,12 +40,18 @@ You can use this themed badge based on your specific scenarios.
 ```js
 import { Badge, useTheme } from "@adaptui/react-native-tailwind"
 
-export default function App() { const tailwind = useTheme(); return ( <>
-<Badge>Completed</Badge> <Badge themeColor="primary">Processing</Badge>
-<Badge themeColor="secondary">Waiting</Badge>
-<Badge themeColor="success">Success</Badge>
-<Badge themeColor="danger">Cancelled</Badge> </> ) }
-
+export default function App() { 
+  const tailwind = useTheme(); 
+  return (
+    <>
+      <Badge>Completed</Badge> 
+      <Badge themeColor="primary">Processing</Badge>
+      <Badge themeColor="secondary">Waiting</Badge>
+      <Badge themeColor="success">Success</Badge>
+      <Badge themeColor="danger">Cancelled</Badge> 
+    </> 
+  ) 
+}
 ```
 </details>
 
@@ -66,15 +70,19 @@ better visual hierarchy.
 </summary>
 
 ```js
-
 import { Badge, useTheme } from "@adaptui/react-native-tailwind"
 
-export default function App() { const tailwind = useTheme(); return ( <>
-<Badge>Solid</Badge> <Badge variant="subtle">Subtle</Badge>
-<Badge variant="outline">Outline</Badge> </> ) }
-
+export default function App() {
+  const tailwind = useTheme();
+  return (
+    <>
+      <Badge>Solid</Badge> 
+      <Badge variant="subtle">Subtle</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </>
+  )
+}
 ```
-
 </details>
 
 ## Size
@@ -89,13 +97,18 @@ Adapt UI provides three different sizes for badges, namely `sm`, `md`, and `lg`.
 </summary>
 
 ```js
+import { Badge, useTheme } from "@adaptui/react-native-tailwind";
 
-import { Badge, useTheme } from "@adaptui/react-native-tailwind"
-
-export default function App() { const tailwind = useTheme(); return ( <>
-<Badge size="sm">Small</Badge> <Badge>Medium</Badge>
-<Badge size="lg">Large</Badge> </> ) }
-
+export default function App() {
+  const tailwind = useTheme();
+  return (
+    <>
+      <Badge size="sm">Small</Badge> 
+      <Badge>Medium</Badge>
+      <Badge size="lg">Large</Badge>
+    </>
+  );
+}
 ```
 
 </details>
@@ -109,20 +122,24 @@ property. It’s a frame that hugs the component inside it.
 
 ![simulator_screenshot_13BEF27A-9C5C-4404-84D0-65DE9A9C1387](https://user-images.githubusercontent.com/35562287/175243281-80b1a421-5856-4487-b028-b023e7ba1a67.png)
 
-
 <details>
 <summary>
   <h3>Usage</h3>
 </summary>
 
 ```js
+import { Badge, useTheme, Icon, Check } from "@adaptui/react-native-tailwind";
 
-import { Badge, useTheme, Icon, Check } from "@adaptui/react-native-tailwind"
-
-export default function App() { const tailwind = useTheme(); return ( <> <Badge
-prefix={<Icon icon={<Check />} />} themeColor="success"> Completed </Badge> </>
-) }
-
+export default function App() {
+  const tailwind = useTheme();
+  return (
+    <>
+      <Badge prefix={<Icon icon={<Check />} />} themeColor="success">
+        Completed
+      </Badge>
+    </>
+  );
+}
 ```
 
 </details>
@@ -140,4 +157,3 @@ prefix={<Icon icon={<Check />} />} themeColor="success"> Completed </Badge> </>
 | themeColor | How the badge should be themed?                            | `base` `primary` `secondary` `success` `danger` | `base`  |
 | prefix     | If added, the tag will show an icon before the tag's text. | JSX.Element                                     |         |
 | textProps  | Props for the underlying Text Component                    | `TextProps` from React Native                   | {}      |
-```

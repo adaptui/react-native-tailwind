@@ -138,5 +138,4 @@ export default function App() {
 | disabled       | Is Slider disabled                                               | boolean                   |         |
 | showTooltip    | Should the slider show value in a tooltip                        | boolean                   |         |
 
-> Using onDragValue will have some Performance issues as `runOnJS` gets called
-> on dragging
+> Using onDragValue will have some Performance issues because its called using `runOnJS`

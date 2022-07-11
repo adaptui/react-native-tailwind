@@ -73,22 +73,38 @@ export const radio = {
         default: "bg-transparent",
         hover: "bg-gray-200",
         pressed: "bg-gray-300",
-        focus: "border-2 border-gray-500",
+        focus: {
+          offset: 3,
+          color: "bg-gray-500",
+          backgroundColor: "bg-gray-100",
+        },
       },
       icon: {
         unChecked: {
           default: "bg-white-900 border-gray-500",
-          hover: "border-gray-600 shadow",
+          hover: "border-gray-600 shadow shadow-color-opacity-10",
           press: "border-gray-600 bg-gray-300",
           disabled: "bg-gray-100 border-gray-400",
-          focus: "ring-2 ring-gray-300",
+          focus: {
+            default: "border-white-900",
+            boxShadow: {
+              offset: 3,
+              color: "bg-gray-600",
+            },
+          },
         },
         checked: {
           default: "bg-gray-900 border-gray-900",
-          hover: "bg-gray-800 border-gray-800 shadow",
+          hover: "bg-gray-800 border-gray-800 shadow shadow-color-opacity-10",
           press: "bg-gray-700 border-gray-700",
           disabled: "bg-gray-200 border-gray-200",
-          focus: "ring-2 ring-gray-300",
+          focus: {
+            default: "border-gray-900",
+            boxShadow: {
+              offset: 3,
+              color: "bg-gray-500",
+            },
+          },
         },
       },
       innerCircle: {
@@ -109,22 +125,38 @@ export const radio = {
         default: "bg-transparent",
         hover: "bg-blue-200",
         pressed: "bg-blue-300",
-        focus: "border-2 border-blue-500",
+        focus: {
+          offset: 3,
+          color: "bg-blue-500",
+          backgroundColor: "bg-blue-100",
+        },
       },
       icon: {
         unChecked: {
           default: "bg-white-900 border-blue-500",
-          hover: "border-blue-600",
-          press: "border-blue-600 bg-blue-300",
-          focus: "border-2 border-blue-600",
+          hover: "border-blue-500 shadow shadow-color-opacity-10",
+          press: "border-blue-500 bg-blue-300",
           disabled: "bg-blue-100 border-blue-400",
+          focus: {
+            default: "bg-white-900",
+            boxShadow: {
+              offset: 3,
+              color: "bg-blue-500",
+            },
+          },
         },
         checked: {
           default: "bg-blue-600 border-blue-600",
-          hover: "bg-blue-700 border-blue-700",
+          hover: "bg-blue-700 border-blue-700 shadow shadow-color-opacity-10",
           press: "bg-blue-800 border-blue-800",
-          focus: "border-2 border-blue-500",
           disabled: "bg-blue-100 border-blue-100",
+          focus: {
+            default: "border-blue-600",
+            boxShadow: {
+              offset: 3,
+              color: "bg-blue-500",
+            },
+          },
         },
       },
       innerCircle: {
@@ -145,22 +177,38 @@ export const radio = {
         default: "bg-transparent",
         hover: "bg-red-200",
         pressed: "bg-red-300",
-        focus: "border-2 border-red-500",
+        focus: {
+          offset: 3,
+          color: "bg-red-500",
+          backgroundColor: "bg-red-100",
+        },
       },
       icon: {
         unChecked: {
           default: "bg-white-900 border-red-500",
-          hover: "border-red-600",
-          press: "border-red-600 bg-red-300",
-          focus: "border-2 border-red-600",
+          hover: "border-red-500 shadow shadow-color-opacity-10",
+          press: "border-red-500 bg-red-300",
           disabled: "bg-red-100 border-red-400",
+          focus: {
+            default: "bg-white-900",
+            boxShadow: {
+              offset: 3,
+              color: "bg-red-500",
+            },
+          },
         },
         checked: {
           default: "bg-red-600 border-red-600",
-          hover: "bg-red-700",
+          hover: "bg-red-700 border-red-700 shadow shadow-color-opacity-10",
           press: "bg-red-800 border-red-800",
-          focus: "border-2 border-red-500",
           disabled: "bg-red-100 border-red-100",
+          focus: {
+            default: "border-red-600",
+            boxShadow: {
+              offset: 3,
+              color: "bg-red-500",
+            },
+          },
         },
       },
       innerCircle: {

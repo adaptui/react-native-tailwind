@@ -121,10 +121,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   return (
     <Box
       ref={ref}
-      style={[
-        tailwind.style([progressTheme.wrapper]),
-        styleAdapter(style, { pressed: false }, false),
-      ]}
+      style={[tailwind.style([progressTheme.wrapper]), styleAdapter(style)]}
       {...otherProps}
     >
       {(label || hint) && (
@@ -172,7 +169,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
                   progressTheme.themeColor[themeColor]?.filled,
                 ),
               ),
-              styleAdapter(trackStyle, { pressed: false }, false),
+              styleAdapter(trackStyle),
               translatingStyle,
             ]}
           />
@@ -186,7 +183,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
                   progressTheme.themeColor[themeColor]?.filled,
                 ),
               ),
-              styleAdapter(trackStyle, { pressed: false }, false),
+              styleAdapter(trackStyle),
               animatingWidth,
             ]}
           />

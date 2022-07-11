@@ -49,8 +49,7 @@ export default function App() {
 
 ## Variant
 
-Adapt UI provides three different styles for Tags, namely `solid`, `subtle` and
-`outline` Tags.
+Adapt UI provides three different styles for Tags, namely `solid`, `subtle` and `outline` Tags.
 
 ### Usage
 
@@ -76,8 +75,7 @@ export default function App() {
 
 ## Size
 
-There are four different sizes for Tag Component in Adapt UI: `sm`, `md`, `lg` &
-`xl`
+There are four different sizes for Tag Component in Adapt UI: `sm`, `md`, `lg` & `xl`
 
 Based on the hierarchy, you can switch between different sizes.
 
