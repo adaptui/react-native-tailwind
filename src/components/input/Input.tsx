@@ -1,10 +1,17 @@
 import React, { forwardRef, useMemo, useRef, useState } from "react";
 import { Platform, TextInputProps, ViewStyle } from "react-native";
-import { useHover } from "@react-native-aria/interactions";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
 import { useTheme } from "../../theme";
-import { cx, RenderPropType, runIfFn, styleAdapter } from "../../utils";
+import {
+  cx,
+  generateBoxShadow,
+  RenderPropType,
+  runIfFn,
+  styleAdapter,
+  useOnFocus,
+  useOnHover,
+} from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 import { composeEventHandlers } from "../../utils/mergeRefs";
 import { Spinner } from "../spinner";
@@ -57,6 +64,10 @@ export interface InputProps extends TextInputProps {
    * Suffix wrapper props extends Touchable Props
    */
   _suffixProps: TouchableProps;
+  /**
+   * A11y Label
+   */
+  accessibilityLabel: string;
 }
 
 interface DefaultInputSpinnerProps extends Pick<InputProps, "size"> {
@@ -74,13 +85,13 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   typeof RNTextInput,
   Partial<InputProps>
 >((props, ref) => {
-  const [isFocussed, setIsFocussed] = useState(false);
-
-  const handleOnFocus = () => setIsFocussed(true);
-  const handleOnBlur = () => setIsFocussed(false);
+  const { onHoverIn, onHoverOut, hovered: isHovered } = useOnHover();
+  const { onFocus, onBlur, focused: isFocussedWeb } = useOnFocus();
+  const [isFocussedMobile, setIsFocussedMobile] = useState(false);
+  const handleOnFocus = () => setIsFocussedMobile(true);
+  const handleOnBlur = () => setIsFocussedMobile(false);
   const inputRef = useRef();
 
-  const { isHovered, hoverProps } = useHover({}, inputRef);
   const {
     size = "md",
     variant = "outline",
@@ -93,9 +104,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     _prefixProps,
     _suffixProps,
     value,
-    onFocus,
-    onBlur,
     style: textInputStyle,
+    accessibilityLabel,
     ...restProps
   } = props;
   const tailwind = useTheme();
@@ -111,16 +121,19 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     return tailwind.getColor(
       cx(
         editable
-          ? isHovered
-            ? inputTheme.variant[variant]?.base?.placeholder?.hover
-            : isFocussed
-            ? inputTheme.variant[variant]?.base?.placeholder?.focus
-            : inputTheme.variant[variant]?.base?.placeholder?.common
-          : inputTheme.variant[variant]?.base?.placeholder?.disabled,
+          ? isHovered.value
+            ? inputTheme.variant[variant]?.hover?.placeholder
+            : isFocussedWeb.value || isFocussedMobile
+            ? Platform.select({
+                web: inputTheme.variant[variant]?.focus?.placeholder,
+                default: inputTheme.variant[variant]?.active?.placeholder,
+              })
+            : inputTheme.variant[variant]?.default?.placeholder
+          : inputTheme.variant[variant]?.disabled?.placeholder,
       ),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFocussed, isHovered, editable]);
+  }, [isFocussedWeb, isHovered, editable, isFocussedMobile]);
 
   React.useEffect(() => {
     // @ts-ignore
@@ -143,13 +156,16 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
               cx(
                 editable
                   ? invalid
-                    ? inputTheme.variant[variant]?.prefix?.invalid
-                    : isFocussed
-                    ? inputTheme.variant[variant]?.prefix?.focus
-                    : isHovered
-                    ? inputTheme.variant[variant]?.prefix?.hover
-                    : inputTheme.variant[variant]?.prefix?.fill
-                  : inputTheme.variant[variant]?.prefix?.disabled,
+                    ? inputTheme.variant[variant]?.invalid?.prefix
+                    : isFocussedWeb.value || isFocussedMobile
+                    ? Platform.select({
+                        web: inputTheme.variant[variant]?.focus?.prefix,
+                        default: inputTheme.variant[variant]?.active?.prefix,
+                      })
+                    : isHovered.value
+                    ? inputTheme.variant[variant]?.hover?.prefix
+                    : inputTheme.variant[variant]?.default?.prefix
+                  : inputTheme.variant[variant]?.disabled?.prefix,
               ),
             ),
             iconSize: size === "xl" ? 16 : 12,
@@ -164,7 +180,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     prefix,
     variant,
     invalid,
-    isFocussed,
+    isFocussedWeb,
+    isFocussedMobile,
     isHovered,
   ]);
 
@@ -178,13 +195,16 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
               cx(
                 editable
                   ? invalid
-                    ? inputTheme.variant[variant]?.suffix?.invalid
-                    : isFocussed
-                    ? inputTheme.variant[variant]?.suffix?.focus
-                    : isHovered
-                    ? inputTheme.variant[variant]?.suffix?.hover
-                    : inputTheme.variant[variant]?.suffix?.fill
-                  : inputTheme.variant[variant]?.suffix?.disabled,
+                    ? inputTheme.variant[variant]?.invalid?.suffix
+                    : isFocussedWeb.value || isFocussedMobile
+                    ? Platform.select({
+                        web: inputTheme.variant[variant]?.focus?.suffix,
+                        default: inputTheme.variant[variant]?.active?.suffix,
+                      })
+                    : isHovered.value
+                    ? inputTheme.variant[variant]?.hover?.suffix
+                    : inputTheme.variant[variant]?.default?.suffix
+                  : inputTheme.variant[variant]?.disabled?.suffix,
               ),
             ),
             iconSize: size === "xl" ? 16 : 12,
@@ -194,8 +214,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     const spinnerStroke = tailwind.style(
       cx(
         editable
-          ? inputTheme.variant[variant]?.spinner?.default
-          : inputTheme.variant[variant]?.spinner?.disabled,
+          ? inputTheme.variant[variant]?.default?.suffix
+          : inputTheme.variant[variant]?.disabled?.suffix,
       ),
     );
     const inputLoading = runIfFn(DefaultInputSpinner, {
@@ -211,7 +231,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     suffix,
     variant,
     invalid,
-    isFocussed,
+    isFocussedWeb,
+    isFocussedMobile,
     isHovered,
   ]);
 
@@ -221,6 +242,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
         tailwind.style(cx(inputTheme.wrapper)),
         styleAdapter(wrapperStyle),
       ]}
+      onHoverIn={onHoverIn}
+      onHoverOut={onHoverOut}
       {...otherWrapperProps}
     >
       {_prefix && (
@@ -237,31 +260,38 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
         style={[
           tailwind.style(
             cx(
-              inputTheme.size[size]?.base?.common,
+              inputTheme.size[size]?.base?.default,
               !prefix || !suffix
                 ? inputTheme.size[size]?.base?.withoutAddon
                 : "",
-              inputTheme.variant[variant]?.base?.common,
-              isHovered ? inputTheme.variant[variant]?.base?.hover : "",
-              isFocussed ? inputTheme.variant[variant]?.base?.focus : "",
-              invalid ? inputTheme.variant[variant]?.base?.invalid : "",
-              editable ? "" : inputTheme.variant[variant]?.base?.disabled,
+              inputTheme.variant[variant]?.default?.base,
+              isHovered.value ? inputTheme.variant[variant]?.hover?.base : "",
+              isFocussedWeb.value || isFocussedMobile
+                ? Platform.select({
+                    web: inputTheme.variant[variant]?.focus?.base?.common,
+                    default: inputTheme.variant[variant]?.active?.base,
+                  })
+                : "",
+              invalid ? inputTheme.variant[variant]?.invalid?.base : "",
+              editable ? "" : inputTheme.variant[variant]?.disabled?.base,
               _prefix ? `pl-[${prefixWidth}px]` : "",
               _suffix ? `pr-[${suffixWidth}px]` : "",
             ),
           ),
-          isFocussed &&
-            Platform.select({
-              web: {
-                outlineOffset:
-                  inputTheme.variant[variant]?.base?.focusWeb?.outlineOffset,
-                outlineColor: (tailwind.getColor(
-                  cx(inputTheme.variant[variant]?.base?.focusWeb?.borderColor),
-                ) || undefined) as string,
-                outlineStyle:
-                  inputTheme.variant[variant]?.base?.focusWeb?.outlineStyle,
-              },
-            }),
+          isFocussedWeb.value
+            ? Platform.select({
+                web: {
+                  outline: 0,
+                  boxShadow: generateBoxShadow(
+                    inputTheme.variant[variant]?.focus?.base?.boxShadow?.offset,
+                    tailwind.getColor(
+                      inputTheme.variant[variant]?.focus?.base?.boxShadow
+                        ?.color,
+                    ) as string,
+                  ),
+                },
+              })
+            : {},
           styleAdapter(textInputStyle),
         ]}
         placeholderTextColor={placeholderTextColor}
@@ -269,9 +299,11 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
         {...restProps}
         onFocus={composeEventHandlers(onFocus, handleOnFocus)}
         onBlur={composeEventHandlers(onBlur, handleOnBlur)}
+        // A11y Props
+        accessibilityLabel={accessibilityLabel}
+        // A11y Props
         defaultValue={defaultValue}
         ref={inputRef}
-        {...hoverProps}
       />
       {_suffix && (
         <InputSuffix
