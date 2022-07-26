@@ -33,7 +33,7 @@
     "babel-loader": "8.2.5",
     "babel-plugin-module-resolver": "4.1.0",
     "babel-preset-expo": "9.1.0",
-    "expo-cli": "5.5.1"
+    "expo-cli": "6.0.0"
   },
   "resolutions": {
     "**/@types/react": "17.0.30",
