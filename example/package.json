@@ -37,7 +37,7 @@
   },
   "resolutions": {
     "**/@types/react": "17.0.30",
-    "react-error-overlay": "6.0.9",
+    "react-error-overlay": "6.0.11",
     "react-native-reanimated": "2.3.1"
   }
 }
