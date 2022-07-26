@@ -1,6 +1,7 @@
 export * from "./avatar";
 export * from "./avatar-group";
 export * from "./badge";
+export * from "./badge-new";
 export * from "./button";
 export * from "./checkbox";
 export * from "./circular-progress";

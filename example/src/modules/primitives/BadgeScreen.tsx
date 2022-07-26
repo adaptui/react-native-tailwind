@@ -1,11 +1,10 @@
 import React from "react";
 import {
   Badge,
+  BadgeNew,
+  BadgeText,
+  BadgeWrapper,
   Box,
-  Check,
-  Clock,
-  Close,
-  Icon,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
@@ -15,55 +14,24 @@ export const BadgeScreen = () => {
     <Box
       style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
     >
-      <Badge style={tailwind.style("my-1")} themeColor="secondary">
-        Scheduled
-      </Badge>
-      <Badge
+      {/* <BadgeNew
+        size={"lg"}
         style={tailwind.style("my-1")}
-        themeColor="primary"
-        size="lg"
-        variant="outline"
-      >
-        Assigned
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        themeColor="primary"
-        variant="subtle"
-        prefix={<Icon icon={<Clock />} />}
-      >
-        On Progress
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        size="md"
         themeColor="secondary"
-        variant="outline"
       >
-        Confirmed
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        themeColor="danger"
-        prefix={<Icon icon={<Close />} />}
+        Scheduled
+      </BadgeNew> */}
+      <BadgeNew
+        size={"md"}
+        style={tailwind.style("my-1 bg-teal-500")}
+        themeColor="secondary"
       >
-        Cancelled
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        themeColor="success"
-        prefix={<Icon icon={<Check />} />}
-      >
-        Completed
-      </Badge>
-
-      <Badge
-        style={tailwind.style("my-1")}
-        size="sm"
-        themeColor="success"
-        variant="outline"
-      >
-        Done
+        <>Badge</>
+        <BadgeWrapper style={tailwind.style("bg-yellow-500")} />
+        <BadgeText style={tailwind.style("text-red-500")} />
+      </BadgeNew>
+      <Badge size={"lg"} style={tailwind.style("my-1")} themeColor="secondary">
+        Scheduled
       </Badge>
     </Box>
   );

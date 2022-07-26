@@ -1,10 +1,23 @@
-import { View, ViewProps as RNViewProps } from "react-native";
+import { View } from "react-native";
 
-import { createComponent } from "../../utils/createComponent";
-import type { Dict } from "../../utils/types";
+import {
+  As,
+  createComponent,
+  createElement,
+  createHook,
+  Options,
+  Props,
+} from "../../utils/system";
 
-export type LibraryBoxProps = Dict<unknown>;
+export const useBox = createHook<BoxOptions>(props => {
+  return props;
+});
 
-export type BoxProps = RNViewProps & LibraryBoxProps;
+export const Box = createComponent<BoxOptions>(props => {
+  const htmlProps = useBox(props);
+  return createElement(View, htmlProps);
+});
 
-export const Box = createComponent<BoxProps>(View, { shouldMemo: true });
+export type BoxOptions<T extends As = typeof View> = Options<T>;
+
+export type BoxProps<T extends As = typeof View> = Props<BoxOptions<T>>;
