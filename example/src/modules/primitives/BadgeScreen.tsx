@@ -14,13 +14,13 @@ export const BadgeScreen = () => {
     <Box
       style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
     >
-      {/* <BadgeNew
+      <BadgeNew
         size={"lg"}
         style={tailwind.style("my-1")}
         themeColor="secondary"
       >
         Scheduled
-      </BadgeNew> */}
+      </BadgeNew>
       <BadgeNew
         size={"md"}
         style={tailwind.style("my-1 bg-teal-500")}

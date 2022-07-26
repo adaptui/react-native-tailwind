@@ -40,7 +40,6 @@ export function useBadgeProps(props: BadgeNewProps): BadgePropsReturn {
     [componentProps.wrapperProps, restProps, uiProps],
   );
 
-  console.log("%c_finalChildren", "color: #0088cc", _finalChildren);
   const textProps: BadgeTextProps = useMemo(
     () => ({
       ...uiProps,
