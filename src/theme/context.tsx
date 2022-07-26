@@ -36,7 +36,7 @@ function useTheme<T extends ThemeKeys>(
 
   if (!context) {
     throw new Error(
-      "useTheme: `ThemeContext` is undefined. Seems you forgot to wrap component within the TailwindThemeProvider",
+      "useTheme: `ThemeContext` is undefined. Seems you forgot to wrap component within the AdaptUIProvider",
     );
   }
 
@@ -50,7 +50,7 @@ function useTheme<T extends ThemeKeys>(
 
 type TWType = typeof tw;
 
-const TailwindThemeProvider: React.FC<Partial<ThemeContextType>> = props => {
+const AdaptUIProvider: React.FC<Partial<ThemeContextType>> = props => {
   const colorScheme = useColorScheme();
   tw.setColorScheme(colorScheme);
 
@@ -77,4 +77,4 @@ const TailwindThemeProvider: React.FC<Partial<ThemeContextType>> = props => {
   );
 };
 
-export { TailwindThemeProvider, ThemeContext, useTheme };
+export { AdaptUIProvider, ThemeContext, useTheme };

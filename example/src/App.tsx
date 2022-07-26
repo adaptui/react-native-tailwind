@@ -1,7 +1,7 @@
 import React from "react";
 import { LogBox, SafeAreaView, StatusBar } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { TailwindThemeProvider } from "@adaptui/react-native-tailwind";
+import { AdaptUIProvider } from "@adaptui/react-native-tailwind";
 import { NavigationContainer } from "@react-navigation/native";
 import tailwind from "twrnc";
 
@@ -18,9 +18,9 @@ const App = () => {
             `flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`,
           )}
         >
-          <TailwindThemeProvider>
+          <AdaptUIProvider>
             <AppRoot />
-          </TailwindThemeProvider>
+          </AdaptUIProvider>
         </SafeAreaView>
       </NavigationContainer>
     </GestureHandlerRootView>
