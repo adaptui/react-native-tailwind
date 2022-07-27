@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@adaptui/react-native-tailwind": ["./src/index"]
-    },
     "target": "esnext",
     "lib": ["esnext"],
     "module": "esnext",
