@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { styled } from "nativewind";
 
 import {
   As,
@@ -8,6 +8,9 @@ import {
   createHook,
   Props,
 } from "../../utils/system";
+import { View } from "../view";
+
+export const StyledView = styled(View);
 
 export const useBox = createHook<BoxOptions>(({ __TYPE__, ...props }) => {
   return props;
@@ -15,9 +18,9 @@ export const useBox = createHook<BoxOptions>(({ __TYPE__, ...props }) => {
 
 export const Box = createComponent<BoxOptions>(props => {
   const htmlProps = useBox(props);
-  return createElement(View, htmlProps);
+  return createElement(StyledView, htmlProps);
 });
 
-export type BoxOptions<T extends As = typeof View> = ComponentOptions<T>;
+export type BoxOptions<T extends As = typeof StyledView> = ComponentOptions<T>;
 
-export type BoxProps<T extends As = typeof View> = Props<BoxOptions<T>>;
+export type BoxProps<T extends As = typeof StyledView> = Props<BoxOptions<T>>;
