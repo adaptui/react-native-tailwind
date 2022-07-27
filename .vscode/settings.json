@@ -20,7 +20,8 @@
     "input",
     "icons",
     "kodiak",
-    "utils"
+    "utils",
+    "nativewind"
   ],
   "git.branchProtection": ["main"]
 }
