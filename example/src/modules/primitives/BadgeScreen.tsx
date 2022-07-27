@@ -7,6 +7,9 @@ import {
   Box,
   useTheme,
 } from "@adaptui/react-native-tailwind";
+import { styled } from "nativewind";
+
+const StyledBadgeNew = styled(BadgeNew);
 
 export const BadgeScreen = () => {
   const tailwind = useTheme();
@@ -14,13 +17,13 @@ export const BadgeScreen = () => {
     <Box
       style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
     >
-      <BadgeNew
+      <StyledBadgeNew
         size={"lg"}
-        style={tailwind.style("my-1")}
+        className="my-1 bg-grayDark-200 text-red-900"
         themeColor="secondary"
       >
         Scheduled
-      </BadgeNew>
+      </StyledBadgeNew>
       <BadgeNew
         size={"md"}
         style={tailwind.style("my-1 bg-teal-500")}
