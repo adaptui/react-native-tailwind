@@ -18,7 +18,7 @@ yarn add @adaptui/react-native-tailwind
 > installed.
 
 > Also make sure to wrap your App with `GestureHandlerRootView` from
-> `react-native-gesture-handler`, and `TailwindThemeProvider` from
+> `react-native-gesture-handler`, and `AdaptUIProvider` from
 > `@adaptui/react-native-tailwind`
 
 ## Usage

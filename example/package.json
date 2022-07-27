@@ -11,8 +11,8 @@
     "start": "expo start"
   },
   "dependencies": {
-    "@react-navigation/drawer": "6.4.1",
-    "@react-navigation/native": "6.0.10",
+    "@react-navigation/drawer": "6.4.3",
+    "@react-navigation/native": "6.0.11",
     "expo": "44.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -22,22 +22,22 @@
     "react-native-reanimated": "2.3.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.1",
-    "react-native-web": "0.18.1",
-    "twrnc": "3.3.2"
+    "react-native-web": "0.18.7",
+    "twrnc": "3.3.3"
   },
   "devDependencies": {
-    "@babel/core": "7.18.2",
-    "@babel/runtime": "7.18.3",
+    "@babel/core": "7.18.9",
+    "@babel/runtime": "7.18.9",
     "@types/react": "17.0.30",
     "@types/react-native": "0.64.24",
-    "babel-loader": "^8.2.5",
+    "babel-loader": "8.2.5",
     "babel-plugin-module-resolver": "4.1.0",
     "babel-preset-expo": "9.1.0",
-    "expo-cli": "5.4.9"
+    "expo-cli": "6.0.0"
   },
   "resolutions": {
     "**/@types/react": "17.0.30",
-    "react-error-overlay": "6.0.9",
+    "react-error-overlay": "6.0.11",
     "react-native-reanimated": "2.3.1"
   }
 }
