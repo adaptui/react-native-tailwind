@@ -1,6 +1,6 @@
 import { Box, BoxOptions, useBox } from "../../primitives/box";
 import { useTheme } from "../../theme";
-import { cx, styleAdapter } from "../../utils";
+import { cx } from "../../utils";
 import {
   As,
   createComponentType,
@@ -13,22 +13,17 @@ import { BadgeUIProps } from "./BadgeProps";
 
 export const useBadgeWrapper = createHook<BadgeWrapperOptions>(
   ({ size, themeColor, variant, ...props }) => {
-    const tailwind = useTheme();
     const badgeStyles = useTheme("badge");
-    const style = [
-      tailwind.style(
-        cx(
-          badgeStyles.baseContainer,
-          size ? badgeStyles.size[size]?.container : "",
-          themeColor && variant
-            ? badgeStyles.themeColor[themeColor]?.[variant]?.container
-            : "",
-        ),
-      ),
-      styleAdapter(props.style),
-    ];
+    const className = cx(
+      badgeStyles.baseContainer,
+      size ? badgeStyles.size[size]?.container : "",
+      themeColor && variant
+        ? badgeStyles.themeColor[themeColor]?.[variant]?.container
+        : "",
+      props.className,
+    );
 
-    props = useBox({ ...props, style });
+    props = useBox({ ...props, className });
 
     return props;
   },
@@ -39,7 +34,6 @@ export const BadgeWrapper = createComponentType<BadgeWrapperOptions>(props => {
 
   return createElement(Box, htmlProps);
 }, "BadgeWrapper");
-
 export type BadgeWrapperOptions<T extends As = typeof Box> = BoxOptions<T> &
   Partial<BadgeUIProps> & {};
 

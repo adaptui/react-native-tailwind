@@ -2,7 +2,7 @@
 
 module.exports = {
   presets: [require("../preset")],
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "../src/theme/defaultTheme/badge.ts"],
   theme: {},
   plugins: [],
 };
