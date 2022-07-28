@@ -1,25 +1,29 @@
 import React from "react";
-import { Badge, BadgeNew, Box, useTheme } from "@adaptui/react-native-tailwind";
+import { Text } from "react-native";
+import {
+  BadgeNew,
+  BadgeText,
+  BadgeWrapper,
+  Box,
+} from "@adaptui/react-native-tailwind";
+import { styled } from "nativewind";
+
+const StyledText = styled(Text);
 
 export const BadgeScreen = () => {
-  const tailwind = useTheme();
   return (
-    <Box
-      style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
-    >
-      <BadgeNew size="sm">Scheduled</BadgeNew>
-      {/* <BadgeNew
-        size={"md"}
-        style={tailwind.style("my-1 bg-teal-500")}
-        themeColor="secondary"
-      >
-        <>Badge</>
-        <BadgeWrapper style={tailwind.style("bg-yellow-500")} />
-        <BadgeText style={tailwind.style("text-red-500")} />
-      </BadgeNew> */}
-      <Badge size={"lg"} style={tailwind.style("my-1")} themeColor="secondary">
+    <Box className="flex-1 justify-center items-center bg-white-900">
+      <BadgeNew size="sm" className="my-1" themeColor="primary">
         Scheduled
-      </Badge>
+      </BadgeNew>
+      <BadgeNew size="md" className="my-1" themeColor="danger">
+        Scheduled
+      </BadgeNew>
+      <StyledText className="text-blue-300 bg-blue-100">Native</StyledText>
+      <BadgeNew size="lg" className="my-1" themeColor="secondary">
+        <BadgeWrapper className="bg-yellow-500" />
+        <BadgeText className="text-red-900">Text</BadgeText>
+      </BadgeNew>
     </Box>
   );
 };
