@@ -14,6 +14,7 @@ export * from "./radio";
 export * from "./select";
 export * from "./slider";
 export * from "./spinner";
+export * from "./spinner-new";
 export * from "./switch";
 export * from "./tag";
 export * from "./tooltip";
