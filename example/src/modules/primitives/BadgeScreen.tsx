@@ -1,38 +1,24 @@
 import React from "react";
+import { Text } from "react-native";
 import {
-  Badge,
-  BadgeNew,
-  BadgeText,
-  BadgeWrapper,
-  Box,
-  useTheme,
+  Collection,
+  CollectionItem,
+  useCollectionState,
 } from "@adaptui/react-native-tailwind";
 
 export const BadgeScreen = () => {
-  const tailwind = useTheme();
+  const collection = useCollectionState();
+  console.log("%ccollection", "color: #e5de73", collection);
+
   return (
-    <Box
-      style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
-    >
-      <BadgeNew
-        size={"lg"}
-        style={tailwind.style("my-1")}
-        themeColor="secondary"
-      >
-        Scheduled
-      </BadgeNew>
-      <BadgeNew
-        size={"md"}
-        style={tailwind.style("my-1 bg-teal-500")}
-        themeColor="secondary"
-      >
-        <>Badge</>
-        <BadgeWrapper style={tailwind.style("bg-yellow-500")} />
-        <BadgeText style={tailwind.style("text-red-500")} />
-      </BadgeNew>
-      <Badge size={"lg"} style={tailwind.style("my-1")} themeColor="secondary">
-        Scheduled
-      </Badge>
-    </Box>
+    <Collection state={collection}>
+      <Text>Items count: {collection.items.length}</Text>
+      <CollectionItem as={Text}>🍎 Apple</CollectionItem>
+      <CollectionItem as={Text}>🍇 Grape</CollectionItem>
+      <CollectionItem as={Text}>🍊 Orange</CollectionItem>
+      <CollectionItem as={Text}>🍊 Orange</CollectionItem>
+      <CollectionItem as={Text}>🍊 Orange</CollectionItem>
+      <CollectionItem as={Text}>🍊 Orange</CollectionItem>
+    </Collection>
   );
 };

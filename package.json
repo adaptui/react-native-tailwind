@@ -84,6 +84,8 @@
     "@react-native-aria/interactions": "^0.2.8",
     "@react-native-aria/radio": "^0.2.5",
     "@react-stately/toggle": "^3.3.0",
+    "ariakit": "^2.0.0-next.36",
+    "ariakit-utils": "^0.17.0-next.23",
     "lodash": "^4.17.21",
     "react-native-gesture-handler": "2.1.0",
     "react-native-popper": "^0.3.2",

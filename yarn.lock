@@ -1901,6 +1901,18 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@floating-ui/core@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.0.0.tgz#ec1d31f54c72dd0460276e2149e59bd13c0f01f6"
+  integrity sha512-sm3nW0hHAxTv3gRDdCH8rNVQxijF+qPFo5gAeXCErRjKC7Qc28lIQ3R9Vd7Gw+KgwfA7RhRydDFuGeI0peGq7A==
+
+"@floating-ui/dom@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.0.0.tgz#66923a56755b6cb7a5958ecf25fe293912672d65"
+  integrity sha512-PMqJvY5Fae8HVQgUqM+lidprS6p9LSvB0AUhCdYKqr3YCaV+WaWCeVNBtXPRY2YIdrgcsL2+vd5F07FxgihHUw==
+  dependencies:
+    "@floating-ui/core" "^1.0.0"
+
 "@formatjs/ecma402-abstract@1.11.4":
   version "1.11.4"
   resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.11.4.tgz#b962dfc4ae84361f9f08fbce411b4e4340930eda"
@@ -3615,6 +3627,19 @@ argparse@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
   integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
+
+ariakit-utils@0.17.0-next.23, ariakit-utils@^0.17.0-next.23:
+  version "0.17.0-next.23"
+  resolved "https://registry.yarnpkg.com/ariakit-utils/-/ariakit-utils-0.17.0-next.23.tgz#b9c5f638e5cc7a3ddc2e3256f23d42718e3af47b"
+  integrity sha512-r6a8rvjTBNbdNVWhGm4XL8hTlpIlP0G+yJf3No48kK6QpR1JN9QinLI/wMwWwJnxDYfwnBhkbcROCqF7iT/4ig==
+
+ariakit@^2.0.0-next.36:
+  version "2.0.0-next.36"
+  resolved "https://registry.yarnpkg.com/ariakit/-/ariakit-2.0.0-next.36.tgz#74b93cc839cfd9e8350c4cc961b06b8f70f16e14"
+  integrity sha512-H/ZqRgy5tGGKOcOsZ24lc5cBoQ83vgCFd+mC87UWdIEdYqhKNPPjFZona/V/l0SRtn9Mar+t93QbggyThOw6Qg==
+  dependencies:
+    "@floating-ui/dom" "^1.0.0"
+    ariakit-utils "0.17.0-next.23"
 
 arr-diff@^4.0.0:
   version "4.0.0"
