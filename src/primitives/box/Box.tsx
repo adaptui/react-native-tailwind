@@ -5,7 +5,7 @@ import { styleAdapter } from "../../utils";
 import {
   As,
   ComponentOptions,
-  createComponent,
+  createComponentType,
   createElement,
   createHook,
   Props,
@@ -20,10 +20,10 @@ export const useBox = createHook<BoxOptions>(
   },
 );
 
-export const Box = createComponent<BoxOptions>(props => {
+export const Box = createComponentType<BoxOptions>(props => {
   const htmlProps = useBox(props);
   return createElement(View, htmlProps);
-});
+}, "Box");
 
 export type BoxOptions<T extends As = typeof View> = ComponentOptions<T> & {
   className?: string;

@@ -1,2 +1,2 @@
-export * from "./BoxedText";
+export * from "./AdaptText";
 export * from "./Text";

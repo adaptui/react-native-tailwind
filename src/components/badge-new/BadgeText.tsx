@@ -1,7 +1,7 @@
 import {
-  BoxedText,
-  BoxedTextOptions,
-  useBoxedText,
+  AdaptText,
+  AdaptTextOptions,
+  useAdaptText,
 } from "../../primitives/text";
 import { useTheme } from "../../theme";
 import { cx } from "../../utils";
@@ -26,7 +26,7 @@ export const useBadgeText = createHook<BadgeTextOptions>(
       props.className,
     );
 
-    props = useBoxedText({ ...props, className });
+    props = useAdaptText({ ...props, className });
 
     return props;
   },
@@ -35,12 +35,12 @@ export const useBadgeText = createHook<BadgeTextOptions>(
 export const BadgeText = createComponentType<BadgeTextOptions>(props => {
   const htmlProps = useBadgeText(props);
 
-  return createElement(BoxedText, htmlProps);
+  return createElement(AdaptText, htmlProps);
 }, "BadgeText");
 
-export type BadgeTextOptions<T extends As = typeof BoxedText> =
-  BoxedTextOptions<T> & Partial<BadgeUIProps> & {};
+export type BadgeTextOptions<T extends As = typeof AdaptText> =
+  AdaptTextOptions<T> & Partial<BadgeUIProps> & {};
 
-export type BadgeTextProps<T extends As = typeof BoxedText> = Props<
+export type BadgeTextProps<T extends As = typeof AdaptText> = Props<
   BadgeTextOptions<T>
 >;
