@@ -14,6 +14,7 @@ import {
 } from "../../primitives/animated-box";
 import { useTheme } from "../../theme";
 import { cx, styleAdapter } from "../../utils";
+import { GetThemeValue } from "../../utils/global-types";
 import {
   As,
   createComponentType,
@@ -98,21 +99,21 @@ export type SpinnerOptions<T extends As = typeof AnimatedBox> = Omit<
    *
    * @default md
    */
-  size?: keyof AdaptUI.GetThemeValue<"spinner", "size">;
+  size?: keyof GetThemeValue<"spinner", "size">;
 
   /**
    * How the spinner should be themed?
    *
    * @default base
    */
-  themeColor?: keyof AdaptUI.GetThemeValue<"spinner", "themeColor">;
+  themeColor?: keyof GetThemeValue<"spinner", "themeColor">;
 
   /**
    * How the spinner should be displayed?
    *
    * @default transparent
    */
-  track?: keyof AdaptUI.GetThemeValue<"spinner", "track">;
+  track?: keyof GetThemeValue<"spinner", "track">;
 
   /**
    * For accessibility, it is important to add a fallback loading text.
