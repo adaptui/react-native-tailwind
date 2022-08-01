@@ -49,47 +49,43 @@ interface _ComponentDefaultTheme {
 
 declare const _brand: unique symbol;
 
-declare global {
-  namespace AdaptUI {
-    export interface Theme extends _ComponentDefaultTheme {}
-    /**
-     * @template T default theme
-     * @template U user theme
-     *
-     * @description Safely Deep merges default theme with user theme
-     */
-    export type MergeTheme<T, U> = DeepMerge<
-      T,
-      U extends { [x: string]: any } ? U : {}
-    >;
+export interface Theme extends _ComponentDefaultTheme {}
+/**
+ * @template T default theme
+ * @template U user theme
+ *
+ * @description Safely Deep merges default theme with user theme
+ */
+export type MergeTheme<T, U> = DeepMerge<
+  T,
+  U extends { [x: string]: any } ? U : {}
+>;
 
-    type Brand<Type, Name = "ThemeKey"> = Type & { [_brand]: Name };
+type Brand<Type, Name = "ThemeKey"> = Type & { [_brand]: Name };
 
-    type Comps = AdaptUI.Theme["components"];
+type Comps = Theme["components"];
 
-    /**
-     * @template C component name
-     * @template K theme key
-     * @template L theme key
-     * @template M theme key
-     * @template N theme key
-     */
-    export type GetThemeValue<
-      C extends keyof Comps,
-      K extends keyof Comps[C] = Brand<keyof Comps[C]>,
-      L extends keyof Comps[C][K] = Brand<keyof Comps[C][K]>,
-      M extends keyof Comps[C][K][L] = Brand<keyof Comps[C][K][L]>,
-      N extends keyof Comps[C][K][L][M] = Brand<keyof Comps[C][K][L][M]>,
-    > = [C, K, L, M, N] extends [string, Brand<K>, Brand<L>, Brand<M>, Brand<N>]
-      ? Comps[C]
-      : [C, K, L, M, N] extends [string, string, Brand<L>, Brand<M>, Brand<N>]
-      ? Comps[C][K]
-      : [C, K, L, M, N] extends [string, string, string, Brand<M>, Brand<N>]
-      ? Comps[C][K][L]
-      : [C, K, L, M, N] extends [string, string, string, string, Brand<N>]
-      ? Comps[C][K][L][M]
-      : [C, K, L, M, N] extends [string, string, string, string, string]
-      ? Comps[C][K][L][M][N]
-      : never;
-  }
-}
+/**
+ * @template C component name
+ * @template K theme key
+ * @template L theme key
+ * @template M theme key
+ * @template N theme key
+ */
+export type GetThemeValue<
+  C extends keyof Comps,
+  K extends keyof Comps[C] = Brand<keyof Comps[C]>,
+  L extends keyof Comps[C][K] = Brand<keyof Comps[C][K]>,
+  M extends keyof Comps[C][K][L] = Brand<keyof Comps[C][K][L]>,
+  N extends keyof Comps[C][K][L][M] = Brand<keyof Comps[C][K][L][M]>,
+> = [C, K, L, M, N] extends [string, Brand<K>, Brand<L>, Brand<M>, Brand<N>]
+  ? Comps[C]
+  : [C, K, L, M, N] extends [string, string, Brand<L>, Brand<M>, Brand<N>]
+  ? Comps[C][K]
+  : [C, K, L, M, N] extends [string, string, string, Brand<M>, Brand<N>]
+  ? Comps[C][K][L]
+  : [C, K, L, M, N] extends [string, string, string, string, Brand<N>]
+  ? Comps[C][K][L][M]
+  : [C, K, L, M, N] extends [string, string, string, string, string]
+  ? Comps[C][K][L][M][N]
+  : never;

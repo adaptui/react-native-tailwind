@@ -1,6 +1,10 @@
-import { Text, TextOptions, useText } from "../../primitives/text";
+import {
+  AdaptText,
+  AdaptTextOptions,
+  useAdaptText,
+} from "../../primitives/text";
 import { useTheme } from "../../theme";
-import { cx, styleAdapter } from "../../utils";
+import { cx } from "../../utils";
 import {
   As,
   createComponentType,
@@ -13,21 +17,16 @@ import { BadgeUIProps } from "./BadgeProps";
 
 export const useBadgeText = createHook<BadgeTextOptions>(
   ({ size, themeColor, variant, ...props }) => {
-    const tailwind = useTheme();
     const badgeStyles = useTheme("badge");
-    const style = [
-      tailwind.style(
-        cx(
-          size ? badgeStyles.size[size]?.text : "",
-          themeColor && variant
-            ? badgeStyles.themeColor[themeColor]?.[variant]?.text
-            : "",
-        ),
-      ),
-      styleAdapter(props.style),
-    ];
+    const className = cx(
+      size ? badgeStyles.size[size]?.text : "",
+      themeColor && variant
+        ? badgeStyles.themeColor[themeColor]?.[variant]?.text
+        : "",
+      props.className,
+    );
 
-    props = useText({ ...props, style });
+    props = useAdaptText({ ...props, className });
 
     return props;
   },
@@ -36,12 +35,12 @@ export const useBadgeText = createHook<BadgeTextOptions>(
 export const BadgeText = createComponentType<BadgeTextOptions>(props => {
   const htmlProps = useBadgeText(props);
 
-  return createElement(Text, htmlProps);
+  return createElement(AdaptText, htmlProps);
 }, "BadgeText");
 
-export type BadgeTextOptions<T extends As = typeof Text> = TextOptions<T> &
-  Partial<BadgeUIProps> & {};
+export type BadgeTextOptions<T extends As = typeof AdaptText> =
+  AdaptTextOptions<T> & Partial<BadgeUIProps> & {};
 
-export type BadgeTextProps<T extends As = typeof Text> = Props<
+export type BadgeTextProps<T extends As = typeof AdaptText> = Props<
   BadgeTextOptions<T>
 >;

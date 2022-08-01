@@ -1,3 +1,5 @@
+import { GetThemeValue } from "../../utils/global-types";
+
 export const useBadgeUIState = (props: BadgeUIStateProps): BadgeUIState => {
   const { size = "md", themeColor = "base", variant = "solid" } = props;
 
@@ -10,19 +12,19 @@ export type BadgeUIState = {
    *
    * @default md
    */
-  size: keyof AdaptUI.GetThemeValue<"badge", "size">;
+  size: keyof GetThemeValue<"badge", "size">;
   /**
    * How the badge should be themed?
    *
    * @default base
    */
-  themeColor: keyof AdaptUI.GetThemeValue<"badge", "themeColor">;
+  themeColor: keyof GetThemeValue<"badge", "themeColor">;
   /**
    * How the badge should look?
    *
    * @default solid
    */
-  variant: keyof AdaptUI.GetThemeValue<"badge", "themeColor", "base">;
+  variant: keyof GetThemeValue<"badge", "themeColor", "base">;
 };
 
 export type BadgeUIStateProps = Partial<
