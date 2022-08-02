@@ -23,7 +23,7 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.1",
     "react-native-web": "0.18.7",
-    "twrnc": "3.3.3"
+    "twrnc": "3.4.0"
   },
   "devDependencies": {
     "@babel/core": "7.18.9",
