@@ -78,7 +78,6 @@ const TypingComponent: React.FC<TypingStatusProps> = ({
       style={[
         tailwind.style(cx(avatarStatusTheme.status.typing.container)),
         avatarStatusTheme.status.position,
-        avatarStatusTheme.status.outerBorderRadius,
         {
           borderColor: tailwind.getColor(parentsBackground),
           backgroundColor: tailwind.getColor(parentsBackground),
@@ -114,7 +113,6 @@ export const AvatarStatus: React.FC<AvatarStatusProps> = ({
         <Box
           style={[
             tailwind.style(cx(avatarStatusTheme.status.active.container)),
-            avatarStatusTheme.status.outerBorderRadius,
             avatarStatusTheme.status.position,
             { borderColor: tailwind.getColor(parentsBackground) },
           ]}
@@ -135,7 +133,6 @@ export const AvatarStatus: React.FC<AvatarStatusProps> = ({
         <Box
           style={[
             tailwind.style(cx(avatarStatusTheme.status.away.container)),
-            avatarStatusTheme.status.outerBorderRadius,
             avatarStatusTheme.status.position,
             {
               borderColor: tailwind.getColor(parentsBackground),
@@ -163,7 +160,6 @@ export const AvatarStatus: React.FC<AvatarStatusProps> = ({
         <Box
           style={[
             tailwind.style(cx(avatarStatusTheme.status.sleep.container)),
-            avatarStatusTheme.status.outerBorderRadius,
             avatarStatusTheme.status.position,
             {
               borderColor: tailwind.getColor(parentsBackground),

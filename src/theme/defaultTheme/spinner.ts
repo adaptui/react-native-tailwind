@@ -1,6 +1,5 @@
 export const spinner = {
-  base: "border-solid rounded-full",
-  borderWidth: 1.5,
+  base: "border-solid rounded-full border-[1.5px]",
   track: {
     transparent: "border-b-transparent border-l-transparent",
     visible: {

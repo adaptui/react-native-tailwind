@@ -26,8 +26,7 @@ export const checkbox = {
   },
 
   icon: {
-    common: "items-center justify-center",
-    border: 1.5,
+    common: "flex items-center justify-center border-[1.5px]",
   },
 
   size: {

@@ -174,7 +174,6 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                   },
                 })
               : {},
-            { borderWidth: radioTheme?.icon?.border },
           ]}
         >
           <Box
