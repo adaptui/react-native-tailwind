@@ -46,11 +46,10 @@ export const avatar = {
     },
   },
   status: {
-    outerBorderRadius: { borderWidth: 1.5 },
     position: { bottom: -2.5, right: -2.5 },
     active: {
       container:
-        "absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0",
+        "absolute border-[1.5px] border-white-900 bg-white-900 rounded-full bottom-0 right-0",
       base: "bg-green-600 rounded-full",
       size: {
         xs: "h-1 w-1",
@@ -64,7 +63,7 @@ export const avatar = {
     },
     away: {
       container:
-        "absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0",
+        "absolute border-[1.5px] border-white-900 bg-white-900 rounded-full bottom-0 right-0",
       base: "bg-white-900 rounded-full",
       size: {
         xs: "h-1 w-1",
@@ -78,7 +77,7 @@ export const avatar = {
     },
     sleep: {
       container:
-        "absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0",
+        "absolute border-[1.5px] border-white-900 bg-white-900 rounded-full bottom-0 right-0",
       base: "bg-white-900 rounded-full",
       size: {
         xs: "h-1 w-1",
@@ -92,7 +91,7 @@ export const avatar = {
     },
     typing: {
       container:
-        "absolute border-white-900 bg-white-900 rounded-full bottom-0 right-0",
+        "absolute border-[1.5px] border-white-900 bg-white-900 rounded-full bottom-0 right-0",
       base: "rounded-full flex flex-row justify-evenly items-center bg-gray-600",
       size: {
         xs: "w-2 h-[5px]",

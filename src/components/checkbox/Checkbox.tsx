@@ -272,7 +272,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                   },
                 })
               : {},
-            { borderWidth: checkboxTheme?.icon?.border },
           ]}
         >
           {icon &&
