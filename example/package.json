@@ -30,7 +30,7 @@
     "@babel/runtime": "7.18.9",
     "@types/react": "17.0.30",
     "@types/react-native": "0.64.24",
-    "babel-loader": "9.0.1",
+    "babel-loader": "8.2.5",
     "babel-plugin-module-resolver": "4.1.0",
     "babel-preset-expo": "9.1.0",
     "expo-cli": "6.0.0"
