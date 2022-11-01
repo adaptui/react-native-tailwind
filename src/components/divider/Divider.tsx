@@ -1,13 +1,13 @@
 import { View, ViewProps } from "react-native";
 import { Box, useTheme } from "@adaptui/react-native-tailwind";
 
-import { createComponent, RenderProp } from "../../utils";
+import { createComponent, RenderPropType } from "../../utils";
 import { Button, ButtonProps } from "../button";
 
 interface DividerProps extends ViewProps {
   subHeaderText?: string;
   orientation?: "horizontal" | "vertical";
-  subHeader?: RenderProp<ButtonProps>;
+  subHeader?: RenderPropType<ButtonProps>;
   inset: number;
   height: number;
   insetType: "left" | "right" | "top" | "bottom";
