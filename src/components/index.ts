@@ -5,6 +5,7 @@ export * from "./button";
 export * from "./checkbox";
 export * from "./circular-progress";
 export * from "./create-icon";
+export * from "./divider";
 export * from "./icon";
 export * from "./input";
 export * from "./meter";

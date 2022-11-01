@@ -96,6 +96,7 @@
   "devDependencies": {
     "@babel/core": "7.18.9",
     "@babel/eslint-parser": "7.18.9",
+    "@babel/helper-string-parser": "^7.19.4",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
     "@react-native-community/eslint-config": "3.0.3",

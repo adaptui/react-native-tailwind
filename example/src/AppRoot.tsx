@@ -9,6 +9,7 @@ import {
   CheckboxGroupScreen,
   CheckboxScreen,
   CircularProgressScreen,
+  DividerScreen,
   InputScreen,
   MeterComponentScreen,
   ProgressScreen,
@@ -49,6 +50,11 @@ const AppRoot = () => {
         options={{ title: "Checkbox" }}
         name="CheckboxScreen"
         component={CheckboxScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Divider" }}
+        name="DividerScreen"
+        component={DividerScreen}
       />
       <Drawer.Screen
         options={{ title: "Spinner" }}
