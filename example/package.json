@@ -11,8 +11,8 @@
     "start": "expo start"
   },
   "dependencies": {
-    "@react-navigation/drawer": "6.4.3",
-    "@react-navigation/native": "6.0.11",
+    "@react-navigation/drawer": "6.5.0",
+    "@react-navigation/native": "6.0.13",
     "expo": "44.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -22,8 +22,8 @@
     "react-native-reanimated": "2.3.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.1",
-    "react-native-web": "0.18.7",
-    "twrnc": "3.4.0"
+    "react-native-web": "0.18.9",
+    "twrnc": "3.4.1"
   },
   "devDependencies": {
     "@babel/core": "7.18.9",
