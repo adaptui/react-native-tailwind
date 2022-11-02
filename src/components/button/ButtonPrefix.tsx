@@ -4,7 +4,7 @@ import { Box } from "../../primitives";
 import { useTheme } from "../../theme";
 import { cx } from "../../utils";
 
-import { ButtonSizes } from "./buttonTypes";
+import { ButtonSizes } from "./Button";
 
 export interface ButtonPrefixProps {
   size: ButtonSizes;

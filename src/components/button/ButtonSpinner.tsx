@@ -5,7 +5,7 @@ import { useTheme } from "../../theme";
 import { cx } from "../../utils";
 import { Spinner, SpinnerSizes } from "../spinner";
 
-import { ButtonProps } from "./buttonTypes";
+import { ButtonProps } from "./Button";
 
 interface ButtonSpinnerProps
   extends Required<
