@@ -1,54 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
-  CaretRight,
+  Checkbox,
+  CheckboxGroup,
   Icon,
-  Info,
+  Slot,
   Tag,
+  TagSizes,
+  TagTheme,
+  TagVariant,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
 export const TagScreen = () => {
   const tailwind = useTheme();
+  const sizes: TagSizes[] = ["sm", "md", "lg", "xl"];
+  const themeColors: TagTheme[] = ["base", "primary"];
+  const variants: TagVariant[] = ["solid", "subtle", "outline"];
+  const [value, setValue] = useState<string[]>([]);
+
   return (
     <Box
       style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
     >
-      <Tag style={tailwind.style("my-1")}>Default</Tag>
-      <Tag
-        style={tailwind.style("my-1")}
-        prefix={<Icon icon={<Info />} />}
-        variant="outline"
-      >
-        Default Outline
-      </Tag>
-      <Tag style={tailwind.style("my-1")} variant="subtle">
-        Default Subtle
-      </Tag>
-      <Tag style={tailwind.style("my-1")} themeColor="primary">
-        Primary Solid
-      </Tag>
-
-      <Tag
-        prefix={<Icon icon={<Info />} />}
-        style={tailwind.style("my-1")}
-        themeColor="primary"
-        variant="outline"
-      >
-        Primary Outline
-      </Tag>
-      <Tag
-        suffix={<Icon icon={<CaretRight />} />}
-        style={tailwind.style("my-1")}
-        themeColor="primary"
-        variant="subtle"
-        closable
-      >
-        Primary Subtle
-      </Tag>
-      <Tag closable style={tailwind.style("my-1")} themeColor="primary">
-        Close
-      </Tag>
+      <CheckboxGroup value={value} onChange={setValue}>
+        <Checkbox label="Closable" value="closable" />
+        <Checkbox label="Show Prefix" value="showprefix" />
+      </CheckboxGroup>
+      {sizes.map((size, index) => {
+        return (
+          <Box style={tailwind.style("flex-col my-1")} key={size + index}>
+            {variants.map((variant, variantIndex) => {
+              return (
+                <Box
+                  style={tailwind.style("flex-row my-1")}
+                  key={variant + variantIndex}
+                >
+                  {themeColors.map((theme, themeIndex) => {
+                    return (
+                      <Tag
+                        style={tailwind.style("mx-1")}
+                        size={size}
+                        key={theme + themeIndex}
+                        variant={variant}
+                        themeColor={theme}
+                        closable={value.includes("closable")}
+                        prefix={
+                          value.includes("showprefix") ? (
+                            <Icon icon={<Slot />} />
+                          ) : null
+                        }
+                      >
+                        Continue
+                      </Tag>
+                    );
+                  })}
+                </Box>
+              );
+            })}
+          </Box>
+        );
+      })}
     </Box>
   );
 };
