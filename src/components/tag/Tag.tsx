@@ -1,10 +1,18 @@
 import React, { forwardRef } from "react";
-import { PressableProps, TextStyle } from "react-native";
+import { Platform, PressableProps, TextStyle } from "react-native";
 
 import { Close } from "../../icons";
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, cx, RenderPropType, styleAdapter } from "../../utils";
+import {
+  createComponent,
+  cx,
+  generateBoxShadow,
+  RenderPropType,
+  styleAdapter,
+  useOnFocus,
+  useOnHover,
+} from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
@@ -48,6 +56,13 @@ export interface TagProps extends PressableProps {
    * @default {}
    */
   textStyle: TextStyle;
+  /**
+   * When a view is marked as accessible,
+   * it is a good practice to set an accessibilityLabel on the view,
+   * so that people who use VoiceOver know what element they have selected.
+   * VoiceOver will read this string when a user selects the associated element.
+   */
+  accesibilityLabel: string;
 }
 
 const RNTag: React.FC<Partial<TagProps>> = forwardRef<
@@ -56,6 +71,10 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
 >((props, ref) => {
   const tailwind = useTheme();
   const tagTheme = useTheme("tag");
+
+  const { onHoverIn, onHoverOut, hovered } = useOnHover();
+  const { onFocus, onBlur, focused } = useOnFocus();
+
   const {
     size = "md",
     variant = "solid",
@@ -65,6 +84,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     suffix = closable ? <Icon icon={<Close />} /> : null,
     style,
     textStyle,
+    accesibilityLabel,
     ...otherProps
   } = props;
 
@@ -148,17 +168,49 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
             tagTheme.base,
             tagTheme.size[size]?.default,
             tagTheme.themeColor[themeColor]?.[variant]?.container?.wrapper,
-            touchState.pressed
-              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.pressed
-              : "",
             props.disabled
               ? tagTheme.themeColor[themeColor]?.[variant]?.container?.disabled
               : "",
+            hovered.value
+              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.hover
+              : "",
+            touchState.pressed
+              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.pressed
+              : "",
           ),
         ),
+        focused.value
+          ? Platform.select({
+              web: {
+                outline: 0,
+                boxShadow: `${generateBoxShadow(
+                  tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
+                    ?.offset,
+                  tailwind.getColor(
+                    cx(
+                      tagTheme.themeColor[themeColor]?.[variant]?.container
+                        ?.focus?.color,
+                    ),
+                  ) as string,
+                )}`,
+                borderColor:
+                  tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
+                    ?.borderColor,
+              },
+            })
+          : {},
         styleAdapter(style, touchState),
       ]}
       {...otherProps}
+      // Web Callbacks
+      onHoverIn={onHoverIn}
+      onHoverOut={onHoverOut}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      // Web Callbacks
+      accessible
+      accessibilityRole="button"
+      accessibilityLabel={accesibilityLabel}
     >
       {_prefix}
       {children}
