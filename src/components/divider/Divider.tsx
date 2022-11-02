@@ -1,93 +1,50 @@
-import { View, ViewProps } from "react-native";
+import { ReactElement } from "react";
 import { Box, useTheme } from "@adaptui/react-native-tailwind";
 
-import { createComponent, RenderPropType } from "../../utils";
+import { createComponent, cx } from "../../utils";
 import { Button, ButtonProps } from "../button";
 
-interface DividerProps extends ViewProps {
-  subHeaderText?: string;
+interface DividerProps {
+  label?: string;
   orientation?: "horizontal" | "vertical";
-  subHeader?: RenderPropType<ButtonProps>;
-  inset: number;
-  height: number;
-  insetType: "left" | "right" | "top" | "bottom";
-  onPress: () => void;
+  slot?: ReactElement;
+  labelPosition: "start" | "center" | "end";
+  buttonProps: ButtonProps;
 }
 
 const RNDivider = ({
-  subHeaderText = "Hello",
-  orientation,
-  subHeader,
-  inset,
-  insetType = "left",
-  onPress,
+  label,
+  orientation = "horizontal",
+  slot,
+  labelPosition = "start",
+  buttonProps,
 }: Partial<DividerProps>) => {
   const tailwind = useTheme();
-
+  const dividerTheme = useTheme("divider");
   return (
-    <Box style={tailwind.style("overflow-hidden")}>
-      <View
+    <Box
+      style={tailwind.style(
+        cx(dividerTheme.orientation[orientation]),
+        orientation === "vertical" ? "overflow-hidden" : {},
+      )}
+    >
+      <Box style={tailwind.style(cx(dividerTheme.lines[orientation]))} />
+
+      <Box
         style={tailwind.style(
-          orientation !== "vertical"
-            ? "flex-row items-center"
-            : "self-stretch items-center",
+          cx(dividerTheme.label[orientation]?.[labelPosition]),
         )}
       >
-        <View
-          style={tailwind.style(
-            orientation !== "vertical"
-              ? "border-b border-gray-300 flex-1 h-0"
-              : "border-r border-gray-300 h-100 w-0",
-            orientation !== "vertical" && insetType === "left"
-              ? `left-[${inset}]`
-              : insetType === "right"
-              ? `right-[${inset}]`
-              : insetType === "top"
-              ? `top-[${inset}]`
-              : insetType === "bottom"
-              ? `bottom-[${inset}]`
-              : "",
-          )}
-        />
+        {label ? (
+          <Button themeColor="base" variant="outline" {...buttonProps}>
+            {label}
+          </Button>
+        ) : slot ? (
+          slot
+        ) : null}
+      </Box>
 
-        <View
-          style={tailwind.style(
-            insetType === "left"
-              ? `left-[${inset}]`
-              : insetType === "right"
-              ? `right-[${inset}]`
-              : insetType === "bottom"
-              ? `bottom-[${inset}]`
-              : insetType === "top"
-              ? `top-[${inset}]`
-              : "",
-          )}
-        >
-          {!subHeader && (
-            <Button themeColor="base" variant="outline" onPress={onPress}>
-              {subHeaderText}
-            </Button>
-          )}
-          <>{subHeader}</>
-        </View>
-
-        <View
-          style={tailwind.style(
-            orientation !== "vertical"
-              ? "border-b border-gray-300 flex-1 h-0"
-              : "border-r border-gray-300 h-100 w-0",
-            orientation !== "vertical" && insetType === "left"
-              ? `left-[${inset}]`
-              : insetType === "right"
-              ? `right-[${inset}]`
-              : insetType === "top"
-              ? `top-[${inset}]`
-              : insetType === "bottom"
-              ? `bottom-[${inset}]`
-              : "",
-          )}
-        />
-      </View>
+      <Box style={tailwind.style(cx(dividerTheme.lines[orientation]))} />
     </Box>
   );
 };

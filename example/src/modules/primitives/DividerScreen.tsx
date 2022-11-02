@@ -1,29 +1,55 @@
 import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
 import { Box, Divider, useTheme } from "@adaptui/react-native-tailwind";
 
 export const DividerScreen = () => {
   const tailwind = useTheme();
   return (
-    <Box style={tailwind.style("flex-1 justify-center items-center ")}>
-      <Box
-        style={tailwind.style(
-          "w-full bg-white-900 border rounded-xl h-40 justify-center",
-        )}
-      >
-        <Divider onPress={() => console.log("hello")} />
+    <ScrollView>
+      <Box style={tailwind.style("flex-1 ")}>
+        <Box style={tailwind.style("h-15 px-2  justify-center")}>
+          <Divider
+            orientation="horizontal"
+            labelPosition="start"
+            label="Continue"
+          />
+        </Box>
+        <Box style={tailwind.style("h-15 px-2  justify-center")}>
+          <Divider
+            orientation="horizontal"
+            labelPosition="center"
+            label="Continue"
+          />
+        </Box>
+        <Box style={tailwind.style("h-15 px-2  justify-center")}>
+          <Divider
+            orientation="horizontal"
+            labelPosition="end"
+            label="Continue"
+          />
+        </Box>
+        <Box style={tailwind.style("h-50 py-4  justify-center")}>
+          <Divider
+            orientation="vertical"
+            labelPosition="start"
+            label="Continue"
+          />
+        </Box>
+        <Box style={tailwind.style("h-50 py-4  justify-center")}>
+          <Divider
+            orientation="vertical"
+            labelPosition="center"
+            label="Continue"
+          />
+        </Box>
+        <Box style={tailwind.style("h-50 py-4 justify-center")}>
+          <Divider
+            orientation="vertical"
+            labelPosition="end"
+            label="Continue"
+          />
+        </Box>
       </Box>
-      <Box
-        style={tailwind.style(
-          "h-100 overflow-hidden items-center justify-center border mt-3 rounded-xl w-80 bg-white-900 ",
-        )}
-      >
-        <Divider
-          orientation="vertical"
-          inset={40}
-          insetType="top"
-          onPress={() => console.log("hello")}
-        />
-      </Box>
-    </Box>
+    </ScrollView>
   );
 };
