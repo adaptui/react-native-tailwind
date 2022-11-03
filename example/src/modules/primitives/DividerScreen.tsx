@@ -8,6 +8,9 @@ export const DividerScreen = () => {
     <ScrollView>
       <Box style={tailwind.style("flex-1 ")}>
         <Box style={tailwind.style("h-15 px-2  justify-center")}>
+          <Divider orientation="horizontal" />
+        </Box>
+        <Box style={tailwind.style("h-15 px-2  justify-center")}>
           <Divider
             orientation="horizontal"
             labelPosition="start"
