@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
-import { Platform } from "react-native";
+import { Platform, PressableProps, TextStyle } from "react-native";
 
+import { RenderPropType } from "../../index";
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
 import {
@@ -17,7 +18,74 @@ import { Icon } from "../icon";
 import { ButtonPrefix } from "./ButtonPrefix";
 import { ButtonFullWidthSpinner, ButtonSpinner } from "./ButtonSpinner";
 import { ButtonSuffix } from "./ButtonSuffix";
-import { ButtonProps } from "./buttonTypes";
+
+export type ButtonSizes = "sm" | "md" | "lg" | "xl";
+export type ButtonVariants = "outline" | "ghost" | "solid" | "subtle";
+export type ButtonTheme =
+  | "base"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger";
+
+export interface ButtonProps extends PressableProps {
+  /**
+   * How large should the button be?
+   *
+   * @default md
+   */
+  size: ButtonSizes;
+  /**
+   * How the button should look?
+   *
+   * @default solid
+   */
+  variant: ButtonVariants;
+  /**
+   * How the button should be themed?
+   *
+   * @default base
+   */
+  themeColor: ButtonTheme;
+  /**
+   * A Suffix Element.
+   * If added, the Button will show a suffix Element before the Button's text.
+   */
+  suffix: RenderPropType;
+  /**
+   * A Prefix Element.
+   * If added, the Button will show a prefix Element after the Button's text.
+   */
+  prefix: RenderPropType;
+  /**
+   * If `true`, the button will show a spinner.
+   *
+   * @default false
+   */
+  loading: boolean;
+  /**
+   * If added, the button will only show an icon ignoring other childrens.
+   */
+  iconOnly: RenderPropType;
+  /**
+   * If added, the button will show this spinner components
+   *
+   * @default Spinner Component
+   */
+  spinner: RenderPropType;
+  /**
+   * The Text style of the Tag component.
+   * @default {}
+   */
+  textStyle: TextStyle;
+  /**
+   * When a view is marked as accessible,
+   * it is a good practice to set an accessibilityLabel on the view,
+   * so that people who use VoiceOver know what element they have selected.
+   * VoiceOver will read this string when a user selects the associated element.
+   */
+  accesibilityLabel: string;
+}
 
 const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
   typeof Touchable,

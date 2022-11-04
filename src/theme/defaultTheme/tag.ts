@@ -7,6 +7,12 @@ export const tag = {
           wrapper: "bg-gray-900 border border-transparent",
           pressed: "bg-gray-700",
           disabled: "bg-gray-200",
+          hover: "bg-gray-800",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
         text: {
           default: "text-white-900",
@@ -25,6 +31,12 @@ export const tag = {
           wrapper: "bg-gray-100 border border-transparent",
           pressed: "bg-gray-300",
           disabled: "bg-gray-100",
+          hover: "bg-gray-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
         text: {
           default: "text-gray-800",
@@ -43,6 +55,12 @@ export const tag = {
           wrapper: "bg-white-900 border border-gray-400",
           pressed: "border-gray-500 bg-gray-300",
           disabled: "bg-gray-100 border-gray-400",
+          hover: "border-gray-500 shadow shadow-color-opacity-10",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-gray-500",
+          },
         },
         text: {
           default: "text-gray-800",
@@ -63,6 +81,12 @@ export const tag = {
           wrapper: "bg-blue-600 border border-transparent",
           pressed: "bg-blue-800",
           disabled: "bg-blue-100",
+          hover: "bg-blue-700",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
         text: {
           default: "text-white-900",
@@ -81,6 +105,12 @@ export const tag = {
           wrapper: "bg-blue-100 border border-transparent",
           pressed: "bg-blue-300",
           disabled: "bg-blue-100",
+          hover: "bg-blue-200",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
         text: {
           default: "text-blue-800",
@@ -99,24 +129,12 @@ export const tag = {
           wrapper: "bg-white-900 border border-blue-400",
           pressed: "border-blue-500 bg-blue-300",
           disabled: "bg-blue-100 border-blue-400",
-        },
-        text: {
-          default: "text-blue-800",
-          disabled: "text-blue-500",
-        },
-        icon: {
-          default: "text-blue-800",
-          disabled: "text-blue-500",
-        },
-        spinner: {
-          disabled: "border-blue-500",
-        },
-      },
-      ghost: {
-        container: {
-          wrapper: "bg-white-900 border border-transparent",
-          pressed: "bg-blue-300",
-          disabled: "",
+          hover: "border-blue-500 shadow shadow-color-opacity-10",
+          focus: {
+            borderColor: "transparent",
+            offset: 3,
+            color: "bg-blue-500",
+          },
         },
         text: {
           default: "text-blue-800",

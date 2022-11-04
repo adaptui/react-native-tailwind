@@ -14,7 +14,7 @@ import { AnimatedBox, Box } from "../../primitives";
 import { useTheme } from "../../theme";
 import { cx } from "../../utils";
 
-import { AvatarSizes, AvatarStatusProps } from "./avatarPropTypes";
+import { AvatarProps, AvatarSizes } from "./Avatar";
 
 interface TypingStatusProps {
   size: Partial<AvatarSizes>;
@@ -100,11 +100,9 @@ const TypingComponent: React.FC<TypingStatusProps> = ({
   );
 };
 
-export const AvatarStatus: React.FC<AvatarStatusProps> = ({
-  status,
-  size = "xl",
-  parentsBackground = "text-white-900",
-}) => {
+export const AvatarStatus: React.FC<
+  Pick<AvatarProps, "status" | "size" | "parentsBackground">
+> = ({ status, size, parentsBackground }) => {
   const tailwind = useTheme();
   const avatarStatusTheme = useTheme("avatar");
   switch (status) {

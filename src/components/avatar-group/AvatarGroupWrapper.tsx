@@ -3,7 +3,7 @@ import React from "react";
 import { Box, BoxProps } from "../../primitives";
 import { useTheme } from "../../theme";
 import { styleAdapter } from "../../utils";
-import { AvatarSizes } from "../avatar/avatarPropTypes";
+import { AvatarSizes } from "../avatar";
 
 export interface AvatarGroupWrapperProps extends BoxProps {
   size?: AvatarSizes;

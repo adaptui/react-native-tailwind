@@ -1,14 +1,14 @@
 import React, { forwardRef, useState } from "react";
+import { ImageProps, ImageSourcePropType } from "react-native";
 
 import { DefaultUser } from "../../icons";
-import { Box, Text } from "../../primitives";
+import { Box, BoxProps, Text } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, cx, styleAdapter } from "../../utils";
+import { createComponent, cx, isUndefined, styleAdapter } from "../../utils";
+import { useAvatarGroup } from "../avatar-group";
 import { Icon } from "../icon";
 
 import { AvatarImage } from "./AvatarImage";
-import { useAvatarProps } from "./AvatarProps";
-import type { AvatarProps, AvatarSizes } from "./avatarPropTypes";
 import { AvatarStatus } from "./AvatarStatus";
 
 function getInitials(name: string, size: AvatarSizes) {
@@ -28,31 +28,87 @@ function getInitials(name: string, size: AvatarSizes) {
     : initials.toUpperCase();
 }
 
+export type AvatarSizes = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+export type AvatarStatusType = "active" | "away" | "sleep" | "typing" | null;
+
+export interface AvatarProps extends BoxProps {
+  /**
+   * React Native Image component Props, except for source
+   */
+  imageProps: Omit<ImageProps, "source">;
+  /**
+   * The image source (either a remote URL or a local file resource).
+   * Check https://reactnative.dev/docs/image#imagesource
+   */
+  src: ImageSourcePropType;
+  /**
+   * How large should avatar be?
+   *
+   * @default xl
+   */
+  size: AvatarSizes;
+  /**
+   * If `true`, Avatar looks like a squared.
+   *
+   * @default false
+   */
+  squared: boolean;
+  /**
+   * Name prop used for `alt` & calculate placeholder initials.
+   */
+  name: string;
+  /**
+   * Shows AvatarBadge with the given type
+   *
+   * @default none
+   */
+  status: AvatarStatusType;
+  /**
+   * StatusIndicator's Background Color & StatusIndicator Ring Color.
+   *
+   * @default ["bg-white-900", "ring-white-900"]"
+   */
+  parentsBackground: string;
+}
+
 const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
   typeof Box,
   Partial<AvatarProps>
 >((props, ref) => {
   const tailwind = useTheme();
   const avatarTheme = useTheme("avatar");
-  const { _imageProps, _basicProps, _otherProps, _statusProps } =
-    useAvatarProps(props);
-  const { name, style, ...boxProps } = _otherProps;
-  const isSourceAvailable = React.useMemo(
-    () => (_imageProps?.src ? true : false),
-    [_imageProps?.src],
-  );
+
+  const avatarGroupProps = useAvatarGroup();
+
+  const {
+    size = avatarGroupProps?.size || "xl",
+    squared = false,
+    name,
+    style,
+    src,
+    status,
+    parentsBackground = "text-white-900",
+    imageProps = {},
+    ...boxProps
+  } = props;
+
+  const isSquared = isUndefined(avatarGroupProps)
+    ? squared
+    : avatarGroupProps.squared;
+
+  const isSourceAvailable = React.useMemo(() => (src ? true : false), [src]);
   const [imageAvailable, setImageAvailable] = useState(isSourceAvailable);
   const loadFallback = () => setImageAvailable(false);
 
   return (
     <Box
       style={[
-        avatarTheme.borderRadius.size[_basicProps.size],
+        avatarTheme.borderRadius.size[size],
         tailwind.style(
           cx(
             avatarTheme.base,
-            avatarTheme.size[_basicProps.size],
-            !_basicProps.squared ? avatarTheme.circular : "",
+            avatarTheme.size[size],
+            !isSquared ? avatarTheme.circular : "",
           ),
         ),
         styleAdapter(style),
@@ -60,31 +116,38 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
       ref={ref}
       {...boxProps}
     >
-      {imageAvailable && _imageProps.src ? (
-        <AvatarImage {..._imageProps} handleFallback={loadFallback} />
+      {imageAvailable && src ? (
+        <AvatarImage
+          size={size}
+          imageProps={imageProps}
+          src={src}
+          squared={isSquared}
+          handleFallback={loadFallback}
+        />
       ) : name ? (
         <Text
           style={tailwind.style(
-            cx(
-              avatarTheme.initials.base,
-              avatarTheme.initials.size[_basicProps.size],
-            ),
+            cx(avatarTheme.initials.base, avatarTheme.initials.size[size]),
           )}
           adjustsFontSizeToFit
           allowFontScaling={false}
         >
-          {getInitials(name, _basicProps.size)}
+          {getInitials(name, size)}
         </Text>
       ) : (
         <Icon
           icon={<DefaultUser />}
-          style={tailwind.style(
-            cx(avatarTheme.defaultUserIcon[_basicProps.size]),
-          )}
+          style={tailwind.style(cx(avatarTheme.defaultUserIcon[size]))}
           color={tailwind.getColor("text-gray-800")}
         />
       )}
-      {_statusProps.status && <AvatarStatus {..._statusProps} />}
+      {status && (
+        <AvatarStatus
+          parentsBackground={parentsBackground}
+          size={size}
+          status={status}
+        />
+      )}
     </Box>
   );
 });
