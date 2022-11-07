@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { LayoutChangeEvent, StyleSheet, ViewStyle } from "react-native";
 import Animated, {
   interpolate,
   useAnimatedStyle,
@@ -103,7 +103,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
   return (
     <AnimatedBox
       ref={tooltipRef}
-      onLayout={e =>
+      onLayout={(e: LayoutChangeEvent) =>
         (tooltipWidth.value = Math.round(e.nativeEvent.layout.width))
       }
       style={[

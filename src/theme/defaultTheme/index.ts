@@ -3,6 +3,7 @@ import { badge } from "./badge";
 import { button } from "./button";
 import { checkbox } from "./checkbox";
 import { circularProgress } from "./circularProgress";
+import { divider } from "./divider";
 import { input } from "./input";
 import { meter } from "./meter";
 import { progress } from "./progress";
@@ -30,6 +31,7 @@ const extendedTheme = {
   checkbox,
   radio,
   meter,
+  divider,
 };
 
 export default extendedTheme;
