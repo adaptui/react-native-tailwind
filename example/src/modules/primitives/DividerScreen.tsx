@@ -44,7 +44,7 @@ export const DividerScreen = () => {
                 New Messages
               </Tag>
             }
-            dividerStyle={tailwind.style(" border-blue-300")}
+            dividerStyle={[tailwind.style("border-dashed border-blue-500")]}
           />
         </Box>
         <Box style={tailwind.style("h-50 py-4  justify-center")}>
