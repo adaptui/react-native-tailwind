@@ -1,5 +1,87 @@
 
 
+## [1.0.0-alpha.7](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.6...1.0.0-alpha.7) (2022-11-07)
+
+
+### Bug Fixes
+
+* **avatar:** :ambulance: remove deleted file common export ([7c3fad6](https://github.com/adaptui/react-native-tailwind/commit/7c3fad6d556f71176c9d585ce47a8761db993376))
+* **button:** :ambulance: update imports of types from the component file ([45bcb49](https://github.com/adaptui/react-native-tailwind/commit/45bcb494667d5f80307f979062becb0e57f15daf))
+* **deps:** ⬆️ update dependency twrnc to v3.4.0 ([6523ccb](https://github.com/adaptui/react-native-tailwind/commit/6523ccbb3af23284cb775f110c002dae9b78531f))
+* **deps:** ⬆️ update prod dependencies (minor) ([91e90f2](https://github.com/adaptui/react-native-tailwind/commit/91e90f2440ef09a83b3342d77c63b68d17a5149a))
+* **deps:** ⬆️ update prod dependencies (minor) ([295eb1c](https://github.com/adaptui/react-native-tailwind/commit/295eb1c5cf93f547c042080e244b2c91a493389d))
+* divider style ([5c9aa33](https://github.com/adaptui/react-native-tailwind/commit/5c9aa3389ab2a63612894517ab8beff2b1351ca7))
+* refactor divider component ([30ad937](https://github.com/adaptui/react-native-tailwind/commit/30ad937aea3c433c784f5f170da0d5577cfa110b))
+* refactor divider component and add extra prop to style the divider line ([b239136](https://github.com/adaptui/react-native-tailwind/commit/b239136800f7c4fb3cec1bada8648f743285c979))
+* **slider:** :label: fix typescript issues ([35e6eeb](https://github.com/adaptui/react-native-tailwind/commit/35e6eeb7e1ae52e2a3373dac938a0632969561f0))
+
+
+### Build Updates
+
+* :package: add react-dom and react-aria/focus packages ([5c214fa](https://github.com/adaptui/react-native-tailwind/commit/5c214fa243ca6364978a25f1b0d81252691f8bfa))
+* **kodiak:** :building_construction: remove rebase method ([a7fe4f5](https://github.com/adaptui/react-native-tailwind/commit/a7fe4f5933548949dfcbd6acc6fa2d892656aee6))
+
+
+### Documentation Changes
+
+* :pencil2: add `js` in md for all code snippets ([9c27611](https://github.com/adaptui/react-native-tailwind/commit/9c27611c6cdeaadfa03d258c9bd257f041913607))
+* **readme:** :memo: fix code rendering component docs ([92feaed](https://github.com/adaptui/react-native-tailwind/commit/92feaedd9f87f464eb76d3a91fc0052dc85ad56d))
+
+
+### Updates Reverted
+
+* :rewind: move babel-loader  to older version to make the web app work ([5527684](https://github.com/adaptui/react-native-tailwind/commit/55276845aece257f4d433e9f0df07b2aa31e7d03))
+
+
+### Feature Updates
+
+* added divider component ([056fdb6](https://github.com/adaptui/react-native-tailwind/commit/056fdb6d4d0676e7741ce1e02db825c937e38d5f))
+* **button:** :sparkles: refactor button component ([b74769f](https://github.com/adaptui/react-native-tailwind/commit/b74769f8113a40606fbe5d331a1d364ce0ddb9fe))
+* **checkbox:** :lipstick: restructure checkbox theme in order of theme -> interaction -> element ([9eb6a9d](https://github.com/adaptui/react-native-tailwind/commit/9eb6a9d539df6750deb3efc5ec25f16e85667c60))
+* **checkbox:** :sparkles: wrap checkbox component ([9413d94](https://github.com/adaptui/react-native-tailwind/commit/9413d940f378c462238ef5ac2be34f6f811aa6d7))
+* **input:** :sparkles: wrap Input component ([c68c246](https://github.com/adaptui/react-native-tailwind/commit/c68c246b30fd2c089d9201490a58a61e62a29181))
+* **radio:** :art: add orientation based styling ([eac0646](https://github.com/adaptui/react-native-tailwind/commit/eac06463cf25a7130bfda5a66d78038c19267c27))
+* **radio:** :sparkles: wrap radio group component ([196bc86](https://github.com/adaptui/react-native-tailwind/commit/196bc860cc993ba2d6c0297896999d2ed5124dbf))
+* **tag:** :sparkles: add web functionalities like hover & focus, also added accessible props ([16098d8](https://github.com/adaptui/react-native-tailwind/commit/16098d86fac0d77b311758465c68f4fe00214aaa))
+* **utils:** :tada: add util functions ([e3ea3cd](https://github.com/adaptui/react-native-tailwind/commit/e3ea3cd07e7a7b3ef0a182a4ae28693f81be739d))
+
+
+### Code Refactors
+
+* :pencil2: change TailwindThemeProvider to AdaptUIProvider ([1265a2a](https://github.com/adaptui/react-native-tailwind/commit/1265a2a34bf426f29c5f953f94b2ffac13a00557))
+* :recycle: use border-[1.5px] instead of { borderWidth: 1.5 } ([5865689](https://github.com/adaptui/react-native-tailwind/commit/5865689968d425c64bdaffa31b40ba0a0dbab02a))
+* **avatar:** :recycle: remove usage of useAvatarProps hook, ([873e8b9](https://github.com/adaptui/react-native-tailwind/commit/873e8b935bab6e47a8e477e8879a59829d197508))
+* **button:** :fire: move button props type to the component file itself ([732d529](https://github.com/adaptui/react-native-tailwind/commit/732d5295ff9764c08caccba6f7cf27fe24e87975))
+* divider subheader prop type ([7e9ac71](https://github.com/adaptui/react-native-tailwind/commit/7e9ac71652c3b4f65cf1b6f1d6eed28f8112b4df))
+* **divider:** :bug: fix dashed style divider ([9b83533](https://github.com/adaptui/react-native-tailwind/commit/9b8353397ad1fa0b05332df89cbd5a24c5f0489e))
+* **radio:** :heavy_minus_sign: remove param from function call ([ef93ce8](https://github.com/adaptui/react-native-tailwind/commit/ef93ce8060acf4ba59ee52c3e65eb096e3ae8e8e))
+* **radio:** :pencil2: add preventDefault() to onKeyDown ([93aa2d4](https://github.com/adaptui/react-native-tailwind/commit/93aa2d40a8b5af599b23838d448525fbc917c98c))
+* **radio:** :recycle: group web props together in a place ([7c67071](https://github.com/adaptui/react-native-tailwind/commit/7c67071085557bdfc442a09095cb9b1c2ca374ab))
+* **switch:** :art: fix switch component sizing and translate values ([f994bf8](https://github.com/adaptui/react-native-tailwind/commit/f994bf82e7ed5df49d05d99d789af3516cb08e30))
+* **tailwind-config:** :truck: change tailwind config .js to .ts file ([79f468e](https://github.com/adaptui/react-native-tailwind/commit/79f468e77201978e773bb63b69c992a383662db7))
+* **utils:** :recycle: change touchState as optional param resulting in better usage of function ([9c94941](https://github.com/adaptui/react-native-tailwind/commit/9c949419284e2aeab15cefafb0b6116bb33156c5))
+
+
+### Maintanance Updates
+
+* :package: update twrnc package to latest version ([a33d332](https://github.com/adaptui/react-native-tailwind/commit/a33d33279a9196aa94ce33f8107fe2098d9113e7))
+* :wrench: add divider to vscode scope ([68f6aeb](https://github.com/adaptui/react-native-tailwind/commit/68f6aebb29584b340398cc87587f2b26c3c8f016))
+* :wrench: add docs folder ([c9a1756](https://github.com/adaptui/react-native-tailwind/commit/c9a1756b9a652f46ef0f4af2f22d3958a7e415af))
+* :wrench: add kodiak to vscode scopes ([bd29f15](https://github.com/adaptui/react-native-tailwind/commit/bd29f15190e30fc56676319075ce28d5f987753b))
+* :wrench: add utils to vscode scope ([2f4ce63](https://github.com/adaptui/react-native-tailwind/commit/2f4ce634f7de4c8e375a203b98d61455324beb08))
+* add basic divider example ([c456d3e](https://github.com/adaptui/react-native-tailwind/commit/c456d3ee63131f7867e0307b6599063829155baa))
+* **deps:** ⬆️ update dependency babel-loader to v9 ([8518199](https://github.com/adaptui/react-native-tailwind/commit/85181994a07950cd297808b3c709da998322b768))
+* **deps:** ⬆️ update dependency expo-cli to v6 ([4e6fff8](https://github.com/adaptui/react-native-tailwind/commit/4e6fff811360611a9375a32a9b6dd1257c988a39))
+* **deps:** ⬆️ update dependency react-error-overlay to v6.0.11 ([08f468b](https://github.com/adaptui/react-native-tailwind/commit/08f468bc6c6104da25b66229418ae5a92163e628))
+* **deps:** ⬆️ update dev dependencies (major) ([96fe9eb](https://github.com/adaptui/react-native-tailwind/commit/96fe9eb014fc90c8694fe87a8a3cc51964083ad5))
+* **deps:** ⬆️ update dev dependencies (minor) ([34abcec](https://github.com/adaptui/react-native-tailwind/commit/34abcecd429a9521ea60e04a2c2e183d4244b758))
+* **deps:** pin dependency babel-loader to 8.2.5 ([d1e0ff3](https://github.com/adaptui/react-native-tailwind/commit/d1e0ff3aa1b69416d880d05ee6f04d5ddf76d69f))
+* **example-app:** :sparkles: add dashed divider customized component ([68c4b6e](https://github.com/adaptui/react-native-tailwind/commit/68c4b6e5708428bd5ea3eff484ab8f6800919dfe))
+* **example-app:** :zap: update example app with different variants of Button ([c118749](https://github.com/adaptui/react-native-tailwind/commit/c118749b386155cd5d05576db878bce5b6185d14))
+* **example-app:** :zap: update example app with new CheckboxComponent ([7e96316](https://github.com/adaptui/react-native-tailwind/commit/7e963161ace6a6a752acf89742f463dd632f87bc))
+* **example-app:** :zap: update example app with Radio Group Example ([b077947](https://github.com/adaptui/react-native-tailwind/commit/b077947324fc093f6443510f528ad6da90e2fc5c))
+* **example-app:** :zap: update tag component screen with ([b503164](https://github.com/adaptui/react-native-tailwind/commit/b5031640dc73379edbd9ec5136c1817a260c7cd9))
+
 ## [1.0.0-alpha.6](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.5...1.0.0-alpha.6) (2022-06-27)
 
 
