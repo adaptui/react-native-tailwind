@@ -521,7 +521,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           { name: "increment", label: "incrementKnobOne" },
           { name: "decrement", label: "decrementKnobOne" },
         ]}
-        onAccessibilityAction={event => {
+        onAccessibilityAction={(event: any) => {
           switch (event.nativeEvent.actionName) {
             case "increment":
               if (
@@ -606,7 +606,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             { name: "increment", label: "incrementKnobTwo" },
             { name: "decrement", label: "decrementKnobTwo" },
           ]}
-          onAccessibilityAction={event => {
+          onAccessibilityAction={(event: any) => {
             switch (event.nativeEvent.actionName) {
               case "increment":
                 if (knobTwoDraggingValue.value < maxValue) {
