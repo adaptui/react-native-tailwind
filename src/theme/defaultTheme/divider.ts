@@ -1,7 +1,7 @@
 export const divider = {
   horizontal: {
     orientaion: "w-full items-center justify-center",
-    lines: "border-b border-gray-400 w-full",
+    lines: "border border-gray-400 w-full",
     label: {
       start: "z-1 absolute left-4",
       center: "z-1 absolute",
@@ -10,7 +10,7 @@ export const divider = {
   },
   vertical: {
     orientaion: "h-full items-center justify-center",
-    lines: "border-r border-gray-400 h-full",
+    lines: "border border-gray-400 h-full",
     label: {
       start: "z-1 absolute top-4",
       center: "z-1 absolute",
