@@ -22,13 +22,8 @@
     "kodiak",
     "utils",
     "divider",
-<<<<<<< HEAD
-    "text-area",
-    "select"
-=======
     "select",
     "text-area"
->>>>>>> bbb4951 (feat(text-area): :sparkles: add text area component)
   ],
   "git.branchProtection": ["main"]
 }
