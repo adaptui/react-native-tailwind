@@ -21,7 +21,8 @@
     "icons",
     "kodiak",
     "utils",
-    "divider"
+    "divider",
+    "text-area"
   ],
   "git.branchProtection": ["main"]
 }
