@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@adaptui/react-native-tailwind": ["../src/index"]
     }
