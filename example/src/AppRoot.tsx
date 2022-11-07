@@ -18,6 +18,7 @@ import {
   SpinnerScreen,
   SwitchComponentScreen,
   TagScreen,
+  TextAreaScreen,
   TooltipScreen,
 } from "./modules";
 
@@ -110,6 +111,11 @@ const AppRoot = () => {
         options={{ title: "Checkbox Group" }}
         name="CheckboxGroupScreen"
         component={CheckboxGroupScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Text Area" }}
+        name="TextAreaScreen"
+        component={TextAreaScreen}
       />
     </Drawer.Navigator>
   );

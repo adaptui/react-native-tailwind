@@ -13,6 +13,7 @@ import { slider } from "./slider";
 import { spinner } from "./spinner";
 import { switchTheme } from "./switch";
 import { tag } from "./tag";
+import { textArea } from "./textArea";
 import { tooltip } from "./tooltip";
 
 const extendedTheme = {
@@ -32,6 +33,7 @@ const extendedTheme = {
   radio,
   meter,
   divider,
+  textArea,
 };
 
 export default extendedTheme;
