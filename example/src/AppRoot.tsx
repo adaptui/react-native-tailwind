@@ -123,6 +123,11 @@ const AppRoot = () => {
         name="TooltipScreen"
         component={TooltipScreen}
       />
+      <Drawer.Screen
+        options={{ title: "Text Area" }}
+        name="TextAreaScreen"
+        component={TextAreaScreen}
+      />
     </Drawer.Navigator>
   );
 };
