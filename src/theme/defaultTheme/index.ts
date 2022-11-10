@@ -8,7 +8,7 @@ import { input } from "./input";
 import { meter } from "./meter";
 import { progress } from "./progress";
 import { radio } from "./radio";
-import { select } from "./select";
+import { select, selectOption } from "./select";
 import { slider } from "./slider";
 import { spinner } from "./spinner";
 import { switchTheme } from "./switch";
@@ -34,6 +34,7 @@ const extendedTheme = {
   meter,
   divider,
   textArea,
+  selectOption,
 };
 
 export default extendedTheme;
