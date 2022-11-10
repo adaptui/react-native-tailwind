@@ -14,6 +14,7 @@ import {
   MeterComponentScreen,
   ProgressScreen,
   RadioScreen,
+  SelectScreen,
   SliderComponentScreen,
   SpinnerScreen,
   SwitchComponentScreen,
@@ -26,7 +27,12 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="ButtonScreen">
+    <Drawer.Navigator initialRouteName="SelectScreen">
+      <Drawer.Screen
+        options={{ title: "Select" }}
+        name="SelectScreen"
+        component={SelectScreen}
+      />
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
