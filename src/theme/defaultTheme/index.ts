@@ -36,6 +36,7 @@ const extendedTheme = {
   textArea,
   selectOption,
   textArea,
+  selectOption,
 };
 
 export default extendedTheme;
