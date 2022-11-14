@@ -17,7 +17,7 @@ import { composeEventHandlers } from "../../utils/mergeRefs";
 import { Spinner } from "../spinner";
 import { createIcon, Icon, TextAreaSuffix } from "..";
 
-export type TextAreaVariants = "outline" | "subtle" | "underline" | "ghost";
+export type TextAreaVariants = "outline" | "subtle" | "underline";
 export type TextAreaSizes = "sm" | "md" | "lg" | "xl";
 
 export interface TextAreaProps extends TextInputProps {

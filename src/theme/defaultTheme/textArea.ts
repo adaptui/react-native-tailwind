@@ -144,42 +144,5 @@ export const textArea = {
         suffix: "text-red-800",
       },
     },
-    ghost: {
-      default: {
-        base: "text-gray-800 border border-transparent",
-        placeholder: "text-gray-600",
-        suffix: "text-gray-600",
-      },
-      hover: {
-        base: "bg-gray-200",
-        placeholder: "text-gray-700",
-        suffix: "text-gray-700 ",
-      },
-      active: {
-        base: "bg-gray-100",
-        placeholder: "text-gray-800",
-        suffix: "text-gray-800",
-      },
-      focus: {
-        base: {
-          common: "bg-gray-100",
-          boxShadow: {
-            offset: 3,
-            color: "bg-gray-500",
-          },
-        },
-        placeholder: "text-gray-800",
-        suffix: "text-gray-800",
-      },
-      disabled: {
-        base: "text-gray-500",
-        placeholder: "text-gray-500",
-        suffix: "text-gray-500",
-      },
-      invalid: {
-        base: "",
-        suffix: "text-red-800",
-      },
-    },
   },
 };
