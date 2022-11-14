@@ -22,7 +22,7 @@
     "kodiak",
     "utils",
     "divider",
-    "text-area"
+    "text-area",
     "select"
   ],
   "git.branchProtection": ["main"]
