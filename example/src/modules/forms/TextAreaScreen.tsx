@@ -17,6 +17,7 @@ export const TextAreaScreen = () => {
   const [variant, setVariant] = useState("subtle");
   const [loading, setLoading] = useState(false);
   const [invalid, setInvalid] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [size, setSize] = useState("sm");
   const [icon, setIcon] = useState(false);
   const suffix = icon ? <Icon icon={<Slot />} /> : null;
@@ -24,7 +25,7 @@ export const TextAreaScreen = () => {
   return (
     <Box
       style={tailwind.style(
-        "flex-1 justify-center bg-white-900 items-center p-2 w-full",
+        "flex-1 justify-center bg-white-500 items-center p-2 w-full",
       )}
     >
       <TextArea
@@ -34,6 +35,7 @@ export const TextAreaScreen = () => {
         loading={loading}
         invalid={invalid}
         suffix={suffix}
+        editable={!disabled}
       />
       <Box style={tailwind.style("absolute bottom-0")}>
         <RadioGroup
@@ -52,20 +54,27 @@ export const TextAreaScreen = () => {
           <Radio value="lg" label="Large" />
           <Radio value="xl" label="Extra Large" />
         </RadioGroup>
-        <Box style={tailwind.style("flex-row items-center  py-2")}>
-          <Switch
-            size="lg"
-            label="Loading"
-            state={loading}
-            onStateChange={setLoading}
-          />
-          <Switch
-            size="lg"
-            label="Invalid"
-            state={invalid}
-            onStateChange={setInvalid}
-          />
-          <Switch size="lg" label="Icon" state={icon} onStateChange={setIcon} />
+        <Box style={tailwind.style("flex-row justify-center")}>
+          <Box style={tailwind.style("flex-col items-center")}>
+            <Switch
+              label="Loading"
+              state={loading}
+              onStateChange={setLoading}
+            />
+            <Switch
+              label="Invalid"
+              state={invalid}
+              onStateChange={setInvalid}
+            />
+          </Box>
+          <Box style={tailwind.style("flex-col items-center ")}>
+            <Switch
+              label="Disabled"
+              state={disabled}
+              onStateChange={setDisabled}
+            />
+            <Switch label="Icon" state={icon} onStateChange={setIcon} />
+          </Box>
         </Box>
       </Box>
     </Box>

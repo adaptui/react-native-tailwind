@@ -96,7 +96,7 @@ export const input = {
         suffix: "text-gray-700 ",
       },
       active: {
-        base: "bg-white-900",
+        base: "bg-white-900 border-gray-500",
         placeholder: "text-gray-800",
         prefix: "text-gray-800",
         suffix: "text-gray-800",

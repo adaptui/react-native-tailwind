@@ -72,7 +72,7 @@ export const textArea = {
     },
     subtle: {
       default: {
-        base: "text-gray-800 bg-gray-100 border border-transparent",
+        base: "text-gray-800 bg-gray-100",
         placeholder: "text-gray-600",
         suffix: "text-gray-600",
       },
@@ -82,7 +82,7 @@ export const textArea = {
         suffix: "text-gray-700 ",
       },
       active: {
-        base: "bg-white-900",
+        base: "bg-white-900 border border-gray-500",
         placeholder: "text-gray-800",
         suffix: "text-gray-800",
       },
