@@ -1,57 +1,73 @@
-import React from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import { Box, TextArea, useTheme } from "@adaptui/react-native-tailwind";
+import React, { useState } from "react";
+import {
+  Box,
+  Icon,
+  Radio,
+  RadioGroup,
+  Slot,
+  Switch,
+  TextArea,
+  TextAreaSizes,
+  TextAreaVariants,
+  useTheme,
+} from "@adaptui/react-native-tailwind";
 
 export const TextAreaScreen = () => {
   const tailwind = useTheme();
+  const [variant, setVariant] = useState("subtle");
+  const [loading, setLoading] = useState(false);
+  const [invalid, setInvalid] = useState(false);
+  const [size, setSize] = useState("sm");
+  const [icon, setIcon] = useState(false);
+  const suffix = icon ? <Icon icon={<Slot />} /> : null;
+
   return (
-    <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
-      <ScrollView>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="sm"
-            variant="outline"
-          />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="md"
-            variant="outline"
-          />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
+    <Box
+      style={tailwind.style(
+        "flex-1 justify-center bg-white-900 items-center p-2 w-full",
+      )}
+    >
+      <TextArea
+        placeholder={"Type Something...."}
+        size={size as TextAreaSizes}
+        variant={variant as TextAreaVariants}
+        loading={loading}
+        invalid={invalid}
+        suffix={suffix}
+      />
+      <Box style={tailwind.style("absolute bottom-0")}>
+        <RadioGroup
+          value={variant}
+          onChange={setVariant}
+          orientation="horizontal"
+        >
+          <Radio value="ghost" label="Ghost" />
+          <Radio value="subtle" label="Subtle" />
+          <Radio value="outline" label="Outline" />
+          <Radio value="underline" label="Underline" />
+        </RadioGroup>
+        <RadioGroup value={size} onChange={setSize} orientation="horizontal">
+          <Radio value="sm" label="Small" />
+          <Radio value="md" label="Medium" />
+          <Radio value="lg" label="Large" />
+          <Radio value="xl" label="Extra Large" />
+        </RadioGroup>
+        <Box style={tailwind.style("flex-row items-center  py-2")}>
+          <Switch
             size="lg"
-            variant="outline"
+            label="Loading"
+            state={loading}
+            onStateChange={setLoading}
           />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="xl"
-            variant="outline"
+          <Switch
+            size="lg"
+            label="Invalid"
+            state={invalid}
+            onStateChange={setInvalid}
           />
+          <Switch size="lg" label="Icon" state={icon} onStateChange={setIcon} />
         </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="xl"
-            variant="outline"
-            loading
-          />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="xl"
-            variant="outline"
-            invalid
-          />
-        </Box>
-      </ScrollView>
+      </Box>
     </Box>
   );
 };
