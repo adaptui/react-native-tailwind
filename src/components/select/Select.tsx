@@ -1,22 +1,33 @@
 import React, { forwardRef, useCallback, useMemo, useRef } from "react";
+import { ListRenderItemInfo, PressableProps } from "react-native";
 import { useControllableState } from "@chakra-ui/hooks";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { useHover } from "@react-native-aria/interactions";
+import { BottomSheetFlatList, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { isUndefined } from "lodash";
 
-import { Box, Text, Touchable } from "../../primitives";
+import { Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
-import { createComponent, createContext, RenderPropType } from "../../utils";
+import {
+  createComponent,
+  createContext,
+  RenderPropType,
+  styleAdapter,
+  useOnHover,
+} from "../../utils";
 
+import { SelectOption } from "./SelectOption";
 import { SelectPrefix } from "./SelectPrefix";
 import { SelectSuffix } from "./SelectSuffix";
 
 export type SelectSizes = "sm" | "md" | "lg" | "xl";
 export type SelectVariants = "outline" | "subtle" | "underline" | "ghost";
 
-type ItemData = { value: string; disabled: boolean; label: string };
+export type ItemData = { value: string; disabled?: boolean; label: string };
 
-export interface SelectProps {
+function keyExtractor(item: ItemData) {
+  return `select-item-${item.value}`;
+}
+
+export interface SelectProps extends PressableProps {
   /**
    * The Select Options
    */
@@ -61,6 +72,10 @@ export interface SelectProps {
    * True, if the select is disabled.
    */
   disabled: boolean;
+  /**
+   * Bottomsheet Snap points
+   */
+  snapPoints: string[];
 }
 
 const [SelectGroupProvider, useSelectGroupContext] = createContext({
@@ -87,6 +102,10 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
     state,
     onStateChange,
     placeholder = "Select option",
+    options,
+    snapPoints: _snapPoints,
+    style,
+    ...otherProps
   } = props;
 
   const [prefixWidth, setPrefixWidth] = React.useState(0);
@@ -100,28 +119,52 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
 
   const selectRef = useRef();
 
-  const { isHovered, hoverProps } = useHover({}, selectRef);
-
+  const { onHoverIn, onHoverOut, hovered } = useOnHover();
+  const isHovered = useMemo(
+    () => (hovered.value ? true : false),
+    [hovered.value],
+  );
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = useMemo(() => ["25%", "50%"], []);
-
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
-  }, []);
+  const snapPoints = useMemo(
+    () => (_snapPoints ? _snapPoints : ["50%"]),
+    [_snapPoints],
+  );
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
 
+  const renderSelectItem = ({ item }: ListRenderItemInfo<ItemData>) => {
+    const handleSelectItemPress = () => {
+      setSelectState(item.value);
+      bottomSheetModalRef.current?.dismiss();
+    };
+    const isSelected = selectState === item.value;
+    return (
+      <SelectOption
+        key={`select-item-${item.value}`}
+        value={item.value}
+        label={item.label}
+        size={size}
+        handlePress={handleSelectItemPress}
+        isSelected={isSelected}
+      />
+    );
+  };
+
   return (
     <SelectGroupProvider value={{ selectState, setSelectState }}>
       <Touchable
+        // Web Callbacks
+        onHoverIn={onHoverIn}
+        onHoverOut={onHoverOut}
+        // Web Callbacks
         onPress={handlePresentModalPress}
-        style={({ pressed }) => [
+        style={touchState => [
           tailwind.style([
             selectStyle.base.common,
             selectStyle.base.size[size].common,
@@ -129,14 +172,15 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
             selectStyle.base.variant[variant].common,
             invalid ? selectStyle.base.variant[variant].invalid : "",
             disabled ? selectStyle.base.variant[variant].disabled : "",
-            pressed || isHovered
+            touchState.pressed || hovered.value
               ? selectStyle.base.variant[variant].pressedOrHovered
               : "",
           ]),
+          styleAdapter(style, touchState),
         ]}
+        {...otherProps}
         disabled={disabled}
         ref={selectRef}
-        {...hoverProps}
       >
         {({ pressed }) => {
           return (
@@ -155,7 +199,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
               <Text
                 style={tailwind.style([
                   selectStyle.base.text.size[size],
-                  pressed || isHovered
+                  pressed || hovered.value
                     ? selectStyle.base.text.variant[variant].common
                     : disabled
                     ? selectStyle.base.text.variant[variant].disabled
@@ -166,7 +210,10 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                   `pr-[${suffixWidth}px]`,
                 ])}
               >
-                {isUndefined(selectState) ? placeholder : selectState}
+                {isUndefined(selectState)
+                  ? placeholder
+                  : options?.filter(item => item.value === selectState)[0]
+                      ?.label}
               </Text>
               <SelectSuffix
                 onLayout={event =>
@@ -186,10 +233,15 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={snapPoints}
-        onChange={handleSheetChanges}
         style={tailwind.style("rounded-t-lg shadow-lg")}
       >
-        <Box style={tailwind.style("flex-1")}>{props.children}</Box>
+        <BottomSheetFlatList
+          data={options}
+          keyExtractor={keyExtractor}
+          renderItem={renderSelectItem}
+          contentContainerStyle={tailwind.style("px-4")}
+          extraData={selectState}
+        />
       </BottomSheetModal>
     </SelectGroupProvider>
   );
