@@ -5,28 +5,28 @@ export const textArea = {
   size: {
     sm: {
       base: {
-        default: "h-[73px] p-1 text-cxs rounded-lg",
+        default: "h-[73px] px-2 py-[5.5px] text-cxs rounded-[8px]",
         withoutAddon: "px-2",
       },
       suffix: "h-[73px] text-xs pr-2 pl-1.5 h-full",
     },
     md: {
       base: {
-        default: "h-[79px] p-1 text-sm rounded-lg",
+        default: "h-[79px] px-2.2 py-[7px] text-sm rounded-[8px]",
         withoutAddon: "px-2.5",
       },
       suffix: "h-[79px] text-xs pr-2 pl-1.5",
     },
     lg: {
       base: {
-        default: "h-[85px] p-1 text-sm rounded-[10px]",
+        default: "h-[85px] px-2.2 py-[10px] text-sm rounded-[8px]",
         withoutAddon: "px-3",
       },
       suffix: "h-[85px] text-xs pr-2 pl-1.5",
     },
     xl: {
       base: {
-        default: "h-25 p-1 text-base rounded-xl py-3",
+        default: "h-25 px-2 py-[13px] text-base rounded-[8px]",
         withoutAddon: "px-3",
       },
       suffix: "h-25 text-base pr-2 pl-2",

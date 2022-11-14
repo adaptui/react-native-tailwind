@@ -1,12 +1,6 @@
 import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
-import {
-  Box,
-  Icon,
-  Slot,
-  TextArea,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, TextArea, useTheme } from "@adaptui/react-native-tailwind";
 
 export const TextAreaScreen = () => {
   const tailwind = useTheme();
@@ -17,7 +11,14 @@ export const TextAreaScreen = () => {
           <TextArea
             placeholder={"Type Something...."}
             size="sm"
-            variant="ghost"
+            variant="outline"
+          />
+        </Box>
+        <Box style={tailwind.style("p-2")}>
+          <TextArea
+            placeholder={"Type Something...."}
+            size="md"
+            variant="outline"
           />
         </Box>
         <Box style={tailwind.style("p-2")}>
@@ -25,65 +26,29 @@ export const TextAreaScreen = () => {
             placeholder={"Type Something...."}
             size="lg"
             variant="outline"
-            suffix={<Icon icon={<Slot />} />}
-            invalid
           />
         </Box>
         <Box style={tailwind.style("p-2")}>
           <TextArea
             placeholder={"Type Something...."}
-            size="sm"
+            size="xl"
             variant="outline"
-            loading={true}
           />
         </Box>
         <Box style={tailwind.style("p-2")}>
           <TextArea
             placeholder={"Type Something...."}
-            size="sm"
-            variant="subtle"
-            loading={true}
+            size="xl"
+            variant="outline"
+            loading
           />
         </Box>
         <Box style={tailwind.style("p-2")}>
           <TextArea
             placeholder={"Type Something...."}
-            size="sm"
-            variant="underline"
-            loading={true}
-          />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="sm"
+            size="xl"
+            variant="outline"
             invalid
-            loading={true}
-          />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="sm"
-            variant="underline"
-            invalid
-            loading={true}
-          />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="sm"
-            variant="subtle"
-            invalid
-            loading={true}
-          />
-        </Box>
-        <Box style={tailwind.style("p-2")}>
-          <TextArea
-            placeholder={"Type Something...."}
-            size="sm"
-            editable={false}
           />
         </Box>
       </ScrollView>
