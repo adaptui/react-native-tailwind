@@ -23,19 +23,22 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
 }) => {
   const tailwind = useTheme();
   const selectSuffixStyles = useTheme("select");
-  const iconColor = invalid
-    ? selectSuffixStyles.suffix.variant[variant].invalid
+
+  // Icon Stroke Color based on Select State
+  const iconColor = isPressedOrHovered
+    ? selectSuffixStyles.suffix.variant[variant].pressedOrHovered
     : disabled
     ? selectSuffixStyles.suffix.variant[variant].disabled
-    : isPressedOrHovered
-    ? selectSuffixStyles.suffix.variant[variant].pressedOrHovered
+    : invalid
+    ? selectSuffixStyles.suffix.variant[variant].invalid
     : selectSuffixStyles.suffix.variant[variant].default;
+
   return (
     <Box
       style={tailwind.style([
-        selectSuffixStyles.suffix.common,
+        selectSuffixStyles.suffix.default,
         selectSuffixStyles.suffix.size[size],
-        selectSuffixStyles.suffix.variant[variant].common,
+        selectSuffixStyles.prefix.variant[variant].wrapper,
       ])}
       {...props}
     >
