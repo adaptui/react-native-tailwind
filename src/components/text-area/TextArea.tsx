@@ -59,18 +59,22 @@ export interface TextAreaProps extends TextInputProps {
   _suffixProps: TouchableProps;
   /**
    * A11y Label
+   * The aria-label attribute defines a string value that labels an interactive element.
    */
   accessibilityLabel: string;
   /**
    * A11y Described By
+   * Identifies the element (or elements) that describes the object.
    */
   accessibilityDescribedBy: string;
   /**
    * A11y Error
+   * Identifies the element that provides an error message for an object.
    */
   accessibilityErrorMessage: string;
   /**
-   * A11y Label
+   * A11y Invalid
+   * The aria-invalid state indicates the entered value does not conform to the format expected by the application.
    */
   accessibilityInvalid: boolean;
 }
@@ -125,6 +129,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
 
   const [suffixWidth, setSuffixWidth] = React.useState(0);
 
+  /* A memoized function that returns the color of the placeholder text. */
   const placeholderTextColor = useMemo(() => {
     return tailwind.getColor(
       cx(
@@ -143,6 +148,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocussedWeb, isHovered, editable, isFocussedMobile]);
 
+  /* This is a hack to update the value of the textarea. */
   React.useEffect(() => {
     // @ts-ignore
 
@@ -255,16 +261,19 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
             : {},
           styleAdapter(textInputStyle),
         ]}
+        multiline={true}
         placeholderTextColor={placeholderTextColor}
         editable={editable}
-        {...restProps}
         onFocus={composeEventHandlers(onFocus, handleOnFocus)}
         onBlur={composeEventHandlers(onBlur, handleOnBlur)}
         // A11y Props
         accessibilityLabel={accessibilityLabel}
         // A11y Props
         defaultValue={defaultValue}
+        accessible
+        accessibilityRole="text"
         // @ts-ignore
+        // added ts-ignore for the web accessibility props
         accessibilityDescribedBy={Platform.select({
           web: accessibilityDescribedBy ? accessibilityDescribedBy : undefined,
           default: undefined,
@@ -279,10 +288,8 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
           web: accessibilityInvalid,
           default: undefined,
         })}
-        accessible
-        accessibilityRole="text"
-        multiline={true}
         ref={inputRef}
+        {...restProps}
       />
       {_suffix && (
         <TextAreaSuffix

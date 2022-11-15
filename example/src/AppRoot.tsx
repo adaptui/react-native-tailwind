@@ -29,11 +29,6 @@ const AppRoot = () => {
   return (
     <Drawer.Navigator initialRouteName="SelectScreen">
       <Drawer.Screen
-        options={{ title: "Select" }}
-        name="SelectScreen"
-        component={SelectScreen}
-      />
-      <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
         component={AvatarScreen}
@@ -44,14 +39,14 @@ const AppRoot = () => {
         component={AvatarGroupScreen}
       />
       <Drawer.Screen
-        options={{ title: "Button" }}
-        name="ButtonScreen"
-        component={ButtonScreen}
-      />
-      <Drawer.Screen
         options={{ title: "Badge" }}
         name="BadgeScreen"
         component={BadgeScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Button" }}
+        name="ButtonScreen"
+        component={ButtonScreen}
       />
       <Drawer.Screen
         options={{ title: "Checkbox" }}
@@ -59,14 +54,24 @@ const AppRoot = () => {
         component={CheckboxScreen}
       />
       <Drawer.Screen
+        options={{ title: "Checkbox Group" }}
+        name="CheckboxGroupScreen"
+        component={CheckboxGroupScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Circular Progress" }}
+        name="CircularProgressScreen"
+        component={CircularProgressScreen}
+      />
+      <Drawer.Screen
         options={{ title: "Divider" }}
         name="DividerScreen"
         component={DividerScreen}
       />
       <Drawer.Screen
-        options={{ title: "Spinner" }}
-        name="SpinnerScreen"
-        component={SpinnerScreen}
+        options={{ title: "Input" }}
+        name="InputScreen"
+        component={InputScreen}
       />
       <Drawer.Screen
         options={{ title: "Meter" }}
@@ -74,24 +79,19 @@ const AppRoot = () => {
         component={MeterComponentScreen}
       />
       <Drawer.Screen
-        options={{ title: "Tooltip" }}
-        name="TooltipScreen"
-        component={TooltipScreen}
+        options={{ title: "Select" }}
+        name="SelectScreen"
+        component={SelectScreen}
       />
       <Drawer.Screen
-        options={{ title: "Tag " }}
-        name="TagScreen"
-        component={TagScreen}
+        options={{ title: "Spinner" }}
+        name="SpinnerScreen"
+        component={SpinnerScreen}
       />
       <Drawer.Screen
         options={{ title: "Progress " }}
         name="ProgressScreen"
         component={ProgressScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Switch" }}
-        name="SwitchComponentScreen"
-        component={SwitchComponentScreen}
       />
       <Drawer.Screen
         options={{ title: "Radio" }}
@@ -104,24 +104,24 @@ const AppRoot = () => {
         component={SliderComponentScreen}
       />
       <Drawer.Screen
-        options={{ title: "Circular Progress" }}
-        name="CircularProgressScreen"
-        component={CircularProgressScreen}
+        options={{ title: "Switch" }}
+        name="SwitchComponentScreen"
+        component={SwitchComponentScreen}
       />
       <Drawer.Screen
-        options={{ title: "Input" }}
-        name="InputScreen"
-        component={InputScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Checkbox Group" }}
-        name="CheckboxGroupScreen"
-        component={CheckboxGroupScreen}
+        options={{ title: "Tag " }}
+        name="TagScreen"
+        component={TagScreen}
       />
       <Drawer.Screen
         options={{ title: "Text Area" }}
         name="TextAreaScreen"
         component={TextAreaScreen}
+      />
+      <Drawer.Screen
+        options={{ title: "Tooltip" }}
+        name="TooltipScreen"
+        component={TooltipScreen}
       />
     </Drawer.Navigator>
   );
