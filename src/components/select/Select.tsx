@@ -169,7 +169,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
             selectStyle.base.common,
             selectStyle.base.size[size].common,
             !prefix ? selectStyle.base.size[size].withoutAddon : "",
-            selectStyle.base.variant[variant].common,
+            selectStyle.base.variant[variant].default,
             invalid ? selectStyle.base.variant[variant].invalid : "",
             disabled ? selectStyle.base.variant[variant].disabled : "",
             touchState.pressed || hovered.value
@@ -200,12 +200,12 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 style={tailwind.style([
                   selectStyle.base.text.size[size],
                   pressed || hovered.value
-                    ? selectStyle.base.text.variant[variant].common
+                    ? selectStyle.base.text.variant[variant].pressedOrHovered
                     : disabled
                     ? selectStyle.base.text.variant[variant].disabled
                     : isUndefined(selectState)
-                    ? selectStyle.base.text.variant[variant].initial
-                    : selectStyle.base.text.variant[variant].common,
+                    ? selectStyle.base.text.variant[variant].default
+                    : selectStyle.base.text.variant[variant].filled,
                   prefix ? `pl-[${prefixWidth}px]` : "",
                   `pr-[${suffixWidth}px]`,
                 ])}

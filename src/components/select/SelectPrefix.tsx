@@ -27,6 +27,16 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
 }) => {
   const tailwind = useTheme();
   const selectPrefixStyles = useTheme("select");
+
+  // Icon Stroke Color based on Select State
+  const iconColor = isPressedOrHovered
+    ? selectPrefixStyles.suffix.variant[variant].pressedOrHovered
+    : disabled
+    ? selectPrefixStyles.suffix.variant[variant].disabled
+    : invalid
+    ? selectPrefixStyles.suffix.variant[variant].invalid
+    : selectPrefixStyles.suffix.variant[variant].default;
+
   const _prefix: SelectProps["prefix"] = React.useMemo(() => {
     const selectPrefix =
       // @ts-ignore
@@ -34,29 +44,19 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
         ? createIcon({
             icon: prefix,
             iconSize: selectPrefixStyles.base.icon.size[size],
-            iconFill: tailwind.getColor(
-              invalid
-                ? selectPrefixStyles.prefix.variant[variant].invalid
-                : disabled
-                ? selectPrefixStyles.prefix.variant[variant].disabled
-                : isPressedOrHovered
-                ? selectPrefixStyles.prefix.variant[variant].pressedOrHovered
-                : selectPrefixStyles.prefix.variant[variant].default,
-            ),
-            iconStyle: tailwind.style(
-              selectPrefixStyles.prefix.variant[variant].common,
-            ),
+            iconFill: tailwind.getColor(iconColor),
           })
         : prefix;
     return selectPrefix;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [disabled, invalid, prefix, isPressedOrHovered]);
+
   return (
     <Box
       style={tailwind.style(
-        selectPrefixStyles.prefix.common,
+        selectPrefixStyles.prefix.default,
         selectPrefixStyles.prefix.size[size],
-        selectPrefixStyles.prefix.variant[variant].common,
+        selectPrefixStyles.prefix.variant[variant].wrapper,
       )}
       {...props}
     >
