@@ -61,6 +61,18 @@ export interface TextAreaProps extends TextInputProps {
    * A11y Label
    */
   accessibilityLabel: string;
+  /**
+   * A11y Described By
+   */
+  accessibilityDescribedBy: string;
+  /**
+   * A11y Error
+   */
+  accessibilityErrorMessage: string;
+  /**
+   * A11y Label
+   */
+  accessibilityInvalid: boolean;
 }
 
 interface DefaultTextAreaSpinnerProps extends Pick<TextAreaProps, "size"> {
@@ -99,7 +111,10 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
     _suffixProps,
     value,
     style: textInputStyle,
-    accessibilityLabel,
+    accessibilityLabel = "Write here",
+    accessibilityDescribedBy,
+    accessibilityErrorMessage,
+    accessibilityInvalid,
     ...restProps
   } = props;
   const tailwind = useTheme();
@@ -249,6 +264,21 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
         accessibilityLabel={accessibilityLabel}
         // A11y Props
         defaultValue={defaultValue}
+        // @ts-ignore
+        accessibilityDescribedBy={Platform.select({
+          web: accessibilityDescribedBy ? accessibilityDescribedBy : undefined,
+          default: undefined,
+        })}
+        accessibilityErrorMessage={Platform.select({
+          web: accessibilityErrorMessage
+            ? accessibilityErrorMessage
+            : undefined,
+          default: undefined,
+        })}
+        accessibilityInvalid={Platform.select({
+          web: accessibilityInvalid,
+          default: undefined,
+        })}
         accessible
         accessibilityRole="text"
         multiline={true}
