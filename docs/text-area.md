@@ -3,6 +3,7 @@
 Adapt UI provides textarea with three styles and six interaction
 states. Use this component to receive information from the user.
 
+![SCR-20221115-utg](https://user-images.githubusercontent.com/20360870/201976908-c51596e9-0ac6-4740-a2ba-660e6f9d8ca7.png)
 #### Simple Usage
 
 ```js
