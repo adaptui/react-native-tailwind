@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
+  Button,
   Icon,
   Radio,
   RadioGroup,
@@ -21,6 +22,7 @@ export const TextAreaScreen = () => {
   const [size, setSize] = useState("sm");
   const [icon, setIcon] = useState(false);
   const suffix = icon ? <Icon icon={<Slot />} /> : null;
+  const ref = useRef(null);
 
   return (
     <Box
@@ -36,6 +38,7 @@ export const TextAreaScreen = () => {
         invalid={invalid}
         suffix={suffix}
         editable={!disabled}
+        ref={ref}
       />
       <Box style={tailwind.style("absolute bottom-0")}>
         <RadioGroup
@@ -66,7 +69,7 @@ export const TextAreaScreen = () => {
               onStateChange={setInvalid}
             />
           </Box>
-          <Box style={tailwind.style("flex-col items-center ")}>
+          <Box style={tailwind.style("flex-col items-center")}>
             <Switch
               label="Disabled"
               state={disabled}
@@ -74,6 +77,10 @@ export const TextAreaScreen = () => {
             />
             <Switch label="Icon" state={icon} onStateChange={setIcon} />
           </Box>
+        </Box>
+        <Box style={tailwind.style("flex-row justify-center")}>
+          <Button onPress={() => ref.current.blur()}>Focus out</Button>
+          <Button onPress={() => ref.current.focus()}>Focus in</Button>
         </Box>
       </Box>
     </Box>

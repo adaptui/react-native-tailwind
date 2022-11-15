@@ -13,7 +13,7 @@ import {
   useOnHover,
 } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
-import { composeEventHandlers } from "../../utils/mergeRefs";
+import { composeEventHandlers, mergeRefs } from "../../utils/mergeRefs";
 import { Spinner } from "../spinner";
 import { createIcon, Icon, TextAreaSuffix } from "..";
 
@@ -83,7 +83,9 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
   const [isFocussedMobile, setIsFocussedMobile] = useState(false);
   const handleOnFocus = () => setIsFocussedMobile(true);
   const handleOnBlur = () => setIsFocussedMobile(false);
-  const inputRef = useRef();
+
+  const localRef = useRef();
+  const inputRef = mergeRefs([localRef, ref]);
 
   const {
     size = "md",
@@ -129,10 +131,10 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
   React.useEffect(() => {
     // @ts-ignore
 
-    ref?.current?.setNativeProps?.({
+    inputRef?.current?.setNativeProps?.({
       text: value,
     });
-  }, [ref, value, suffixWidth, loading, placeholderTextColor]);
+  }, [inputRef, value, suffixWidth, loading, placeholderTextColor]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = React.useMemo(() => value, []);
@@ -247,6 +249,8 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
         accessibilityLabel={accessibilityLabel}
         // A11y Props
         defaultValue={defaultValue}
+        accessible
+        accessibilityRole="text"
         multiline={true}
         ref={inputRef}
       />
