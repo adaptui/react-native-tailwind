@@ -30,12 +30,12 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
 
   // Icon Stroke Color based on Select State
   const iconColor = isPressedOrHovered
-    ? selectPrefixStyles.suffix.variant[variant].pressedOrHovered
+    ? selectPrefixStyles.prefix.variant[variant].pressedOrHovered
     : disabled
-    ? selectPrefixStyles.suffix.variant[variant].disabled
+    ? selectPrefixStyles.prefix.variant[variant].disabled
     : invalid
-    ? selectPrefixStyles.suffix.variant[variant].invalid
-    : selectPrefixStyles.suffix.variant[variant].default;
+    ? selectPrefixStyles.prefix.variant[variant].invalid
+    : selectPrefixStyles.prefix.variant[variant].default;
 
   const _prefix: SelectProps["prefix"] = React.useMemo(() => {
     const selectPrefix =
