@@ -38,7 +38,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
       style={tailwind.style([
         selectSuffixStyles.suffix.default,
         selectSuffixStyles.suffix.size[size],
-        selectSuffixStyles.prefix.variant[variant].wrapper,
+        selectSuffixStyles.suffix.variant[variant].wrapper,
       ])}
       {...props}
     >

@@ -121,7 +121,7 @@ export const select = {
         filled: "text-gray-800",
         disabled: "text-gray-500",
         invalid: "text-red-800",
-        wrapper: "px-0.5",
+        wrapper: "pl-0.5",
       },
       ghost: {
         default: "text-gray-600",
@@ -165,7 +165,7 @@ export const select = {
         filled: "text-gray-800",
         disabled: "text-gray-500",
         invalid: "text-red-800",
-        wrapper: "px-0.5",
+        wrapper: "pr-0.5",
       },
       ghost: {
         default: "text-gray-600",
