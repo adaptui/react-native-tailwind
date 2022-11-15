@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
+  Icon,
   ItemData,
+  Radio,
+  RadioGroup,
   Select,
+  SelectSizes,
+  SelectVariants,
+  Slot,
+  Switch,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -68,34 +75,76 @@ const options: ItemData[] = [
 
 export const SelectScreen = () => {
   const tailwind = useTheme();
+  const [selectedSize, setSelectedSize] = useState<SelectSizes>("md");
+  const [selectedVariant, setSelectedVariant] =
+    useState<SelectVariants>("outline");
+
+  const [isSelectInvalid, setIsSelectInvalid] = useState<boolean>(false);
+  const [isSelectDisabled, setIsSelectDisabled] = useState<boolean>(false);
+  const [hasPrefix, setHasPrefix] = useState<boolean>(false);
 
   return (
-    <Box style={tailwind.style("flex-1 px-2 justify-center bg-white-900")}>
+    <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <BottomSheetModalProvider>
-        <Select
-          style={tailwind.style("my-1")}
-          size="sm"
-          options={options}
-          placeholder="Select fruit"
-        />
-        <Select
-          style={tailwind.style("my-1")}
-          size="md"
-          options={options}
-          placeholder="Select fruit"
-        />
-        <Select
-          style={tailwind.style("my-1")}
-          size="lg"
-          options={options}
-          placeholder="Select fruit"
-        />
-        <Select
-          style={tailwind.style("my-1")}
-          size="xl"
-          options={options}
-          placeholder="Select fruit"
-        />
+        <Box style={tailwind.style("flex-1 px-2  justify-center")}>
+          <Select
+            size={selectedSize}
+            variant={selectedVariant}
+            invalid={isSelectInvalid}
+            disabled={isSelectDisabled}
+            options={options}
+            placeholder="Select fruit"
+            prefix={hasPrefix ? <Icon icon={<Slot />} /> : null}
+          />
+        </Box>
+        <Box
+          style={tailwind.style(
+            "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          )}
+        >
+          <RadioGroup
+            value={selectedSize}
+            onChange={value => setSelectedSize(value as SelectSizes)}
+            orientation="horizontal"
+          >
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+            <Radio value="xl" label="xl" />
+          </RadioGroup>
+          <RadioGroup
+            value={selectedVariant}
+            onChange={value => setSelectedVariant(value as SelectVariants)}
+            orientation="horizontal"
+          >
+            <Radio value="outline" label="outline" />
+            <Radio value="subtle" label="subtle" />
+            <Radio value="underline" label="underline" />
+            <Radio value="ghost" label="ghost" />
+          </RadioGroup>
+          <Box style={tailwind.style("flex flex-row justify-center w-full")}>
+            <Switch
+              state={isSelectInvalid}
+              onStateChange={value => setIsSelectInvalid(value)}
+              size="md"
+              label="Invalid"
+            />
+            <Switch
+              state={isSelectDisabled}
+              onStateChange={value => setIsSelectDisabled(value)}
+              size="md"
+              style={tailwind.style("ml-1")}
+              label="Disabled"
+            />
+            <Switch
+              state={hasPrefix}
+              onStateChange={value => setHasPrefix(value)}
+              size="md"
+              style={tailwind.style("ml-1")}
+              label="Prefix"
+            />
+          </Box>
+        </Box>
       </BottomSheetModalProvider>
     </Box>
   );
