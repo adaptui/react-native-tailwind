@@ -29,47 +29,46 @@ function keyExtractor(item: ItemData) {
 
 export interface SelectProps extends PressableProps {
   /**
-   * The Select Options
+   * The Select Options to render inside the Bottomsheet Flatlist
    */
   options: Array<ItemData>;
   /**
-   * Default value of Select when value is uncontrolled
+   * Default value of Select when it is uncontrolled
    */
   defaultState: string;
   /**
-   * Default value of Select when value is controlled
+   * Value of Select when it is controlled
    */
   state: string;
   /**
-   * Callback called with the new value when it changes.
+   * Callback called with the new value when on selecting options from Flatlist
    */
   onStateChange: (val: string) => void;
   /**
-   * Default placeholder value
+   * Placeholder value
+   * @default "Select Option"
    */
   placeholder: string;
   /**
    * How large should the select be?
-   *
    * @default md
    */
   size: SelectSizes;
   /**
    * How the select should look?
-   *
    * @default outline
    */
   variant: SelectVariants;
   /**
-   * Prefix for the Select.
+   * Prefix for the Select Component
    */
   prefix: RenderPropType;
   /**
-   * True, if the value of the textarea is invalid.
+   * Set to True, if the value of the Select component is invalid.
    */
   invalid: boolean;
   /**
-   * True, if the select is disabled.
+   * Set to true, if the select is disabled.
    */
   disabled: boolean;
   /**
