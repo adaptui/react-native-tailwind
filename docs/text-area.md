@@ -55,8 +55,8 @@ export default function App() {
 
 ## Variant
 
-Adapt UI provides four different input field components styles: `outline`,
-`subtle` and `underline`.
+Adapt UI provides four different input field components styles: `subtle`, `outline`,
+ and `underline`.
 
 You can use these various styled input field components based on the necessity
 and style you wish to provide to your design.
@@ -95,7 +95,7 @@ There are four different sizes for input in Adapt UI: `sm`, `md`, `lg` & `xl`
 Based on the hierarchy, you can switch between different sizes.
 
 
-![simulator_screenshot_BCCD5B62-43DE-4E94-934A-97A6D2C9956F](https://user-images.githubusercontent.com/20360870/202175990-974369e3-4880-41d2-857d-fc55aeb1700e.png)
+![simulator_screenshot_B717A1F7-8750-4FBC-8616-B35A64853D61](https://user-images.githubusercontent.com/20360870/202188784-1aa674aa-62bc-4ec5-b207-e249c23795c2.png)
 
 
 <details>
@@ -113,7 +113,7 @@ export default function App() {
   return (
     <>
       <TextArea size="sm" placeholder="Whats happening" />
-      <TextArea placeholder="Type Something" />
+      <TextArea placeholder="Whats in your mind?" />
       <TextArea size="lg" placeholder="Type your message here" />
       <TextArea size="xl" placeholder="Tell us about yourself" />
     </>
