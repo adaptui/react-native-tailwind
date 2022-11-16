@@ -25,22 +25,24 @@ export const TextAreaScreen = () => {
   const ref = useRef(null);
 
   return (
-    <Box
-      style={tailwind.style(
-        "flex-1 justify-center bg-white-500 items-center p-2 w-full",
-      )}
-    >
-      <TextArea
-        placeholder={"Type Something...."}
-        size={size}
-        variant={variant}
-        loading={loading}
-        invalid={invalid}
-        suffix={suffix}
-        editable={!disabled}
-        ref={ref}
-      />
-      <Box style={tailwind.style("absolute bottom-0")}>
+    <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
+      <Box style={tailwind.style("flex-1 px-2  justify-center")}>
+        <TextArea
+          placeholder={"Type Something...."}
+          size={size}
+          variant={variant}
+          loading={loading}
+          invalid={invalid}
+          suffix={suffix}
+          editable={!disabled}
+          ref={ref}
+        />
+      </Box>
+      <Box
+        style={tailwind.style(
+          "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+        )}
+      >
         <RadioGroup
           value={variant}
           onChange={value => setVariant(value as TextAreaVariants)}
@@ -55,34 +57,46 @@ export const TextAreaScreen = () => {
           onChange={value => setSize(value as TextAreaSizes)}
           orientation="horizontal"
         >
-          <Radio value="sm" label="Small" />
-          <Radio value="md" label="Medium" />
-          <Radio value="lg" label="Large" />
-          <Radio value="xl" label="Extra Large" />
+          <Radio value="sm" label="sm" />
+          <Radio value="md" label="md" />
+          <Radio value="lg" label="lg" />
+          <Radio value="xl" label="xl" />
         </RadioGroup>
-        <Box style={tailwind.style("flex-row justify-center")}>
-          <Box style={tailwind.style("flex-col items-center")}>
-            <Switch
-              label="Loading"
-              state={loading}
-              onStateChange={setLoading}
-            />
-            <Switch
-              label="Invalid"
-              state={invalid}
-              onStateChange={setInvalid}
-            />
-          </Box>
-          <Box style={tailwind.style("flex-col items-center")}>
-            <Switch
-              label="Disabled"
-              state={disabled}
-              onStateChange={setDisabled}
-            />
-            <Switch label="Icon" state={icon} onStateChange={setIcon} />
-          </Box>
+        <Box
+          style={tailwind.style(
+            "flex flex-row justify-center flex-wrap w-full",
+          )}
+        >
+          <Switch
+            label="Loading"
+            state={loading}
+            onStateChange={setLoading}
+            size="md"
+            style={tailwind.style("mt-1")}
+          />
+          <Switch
+            label="Invalid"
+            state={invalid}
+            onStateChange={setInvalid}
+            size="md"
+            style={tailwind.style("ml-1 mt-1")}
+          />
+          <Switch
+            label="Disabled"
+            state={disabled}
+            onStateChange={setDisabled}
+            size="md"
+            style={tailwind.style("ml-1 mt-1")}
+          />
+          <Switch
+            label="Icon"
+            state={icon}
+            onStateChange={setIcon}
+            size="md"
+            style={tailwind.style("ml-1 mt-1")}
+          />
         </Box>
-        <Box style={tailwind.style("flex-row justify-center")}>
+        <Box style={tailwind.style("flex-row justify-center py-2")}>
           <Button
             style={tailwind.style("mr-2")}
             onPress={() => ref.current.blur()}
