@@ -18,6 +18,8 @@ export default function App() {
 - [Themes](#themes)
 - [Variant](#variant)
 - [Size](#size)
+- [Prefix](#prefix)
+- [Props](#props)
 
 ## Themes
 
@@ -140,8 +142,7 @@ export default function App() {
 | size          | How large should the select be?                                        | `sm`, `md`, `lg`, `xl`                     | `md`            |
 | variant       | How the select should look?                                            | `outline`, `subtle`, `underline` , `ghost` | `outline`       |
 | prefix        | Prefix for the Select.                                                 | RenderPropType                             | null            |
+| suffix        | Suffix for the Select.                                                 | RenderPropType                             | null            |
 | invalid       | Set to True, if the value of the Select is invalid.                    | boolean                                    | false           |
 | disabled      | Set to True, if the value of the Select is disabled.                   | boolean                                    | false           |
 | snapPoints    | Bottomsheet Snap points                                                | string[]                                   | ["50%"]         |
-
-> *Required props
