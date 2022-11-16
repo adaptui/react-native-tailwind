@@ -199,6 +199,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 invalid={invalid}
                 prefix={prefix}
                 isPressedOrHovered={pressed || isHovered}
+                isDefaultState={isUndefined(selectState)}
               />
               <Text
                 style={tailwind.style([
@@ -229,6 +230,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 invalid={invalid}
                 suffix={suffix}
                 isPressedOrHovered={pressed || isHovered}
+                isDefaultState={isUndefined(selectState)}
               />
             </>
           );
