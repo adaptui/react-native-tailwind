@@ -1,9 +1,10 @@
 # Textarea
 
-Adapt UI provides textarea with three styles and six interaction
-states. Use this component to receive information from the user.
+![SCR-20221116-gzi](https://user-images.githubusercontent.com/20360870/202104722-6d5cf79a-60a7-4a06-ac61-b92aa086bf4c.png)
 
-![SCR-20221115-utg](https://user-images.githubusercontent.com/20360870/201976908-c51596e9-0ac6-4740-a2ba-660e6f9d8ca7.png)
+
+Adapt UI provides one theme for text area component with three styles and eight interaction states. Use this component to receive information from the user.
+
 #### Simple Usage
 
 ```js
@@ -17,20 +18,23 @@ export default function App() {
 
 ## Table of Contents
 
-- [Textarea](#textarea)
-      - [Simple Usage](#simple-usage)
-  - [Table of Contents](#table-of-contents)
   - [Themes](#themes)
-    - [Usage](#usage)
   - [Variant](#variant)
-    - [Usage](#usage-1)
   - [Size](#size)
-    - [Usage](#usage-2)
+  - [Icon](#icon)
+  - [Interactions](#interactions)
   - [Props](#props)
-
 ## Themes
 
 Adapt UI provides only one `base` theme for TextArea.
+
+![SCR-20221116-gzi](https://user-images.githubusercontent.com/20360870/202104722-6d5cf79a-60a7-4a06-ac61-b92aa086bf4c.png)
+
+<details>
+
+<summary>
+  <b>Usage</b>
+</summary>
 
 ### Usage
 
@@ -39,13 +43,14 @@ import { TextArea, Slot, Icon } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
       <TextArea
-        suffix={<Icon icon={<Slot />} />} //with icon
-        placeholder="Search any places, stays or experiences"
+        placeholder="Type Something..."
       />
   )
 }
 
 ```
+
+</details>
 
 ## Variant
 
@@ -55,23 +60,32 @@ Adapt UI provides four different input field components styles: `outline`,
 You can use these various styled input field components based on the necessity
 and style you wish to provide to your design.
 
+![SCR-20221116-h9c](https://user-images.githubusercontent.com/20360870/202107264-835c7781-9990-435f-a02a-7a08b3e2f04f.png)
+
+<details>
+
+<summary>
+<b>Usage</b>
+</summary>
+
 ### Usage
 
 ```js
-import { TextArea, useTheme } from "@adaptui/react-native-tailwind"
+import { TextArea } from "@adaptui/react-native-tailwind"
 
 export default function App() {
-  const tailwind = useTheme();
   return (
     <>
-      <TextArea placeholder="Address" />
-      <TextArea variant="outline" placeholder="Type Something" />
-      <TextArea variant="underline" placeholder="Enter installment amount" />
+      <TextArea placeholder="Type something" />
+      <TextArea variant="outline" placeholder="Type something" />
+      <TextArea variant="underline" placeholder="Type something" />
     </>
   )
 }
 
 ```
+
+</details>
 
 ## Size
 
@@ -79,24 +93,65 @@ There are four different sizes for input in Adapt UI: `sm`, `md`, `lg` & `xl`
 
 Based on the hierarchy, you can switch between different sizes.
 
+
+![SCR-20221116-hly](https://user-images.githubusercontent.com/20360870/202110537-fbccf81a-d7a7-46b1-86f8-cc6794cfec24.png)
+
+
+<details>
+
+<summary>
+<b>Usage</b>
+</summary>
+
 ### Usage
 
 ```js
-import { TextArea, useTheme } from "@adaptui/react-native-tailwind"
+import { TextArea } from "@adaptui/react-native-tailwind"
 
 export default function App() {
-  const tailwind = useTheme();
   return (
     <>
-      <TextArea size="sm" placeholder="Type Something" />
+      <TextArea size="sm" placeholder="Type something..." />
       <TextArea placeholder="Type Something" />
-      <TextArea size="lg" placeholder="Type Something" />
-      <TextArea size="xl" placeholder="Type Something" />
+      <TextArea size="lg" placeholder="Type something..." />
+      <TextArea size="xl" placeholder="Type something..." />
     </>
   )
 }
 
 ```
+</details>
+
+### Interactions
+
+We tried to bring the most commonly used interactions for the text area component. Adapt UI provides eight-input interactions: default, hover, active, focus, disabled, loading, error, and filled. These can give a complete cycle of text area interactions.
+
+![SCR-20221116-i5r](https://user-images.githubusercontent.com/20360870/202116137-bac7d6eb-8eb5-4eb9-81fc-0a1293eb3d97.png)
+
+<details>
+
+<summary>
+<b>Usage</b>
+</summary>
+
+### Usage
+
+```js
+import { TextArea } from "@adaptui/react-native-tailwind"
+
+export default function App() {
+  return (
+    <>
+      <TextArea placeholder="Type something..." loading={true} />
+      <TextArea placeholder="Type Something" editable={true}  /> //disabled
+      <TextArea placeholder="Type something..." invalid={true} />
+    </>
+  )
+}
+
+```
+
+</details>
 
 ## Props
 
