@@ -35,8 +35,6 @@ const extendedTheme = {
   divider,
   textArea,
   selectOption,
-  textArea,
-  selectOption,
 };
 
 export default extendedTheme;
