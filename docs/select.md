@@ -21,6 +21,15 @@ export default function App() {
 }
 ```
 
+## Working Preview
+
+The Select component uses [Gorhom's React Native Bottomsheet](https://github.com/gorhom/react-native-bottom-sheet) to list the options you have provided through `options` prop. 
+
+It uses `useControllableState` hook internally from chakra-ui to manage the state. 
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/35562287/202174467-53e1d2f8-caed-4fc1-8f04-7a4a9c361084.gif)
+
+
 ## Table of Contents
 
 - [Themes](#themes)
