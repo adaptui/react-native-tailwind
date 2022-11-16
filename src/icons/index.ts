@@ -1,6 +1,7 @@
 export * from "./Add";
 export * from "./AddSmall";
 export * from "./Calendar";
+export * from "./CaretDown";
 export * from "./CaretLeft";
 export * from "./CaretRight";
 export * from "./Check";

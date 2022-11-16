@@ -29,47 +29,50 @@ function keyExtractor(item: ItemData) {
 
 export interface SelectProps extends PressableProps {
   /**
-   * The Select Options
+   * The Select Options to render inside the Bottomsheet Flatlist
    */
   options: Array<ItemData>;
   /**
-   * Default value of Select when value is uncontrolled
+   * Default value of Select when it is uncontrolled
    */
   defaultState: string;
   /**
-   * Default value of Select when value is controlled
+   * Value of Select when it is controlled
    */
   state: string;
   /**
-   * Callback called with the new value when it changes.
+   * Callback called with the new value when on selecting options from Flatlist
    */
   onStateChange: (val: string) => void;
   /**
-   * Default placeholder value
+   * Placeholder value
+   * @default "Select Option"
    */
   placeholder: string;
   /**
    * How large should the select be?
-   *
    * @default md
    */
   size: SelectSizes;
   /**
    * How the select should look?
-   *
    * @default outline
    */
   variant: SelectVariants;
   /**
-   * Prefix for the Select.
+   * Prefix for the Select Component
    */
   prefix: RenderPropType;
   /**
-   * True, if the value of the textarea is invalid.
+   * Suffix for the Select Component
+   */
+  suffix: RenderPropType;
+  /**
+   * Set to True, if the value of the Select component is invalid.
    */
   invalid: boolean;
   /**
-   * True, if the select is disabled.
+   * Set to true, if the select is disabled.
    */
   disabled: boolean;
   /**
@@ -96,6 +99,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
     size = "md",
     variant = "outline",
     prefix,
+    suffix,
     invalid = false,
     disabled = false,
     defaultState,
@@ -169,7 +173,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
             selectStyle.base.common,
             selectStyle.base.size[size].common,
             !prefix ? selectStyle.base.size[size].withoutAddon : "",
-            selectStyle.base.variant[variant].common,
+            selectStyle.base.variant[variant].default,
             invalid ? selectStyle.base.variant[variant].invalid : "",
             disabled ? selectStyle.base.variant[variant].disabled : "",
             touchState.pressed || hovered.value
@@ -195,17 +199,18 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 invalid={invalid}
                 prefix={prefix}
                 isPressedOrHovered={pressed || isHovered}
+                isDefaultState={isUndefined(selectState)}
               />
               <Text
                 style={tailwind.style([
                   selectStyle.base.text.size[size],
                   pressed || hovered.value
-                    ? selectStyle.base.text.variant[variant].common
+                    ? selectStyle.base.text.variant[variant].pressedOrHovered
                     : disabled
                     ? selectStyle.base.text.variant[variant].disabled
                     : isUndefined(selectState)
-                    ? selectStyle.base.text.variant[variant].initial
-                    : selectStyle.base.text.variant[variant].common,
+                    ? selectStyle.base.text.variant[variant].default
+                    : selectStyle.base.text.variant[variant].filled,
                   prefix ? `pl-[${prefixWidth}px]` : "",
                   `pr-[${suffixWidth}px]`,
                 ])}
@@ -221,9 +226,11 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 }
                 size={size}
                 variant={variant}
-                invalid={invalid}
                 disabled={disabled}
+                invalid={invalid}
+                suffix={suffix}
                 isPressedOrHovered={pressed || isHovered}
+                isDefaultState={isUndefined(selectState)}
               />
             </>
           );
