@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Box,
+  CaretDown,
   Icon,
   ItemData,
   Radio,
@@ -10,6 +11,7 @@ import {
   SelectVariants,
   Slot,
   Switch,
+  UpDownArrow,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -83,6 +85,8 @@ export const SelectScreen = () => {
   const [isSelectDisabled, setIsSelectDisabled] = useState<boolean>(false);
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
 
+  const [changeSuffix, setChangeSuffix] = useState(false);
+
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <BottomSheetModalProvider>
@@ -95,6 +99,9 @@ export const SelectScreen = () => {
             options={options}
             placeholder="Select fruit"
             prefix={hasPrefix ? <Icon icon={<Slot />} /> : null}
+            suffix={
+              <Icon icon={changeSuffix ? <CaretDown /> : <UpDownArrow />} />
+            }
           />
         </Box>
         <Box
@@ -122,26 +129,38 @@ export const SelectScreen = () => {
             <Radio value="underline" label="underline" />
             <Radio value="ghost" label="ghost" />
           </RadioGroup>
-          <Box style={tailwind.style("flex flex-row justify-center w-full")}>
+          <Box
+            style={tailwind.style(
+              "flex flex-row justify-center flex-wrap w-full",
+            )}
+          >
             <Switch
               state={isSelectInvalid}
               onStateChange={value => setIsSelectInvalid(value)}
               size="md"
               label="Invalid"
+              style={tailwind.style("mt-1")}
             />
             <Switch
               state={isSelectDisabled}
               onStateChange={value => setIsSelectDisabled(value)}
               size="md"
-              style={tailwind.style("ml-1")}
+              style={tailwind.style("ml-1 mt-1")}
               label="Disabled"
             />
             <Switch
               state={hasPrefix}
               onStateChange={value => setHasPrefix(value)}
               size="md"
-              style={tailwind.style("ml-1")}
+              style={tailwind.style("ml-1 mt-1")}
               label="Prefix"
+            />
+            <Switch
+              state={changeSuffix}
+              onStateChange={value => setChangeSuffix(value)}
+              size="md"
+              style={tailwind.style("ml-1 mt-1")}
+              label="Change suffix"
             />
           </Box>
         </Box>
