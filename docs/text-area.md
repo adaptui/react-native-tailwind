@@ -1,6 +1,6 @@
 # Textarea
 
-![simulator_screenshot_2599EFE6-6D06-4AAA-90CE-FA256A79A37B](https://user-images.githubusercontent.com/20360870/202165492-a1c51c64-e289-48eb-af1b-44a5ecfe4bba.png)
+![simulator_screenshot_93D9FFAA-AC38-4CA6-94F0-E7A861FF5187](https://user-images.githubusercontent.com/20360870/202174447-930c4d36-5f12-448e-bd19-44f9d75d19b8.png)
 
 
 Adapt UI provides one theme for text area component with three styles and eight interaction states. Use this component to receive information from the user.
@@ -61,7 +61,7 @@ Adapt UI provides four different input field components styles: `outline`,
 You can use these various styled input field components based on the necessity
 and style you wish to provide to your design.
 
-![simulator_screenshot_2599EFE6-6D06-4AAA-90CE-FA256A79A37B](https://user-images.githubusercontent.com/20360870/202165492-a1c51c64-e289-48eb-af1b-44a5ecfe4bba.png)
+![simulator_screenshot_93D9FFAA-AC38-4CA6-94F0-E7A861FF5187](https://user-images.githubusercontent.com/20360870/202174447-930c4d36-5f12-448e-bd19-44f9d75d19b8.png)
 
 <details>
 
@@ -77,9 +77,9 @@ import { TextArea } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
     <>
-      <TextArea placeholder="Type something" />
-      <TextArea variant="outline" placeholder="Type something" />
-      <TextArea variant="underline" placeholder="Type something" />
+      <TextArea variant="subtle" placeholder="Whats happening" />
+      <TextArea placeholder="Tell us about yourself" />
+      <TextArea variant="underline" placeholder="Type your message here" />
     </>
   )
 }
@@ -95,7 +95,7 @@ There are four different sizes for input in Adapt UI: `sm`, `md`, `lg` & `xl`
 Based on the hierarchy, you can switch between different sizes.
 
 
-![simulator_screenshot_9E839191-61C7-41C6-9F55-50D9CE460973](https://user-images.githubusercontent.com/20360870/202166717-f62ec9cf-c0c1-4f44-a405-c2b114e78caa.png)
+![simulator_screenshot_BCCD5B62-43DE-4E94-934A-97A6D2C9956F](https://user-images.githubusercontent.com/20360870/202175990-974369e3-4880-41d2-857d-fc55aeb1700e.png)
 
 
 <details>
@@ -112,10 +112,10 @@ import { TextArea } from "@adaptui/react-native-tailwind"
 export default function App() {
   return (
     <>
-      <TextArea size="sm" placeholder="Type something..." />
+      <TextArea size="sm" placeholder="Whats happening" />
       <TextArea placeholder="Type Something" />
-      <TextArea size="lg" placeholder="Type something..." />
-      <TextArea size="xl" placeholder="Type something..." />
+      <TextArea size="lg" placeholder="Type your message here" />
+      <TextArea size="xl" placeholder="Tell us about yourself" />
     </>
   )
 }
