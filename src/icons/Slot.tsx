@@ -16,7 +16,7 @@ export const Slot: React.FC<IconProps> = ({ fill = "#525252" }) => {
       </G>
       <Defs>
         <ClipPath id="clip0_2866_43368">
-          <Rect width="100%" height="100%" fill="white" />
+          <Rect width="12" height="12" fill="white" />
         </ClipPath>
       </Defs>
     </Svg>
