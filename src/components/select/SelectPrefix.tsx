@@ -14,6 +14,7 @@ interface SelectPrefixProps
     >,
     BoxProps {
   isPressedOrHovered: boolean;
+  isDefaultState: boolean;
 }
 
 export const SelectPrefix: React.FC<SelectPrefixProps> = ({
@@ -23,6 +24,7 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
   disabled,
   isPressedOrHovered,
   prefix,
+  isDefaultState,
   ...props
 }) => {
   const tailwind = useTheme();
@@ -35,7 +37,9 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
     ? selectPrefixStyles.prefix.variant[variant].disabled
     : invalid
     ? selectPrefixStyles.prefix.variant[variant].invalid
-    : selectPrefixStyles.prefix.variant[variant].default;
+    : isDefaultState
+    ? selectPrefixStyles.suffix.variant[variant].default
+    : selectPrefixStyles.suffix.variant[variant].filled;
 
   const _prefix: SelectProps["prefix"] = React.useMemo(() => {
     const selectPrefix =

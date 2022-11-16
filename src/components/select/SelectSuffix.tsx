@@ -15,6 +15,7 @@ interface SelectSuffixProps
     >,
     BoxProps {
   isPressedOrHovered: boolean;
+  isDefaultState: boolean;
 }
 
 export const SelectSuffix: React.FC<SelectSuffixProps> = ({
@@ -24,6 +25,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
   disabled,
   isPressedOrHovered,
   suffix,
+  isDefaultState,
   ...props
 }) => {
   const tailwind = useTheme();
@@ -36,7 +38,9 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
     ? selectSuffixStyles.suffix.variant[variant].disabled
     : invalid
     ? selectSuffixStyles.suffix.variant[variant].invalid
-    : selectSuffixStyles.suffix.variant[variant].default;
+    : isDefaultState
+    ? selectSuffixStyles.suffix.variant[variant].default
+    : selectSuffixStyles.suffix.variant[variant].filled;
 
   const _suffix: SelectProps["suffix"] = React.useMemo(() => {
     const selectSuffix =
