@@ -64,6 +64,10 @@ export interface SelectProps extends PressableProps {
    */
   prefix: RenderPropType;
   /**
+   * Suffix for the Select Component
+   */
+  suffix: RenderPropType;
+  /**
    * Set to True, if the value of the Select component is invalid.
    */
   invalid: boolean;
@@ -95,6 +99,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
     size = "md",
     variant = "outline",
     prefix,
+    suffix,
     invalid = false,
     disabled = false,
     defaultState,
@@ -220,8 +225,9 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 }
                 size={size}
                 variant={variant}
-                invalid={invalid}
                 disabled={disabled}
+                invalid={invalid}
+                suffix={suffix}
                 isPressedOrHovered={pressed || isHovered}
               />
             </>

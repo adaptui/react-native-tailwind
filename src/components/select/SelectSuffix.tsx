@@ -3,12 +3,16 @@ import React from "react";
 import { UpDownArrow } from "../../icons";
 import { Box, BoxProps } from "../../primitives";
 import { useTheme } from "../../theme";
+import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
 import { SelectProps } from "./Select";
 
 interface SelectSuffixProps
-  extends Pick<SelectProps, "size" | "variant" | "disabled" | "invalid">,
+  extends Pick<
+      SelectProps,
+      "size" | "variant" | "disabled" | "invalid" | "suffix"
+    >,
     BoxProps {
   isPressedOrHovered: boolean;
 }
@@ -19,6 +23,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
   invalid,
   disabled,
   isPressedOrHovered,
+  suffix,
   ...props
 }) => {
   const tailwind = useTheme();
@@ -33,6 +38,20 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
     ? selectSuffixStyles.suffix.variant[variant].invalid
     : selectSuffixStyles.suffix.variant[variant].default;
 
+  const _suffix: SelectProps["suffix"] = React.useMemo(() => {
+    const selectSuffix =
+      // @ts-ignore
+      suffix?.type === Icon
+        ? createIcon({
+            icon: suffix,
+            iconSize: selectSuffixStyles.base.icon.size[size],
+            iconFill: tailwind.getColor(iconColor),
+          })
+        : suffix;
+    return selectSuffix;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [disabled, invalid, suffix, isPressedOrHovered]);
+
   return (
     <Box
       style={tailwind.style([
@@ -42,11 +61,15 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
       ])}
       {...props}
     >
-      <Icon
-        icon={<UpDownArrow />}
-        size={selectSuffixStyles.base.icon.size[size]}
-        color={tailwind.getColor(iconColor)}
-      />
+      {_suffix ? (
+        _suffix
+      ) : (
+        <Icon
+          icon={<UpDownArrow />}
+          size={selectSuffixStyles.base.icon.size[size]}
+          color={tailwind.getColor(iconColor)}
+        />
+      )}
     </Box>
   );
 };
