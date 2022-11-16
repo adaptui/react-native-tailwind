@@ -133,14 +133,14 @@ Here in the select, we have an icon in the prefix slot. You can change the icon 
 </summary>
 
 ```js
-import { Select, useTheme } from "@adaptui/react-native-tailwind";
+import { Select, useTheme, DefaultUser, Calendar } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const tailwind = useTheme();
   return (
     <>
-      <Select size="xl" placeholder="Pick a date" />
-      <Select size="xl" placeholder="Sandeep Prabhakaran" />
+      <Select size="xl" placeholder="Pick a date" prefix={<Icon icon={<Calendar />} />}  />
+      <Select size="xl" placeholder="Select user" prefix={<Icon icon={<DefaultUser />} />} />
     </>
   );
 }
