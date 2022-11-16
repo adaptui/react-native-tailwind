@@ -1,6 +1,6 @@
 # Textarea
 
-![SCR-20221116-gzi](https://user-images.githubusercontent.com/20360870/202104722-6d5cf79a-60a7-4a06-ac61-b92aa086bf4c.png)
+![simulator_screenshot_2599EFE6-6D06-4AAA-90CE-FA256A79A37B](https://user-images.githubusercontent.com/20360870/202165492-a1c51c64-e289-48eb-af1b-44a5ecfe4bba.png)
 
 
 Adapt UI provides one theme for text area component with three styles and eight interaction states. Use this component to receive information from the user.
@@ -23,12 +23,13 @@ export default function App() {
   - [Size](#size)
   - [Icon](#icon)
   - [Interactions](#interactions)
+  - [Suffix](#suffix)
   - [Props](#props)
 ## Themes
 
 Adapt UI provides only one `base` theme for TextArea.
 
-![SCR-20221116-gzi](https://user-images.githubusercontent.com/20360870/202104722-6d5cf79a-60a7-4a06-ac61-b92aa086bf4c.png)
+![simulator_screenshot_CF05548F-87A9-4B9B-8298-42BCC812F415](https://user-images.githubusercontent.com/20360870/202165894-10ad9c82-ce7e-4251-be58-deac6ba98eb2.png)
 
 <details>
 
@@ -60,7 +61,7 @@ Adapt UI provides four different input field components styles: `outline`,
 You can use these various styled input field components based on the necessity
 and style you wish to provide to your design.
 
-![SCR-20221116-h9c](https://user-images.githubusercontent.com/20360870/202107264-835c7781-9990-435f-a02a-7a08b3e2f04f.png)
+![simulator_screenshot_2599EFE6-6D06-4AAA-90CE-FA256A79A37B](https://user-images.githubusercontent.com/20360870/202165492-a1c51c64-e289-48eb-af1b-44a5ecfe4bba.png)
 
 <details>
 
@@ -94,7 +95,7 @@ There are four different sizes for input in Adapt UI: `sm`, `md`, `lg` & `xl`
 Based on the hierarchy, you can switch between different sizes.
 
 
-![SCR-20221116-hly](https://user-images.githubusercontent.com/20360870/202110537-fbccf81a-d7a7-46b1-86f8-cc6794cfec24.png)
+![simulator_screenshot_9E839191-61C7-41C6-9F55-50D9CE460973](https://user-images.githubusercontent.com/20360870/202166717-f62ec9cf-c0c1-4f44-a405-c2b114e78caa.png)
 
 
 <details>
@@ -145,6 +146,41 @@ export default function App() {
       <TextArea placeholder="Type something..." loading={true} />
       <TextArea placeholder="Type Something" editable={true}  /> //disabled
       <TextArea placeholder="Type something..." invalid={true} />
+    </>
+  )
+}
+
+```
+
+</details>
+
+
+### Suffix
+
+The suffix is a slot at the beginning or suffix position of a component. Here in the Textarea, the suffix slot can be used to bring icons. Suffix itself doesn't have any unique property.
+
+Here in the Textarea, we have an icon in the suffix slot. You can change the icon by passing an component to suffix prop.
+The Icon will get hidden when the `loading` prop is true. 
+
+![simulator_screenshot_669C1EEF-2D9A-4E3F-B378-6A58DCCA0DF9](https://user-images.githubusercontent.com/20360870/202167240-dd1bedc8-a5de-46a4-b6ee-b0f81c87cc1e.png)
+
+<details>
+
+<summary>
+<b>Usage</b>
+</summary>
+
+### Usage
+
+```js
+import { TextArea } from "@adaptui/react-native-tailwind"
+
+export default function App() {
+  return (
+    <>
+      <TextArea placeholder="Type something..." 
+       suffix={<Icon icon={<Slot />} />}
+      />
     </>
   )
 }
