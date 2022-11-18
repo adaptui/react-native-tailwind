@@ -6,4 +6,5 @@ export * from "./BadgeScreen";
 export * from "./ButtonScreen";
 export * from "./CheckboxScreen";
 export * from "./DividerScreen";
+export * from "./StackScreen";
 export * from "./TagScreen";

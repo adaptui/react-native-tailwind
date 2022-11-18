@@ -17,6 +17,7 @@ import {
   SelectScreen,
   SliderComponentScreen,
   SpinnerScreen,
+  StackScreen,
   SwitchComponentScreen,
   TagScreen,
   TooltipScreen,
@@ -26,7 +27,12 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="SelectScreen">
+    <Drawer.Navigator initialRouteName="StackScreen">
+      <Drawer.Screen
+        options={{ title: "Stack" }}
+        name="StackScreen"
+        component={StackScreen}
+      />
       <Drawer.Screen
         options={{ title: "Select" }}
         name="SelectScreen"
