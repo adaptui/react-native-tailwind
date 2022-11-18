@@ -1,5 +1,101 @@
 
 
+## [1.0.0-alpha.8](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.7...1.0.0-alpha.8) (2022-11-18)
+
+
+### Bug Fixes
+
+* **icons:** :bug: fix sizing of icon ([0eb4a80](https://github.com/adaptui/react-native-tailwind/commit/0eb4a80f854a88f44ba949662d30d4977d809efb))
+* **icons:** :bug: fix sizing of icon ([51c960f](https://github.com/adaptui/react-native-tailwind/commit/51c960fd405249460f3b85d5fd7691ad4a8c50e0))
+* **icons:** :sparkles: change width/height of svg to 100% to fill the wrapper box ([8d6cd40](https://github.com/adaptui/react-native-tailwind/commit/8d6cd4029b46dda21871bc8189736d5d9676ed21))
+* **icons:** :sparkles: change width/height of svg to 100% to fill the wrapper box ([239ac3b](https://github.com/adaptui/react-native-tailwind/commit/239ac3bc72eeb4c7e6bf095c3af0bf17a8b28262))
+* **select:** :ambulance: fix typo in suffix/prefix components and ([0eff0b7](https://github.com/adaptui/react-native-tailwind/commit/0eff0b7fcaecd29c75fb14520c07ee680a11ce90))
+* **select:** :ambulance: fix typo in suffix/prefix components and ([9e7a25b](https://github.com/adaptui/react-native-tailwind/commit/9e7a25bb984a3df473de6b908b3699004d7e9c7c))
+* **select:** :art: add isDefaultState prop for prefix & suffix, fixing icon color on selected state ([77f90fc](https://github.com/adaptui/react-native-tailwind/commit/77f90fc663a80a14b6649e626559d876177929b4))
+* **select:** :art: add isDefaultState prop for prefix & suffix, fixing icon color on selected state ([7329cc7](https://github.com/adaptui/react-native-tailwind/commit/7329cc7316e87335cfdab075b8bb0f7bace97ad6))
+* **text-area:** :bug: fix ref prop to accept refs ([7fefdff](https://github.com/adaptui/react-native-tailwind/commit/7fefdffa7d9c8c125dd7844786681b1b920e2a11))
+* **text-area:** :recycle: add other accessibility props ([20bf8d7](https://github.com/adaptui/react-native-tailwind/commit/20bf8d7b5c2d24749282683307092b0857543e67))
+
+
+### Other Changes
+
+* **text-area:** :art: sort theme styles & fix padding ([615ec94](https://github.com/adaptui/react-native-tailwind/commit/615ec94a02370434d478bb306c83ab9f68293692))
+* **text-area:** :bug: fix active state styles for mobile ([2109b41](https://github.com/adaptui/react-native-tailwind/commit/2109b419558e26f81fe09f2d599c156b07c8cb4f))
+
+
+### Maintanance Updates
+
+* :art: fix vscode commit scope ([1128602](https://github.com/adaptui/react-native-tailwind/commit/112860205eb267e75836c0904ed02a3c1c5e2d30))
+* :wrench: add select to vs code scope ([6b9cefa](https://github.com/adaptui/react-native-tailwind/commit/6b9cefa3fccf623ec95ea07c95483c202b125e02))
+* :wrench: add select to vs code scope ([e75d227](https://github.com/adaptui/react-native-tailwind/commit/e75d227c4a681614bbc985f73253893838820bf2))
+* add text-area scope ([7d7c65c](https://github.com/adaptui/react-native-tailwind/commit/7d7c65caf20ebdf698b603a59142692f452f6a38))
+* add text-area scope ([c3b7264](https://github.com/adaptui/react-native-tailwind/commit/c3b72644539c91f06fcea931aea3df65d3a3f63f))
+* add text-area scope ([b3513bd](https://github.com/adaptui/react-native-tailwind/commit/b3513bda648d805256ef2b70b22ae4a383cd50ac))
+* **example-app:** :sparkles: add customise suffix slot option in example app ([d94ba6a](https://github.com/adaptui/react-native-tailwind/commit/d94ba6ac82567ad77e47cfafb9d33aba876435e5))
+* **example-app:** :sparkles: add customise suffix slot option in example app ([d6c7da5](https://github.com/adaptui/react-native-tailwind/commit/d6c7da5746e5d796f7e1d9946ba8283b511283f3))
+* **example-app:** :sparkles: add select component variations to Select screen ([9103c0a](https://github.com/adaptui/react-native-tailwind/commit/9103c0ae937d0c9d4cc04bd14986ad7176854f92))
+* **example-app:** :sparkles: add select component variations to Select screen ([e31d1d0](https://github.com/adaptui/react-native-tailwind/commit/e31d1d031f994e31087677fd2362deded73a151c))
+* **icons:** :truck: add CaretDown file export in root index ([673a963](https://github.com/adaptui/react-native-tailwind/commit/673a9632029ee6f2b3d7dbdd1f7e1ac5dc814e5f))
+* **icons:** :truck: add CaretDown file export in root index ([7fc2400](https://github.com/adaptui/react-native-tailwind/commit/7fc24009fda3485319933a380996944f222384af))
+* **select:** :bulb: update comments on props description ([75eb72d](https://github.com/adaptui/react-native-tailwind/commit/75eb72daac2bebf2aee76046191b6f26c837156b))
+* **select:** :bulb: update comments on props description ([b39bb7b](https://github.com/adaptui/react-native-tailwind/commit/b39bb7bcd7c2de0502e2ddb2476bcaddc1fb60cb))
+
+
+### Feature Updates
+
+* :zap: add select component and styled select option in bottom sheet ([eb2bcc8](https://github.com/adaptui/react-native-tailwind/commit/eb2bcc8504560e7e23f21b1d0b4e098cd52d6ed0))
+* :zap: add select component and styled select option in bottom sheet ([4df3972](https://github.com/adaptui/react-native-tailwind/commit/4df397255d94ed3cd3ba4ea4de8ac20e7c250281))
+* **example-app:** :sparkles: add better way of interacting with components and viewing states ([900468f](https://github.com/adaptui/react-native-tailwind/commit/900468f109a59b2fe5d4ad52790eff04c979db09))
+* **example-app:** :sparkles: add better way of interacting with components and viewing states ([fed553e](https://github.com/adaptui/react-native-tailwind/commit/fed553ee063428a3ef7fee5c09df6a6d22d7db89))
+* **select:** :art: add select and select option theme ([e50ff11](https://github.com/adaptui/react-native-tailwind/commit/e50ff1154076f4e079d4bd8c3aa20b058e87e222))
+* **select:** :art: add select and select option theme ([0e6b370](https://github.com/adaptui/react-native-tailwind/commit/0e6b3707f36fe408286fcfe8b663b752f96256dd))
+* **select:** :art: add select and select option theme ([fded58e](https://github.com/adaptui/react-native-tailwind/commit/fded58e978082fdff3ea0b2b8502ea6ae2afee95))
+* **select:** :zap: add `suffix` prop to customise the suffix slot ([801929c](https://github.com/adaptui/react-native-tailwind/commit/801929cc2469a3eb7985121e411f4d193c2a01e3))
+* **select:** :zap: add `suffix` prop to customise the suffix slot ([ae9f92e](https://github.com/adaptui/react-native-tailwind/commit/ae9f92e751d3ee1e4f2d3cdf7e247d20ed717ec5))
+* **text-area:** :sparkles: add text area component ([1fd3926](https://github.com/adaptui/react-native-tailwind/commit/1fd3926e01c07ffd96ade66056fa7e54b764534c))
+* **text-area:** :sparkles: add text area component ([717910b](https://github.com/adaptui/react-native-tailwind/commit/717910b1d7cadac487d908f00a1e57594837ef47))
+* **text-area:** :sparkles: add text area component ([700ee48](https://github.com/adaptui/react-native-tailwind/commit/700ee4892f5a75d6de31f48bd4977b44052b8caa))
+
+
+### CI Changes
+
+* **text-area:** :rotating_light: fix duplicate key ([b47df4b](https://github.com/adaptui/react-native-tailwind/commit/b47df4b705ad1bfe0af082639a95573fe68ef960))
+
+
+### Code Refactors
+
+* **select:** :recycle: change style config key namings, ([c07c58c](https://github.com/adaptui/react-native-tailwind/commit/c07c58c5925eeb76ad491c65ec77748b7d4b8678))
+* **select:** :recycle: change style config key namings, ([90d8028](https://github.com/adaptui/react-native-tailwind/commit/90d80289e9efc57b9646e538e45554860b020f30))
+* **text-area:** :art: add controlls to view all the variants and sizes with flags ([0155bfa](https://github.com/adaptui/react-native-tailwind/commit/0155bfa2aea79a971f168ee861e12a6866ba23d4))
+* **text-area:** :art: improve demo controls & resolve merge conflicts ([cbc7532](https://github.com/adaptui/react-native-tailwind/commit/cbc753263ae9fd53d1853d42af8a20963ced0e0b))
+* **text-area:** :art: rearrange the focus buttons in the demo page ([f9dceac](https://github.com/adaptui/react-native-tailwind/commit/f9dceac617734a00214bd03ee13d271b1d8aa773))
+* **text-area:** :bug: add space between focus buttons ([39ca9a2](https://github.com/adaptui/react-native-tailwind/commit/39ca9a24cd51eaa391f672dbf1a8e63807564a1e))
+* **text-area:** :fire: remove ghost variant ([5ddf788](https://github.com/adaptui/react-native-tailwind/commit/5ddf78834f12bb48d99f3d563967c647196bb825))
+
+
+### Documentation Changes
+
+* ✏️ update readme with mobile screenshots ([3e77fcd](https://github.com/adaptui/react-native-tailwind/commit/3e77fcd82def1a0b7eaf0c82d44e19c46dc3ec00))
+* ✏️ update readme with mobile screenshots ([7845b73](https://github.com/adaptui/react-native-tailwind/commit/7845b738d5d5d52a1f0d3afa4886d34114390dc3))
+* 📝 update README with Select component docs ([a5b68b3](https://github.com/adaptui/react-native-tailwind/commit/a5b68b3a68d96848d64815822f490bf0eeade154))
+* **select:** :memo: update docs with suffix props option ([ead5db1](https://github.com/adaptui/react-native-tailwind/commit/ead5db1a4ea78c90712063e8486afa0ce2d81d61))
+* **select:** :memo: update docs with suffix props option ([6e71dc4](https://github.com/adaptui/react-native-tailwind/commit/6e71dc46155f00790970256e1e70d24c17669bd6))
+* **select:** :sparkles: initial docs for select component ([c6c3005](https://github.com/adaptui/react-native-tailwind/commit/c6c3005e379370ddb4b8f2e8fe4099fa4c74bb1f))
+* **select:** :sparkles: initial docs for select component ([2f075e3](https://github.com/adaptui/react-native-tailwind/commit/2f075e36c8855d792ab3b58fd410eaeb8399367e))
+* **select:** 📝 add Icon to prefix example import ([5bc615e](https://github.com/adaptui/react-native-tailwind/commit/5bc615e81c89acedfbd680f8a779afc6fcf2c190))
+* **select:** 📝 add Icon to prefix example import ([7853f6c](https://github.com/adaptui/react-native-tailwind/commit/7853f6ca3027a7d5db0a8f87d985158c1abcf36e))
+* **select:** 📝 add Working preview gif ([0f707c8](https://github.com/adaptui/react-native-tailwind/commit/0f707c8ac64027bf7619200e8239fce326ed21a3))
+* **select:** 📝 fix usage code for prefix example ([95138e9](https://github.com/adaptui/react-native-tailwind/commit/95138e9a8eb5fd4cfd03399b0ad28a4aad6a9e3f))
+* **select:** 📝 fix usage code for prefix example ([a7f2c24](https://github.com/adaptui/react-native-tailwind/commit/a7f2c24f6c6442365be6d413c8908e595398da84))
+* **text-area:** :art: correct spelling in one of the preview images ([2b7d7f0](https://github.com/adaptui/react-native-tailwind/commit/2b7d7f02b22e7bcc6952c80d7cd13833bc837b06))
+* **text-area:** :memo: add detailed previews and update docs for suffix prop ([669e8e0](https://github.com/adaptui/react-native-tailwind/commit/669e8e0153e36c0f1b110e91f598a62e9933e28b))
+* **text-area:** :memo: add docs for text-are and sort elements in the demo screen ([212d27a](https://github.com/adaptui/react-native-tailwind/commit/212d27a0e7ef93ebc334f309df37b7f14227c7b6))
+* **text-area:** :memo: add preivew images to the docs & update docs ([08f2555](https://github.com/adaptui/react-native-tailwind/commit/08f25551a5c941c35af9dfb41d4a89723b84f48f))
+* **text-area:** :memo: add preview image for textarea component ([663e7ac](https://github.com/adaptui/react-native-tailwind/commit/663e7ac23daed2d080d1ab56f7b98f386a4e557f))
+* **text-area:** :memo: fix preview image ([69b211c](https://github.com/adaptui/react-native-tailwind/commit/69b211c747f19aee67d9cec907504e3133a6f95e))
+* **text-area:** :memo: improve size preview image ([363b261](https://github.com/adaptui/react-native-tailwind/commit/363b261dc26b1f5c88d1ac7fce67c1e38b23a0c4))
+* **text-area:** :memo: update preview images & usage docs ([a72fb8c](https://github.com/adaptui/react-native-tailwind/commit/a72fb8c194279e090d4f69936fa4000186620b4b))
+
 ## [1.0.0-alpha.7](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.6...1.0.0-alpha.7) (2022-11-07)
 
 
