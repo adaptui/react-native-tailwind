@@ -1,6 +1,6 @@
 # Textarea
 
-![simulator_screenshot_93D9FFAA-AC38-4CA6-94F0-E7A861FF5187](https://user-images.githubusercontent.com/20360870/202174447-930c4d36-5f12-448e-bd19-44f9d75d19b8.png)
+![simulator_screenshot_ED7ABA23-96CB-42EC-B428-45ECA2EAC88A](https://user-images.githubusercontent.com/20360870/202635412-9ee5b2ce-2eef-4910-b137-2dd6566ef40c.png)
 
 
 Adapt UI provides one theme for text area component with three styles and eight interaction states. Use this component to receive information from the user.
