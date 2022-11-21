@@ -17,7 +17,7 @@ import { Group } from "../../components";
 
 export const TagScreen = () => {
   const tailwind = useTheme();
-  const [selectedSize, setSelectedSize] = useState<TagSize>("md");
+  const [selectedSize, setSelectedSize] = useState<TagSizes>("md");
   const [selectedVariant, setSelectedVariant] = useState<TagVariant>("solid");
   const [selectedTheme, setSelectedTheme] = useState<TagTheme>("base");
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
