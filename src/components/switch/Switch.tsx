@@ -22,7 +22,10 @@ import { createComponent } from "../../utils/createComponent";
 
 export type SwitchSize = "sm" | "md" | "lg" | "xl";
 export type SwitchTheme = "base" | "primary";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2c29ca8 (refactor(switch): :recycle: assign inline types to type variables,)
 export interface SwitchProps extends BoxProps {
   /**
    * Default Value of the switch
@@ -81,11 +84,19 @@ export interface SwitchProps extends BoxProps {
   /**
    * The Label of the switch component.
    */
+<<<<<<< HEAD
   label: string | null;
   /**
    * The Description of the switch component.
    */
   description: string | null;
+=======
+  label: string;
+  /**
+   * The Description of the switch component.
+   */
+  description: string;
+>>>>>>> 2c29ca8 (refactor(switch): :recycle: assign inline types to type variables,)
 }
 
 const SPRING_CONFIG = {
@@ -103,6 +114,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
 >((props, _ref) => {
   const tailwind = useTheme();
   const switchTheme = useTheme("switchTheme");
+<<<<<<< HEAD
 
   const {
     onStateChange,
@@ -198,6 +210,83 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
     },
   );
 
+=======
+
+  const {
+    onStateChange,
+    state,
+    defaultState = false,
+    size = "xl",
+    onStateColor: onStateColorFromProps,
+    offStateColor: offStateColorFromProps,
+    disabled = false,
+    offStatePressedColor: offStatePressedColorFromProps,
+    onStatePressedColor: onStatePressedColorFromProps,
+    thumbTintColor: thumbTintColorFromProps,
+    themeColor = "base",
+    label,
+    description,
+    style,
+    ...otherProps
+  } = props;
+
+  const [switchState, setSwitchState] = useControllableState({
+    defaultValue: defaultState,
+    value: state,
+    onChange: onStateChange,
+  });
+
+  /**
+   * Setting Active/Inactive and Default Colors
+   */
+  const onStateColor = disabled
+    ? (tailwind.getColor(
+        cx(switchTheme.themeColor[themeColor]?.activeWrapper?.disabled),
+      ) as string)
+    : onStateColorFromProps ||
+      (tailwind.getColor(
+        cx(switchTheme.themeColor[themeColor]?.activeWrapper?.default),
+      ) as string);
+
+  const offStateColor = disabled
+    ? (tailwind.getColor(
+        cx(switchTheme.themeColor[themeColor]?.inActiveWrapper?.disabled),
+      ) as string)
+    : offStateColorFromProps ||
+      (tailwind.getColor(
+        cx(switchTheme.themeColor[themeColor]?.inActiveWrapper?.default),
+      ) as string);
+
+  const offStatePressedColor =
+    offStatePressedColorFromProps ||
+    (tailwind.getColor(
+      cx(switchTheme.themeColor[themeColor]?.inActiveWrapper?.active),
+    ) as string);
+  const onStatePressedColor =
+    onStatePressedColorFromProps ||
+    (tailwind.getColor(
+      cx(switchTheme.themeColor[themeColor]?.activeWrapper?.active),
+    ) as string);
+  const thumbTintColor =
+    thumbTintColorFromProps || tailwind.getColor(cx(switchTheme.thumbColor));
+  /**
+   * Setting Active/Inactive and Default Colors
+   */
+
+  /**
+   * The Switch Animation Helpers
+   */
+  const interpolatedWidths = switchTheme.size[size]?.switchInterpolateWidths;
+
+  const translatedThumbDistance = switchTheme.size[size]?.thumbTranslateValue;
+  const initTranslatedThumbDistance =
+    switchTheme.size[size]?.thumbInitTranslateValue;
+  const intermediateThumbTranslateValue =
+    switchTheme.size[size]?.thumbIntermediateTranslateValue;
+
+  const thumbAnimated = useSharedValue(switchState ? 1 : 0);
+
+>>>>>>> 2c29ca8 (refactor(switch): :recycle: assign inline types to type variables,)
   const animatedSwitchBackground = useAnimatedStyle(() => {
     return {
       backgroundColor: interpolateColor(
