@@ -3,6 +3,7 @@
   "displayName": "React Native System Playground",
   "expo": {
     "name": "React Native System Playground",
+    "jsEngine": "hermes",
     "slug": "react-native-system-playground",
     "description": "Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System",
     "version": "1.0.0",
