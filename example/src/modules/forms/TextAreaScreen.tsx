@@ -26,7 +26,7 @@ export const TextAreaScreen = () => {
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
-      <Box style={tailwind.style("flex-1 px-2  justify-center")}>
+      <Box style={tailwind.style("flex-1 px-2 justify-center items-center")}>
         <TextArea
           placeholder={"Type Something...."}
           size={size}
@@ -44,15 +44,6 @@ export const TextAreaScreen = () => {
         )}
       >
         <RadioGroup
-          value={variant}
-          onChange={value => setVariant(value as TextAreaVariants)}
-          orientation="horizontal"
-        >
-          <Radio value="subtle" label="subtle" />
-          <Radio value="outline" label="outline" />
-          <Radio value="underline" label="underline" />
-        </RadioGroup>
-        <RadioGroup
           value={size}
           onChange={value => setSize(value as TextAreaSizes)}
           orientation="horizontal"
@@ -62,6 +53,16 @@ export const TextAreaScreen = () => {
           <Radio value="lg" label="lg" />
           <Radio value="xl" label="xl" />
         </RadioGroup>
+        <RadioGroup
+          value={variant}
+          onChange={value => setVariant(value as TextAreaVariants)}
+          orientation="horizontal"
+        >
+          <Radio value="subtle" label="subtle" />
+          <Radio value="outline" label="outline" />
+          <Radio value="underline" label="underline" />
+        </RadioGroup>
+
         <Box
           style={tailwind.style(
             "flex flex-row justify-center flex-wrap w-full",
