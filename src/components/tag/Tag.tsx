@@ -81,7 +81,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     themeColor = "base",
     closable = false,
     prefix,
-    suffix = closable ? <Icon icon={<Close />} /> : null,
+    suffix: suffixFromProps,
     style,
     textStyle,
     accesibilityLabel,
@@ -110,6 +110,11 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       </Box>
     ));
 
+  const suffix = suffixFromProps ? (
+    suffixFromProps
+  ) : closable ? (
+    <Icon icon={<Close />} />
+  ) : null;
   /* Suffix Slot */
   const _suffix =
     suffix &&
@@ -214,12 +219,10 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     >
       {_prefix}
       {children}
-      {closable && _suffix}
+      {_suffix}
     </Touchable>
   );
 });
-
-RNTag.displayName = "RNTag";
 
 export const Tag = createComponent<Partial<TagProps>>(RNTag, {
   shouldMemo: true,
