@@ -1,7 +1,9 @@
 # Input
 
-Adapt UI provides two themes for input with four styles and eight interaction
-states. Use this component to receive information from the user.
+Adapt UI provides one theme for input with four styles and eight interaction states. 
+Use this component to receive information from the user.
+
+![simulator_screenshot_DBBFCAB9-BC73-46E7-BB87-FC8417E25F8A](https://user-images.githubusercontent.com/35562287/203317460-c7a0c0e9-3ae5-43f1-9325-4834f38c20eb.png)
 
 #### Simple Usage
 
@@ -25,6 +27,9 @@ export default function App() {
 
 Adapt UI provides only one `base` theme for Input.
 
+![simulator_screenshot_C22E067A-C1F2-40C2-83CA-7C3D4B400A84](https://user-images.githubusercontent.com/35562287/203317985-e9b87f72-4538-4766-b247-885556b59794.png)
+
+
 ### Usage
 
 ```js
@@ -47,6 +52,8 @@ Adapt UI provides four different input field components styles: `outline`,
 
 You can use these various styled input field components based on the necessity
 and style you wish to provide to your design.
+
+![simulator_screenshot_D438138D-0954-4894-AD54-7E6CFF10C6DC](https://user-images.githubusercontent.com/35562287/203319433-c06d2a01-08a7-4b38-bc9d-ac2d96230775.png)
 
 ### Usage
 
@@ -72,6 +79,8 @@ export default function App() {
 There are four different sizes for input in Adapt UI: `sm`, `md`, `lg` & `xl`
 
 Based on the hierarchy, you can switch between different sizes.
+
+![simulator_screenshot_82D4655C-40C4-481B-95C5-37BA200B9CA9](https://user-images.githubusercontent.com/35562287/203319797-ca2c4d68-8bcc-4d3b-a03e-72f7a6bead91.png)
 
 ### Usage
 
