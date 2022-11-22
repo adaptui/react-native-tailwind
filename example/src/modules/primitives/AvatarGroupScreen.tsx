@@ -16,32 +16,33 @@ export const AvatarGroupScreen = () => {
   const tailwind = useTheme();
 
   const [name, setName] = useState(null);
-  const [squared, setSquared] = useState(false);
-  const [size, setSize] = useState<AvatarSizes>("xl");
-  const [imageUri, setImageUri] = useState(true);
-  const [variant, setVariant] = useState(null);
-  const [toggleBg, setToggleBg] = useState(false);
-  const [ring, setRing] = useState(false);
-  const [max, setMax] = useState(false);
+  const [isSquared, setIsSquared] = useState<boolean>(false);
+  const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
+  const [hasImage, setHasImage] = useState<boolean>(true);
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [hasParentsBackground, setHasParentsBackground] =
+    useState<boolean>(false);
+  const [hasRing, setHasRing] = useState<boolean>(false);
+  const [isMax, setIsMax] = useState<boolean>(false);
   const [maxNum, setMaxNum] = useState(10);
   const [parentsBackground, setParentsBackground] = useState("bg-white-900");
 
   useEffect(() => {
-    switch (variant) {
+    switch (selectedVariant) {
       case "withInitials":
         setName("Sandeep Prabhakaran");
-        setImageUri(null);
+        setHasImage(false);
         break;
       case "withImage":
-        setImageUri(true);
+        setHasImage(true);
         setName(null);
         break;
       default:
         setName(null);
-        setImageUri(null);
+        setHasImage(false);
     }
 
-    switch (toggleBg) {
+    switch (hasParentsBackground) {
       case true:
         setParentsBackground("bg-black-900");
         break;
@@ -52,14 +53,14 @@ export const AvatarGroupScreen = () => {
         setParentsBackground("bg-white-900");
     }
 
-    switch (max) {
+    switch (isMax) {
       case true:
         setMaxNum(3);
         break;
       default:
         setMaxNum(10);
     }
-  }, [variant, toggleBg, max]);
+  }, [selectedVariant, hasParentsBackground, isMax]);
 
   const avatars = [
     {
@@ -93,19 +94,19 @@ export const AvatarGroupScreen = () => {
         )}
       >
         <AvatarGroup
-          squared={squared}
-          size={size}
-          showRing={ring}
-          ringColor={toggleBg ? "black" : "white"}
+          squared={isSquared}
+          size={selectedSize}
+          showRing={hasRing}
+          ringColor={hasParentsBackground ? "black" : "white"}
           max={maxNum}
         >
           {avatars.map((image, i) => {
             return (
               <Avatar
                 name={!name ? null : image.name}
-                size={size}
+                size={selectedSize}
                 src={
-                  !imageUri
+                  !hasImage
                     ? null
                     : ({
                         uri: image.uri,
@@ -125,8 +126,8 @@ export const AvatarGroupScreen = () => {
         )}
       >
         <RadioGroup
-          value={size}
-          onChange={value => setSize(value as AvatarSizes)}
+          value={selectedSize}
+          onChange={value => setSelectedSize(value as AvatarSizes)}
           orientation="horizontal"
         >
           <Box
@@ -144,9 +145,9 @@ export const AvatarGroupScreen = () => {
           </Box>
         </RadioGroup>
         <RadioGroup
-          value={variant}
+          value={selectedVariant}
           onChange={value => {
-            setVariant(value as unknown);
+            setSelectedVariant(value as unknown);
           }}
           orientation="horizontal"
         >
@@ -161,15 +162,15 @@ export const AvatarGroupScreen = () => {
         >
           <Switch
             label="squared"
-            state={squared}
-            onStateChange={setSquared}
+            state={isSquared}
+            onStateChange={setIsSquared}
             size="md"
             style={tailwind.style("mt-1")}
           />
           <Switch
             label="parents background"
-            state={toggleBg}
-            onStateChange={setToggleBg}
+            state={hasParentsBackground}
+            onStateChange={setHasParentsBackground}
             size="md"
             style={tailwind.style("mt-1 ml-1")}
           />
@@ -181,16 +182,16 @@ export const AvatarGroupScreen = () => {
         >
           <Switch
             label="ring"
-            state={ring}
-            onStateChange={setRing}
+            state={hasRing}
+            onStateChange={setHasRing}
             size="md"
             style={tailwind.style("mt-1 ml-1")}
           />
 
           <Switch
             label="max"
-            state={max}
-            onStateChange={setMax}
+            state={isMax}
+            onStateChange={setIsMax}
             size="md"
             style={tailwind.style("mt-1 ml-1")}
           />

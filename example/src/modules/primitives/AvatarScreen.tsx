@@ -14,17 +14,19 @@ import {
 export const AvatarScreen = () => {
   const tailwind = useTheme();
 
-  const [status, setStatus] = useState(null);
-  const [name, setName] = useState(null);
-  const [squared, setSquared] = useState(false);
-  const [size, setSize] = useState<AvatarSizes>("xl");
+  const [selectedStatus, setSelectedStatus] = useState<AvatarStatusType>(null);
+  const [name, setName] = useState<string>(null);
+  const [isSquared, setIsSquared] = useState<boolean>(false);
+  const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
   const [imageUri, setImageUri] = useState(null);
-  const [variant, setVariant] = useState(null);
-  const [toggleBg, setToggleBg] = useState(false);
-  const [parentsBackground, setParentsBackground] = useState("bg-white-900");
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [hasParentBackground, setHasParentBackground] =
+    useState<boolean>(false);
+  const [parentsBackground, setParentsBackground] =
+    useState<string>("bg-white-900");
 
   useEffect(() => {
-    switch (variant) {
+    switch (selectedVariant) {
       case "withInitials":
         setName("Sandeep Prabhakaran");
         setImageUri(null);
@@ -41,7 +43,7 @@ export const AvatarScreen = () => {
         setImageUri(null);
     }
 
-    switch (toggleBg) {
+    switch (hasParentBackground) {
       case true:
         setParentsBackground("bg-black-900");
         break;
@@ -51,7 +53,7 @@ export const AvatarScreen = () => {
       default:
         setParentsBackground("bg-white-900");
     }
-  }, [variant, toggleBg]);
+  }, [selectedVariant, hasParentBackground]);
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -62,13 +64,13 @@ export const AvatarScreen = () => {
       >
         <Avatar
           name={name}
-          size={size}
-          status={status}
-          squared={squared}
+          size={selectedSize}
+          status={selectedStatus}
+          squared={isSquared}
           style={tailwind.style("my-1")}
           src={imageUri}
-          key={imageUri}
           parentsBackground={parentsBackground}
+          key={imageUri}
         />
       </Box>
       <Box
@@ -77,8 +79,8 @@ export const AvatarScreen = () => {
         )}
       >
         <RadioGroup
-          value={size}
-          onChange={value => setSize(value as AvatarSizes)}
+          value={selectedSize}
+          onChange={value => setSelectedSize(value as AvatarSizes)}
           orientation="horizontal"
         >
           <Box
@@ -96,9 +98,9 @@ export const AvatarScreen = () => {
           </Box>
         </RadioGroup>
         <RadioGroup
-          value={variant}
+          value={selectedVariant}
           onChange={value => {
-            setVariant(value as unknown);
+            setSelectedVariant(value as unknown);
           }}
           orientation="horizontal"
         >
@@ -113,8 +115,8 @@ export const AvatarScreen = () => {
           </Box>
         </RadioGroup>
         <RadioGroup
-          value={status}
-          onChange={value => setStatus(value as AvatarStatusType)}
+          value={selectedStatus}
+          onChange={value => setSelectedStatus(value as AvatarStatusType)}
           orientation="horizontal"
         >
           <Box
@@ -136,15 +138,15 @@ export const AvatarScreen = () => {
         >
           <Switch
             label="squared"
-            state={squared}
-            onStateChange={setSquared}
+            state={isSquared}
+            onStateChange={setIsSquared}
             size="md"
             style={tailwind.style("mt-2")}
           />
           <Switch
             label="parents background"
-            state={toggleBg}
-            onStateChange={setToggleBg}
+            state={hasParentBackground}
+            onStateChange={setHasParentBackground}
             size="md"
             style={tailwind.style("mt-2 ml-2")}
           />
