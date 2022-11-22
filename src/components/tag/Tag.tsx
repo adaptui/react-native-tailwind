@@ -16,7 +16,7 @@ import {
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
-export type TagSizes = "sm" | "md" | "lg" | "xl";
+export type TagSize = "sm" | "md" | "lg" | "xl";
 export type TagVariant = "solid" | "subtle" | "outline";
 export type TagTheme = "base" | "primary";
 
@@ -25,7 +25,7 @@ export interface TagProps extends PressableProps {
    * The size of the Tag component.
    * @default md
    */
-  size: TagSizes;
+  size: TagSize;
   /**
    * The variant of the Tag component.
    * @default solid
