@@ -138,7 +138,7 @@ export const CircularProgressScreen = () => {
 > Circular Progress implements Box accepting all `ViewProps`
 
 | Name               | Description                                                                       | Type                | Default |
-| ------------------ | --------------------------------------------------------------------------------- | ------------------- | ------- |
+|--------------------|-----------------------------------------------------------------------------------|---------------------|---------|
 | size               | Size of Circular Progress                                                         | `sm` `md` `lg` `xl` | `md`    |
 | themeColor         | Theme of Circular Progress                                                        | `base` `primary`    | `base`  |
 | strokeWidth        | Stroke Width of SVG Circle                                                        | number              | 2       |
