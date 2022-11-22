@@ -5,6 +5,8 @@ Adapt UI provides two themes for the `CheckboxGroup` with three sizes.
 These are groups of checkboxes stacked horizontally or vertically. 
 So any changes made in the checkbox component will reflect here too.
 
+![simulator_screenshot_5B121795-0688-496F-91CA-26C28FE23E2A](https://user-images.githubusercontent.com/35562287/203286255-a6d2be49-2606-4de0-99a9-9cd53105622e.png)
+
 #### Simple Usage
 
 ```js
@@ -49,6 +51,8 @@ export const App = () => {
 Adapt UI provides two themes for checkbox groups: `base` and `primary`. 
 You can use these themed checkbox groups based on your specific scenarios.
 
+![simulator_screenshot_5CEC669D-067D-48AB-8B3A-632C2D2A85D0](https://user-images.githubusercontent.com/35562287/203289544-5b8e3595-f993-4177-8014-e8cd0b5ee06b.png)
+
 <details>
 
 <summary>
@@ -85,7 +89,9 @@ export default function App() {
 
 There are three different sizes for the checkbox group in Adapt UI, `sm`, `md` and `lg`. 
 Based on the hierarchy, you can switch between different sizes.
-
+  
+![simulator_screenshot_982D4B28-85CF-4AC2-99C9-C6EABFA977E4](https://user-images.githubusercontent.com/35562287/203288193-64a25b4e-3521-4f84-9ad2-57d19a26d518.png)
+  
 <details>
 
 <summary>
@@ -122,6 +128,8 @@ export default function App() {
 
 This property can make the checkbox group into an indeterminate group where one checkbox will act as a master, which has a set of checkboxes under it.
 
+![simulator_screenshot_E202A2A8-A406-4C5A-B3B1-6D1826742D2D](https://user-images.githubusercontent.com/35562287/203288537-63c432ad-a14c-44bc-8345-a778da68fccf.png)
+  
 <details>
 
 <summary>
@@ -162,7 +170,9 @@ export const App = () => {
 Stack is the property to describe the layout of the component. Checkbox groups can be stacked horizontally and vertically.
 
 This property helps you to pick one for yourself, defaults to `vertical`. 
-
+  
+![simulator_screenshot_199E5E05-2DF0-4469-8E9C-5A854667F5CB](https://user-images.githubusercontent.com/35562287/203289204-882dcc11-bb00-4448-94cf-75fded46be35.png)
+  
 <details>
 
 <summary>
