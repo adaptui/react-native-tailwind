@@ -62,10 +62,16 @@ export const ButtonScreen = () => {
           onChange={value => setSelectedVariant(value as ButtonVariants)}
           orientation="horizontal"
         >
-          <Radio value="outline" label="outline" />
-          <Radio value="ghost" label="ghost" />
-          <Radio value="solid" label="solid" />
-          <Radio value="subtle" label="subtle" />
+          <Box
+            style={tailwind.style(
+              "flex flex-row flex-wrap justify-center items-center mt-1",
+            )}
+          >
+            <Radio value="outline" label="outline" />
+            <Radio value="ghost" label="ghost" />
+            <Radio value="solid" label="solid" />
+            <Radio value="subtle" label="subtle" />
+          </Box>
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
