@@ -7,7 +7,7 @@ import {
   Slot,
   Switch,
   Tag,
-  TagSizes,
+  TagSize,
   TagTheme,
   TagVariant,
   useTheme,
@@ -15,7 +15,7 @@ import {
 
 export const TagScreen = () => {
   const tailwind = useTheme();
-  const [selectedSize, setSelectedSize] = useState<TagSizes>("md");
+  const [selectedSize, setSelectedSize] = useState<TagSize>("md");
   const [selectedVariant, setSelectedVariant] = useState<TagVariant>("solid");
   const [selectedTheme, setSelectedTheme] = useState<TagTheme>("base");
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
@@ -45,7 +45,7 @@ export const TagScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as TagSizes)}
+          onChange={value => setSelectedSize(value as TagSize)}
           orientation="horizontal"
         >
           <Radio value="sm" label="sm" />
