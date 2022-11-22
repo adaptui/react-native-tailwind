@@ -1,70 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Badge,
+  BadgeSizes,
+  BadgeTheme,
+  BadgeVariants,
   Box,
   Check,
-  Clock,
-  Close,
   Icon,
+  Radio,
+  RadioGroup,
+  Switch,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
 export const BadgeScreen = () => {
   const tailwind = useTheme();
-  return (
-    <Box
-      style={tailwind.style("flex-1 justify-center items-center bg-white-900")}
-    >
-      <Badge style={tailwind.style("my-1")} themeColor="secondary">
-        Scheduled
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        themeColor="primary"
-        size="lg"
-        variant="outline"
-      >
-        Assigned
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        themeColor="primary"
-        variant="subtle"
-        prefix={<Icon icon={<Clock />} />}
-      >
-        On Progress
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        size="md"
-        themeColor="secondary"
-        variant="outline"
-      >
-        Confirmed
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        themeColor="danger"
-        prefix={<Icon icon={<Close />} />}
-      >
-        Cancelled
-      </Badge>
-      <Badge
-        style={tailwind.style("my-1")}
-        themeColor="success"
-        prefix={<Icon icon={<Check />} />}
-      >
-        Completed
-      </Badge>
 
-      <Badge
-        style={tailwind.style("my-1")}
-        size="sm"
-        themeColor="success"
-        variant="outline"
+  const [size, setSize] = useState<BadgeSizes>("md");
+  const [prefix, setPrefix] = useState(false);
+  const [variant, setVariant] = useState<BadgeVariants>("outline");
+  const [theme, setTheme] = useState<BadgeTheme>("base");
+
+  return (
+    <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
+      <Box
+        style={tailwind.style(
+          "flex-1 px-2 justify-center items-center bg-white-900",
+        )}
       >
-        Done
-      </Badge>
+        <Badge
+          style={tailwind.style("my-1")}
+          themeColor={theme}
+          size={size}
+          variant={variant}
+          prefix={!prefix ? null : <Icon icon={<Check />} />}
+        >
+          Completed
+        </Badge>
+      </Box>
+      <Box
+        style={tailwind.style(
+          "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+        )}
+      >
+        <RadioGroup
+          value={size}
+          onChange={value => setSize(value as BadgeSizes)}
+          orientation="horizontal"
+        >
+          <Box
+            style={tailwind.style(
+              "flex flex-row flex-wrap justify-center items-center",
+            )}
+          >
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+          </Box>
+        </RadioGroup>
+
+        <RadioGroup
+          value={variant}
+          onChange={value => setVariant(value as BadgeVariants)}
+          orientation="horizontal"
+        >
+          <Box
+            style={tailwind.style(
+              "flex flex-row flex-wrap justify-center items-center mt-1",
+            )}
+          >
+            <Radio value="outline" label="outline" />
+            <Radio value="solid" label="solid" />
+            <Radio value="subtle" label="subtle" />
+          </Box>
+        </RadioGroup>
+
+        <RadioGroup
+          value={theme}
+          onChange={value => setTheme(value as BadgeTheme)}
+          orientation="horizontal"
+        >
+          <Box
+            style={tailwind.style(
+              "flex flex-row flex-wrap justify-center items-center mt-1",
+            )}
+          >
+            <Radio value="base" label="base" />
+            <Radio value="danger" label="danger" />
+            <Radio value="primary" label="primary" />
+            <Radio value="secondary" label="secondary" />
+            <Radio value="success" label="success" />
+          </Box>
+        </RadioGroup>
+
+        <Box
+          style={tailwind.style(
+            "flex flex-row justify-center flex-wrap w-full",
+          )}
+        >
+          <Switch
+            label="prefix"
+            state={prefix}
+            onStateChange={setPrefix}
+            size="md"
+            style={tailwind.style("mt-2")}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 };

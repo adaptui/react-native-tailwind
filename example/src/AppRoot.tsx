@@ -27,7 +27,7 @@ const Drawer = createDrawerNavigator();
 
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="AvatarGroupScreen">
+    <Drawer.Navigator initialRouteName="BadgeScreen">
       <Drawer.Screen
         options={{ title: "Avatar" }}
         name="AvatarScreen"
