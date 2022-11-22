@@ -80,15 +80,20 @@ export const AvatarScreen = () => {
           value={size}
           onChange={value => setSize(value as AvatarSizes)}
           orientation="horizontal"
-          size="sm"
         >
-          <Radio value="xs" label="xs" />
-          <Radio value="sm" label="sm" />
-          <Radio value="md" label="md" />
-          <Radio value="lg" label="lg" />
-          <Radio value="xl" label="xl" />
-          <Radio value="2xl" label="2xl" />
-          <Radio value="3xl" label="3xl" />
+          <Box
+            style={tailwind.style(
+              "flex flex-row flex-wrap justify-center items-center",
+            )}
+          >
+            <Radio value="xs" label="xs" />
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+            <Radio value="xl" label="xl" />
+            <Radio value="2xl" label="2xl" />
+            <Radio value="3xl" label="3xl" />
+          </Box>
         </RadioGroup>
         <RadioGroup
           value={variant}
@@ -97,21 +102,32 @@ export const AvatarScreen = () => {
           }}
           orientation="horizontal"
         >
-          <Radio value={null} label="default" />
-          <Radio value="withInitials" label="initials" />
-          <Radio value="withImage" label="image" />
+          <Box
+            style={tailwind.style(
+              "flex flex-row flex-wrap justify-center items-center mt-1",
+            )}
+          >
+            <Radio value={null} label="default" />
+            <Radio value="withInitials" label="initials" />
+            <Radio value="withImage" label="image" />
+          </Box>
         </RadioGroup>
         <RadioGroup
           value={status}
           onChange={value => setStatus(value as AvatarStatusType)}
           orientation="horizontal"
-          size="sm"
         >
-          <Radio value={null} label="default" />
-          <Radio value="active" label="active" />
-          <Radio value="away" label="away" />
-          <Radio value="sleep" label="sleep" />
-          <Radio value="typing" label="typing" />
+          <Box
+            style={tailwind.style(
+              "flex flex-row flex-wrap justify-center items-center mt-1",
+            )}
+          >
+            <Radio value={null} label="default" />
+            <Radio value="active" label="active" />
+            <Radio value="away" label="away" />
+            <Radio value="sleep" label="sleep" />
+            <Radio value="typing" label="typing" />
+          </Box>
         </RadioGroup>
         <Box
           style={tailwind.style(
