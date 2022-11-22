@@ -16,7 +16,7 @@ import {
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
-export type TagSizes = "sm" | "md" | "lg" | "xl";
+export type TagSize = "sm" | "md" | "lg" | "xl";
 export type TagVariant = "solid" | "subtle" | "outline";
 export type TagTheme = "base" | "primary";
 
@@ -25,7 +25,7 @@ export interface TagProps extends PressableProps {
    * The size of the Tag component.
    * @default md
    */
-  size: TagSizes;
+  size: TagSize;
   /**
    * The variant of the Tag component.
    * @default solid
@@ -81,7 +81,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     themeColor = "base",
     closable = false,
     prefix,
-    suffix = closable ? <Icon icon={<Close />} /> : null,
+    suffix: suffixFromProps,
     style,
     textStyle,
     accesibilityLabel,
@@ -110,6 +110,11 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       </Box>
     ));
 
+  const suffix = suffixFromProps ? (
+    suffixFromProps
+  ) : closable ? (
+    <Icon icon={<Close />} />
+  ) : null;
   /* Suffix Slot */
   const _suffix =
     suffix &&
@@ -214,12 +219,10 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     >
       {_prefix}
       {children}
-      {closable && _suffix}
+      {_suffix}
     </Touchable>
   );
 });
-
-RNTag.displayName = "RNTag";
 
 export const Tag = createComponent<Partial<TagProps>>(RNTag, {
   shouldMemo: true,
