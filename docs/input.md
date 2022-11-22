@@ -122,6 +122,8 @@ The prefix is a slot at a component's beginning or prefix position. Here in the 
 
 There are no restrictions on what should be inside the prefix. Whatever component it is, it should work fine.
 
+![simulator_screenshot_E0DE071C-13AB-4DD3-8F83-4AB1AE97ACD6](https://user-images.githubusercontent.com/35562287/203334964-c147bf16-7023-4ca4-a62f-8b9f8c8444be.png)
+
 <details>
 
 <summary>
@@ -148,6 +150,8 @@ export default function App() {
 ## Suffix
 
 The suffix is the same as the prefix, with only a difference in its position. Suffix usually is at the end of a component. Here in the input field component, the suffix slot can bring an icon or a spinner to show the loading interaction of the input component.
+
+![simulator_screenshot_BB79CC77-A590-4A22-9C55-9B90D8BF11C6](https://user-images.githubusercontent.com/35562287/203334831-5de40f3e-6feb-4261-b25e-0d0916acc78c.png)
 
 <details>
 
