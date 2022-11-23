@@ -1,16 +1,12 @@
 # Slider
 
-Adapt UI provides Slider component which can be used when users have to select
-options from a given range of values
+Adapt UI provides two themes for sliders with four sizes and five interaction states. 
+Use this component to receive input from the user.
 
 #### Simple Usage
 
 ```js
-import {
-  Box,
-  Slider,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, Slider, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const theme = useTheme();
@@ -27,24 +23,25 @@ export default function App() {
 - [Themes](#themes)
 - [Size](#size)
 - [Range](#range)
+- [Knob](#knob)
+- [Tooltip](#tooltip)
 - [Props](#props)
 
 ## Themes
 
-Adapt UI provides three themes for radio buttons: `base`, `primary`, and
-`danger`.
+Adapt UI provides two themes for radio buttons: `base` and `primary`
 
-You can use these themed radio button components based on your specific
+You can use these themed Slider components based on your specific
 scenarios.
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
-import {
-  Box,
-  Slider,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, Slider, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const theme = useTheme();
@@ -60,22 +57,23 @@ export default function App() {
   )
 }
 ```
+</details>
 
-## Sizes
+## Size
 
 There are four different sizes for the slider component in Adapt UI: `sm`, `md`,
 `lg` & `xl`
 
 Based on the hierarchy, you can switch between different sizes.
 
-### Usage
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
 
 ```js
-import {
-  Box,
-  Slider,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, Slider, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const theme = useTheme();
@@ -97,34 +95,87 @@ export default function App() {
   )
 }
 ```
+</details>
 
 ## Range
 
-Adapt UI provides an option to customize your Slider component which can be used
-when users have to select values of range, like for example, Price Range of
-Product.
+Adapt provides a range slider component. You can switch between the default slider and range slider using the range prop.
+Range sliders are usually used to get two set of input values from the user.
+
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
 
 ```js
-import {
-  Box,
-  Slider,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, Slider, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const theme = useTheme();
   return (
     <Box style={tailwind.style("mx-5 my-5")}>
-      <Slider minValue={1000} maxValue={50000} range={true} showTooltip />
+      <Slider minValue={1000} maxValue={50000} range />
     </Box>
   )
 }
 ```
+</details>
+
+## Knob
+
+Show or hide the knob in the slider using this property. The knob will also have an icon on it. Use knob and knob icon property in the right panel to hide or show both knob and knob icons.
+
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+
+```js
+import { Box, Slider, useTheme } from "@adaptui/react-native-tailwind";
+
+export default function App() {
+  const theme = useTheme();
+  return (
+    <Box style={tailwind.style("mx-5 my-5")}>
+      <Slider knobIcon={<Icon icon={<Equals />} />} />
+    </Box>
+  )
+}
+```
+</details>
+
+## Tooltip
+
+This property can bring the tooltip above the selected knob. Note that the slider should be in an active state to use this property.
+
+**Note**: Tooltip property is used only when the slider is in active interaction.
+
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+
+```js
+import { Box, Slider, useTheme } from "@adaptui/react-native-tailwind";
+
+export default function App() {
+  const theme = useTheme();
+  return (
+    <Box style={tailwind.style("mx-5 my-5")}>
+      <Slider showTooltip />
+    </Box>
+  )
+}
+```
+</details>
 
 ## Props
 
 | Name           | Description                                                      | Type                      | Default |
-| -------------- | ---------------------------------------------------------------- | ------------------------- | ------- |
+|----------------|------------------------------------------------------------------|---------------------------|---------|
 | size           | The size of slider and knob                                      | `sm` `md` `lg` `xl`       | `md`    |
 | themeColor     | The theme of Slider                                              | `base` `primary`          | `base`  |
 | defaultValue   | Default value of Slider                                          | number[]                  |         |
@@ -138,4 +189,4 @@ export default function App() {
 | disabled       | Is Slider disabled                                               | boolean                   |         |
 | showTooltip    | Should the slider show value in a tooltip                        | boolean                   |         |
 
-> Using onDragValue will have some Performance issues because its called using `runOnJS`
+> Using `onDragValue`eee will have some Performance issues because its called using `runOnJS`, all other functions are executed in UI Thread.
