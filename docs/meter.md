@@ -30,8 +30,12 @@ Adapt UI provides three themes for the Meter Component: `base`, `primary` and
 
 ![simulator_screenshot_5EEF8780-73D6-4AD6-A9E3-686415240C4E](https://user-images.githubusercontent.com/35562287/203483779-7672817c-d46d-4c27-b363-a536108200aa.png)
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Meter, Search, Icon } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -51,6 +55,7 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Size
 
@@ -61,9 +66,12 @@ Based on the hierarchy, you can switch between different sizes.
 
 ![simulator_screenshot_E7362C3F-A665-4A0A-8AEC-C65B97522BD4](https://user-images.githubusercontent.com/35562287/203484259-7cbccdc0-422e-427d-b010-067c0fd63256.png)
 
+<details>
 
-### Usage
-
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Meter, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -88,11 +96,13 @@ export default function App() {
 }
 
 ```
+</details>
+
 
 ## Props
 
 | Name        | Description                                                                                                                     | Type                       | Default |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------- |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------|----------------------------|---------|
 | size        | Size of Meter Component                                                                                                         | `sm` `md` `lg` `xl`        | `md`    |
 | themeColor  | Theme of Meter Component                                                                                                        | `base` `primary` `success` | `base`  |
 | value       | A floating point number that represents the current value of the measured range. This must be between the min and the max value | number                     |         |
