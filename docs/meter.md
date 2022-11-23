@@ -3,6 +3,9 @@
 AdaptUI provides a Meter Component which can be used to define a scalar
 measurement within a known range, or a fractional value.
 
+![simulator_screenshot_4CB9DD6B-3ADF-4C20-BE91-30896435990D](https://user-images.githubusercontent.com/35562287/203483320-5a1dea63-ae1b-433c-88fc-72c70d2493b8.png)
+
+
 #### Simple Usage
 
 ```js
@@ -24,6 +27,8 @@ export default function App() {
 
 Adapt UI provides three themes for the Meter Component: `base`, `primary` and
 `success`
+
+![simulator_screenshot_5EEF8780-73D6-4AD6-A9E3-686415240C4E](https://user-images.githubusercontent.com/35562287/203483779-7672817c-d46d-4c27-b363-a536108200aa.png)
 
 ### Usage
 
@@ -53,6 +58,9 @@ There are four different sizes for Meter Component in Adapt UI: `sm`, `md`, `lg`
 & `xl`
 
 Based on the hierarchy, you can switch between different sizes.
+
+![simulator_screenshot_E7362C3F-A665-4A0A-8AEC-C65B97522BD4](https://user-images.githubusercontent.com/35562287/203484259-7cbccdc0-422e-427d-b010-067c0fd63256.png)
+
 
 ### Usage
 
