@@ -145,6 +145,7 @@ export default function App() {
 Orientation is the property to describe the layout of the component. 
 Radio groups can be stacked horizontally and vertically. This property helps you to pick one for yourself. Defaults to `vertical` 
 
+![simulator_screenshot_9788F3DC-DD9D-4552-9C78-91C353F9BE6C](https://user-images.githubusercontent.com/35562287/203501195-36bae197-e9b3-4211-8035-ecb07410146a.png)
 
 <details>
 
