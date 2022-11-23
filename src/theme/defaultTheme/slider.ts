@@ -14,7 +14,7 @@ export const slider = {
         knobRadius: 9,
       },
       tooltip: {
-        position: (18 - 2) / 2,
+        position: 6,
       },
       knobIcon: {
         default: "w-2.5 h-2.5",
@@ -29,7 +29,7 @@ export const slider = {
         knobRadius: 10,
       },
       tooltip: {
-        position: (20 - 4) / 2,
+        position: 8,
       },
       knobIcon: {
         default: "w-2.5 h-2.5",
@@ -44,7 +44,7 @@ export const slider = {
         knobRadius: 12,
       },
       tooltip: {
-        position: (24 - 8) / 2,
+        position: 8,
       },
       knobIcon: {
         default: "w-3 h-3",
@@ -59,7 +59,7 @@ export const slider = {
         knobRadius: 14,
       },
       tooltip: {
-        position: (28 - 10) / 2,
+        position: 8,
       },
       knobIcon: {
         default: "w-4 h-4",
@@ -87,7 +87,7 @@ export const slider = {
   tooltip: {
     default: "absolute",
     wrapper:
-      "px-2 py-1.5 min-w-8 justify-center items-center bg-gray-800 rounded-lg",
+      "px-2 py-1.5 min-w-8 justify-center items-center bg-gray-900 rounded-lg",
     arrowWrapper: "w-3 h-3 z-10",
     common: "text-cxs text-white-900 text-center font-normal leading-4",
   },
