@@ -6,11 +6,7 @@ processing or awaiting a course change or results.
 #### Simple Usage
 
 ```js
-import {
-  Box,
-  Spinner,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, Spinner, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const theme = useTheme();
@@ -26,6 +22,7 @@ export default function App() {
 
 - [Themes](#themes)
 - [Size](#size)
+- [Track](#track)
 - [Props](#props)
 
 ## Themes
@@ -35,14 +32,14 @@ Adapt UI provides three themes for spinner: `base`, `primary`, `secondary`,
 
 You can use these themed spinner components based for your specific scenarios.
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
-import {
-  Box,
-  Slider,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, Spinner, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const theme = useTheme();
@@ -71,22 +68,23 @@ export default function App() {
   )
 }
 ```
+</details>
 
 ## Size
 
-There are five different sizes for the slider component in Adapt UI: `xs`, `sm`,
+There are five different sizes for the Spinner component in Adapt UI: `xs`, `sm`,
 `md`, `lg` & `xl`
 
 Based on the hierarchy, you can switch between different sizes.
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
-import {
-  Box,
-  Slider,
-  useTheme,
-} from "@adaptui/react-native-tailwind";
+import { Box, Spinner, useTheme } from "@adaptui/react-native-tailwind";
 
 export default function App() {
   const theme = useTheme();
@@ -115,11 +113,41 @@ export default function App() {
   )
 }
 ```
+</details>
+
+## Track
+
+We have two different-looking spinners which have visible or transparent track of the spinner.
+
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
+```js
+import { Box, Spinner, useTheme } from "@adaptui/react-native-tailwind";
+
+export default function App() {
+  const theme = useTheme();
+  return (
+    <>
+      <Spinner
+        style={tailwind.style("my-2")}
+        themeColor={value}
+        key={index}
+        track="visible"
+      />
+    </>
+  )
+}
+```
+</details>
 
 ## Props
 
 | Name       | Description                        | Type                                            | Default       |
-| ---------- | ---------------------------------- | ----------------------------------------------- | ------------- |
+|------------|------------------------------------|-------------------------------------------------|---------------|
 | size       | How large should the spinner be?   | `xs` `sm` `md` `lg` `xl`                        | `md`          |
 | track      | Should spinner track be displayed? | `visible` `transparent`                         | `transparent` |
 | themeColor | Spinner Theme                      | `base` `primary` `secondary` `success` `danger` | `base`        |
