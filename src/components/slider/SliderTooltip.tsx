@@ -20,7 +20,7 @@ const TooltipArrow: React.FC = () => {
     <Svg width="100%" height="100%" viewBox="0 0 12 5" fill="none">
       <Path
         d="M11.1466 0C16.3801 0 -4.3808 0 0.853735 0C2.7834 0 4.5931 5 6.00014 5C7.40719 5 9.23748 0 11.1466 0Z"
-        fill="#27272A"
+        fill="#171717"
       />
     </Svg>
   );
@@ -83,6 +83,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
   const animatedArrowStyle = useAnimatedStyle(() => {
     return {
       top: undefined,
+      bottom: 0.5,
       left: tooltipWidth.value / 2 - defaultArrowWidth / 2,
     };
   }, [tooltipWidth.value]);
@@ -96,7 +97,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
       ],
       display: isDragging.value ? "flex" : "none",
       left: knobRadius - tooltipWidth.value / 2,
-      bottom: sliderTheme.size[size]?.tooltip.position * 2 + 6,
+      bottom: sliderTheme.size[size]?.tooltip.position * 2,
     };
   }, [tooltipWidth.value]);
 
