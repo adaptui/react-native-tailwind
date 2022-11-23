@@ -38,6 +38,7 @@ export default function App() {
 
 - [Themes](#themes)
 - [Size](#size)
+- [Orientation](#orientation)
 - [RadioGroupProps](#radiogroupprops)
 - [RadioProps](#radioprops)
 
@@ -51,9 +52,12 @@ scenarios.
 
 ![simulator_screenshot_6D115784-B9D3-4360-8541-8DD2A6AB60B6](https://user-images.githubusercontent.com/35562287/203498297-b22cd3a2-f949-42d7-aad8-cea46ba42e3c.png)
 
+<details>
 
-### Usage
-
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { RadioGroup, Radio, Box, useTheme } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -86,6 +90,7 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Size
 
@@ -96,9 +101,12 @@ Based on the hierarchy, you can switch between different sizes.
 
 ![simulator_screenshot_B4125467-5D08-43E8-8852-21F0968625F2](https://user-images.githubusercontent.com/35562287/203498129-f78cadba-3b00-4792-95c0-6328a80ce7c9.png)
 
+<details>
 
-### Usage
-
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { RadioGroup, Radio, Box, useTheme } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -130,11 +138,48 @@ export default function App() {
   )
 }
 ```
+</details>
+
+## Orientation
+
+Orientation is the property to describe the layout of the component. 
+Radio groups can be stacked horizontally and vertically. This property helps you to pick one for yourself. Defaults to `vertical` 
+
+
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
+```js
+import {
+  Box,
+  Radio,
+  RadioGroup,
+  useTheme,
+} from "@adaptui/react-native-tailwind";
+
+export default function App() {
+
+  const [value, setValue] = useState("cod");
+    
+  return (
+    <RadioGroup orientation="horizontal" value={value} onChange={setValue}>
+      <Radio value="private" label="Private Sector" />
+      <Radio value="public" label="Public Sector" />
+      <Radio value="freelancer" label="Freelancer" />
+      <Radio value="business" label="Business" />
+    </RadioGroup>
+  )
+}
+```
+</details>
 
 ### RadioGroupProps
 
 | Name         | Description                                              | Type                      | Default    |
-| ------------ | -------------------------------------------------------- | ------------------------- | ---------- |
+|--------------|----------------------------------------------------------|---------------------------|------------|
 | size         | Size of Radio                                            | `sm` `md` `lg`            | `md`       |
 | themeColor   | Theme of Radio                                           | `base` `primary` `danger` | `base`     |
 | orientation  | The orientation of Radio Group items                     | `vertical` `horizontal`   | `vertical` |
@@ -146,7 +191,7 @@ export default function App() {
 ### RadioProps
 
 | Name        | Description                                                        | Type    | Default |
-| ----------- | ------------------------------------------------------------------ | ------- | ------- |
+|-------------|--------------------------------------------------------------------|---------|---------|
 | label       | The label for Radio                                                | string  |         |
 | description | A description for Radio                                            | string  |         |
 | value       | A unique value of Radio for controlling the state                  | string  |         |
