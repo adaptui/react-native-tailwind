@@ -163,7 +163,7 @@ import {
 
 export default function App() {
 
-  const [value, setValue] = useState("cod");
+  const [value, setValue] = useState("freelancer");
     
   return (
     <RadioGroup orientation="horizontal" value={value} onChange={setValue}>
