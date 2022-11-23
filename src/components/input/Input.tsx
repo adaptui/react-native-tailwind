@@ -13,7 +13,7 @@ import {
   useOnHover,
 } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
-import { composeEventHandlers } from "../../utils/mergeRefs";
+import { composeEventHandlers, mergeRefs } from "../../utils/mergeRefs";
 import { Spinner } from "../spinner";
 import { createIcon, Icon } from "..";
 
@@ -90,7 +90,9 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   const [isFocussedMobile, setIsFocussedMobile] = useState(false);
   const handleOnFocus = () => setIsFocussedMobile(true);
   const handleOnBlur = () => setIsFocussedMobile(false);
-  const inputRef = useRef();
+  const localRef = useRef();
+
+  const inputRef = mergeRefs([localRef, ref]);
 
   const {
     size = "md",
@@ -138,10 +140,17 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   React.useEffect(() => {
     // @ts-ignore
 
-    ref?.current?.setNativeProps?.({
+    inputRef?.current?.setNativeProps?.({
       text: value,
     });
-  }, [ref, value, suffixWidth, loading, prefixWidth, placeholderTextColor]);
+  }, [
+    inputRef,
+    value,
+    suffixWidth,
+    loading,
+    prefixWidth,
+    placeholderTextColor,
+  ]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = React.useMemo(() => value, []);
