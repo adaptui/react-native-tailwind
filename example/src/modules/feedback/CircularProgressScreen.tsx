@@ -53,18 +53,16 @@ export const CircularProgressScreen = () => {
           "flex-1 px-2 justify-center items-center bg-white-900",
         )}
       >
-        <Box style={tailwind.style("my-5")}>
-          <CircularProgress
-            style={!hasCustomTrack ? null : tailwind.style("w-48 h-48")}
-            hint={!showValue ? null : `${progressValue}%`}
-            value={!hasValue ? null : progressValue}
-            themeColor={selectedTheme}
-            size={selectedSize}
-            progressTrackColor={
-              !hasCustomTrack ? null : tailwind.getColor("text-green-600")
-            }
-          />
-        </Box>
+        <CircularProgress
+          style={!hasCustomTrack ? null : tailwind.style("w-48 h-48")}
+          hint={!showValue ? null : `${progressValue}%`}
+          value={!hasValue ? null : progressValue}
+          themeColor={selectedTheme}
+          size={selectedSize}
+          progressTrackColor={
+            !hasCustomTrack ? null : tailwind.getColor("text-green-600")
+          }
+        />
       </Box>
       <Box
         style={tailwind.style(
