@@ -19,6 +19,7 @@ export * from "./FastForward";
 export * from "./Filter";
 export * from "./Image";
 export * from "./Info";
+export * from "./Link";
 export * from "./Location";
 export * from "./Notification";
 export * from "./Search";
