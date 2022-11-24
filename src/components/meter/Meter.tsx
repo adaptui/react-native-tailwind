@@ -18,7 +18,7 @@ export interface MeterProps {
   size: MeterSizes;
   /**
    * Meter Theme
-   * @defaul base
+   * @default 'base'
    */
   themeColor: MeterTheme;
   /**
