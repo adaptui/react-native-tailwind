@@ -32,7 +32,11 @@ Adapt UI provides three themes for the Tag Component: `base` & `primary`
 
 ![simulator_screenshot_8C125A32-5E1F-4716-B62F-08BDD2A420D3](https://user-images.githubusercontent.com/35562287/203707882-abd893c1-6cc0-4964-82e7-fae050cbe991.png)
 
-### Usage
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
 
 ```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
@@ -50,6 +54,7 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Variant
 
@@ -57,8 +62,12 @@ Adapt UI provides three different styles for Tags, namely `solid`, `subtle` and 
 
 ![simulator_screenshot_20A3DDD7-DE28-40B1-9A8C-510C7EB7F2D0](https://user-images.githubusercontent.com/35562287/203710272-fe25d68c-fbf1-4f77-805b-4f779ef7b554.png)
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -68,7 +77,7 @@ export default function App() {
         <Tag />
       </Box>
       <Box style={tailwind.style("my-2")}>
-        <Tag variant="subtle" />
+        <Tag variant="subtle" />e
       </Box>
       <Box style={tailwind.style("my-2")}>
         <Tag variant="outline" />
@@ -76,8 +85,8 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 ## Size
 
@@ -87,8 +96,12 @@ Based on the hierarchy, you can switch between different sizes.
 
 ![simulator_screenshot_596B297D-7557-46F3-9188-B927BE27C004](https://user-images.githubusercontent.com/35562287/203711080-bca70ab7-5b53-4e8e-834c-a1a12f3b1e79.png)
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -109,8 +122,8 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 ## Prefix
 
@@ -121,8 +134,12 @@ property. It’s a frame that hugs the component inside it.
 
 ![simulator_screenshot_8A97A56F-3E6D-47BD-92B6-73629E1C3EA9](https://user-images.githubusercontent.com/35562287/203711181-834d20b9-5e1a-4c06-b10b-f9ba7e2fdfde.png)
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Tag, useTheme, Icon, Location } from "@adaptui/react-native-tailwind"
 
@@ -141,8 +158,8 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 ## Suffix
 
@@ -153,9 +170,12 @@ Tag component.
 
 ![simulator_screenshot_9A0C5D0C-46C9-49CE-A1D7-3A8B7568699A](https://user-images.githubusercontent.com/35562287/203711832-effe5849-7a49-49db-ad41-b247ac34a35a.png)
 
+<details>
 
-### Usage
-
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Tag, useTheme, Icon, CaretRight } from "@adaptui/react-native-tailwind"
 
@@ -174,8 +194,8 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 #### Suffix Special Case
 
@@ -183,8 +203,12 @@ Setting a prop `closable` to true would render a `<Close />` icon.
 
 ![simulator_screenshot_217418D1-E68D-44C2-97EF-BD9FB6B3A3FE](https://user-images.githubusercontent.com/35562287/203712282-034ce7f5-0883-4a72-aeb8-049f3dadcab0.png)
 
-### Usage
+<details>
 
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Tag, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -200,13 +224,14 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Props
 
 > Tag implements `Touchable` accepting all `PressableProps`
 
 | Name       | Description                                                                   | Type                          | Default |
-| ---------- | ----------------------------------------------------------------------------- | ----------------------------- | ------- |
+|------------|-------------------------------------------------------------------------------|-------------------------------|---------|
 | size       | The Tag Size                                                                  | `sm` `md` `lg` `xl`           | `md`    |
 | variant    | The Tag Variants                                                              | `solid` `outline` `subtle`    | `solid` |
 | themeColor | The Tag Theme                                                                 | `base` `primary`              | `base`  |
