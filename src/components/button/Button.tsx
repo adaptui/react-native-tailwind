@@ -70,7 +70,7 @@ export interface ButtonProps extends PressableProps {
   /**
    * If added, the button will show this spinner components
    *
-   * @default Spinner Component
+   * @default "<Spinner />"
    */
   spinner: RenderPropType;
   /**

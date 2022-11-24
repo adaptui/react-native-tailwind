@@ -36,6 +36,7 @@ export interface CheckboxProps extends TouchableProps {
   size: CheckboxSizes;
   /**
    * Checkbox Theme
+   * @default base
    */
   themeColor: CheckboxTheme;
   /**
