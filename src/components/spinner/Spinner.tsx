@@ -20,6 +20,8 @@ export type SpinnerTheme =
   | "success"
   | "danger";
 
+export type SpinnerTrackVisibility = "visible" | "transparent";
+
 export interface SpinnerLibProps {
   /**
    * How large should the spinner be?
@@ -30,7 +32,7 @@ export interface SpinnerLibProps {
    * How the spinner should be displayed?
    * @default transparent
    */
-  track: "visible" | "transparent";
+  track: SpinnerTrackVisibility;
   /**
    * Spinner Theme
    * @default base
