@@ -27,10 +27,12 @@ export type CircularProgressTheme = "base" | "primary";
 export interface CircularProgressProps extends BoxProps {
   /**
    * The size of the Circle
+   * @default md
    */
   size: CircularProgressSizes;
   /**
    * The size of the Circle
+   * @default base
    */
   themeColor: CircularProgressTheme;
   /**

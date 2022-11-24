@@ -21,31 +21,31 @@ export interface BadgeProps extends BoxProps {
    * How large should the badge be?
    * @default md
    */
-  size?: BadgeSizes;
+  size: BadgeSizes;
   /**
    * How the badge should be themed?
    * @default base
    */
-  themeColor?: BadgeTheme;
+  themeColor: BadgeTheme;
   /**
    * How the badge should look?
    * @default solid
    */
-  variant?: BadgeVariants;
+  variant: BadgeVariants;
   /**
    * The Text style of the Badge component.
    * @default {}
    */
-  textProps?: TextProps;
+  textProps: TextProps;
   /**
    * If added, the Badge will show an icon before the tag's text.
    */
-  prefix?: RenderPropType;
+  prefix: RenderPropType;
 }
 
 const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
   typeof Box,
-  BadgeProps
+  Partial<BadgeProps>
 >(
   (
     {
