@@ -66,7 +66,7 @@ export interface AvatarProps extends BoxProps {
   /**
    * StatusIndicator's Background Color & StatusIndicator Ring Color.
    *
-   * @default ["bg-white-900", "ring-white-900"]"
+   * @default "text-white-900"
    */
   parentsBackground: string;
 }
