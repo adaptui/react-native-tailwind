@@ -311,7 +311,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               {label}
             </Text>
           )}
-          {description && (
+          {label && description && (
             <Text
               style={[
                 tailwind.style(

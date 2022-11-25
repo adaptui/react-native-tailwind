@@ -225,7 +225,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
               {label}
             </Text>
           )}
-          {description && (
+          {label && description && (
             <Text
               style={[
                 tailwind.style(
