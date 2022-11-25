@@ -20,9 +20,20 @@ export const SliderComponentScreen = () => {
   const [hasKnobIcon, setHasKnobIcon] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [hasToolTip, setHasTooltip] = useState<boolean>(false);
-  const [hasMaxValue, setHasMaxValue] = useState<boolean>(true);
+  const [hasMaxValue, setHasMaxValue] = useState<boolean>(false);
   const [hasStep, setHasStep] = useState<boolean>(false);
   const [hasRange, setHasRange] = useState<boolean>(false);
+
+  console.log(
+    "%c⧭",
+    "color: #9c66cc",
+    isDisabled,
+    hasRange,
+    hasMaxValue,
+    hasStep,
+    hasToolTip,
+    hasKnobIcon,
+  );
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -32,9 +43,9 @@ export const SliderComponentScreen = () => {
         )}
       >
         <Slider
-          range={!hasRange ? null : true}
-          maxValue={!hasMaxValue ? null : 1000}
-          step={!hasStep ? null : 20}
+          range={!hasRange ? false : true}
+          maxValue={!hasMaxValue ? 100 : 1000}
+          step={!hasStep ? 1 : 20}
           knobIcon={!hasKnobIcon ? null : <Icon icon={<Equals />} />}
           showTooltip={hasToolTip}
           size={selectedSize}

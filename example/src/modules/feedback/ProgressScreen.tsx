@@ -16,9 +16,10 @@ export const ProgressScreen = () => {
   const [selectedTheme, setSelectedTheme] = useState<ProgressBarTheme>("base");
   const [selectedSize, setSelectedSize] = useState<ProgressBarSizes>("md");
 
-  const [hasHints, setHasHints] = useState<boolean>(true);
-  const [hasLabel, setHasLabel] = useState<boolean>(true);
+  const [hasHints, setHasHints] = useState<boolean>(false);
+  const [hasLabel, setHasLabel] = useState<boolean>(false);
 
+  console.log("%c⧭", "color: #9c66cc", hasHints, hasLabel);
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
@@ -29,8 +30,8 @@ export const ProgressScreen = () => {
         <ProgressBar
           size={selectedSize}
           themeColor={selectedTheme}
-          label={!hasLabel ? null : "Progress"}
-          hint={!hasHints ? null : "26.6%"}
+          label={hasLabel ? "Progress" : undefined}
+          hint={hasLabel && hasHints ? "26.6%" : undefined}
           style={tailwind.style("my-2")}
         />
       </Box>
@@ -76,10 +77,7 @@ export const ProgressScreen = () => {
           />
           <Switch
             state={hasHints}
-            onStateChange={value => {
-              setHasHints(value);
-              setHasLabel(true);
-            }}
+            onStateChange={value => setHasHints(value)}
             size="md"
             style={tailwind.style("ml-1 mt-1")}
             label="Hints"

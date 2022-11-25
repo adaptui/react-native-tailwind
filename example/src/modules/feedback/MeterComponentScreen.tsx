@@ -20,6 +20,15 @@ export const MeterComponentScreen = () => {
   const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(false);
 
+  console.log(
+    "%c⧭",
+    "color: #9c66cc",
+    hasLabel,
+    hasHints,
+    hasIntervals,
+    hasFlatBorder,
+  );
+
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
@@ -73,7 +82,9 @@ export const MeterComponentScreen = () => {
         >
           <Switch
             state={hasLabel}
-            onStateChange={value => setHasLabel(value)}
+            onStateChange={value => {
+              setHasLabel(value);
+            }}
             size="md"
             style={tailwind.style("ml-1 mt-1")}
             label="Label"
@@ -82,7 +93,6 @@ export const MeterComponentScreen = () => {
             state={hasHints}
             onStateChange={value => {
               setHasHints(value);
-              setHasLabel(true);
             }}
             size="md"
             style={tailwind.style("ml-1 mt-1")}
