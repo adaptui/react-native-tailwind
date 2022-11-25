@@ -20,15 +20,6 @@ export const MeterComponentScreen = () => {
   const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(false);
 
-  console.log(
-    "%c⧭",
-    "color: #9c66cc",
-    hasLabel,
-    hasHints,
-    hasIntervals,
-    hasFlatBorder,
-  );
-
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box

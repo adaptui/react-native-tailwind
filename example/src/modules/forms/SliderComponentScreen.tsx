@@ -24,17 +24,6 @@ export const SliderComponentScreen = () => {
   const [hasStep, setHasStep] = useState<boolean>(false);
   const [hasRange, setHasRange] = useState<boolean>(false);
 
-  console.log(
-    "%c⧭",
-    "color: #9c66cc",
-    isDisabled,
-    hasRange,
-    hasMaxValue,
-    hasStep,
-    hasToolTip,
-    hasKnobIcon,
-  );
-
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
