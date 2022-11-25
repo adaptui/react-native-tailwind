@@ -51,16 +51,6 @@ export const CheckboxGroupScreen = () => {
           "w-full py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
         )}
       >
-        <Box style={tailwind.style("mt-2")}>
-          {selectedValue.length !== 0 && <Text>Picked fruits</Text>}
-          {selectedValue.map((item, index) => {
-            return (
-              <Text style={tailwind.style("my-1")} key={index}>
-                - {item}
-              </Text>
-            );
-          })}
-        </Box>
         <RadioGroup
           value={selectedSize}
           onChange={value => setSelectedSize(value as CheckboxSizes)}
