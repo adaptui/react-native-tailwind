@@ -42,7 +42,6 @@ export const CircularProgressScreen = () => {
   const [selectedTheme, setSelectedTheme] =
     useState<CircularProgressTheme>("base");
   const [selectedSize, setSelectedSize] = useState<CircularProgressSizes>("md");
-  const [hasValue, setHasValue] = useState<boolean>(false);
   const [showValue, setShowValue] = useState<boolean>(false);
   const [hasCustomTrack, setHasCustomTrack] = useState<boolean>(false);
 
@@ -56,7 +55,7 @@ export const CircularProgressScreen = () => {
         <CircularProgress
           style={!hasCustomTrack ? null : tailwind.style("w-48 h-48")}
           hint={!showValue ? null : `${progressValue}%`}
-          value={!hasValue ? null : progressValue}
+          value={progressValue}
           themeColor={selectedTheme}
           size={selectedSize}
           progressTrackColor={
@@ -99,17 +98,10 @@ export const CircularProgressScreen = () => {
           )}
         >
           <Switch
-            state={hasValue}
-            onStateChange={value => setHasValue(value)}
-            size="md"
-            style={tailwind.style("ml-1 mt-1")}
-            label="Show Hint"
-          />
-          <Switch
             state={showValue}
             onStateChange={value => {
               setShowValue(value);
-              setHasValue(value);
+              setProgressValue(0);
             }}
             size="md"
             style={tailwind.style("ml-1 mt-1")}
