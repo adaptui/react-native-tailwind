@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Box,
+  Button,
   ProgressBar,
   ProgressBarSizes,
   ProgressBarTheme,
@@ -10,8 +11,34 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+const useCircularProgressState = (initialValue: number | null = 0) => {
+  const [value, setValue] = React.useState<number | null>(initialValue);
+
+  React.useEffect(() => {
+    const clearId = setInterval(() => {
+      setValue(prevValue => {
+        if (prevValue == null) {
+          return prevValue;
+        }
+        return prevValue + 5;
+      });
+    }, 500);
+
+    if (value === 100) {
+      clearInterval(clearId);
+    }
+
+    return () => {
+      clearInterval(clearId);
+    };
+  }, [setValue, value]);
+
+  return [value, setValue] as const;
+};
+
 export const ProgressScreen = () => {
   const tailwind = useTheme();
+  const [progressValue, setProgressValue] = useCircularProgressState();
 
   const [selectedTheme, setSelectedTheme] = useState<ProgressBarTheme>("base");
   const [selectedSize, setSelectedSize] = useState<ProgressBarSizes>("md");
@@ -19,7 +46,6 @@ export const ProgressScreen = () => {
   const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(false);
 
-  console.log("%c⧭", "color: #9c66cc", hasHints, hasLabel);
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
@@ -31,7 +57,14 @@ export const ProgressScreen = () => {
           size={selectedSize}
           themeColor={selectedTheme}
           label={hasLabel ? "Progress" : undefined}
-          hint={hasLabel && hasHints ? "26.6%" : undefined}
+          hint={
+            !hasHints
+              ? undefined
+              : progressValue === null
+              ? undefined
+              : `${progressValue}%`
+          }
+          value={progressValue}
           style={tailwind.style("my-2")}
         />
       </Box>
@@ -82,6 +115,29 @@ export const ProgressScreen = () => {
             style={tailwind.style("ml-1 mt-1")}
             label="Hints"
           />
+          <Box
+            style={tailwind.style(
+              "flex flex-row justify-center flex-wrap w-full mt-1",
+            )}
+          >
+            <Button
+              variant="ghost"
+              onPress={() => {
+                setProgressValue(0);
+              }}
+            >
+              Determinate
+            </Button>
+            <Button
+              variant="ghost"
+              onPress={() => {
+                setProgressValue(null);
+              }}
+              style={tailwind.style("ml-1")}
+            >
+              Indeterminate
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Box>

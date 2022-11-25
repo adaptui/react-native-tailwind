@@ -42,7 +42,7 @@ export const CircularProgressScreen = () => {
   const [selectedTheme, setSelectedTheme] =
     useState<CircularProgressTheme>("base");
   const [selectedSize, setSelectedSize] = useState<CircularProgressSizes>("md");
-  const [showValue, setShowValue] = useState<boolean>(false);
+  const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasCustomTrack, setHasCustomTrack] = useState<boolean>(false);
 
   return (
@@ -54,7 +54,7 @@ export const CircularProgressScreen = () => {
       >
         <CircularProgress
           style={!hasCustomTrack ? null : tailwind.style("w-48 h-48")}
-          hint={!showValue ? null : `${progressValue}%`}
+          hint={!hasHints ? null : `${progressValue}%`}
           value={progressValue}
           themeColor={selectedTheme}
           size={selectedSize}
@@ -98,14 +98,14 @@ export const CircularProgressScreen = () => {
           )}
         >
           <Switch
-            state={showValue}
+            state={hasHints}
             onStateChange={value => {
-              setShowValue(value);
+              setHasHints(value);
               setProgressValue(0);
             }}
             size="md"
             style={tailwind.style("ml-1 mt-1")}
-            label="Show Value"
+            label="Has Hints"
           />
           <Switch
             state={hasCustomTrack}
@@ -120,13 +120,15 @@ export const CircularProgressScreen = () => {
             "flex flex-row justify-center flex-wrap w-full mt-1",
           )}
         >
-          <Button onPress={() => setProgressValue(0)}>Reset</Button>
+          <Button variant="ghost" onPress={() => setProgressValue(0)}>
+            Determinate
+          </Button>
           <Button
             variant="ghost"
             onPress={() => setProgressValue(null)}
             style={tailwind.style("ml-1")}
           >
-            Make Indeterminate
+            Indeterminate
           </Button>
         </Box>
       </Box>
