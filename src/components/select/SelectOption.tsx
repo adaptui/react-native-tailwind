@@ -15,7 +15,7 @@ import { SelectSizes } from "./Select";
 
 export interface SelectOptionProps {
   disabled?: boolean;
-  label: string;
+  label: string | null;
   description?: string;
   value: string;
   size: SelectSizes;

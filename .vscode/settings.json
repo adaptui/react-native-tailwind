@@ -23,7 +23,8 @@
     "utils",
     "divider",
     "select",
-    "text-area"
+    "text-area",
+    "types"
   ],
   "git.branchProtection": ["main"]
 }
