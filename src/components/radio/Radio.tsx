@@ -19,11 +19,11 @@ export interface RadioProps extends TouchableProps {
   /**
    * Radio Label
    */
-  label: string;
+  label: string | null;
   /**
    * Radio Description
    */
-  description: string;
+  description: string | null;
   /**
    * Radio State
    */

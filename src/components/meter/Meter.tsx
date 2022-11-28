@@ -65,11 +65,11 @@ export interface MeterProps {
   /**
    * Label for the Meter
    */
-  label: string;
+  label: string | null;
   /**
    * Hint for the Meter
    */
-  hint: string;
+  hint: string | null;
 }
 
 const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
