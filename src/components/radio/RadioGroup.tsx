@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from "react";
 import { Platform } from "react-native";
 import { getFocusableTreeWalker } from "@react-aria/focus";
-import { styleAdapter } from "lib/typescript";
 
 import { Box, BoxProps } from "../../primitives";
 import { useTheme } from "../../theme";
