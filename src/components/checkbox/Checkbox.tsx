@@ -42,11 +42,11 @@ export interface CheckboxProps extends TouchableProps {
   /**
    * Label for the Checkbox.
    */
-  label: string;
+  label: string | null;
   /**
    * Description for the Checkbox.
    */
-  description: string;
+  description: string | null;
   /**
    * Checkbox State
    * @default false

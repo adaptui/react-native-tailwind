@@ -42,7 +42,7 @@ export interface ProgressProps extends BoxProps {
   /**
    * Label for the Meter
    */
-  label: string;
+  label: string | null;
   /**
    * Hint for the Meter
    */
