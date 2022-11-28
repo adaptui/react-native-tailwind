@@ -157,7 +157,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   }, [checkboxToggleState.isSelected, isIndeterminate]);
 
   const handleChange = useCallback(() => {
-    console.log(checkboxGroupState, props?.value);
     if (checkboxGroupState) {
       if (props.value) {
         if (checkboxToggleState.isSelected) {
