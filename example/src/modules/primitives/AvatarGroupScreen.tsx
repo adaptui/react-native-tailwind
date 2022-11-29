@@ -12,6 +12,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const AvatarGroupScreen = () => {
   const tailwind = useTheme();
 
@@ -122,7 +124,7 @@ export const AvatarGroupScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end items-start p-2",
         )}
       >
         <RadioGroup
@@ -130,11 +132,7 @@ export const AvatarGroupScreen = () => {
           onChange={value => setSelectedSize(value as AvatarSizes)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center",
-            )}
-          >
+          <Group label="Sizes">
             <Radio value="xs" label="xs" />
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
@@ -142,7 +140,7 @@ export const AvatarGroupScreen = () => {
             <Radio value="xl" label="xl" />
             <Radio value="2xl" label="2xl" />
             <Radio value="3xl" label="3xl" />
-          </Box>
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
@@ -151,13 +149,15 @@ export const AvatarGroupScreen = () => {
           }}
           orientation="horizontal"
         >
-          <Radio value={null} label="default" />
-          <Radio value="withInitials" label="initials" />
-          <Radio value="withImage" label="image" />
+          <Group label="Variants" style={tailwind.style("mt-2")}>
+            <Radio value={null} label="default" />
+            <Radio value="withInitials" label="initials" />
+            <Radio value="withImage" label="image" />
+          </Group>
         </RadioGroup>
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row items-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
@@ -165,27 +165,20 @@ export const AvatarGroupScreen = () => {
             state={isSquared}
             onStateChange={setIsSquared}
             size="md"
-            style={tailwind.style("mt-1")}
           />
           <Switch
             label="parents background"
             state={hasParentsBackground}
             onStateChange={setHasParentsBackground}
             size="md"
-            style={tailwind.style("mt-1 ml-1")}
+            style={tailwind.style("ml-1")}
           />
-        </Box>
-        <Box
-          style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
-          )}
-        >
           <Switch
             label="ring"
             state={hasRing}
             onStateChange={setHasRing}
             size="md"
-            style={tailwind.style("mt-1 ml-1")}
+            style={tailwind.style("mt-1")}
           />
 
           <Switch

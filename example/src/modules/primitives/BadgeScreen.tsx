@@ -13,6 +13,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const BadgeScreen = () => {
   const tailwind = useTheme();
 
@@ -40,7 +42,7 @@ export const BadgeScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-start",
         )}
       >
         <RadioGroup
@@ -48,15 +50,11 @@ export const BadgeScreen = () => {
           onChange={value => setSize(value as BadgeSizes)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center",
-            )}
-          >
+          <Group label="Sizes">
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
             <Radio value="lg" label="lg" />
-          </Box>
+          </Group>
         </RadioGroup>
 
         <RadioGroup
@@ -64,15 +62,11 @@ export const BadgeScreen = () => {
           onChange={value => setVariant(value as BadgeVariants)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Variants" style={tailwind.style("mt-2")}>
             <Radio value="outline" label="outline" />
             <Radio value="solid" label="solid" />
             <Radio value="subtle" label="subtle" />
-          </Box>
+          </Group>
         </RadioGroup>
 
         <RadioGroup
@@ -80,23 +74,17 @@ export const BadgeScreen = () => {
           onChange={value => setTheme(value as BadgeTheme)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Theme" style={tailwind.style("mt-2")}>
             <Radio value="base" label="base" />
             <Radio value="danger" label="danger" />
             <Radio value="primary" label="primary" />
             <Radio value="secondary" label="secondary" />
             <Radio value="success" label="success" />
-          </Box>
+          </Group>
         </RadioGroup>
 
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             label="prefix"

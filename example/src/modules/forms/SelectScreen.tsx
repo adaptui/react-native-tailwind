@@ -16,6 +16,8 @@ import {
 } from "@adaptui/react-native-tailwind";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
+import { Group } from "../../components";
+
 const options: ItemData[] = [
   {
     value: "apple",
@@ -106,7 +108,7 @@ export const SelectScreen = () => {
         </Box>
         <Box
           style={tailwind.style(
-            "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+            "p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
           )}
         >
           <RadioGroup
@@ -114,24 +116,28 @@ export const SelectScreen = () => {
             onChange={value => setSelectedSize(value as SelectSizes)}
             orientation="horizontal"
           >
-            <Radio value="sm" label="sm" />
-            <Radio value="md" label="md" />
-            <Radio value="lg" label="lg" />
-            <Radio value="xl" label="xl" />
+            <Group label="Sizes">
+              <Radio value="sm" label="sm" />
+              <Radio value="md" label="md" />
+              <Radio value="lg" label="lg" />
+              <Radio value="xl" label="xl" />
+            </Group>
           </RadioGroup>
           <RadioGroup
             value={selectedVariant}
             onChange={value => setSelectedVariant(value as SelectVariants)}
             orientation="horizontal"
           >
-            <Radio value="outline" label="outline" />
-            <Radio value="subtle" label="subtle" />
-            <Radio value="underline" label="underline" />
-            <Radio value="ghost" label="ghost" />
+            <Group label="Variant" style={tailwind.style("mt-2")}>
+              <Radio value="outline" label="outline" />
+              <Radio value="subtle" label="subtle" />
+              <Radio value="underline" label="underline" />
+              <Radio value="ghost" label="ghost" />
+            </Group>
           </RadioGroup>
           <Box
             style={tailwind.style(
-              "flex flex-row justify-center flex-wrap w-full",
+              "flex flex-row justify-start flex-wrap w-full mt-2",
             )}
           >
             <Switch
@@ -139,27 +145,26 @@ export const SelectScreen = () => {
               onStateChange={value => setIsSelectInvalid(value)}
               size="md"
               label="Invalid"
-              style={tailwind.style("mt-1")}
             />
             <Switch
               state={isSelectDisabled}
               onStateChange={value => setIsSelectDisabled(value)}
               size="md"
-              style={tailwind.style("ml-1 mt-1")}
+              style={tailwind.style("ml-1")}
               label="Disabled"
             />
             <Switch
               state={hasPrefix}
               onStateChange={value => setHasPrefix(value)}
               size="md"
-              style={tailwind.style("ml-1 mt-1")}
+              style={tailwind.style("ml-1")}
               label="Prefix"
             />
             <Switch
               state={changeSuffix}
               onStateChange={value => setChangeSuffix(value)}
               size="md"
-              style={tailwind.style("ml-1 mt-1")}
+              style={tailwind.style("mt-1")}
               label="Change suffix"
             />
           </Box>

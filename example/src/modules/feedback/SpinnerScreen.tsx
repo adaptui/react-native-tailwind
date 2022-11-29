@@ -10,6 +10,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const SpinnerScreen = () => {
   const tailwind = useTheme();
 
@@ -35,7 +37,7 @@ export const SpinnerScreen = () => {
 
       <Box
         style={tailwind.style(
-          "w-full py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
         )}
       >
         <RadioGroup
@@ -43,28 +45,26 @@ export const SpinnerScreen = () => {
           onChange={value => setSelectedSize(value as SpinnerSizes)}
           orientation="horizontal"
         >
-          <Radio value="xs" label="xs" />
-          <Radio value="sm" label="sm" />
-          <Radio value="md" label="md" />
-          <Radio value="lg" label="lg" />
-          <Radio value="xl" label="xl" />
+          <Group label="Sizes">
+            <Radio value="xs" label="xs" />
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+            <Radio value="xl" label="xl" />
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
           onChange={value => setSelectedTheme(value as SpinnerTheme)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Theme" style={tailwind.style("mt-2")}>
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />
             <Radio value="secondary" label="secondary" />
             <Radio value="success" label="success" />
             <Radio value="danger" label="danger" />
-          </Box>
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedSpinnerTrackVisibility}
@@ -73,14 +73,10 @@ export const SpinnerScreen = () => {
           }
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Track" style={tailwind.style("mt-2")}>
             <Radio value="visible" label="visible" />
             <Radio value="transparent" label="transparent" />
-          </Box>
+          </Group>
         </RadioGroup>
       </Box>
     </Box>

@@ -13,6 +13,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const InputScreen = () => {
   const tailwind = useTheme();
   const [selectedVariant, setSelectedVariant] =
@@ -43,7 +45,7 @@ export const InputScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "w-full py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
         )}
       >
         <RadioGroup
@@ -51,58 +53,55 @@ export const InputScreen = () => {
           onChange={value => setSelectedSize(value as InputSizes)}
           orientation="horizontal"
         >
-          <Radio value="sm" label="sm" />
-          <Radio value="md" label="md" />
-          <Radio value="lg" label="lg" />
-          <Radio value="xl" label="xl" />
+          <Group label="Sizes">
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+            <Radio value="xl" label="xl" />
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
           onChange={value => setSelectedVariant(value as InputVariants)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Variants" style={tailwind.style("mt-2")}>
             <Radio value="outline" label="outline" />
             <Radio value="subtle" label="subtle" />
             <Radio value="underline" label="underline" />
             <Radio value="ghost" label="ghost" />
-          </Box>
+          </Group>
         </RadioGroup>
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row justify-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
             state={isDisabled}
             onStateChange={value => setIsDisabled(value)}
             size="md"
-            style={tailwind.style("ml-2 mt-1")}
             label="Disabled"
           />
           <Switch
             state={isInvalid}
             onStateChange={value => setIsInvalid(value)}
             size="md"
-            style={tailwind.style("ml-2 mt-1")}
+            style={tailwind.style("ml-1")}
             label="Invalid"
           />
           <Switch
             state={hasSuffix}
             onStateChange={value => setHasSuffix(value)}
             size="md"
-            style={tailwind.style("ml-2 mt-1")}
+            style={tailwind.style("ml-1")}
             label="Suffix"
           />
         </Box>
-        <Box style={tailwind.style("flex-row justify-center py-2")}>
+        <Box style={tailwind.style("flex flex-row justify-start w-full mt-2")}>
           <Button onPress={() => inputRef.current.focus()}>Focus in</Button>
           <Button
-            style={tailwind.style("ml-2")}
+            style={tailwind.style("ml-1")}
             onPress={() => inputRef.current.blur()}
           >
             Focus out

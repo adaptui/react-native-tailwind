@@ -13,6 +13,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const ButtonScreen = () => {
   const tailwind = useTheme();
   const [selectedVariant, setSelectedVariant] =
@@ -44,7 +46,7 @@ export const ButtonScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "w-full py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
         )}
       >
         <RadioGroup
@@ -52,68 +54,61 @@ export const ButtonScreen = () => {
           onChange={value => setSelectedSize(value as ButtonSizes)}
           orientation="horizontal"
         >
-          <Radio value="sm" label="sm" />
-          <Radio value="md" label="md" />
-          <Radio value="lg" label="lg" />
-          <Radio value="xl" label="xl" />
+          <Group label="Sizes">
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+            <Radio value="xl" label="xl" />
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
           onChange={value => setSelectedVariant(value as ButtonVariants)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Variants" style={tailwind.style("mt-2")}>
             <Radio value="outline" label="outline" />
             <Radio value="ghost" label="ghost" />
             <Radio value="solid" label="solid" />
             <Radio value="subtle" label="subtle" />
-          </Box>
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
           onChange={value => setSelectedTheme(value as ButtonTheme)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Theme" style={tailwind.style("mt-2")}>
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />
             <Radio value="secondary" label="secondary" />
             <Radio value="success" label="success" />
             <Radio value="danger" label="danger" />
-          </Box>
+          </Group>
         </RadioGroup>
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row justify-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
             state={hasPrefix}
             onStateChange={value => setHasPrefix(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
             label="Prefix"
           />
           <Switch
             state={hasSuffix}
             onStateChange={value => setHasSuffix(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1 ")}
             label="Suffix"
           />
           <Switch
             state={isLoading}
             onStateChange={value => setIsLoading(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1")}
             label="Loading"
           />
         </Box>

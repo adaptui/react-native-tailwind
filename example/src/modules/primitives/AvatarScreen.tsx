@@ -11,6 +11,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const AvatarScreen = () => {
   const tailwind = useTheme();
 
@@ -75,7 +77,7 @@ export const AvatarScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end",
         )}
       >
         <RadioGroup
@@ -83,11 +85,7 @@ export const AvatarScreen = () => {
           onChange={value => setSelectedSize(value as AvatarSizes)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center",
-            )}
-          >
+          <Group label="Sizes">
             <Radio value="xs" label="xs" />
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
@@ -95,8 +93,9 @@ export const AvatarScreen = () => {
             <Radio value="xl" label="xl" />
             <Radio value="2xl" label="2xl" />
             <Radio value="3xl" label="3xl" />
-          </Box>
+          </Group>
         </RadioGroup>
+
         <RadioGroup
           value={selectedVariant}
           onChange={value => {
@@ -104,36 +103,29 @@ export const AvatarScreen = () => {
           }}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Variants" style={tailwind.style("mt-2")}>
             <Radio value={null} label="default" />
             <Radio value="withInitials" label="initials" />
             <Radio value="withImage" label="image" />
-          </Box>
+          </Group>
         </RadioGroup>
+
         <RadioGroup
           value={selectedStatus}
           onChange={value => setSelectedStatus(value as AvatarStatusType)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Status" style={tailwind.style("mt-2")}>
             <Radio value={null} label="default" />
             <Radio value="active" label="active" />
             <Radio value="away" label="away" />
             <Radio value="sleep" label="sleep" />
             <Radio value="typing" label="typing" />
-          </Box>
+          </Group>
         </RadioGroup>
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row justify-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
@@ -141,14 +133,13 @@ export const AvatarScreen = () => {
             state={isSquared}
             onStateChange={setIsSquared}
             size="md"
-            style={tailwind.style("mt-2")}
           />
           <Switch
             label="parents background"
             state={hasParentBackground}
             onStateChange={setHasParentBackground}
             size="md"
-            style={tailwind.style("mt-2 ml-2")}
+            style={tailwind.style(" ml-2")}
           />
         </Box>
       </Box>

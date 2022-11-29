@@ -12,6 +12,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const SliderComponentScreen = () => {
   const tailwind = useTheme();
 
@@ -45,7 +47,7 @@ export const SliderComponentScreen = () => {
 
       <Box
         style={tailwind.style(
-          "w-full py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
         )}
       >
         <RadioGroup
@@ -53,55 +55,52 @@ export const SliderComponentScreen = () => {
           onChange={value => setSelectedSize(value as SliderSizes)}
           orientation="horizontal"
         >
-          <Radio value="sm" label="sm" />
-          <Radio value="md" label="md" />
-          <Radio value="lg" label="lg" />
+          <Group label="Sizes">
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
           onChange={value => setSelectedTheme(value as SliderTheme)}
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Theme" style={tailwind.style("mt-2")}>
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />
-          </Box>
+          </Group>
         </RadioGroup>
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row justify-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
             state={isDisabled}
             onStateChange={value => setIsDisabled(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
             label="Disabled"
           />
           <Switch
             state={hasRange}
             onStateChange={value => setHasRange(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1")}
             label="Range"
           />
           <Switch
             state={hasMaxValue}
             onStateChange={value => setHasMaxValue(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1")}
             label="Max Value"
           />
           <Switch
             state={hasStep}
             onStateChange={value => setHasStep(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("mt-1")}
             label="Step"
           />
           <Switch

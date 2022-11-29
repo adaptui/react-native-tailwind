@@ -11,6 +11,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const DividerScreen = () => {
   const tailwind = useTheme();
 
@@ -47,7 +49,7 @@ export const DividerScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "w-full py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
         )}
       >
         <RadioGroup
@@ -57,15 +59,11 @@ export const DividerScreen = () => {
           }
           orientation="horizontal"
         >
-          <Box
-            style={tailwind.style(
-              "flex flex-row flex-wrap justify-center items-center mt-1",
-            )}
-          >
+          <Group label="Position">
             <Radio value="start" label="start" />
             <Radio value="center" label="center" />
             <Radio value="end" label="end" />
-          </Box>
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedOrientation}
@@ -74,26 +72,27 @@ export const DividerScreen = () => {
           }
           orientation="horizontal"
         >
-          <Radio value="horizontal" label="horizontal" />
-          <Radio value="vertical" label="vertical" />
+          <Group label="Orientation" style={tailwind.style("mt-2")}>
+            <Radio value="horizontal" label="horizontal" />
+            <Radio value="vertical" label="vertical" />
+          </Group>
         </RadioGroup>
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row justify-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
             state={hasLabel}
             onStateChange={value => setHasLabel(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
             label="Label"
           />
           <Switch
             state={hasCustomStyle}
             onStateChange={value => setHasCustomStyle(value)}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1")}
             label="Custom style"
           />
         </Box>
