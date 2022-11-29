@@ -94,16 +94,16 @@
     "twrnc": "^3.4.1"
   },
   "devDependencies": {
-    "@babel/core": "7.18.9",
+    "@babel/core": "^7.19.1",
     "@babel/eslint-parser": "7.18.9",
     "@babel/helper-string-parser": "^7.19.4",
     "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
+    "@commitlint/config-conventional": "17.3.0",
     "@react-native-community/eslint-config": "3.0.3",
     "@release-it/conventional-changelog": "5.0.0",
     "@types/jest": "29.1.2",
-    "@types/react": "17.0.30",
-    "@types/react-native": "0.64.24",
+    "@types/react": "18.0.0",
+    "@types/react-native": "0.70.0",
     "all-contributors-cli": "6.20.0",
     "commitlint": "17.0.3",
     "eslint": "8.20.0",
@@ -115,20 +115,17 @@
     "lint-staged": "13.0.3",
     "pinst": "3.0.0",
     "prettier": "2.7.1",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "react-native": "0.69.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-native": "0.70.0",
     "react-native-builder-bob": "0.18.3",
     "release-it": "15.1.4",
     "sort-package-json": "2.0.0",
-    "typescript": "4.7.4"
+    "typescript": "4.8.3"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
-  },
-  "resolutions": {
-    "**/@types/react": "17.0.30"
   },
   "publishConfig": {
     "access": "public",
