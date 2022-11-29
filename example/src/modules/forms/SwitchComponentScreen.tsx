@@ -23,8 +23,12 @@ export const SwitchComponentScreen = () => {
   const [isSwitchDisabled, setIsSwitchDisabled] = useState<boolean>(false);
 
   return (
-    <Box style={tailwind.style("flex-1 items-center bg-white-900")}>
-      <Box style={tailwind.style("flex-1 px-2 justify-center")}>
+    <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
+      <Box
+        style={tailwind.style(
+          "flex-1 px-2 justify-center items-center bg-white-900",
+        )}
+      >
         <Switch
           size={selectedSize}
           themeColor={selectedTheme}
@@ -39,7 +43,7 @@ export const SwitchComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
         )}
       >
         <RadioGroup

@@ -108,7 +108,7 @@ export const SelectScreen = () => {
         </Box>
         <Box
           style={tailwind.style(
-            "p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+            "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
           )}
         >
           <RadioGroup

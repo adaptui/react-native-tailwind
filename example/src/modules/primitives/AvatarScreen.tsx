@@ -139,7 +139,7 @@ export const AvatarScreen = () => {
             state={hasParentBackground}
             onStateChange={setHasParentBackground}
             size="md"
-            style={tailwind.style(" ml-2")}
+            style={tailwind.style("ml-1")}
           />
         </Box>
       </Box>

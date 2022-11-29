@@ -37,7 +37,7 @@ export const SpinnerScreen = () => {
 
       <Box
         style={tailwind.style(
-          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
         )}
       >
         <RadioGroup

@@ -124,7 +124,7 @@ export const AvatarGroupScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end items-start p-2",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
         )}
       >
         <RadioGroup

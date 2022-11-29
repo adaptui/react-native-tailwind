@@ -72,7 +72,7 @@ export const ProgressScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
         )}
       >
         <RadioGroup
@@ -80,7 +80,7 @@ export const ProgressScreen = () => {
           onChange={value => setSelectedSize(value as ProgressBarSizes)}
           orientation="horizontal"
         >
-          <Group label="Sizes" style={tailwind.style("mt-2")}>
+          <Group label="Sizes">
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
             <Radio value="lg" label="lg" />

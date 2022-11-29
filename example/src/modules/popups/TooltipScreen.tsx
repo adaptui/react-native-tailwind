@@ -43,7 +43,7 @@ export const TooltipScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "w-full p-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
         )}
       >
         <RadioGroup
@@ -51,7 +51,7 @@ export const TooltipScreen = () => {
           onChange={value => setTooltipPlacement(value as TooltipPlacement)}
           orientation="horizontal"
         >
-          <Group label="Position" style={tailwind.style("mt-2")}>
+          <Group label="Position">
             <Radio value="top" label="top" />
             <Radio value="bottom" label="bottom" />
             <Radio value="left" label="left" />
