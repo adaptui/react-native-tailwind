@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useRef, useState } from "react";
+import React, { forwardRef, ReactNode, useMemo, useRef, useState } from "react";
 import { Platform, TextInputProps, ViewStyle } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
@@ -155,7 +155,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = React.useMemo(() => value, []);
 
-  const _prefix: InputProps["prefix"] = React.useMemo(() => {
+  const _prefix = React.useMemo(() => {
     const inputPrefix =
       // @ts-ignore
       prefix?.type === Icon
@@ -180,7 +180,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
             iconSize: size === "xl" ? 16 : 12,
           })
         : prefix;
-    return inputPrefix;
+    const prefixComponent = inputPrefix as ReactNode;
+    return prefixComponent;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     editable,
@@ -194,7 +195,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     isHovered,
   ]);
 
-  const _suffix: InputProps["suffix"] = React.useMemo(() => {
+  const _suffix = React.useMemo(() => {
     const inputSuffix =
       // @ts-ignore
       suffix?.type === Icon
@@ -231,7 +232,8 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
       size,
       spinnerStroke,
     });
-    return loading ? inputLoading : inputSuffix;
+    const suffixComponent = (loading ? inputLoading : inputSuffix) as ReactNode;
+    return suffixComponent;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     editable,
