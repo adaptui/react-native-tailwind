@@ -50,7 +50,9 @@ function useTheme<T extends ThemeKeys>(
 
 type TWType = typeof tw;
 
-const AdaptUIProvider: React.FC<Partial<ThemeContextType>> = props => {
+const AdaptUIProvider: React.FC<
+  Partial<ThemeContextType & { children: React.ReactNode }>
+> = props => {
   const colorScheme = useColorScheme();
   tw.setColorScheme(colorScheme);
 
