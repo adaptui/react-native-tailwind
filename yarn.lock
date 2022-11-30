@@ -1097,7 +1097,7 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chakra-ui/hooks@^2.0.0":
+"@chakra-ui/hooks@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@chakra-ui/hooks/-/hooks-2.1.2.tgz#1e413f6624e97b854569e8a19846c9162a4ec153"
   integrity sha512-/vDBOqqnho9q++lay0ZcvnH8VuE0wT2OkZj+qDwFwjiHAtGPVxHCSpu9KC8BIHME5TlWjyO6riVyUCb2e2ip6w==
@@ -1404,7 +1404,7 @@
   dependencies:
     tslib "2.4.0"
 
-"@gorhom/bottom-sheet@^4.3.1":
+"@gorhom/bottom-sheet@^4.4.5":
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/@gorhom/bottom-sheet/-/bottom-sheet-4.4.5.tgz#b9041b01ce1af9a936e7c0fc1d78f026d759eebe"
   integrity sha512-Z5Z20wshLUB8lIdtMKoJaRnjd64wBR/q8EeVPThrg+skrcBwBPHfUwZJ2srB0rEszA/01ejSJy/ixyd7Ra7vUA==
@@ -1939,7 +1939,7 @@
     "@react-types/checkbox" "^3.4.1"
     "@react-types/shared" "^3.16.0"
 
-"@react-aria/focus@^3.10.0", "@react-aria/focus@^3.2.3", "@react-aria/focus@^3.6.1":
+"@react-aria/focus@^3.10.0", "@react-aria/focus@^3.2.3":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.10.0.tgz#12d85d46f58590a915009e57bddb2d90b56f5836"
   integrity sha512-idI7Etgh6y2BYi3X4d+EuUpzR7gPZ94Lf/0UNnVyMkDM9fzcdz/8DCBt0qKOff24HlaLE1rmREt0+iTR/qRgbA==
@@ -2000,21 +2000,6 @@
     "@react-types/overlays" "^3.6.5"
     "@react-types/shared" "^3.16.0"
 
-"@react-aria/radio@^3.1.2":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@react-aria/radio/-/radio-3.4.1.tgz#23ed38aac1fb5094c7652919d331ec77094ba41f"
-  integrity sha512-a1JFxFOiExX1ZRGBE31LW4dgc3VmW2v3upJ5snGQldC83o0XxqNavmOef+fMsIRV0AQA/mcxAJVNQ0n9SfIiUQ==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-    "@react-aria/focus" "^3.10.0"
-    "@react-aria/i18n" "^3.6.2"
-    "@react-aria/interactions" "^3.13.0"
-    "@react-aria/label" "^3.4.3"
-    "@react-aria/utils" "^3.14.1"
-    "@react-stately/radio" "^3.6.1"
-    "@react-types/radio" "^3.3.1"
-    "@react-types/shared" "^3.16.0"
-
 "@react-aria/ssr@^3.0.1", "@react-aria/ssr@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@react-aria/ssr/-/ssr-3.4.0.tgz#a2b9a170214f56e41d3c4c933d0d8fcffa07a12a"
@@ -2047,7 +2032,7 @@
     "@react-types/shared" "^3.16.0"
     clsx "^1.1.1"
 
-"@react-aria/visually-hidden@^3.3.0", "@react-aria/visually-hidden@^3.6.0":
+"@react-aria/visually-hidden@^3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@react-aria/visually-hidden/-/visually-hidden-3.6.0.tgz#cc4dd9e648a5c8b6d8dfbd1f70d8672b36d3f1bc"
   integrity sha512-W3Ix5wdlVzh2GY7dytqOAyLCXiHzk3S4jLKSaoiCwPJX9fHE5zMlZwahhDy27V0LXfjmdjBltbwyEZOq4G/Q0w==
@@ -2076,7 +2061,7 @@
   dependencies:
     "@react-aria/focus" "^3.2.3"
 
-"@react-native-aria/interactions@^0.2.3", "@react-native-aria/interactions@^0.2.8":
+"@react-native-aria/interactions@^0.2.3":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@react-native-aria/interactions/-/interactions-0.2.8.tgz#5ced4bd3391c647699fa79275472f784a44c2488"
   integrity sha512-+LsLghBnp1fEVdLdIZGfE2izbZS0GPwc7eyiLHndnAXwXdLmyDRw71UCEjsUuNh7SO7BBR5QjHlk0cTHmyynQg==
@@ -2096,18 +2081,6 @@
     "@react-stately/overlays" "^3.1.1"
     "@react-types/overlays" "^3.4.0"
     dom-helpers "^5.0.0"
-
-"@react-native-aria/radio@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@react-native-aria/radio/-/radio-0.2.5.tgz#436d3abdbb48bcaf6e9c5c045ff9c5bf87b71248"
-  integrity sha512-kTfCjRMZH+Z2C70VxjomPO8eXBcHPa5zcuOUotyhR10WsrKZJlwwnA75t2xDq8zsxKnABJRfThv7rSlAjkFSeg==
-  dependencies:
-    "@react-aria/radio" "^3.1.2"
-    "@react-aria/utils" "^3.6.0"
-    "@react-native-aria/interactions" "^0.2.3"
-    "@react-native-aria/utils" "^0.2.6"
-    "@react-stately/radio" "^3.2.1"
-    "@react-types/radio" "^3.1.1"
 
 "@react-native-aria/toggle@^0.2.3":
   version "0.2.3"
@@ -2349,16 +2322,6 @@
     "@react-stately/utils" "^3.5.1"
     "@react-types/overlays" "^3.6.5"
 
-"@react-stately/radio@^3.2.1", "@react-stately/radio@^3.6.1":
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/@react-stately/radio/-/radio-3.6.1.tgz#7d2d7ad94cc910a5647c196ce747c2f4a9a160b6"
-  integrity sha512-Hcg2qgvR7ekKMzVKeGby1FgMk3Sw4iDcEY/K1Y6j7UmGjM2HtQOq614tWQSQeGB25pp5I2jAWlparJeX0vY/oA==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-    "@react-stately/utils" "^3.5.1"
-    "@react-types/radio" "^3.3.1"
-    "@react-types/shared" "^3.16.0"
-
 "@react-stately/toggle@^3.2.1", "@react-stately/toggle@^3.3.0", "@react-stately/toggle@^3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.4.3.tgz#331942e70314f918f852ee679b8f668d98771801"
@@ -2401,13 +2364,6 @@
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.6.5.tgz#466b325d9be51f67beb98b7bec3fd9295c72efac"
   integrity sha512-IeWcF+YTucCYYHagNh8fZLH6R4YUONO1VHY57WJyIHwMy0qgEaKSQCwq72VO1fQJ0ySZgOgm31FniOyKkg6+eQ==
-  dependencies:
-    "@react-types/shared" "^3.16.0"
-
-"@react-types/radio@^3.1.1", "@react-types/radio@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@react-types/radio/-/radio-3.3.1.tgz#688570ba9901d21850a16c2aaafed5dd83e09966"
-  integrity sha512-q/x0kMvBsu6mH4bIkp/Jjrm9ff5y/p3UR0V4CmQFI7604gQd2Dt1dZMU/2HV9x70r1JfWRrDeRrVjUHVfFL5Vg==
   dependencies:
     "@react-types/shared" "^3.16.0"
 
