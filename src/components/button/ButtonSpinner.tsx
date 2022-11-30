@@ -3,7 +3,7 @@ import React, { isValidElement } from "react";
 import { Box } from "../../primitives";
 import { useTheme } from "../../theme";
 import { cx } from "../../utils";
-import { Spinner, SpinnerSizes } from "../spinner";
+import { Spinner } from "../spinner";
 
 import { ButtonProps } from "./Button";
 
