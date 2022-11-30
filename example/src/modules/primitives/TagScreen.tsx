@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Icon,
@@ -51,7 +51,7 @@ export const TagScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as TagSize)}
+          onChange={(value: TagSize) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -63,7 +63,7 @@ export const TagScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={value => setSelectedVariant(value as TagVariant)}
+          onChange={(value: TagVariant) => setSelectedVariant(value)}
           orientation="horizontal"
         >
           <Group label="Variant" style={tailwind.style("mt-2")}>
@@ -74,7 +74,7 @@ export const TagScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as TagTheme)}
+          onChange={(value: TagTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -89,13 +89,17 @@ export const TagScreen = () => {
         >
           <Switch
             state={hasPrefix}
-            onStateChange={value => setHasPrefix(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasPrefix(value)
+            }
             size="md"
             label="Prefix"
           />
           <Switch
             state={hasSuffix}
-            onStateChange={value => setHasSuffix(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasSuffix(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Suffix"
@@ -103,7 +107,9 @@ export const TagScreen = () => {
 
           <Switch
             state={isClosable}
-            onStateChange={value => setIsClosable(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsClosable(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Closable"

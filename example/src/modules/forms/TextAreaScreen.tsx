@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -24,7 +24,15 @@ export const TextAreaScreen = () => {
   const [size, setSize] = useState<TextAreaSizes>("sm");
   const [icon, setIcon] = useState(false);
   const suffix = icon ? <Icon icon={<Slot />} /> : null;
-  const ref = useRef(null);
+  const textAreaRef = useRef<any>(null);
+
+  const handleFocusInOnPress = useCallback(() => {
+    textAreaRef.current?.focus();
+  }, []);
+
+  const handleFocusInOutPress = useCallback(() => {
+    textAreaRef.current?.blur();
+  }, []);
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -37,7 +45,7 @@ export const TextAreaScreen = () => {
           invalid={invalid}
           suffix={suffix}
           editable={!disabled}
-          ref={ref}
+          ref={textAreaRef}
         />
       </Box>
       <Box
@@ -46,8 +54,17 @@ export const TextAreaScreen = () => {
         )}
       >
         <RadioGroup
+          value={variant}
+          onChange={(value: TextAreaVariants) => setVariant(value)}
+          orientation="horizontal"
+        >
+          <Radio value="subtle" label="Subtle" />
+          <Radio value="outline" label="Outline" />
+          <Radio value="underline" label="Underline" />
+        </RadioGroup>
+        <RadioGroup
           value={size}
-          onChange={value => setSize(value as TextAreaSizes)}
+          onChange={(value: TextAreaSizes) => setSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -102,11 +119,11 @@ export const TextAreaScreen = () => {
             style={tailwind.style("mt-1")}
           />
         </Box>
-        <Box style={tailwind.style("flex-row justify-start w-full mt-2")}>
-          <Button onPress={() => ref.current.focus()}>Focus in</Button>
+        <Box style={tailwind.style("flex-row justify-center py-2")}>
+          <Button onPress={handleFocusInOnPress}>Focus in</Button>
           <Button
-            style={tailwind.style("ml-1")}
-            onPress={() => ref.current.blur()}
+            style={tailwind.style("ml-2")}
+            onPress={handleFocusInOutPress}
           >
             Focus out
           </Button>

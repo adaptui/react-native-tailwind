@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Radio,
@@ -48,7 +48,7 @@ export const SwitchComponentScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as SwitchSize)}
+          onChange={(value: SwitchSize) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -60,7 +60,7 @@ export const SwitchComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as SwitchTheme)}
+          onChange={(value: SwitchTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -76,19 +76,26 @@ export const SwitchComponentScreen = () => {
           <Switch
             state={hasLabel}
             size="md"
-            onStateChange={value => setHasLabel(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasLabel(value)
+            }
+            style={tailwind.style("ml-1 mt-1")}
             label="Has Label"
           />
           <Switch
             state={hasDesc}
             size="md"
-            onStateChange={value => setHasDesc(value)}
-            style={tailwind.style("ml-1")}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasDesc(value)
+            }
+            style={tailwind.style("ml-1 mt-1")}
             label="Has Description"
           />
           <Switch
             state={isSwitchDisabled}
-            onStateChange={value => setIsSwitchDisabled(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsSwitchDisabled(value)
+            }
             size="md"
             style={tailwind.style("mt-1")}
             label="Disabled"

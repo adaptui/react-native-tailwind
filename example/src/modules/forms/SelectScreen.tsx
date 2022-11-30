@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   CaretDown,
@@ -113,7 +113,7 @@ export const SelectScreen = () => {
         >
           <RadioGroup
             value={selectedSize}
-            onChange={value => setSelectedSize(value as SelectSizes)}
+            onChange={(value: SelectSizes) => setSelectedSize(value)}
             orientation="horizontal"
           >
             <Group label="Sizes">
@@ -125,7 +125,7 @@ export const SelectScreen = () => {
           </RadioGroup>
           <RadioGroup
             value={selectedVariant}
-            onChange={value => setSelectedVariant(value as SelectVariants)}
+            onChange={(value: SelectVariants) => setSelectedVariant(value)}
             orientation="horizontal"
           >
             <Group label="Variant" style={tailwind.style("mt-2")}>
@@ -142,27 +142,35 @@ export const SelectScreen = () => {
           >
             <Switch
               state={isSelectInvalid}
-              onStateChange={value => setIsSelectInvalid(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setIsSelectInvalid(value)
+              }
               size="md"
               label="Invalid"
             />
             <Switch
               state={isSelectDisabled}
-              onStateChange={value => setIsSelectDisabled(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setIsSelectDisabled(value)
+              }
               size="md"
               style={tailwind.style("ml-1")}
               label="Disabled"
             />
             <Switch
               state={hasPrefix}
-              onStateChange={value => setHasPrefix(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setHasPrefix(value)
+              }
               size="md"
               style={tailwind.style("ml-1")}
               label="Prefix"
             />
             <Switch
               state={changeSuffix}
-              onStateChange={value => setChangeSuffix(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setChangeSuffix(value)
+              }
               size="md"
               style={tailwind.style("mt-1")}
               label="Change suffix"
