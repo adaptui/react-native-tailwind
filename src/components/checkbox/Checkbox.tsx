@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import { Platform } from "react-native";
+import { Platform, PressableStateCallbackType } from "react-native";
 import { useToggleState } from "@react-stately/toggle";
 
 import { Check, Dash } from "../../icons";
@@ -347,7 +347,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       accessibilityValue={{ text: props?.value }}
       onAccessibilityTap={handleChange}
       // A11y Props
-      style={touchState => [
+      style={(touchState: PressableStateCallbackType) => [
         tailwind.style(
           cx(
             checkboxTheme?.label?.common,
@@ -405,9 +405,9 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       })}
       disabled={isDisabled}
     >
-      {({ pressed }) =>
+      {(touchState: PressableStateCallbackType) =>
         children({
-          pressed,
+          pressed: touchState.pressed,
           isHovered: !!hovered.value,
           isFocussed: !!focused.value,
         })
