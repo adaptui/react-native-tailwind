@@ -1,14 +1,11 @@
 import React from "react";
 
-interface CreateElementProps<Props> {
-  componentType:
-    | React.FunctionComponent<Props>
-    | React.ComponentClass<Props>
-    | string;
+interface CreateElementProps<Props extends {}> {
+  componentType: React.ElementType;
   props: Props;
 }
 
-export function createElement<Props>({
+export function createElement<Props extends {}>({
   componentType,
   props,
 }: CreateElementProps<Props>): React.ReactElement<
