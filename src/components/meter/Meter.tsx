@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from "react";
+import { LayoutChangeEvent } from "react-native";
 
 import { Box, Text } from "../../primitives";
 import { useTheme } from "../../theme";
@@ -97,7 +98,9 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
 
   return (
     <Box
-      onLayout={event => setMeterWidth(event.nativeEvent.layout.width)}
+      onLayout={(event: LayoutChangeEvent) =>
+        setMeterWidth(event.nativeEvent.layout.width)
+      }
       style={tailwind.style([meterTheme.wrapper])}
       ref={ref}
     >
