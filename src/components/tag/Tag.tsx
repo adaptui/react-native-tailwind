@@ -1,5 +1,10 @@
 import React, { forwardRef } from "react";
-import { Platform, PressableProps, TextStyle } from "react-native";
+import {
+  Platform,
+  PressableProps,
+  PressableStateCallbackType,
+  TextStyle,
+} from "react-native";
 
 import { Close } from "../../icons";
 import { Box, Text, Touchable } from "../../primitives";
@@ -167,7 +172,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
   return (
     <Touchable
       ref={ref}
-      style={touchState => [
+      style={(touchState: PressableStateCallbackType) => [
         tailwind.style(
           cx(
             tagTheme.base,
