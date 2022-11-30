@@ -75,14 +75,11 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^2.0.0",
-    "@gorhom/bottom-sheet": "^4.3.1",
-    "@react-aria/focus": "^3.6.1",
-    "@react-aria/visually-hidden": "^3.3.0",
+    "@chakra-ui/hooks": "^2.1.2",
+    "@gorhom/bottom-sheet": "^4.4.5",
+    "@react-aria/focus": "^3.10.0",
+    "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/checkbox": "^0.2.3",
-    "@react-native-aria/focus": "^0.2.5",
-    "@react-native-aria/interactions": "^0.2.8",
-    "@react-native-aria/radio": "^0.2.5",
     "@react-stately/toggle": "^3.3.0",
     "lodash": "^4.17.21",
     "react-native-gesture-handler": "2.8.0",
