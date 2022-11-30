@@ -36,10 +36,6 @@ export interface TextAreaProps extends TextInputProps {
    */
   size: TextAreaSizes;
   /**
-   * Prefix for the TextArea component
-   */
-  prefix: RenderPropType;
-  /**
    * Suffix for the TextArea component
    */
   suffix: RenderPropType;
@@ -107,7 +103,6 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
     size = "md",
     variant = "outline",
     textInputWrapperProps = {},
-    prefix,
     suffix,
     invalid = false,
     editable = true,
@@ -160,7 +155,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = React.useMemo(() => value, []);
 
-  const _suffix: TextAreaProps["suffix"] = React.useMemo(() => {
+  const _suffix = React.useMemo(() => {
     const inputSuffix =
       // @ts-ignore
       suffix?.type === Icon
@@ -197,7 +192,8 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
       size,
       spinnerStroke,
     });
-    return loading ? inputLoading : inputSuffix;
+    const suffixComponent = loading ? inputLoading : inputSuffix;
+    return suffixComponent as React.ReactNode;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     editable,
@@ -226,9 +222,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
           tailwind.style(
             cx(
               textAreaTheme.size[size]?.base?.default,
-              !prefix || !suffix
-                ? textAreaTheme.size[size]?.base?.withoutAddon
-                : "",
+              !suffix ? textAreaTheme.size[size]?.base?.withoutAddon : "",
               textAreaTheme.variant[variant]?.default?.base,
               isHovered.value
                 ? textAreaTheme.variant[variant]?.hover?.base
