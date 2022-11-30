@@ -9754,7 +9754,11 @@ react-native-popper@0.3.2:
     "@react-native-aria/focus" "^0.2.5"
     "@react-native-aria/overlays" "^0.3.1"
 
+<<<<<<< HEAD
 react-native-reanimated@2.12.0, react-native-reanimated@~2.12.0:
+=======
+react-native-reanimated@2.12.0:
+>>>>>>> 1351fbc (chore(example-app): :arrow_up: update expo to the latest sdk)
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.12.0.tgz#5821eecfb1769b1617a67a2d4dec12fdeedb2b6e"
   integrity sha512-nrlPyw+Hx9u4iJhZk9PoTvDo/QmVAd+bo7OK9Tv3hveNEF9++5oig/g3Uv9V93shy9avTYGsUprUvAEt/xdzeQ==
@@ -9780,6 +9784,7 @@ react-native-screens@~3.18.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+<<<<<<< HEAD
 react-native-svg@13.4.0:
   version "13.4.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.4.0.tgz#82399ba0956c454144618aa581e2d748dd3f010a"
@@ -9788,6 +9793,8 @@ react-native-svg@13.4.0:
     css-select "^5.1.0"
     css-tree "^1.1.3"
 
+=======
+>>>>>>> 1351fbc (chore(example-app): :arrow_up: update expo to the latest sdk)
 react-native-web@~0.18.7:
   version "0.18.10"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.18.10.tgz#fb4db047f4be7f9cf35f37ec8d52f7d1c450600f"

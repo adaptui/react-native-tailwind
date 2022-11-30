@@ -22,13 +22,20 @@
     "react-native-reanimated": "2.12.0",
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
+<<<<<<< HEAD
     "react-native-svg": "13.4.0",
     "react-native-web": "0.18.7",
+=======
+    "react-native-web": "~0.18.7",
+>>>>>>> 1351fbc (chore(example-app): :arrow_up: update expo to the latest sdk)
     "twrnc": "3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
+<<<<<<< HEAD
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+=======
+>>>>>>> 1351fbc (chore(example-app): :arrow_up: update expo to the latest sdk)
     "@babel/runtime": "7.18.9",
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
@@ -38,7 +45,11 @@
     "expo-cli": "6.0.0"
   },
   "resolutions": {
+<<<<<<< HEAD
     "react-error-overlay": "6.0.9",
+=======
+    "react-error-overlay": "6.0.11",
+>>>>>>> 1351fbc (chore(example-app): :arrow_up: update expo to the latest sdk)
     "react-native-reanimated": "2.12.0"
   }
 }
