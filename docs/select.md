@@ -26,6 +26,26 @@ export default function App() {
 
 The Select component uses [Gorhom's React Native Bottomsheet](https://github.com/gorhom/react-native-bottom-sheet) to list the options you have provided through `options` prop. 
 
+Wrap your app or the screen you are using the <Select/> componente with `<BottomSheetModalProvider>` from `"@gorhom/bottom-sheet"` 
+
+```jsx
+
+...
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+...
+
+...
+
+  return (
+    <BottomSheetModalProvider>
+        // Your App or the Select Component 
+    </BottomSheetModalProvider>
+  )
+...
+
+```
+
+
 It uses `useControllableState` hook internally from chakra-ui to manage the state. 
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/35562287/202174467-53e1d2f8-caed-4fc1-8f04-7a4a9c361084.gif)
@@ -37,6 +57,7 @@ It uses `useControllableState` hook internally from chakra-ui to manage the stat
 - [Variant](#variant)
 - [Size](#size)
 - [Prefix](#prefix)
+- [Options](#options)
 - [Props](#props)
 
 ## Themes
@@ -157,6 +178,47 @@ export default function App() {
 ```
 
 </details>
+
+## Options
+
+The Select component accepts an `options` array. Which is a list of items to be displayed inside the `BottomSheet`.
+
+It is of type 
+
+```tsx
+export type ItemData = { value: string; disabled?: boolean; label: string };
+```
+
+You will have to get your list something like this
+
+```js
+  const options: ItemData[] = [
+    {
+      value: "apple",
+      label: "Apple",
+    },
+    {
+      value: "orange",
+      label: "Orange",
+    }
+  ]
+```
+
+If you want to disable a item. You will have to pass the `disabled` key as `true` to the object. 
+
+```js
+  const options: ItemData[] = [
+    {
+      value: "apple",
+      label: "Apple",
+    },
+    {
+      value: "strawberry",
+      label: "Strawberry",
+      disabled: true
+    }
+  ]
+```
 
 ## Props
 
