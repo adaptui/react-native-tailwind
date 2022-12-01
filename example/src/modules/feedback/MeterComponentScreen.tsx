@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Meter,
@@ -46,7 +46,7 @@ export const MeterComponentScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as MeterSizes)}
+          onChange={(value: MeterSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -57,7 +57,7 @@ export const MeterComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as MeterTheme)}
+          onChange={(value: MeterTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -73,31 +73,35 @@ export const MeterComponentScreen = () => {
         >
           <Switch
             state={hasLabel}
-            onStateChange={value => {
-              setHasLabel(value);
-            }}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasLabel(value)
+            }
             size="md"
             label="Label"
           />
           <Switch
             state={hasHints}
-            onStateChange={value => {
-              setHasHints(value);
-            }}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasHints(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Hints"
           />
           <Switch
             state={hasIntervals}
-            onStateChange={value => setHasIntervals(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasIntervals(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Intervals"
           />
           <Switch
             state={hasFlatBorder}
-            onStateChange={value => setHasFlatBorders(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasFlatBorders(value)
+            }
             size="md"
             style={tailwind.style("mt-1")}
             label="Flat Borders"

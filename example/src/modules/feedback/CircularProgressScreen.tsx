@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Button,
@@ -72,7 +72,7 @@ export const CircularProgressScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as CircularProgressSizes)}
+          onChange={(value: CircularProgressSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -84,7 +84,7 @@ export const CircularProgressScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as CircularProgressTheme)}
+          onChange={(value: CircularProgressTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -99,7 +99,7 @@ export const CircularProgressScreen = () => {
         >
           <Switch
             state={hasHints}
-            onStateChange={value => {
+            onStateChange={(value: SetStateAction<boolean>) => {
               setHasHints(value);
               setProgressValue(0);
             }}
@@ -108,7 +108,9 @@ export const CircularProgressScreen = () => {
           />
           <Switch
             state={hasCustomTrack}
-            onStateChange={value => setHasCustomTrack(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasCustomTrack(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Custom track"

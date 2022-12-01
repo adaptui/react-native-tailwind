@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Divider,
@@ -54,8 +54,8 @@ export const DividerScreen = () => {
       >
         <RadioGroup
           value={selectedLabelPosition}
-          onChange={value =>
-            setSelectedLabelPosition(value as DividerLabelPosition)
+          onChange={(value: DividerLabelPosition) =>
+            setSelectedLabelPosition(value)
           }
           orientation="horizontal"
         >
@@ -67,8 +67,8 @@ export const DividerScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedOrientation}
-          onChange={value =>
-            setSelectedOrientation(value as DividerOrientation)
+          onChange={(value: DividerOrientation) =>
+            setSelectedOrientation(value)
           }
           orientation="horizontal"
         >
@@ -84,13 +84,17 @@ export const DividerScreen = () => {
         >
           <Switch
             state={hasLabel}
-            onStateChange={value => setHasLabel(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasLabel(value)
+            }
             size="md"
             label="Label"
           />
           <Switch
             state={hasCustomStyle}
-            onStateChange={value => setHasCustomStyle(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasCustomStyle(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Custom style"

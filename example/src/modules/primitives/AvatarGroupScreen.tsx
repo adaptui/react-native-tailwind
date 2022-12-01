@@ -21,7 +21,7 @@ export const AvatarGroupScreen = () => {
   const [isSquared, setIsSquared] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
   const [hasImage, setHasImage] = useState<boolean>(true);
-  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState<null | string>(null);
   const [hasParentsBackground, setHasParentsBackground] =
     useState<boolean>(false);
   const [hasRing, setHasRing] = useState<boolean>(false);
@@ -129,7 +129,7 @@ export const AvatarGroupScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as AvatarSizes)}
+          onChange={(value: AvatarSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -144,8 +144,8 @@ export const AvatarGroupScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={value => {
-            setSelectedVariant(value as unknown);
+          onChange={(value: null | string) => {
+            setSelectedVariant(value);
           }}
           orientation="horizontal"
         >

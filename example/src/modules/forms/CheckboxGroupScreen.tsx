@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Checkbox,
@@ -32,7 +32,7 @@ export const CheckboxGroupScreen = () => {
       >
         <Text>Pick fruits to eat</Text>
         <CheckboxGroup
-          themeColor={selectedTheme as CheckboxTheme}
+          themeColor={selectedTheme}
           value={selectedValue}
           onChange={setSelectedValue}
           size={selectedSize}
@@ -55,7 +55,7 @@ export const CheckboxGroupScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as CheckboxSizes)}
+          onChange={(value: CheckboxSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -66,7 +66,7 @@ export const CheckboxGroupScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as CheckboxTheme)}
+          onChange={(value: CheckboxTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -82,13 +82,17 @@ export const CheckboxGroupScreen = () => {
         >
           <Switch
             state={isDisabled}
-            onStateChange={value => setIsDisabled(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsDisabled(value)
+            }
             size="md"
             label="Disabled"
           />
           <Switch
             state={isInvalid}
-            onStateChange={value => setIsInvalid(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsInvalid(value)
+            }
             size="md"
             style={tailwind.style("ml-1 ")}
             label="Invalid"

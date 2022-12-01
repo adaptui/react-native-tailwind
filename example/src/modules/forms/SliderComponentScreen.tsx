@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Equals,
@@ -51,7 +51,7 @@ export const SliderComponentScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as SliderSizes)}
+          onChange={(value: SliderSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -62,7 +62,7 @@ export const SliderComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as SliderTheme)}
+          onChange={(value: SliderTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -77,41 +77,53 @@ export const SliderComponentScreen = () => {
         >
           <Switch
             state={isDisabled}
-            onStateChange={value => setIsDisabled(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsDisabled(value)
+            }
             size="md"
             label="Disabled"
           />
           <Switch
             state={hasRange}
-            onStateChange={value => setHasRange(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasRange(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Range"
           />
           <Switch
             state={hasMaxValue}
-            onStateChange={value => setHasMaxValue(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasMaxValue(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Max Value"
           />
           <Switch
             state={hasStep}
-            onStateChange={value => setHasStep(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasStep(value)
+            }
             size="md"
             style={tailwind.style("mt-1")}
             label="Step"
           />
           <Switch
             state={hasToolTip}
-            onStateChange={value => setHasTooltip(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasTooltip(value)
+            }
             size="md"
             style={tailwind.style("ml-1 mt-1")}
             label="Tooltip"
           />
           <Switch
             state={hasKnobIcon}
-            onStateChange={value => setHasKnobIcon(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasKnobIcon(value)
+            }
             size="md"
             style={tailwind.style("ml-1 mt-1")}
             label="Knob Icon"

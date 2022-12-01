@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Button,
@@ -77,7 +77,7 @@ export const ProgressScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as ProgressBarSizes)}
+          onChange={(value: ProgressBarSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -88,7 +88,7 @@ export const ProgressScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as ProgressBarTheme)}
+          onChange={(value: ProgressBarTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -103,13 +103,17 @@ export const ProgressScreen = () => {
         >
           <Switch
             state={hasLabel}
-            onStateChange={value => setHasLabel(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasLabel(value)
+            }
             size="md"
             label="Label"
           />
           <Switch
             state={hasHints}
-            onStateChange={value => setHasHints(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasHints(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Hints"

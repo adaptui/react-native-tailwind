@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { SetStateAction, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -24,7 +24,7 @@ export const InputScreen = () => {
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [hasSuffix, setHasSuffix] = useState(false);
   const suffix = hasSuffix ? <Icon icon={<Info />} /> : null;
-  const inputRef = useRef(null);
+  const inputRef = useRef<any>(null);
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
@@ -50,7 +50,7 @@ export const InputScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as InputSizes)}
+          onChange={(value: InputSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -62,7 +62,7 @@ export const InputScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={value => setSelectedVariant(value as InputVariants)}
+          onChange={(value: InputVariants) => setSelectedVariant(value)}
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
@@ -79,20 +79,26 @@ export const InputScreen = () => {
         >
           <Switch
             state={isDisabled}
-            onStateChange={value => setIsDisabled(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsDisabled(value)
+            }
             size="md"
             label="Disabled"
           />
           <Switch
             state={isInvalid}
-            onStateChange={value => setIsInvalid(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsInvalid(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Invalid"
           />
           <Switch
             state={hasSuffix}
-            onStateChange={value => setHasSuffix(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasSuffix(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Suffix"

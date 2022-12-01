@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Checkbox,
@@ -50,7 +50,7 @@ export const CheckboxScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as CheckboxSizes)}
+          onChange={(value: CheckboxSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -61,7 +61,7 @@ export const CheckboxScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as CheckboxTheme)}
+          onChange={(value: CheckboxTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -77,34 +77,44 @@ export const CheckboxScreen = () => {
         >
           <Switch
             state={isDisabled}
-            onStateChange={value => setIsDisabled(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsDisabled(value)
+            }
             size="md"
             label="Disabled"
           />
           <Switch
             state={isInvalid}
-            onStateChange={value => setIsInvalid(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsInvalid(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Invalid"
           />
           <Switch
             state={hasLabel}
-            onStateChange={value => setHasLabel(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasLabel(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Label"
           />
           <Switch
             state={hasDescription}
-            onStateChange={value => setHasDescription(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasDescription(value)
+            }
             size="md"
             style={tailwind.style(" mt-1")}
             label="Description"
           />
           <Switch
             state={isIndeterminate}
-            onStateChange={value => setIsIndeterminate(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsIndeterminate(value)
+            }
             size="md"
             style={tailwind.style("ml-1 mt-1")}
             label="Indeterminate"

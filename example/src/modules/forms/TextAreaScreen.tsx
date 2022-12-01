@@ -76,7 +76,7 @@ export const TextAreaScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={variant}
-          onChange={value => setVariant(value as TextAreaVariants)}
+          onChange={(value: TextAreaVariants) => setVariant(value)}
           orientation="horizontal"
         >
           <Group label="Variant" style={tailwind.style("mt-2")}>

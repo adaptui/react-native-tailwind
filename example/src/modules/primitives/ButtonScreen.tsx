@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Button,
@@ -51,7 +51,7 @@ export const ButtonScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as ButtonSizes)}
+          onChange={(value: ButtonSizes) => setSelectedSize(value)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -63,7 +63,7 @@ export const ButtonScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={value => setSelectedVariant(value as ButtonVariants)}
+          onChange={(value: ButtonVariants) => setSelectedVariant(value)}
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
@@ -75,7 +75,7 @@ export const ButtonScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as ButtonTheme)}
+          onChange={(value: ButtonTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -93,20 +93,26 @@ export const ButtonScreen = () => {
         >
           <Switch
             state={hasPrefix}
-            onStateChange={value => setHasPrefix(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasPrefix(value)
+            }
             size="md"
             label="Prefix"
           />
           <Switch
             state={hasSuffix}
-            onStateChange={value => setHasSuffix(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasSuffix(value)
+            }
             size="md"
             style={tailwind.style("ml-1 ")}
             label="Suffix"
           />
           <Switch
             state={isLoading}
-            onStateChange={value => setIsLoading(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsLoading(value)
+            }
             size="md"
             style={tailwind.style("ml-1")}
             label="Loading"

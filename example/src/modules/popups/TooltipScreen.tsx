@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Button,
@@ -48,7 +48,7 @@ export const TooltipScreen = () => {
       >
         <RadioGroup
           value={tooltipPlacement}
-          onChange={value => setTooltipPlacement(value as TooltipPlacement)}
+          onChange={(value: TooltipPlacement) => setTooltipPlacement(value)}
           orientation="horizontal"
         >
           <Group label="Position">
@@ -73,7 +73,9 @@ export const TooltipScreen = () => {
         >
           <Switch
             state={hasArrow}
-            onStateChange={value => setHasArrow(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasArrow(value)
+            }
             size="md"
             label="Has Arrow"
           />
