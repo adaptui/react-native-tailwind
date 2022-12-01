@@ -13,15 +13,38 @@ npm install @adaptui/react-native-tailwind
 yarn add @adaptui/react-native-tailwind
 ```
 
-> Make sure
-> `react react-native react-native-reanimated react-native-gesture-handler` is
+> Make sure you have the latest
+> `react` `react-native` `react-native-reanimated` `react-native-gesture-handler` is
 > installed.
 
 > Also make sure to wrap your App with `GestureHandlerRootView` from
 > `react-native-gesture-handler`, and `AdaptUIProvider` from
 > `@adaptui/react-native-tailwind`
 
-## Usage
+```jsx
+import React from "react";
+import { SafeAreaView, StatusBar } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AdaptUIProvider } from "@adaptui/react-native-tailwind";
+import tailwind from "twrnc";
+
+const App = () => {
+  return (
+    <GestureHandlerRootView style={tailwind.style("flex-1")}>
+      <SafeAreaView style={tailwind.style(`flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`)}>
+        <AdaptUIProvider>
+          // Your App Root here
+        </AdaptUIProvider>
+      </SafeAreaView>
+    </GestureHandlerRootView>
+  );
+};
+
+export default App;
+
+```
+
+## Simple Usage
 
 Code below will render an [Avatar](./Avatar.md)
 
