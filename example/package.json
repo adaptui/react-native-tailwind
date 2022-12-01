@@ -36,7 +36,7 @@
     "expo-cli": "6.0.0"
   },
   "resolutions": {
-    "react-error-overlay": "6.0.11",
+    "react-error-overlay": "6.0.9",
     "react-native-reanimated": "2.12.0"
   }
 }
