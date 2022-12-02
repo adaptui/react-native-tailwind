@@ -17,13 +17,13 @@ import { Group } from "../../components";
 
 export const TextAreaScreen = () => {
   const tailwind = useTheme();
-  const [variant, setVariant] = useState<TextAreaVariants>("subtle");
-  const [loading, setLoading] = useState(false);
-  const [invalid, setInvalid] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [hasvariant, setHasVariant] = useState<TextAreaVariants>("subtle");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [hasSuffix, setHasSuffix] = useState<boolean>(false);
   const [size, setSize] = useState<TextAreaSizes>("sm");
-  const [icon, setIcon] = useState(false);
-  const suffix = icon ? <Icon icon={<Slot />} /> : null;
+  const suffix = hasSuffix ? <Icon icon={<Slot />} /> : null;
   const textAreaRef = useRef<any>(null);
 
   const handleFocusInOnPress = useCallback(() => {
@@ -40,11 +40,11 @@ export const TextAreaScreen = () => {
         <TextArea
           placeholder={"Type Something...."}
           size={size}
-          variant={variant}
-          loading={loading}
-          invalid={invalid}
+          variant={hasvariant}
+          loading={isLoading}
+          invalid={isInvalid}
           suffix={suffix}
-          editable={!disabled}
+          editable={!isDisabled}
           ref={textAreaRef}
         />
       </Box>
@@ -66,8 +66,8 @@ export const TextAreaScreen = () => {
           </Group>
         </RadioGroup>
         <RadioGroup
-          value={variant}
-          onChange={(value: TextAreaVariants) => setVariant(value)}
+          value={hasvariant}
+          onChange={(value: TextAreaVariants) => setHasVariant(value)}
           orientation="horizontal"
         >
           <Group label="Variant" style={tailwind.style("mt-2")}>
@@ -84,28 +84,28 @@ export const TextAreaScreen = () => {
         >
           <Switch
             label="Loading"
-            state={loading}
-            onStateChange={setLoading}
+            state={isLoading}
+            onStateChange={setIsLoading}
             size="md"
           />
           <Switch
             label="Invalid"
-            state={invalid}
-            onStateChange={setInvalid}
+            state={isInvalid}
+            onStateChange={setIsInvalid}
             size="md"
             style={tailwind.style("ml-1")}
           />
           <Switch
             label="Disabled"
-            state={disabled}
-            onStateChange={setDisabled}
+            state={isDisabled}
+            onStateChange={setIsDisabled}
             size="md"
             style={tailwind.style("ml-1")}
           />
           <Switch
-            label="Icon"
-            state={icon}
-            onStateChange={setIcon}
+            label="Suffix"
+            state={hasSuffix}
+            onStateChange={setHasSuffix}
             size="md"
             style={tailwind.style("mt-1")}
           />
