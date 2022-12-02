@@ -79,11 +79,11 @@ export interface SwitchProps extends BoxProps {
   /**
    * The Label of the switch component.
    */
-  label: string;
+  label: string | null;
   /**
    * The Description of the switch component.
    */
-  description: string;
+  description: string | null;
 }
 
 const SPRING_CONFIG = {

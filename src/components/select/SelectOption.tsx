@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Platform } from "react-native";
+import { Platform, PressableStateCallbackType } from "react-native";
 
 import { Box, Text, Touchable } from "../../primitives";
 import { useTheme } from "../../theme";
@@ -15,7 +15,7 @@ import { SelectSizes } from "./Select";
 
 export interface SelectOptionProps {
   disabled?: boolean;
-  label: string;
+  label: string | null;
   description?: string;
   value: string;
   size: SelectSizes;
@@ -198,7 +198,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
       onFocus={onFocus}
       onBlur={onBlur}
       // Web Callbacks
-      style={touchState => [
+      style={(touchState: PressableStateCallbackType) => [
         tailwind.style([
           cx(
             selectOptionStyle?.label?.common,
@@ -243,9 +243,9 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
           : {},
       ]}
     >
-      {({ pressed }) =>
+      {(touchState: PressableStateCallbackType) =>
         children({
-          pressed,
+          pressed: touchState.pressed,
           isHovered: !!hovered.value,
           isFocussed: !!focused.value,
         })

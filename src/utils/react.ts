@@ -1,24 +1,28 @@
 import React from "react";
 
-import { Dict, RenderPropType } from "../index";
+import { AnyObject, RenderPropType } from "../index";
 
 function isFunction(value: unknown): value is Function {
   return typeof value === "function";
 }
 
 // Merge library & user prop
-export const passProps = (component: RenderPropType, props?: Dict) => {
+export function passProps<T extends AnyObject = AnyObject, S = AnyObject>(
+  component: RenderPropType<S>,
+  props?: T,
+): React.ReactNode {
   return React.isValidElement(component)
     ? React.cloneElement(component, {
         ...props,
+        // @ts-ignore
         ...component.props,
       })
     : runIfFn(component, { ...props });
-};
+}
 
-export function runIfFn<T, U>(
-  valueOrFn: T | ((...fnArgs: U[]) => T),
-  ...args: U[]
-): T {
-  return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn;
+export function runIfFn<T extends AnyObject = AnyObject>(
+  component: RenderPropType<T>,
+  props: T,
+): React.ReactNode {
+  return isFunction(component) ? component({ ...props }) : component;
 }

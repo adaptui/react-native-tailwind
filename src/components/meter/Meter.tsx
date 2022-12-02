@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from "react";
+import { LayoutChangeEvent } from "react-native";
 
 import { Box, Text } from "../../primitives";
 import { useTheme } from "../../theme";
@@ -18,7 +19,7 @@ export interface MeterProps {
   size: MeterSizes;
   /**
    * Meter Theme
-   * @defaul base
+   * @default 'base'
    */
   themeColor: MeterTheme;
   /**
@@ -65,11 +66,11 @@ export interface MeterProps {
   /**
    * Label for the Meter
    */
-  label: string;
+  label: string | null;
   /**
    * Hint for the Meter
    */
-  hint: string;
+  hint: string | null;
 }
 
 const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
@@ -97,7 +98,9 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
 
   return (
     <Box
-      onLayout={event => setMeterWidth(event.nativeEvent.layout.width)}
+      onLayout={(event: LayoutChangeEvent) =>
+        setMeterWidth(event.nativeEvent.layout.width)
+      }
       style={tailwind.style([meterTheme.wrapper])}
       ref={ref}
     >

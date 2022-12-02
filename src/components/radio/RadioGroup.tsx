@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from "react";
 import { Platform } from "react-native";
 import { getFocusableTreeWalker } from "@react-aria/focus";
 
-import { Box } from "../../primitives";
+import { Box, BoxProps } from "../../primitives";
 import { useTheme } from "../../theme";
 import {
   createComponent,
@@ -10,6 +10,7 @@ import {
   cx,
   getValidChildren,
   passProps,
+  styleAdapter,
 } from "../../utils";
 
 import { RadioGroupState, useRadioGroupState } from "./useRadioGroupState";
@@ -32,7 +33,7 @@ const [RadioGroupProvider, useRadioGroupContext] =
 
 export { useRadioGroupContext };
 
-export interface RadioGroupProps {
+export interface RadioGroupProps extends BoxProps {
   /**
    * Radio Sizes
    * @default md
@@ -64,6 +65,10 @@ export interface RadioGroupProps {
    * Is Radio Group Disabled
    */
   isDisabled: boolean;
+  /**
+   * Children
+   */
+  children: React.ReactNode;
 }
 
 const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
@@ -79,6 +84,7 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
     isDisabled = false,
     onChange,
     children,
+    style,
   } = props;
 
   const radioGroupProps = {
@@ -152,7 +158,10 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   const validChildren = getValidChildren(children);
   return (
     <Box
-      style={tailwind.style(cx(radioGroupTheme.group[orientation]?.common))}
+      style={[
+        tailwind.style(cx(radioGroupTheme.group[orientation]?.common)),
+        styleAdapter(style),
+      ]}
       ref={ref}
       // Web Related Props
       accessibilityRole="radiogroup"

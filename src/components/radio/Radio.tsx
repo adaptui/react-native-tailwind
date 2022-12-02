@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useRef } from "react";
-import { Platform } from "react-native";
+import { Platform, PressableStateCallbackType } from "react-native";
 
 import { Box, Text, Touchable, TouchableProps } from "../../primitives";
 import { useTheme } from "../../theme";
@@ -19,11 +19,11 @@ export interface RadioProps extends TouchableProps {
   /**
    * Radio Label
    */
-  label: string;
+  label: string | null;
   /**
    * Radio Description
    */
-  description: string;
+  description: string | null;
   /**
    * Radio State
    */
@@ -225,7 +225,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
               {label}
             </Text>
           )}
-          {description && (
+          {label && description && (
             <Text
               style={[
                 tailwind.style(
@@ -253,7 +253,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
       onFocus={onFocus}
       onBlur={onBlur}
       // Web Callbacks
-      style={touchState => [
+      style={(touchState: PressableStateCallbackType) => [
         tailwind.style([
           cx(
             radioTheme?.label?.common,
@@ -320,9 +320,9 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
       })}
       focusable={Platform.OS === "web" ? focusable : undefined}
     >
-      {({ pressed }) =>
+      {(touchState: PressableStateCallbackType) =>
         children({
-          pressed,
+          pressed: touchState.pressed,
           isHovered: !!hovered.value,
           isFocussed: !!focused.value,
         })

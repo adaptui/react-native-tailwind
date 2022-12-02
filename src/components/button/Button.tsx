@@ -1,5 +1,10 @@
 import React, { forwardRef } from "react";
-import { Platform, PressableProps, TextStyle } from "react-native";
+import {
+  Platform,
+  PressableProps,
+  PressableStateCallbackType,
+  TextStyle,
+} from "react-native";
 
 import { RenderPropType } from "../../index";
 import { Box, Text, Touchable } from "../../primitives";
@@ -70,7 +75,7 @@ export interface ButtonProps extends PressableProps {
   /**
    * If added, the button will show this spinner components
    *
-   * @default Spinner Component
+   * @default "<Spinner />"
    */
   spinner: RenderPropType;
   /**
@@ -134,7 +139,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           iconStyle: tailwind.style(cx(buttonTheme.size[size]?.prefix)),
         })
       ) : (
-        <ButtonPrefix size={size}>{prefix}</ButtonPrefix>
+        <ButtonPrefix size={size}>{prefix as React.ReactNode}</ButtonPrefix>
       );
 
     const prefixEl =
@@ -168,7 +173,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           iconStyle: tailwind.style(cx(buttonTheme.size[size]?.suffix)),
         })
       ) : (
-        <ButtonSuffix size={size}>{suffix}</ButtonSuffix>
+        <ButtonSuffix size={size}>{suffix as React.ReactNode}</ButtonSuffix>
       );
 
     const suffixEl = loading ? (
@@ -185,50 +190,52 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       <>{_suffix}</>
     );
 
-    const defaultChildren = iconOnly ? (
-      <Box
-        style={[
-          tailwind.style(
-            cx(
-              buttonTheme.size[size]?.icon,
-              loading ? buttonTheme.loading.children : "",
+    const defaultChildren = (
+      iconOnly ? (
+        <Box
+          style={[
+            tailwind.style(
+              cx(
+                buttonTheme.size[size]?.icon,
+                loading ? buttonTheme.loading.children : "",
+              ),
             ),
-          ),
-          { aspectRatio: iconAspectRatio },
-        ]}
-      >
-        {/* @ts-ignore */}
-        {React.cloneElement(iconOnly, {
-          color: tailwind.getColor(
-            isButtonDisabled
-              ? buttonTheme.themeColor[themeColor]?.[variant]?.icon.disabled
-              : buttonTheme.themeColor[themeColor]?.[variant]?.icon.default,
-          ),
-        })}
-      </Box>
-    ) : typeof props.children === "string" ? (
-      <Text
-        adjustsFontSizeToFit
-        allowFontScaling={false}
-        selectable={false}
-        style={[
-          tailwind.style(
-            cx(
-              buttonTheme.size[size]?.text,
-              buttonTheme.themeColor[themeColor]?.[variant]?.text.default,
+            { aspectRatio: iconAspectRatio },
+          ]}
+        >
+          {/* @ts-ignore */}
+          {React.cloneElement(iconOnly, {
+            color: tailwind.getColor(
               isButtonDisabled
-                ? buttonTheme.themeColor[themeColor]?.[variant]?.text.disabled
-                : "",
+                ? buttonTheme.themeColor[themeColor]?.[variant]?.icon.disabled
+                : buttonTheme.themeColor[themeColor]?.[variant]?.icon.default,
             ),
-          ),
-          styleAdapter(textStyle),
-        ]}
-      >
-        {props.children}
-      </Text>
-    ) : (
-      props.children
-    );
+          })}
+        </Box>
+      ) : typeof props.children === "string" ? (
+        <Text
+          adjustsFontSizeToFit
+          allowFontScaling={false}
+          selectable={false}
+          style={[
+            tailwind.style(
+              cx(
+                buttonTheme.size[size]?.text,
+                buttonTheme.themeColor[themeColor]?.[variant]?.text.default,
+                isButtonDisabled
+                  ? buttonTheme.themeColor[themeColor]?.[variant]?.text.disabled
+                  : "",
+              ),
+            ),
+            styleAdapter(textStyle),
+          ]}
+        >
+          {props.children}
+        </Text>
+      ) : (
+        props.children
+      )
+    ) as React.ReactNode;
 
     const iconOnlyEl = loading ? (
       <ButtonFullWidthSpinner
@@ -259,7 +266,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
 
     return (
       <Touchable
-        style={touchState => {
+        style={(touchState: PressableStateCallbackType) => {
           return [
             tailwind.style(
               cx(

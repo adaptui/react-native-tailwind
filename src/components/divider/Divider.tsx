@@ -9,7 +9,7 @@ interface DividerProps {
   /**
    * Label name
    */
-  label: string;
+  label: string | null;
   /**
    * The orientation of the divider
    * @default horizontal

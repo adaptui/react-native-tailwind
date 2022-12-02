@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import { Platform } from "react-native";
+import { Platform, PressableStateCallbackType } from "react-native";
 import { useToggleState } from "@react-stately/toggle";
 
 import { Check, Dash } from "../../icons";
@@ -36,16 +36,17 @@ export interface CheckboxProps extends TouchableProps {
   size: CheckboxSizes;
   /**
    * Checkbox Theme
+   * @default base
    */
   themeColor: CheckboxTheme;
   /**
    * Label for the Checkbox.
    */
-  label: string;
+  label: string | null;
   /**
    * Description for the Checkbox.
    */
-  description: string;
+  description: string | null;
   /**
    * Checkbox State
    * @default false
@@ -156,7 +157,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   }, [checkboxToggleState.isSelected, isIndeterminate]);
 
   const handleChange = useCallback(() => {
-    console.log(checkboxGroupState, props?.value);
     if (checkboxGroupState) {
       if (props.value) {
         if (checkboxToggleState.isSelected) {
@@ -310,7 +310,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               {label}
             </Text>
           )}
-          {description && (
+          {label && description && (
             <Text
               style={[
                 tailwind.style(
@@ -347,7 +347,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       accessibilityValue={{ text: props?.value }}
       onAccessibilityTap={handleChange}
       // A11y Props
-      style={touchState => [
+      style={(touchState: PressableStateCallbackType) => [
         tailwind.style(
           cx(
             checkboxTheme?.label?.common,
@@ -405,9 +405,9 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       })}
       disabled={isDisabled}
     >
-      {({ pressed }) =>
+      {(touchState: PressableStateCallbackType) =>
         children({
-          pressed,
+          pressed: touchState.pressed,
           isHovered: !!hovered.value,
           isFocussed: !!focused.value,
         })

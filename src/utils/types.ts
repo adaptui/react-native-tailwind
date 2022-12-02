@@ -14,10 +14,10 @@ export type DeepPartial<T> = {
 
 export type RenderPropType<T = unknown> =
   | React.ReactNode
-  | ((args: T) => JSX.Element);
-
-export type RenderProp<T> = {
-  children?: RenderPropType<T>;
-};
+  | ((args: T) => JSX.Element | React.ReactNode);
 
 export type IconProps = PathProps;
+
+export type AnyObject = Record<keyof any, any>;
+
+export type RenderProp<P = AnyObject> = (props: P) => React.ReactNode;
