@@ -1,5 +1,9 @@
 import React, { forwardRef, useCallback, useMemo, useRef } from "react";
-import { ListRenderItemInfo, PressableProps } from "react-native";
+import {
+  ListRenderItemInfo,
+  PressableProps,
+  PressableStateCallbackType,
+} from "react-native";
 import { useControllableState } from "@chakra-ui/hooks";
 import { BottomSheetFlatList, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { isUndefined } from "lodash";
@@ -168,7 +172,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         onHoverOut={onHoverOut}
         // Web Callbacks
         onPress={handlePresentModalPress}
-        style={touchState => [
+        style={(touchState: PressableStateCallbackType) => [
           tailwind.style([
             selectStyle.base.common,
             selectStyle.base.size[size].common,
@@ -186,7 +190,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         disabled={disabled}
         ref={selectRef}
       >
-        {({ pressed }) => {
+        {(touchState: PressableStateCallbackType) => {
           return (
             <>
               <SelectPrefix
@@ -198,13 +202,13 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 disabled={disabled}
                 invalid={invalid}
                 prefix={prefix}
-                isPressedOrHovered={pressed || isHovered}
+                isPressedOrHovered={touchState.pressed || isHovered}
                 isDefaultState={isUndefined(selectState)}
               />
               <Text
                 style={tailwind.style([
                   selectStyle.base.text.size[size],
-                  pressed || hovered.value
+                  touchState.pressed || hovered.value
                     ? selectStyle.base.text.variant[variant].pressedOrHovered
                     : disabled
                     ? selectStyle.base.text.variant[variant].disabled
@@ -229,7 +233,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 disabled={disabled}
                 invalid={invalid}
                 suffix={suffix}
-                isPressedOrHovered={pressed || isHovered}
+                isPressedOrHovered={touchState.pressed || isHovered}
                 isDefaultState={isUndefined(selectState)}
               />
             </>

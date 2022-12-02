@@ -65,6 +65,10 @@ export interface RadioGroupProps extends BoxProps {
    * Is Radio Group Disabled
    */
   isDisabled: boolean;
+  /**
+   * Children
+   */
+  children: React.ReactNode;
 }
 
 const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<

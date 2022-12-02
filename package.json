@@ -75,35 +75,32 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^2.0.0",
-    "@gorhom/bottom-sheet": "^4.3.1",
-    "@react-aria/focus": "^3.6.1",
-    "@react-aria/visually-hidden": "^3.3.0",
+    "@chakra-ui/hooks": "^2.1.2",
+    "@gorhom/bottom-sheet": "^4.4.5",
+    "@react-aria/focus": "^3.10.0",
+    "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/checkbox": "^0.2.3",
-    "@react-native-aria/focus": "^0.2.5",
-    "@react-native-aria/interactions": "^0.2.8",
-    "@react-native-aria/radio": "^0.2.5",
     "@react-stately/toggle": "^3.3.0",
     "lodash": "^4.17.21",
-    "react-native-gesture-handler": "2.1.0",
+    "react-native-gesture-handler": "2.8.0",
     "react-native-popper": "^0.3.2",
-    "react-native-reanimated": "2.3.1",
-    "react-native-svg": "^12.1.1",
+    "react-native-reanimated": "2.13.0",
+    "react-native-svg": "^13.6.0",
     "tailwind-merge": "^1.8.0",
     "tailwindcss": "^3.2.4",
     "twrnc": "^3.4.1"
   },
   "devDependencies": {
-    "@babel/core": "7.18.9",
+    "@babel/core": "^7.19.1",
     "@babel/eslint-parser": "7.18.9",
     "@babel/helper-string-parser": "^7.19.4",
     "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
+    "@commitlint/config-conventional": "17.3.0",
     "@react-native-community/eslint-config": "3.0.3",
     "@release-it/conventional-changelog": "5.0.0",
     "@types/jest": "29.1.2",
-    "@types/react": "17.0.30",
-    "@types/react-native": "0.64.24",
+    "@types/react": "18.0.0",
+    "@types/react-native": "0.70.0",
     "all-contributors-cli": "6.20.0",
     "commitlint": "17.0.3",
     "eslint": "8.20.0",
@@ -115,20 +112,17 @@
     "lint-staged": "13.0.3",
     "pinst": "3.0.0",
     "prettier": "2.7.1",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-native": "0.64.3",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-native": "0.70.0",
     "react-native-builder-bob": "0.18.3",
     "release-it": "15.1.4",
     "sort-package-json": "2.0.0",
-    "typescript": "4.7.4"
+    "typescript": "4.8.3"
   },
   "peerDependencies": {
-    "react": "16.x || 17.x",
-    "react-native": ">=0.62"
-  },
-  "resolutions": {
-    "**/@types/react": "17.0.30"
+    "react": "*",
+    "react-native": "*"
   },
   "publishConfig": {
     "access": "public",
