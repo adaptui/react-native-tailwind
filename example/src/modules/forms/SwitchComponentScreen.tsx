@@ -79,7 +79,6 @@ export const SwitchComponentScreen = () => {
             onStateChange={(value: SetStateAction<boolean>) =>
               setHasLabel(value)
             }
-            style={tailwind.style("ml-1 mt-1")}
             label="Has Label"
           />
           <Switch
@@ -88,7 +87,7 @@ export const SwitchComponentScreen = () => {
             onStateChange={(value: SetStateAction<boolean>) =>
               setHasDesc(value)
             }
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1")}
             label="Has Description"
           />
           <Switch
