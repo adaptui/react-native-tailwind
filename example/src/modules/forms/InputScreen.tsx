@@ -1,4 +1,4 @@
-import React, { SetStateAction, useRef, useState } from "react";
+import React, { SetStateAction, useCallback, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -9,6 +9,7 @@ import {
   InputVariants,
   Radio,
   RadioGroup,
+  Search,
   Switch,
   useTheme,
 } from "@adaptui/react-native-tailwind";
@@ -22,21 +23,29 @@ export const InputScreen = () => {
   const [selectedSize, setSelectedSize] = useState<InputSizes>("md");
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
-  const [hasSuffix, setHasSuffix] = useState(false);
+  const [hasSuffix, setHasSuffix] = useState<boolean>(false);
+  const [hasPrefix, setHasPrefix] = useState<boolean>(false);
   const suffix = hasSuffix ? <Icon icon={<Info />} /> : null;
+  const prefix = hasPrefix ? <Icon icon={<Search />} /> : null;
+
   const inputRef = useRef<any>(null);
+
+  const handleFocusInOnPress = useCallback(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const handleFocusInOutPress = useCallback(() => {
+    inputRef.current?.blur();
+  }, []);
+
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
-      <Box
-        style={tailwind.style(
-          "flex-1 px-2 justify-center items-center bg-white-900",
-        )}
-      >
+      <Box style={tailwind.style("flex-1 px-2 justify-center items-center")}>
         <Input
           size={selectedSize}
-          textInputWrapperProps={{ style: tailwind.style("my-2") }}
           placeholder={"Placeholder"}
           variant={selectedVariant}
+          prefix={prefix}
           suffix={suffix}
           ref={inputRef}
           editable={!isDisabled}
@@ -103,12 +112,21 @@ export const InputScreen = () => {
             style={tailwind.style("ml-1")}
             label="Suffix"
           />
+          <Switch
+            state={hasPrefix}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasPrefix(value)
+            }
+            size="md"
+            style={tailwind.style("mt-1")}
+            label="Prefix"
+          />
         </Box>
         <Box style={tailwind.style("flex flex-row justify-start w-full mt-2")}>
-          <Button onPress={() => inputRef.current.focus()}>Focus in</Button>
+          <Button onPress={handleFocusInOnPress}>Focus in</Button>
           <Button
             style={tailwind.style("ml-1")}
-            onPress={() => inputRef.current.blur()}
+            onPress={handleFocusInOutPress}
           >
             Focus out
           </Button>
