@@ -35,7 +35,7 @@ export const TooltipScreen = () => {
               themeColor="success"
               size="sm"
             >
-              Tooltip on Top
+              Tooltip
             </Button>
           }
           content="2 out 3 tasks completed"
