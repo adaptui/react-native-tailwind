@@ -54,15 +54,6 @@ export const TextAreaScreen = () => {
         )}
       >
         <RadioGroup
-          value={variant}
-          onChange={(value: TextAreaVariants) => setVariant(value)}
-          orientation="horizontal"
-        >
-          <Radio value="subtle" label="Subtle" />
-          <Radio value="outline" label="Outline" />
-          <Radio value="underline" label="Underline" />
-        </RadioGroup>
-        <RadioGroup
           value={size}
           onChange={(value: TextAreaSizes) => setSize(value)}
           orientation="horizontal"
