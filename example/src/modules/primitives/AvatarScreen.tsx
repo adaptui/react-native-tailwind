@@ -17,10 +17,10 @@ export const AvatarScreen = () => {
   const tailwind = useTheme();
 
   const [selectedStatus, setSelectedStatus] = useState<AvatarStatusType>(null);
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string | null>(null);
   const [isSquared, setIsSquared] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
-  const [imageUri, setImageUri] = useState<Object>({});
+  const [imageUri, setImageUri] = useState<Object | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<null | string>(null);
   const [hasParentBackground, setHasParentBackground] =
     useState<boolean>(false);
@@ -31,18 +31,18 @@ export const AvatarScreen = () => {
     switch (selectedVariant) {
       case "withInitials":
         setName("Sandeep Prabhakaran");
-        setImageUri({});
+        setImageUri(null);
         break;
       case "withImage":
         setImageUri({
           uri: "https://i.pravatar.cc/300??img=5",
           cache: "reload",
         });
-        setName("");
+        setName(null);
         break;
       default:
-        setName("");
-        setImageUri({});
+        setName(null);
+        setImageUri(null);
     }
 
     switch (hasParentBackground) {

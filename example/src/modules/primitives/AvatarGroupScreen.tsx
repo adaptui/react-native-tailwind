@@ -17,7 +17,7 @@ import { Group } from "../../components";
 export const AvatarGroupScreen = () => {
   const tailwind = useTheme();
 
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string | null>(null);
   const [isSquared, setIsSquared] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
   const [hasImage, setHasImage] = useState<boolean>(true);
@@ -37,10 +37,10 @@ export const AvatarGroupScreen = () => {
         break;
       case "withImage":
         setHasImage(true);
-        setName("");
+        setName(null);
         break;
       default:
-        setName("");
+        setName(null);
         setHasImage(false);
     }
 
