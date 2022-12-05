@@ -15,14 +15,14 @@ export const checkbox = {
     withDescription: "items-start",
     text: {
       common: "text-gray-800 font-medium",
-      disabled: "text-gray-500",
+      disabled: "text-gray-500 font-medium",
     },
   },
 
   labelDescWrapper: { flexShrink: 1 },
   description: {
     labelText: "text-gray-900 font-medium",
-    common: "text-gray-600",
+    common: "text-gray-600 font-normal",
   },
 
   icon: {
