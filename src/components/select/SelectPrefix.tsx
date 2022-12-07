@@ -64,7 +64,7 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
       )}
       {...props}
     >
-      {_prefix}
+      {_prefix as React.ReactNode}
     </Box>
   );
 };
