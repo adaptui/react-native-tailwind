@@ -36,7 +36,7 @@ export const TextAreaScreen = () => {
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
-      <Box style={tailwind.style("flex-1 px-2 justify-center items-center")}>
+      <Box style={tailwind.style("flex-1 px-2 justify-center")}>
         <TextArea
           placeholder={"Type Something...."}
           size={size}

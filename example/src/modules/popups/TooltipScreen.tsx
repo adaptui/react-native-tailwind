@@ -16,6 +16,8 @@ export const TooltipScreen = () => {
   const tailwind = useTheme();
 
   const [hasArrow, setHasArrow] = useState<boolean>(false);
+  const [hasOffset, setHasOffset] = useState<boolean>(false);
+
   const [tooltipPlacement, setTooltipPlacement] =
     useState<TooltipPlacement>("right");
 
@@ -39,6 +41,8 @@ export const TooltipScreen = () => {
             </Button>
           }
           content="2 out 3 tasks completed"
+          mainOffset={hasOffset ? 15 : 0}
+          crossOffset={hasOffset ? 1 : 0}
         />
       </Box>
       <Box
@@ -66,11 +70,7 @@ export const TooltipScreen = () => {
             <Radio value="left top" label="left top" />
           </Group>
         </RadioGroup>
-        <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
-        >
+        <Box style={tailwind.style("flex flex-row justify-start  w-full mt-2")}>
           <Switch
             state={hasArrow}
             onStateChange={(value: SetStateAction<boolean>) =>
@@ -78,6 +78,15 @@ export const TooltipScreen = () => {
             }
             size="md"
             label="Has Arrow"
+          />
+          <Switch
+            state={hasOffset}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasOffset(value)
+            }
+            size="md"
+            label="Has Offset"
+            style={tailwind.style("ml-1")}
           />
         </Box>
       </Box>
