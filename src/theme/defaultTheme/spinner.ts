@@ -1,13 +1,13 @@
 export const spinner = {
   base: "border-solid rounded-full border-[1.5px]",
   track: {
-    transparent: "border-b-transparent border-l-transparent",
+    transparent: "border-transparent",
     visible: {
-      base: "border-b-gray-400 border-l-gray-400",
-      primary: "border-b-blue-400 border-l-blue-400",
-      secondary: "border-b-violet-400 border-l-violet-400",
-      success: "border-b-green-400 border-l-green-400",
-      danger: "border-b-red-400 border-l-red-400",
+      base: "border-gray-400",
+      primary: "border-blue-400",
+      secondary: "border-violet-400",
+      success: "border-green-400",
+      danger: "border-red-400",
     },
   },
   themeColor: {
