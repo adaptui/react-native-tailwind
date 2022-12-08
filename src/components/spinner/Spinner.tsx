@@ -42,6 +42,12 @@ export interface SpinnerProps extends BoxProps {
    * @default base
    */
   themeColor: SpinnerTheme;
+  /**
+   * Spinner Stroke
+   * Accepts tailwind color string
+   * like border-gray-300, border-green-400
+   */
+  stroke: string;
 }
 
 const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
@@ -55,6 +61,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
     size = "md",
     track = "transparent",
     themeColor = "base",
+    stroke,
     style,
   } = props;
 
@@ -63,6 +70,10 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
 
   const progress = useSharedValue(0);
   const rotate = useSharedValue(0);
+
+  const spinnerStroke = stroke
+    ? tailwind.getColor(stroke)
+    : tailwind.getColor(spinnerTheme.themeColor[themeColor]);
 
   const animatedSvgStyle = useAnimatedStyle(() => {
     const rotateValue = interpolate(rotate.value, [0, 1], [0, 360]);
@@ -129,15 +140,8 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
       <Svg width="100%" height="100%" viewBox={"0 0 100 100"}>
         <Defs>
           <LinearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <Stop
-              offset="0%"
-              stopColor={tailwind.getColor(spinnerTheme.themeColor[themeColor])}
-            />
-            <Stop
-              offset="100%"
-              stopColor={tailwind.getColor(spinnerTheme.themeColor[themeColor])}
-              stopOpacity="0"
-            />
+            <Stop offset="0%" stopColor={spinnerStroke} />
+            <Stop offset="100%" stopColor={spinnerStroke} stopOpacity="0" />
           </LinearGradient>
         </Defs>
         <G rotation={"-90"} origin="50, 50">
