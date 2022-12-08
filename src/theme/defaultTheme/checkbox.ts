@@ -1,7 +1,7 @@
 export const checkbox = {
   group: {
     vertical: {
-      common: "flex flex-col items-start",
+      common: "flex flex-col",
       spacing: "mt-1",
     },
     horizontal: {
@@ -67,7 +67,7 @@ export const checkbox = {
         wrapper: "min-h-9 px-3 py-2 rounded-[10px]",
       },
       icon: {
-        wrapper: "w-5 h-5 text-base rounded",
+        wrapper: "w-5 h-5 text-base rounded-md",
         iconSize: "w-4 h-4",
       },
       text: {
