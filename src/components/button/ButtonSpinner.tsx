@@ -47,7 +47,6 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   prefix,
   suffix,
 }) => {
-  const tailwind = useTheme();
   const buttonTheme = useTheme("button");
 
   const spinnerSize = (
@@ -55,6 +54,11 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
       ? spinnerSizes[size]?.spinner
       : spinnerSizes[size]?.iconOnly
   ) as SpinnerSizes;
+
+  console.log(
+    buttonTheme.themeColor[themeColor]?.[variant]?.spinner?.disabled,
+    isValidElement(spinner),
+  );
 
   return isValidElement(spinner) ? (
     React.cloneElement(spinner, {
@@ -64,9 +68,7 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   ) : (
     <Spinner
       size={spinnerSize}
-      style={tailwind.style(
-        cx(buttonTheme.themeColor[themeColor]?.[variant]?.spinner?.disabled),
-      )}
+      stroke={buttonTheme.themeColor[themeColor]?.[variant]?.spinner?.disabled}
     />
   );
 };

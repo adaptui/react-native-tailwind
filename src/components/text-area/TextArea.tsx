@@ -1,5 +1,5 @@
 import React, { forwardRef, useMemo, useRef, useState } from "react";
-import { Platform, TextInputProps, ViewStyle } from "react-native";
+import { Platform, TextInputProps } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
 import { useTheme } from "../../theme";
@@ -76,14 +76,14 @@ export interface TextAreaProps extends TextInputProps {
 }
 
 interface DefaultTextAreaSpinnerProps extends Pick<TextAreaProps, "size"> {
-  spinnerStroke: ViewStyle;
+  spinnerStroke: string;
 }
 
 export const DefaultTextAreaSpinner = (
   state: DefaultTextAreaSpinnerProps,
 ): JSX.Element => {
   const { size, spinnerStroke } = state;
-  return <Spinner size={size !== "xl" ? "xs" : "md"} style={spinnerStroke} />;
+  return <Spinner size={size !== "xl" ? "xs" : "md"} stroke={spinnerStroke} />;
 };
 
 const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
@@ -181,13 +181,13 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
           })
         : suffix;
 
-    const spinnerStroke = tailwind.style(
+    const spinnerStroke = tailwind.getColor(
       cx(
         editable
           ? textAreaTheme.variant[variant]?.default?.suffix
           : textAreaTheme.variant[variant]?.disabled?.suffix,
       ),
-    );
+    ) as string;
     const inputLoading = runIfFn(DefaultTextAreaSpinner, {
       size,
       spinnerStroke,
