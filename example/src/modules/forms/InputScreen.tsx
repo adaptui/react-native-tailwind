@@ -3,13 +3,12 @@ import {
   Box,
   Button,
   Icon,
-  Info,
   Input,
   InputSizes,
   InputVariants,
   Radio,
   RadioGroup,
-  Search,
+  Slot,
   Switch,
   useTheme,
 } from "@adaptui/react-native-tailwind";
@@ -25,8 +24,8 @@ export const InputScreen = () => {
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [hasSuffix, setHasSuffix] = useState<boolean>(false);
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
-  const suffix = hasSuffix ? <Icon icon={<Info />} /> : null;
-  const prefix = hasPrefix ? <Icon icon={<Search />} /> : null;
+  const suffix = hasSuffix ? <Icon icon={<Slot />} /> : null;
+  const prefix = hasPrefix ? <Icon icon={<Slot />} /> : null;
 
   const inputRef = useRef<any>(null);
 

@@ -18,6 +18,7 @@ const App = () => {
             `flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`,
           )}
         >
+          <StatusBar barStyle="dark-content" />
           <AdaptUIProvider>
             <AppRoot />
           </AdaptUIProvider>

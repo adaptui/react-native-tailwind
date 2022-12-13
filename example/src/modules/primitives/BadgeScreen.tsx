@@ -5,10 +5,10 @@ import {
   BadgeTheme,
   BadgeVariants,
   Box,
-  Check,
   Icon,
   Radio,
   RadioGroup,
+  Slot,
   Switch,
   useTheme,
 } from "@adaptui/react-native-tailwind";
@@ -35,7 +35,7 @@ export const BadgeScreen = () => {
           themeColor={theme}
           size={size}
           variant={variant}
-          prefix={!prefix ? null : <Icon icon={<Check />} />}
+          prefix={!prefix ? null : <Icon icon={<Slot />} />}
         >
           Completed
         </Badge>

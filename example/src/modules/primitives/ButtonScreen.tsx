@@ -5,10 +5,10 @@ import {
   ButtonSizes,
   ButtonTheme,
   ButtonVariants,
-  Check,
   Icon,
   Radio,
   RadioGroup,
+  Slot,
   Switch,
   useTheme,
 } from "@adaptui/react-native-tailwind";
@@ -37,8 +37,8 @@ export const ButtonScreen = () => {
           variant={selectedVariant}
           themeColor={selectedTheme}
           size={selectedSize}
-          prefix={!hasPrefix ? null : <Icon icon={<Check />} />}
-          suffix={!hasSuffix ? null : <Icon icon={<Check />} />}
+          prefix={!hasPrefix ? null : <Icon icon={<Slot />} />}
+          suffix={!hasSuffix ? null : <Icon icon={<Slot />} />}
           loading={isLoading}
         >
           Continue
