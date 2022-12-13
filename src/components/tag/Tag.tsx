@@ -111,7 +111,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       })
     ) : (
       <Box style={tailwind.style(cx(tagTheme.size[size]?.prefix))}>
-        {prefix}
+        {prefix as React.ReactNode}
       </Box>
     ));
 
@@ -138,7 +138,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       })
     ) : (
       <Box style={tailwind.style(cx(tagTheme.size[size]?.suffix))}>
-        {suffix}
+        {suffix as React.ReactNode}
       </Box>
     ));
 
@@ -163,7 +163,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
         adjustsFontSizeToFit
         allowFontScaling={false}
       >
-        {props.children}
+        {props.children as React.ReactNode}
       </Text>
     ) : (
       props.children
@@ -222,9 +222,11 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
       accessibilityRole="button"
       accessibilityLabel={accesibilityLabel}
     >
-      {_prefix}
-      {children}
-      {_suffix}
+      <>
+        {_prefix}
+        {children}
+        {_suffix}
+      </>
     </Touchable>
   );
 });

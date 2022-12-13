@@ -52,7 +52,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
             iconFill: tailwind.getColor(iconColor),
           })
         : suffix;
-    return selectSuffix;
+    return selectSuffix as React.ReactNode;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [disabled, invalid, suffix, isPressedOrHovered]);
 

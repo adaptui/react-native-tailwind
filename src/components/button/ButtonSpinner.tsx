@@ -3,7 +3,7 @@ import React, { isValidElement } from "react";
 import { Box } from "../../primitives";
 import { useTheme } from "../../theme";
 import { cx } from "../../utils";
-import { Spinner } from "../spinner";
+import { Spinner, SpinnerSizes } from "../spinner";
 
 import { ButtonProps } from "./Button";
 
@@ -47,13 +47,13 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   prefix,
   suffix,
 }) => {
-  const tailwind = useTheme();
   const buttonTheme = useTheme("button");
 
-  const spinnerSize =
+  const spinnerSize = (
     prefix || suffix
       ? spinnerSizes[size]?.spinner
-      : spinnerSizes[size]?.iconOnly;
+      : spinnerSizes[size]?.iconOnly
+  ) as SpinnerSizes;
 
   return isValidElement(spinner) ? (
     React.cloneElement(spinner, {
@@ -63,9 +63,7 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
   ) : (
     <Spinner
       size={spinnerSize}
-      style={tailwind.style(
-        cx(buttonTheme.themeColor[themeColor]?.[variant]?.spinner?.disabled),
-      )}
+      stroke={buttonTheme.themeColor[themeColor]?.[variant]?.spinner?.disabled}
     />
   );
 };

@@ -52,7 +52,8 @@
     "postpublish": "pinst --enable",
     "commit": "gacp",
     "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
+    "contributors:generate": "all-contributors generate",
+    "fix:dependencies": "yarn rnx-align-deps --write"
   },
   "commitlint": {
     "extends": [
@@ -75,17 +76,14 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^2.1.2",
+    "@chakra-ui/hooks": "2.0.0",
     "@gorhom/bottom-sheet": "^4.4.5",
     "@react-aria/focus": "^3.10.0",
     "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/checkbox": "^0.2.3",
     "@react-stately/toggle": "^3.3.0",
     "lodash": "^4.17.21",
-    "react-native-gesture-handler": "2.8.0",
     "react-native-popper": "^0.3.2",
-    "react-native-reanimated": "2.13.0",
-    "react-native-svg": "^13.6.0",
     "tailwind-merge": "^1.8.0",
     "tailwindcss": "^3.2.4",
     "twrnc": "^3.4.1"
@@ -98,6 +96,7 @@
     "@commitlint/config-conventional": "17.3.0",
     "@react-native-community/eslint-config": "3.0.3",
     "@release-it/conventional-changelog": "5.0.0",
+    "@rnx-kit/align-deps": "^2.0.1",
     "@types/jest": "29.1.2",
     "@types/react": "18.0.0",
     "@types/react-native": "0.70.0",
@@ -108,21 +107,28 @@
     "eslint-plugin-simple-import-sort": "8.0.0",
     "gacp": "3.0.2",
     "husky": "8.0.1",
-    "jest": "29.1.2",
+    "jest": "^26.6.3",
     "lint-staged": "13.0.3",
     "pinst": "3.0.0",
     "prettier": "2.7.1",
     "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "react-native": "0.70.0",
+    "react-dom": "^18.1.0",
+    "react-native": "^0.70.0",
     "react-native-builder-bob": "0.18.3",
+    "react-native-gesture-handler": "^2.6.0",
+    "react-native-reanimated": "^2.10.0",
+    "react-native-svg": "^12.3.0",
     "release-it": "15.1.4",
     "sort-package-json": "2.0.0",
     "typescript": "4.8.3"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
+    "react": "18.1.0",
+    "react-dom": "^18.1.0",
+    "react-native": "^0.70.0",
+    "react-native-gesture-handler": "^2.6.0",
+    "react-native-reanimated": "^2.10.0",
+    "react-native-svg": "^12.3.0"
   },
   "publishConfig": {
     "access": "public",
@@ -147,5 +153,29 @@
         }
       ]
     ]
+  },
+  "rnx-kit": {
+    "kitType": "library",
+    "alignDeps": {
+      "requirements": {
+        "development": [
+          "react-native@0.70"
+        ],
+        "production": [
+          "react-native@*"
+        ]
+      },
+      "capabilities": [
+        "animation",
+        "core",
+        "core-android",
+        "core-ios",
+        "gestures",
+        "jest",
+        "react",
+        "react-dom",
+        "svg"
+      ]
+    }
   }
 }
