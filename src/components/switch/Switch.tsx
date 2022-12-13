@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useMemo } from "react";
 import {
   Gesture,
   GestureDetector,
@@ -8,6 +8,7 @@ import {
   interpolate,
   interpolateColor,
   runOnJS,
+  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -21,6 +22,7 @@ import { createComponent } from "../../utils/createComponent";
 
 export type SwitchSize = "sm" | "md" | "lg" | "xl";
 export type SwitchTheme = "base" | "primary";
+
 export interface SwitchProps extends BoxProps {
   /**
    * Default Value of the switch
@@ -126,6 +128,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
     onChange: onStateChange,
   });
 
+  const thumbAnimated = useSharedValue(switchState ? 1 : 0);
   /**
    * Setting Active/Inactive and Default Colors
    */
@@ -166,15 +169,34 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
   /**
    * The Switch Animation Helpers
    */
-  const interpolatedWidths = switchTheme.size[size]?.switchInterpolateWidths;
+  const interpolatedWidths = useMemo(() => {
+    return switchTheme.size[size]?.switchInterpolateWidths;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size]);
 
-  const translatedThumbDistance = switchTheme.size[size]?.thumbTranslateValue;
-  const initTranslatedThumbDistance =
-    switchTheme.size[size]?.thumbInitTranslateValue;
-  const intermediateThumbTranslateValue =
-    switchTheme.size[size]?.thumbIntermediateTranslateValue;
+  const translatedThumbDistance = useMemo(() => {
+    return switchTheme.size[size]?.thumbTranslateValue;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size]);
+  const initTranslatedThumbDistance = useMemo(() => {
+    return switchTheme.size[size]?.thumbInitTranslateValue;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size]);
+  const intermediateThumbTranslateValue = useMemo(() => {
+    return switchTheme.size[size]?.thumbIntermediateTranslateValue;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size]);
 
-  const thumbAnimated = useSharedValue(switchState ? 1 : 0);
+  useAnimatedReaction(
+    () => switchState,
+    () => {
+      if (switchState) {
+        thumbAnimated.value = withSpring(1, SPRING_CONFIG);
+      } else {
+        thumbAnimated.value = withSpring(0, SPRING_CONFIG);
+      }
+    },
+  );
 
   const animatedSwitchBackground = useAnimatedStyle(() => {
     return {
