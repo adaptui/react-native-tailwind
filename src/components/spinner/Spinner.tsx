@@ -37,7 +37,7 @@ export interface SpinnerProps extends BoxProps {
    * How the spinner should be displayed?
    * @default transparent
    */
-  track: SpinnerTrackVisibility;
+  track: "visible" | "transparent";
   /**
    * Spinner Theme
    * @default base
