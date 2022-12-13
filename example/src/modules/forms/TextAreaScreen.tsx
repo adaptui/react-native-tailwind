@@ -113,7 +113,7 @@ export const TextAreaScreen = () => {
         <Box style={tailwind.style("flex-row justify-start py-2")}>
           <Button onPress={handleFocusInOnPress}>Focus in</Button>
           <Button
-            style={tailwind.style("ml-2")}
+            style={tailwind.style("ml-1")}
             onPress={handleFocusInOutPress}
           >
             Focus out

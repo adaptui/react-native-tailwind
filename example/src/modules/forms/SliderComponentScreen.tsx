@@ -30,7 +30,7 @@ export const SliderComponentScreen = () => {
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
         style={tailwind.style(
-          "flex-1 px-2 justify-center items-center bg-white-900",
+          "flex-1 px-6 justify-center items-center bg-white-900",
         )}
       >
         <Slider

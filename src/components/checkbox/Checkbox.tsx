@@ -353,7 +353,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
           cx(
             checkboxTheme?.label?.common,
             index !== 0
-              ? checkboxTheme?.group[checkboxGroupState.orientation]?.spacing
+              ? checkboxTheme?.group[checkboxGroupState?.orientation]?.spacing
               : "",
             description ? checkboxTheme?.label?.withDescription : "",
             checkboxTheme.size[size]?.label?.wrapper,
