@@ -26,9 +26,7 @@ export type SpinnerTheme =
   | "success"
   | "danger";
 
-export type SpinnerTrackVisibility = "visible" | "transparent";
-
-export interface SpinnerLibProps {
+export interface SpinnerProps extends BoxProps {
   /**
    * How large should the spinner be?
    * @default md
@@ -38,7 +36,7 @@ export interface SpinnerLibProps {
    * How the spinner should be displayed?
    * @default transparent
    */
-  track: SpinnerTrackVisibility;
+  track: "visible" | "transparent";
   /**
    * Spinner Theme
    * @default base
