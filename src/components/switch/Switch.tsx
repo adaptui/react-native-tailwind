@@ -236,6 +236,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
     onChange: onStateChange,
   });
 
+  const thumbAnimated = useSharedValue(switchState ? 1 : 0);
   /**
    * Setting Active/Inactive and Default Colors
    */
