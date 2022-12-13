@@ -55,11 +55,6 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
       : spinnerSizes[size]?.iconOnly
   ) as SpinnerSizes;
 
-  console.log(
-    buttonTheme.themeColor[themeColor]?.[variant]?.spinner?.disabled,
-    isValidElement(spinner),
-  );
-
   return isValidElement(spinner) ? (
     React.cloneElement(spinner, {
       //  @ts-ignore
