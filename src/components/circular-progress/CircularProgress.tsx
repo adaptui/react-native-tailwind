@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import { StyleSheet } from "react-native";
 import Animated, {
+  cancelAnimation,
   Easing,
   interpolate,
   useAnimatedProps,
@@ -128,9 +129,10 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
       };
     });
 
-    // Indeterminate Progress
+    // Indeterminate Progress Code
     const progress = useSharedValue(0);
     const rotate = useSharedValue(0);
+
     const animatedSvgStyle = useAnimatedStyle(() => {
       const rotateValue = interpolate(rotate.value, [0, 1], [0, 360]);
       return {
@@ -141,6 +143,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
         ],
       };
     });
+
     const indeterminateAnimatedCircularProgress = useAnimatedProps(() => {
       return {
         strokeDashoffset: interpolate(
@@ -152,23 +155,40 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
     });
 
     React.useEffect(() => {
-      progress.value = withRepeat(
-        withTiming(1, {
-          duration: 1500,
-          easing: Easing.linear,
-        }),
-        -1,
-        false,
-      );
-      rotate.value = withRepeat(
-        withTiming(1, {
-          duration: 1000,
-          easing: Easing.bezier(0.4, 0, 0.2, 1),
-        }),
-        -1,
-        false,
-      );
-    }, [progress, rotate]);
+      if (isIndeterminate) {
+        progress.value = withRepeat(
+          withTiming(1, {
+            duration: 1500,
+            easing: Easing.linear,
+          }),
+          -1,
+          false,
+          finished => {
+            if (!finished) {
+              progress.value = 0;
+            }
+          },
+        );
+        rotate.value = withRepeat(
+          withTiming(1, {
+            duration: 1000,
+            easing: Easing.bezier(0.4, 0, 0.2, 1),
+          }),
+          -1,
+          false,
+          finished => {
+            if (!finished) {
+              rotate.value = 0;
+            }
+          },
+        );
+      } else {
+        cancelAnimation(progress);
+        cancelAnimation(rotate);
+      }
+    }, [isIndeterminate, progress, rotate]);
+
+    // Indeterminate Progress Code
 
     const circularProgressBoxDimensions = {
       width: hint
@@ -185,7 +205,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
         style={[
           circularProgressBoxDimensions,
           styleAdapter(style),
-          isIndeterminate && animatedSvgStyle,
+          isIndeterminate ? animatedSvgStyle : {},
         ]}
         {...otherProps}
       >

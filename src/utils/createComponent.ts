@@ -4,7 +4,7 @@ import * as React from "react";
 import { createElement } from "./createElement";
 
 export function createComponent<Props extends {}>(
-  componentType: React.ElementType,
+  componentType: React.ComponentType<Props>,
   options?: { shouldMemo?: boolean },
 ):
   | React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>

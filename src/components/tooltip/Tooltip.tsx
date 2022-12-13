@@ -107,7 +107,7 @@ export const RNTooltip: React.FC<Partial<TooltipProps>> = props => {
               {content}
             </Text>
           ) : (
-            content
+            (content as React.ReactNode)
           )}
         </Box>
       </Popover.Content>

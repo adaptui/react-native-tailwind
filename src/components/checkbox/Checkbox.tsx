@@ -113,6 +113,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     isIndeterminate,
     isDisabled,
     style,
+    index,
   } = props;
 
   const hasOnlyLabel = label && !description;
@@ -351,6 +352,9 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         tailwind.style(
           cx(
             checkboxTheme?.label?.common,
+            index !== 0
+              ? checkboxTheme?.group[checkboxGroupState.orientation]?.spacing
+              : "",
             description ? checkboxTheme?.label?.withDescription : "",
             checkboxTheme.size[size]?.label?.wrapper,
             touchState.pressed

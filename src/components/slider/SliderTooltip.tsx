@@ -118,7 +118,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
           getContainerStyle,
         ]}
       >
-        {content}
+        {content as React.ReactNode}
       </Box>
       <AnimatedBox
         style={[

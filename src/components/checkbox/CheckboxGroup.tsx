@@ -12,13 +12,14 @@ import {
   createContext,
   cx,
   getValidChildren,
+  passProps,
   styleAdapter,
 } from "../../utils";
 
 import { CheckboxSizes, CheckboxTheme } from "./Checkbox";
 
 interface CheckboxGroupContext
-  extends Pick<CheckboxGroupProps, "size" | "themeColor">,
+  extends Pick<CheckboxGroupProps, "size" | "themeColor" | "orientation">,
     CheckboxGroupState {}
 
 const [CheckboxGroupProvider, useCheckboxGroupContext] =
@@ -98,17 +99,14 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
       accessibilityRole={Platform.OS === "web" ? "group" : undefined}
       ref={ref}
     >
-      <CheckboxGroupProvider value={{ ...state, size, themeColor }}>
-        {validChildren.map((renderElement, index) => (
-          <Box
-            key={index}
-            style={tailwind.style(
-              cx(checkboxGroupTheme.group[orientation]?.spacing),
-            )}
-          >
-            {renderElement}
-          </Box>
-        ))}
+      <CheckboxGroupProvider
+        value={{ ...state, size, themeColor, orientation }}
+      >
+        {validChildren.map((renderElement, index) =>
+          passProps(renderElement, {
+            index,
+          }),
+        )}
       </CheckboxGroupProvider>
     </Box>
   );

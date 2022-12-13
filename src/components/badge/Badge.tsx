@@ -76,7 +76,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
         })
       ) : (
         <Box style={tailwind.style(cx(badgeStyles.size[size]?.prefix))}>
-          {prefix}
+          {prefix as React.ReactNode}
         </Box>
       );
 
