@@ -4,6 +4,8 @@ Adapt UI provides 2 themes for `Tag` with three variant states which can be used
 for items that need to be labeled, categorized, or organized using keywords that
 describe them.
 
+![simulator_screenshot_2BED2189-EDEE-4C23-BB64-C3D04727BA2D](https://user-images.githubusercontent.com/35562287/203706034-1e8487da-52fb-4331-84d6-f6b9d0d7e24f.png)
+
 #### Simple Usage
 
 ```js
@@ -28,7 +30,13 @@ export default function App() {
 
 Adapt UI provides three themes for the Tag Component: `base` & `primary`
 
-### Usage
+![simulator_screenshot_8C125A32-5E1F-4716-B62F-08BDD2A420D3](https://user-images.githubusercontent.com/35562287/203707882-abd893c1-6cc0-4964-82e7-fae050cbe991.png)
+
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
 
 ```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
@@ -46,13 +54,20 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Variant
 
 Adapt UI provides three different styles for Tags, namely `solid`, `subtle` and `outline` Tags.
 
-### Usage
+![simulator_screenshot_20A3DDD7-DE28-40B1-9A8C-510C7EB7F2D0](https://user-images.githubusercontent.com/35562287/203710272-fe25d68c-fbf1-4f77-805b-4f779ef7b554.png)
 
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -62,7 +77,7 @@ export default function App() {
         <Tag />
       </Box>
       <Box style={tailwind.style("my-2")}>
-        <Tag variant="subtle" />
+        <Tag variant="subtle" />e
       </Box>
       <Box style={tailwind.style("my-2")}>
         <Tag variant="outline" />
@@ -70,8 +85,8 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 ## Size
 
@@ -79,8 +94,14 @@ There are four different sizes for Tag Component in Adapt UI: `sm`, `md`, `lg` &
 
 Based on the hierarchy, you can switch between different sizes.
 
-### Usage
+![simulator_screenshot_596B297D-7557-46F3-9188-B927BE27C004](https://user-images.githubusercontent.com/35562287/203711080-bca70ab7-5b53-4e8e-834c-a1a12f3b1e79.png)
 
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Box, Tag } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -101,8 +122,8 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 ## Prefix
 
@@ -111,8 +132,14 @@ the Tag, the prefix slot can be used to bring an icon, spinner, or, if we need
 to think wild, maybe even an avatar. Prefix itself doesn’t have any unique
 property. It’s a frame that hugs the component inside it.
 
-### Usage
+![simulator_screenshot_8A97A56F-3E6D-47BD-92B6-73629E1C3EA9](https://user-images.githubusercontent.com/35562287/203711181-834d20b9-5e1a-4c06-b10b-f9ba7e2fdfde.png)
 
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Tag, useTheme, Icon, Location } from "@adaptui/react-native-tailwind"
 
@@ -131,8 +158,8 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 ## Suffix
 
@@ -141,8 +168,14 @@ Suffix usually is at the end of a component. Here in the Tag, the prefix slot
 can be used to bring an icon or a spinner to show the loading interaction of the
 Tag component.
 
-### Usage
+![simulator_screenshot_9A0C5D0C-46C9-49CE-A1D7-3A8B7568699A](https://user-images.githubusercontent.com/35562287/203711832-effe5849-7a49-49db-ad41-b247ac34a35a.png)
 
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Tag, useTheme, Icon, CaretRight } from "@adaptui/react-native-tailwind"
 
@@ -161,15 +194,21 @@ export default function App() {
     </>
   )
 }
-
 ```
+</details>
 
 #### Suffix Special Case
 
 Setting a prop `closable` to true would render a `<Close />` icon.
 
-### Usage
+![simulator_screenshot_217418D1-E68D-44C2-97EF-BD9FB6B3A3FE](https://user-images.githubusercontent.com/35562287/203712282-034ce7f5-0883-4a72-aeb8-049f3dadcab0.png)
 
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Tag, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -185,17 +224,18 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Props
 
 > Tag implements `Touchable` accepting all `PressableProps`
 
 | Name       | Description                                                                   | Type                          | Default |
-| ---------- | ----------------------------------------------------------------------------- | ----------------------------- | ------- |
+|------------|-------------------------------------------------------------------------------|-------------------------------|---------|
 | size       | The Tag Size                                                                  | `sm` `md` `lg` `xl`           | `md`    |
 | variant    | The Tag Variants                                                              | `solid` `outline` `subtle`    | `solid` |
 | themeColor | The Tag Theme                                                                 | `base` `primary`              | `base`  |
 | suffix     | If added, the Tag will show an icon after the Tag's text.                     | JSX.Element                   |         |
 | prefix     | If added, the Tag will show an icon before the Tag's text.                    | JSX.Element                   |         |
 | closable   | Is Tag closable/removable? Setting it true will render a Close Icon in Suffix | boolean                       | false   |
-| textStyle  | he Text style of the Tag component                                            | `TextStyle` from React Native | {}      |
+| textStyle  | The Text style of the Tag component                                           | `TextStyle` from React Native | {}      |

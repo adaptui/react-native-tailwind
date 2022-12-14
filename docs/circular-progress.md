@@ -11,6 +11,10 @@ There are two types of progress indicators: `determinate` and `indeterminate`.
 - Indeterminate progress: grows and shrinks the indicator while moving along the
   circular track.
 
+
+
+https://user-images.githubusercontent.com/35562287/203299286-af73896c-854a-4d0e-86f2-0acf2442e573.mp4
+
 #### Simple Usage
 
 ```js
@@ -49,6 +53,8 @@ Adapt UI provides two themes for Circular Progress: `base` & `primary`
 
 You can use this themed Circular Progress based on your specific scenarios.
 
+![Simulator Screen Shot - iPhone 14 Pro - 2022-11-22 at 16 29 27](https://user-images.githubusercontent.com/35562287/203297523-464fce09-da2b-4414-aa3a-9fd61663f372.png)
+
 ### Usage
 
 ```js
@@ -70,6 +76,9 @@ export default function App() {
 
 Adapt UI provides three different sizes for badges, namely `sm`, `md`, `lg` and
 `xl`.
+
+![simulator_screenshot_7856842E-9E1E-4B65-B364-ECE089895B05](https://user-images.githubusercontent.com/35562287/203297836-5e235bfd-f7d2-40f3-a47c-1d55f4258a76.png)
+
 
 ### Usage
 
@@ -103,6 +112,8 @@ export const CircularProgressScreen = () => {
 
 We can easily customise the sizing Circular Progress component with the style
 prop and setting a different color to the prop `progressTrackColor`
+
+https://user-images.githubusercontent.com/35562287/203299368-77df48f6-1485-419d-ac60-31673a865b78.mp4
 
 ### Usage
 
@@ -138,7 +149,7 @@ export const CircularProgressScreen = () => {
 > Circular Progress implements Box accepting all `ViewProps`
 
 | Name               | Description                                                                       | Type                | Default |
-| ------------------ | --------------------------------------------------------------------------------- | ------------------- | ------- |
+|--------------------|-----------------------------------------------------------------------------------|---------------------|---------|
 | size               | Size of Circular Progress                                                         | `sm` `md` `lg` `xl` | `md`    |
 | themeColor         | Theme of Circular Progress                                                        | `base` `primary`    | `base`  |
 | strokeWidth        | Stroke Width of SVG Circle                                                        | number              | 2       |

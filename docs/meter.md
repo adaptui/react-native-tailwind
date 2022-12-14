@@ -3,6 +3,9 @@
 AdaptUI provides a Meter Component which can be used to define a scalar
 measurement within a known range, or a fractional value.
 
+![simulator_screenshot_4CB9DD6B-3ADF-4C20-BE91-30896435990D](https://user-images.githubusercontent.com/35562287/203483320-5a1dea63-ae1b-433c-88fc-72c70d2493b8.png)
+
+
 #### Simple Usage
 
 ```js
@@ -25,8 +28,14 @@ export default function App() {
 Adapt UI provides three themes for the Meter Component: `base`, `primary` and
 `success`
 
-### Usage
+![simulator_screenshot_5EEF8780-73D6-4AD6-A9E3-686415240C4E](https://user-images.githubusercontent.com/35562287/203483779-7672817c-d46d-4c27-b363-a536108200aa.png)
 
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Meter, Search, Icon } from "@adaptui/react-native-tailwind"
 export default function App() {
@@ -46,6 +55,7 @@ export default function App() {
 }
 
 ```
+</details>
 
 ## Size
 
@@ -54,8 +64,14 @@ There are four different sizes for Meter Component in Adapt UI: `sm`, `md`, `lg`
 
 Based on the hierarchy, you can switch between different sizes.
 
-### Usage
+![simulator_screenshot_E7362C3F-A665-4A0A-8AEC-C65B97522BD4](https://user-images.githubusercontent.com/35562287/203484259-7cbccdc0-422e-427d-b010-067c0fd63256.png)
 
+<details>
+
+<summary>
+  <h3>Usage</h3>
+</summary>
+  
 ```js
 import { Meter, useTheme } from "@adaptui/react-native-tailwind"
 
@@ -80,11 +96,13 @@ export default function App() {
 }
 
 ```
+</details>
+
 
 ## Props
 
 | Name        | Description                                                                                                                     | Type                       | Default |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------- |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------|----------------------------|---------|
 | size        | Size of Meter Component                                                                                                         | `sm` `md` `lg` `xl`        | `md`    |
 | themeColor  | Theme of Meter Component                                                                                                        | `base` `primary` `success` | `base`  |
 | value       | A floating point number that represents the current value of the measured range. This must be between the min and the max value | number                     |         |
