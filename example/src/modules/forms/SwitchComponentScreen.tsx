@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   Radio,
@@ -8,6 +8,8 @@ import {
   SwitchTheme,
   useTheme,
 } from "@adaptui/react-native-tailwind";
+
+import { Group } from "../../components";
 
 export const SwitchComponentScreen = () => {
   const tailwind = useTheme();
@@ -21,8 +23,12 @@ export const SwitchComponentScreen = () => {
   const [isSwitchDisabled, setIsSwitchDisabled] = useState<boolean>(false);
 
   return (
-    <Box style={tailwind.style("flex-1 items-center bg-white-900")}>
-      <Box style={tailwind.style("flex-1 px-2 justify-center")}>
+    <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
+      <Box
+        style={tailwind.style(
+          "flex-1 px-2 justify-center items-center bg-white-900",
+        )}
+      >
         <Switch
           size={selectedSize}
           themeColor={selectedTheme}
@@ -37,51 +43,60 @@ export const SwitchComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "w-full py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={value => setSelectedSize(value as SwitchSize)}
+          onChange={(value: SwitchSize) => setSelectedSize(value)}
           orientation="horizontal"
         >
-          <Radio value="sm" label="sm" />
-          <Radio value="md" label="md" />
-          <Radio value="lg" label="lg" />
-          <Radio value="xl" label="xl" />
+          <Group label="Sizes">
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+            <Radio value="xl" label="xl" />
+          </Group>
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={value => setSelectedTheme(value as SwitchTheme)}
+          onChange={(value: SwitchTheme) => setSelectedTheme(value)}
           orientation="horizontal"
         >
-          <Radio value="base" label="base" />
-          <Radio value="primary" label="primary" />
+          <Group label="Theme" style={tailwind.style("mt-2")}>
+            <Radio value="base" label="base" />
+            <Radio value="primary" label="primary" />
+          </Group>
         </RadioGroup>
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row justify-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
             state={hasLabel}
             size="md"
-            onStateChange={value => setHasLabel(value)}
-            style={tailwind.style("ml-1 mt-1")}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasLabel(value)
+            }
             label="Has Label"
           />
           <Switch
             state={hasDesc}
             size="md"
-            onStateChange={value => setHasDesc(value)}
-            style={tailwind.style("ml-1 mt-1")}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setHasDesc(value)
+            }
+            style={tailwind.style("ml-1")}
             label="Has Description"
           />
           <Switch
             state={isSwitchDisabled}
-            onStateChange={value => setIsSwitchDisabled(value)}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setIsSwitchDisabled(value)
+            }
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("mt-1")}
             label="Disabled"
           />
         </Box>

@@ -5,6 +5,9 @@ import { Box, useTheme } from "@adaptui/react-native-tailwind";
 import { createComponent, cx, styleAdapter } from "../../utils";
 import { Button, ButtonProps } from "../button";
 
+export type DividerOrientation = "horizontal" | "vertical";
+export type DividerLabelPosition = "start" | "center" | "end";
+
 interface DividerProps {
   /**
    * Label name
@@ -14,7 +17,7 @@ interface DividerProps {
    * The orientation of the divider
    * @default horizontal
    */
-  orientation: "horizontal" | "vertical";
+  orientation: DividerOrientation;
   /**
    * Pass custom component instead of deafult component.
    */
@@ -23,7 +26,7 @@ interface DividerProps {
    * The position of the label/slot
    * @default start
    */
-  labelPosition: "start" | "center" | "end";
+  labelPosition: DividerLabelPosition;
   /**
    * A prop that is passed for the button component
    */

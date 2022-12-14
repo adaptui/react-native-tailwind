@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Box,
   CaretDown,
@@ -15,6 +15,8 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+
+import { Group } from "../../components";
 
 const options: ItemData[] = [
   {
@@ -106,60 +108,71 @@ export const SelectScreen = () => {
         </Box>
         <Box
           style={tailwind.style(
-            "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+            "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
           )}
         >
           <RadioGroup
             value={selectedSize}
-            onChange={value => setSelectedSize(value as SelectSizes)}
+            onChange={(value: SelectSizes) => setSelectedSize(value)}
             orientation="horizontal"
           >
-            <Radio value="sm" label="sm" />
-            <Radio value="md" label="md" />
-            <Radio value="lg" label="lg" />
-            <Radio value="xl" label="xl" />
+            <Group label="Sizes">
+              <Radio value="sm" label="sm" />
+              <Radio value="md" label="md" />
+              <Radio value="lg" label="lg" />
+              <Radio value="xl" label="xl" />
+            </Group>
           </RadioGroup>
           <RadioGroup
             value={selectedVariant}
-            onChange={value => setSelectedVariant(value as SelectVariants)}
+            onChange={(value: SelectVariants) => setSelectedVariant(value)}
             orientation="horizontal"
           >
-            <Radio value="outline" label="outline" />
-            <Radio value="subtle" label="subtle" />
-            <Radio value="underline" label="underline" />
-            <Radio value="ghost" label="ghost" />
+            <Group label="Variant" style={tailwind.style("mt-2")}>
+              <Radio value="outline" label="outline" />
+              <Radio value="subtle" label="subtle" />
+              <Radio value="underline" label="underline" />
+              <Radio value="ghost" label="ghost" />
+            </Group>
           </RadioGroup>
           <Box
             style={tailwind.style(
-              "flex flex-row justify-center flex-wrap w-full",
+              "flex flex-row justify-start flex-wrap w-full mt-2",
             )}
           >
             <Switch
               state={isSelectInvalid}
-              onStateChange={value => setIsSelectInvalid(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setIsSelectInvalid(value)
+              }
               size="md"
               label="Invalid"
-              style={tailwind.style("mt-1")}
             />
             <Switch
               state={isSelectDisabled}
-              onStateChange={value => setIsSelectDisabled(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setIsSelectDisabled(value)
+              }
               size="md"
-              style={tailwind.style("ml-1 mt-1")}
+              style={tailwind.style("ml-1")}
               label="Disabled"
             />
             <Switch
               state={hasPrefix}
-              onStateChange={value => setHasPrefix(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setHasPrefix(value)
+              }
               size="md"
-              style={tailwind.style("ml-1 mt-1")}
+              style={tailwind.style("ml-1")}
               label="Prefix"
             />
             <Switch
               state={changeSuffix}
-              onStateChange={value => setChangeSuffix(value)}
+              onStateChange={(value: SetStateAction<boolean>) =>
+                setChangeSuffix(value)
+              }
               size="md"
-              style={tailwind.style("ml-1 mt-1")}
+              style={tailwind.style("mt-1")}
               label="Change suffix"
             />
           </Box>

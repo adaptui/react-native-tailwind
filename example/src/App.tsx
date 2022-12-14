@@ -18,6 +18,11 @@ const App = () => {
             `flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`,
           )}
         >
+          <StatusBar
+            translucent
+            backgroundColor={"transparent"}
+            barStyle="dark-content"
+          />
           <AdaptUIProvider>
             <AppRoot />
           </AdaptUIProvider>

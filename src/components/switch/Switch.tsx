@@ -22,7 +22,6 @@ import { createComponent } from "../../utils/createComponent";
 
 export type SwitchSize = "sm" | "md" | "lg" | "xl";
 export type SwitchTheme = "base" | "primary";
-
 export interface SwitchProps extends BoxProps {
   /**
    * Default Value of the switch

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -13,94 +13,108 @@ import {
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
+import { Group } from "../../components";
+
 export const TextAreaScreen = () => {
   const tailwind = useTheme();
-  const [variant, setVariant] = useState<TextAreaVariants>("subtle");
-  const [loading, setLoading] = useState(false);
-  const [invalid, setInvalid] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [hasvariant, setHasVariant] = useState<TextAreaVariants>("subtle");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [hasSuffix, setHasSuffix] = useState<boolean>(false);
   const [size, setSize] = useState<TextAreaSizes>("sm");
-  const [icon, setIcon] = useState(false);
-  const suffix = icon ? <Icon icon={<Slot />} /> : null;
-  const ref = useRef(null);
+  const suffix = hasSuffix ? <Icon icon={<Slot />} /> : null;
+  const textAreaRef = useRef<any>(null);
+
+  const handleFocusInOnPress = useCallback(() => {
+    textAreaRef.current?.focus();
+  }, []);
+
+  const handleFocusInOutPress = useCallback(() => {
+    textAreaRef.current?.blur();
+  }, []);
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
-      <Box style={tailwind.style("flex-1 px-2  justify-center")}>
+      <Box style={tailwind.style("flex-1 px-2 justify-center")}>
         <TextArea
           placeholder={"Type Something...."}
           size={size}
-          variant={variant}
-          loading={loading}
-          invalid={invalid}
+          variant={hasvariant}
+          loading={isLoading}
+          invalid={isInvalid}
           suffix={suffix}
-          editable={!disabled}
-          ref={ref}
+          editable={!isDisabled}
+          ref={textAreaRef}
         />
       </Box>
       <Box
         style={tailwind.style(
-          "py-2 rounded-t-lg shadow-lg bg-gray-100 justify-end items-center",
+          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
         )}
       >
         <RadioGroup
-          value={variant}
-          onChange={value => setVariant(value as TextAreaVariants)}
+          value={size}
+          onChange={(value: TextAreaSizes) => setSize(value)}
           orientation="horizontal"
         >
-          <Radio value="subtle" label="Subtle" />
-          <Radio value="outline" label="Outline" />
-          <Radio value="underline" label="Underline" />
+          <Group label="Sizes">
+            <Radio value="sm" label="sm" />
+            <Radio value="md" label="md" />
+            <Radio value="lg" label="lg" />
+            <Radio value="xl" label="xl" />
+          </Group>
         </RadioGroup>
         <RadioGroup
-          value={size}
-          onChange={value => setSize(value as TextAreaSizes)}
+          value={hasvariant}
+          onChange={(value: TextAreaVariants) => setHasVariant(value)}
           orientation="horizontal"
         >
-          <Radio value="sm" label="sm" />
-          <Radio value="md" label="md" />
-          <Radio value="lg" label="lg" />
-          <Radio value="xl" label="xl" />
+          <Group label="Variant" style={tailwind.style("mt-2")}>
+            <Radio value="subtle" label="subtle" />
+            <Radio value="outline" label="outline" />
+            <Radio value="underline" label="underline" />
+          </Group>
         </RadioGroup>
+
         <Box
           style={tailwind.style(
-            "flex flex-row justify-center flex-wrap w-full",
+            "flex flex-row justify-start flex-wrap w-full mt-2",
           )}
         >
           <Switch
             label="Loading"
-            state={loading}
-            onStateChange={setLoading}
+            state={isLoading}
+            onStateChange={setIsLoading}
             size="md"
-            style={tailwind.style("mt-1")}
           />
           <Switch
             label="Invalid"
-            state={invalid}
-            onStateChange={setInvalid}
+            state={isInvalid}
+            onStateChange={setIsInvalid}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1")}
           />
           <Switch
             label="Disabled"
-            state={disabled}
-            onStateChange={setDisabled}
+            state={isDisabled}
+            onStateChange={setIsDisabled}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("ml-1")}
           />
           <Switch
-            label="Icon"
-            state={icon}
-            onStateChange={setIcon}
+            label="Suffix"
+            state={hasSuffix}
+            onStateChange={setHasSuffix}
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("mt-1")}
           />
         </Box>
-        <Box style={tailwind.style("flex-row justify-center py-2")}>
-          <Button onPress={() => ref.current.focus()}>Focus in</Button>
+        <Box style={tailwind.style("flex-row justify-start py-2")}>
+          <Button onPress={handleFocusInOnPress}>Focus in</Button>
           <Button
-            style={tailwind.style("ml-2")}
-            onPress={() => ref.current.blur()}
+            style={tailwind.style("ml-1")}
+            onPress={handleFocusInOutPress}
           >
             Focus out
           </Button>

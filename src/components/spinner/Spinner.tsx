@@ -25,6 +25,7 @@ export type SpinnerTheme =
   | "secondary"
   | "success"
   | "danger";
+export type SpinnerTrackVisibility = "visible" | "transparent";
 
 export interface SpinnerProps extends BoxProps {
   /**
