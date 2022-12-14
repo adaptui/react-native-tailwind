@@ -54,7 +54,9 @@ export const TooltipScreen = () => {
       >
         <RadioGroup
           value={tooltipPlacement}
-          onChange={(value: TooltipPlacement) => setTooltipPlacement(value)}
+          onChange={(value: string) =>
+            setTooltipPlacement(value as TooltipPlacement)
+          }
           orientation="horizontal"
         >
           <Group label="Position">

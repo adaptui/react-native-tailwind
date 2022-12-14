@@ -58,12 +58,12 @@ export const CircularProgressScreen = () => {
       >
         <CircularProgress
           style={!hasCustomTrack ? null : tailwind.style("w-48 h-48")}
-          hint={!hasHints ? null : `${progressValue}%`}
+          hint={!hasHints ? undefined : `${progressValue}%`}
           value={progressValue}
           themeColor={selectedTheme}
           size={selectedSize}
           progressTrackColor={
-            !hasCustomTrack ? null : tailwind.getColor("text-green-600")
+            !hasCustomTrack ? undefined : tailwind.getColor("text-green-600")
           }
         />
       </Box>
@@ -74,7 +74,9 @@ export const CircularProgressScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: CircularProgressSizes) => setSelectedSize(value)}
+          onChange={(value: string) =>
+            setSelectedSize(value as CircularProgressSizes)
+          }
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -86,7 +88,9 @@ export const CircularProgressScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: CircularProgressTheme) => setSelectedTheme(value)}
+          onChange={(value: string) =>
+            setSelectedTheme(value as CircularProgressTheme)
+          }
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

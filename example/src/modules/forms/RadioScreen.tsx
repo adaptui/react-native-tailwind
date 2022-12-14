@@ -78,7 +78,7 @@ export const RadioScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: RadioSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as RadioSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -89,7 +89,7 @@ export const RadioScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: RadioTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as RadioTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

@@ -53,7 +53,7 @@ export const CheckboxScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: CheckboxSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as CheckboxSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -64,7 +64,7 @@ export const CheckboxScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: CheckboxTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as CheckboxTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

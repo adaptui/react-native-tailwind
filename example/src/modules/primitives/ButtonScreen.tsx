@@ -53,7 +53,7 @@ export const ButtonScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: ButtonSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as ButtonSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -65,7 +65,9 @@ export const ButtonScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={(value: ButtonVariants) => setSelectedVariant(value)}
+          onChange={(value: string) =>
+            setSelectedVariant(value as ButtonVariants)
+          }
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
@@ -77,7 +79,7 @@ export const ButtonScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: ButtonTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as ButtonTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

@@ -53,7 +53,7 @@ export const SliderComponentScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: SliderSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as SliderSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -64,7 +64,7 @@ export const SliderComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: SliderTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as SliderTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

@@ -18,12 +18,18 @@ import { Group } from "../../components";
 export const AvatarScreen = () => {
   const tailwind = useTheme();
 
-  const [selectedStatus, setSelectedStatus] = useState<AvatarStatusType>(null);
-  const [name, setName] = useState<string | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<
+    AvatarStatusType | undefined
+  >(undefined);
+  const [name, setName] = useState<string | undefined>(undefined);
   const [isSquared, setIsSquared] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
-  const [imageUri, setImageUri] = useState<ImageSourcePropType | null>(null);
-  const [selectedVariant, setSelectedVariant] = useState<null | string>(null);
+  const [imageUri, setImageUri] = useState<ImageSourcePropType | undefined>(
+    undefined,
+  );
+  const [selectedVariant, setSelectedVariant] = useState<undefined | string>(
+    undefined,
+  );
   const [hasParentBackground, setHasParentBackground] =
     useState<boolean>(false);
   const [parentsBackground, setParentsBackground] =
@@ -34,18 +40,18 @@ export const AvatarScreen = () => {
     switch (selectedVariant) {
       case "withInitials":
         setName("Sandeep Prabhakaran");
-        setImageUri(null);
+        setImageUri(undefined);
         break;
       case "withImage":
         setImageUri({
           uri: "https://i.pravatar.cc/300??img=5",
           cache: "reload",
         });
-        setName(null);
+        setName(undefined);
         break;
       default:
-        setName(null);
-        setImageUri(null);
+        setName(undefined);
+        setImageUri(undefined);
     }
 
     switch (hasParentBackground) {
@@ -85,7 +91,7 @@ export const AvatarScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: AvatarSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as AvatarSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -101,13 +107,13 @@ export const AvatarScreen = () => {
 
         <RadioGroup
           value={selectedVariant}
-          onChange={(value: null | string) => {
+          onChange={(value: undefined | string) => {
             setSelectedVariant(value);
           }}
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
-            <Radio value={null} label="default" />
+            <Radio value={undefined} label="default" />
             <Radio value="withInitials" label="initials" />
             <Radio value="withImage" label="image" />
           </Group>
@@ -115,11 +121,13 @@ export const AvatarScreen = () => {
 
         <RadioGroup
           value={selectedStatus}
-          onChange={(value: AvatarStatusType) => setSelectedStatus(value)}
+          onChange={(value: string) =>
+            setSelectedStatus(value as AvatarStatusType)
+          }
           orientation="horizontal"
         >
           <Group label="Status" style={tailwind.style("mt-2")}>
-            <Radio value={null} label="default" />
+            <Radio value={undefined} label="default" />
             <Radio value="active" label="active" />
             <Radio value="away" label="away" />
             <Radio value="sleep" label="sleep" />

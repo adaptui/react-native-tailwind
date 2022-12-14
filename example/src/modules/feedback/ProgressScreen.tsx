@@ -79,7 +79,9 @@ export const ProgressScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: ProgressBarSizes) => setSelectedSize(value)}
+          onChange={(value: string) =>
+            setSelectedSize(value as ProgressBarSizes)
+          }
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -90,7 +92,9 @@ export const ProgressScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: ProgressBarTheme) => setSelectedTheme(value)}
+          onChange={(value: string) =>
+            setSelectedTheme(value as ProgressBarTheme)
+          }
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

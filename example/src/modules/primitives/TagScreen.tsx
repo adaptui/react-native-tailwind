@@ -53,7 +53,7 @@ export const TagScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: TagSize) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as TagSize)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -65,7 +65,7 @@ export const TagScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={(value: TagVariant) => setSelectedVariant(value)}
+          onChange={(value: string) => setSelectedVariant(value as TagVariant)}
           orientation="horizontal"
         >
           <Group label="Variant" style={tailwind.style("mt-2")}>
@@ -76,7 +76,7 @@ export const TagScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: TagTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as TagTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

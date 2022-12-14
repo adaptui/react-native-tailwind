@@ -115,7 +115,7 @@ export const SelectScreen = () => {
         >
           <RadioGroup
             value={selectedSize}
-            onChange={(value: SelectSizes) => setSelectedSize(value)}
+            onChange={(value: string) => setSelectedSize(value as SelectSizes)}
             orientation="horizontal"
           >
             <Group label="Sizes">
@@ -127,7 +127,9 @@ export const SelectScreen = () => {
           </RadioGroup>
           <RadioGroup
             value={selectedVariant}
-            onChange={(value: SelectVariants) => setSelectedVariant(value)}
+            onChange={(value: string) =>
+              setSelectedVariant(value as SelectVariants)
+            }
             orientation="horizontal"
           >
             <Group label="Variant" style={tailwind.style("mt-2")}>

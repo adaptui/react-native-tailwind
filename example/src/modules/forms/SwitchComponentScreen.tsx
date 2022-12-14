@@ -50,7 +50,7 @@ export const SwitchComponentScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: SwitchSize) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as SwitchSize)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -62,7 +62,7 @@ export const SwitchComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: SwitchTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as SwitchTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

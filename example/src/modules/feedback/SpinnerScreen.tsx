@@ -43,7 +43,7 @@ export const SpinnerScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: SpinnerSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as SpinnerSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -56,7 +56,7 @@ export const SpinnerScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: SpinnerTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as SpinnerTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -69,8 +69,8 @@ export const SpinnerScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedSpinnerTrackVisibility}
-          onChange={(value: SpinnerTrackVisibility) =>
-            setSelectedSpinnerTrackVisibility(value)
+          onChange={(value: string) =>
+            setSelectedSpinnerTrackVisibility(value as SpinnerTrackVisibility)
           }
           orientation="horizontal"
         >

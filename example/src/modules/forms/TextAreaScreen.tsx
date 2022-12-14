@@ -57,7 +57,7 @@ export const TextAreaScreen = () => {
       >
         <RadioGroup
           value={size}
-          onChange={(value: TextAreaSizes) => setSize(value)}
+          onChange={(value: string) => setSize(value as TextAreaSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -69,7 +69,7 @@ export const TextAreaScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={hasvariant}
-          onChange={(value: TextAreaVariants) => setHasVariant(value)}
+          onChange={(value: string) => setHasVariant(value as TextAreaVariants)}
           orientation="horizontal"
         >
           <Group label="Variant" style={tailwind.style("mt-2")}>

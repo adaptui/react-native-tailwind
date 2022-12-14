@@ -49,7 +49,7 @@ export const BadgeScreen = () => {
       >
         <RadioGroup
           value={size}
-          onChange={(value: BadgeSizes) => setSize(value)}
+          onChange={(value: string) => setSize(value as BadgeSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -61,7 +61,7 @@ export const BadgeScreen = () => {
 
         <RadioGroup
           value={variant}
-          onChange={(value: BadgeVariants) => setVariant(value)}
+          onChange={(value: string) => setVariant(value as BadgeVariants)}
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
@@ -73,7 +73,7 @@ export const BadgeScreen = () => {
 
         <RadioGroup
           value={theme}
-          onChange={(value: BadgeTheme) => setTheme(value)}
+          onChange={(value: string) => setTheme(value as BadgeTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

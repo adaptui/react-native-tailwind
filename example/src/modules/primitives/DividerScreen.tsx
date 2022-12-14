@@ -32,7 +32,7 @@ export const DividerScreen = () => {
           orientation={selectedOrientation}
           labelPosition={selectedLabelPosition}
           slot={
-            !hasLabel ? null : (
+            !hasLabel ? undefined : (
               <Tag
                 style={!hasCustomStyle ? null : tailwind.style("rounded-full")}
                 variant="subtle"
@@ -56,8 +56,8 @@ export const DividerScreen = () => {
       >
         <RadioGroup
           value={selectedLabelPosition}
-          onChange={(value: DividerLabelPosition) =>
-            setSelectedLabelPosition(value)
+          onChange={(value: string) =>
+            setSelectedLabelPosition(value as DividerLabelPosition)
           }
           orientation="horizontal"
         >
@@ -69,8 +69,8 @@ export const DividerScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedOrientation}
-          onChange={(value: DividerOrientation) =>
-            setSelectedOrientation(value)
+          onChange={(value: string) =>
+            setSelectedOrientation(value as DividerOrientation)
           }
           orientation="horizontal"
         >

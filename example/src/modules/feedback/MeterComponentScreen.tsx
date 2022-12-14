@@ -48,7 +48,7 @@ export const MeterComponentScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: MeterSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as MeterSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -59,7 +59,7 @@ export const MeterComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: MeterTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as MeterTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

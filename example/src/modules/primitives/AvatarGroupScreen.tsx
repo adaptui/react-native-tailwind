@@ -18,11 +18,13 @@ import { Group } from "../../components";
 export const AvatarGroupScreen = () => {
   const tailwind = useTheme();
 
-  const [name, setName] = useState<string | null>(null);
+  const [name, setName] = useState<string | undefined>(undefined);
   const [isSquared, setIsSquared] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
   const [hasImage, setHasImage] = useState<boolean>(true);
-  const [selectedVariant, setSelectedVariant] = useState<null | string>(null);
+  const [selectedVariant, setSelectedVariant] = useState<undefined | string>(
+    undefined,
+  );
   const [hasParentsBackground, setHasParentsBackground] =
     useState<boolean>(false);
   const [hasRing, setHasRing] = useState<boolean>(false);
@@ -39,10 +41,10 @@ export const AvatarGroupScreen = () => {
         break;
       case "withImage":
         setHasImage(true);
-        setName(null);
+        setName(undefined);
         break;
       default:
-        setName(null);
+        setName(undefined);
         setHasImage(false);
     }
 
@@ -107,11 +109,11 @@ export const AvatarGroupScreen = () => {
           {avatars.map((image, i) => {
             return (
               <Avatar
-                name={!name ? null : image.name}
+                name={!name ? undefined : image.name}
                 size={selectedSize}
                 src={
                   !hasImage
-                    ? null
+                    ? undefined
                     : ({
                         uri: image.uri,
                         cache: "reload",
@@ -131,7 +133,7 @@ export const AvatarGroupScreen = () => {
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: AvatarSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as AvatarSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -146,13 +148,13 @@ export const AvatarGroupScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={(value: null | string) => {
+          onChange={(value: undefined | string) => {
             setSelectedVariant(value);
           }}
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
-            <Radio value={null} label="default" />
+            <Radio value={undefined} label="default" />
             <Radio value="withInitials" label="initials" />
             <Radio value="withImage" label="image" />
           </Group>

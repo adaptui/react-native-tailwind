@@ -29,7 +29,7 @@ function getInitials(name: string, size: AvatarSizes) {
 }
 
 export type AvatarSizes = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
-export type AvatarStatusType = "active" | "away" | "sleep" | "typing" | null;
+export type AvatarStatusType = "active" | "away" | "sleep" | "typing";
 
 export interface AvatarProps extends BoxProps {
   /**
