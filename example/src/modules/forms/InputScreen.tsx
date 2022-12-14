@@ -1,4 +1,5 @@
 import React, { SetStateAction, useCallback, useRef, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Button,
@@ -26,6 +27,7 @@ export const InputScreen = () => {
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
   const suffix = hasSuffix ? <Icon icon={<Slot />} /> : null;
   const prefix = hasPrefix ? <Icon icon={<Slot />} /> : null;
+  const safeAreaInsets = useSafeAreaInsets();
 
   const inputRef = useRef<any>(null);
 
@@ -53,7 +55,7 @@ export const InputScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup

@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Equals,
@@ -25,6 +26,7 @@ export const SliderComponentScreen = () => {
   const [hasMaxValue, setHasMaxValue] = useState<boolean>(false);
   const [hasStep, setHasStep] = useState<boolean>(false);
   const [hasRange, setHasRange] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -46,7 +48,7 @@ export const SliderComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup

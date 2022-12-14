@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Button,
@@ -46,6 +47,7 @@ export const CircularProgressScreen = () => {
   const [selectedSize, setSelectedSize] = useState<CircularProgressSizes>("md");
   const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasCustomTrack, setHasCustomTrack] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -67,7 +69,7 @@ export const CircularProgressScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup

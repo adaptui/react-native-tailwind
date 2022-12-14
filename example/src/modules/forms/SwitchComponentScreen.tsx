@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Radio,
@@ -19,6 +20,7 @@ export const SwitchComponentScreen = () => {
 
   const [hasLabel, setHasLabel] = useState(false);
   const [hasDesc, setHasDesc] = useState(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   const [isSwitchDisabled, setIsSwitchDisabled] = useState<boolean>(false);
 
@@ -43,7 +45,7 @@ export const SwitchComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup

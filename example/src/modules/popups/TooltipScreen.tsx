@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Button,
@@ -17,6 +18,7 @@ export const TooltipScreen = () => {
 
   const [hasArrow, setHasArrow] = useState<boolean>(false);
   const [hasOffset, setHasOffset] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   const [tooltipPlacement, setTooltipPlacement] =
     useState<TooltipPlacement>("right");
@@ -47,7 +49,7 @@ export const TooltipScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup

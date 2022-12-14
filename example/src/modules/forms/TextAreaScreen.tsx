@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Button,
@@ -25,6 +26,7 @@ export const TextAreaScreen = () => {
   const [size, setSize] = useState<TextAreaSizes>("sm");
   const suffix = hasSuffix ? <Icon icon={<Slot />} /> : null;
   const textAreaRef = useRef<any>(null);
+  const safeAreaInsets = useSafeAreaInsets();
 
   const handleFocusInOnPress = useCallback(() => {
     textAreaRef.current?.focus();
@@ -50,7 +52,7 @@ export const TextAreaScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup

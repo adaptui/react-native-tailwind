@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ImageSourcePropType } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Avatar,
   AvatarGroup,
@@ -28,6 +29,7 @@ export const AvatarGroupScreen = () => {
   const [isMax, setIsMax] = useState<boolean>(false);
   const [maxNum, setMaxNum] = useState(10);
   const [parentsBackground, setParentsBackground] = useState("bg-white-900");
+  const safeAreaInsets = useSafeAreaInsets();
 
   useEffect(() => {
     switch (selectedVariant) {
@@ -124,7 +126,7 @@ export const AvatarGroupScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup

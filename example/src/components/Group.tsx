@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { ViewProps } from "react-native";
+import { View, ViewProps } from "react-native";
 import {
   Box,
   styleAdapter,
@@ -15,7 +15,7 @@ export const Group = (props: PropsWithChildren<GroupType>) => {
   const { children, label, style, ...other } = props;
   const tailwind = useTheme();
   return (
-    <Box
+    <View
       style={[
         tailwind.style("bg-white-800 rounded-xl p-2 flex-col w-full"),
         styleAdapter(style),
@@ -30,6 +30,6 @@ export const Group = (props: PropsWithChildren<GroupType>) => {
       >
         {children}
       </Box>
-    </Box>
+    </View>
   );
 };

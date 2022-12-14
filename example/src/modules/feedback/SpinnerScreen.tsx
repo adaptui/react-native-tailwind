@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Radio,
@@ -19,6 +20,7 @@ export const SpinnerScreen = () => {
   const [selectedSize, setSelectedSize] = useState<SpinnerSizes>("md");
   const [selectedSpinnerTrackVisibility, setSelectedSpinnerTrackVisibility] =
     useState<SpinnerTrackVisibility>("transparent");
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -34,10 +36,9 @@ export const SpinnerScreen = () => {
           track={selectedSpinnerTrackVisibility}
         />
       </Box>
-
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
