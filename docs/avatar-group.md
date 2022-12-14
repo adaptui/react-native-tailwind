@@ -30,12 +30,14 @@ export default function App() {
 
 [![Edit CodeSandbox](https://img.shields.io/badge/Avatar_Group-Open%20On%20Expo-%230971f1?style=for-the-badge&logo=expo&labelColor=151515)](https://snack.expo.dev/@timelessco/avatargroup-component---adaptui)
 
+> Check Documentation for [Avatar](avatar.md) to know more about the props. 
+
 ## Props
 
 > Avatar Group also implements Box accepting all `ViewProps`
 
 | Name      | Description                                                                   | Type                                 | Default |
-| --------- | ----------------------------------------------------------------------------- | ------------------------------------ | ------- |
+|-----------|-------------------------------------------------------------------------------|--------------------------------------|---------|
 | size      | How large should avatar be? Defaults to 'md'                                  | `xs` `sm` `md` `lg` `xl` `2xl` `3xl` | `xl`    |
 | max       | Maximum number of avatars to be displayed within the group.                   | number or null                       |         |
 | squared   | If true, Avatar gets rounded corners                                          | boolean                              |         |
