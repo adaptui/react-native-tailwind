@@ -9754,7 +9754,7 @@ react-native-popper@0.3.2:
     "@react-native-aria/focus" "^0.2.5"
     "@react-native-aria/overlays" "^0.3.1"
 
-react-native-reanimated@2.12.0:
+react-native-reanimated@2.12.0, react-native-reanimated@~2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.12.0.tgz#5821eecfb1769b1617a67a2d4dec12fdeedb2b6e"
   integrity sha512-nrlPyw+Hx9u4iJhZk9PoTvDo/QmVAd+bo7OK9Tv3hveNEF9++5oig/g3Uv9V93shy9avTYGsUprUvAEt/xdzeQ==
@@ -9788,7 +9788,7 @@ react-native-svg@13.4.0:
     css-select "^5.1.0"
     css-tree "^1.1.3"
 
-react-native-web@~0.18.10:
+react-native-web@~0.18.7:
   version "0.18.10"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.18.10.tgz#fb4db047f4be7f9cf35f37ec8d52f7d1c450600f"
   integrity sha512-YV2gtZa1n7ulTGp+HcxH+KsAtaDPBI/dKd9oOQS31zyFHURjObLUVkKnGjkmlYAUReWfvmlU64GzyNwoZF9/tA==
