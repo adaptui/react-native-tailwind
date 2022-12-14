@@ -9754,11 +9754,7 @@ react-native-popper@0.3.2:
     "@react-native-aria/focus" "^0.2.5"
     "@react-native-aria/overlays" "^0.3.1"
 
-<<<<<<< HEAD
 react-native-reanimated@2.12.0, react-native-reanimated@~2.12.0:
-=======
-react-native-reanimated@2.12.0:
->>>>>>> 1351fbc (chore(example-app): :arrow_up: update expo to the latest sdk)
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.12.0.tgz#5821eecfb1769b1617a67a2d4dec12fdeedb2b6e"
   integrity sha512-nrlPyw+Hx9u4iJhZk9PoTvDo/QmVAd+bo7OK9Tv3hveNEF9++5oig/g3Uv9V93shy9avTYGsUprUvAEt/xdzeQ==
