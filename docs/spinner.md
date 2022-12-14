@@ -3,7 +3,9 @@
 AdaptUI provides a Spinner Component which gives visual cues to actions that are
 processing or awaiting a course change or results.
 
-https://user-images.githubusercontent.com/35562287/203554680-4730f72f-284f-4cca-8eda-387e389cd869.mp4
+
+
+https://user-images.githubusercontent.com/35562287/207581918-53487360-5d6d-4ab3-86ba-379519fae651.mp4
 
 
 #### Simple Usage
@@ -35,7 +37,8 @@ Adapt UI provides three themes for spinner: `base`, `primary`, `secondary`,
 
 You can use these themed spinner components based for your specific scenarios.
 
-https://user-images.githubusercontent.com/35562287/203555600-9f1cc3b2-6f3c-4235-93e1-13cd8c6a5be1.mp4
+https://user-images.githubusercontent.com/35562287/207582773-1bcf112c-f325-4fdf-b634-43b3b0db6915.mp4
+
 
 <details>
 
@@ -82,7 +85,9 @@ There are five different sizes for the Spinner component in Adapt UI: `xs`, `sm`
 
 Based on the hierarchy, you can switch between different sizes.
 
-https://user-images.githubusercontent.com/35562287/203555717-a9ed5820-e28b-4041-a576-2b67b45303b8.mp4
+
+https://user-images.githubusercontent.com/35562287/207582813-faae9f43-033b-4746-8f89-4771889531be.mp4
+
 
 <details>
 
@@ -126,7 +131,7 @@ export default function App() {
 
 We have two different-looking spinners which have visible or transparent track of the spinner.
 
-https://user-images.githubusercontent.com/35562287/203556438-1f2255c1-3b95-41ae-bf1e-3df05e99c3a1.mp4
+https://user-images.githubusercontent.com/35562287/207582949-f6019750-8f85-4753-8a9c-0304910b87dd.mp4
 
 <details>
 
