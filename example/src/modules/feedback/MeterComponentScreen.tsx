@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Meter,
@@ -21,6 +22,7 @@ export const MeterComponentScreen = () => {
   const [hasIntervals, setHasIntervals] = useState<boolean>(false);
   const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -41,12 +43,12 @@ export const MeterComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: MeterSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as MeterSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -57,7 +59,7 @@ export const MeterComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: MeterTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as MeterTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

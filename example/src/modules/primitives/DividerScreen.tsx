@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Divider,
@@ -22,6 +23,7 @@ export const DividerScreen = () => {
   const [hasLabel, setHasLabel] = useState<boolean>(false);
   const [selectedLabelPosition, setSelectedLabelPosition] =
     useState<DividerLabelPosition>("center");
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -30,7 +32,7 @@ export const DividerScreen = () => {
           orientation={selectedOrientation}
           labelPosition={selectedLabelPosition}
           slot={
-            !hasLabel ? null : (
+            !hasLabel ? undefined : (
               <Tag
                 style={!hasCustomStyle ? null : tailwind.style("rounded-full")}
                 variant="subtle"
@@ -49,13 +51,13 @@ export const DividerScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedLabelPosition}
-          onChange={(value: DividerLabelPosition) =>
-            setSelectedLabelPosition(value)
+          onChange={(value: string) =>
+            setSelectedLabelPosition(value as DividerLabelPosition)
           }
           orientation="horizontal"
         >
@@ -67,8 +69,8 @@ export const DividerScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedOrientation}
-          onChange={(value: DividerOrientation) =>
-            setSelectedOrientation(value)
+          onChange={(value: string) =>
+            setSelectedOrientation(value as DividerOrientation)
           }
           orientation="horizontal"
         >

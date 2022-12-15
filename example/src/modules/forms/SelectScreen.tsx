@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   CaretDown,
@@ -86,6 +87,7 @@ export const SelectScreen = () => {
   const [isSelectInvalid, setIsSelectInvalid] = useState<boolean>(false);
   const [isSelectDisabled, setIsSelectDisabled] = useState<boolean>(false);
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   const [changeSuffix, setChangeSuffix] = useState(false);
 
@@ -108,12 +110,12 @@ export const SelectScreen = () => {
         </Box>
         <Box
           style={tailwind.style(
-            "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+            `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
           )}
         >
           <RadioGroup
             value={selectedSize}
-            onChange={(value: SelectSizes) => setSelectedSize(value)}
+            onChange={(value: string) => setSelectedSize(value as SelectSizes)}
             orientation="horizontal"
           >
             <Group label="Sizes">
@@ -125,7 +127,9 @@ export const SelectScreen = () => {
           </RadioGroup>
           <RadioGroup
             value={selectedVariant}
-            onChange={(value: SelectVariants) => setSelectedVariant(value)}
+            onChange={(value: string) =>
+              setSelectedVariant(value as SelectVariants)
+            }
             orientation="horizontal"
           >
             <Group label="Variant" style={tailwind.style("mt-2")}>

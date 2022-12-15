@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ImageSourcePropType } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Avatar,
   AvatarGroup,
@@ -17,17 +18,20 @@ import { Group } from "../../components";
 export const AvatarGroupScreen = () => {
   const tailwind = useTheme();
 
-  const [name, setName] = useState<string | null>(null);
+  const [name, setName] = useState<string | undefined>(undefined);
   const [isSquared, setIsSquared] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<AvatarSizes>("xl");
   const [hasImage, setHasImage] = useState<boolean>(true);
-  const [selectedVariant, setSelectedVariant] = useState<null | string>(null);
+  const [selectedVariant, setSelectedVariant] = useState<undefined | string>(
+    undefined,
+  );
   const [hasParentsBackground, setHasParentsBackground] =
     useState<boolean>(false);
   const [hasRing, setHasRing] = useState<boolean>(false);
   const [isMax, setIsMax] = useState<boolean>(false);
   const [maxNum, setMaxNum] = useState(10);
   const [parentsBackground, setParentsBackground] = useState("bg-white-900");
+  const safeAreaInsets = useSafeAreaInsets();
 
   useEffect(() => {
     switch (selectedVariant) {
@@ -37,10 +41,10 @@ export const AvatarGroupScreen = () => {
         break;
       case "withImage":
         setHasImage(true);
-        setName(null);
+        setName(undefined);
         break;
       default:
-        setName(null);
+        setName(undefined);
         setHasImage(false);
     }
 
@@ -105,11 +109,11 @@ export const AvatarGroupScreen = () => {
           {avatars.map((image, i) => {
             return (
               <Avatar
-                name={!name ? null : image.name}
+                name={!name ? undefined : image.name}
                 size={selectedSize}
                 src={
                   !hasImage
-                    ? null
+                    ? undefined
                     : ({
                         uri: image.uri,
                         cache: "reload",
@@ -124,12 +128,12 @@ export const AvatarGroupScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: AvatarSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as AvatarSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -144,13 +148,13 @@ export const AvatarGroupScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={(value: null | string) => {
+          onChange={(value: undefined | string) => {
             setSelectedVariant(value);
           }}
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
-            <Radio value={null} label="default" />
+            <Radio value={undefined} label="default" />
             <Radio value="withInitials" label="initials" />
             <Radio value="withImage" label="image" />
           </Group>
@@ -178,7 +182,7 @@ export const AvatarGroupScreen = () => {
             state={hasRing}
             onStateChange={setHasRing}
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("ml-1")}
           />
 
           <Switch
@@ -186,7 +190,7 @@ export const AvatarGroupScreen = () => {
             state={isMax}
             onStateChange={setIsMax}
             size="md"
-            style={tailwind.style("mt-1 ml-1")}
+            style={tailwind.style("mt-1")}
           />
         </Box>
       </Box>

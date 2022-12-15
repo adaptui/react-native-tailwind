@@ -21,7 +21,7 @@ interface DividerProps {
   /**
    * Pass custom component instead of deafult component.
    */
-  slot: ReactElement;
+  slot: ReactElement | undefined;
   /**
    * The position of the label/slot
    * @default start

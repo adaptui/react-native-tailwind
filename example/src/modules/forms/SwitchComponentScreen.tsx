@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Radio,
@@ -19,6 +20,7 @@ export const SwitchComponentScreen = () => {
 
   const [hasLabel, setHasLabel] = useState(false);
   const [hasDesc, setHasDesc] = useState(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   const [isSwitchDisabled, setIsSwitchDisabled] = useState<boolean>(false);
 
@@ -43,12 +45,12 @@ export const SwitchComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: SwitchSize) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as SwitchSize)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -60,7 +62,7 @@ export const SwitchComponentScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: SwitchTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as SwitchTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

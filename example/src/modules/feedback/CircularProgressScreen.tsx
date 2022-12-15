@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Button,
@@ -46,6 +47,7 @@ export const CircularProgressScreen = () => {
   const [selectedSize, setSelectedSize] = useState<CircularProgressSizes>("md");
   const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasCustomTrack, setHasCustomTrack] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -56,23 +58,25 @@ export const CircularProgressScreen = () => {
       >
         <CircularProgress
           style={!hasCustomTrack ? null : tailwind.style("w-48 h-48")}
-          hint={!hasHints ? null : `${progressValue}%`}
+          hint={!hasHints ? undefined : `${progressValue}%`}
           value={progressValue}
           themeColor={selectedTheme}
           size={selectedSize}
           progressTrackColor={
-            !hasCustomTrack ? null : tailwind.getColor("text-green-600")
+            !hasCustomTrack ? undefined : tailwind.getColor("text-green-600")
           }
         />
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: CircularProgressSizes) => setSelectedSize(value)}
+          onChange={(value: string) =>
+            setSelectedSize(value as CircularProgressSizes)
+          }
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -84,7 +88,9 @@ export const CircularProgressScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: CircularProgressTheme) => setSelectedTheme(value)}
+          onChange={(value: string) =>
+            setSelectedTheme(value as CircularProgressTheme)
+          }
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Badge,
   BadgeSizes,
@@ -22,6 +23,7 @@ export const BadgeScreen = () => {
   const [prefix, setPrefix] = useState(false);
   const [variant, setVariant] = useState<BadgeVariants>("outline");
   const [theme, setTheme] = useState<BadgeTheme>("base");
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -42,12 +44,12 @@ export const BadgeScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={size}
-          onChange={(value: BadgeSizes) => setSize(value)}
+          onChange={(value: string) => setSize(value as BadgeSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -59,7 +61,7 @@ export const BadgeScreen = () => {
 
         <RadioGroup
           value={variant}
-          onChange={(value: BadgeVariants) => setVariant(value)}
+          onChange={(value: string) => setVariant(value as BadgeVariants)}
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
@@ -71,7 +73,7 @@ export const BadgeScreen = () => {
 
         <RadioGroup
           value={theme}
-          onChange={(value: BadgeTheme) => setTheme(value)}
+          onChange={(value: string) => setTheme(value as BadgeTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

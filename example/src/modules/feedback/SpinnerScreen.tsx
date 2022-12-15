@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Radio,
@@ -19,6 +20,7 @@ export const SpinnerScreen = () => {
   const [selectedSize, setSelectedSize] = useState<SpinnerSizes>("md");
   const [selectedSpinnerTrackVisibility, setSelectedSpinnerTrackVisibility] =
     useState<SpinnerTrackVisibility>("transparent");
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -34,15 +36,14 @@ export const SpinnerScreen = () => {
           track={selectedSpinnerTrackVisibility}
         />
       </Box>
-
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: SpinnerSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as SpinnerSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -55,7 +56,7 @@ export const SpinnerScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: SpinnerTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as SpinnerTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
@@ -68,8 +69,8 @@ export const SpinnerScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedSpinnerTrackVisibility}
-          onChange={(value: SpinnerTrackVisibility) =>
-            setSelectedSpinnerTrackVisibility(value)
+          onChange={(value: string) =>
+            setSelectedSpinnerTrackVisibility(value as SpinnerTrackVisibility)
           }
           orientation="horizontal"
         >

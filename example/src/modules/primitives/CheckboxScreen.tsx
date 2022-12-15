@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Checkbox,
@@ -22,6 +23,8 @@ export const CheckboxScreen = () => {
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
+
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
@@ -45,12 +48,12 @@ export const CheckboxScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: CheckboxSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as CheckboxSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -61,7 +64,7 @@ export const CheckboxScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: CheckboxTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as CheckboxTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

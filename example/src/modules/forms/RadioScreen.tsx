@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Radio,
@@ -19,6 +20,7 @@ export const RadioScreen = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(true);
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -71,12 +73,12 @@ export const RadioScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: RadioSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as RadioSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -87,7 +89,7 @@ export const RadioScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: RadioTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as RadioTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>

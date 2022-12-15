@@ -1,4 +1,5 @@
 import React, { SetStateAction, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
   Button,
@@ -24,6 +25,7 @@ export const ButtonScreen = () => {
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
   const [hasSuffix, setHasSuffix] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const safeAreaInsets = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -46,12 +48,12 @@ export const ButtonScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          "rounded-t-lg shadow-lg bg-gray-100 justify-end p-2",
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
         )}
       >
         <RadioGroup
           value={selectedSize}
-          onChange={(value: ButtonSizes) => setSelectedSize(value)}
+          onChange={(value: string) => setSelectedSize(value as ButtonSizes)}
           orientation="horizontal"
         >
           <Group label="Sizes">
@@ -63,7 +65,9 @@ export const ButtonScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedVariant}
-          onChange={(value: ButtonVariants) => setSelectedVariant(value)}
+          onChange={(value: string) =>
+            setSelectedVariant(value as ButtonVariants)
+          }
           orientation="horizontal"
         >
           <Group label="Variants" style={tailwind.style("mt-2")}>
@@ -75,7 +79,7 @@ export const ButtonScreen = () => {
         </RadioGroup>
         <RadioGroup
           value={selectedTheme}
-          onChange={(value: ButtonTheme) => setSelectedTheme(value)}
+          onChange={(value: string) => setSelectedTheme(value as ButtonTheme)}
           orientation="horizontal"
         >
           <Group label="Theme" style={tailwind.style("mt-2")}>
