@@ -1,17 +1,26 @@
 {
-  "name": "React Native System Playground",
-  "displayName": "React Native System Playground",
+  "name": "AdaptUI React Native System Playground",
+  "displayName": "AdaptUI React Native",
   "expo": {
-    "name": "React Native System Playground",
+    "name": "AdaptUI React Native",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets//splash.png",
+      "backgroundColor": "#ffffff"
+    },
     "jsEngine": "hermes",
-    "slug": "react-native-system-playground",
+    "slug": "adaptui-react-native",
     "description": "Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System",
     "version": "1.0.0",
     "privacy": "public",
     "platforms": ["ios", "android", "web"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.timelessco.adaptuireactnative"
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "com.timelessco.adaptuireactnative"
+    }
   }
 }

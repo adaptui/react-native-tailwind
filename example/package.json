@@ -5,10 +5,10 @@
   "private": true,
   "main": "index",
   "scripts": {
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
-    "start": "expo start"
+    "start": "expo start --dev-client"
   },
   "dependencies": {
     "@react-navigation/drawer": "^6.5.3",
@@ -24,7 +24,9 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "0.18.7",
-    "twrnc": "3.4.1"
+    "twrnc": "3.4.1",
+    "expo-splash-screen": "~0.17.5",
+    "expo-status-bar": "~1.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
