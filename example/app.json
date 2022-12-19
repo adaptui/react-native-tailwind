@@ -10,8 +10,17 @@
     "privacy": "public",
     "platforms": ["ios", "android", "web"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "requireFullScreen": true
     },
+    "plugins": [
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "portrait"
+        }
+      ]
+    ],
     "assetBundlePatterns": ["**/*"]
   }
 }

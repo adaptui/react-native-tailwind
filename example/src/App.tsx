@@ -4,11 +4,13 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { AdaptUIProvider } from "@adaptui/react-native-tailwind";
 import { NavigationContainer } from "@react-navigation/native";
+import * as ScreenOrientation from "expo-screen-orientation";
 import tailwind from "twrnc";
 
 import AppRoot from "./AppRoot";
 
 LogBox.ignoreAllLogs();
+ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
 
 const App = () => {
   return (
