@@ -3,6 +3,10 @@
 AdaptUI provides a Tooltip Component which can be used to provide a brief,
 informative message when a user interacts with an element.
 
+<div align='center'>
+<img src="https://user-images.githubusercontent.com/35562287/208374706-a85e0bc5-f6c4-4ef4-8c6e-bfb42f69c349.png" style="width:375px;" />
+</div>
+  
 #### Simple Usage
 
 ```js
