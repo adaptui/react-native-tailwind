@@ -182,7 +182,7 @@ export const AvatarGroupScreen = () => {
             state={hasRing}
             onStateChange={setHasRing}
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-1")}
           />
 
           <Switch
@@ -190,7 +190,7 @@ export const AvatarGroupScreen = () => {
             state={isMax}
             onStateChange={setIsMax}
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("ml-1 mt-1")}
           />
         </Box>
       </Box>

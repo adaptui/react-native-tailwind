@@ -61,7 +61,7 @@ export const DividerScreen = () => {
           }
           orientation="horizontal"
         >
-          <Group label="Position">
+          <Group label="Position (Only when there is a label)">
             <Radio value="start" label="start" />
             <Radio value="center" label="center" />
             <Radio value="end" label="end" />
