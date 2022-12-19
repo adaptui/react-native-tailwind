@@ -26,7 +26,8 @@ export default function App() {
 
 The Select component uses [Gorhom's React Native Bottomsheet](https://github.com/gorhom/react-native-bottom-sheet) to list the options you have provided through `options` prop. 
 
-Wrap your app or the screen you are using the <Select/> componente with `<BottomSheetModalProvider>` from `"@gorhom/bottom-sheet"` 
+Wrap your app or the screen you are using the `<Select/>` component with
+`<BottomSheetModalProvider>` from <br /> `"@gorhom/bottom-sheet"` 
 
 ```jsx
 
