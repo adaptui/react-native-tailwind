@@ -3,7 +3,7 @@ import { ImageProps, ImageSourcePropType } from "react-native";
 
 import { DefaultUser } from "../../icons";
 import { Box, BoxProps, Text } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createComponent, cx, isUndefined, styleAdapter } from "../../utils";
 import { useAvatarGroup } from "../avatar-group";
 import { Icon } from "../icon";
@@ -75,7 +75,7 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
   typeof Box,
   Partial<AvatarProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const avatarTheme = useTheme("avatar");
 
   const avatarGroupProps = useAvatarGroup();
@@ -104,7 +104,7 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
     <Box
       style={[
         avatarTheme.borderRadius.size[size],
-        tailwind.style(
+        ts(
           cx(
             avatarTheme.base,
             avatarTheme.size[size],
@@ -126,7 +126,7 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
         />
       ) : name ? (
         <Text
-          style={tailwind.style(
+          style={ts(
             cx(avatarTheme.initials.base, avatarTheme.initials.size[size]),
           )}
           adjustsFontSizeToFit
@@ -137,8 +137,8 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
       ) : (
         <Icon
           icon={<DefaultUser />}
-          style={tailwind.style(cx(avatarTheme.defaultUserIcon[size]))}
-          color={tailwind.getColor("text-gray-800")}
+          style={ts(cx(avatarTheme.defaultUserIcon[size]))}
+          color={gc("text-gray-800")}
         />
       )}
       {status && (
