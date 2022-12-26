@@ -224,6 +224,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('adaptui-rn.keystore')
+            storePassword System.console().readLine("\nKeystore password:")
+            keyAlias 'your_key_alias'
+            keyPassword 'your_key_file_alias_password'
+        }
     }
     buildTypes {
         debug {
