@@ -14,6 +14,8 @@
     "@react-navigation/drawer": "^6.5.3",
     "@react-navigation/native": "^6.0.16",
     "expo": "^47.0.0",
+    "expo-splash-screen": "~0.17.5",
+    "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
@@ -23,15 +25,13 @@
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
-    "react-native-web": "0.18.7",
-    "twrnc": "3.4.1",
-    "expo-splash-screen": "~0.17.5",
-    "expo-status-bar": "~1.4.2"
+    "react-native-web": "~0.18.9",
+    "twrnc": "3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@babel/runtime": "7.18.9",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@babel/runtime": "7.18.9",
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
     "babel-loader": "8.2.5",
