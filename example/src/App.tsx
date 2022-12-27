@@ -14,13 +14,13 @@ const App = () => {
   return (
     <GestureHandlerRootView style={tailwind.style("flex-1")}>
       <NavigationContainer>
-        <SafeAreaView
-          style={tailwind.style(
-            `flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`,
-          )}
-          edges={["bottom"]}
-        >
-          <SafeAreaProvider>
+        <SafeAreaProvider>
+          <SafeAreaView
+            style={tailwind.style(
+              `flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`,
+            )}
+            edges={["bottom"]}
+          >
             <StatusBar
               translucent
               backgroundColor={"transparent"}
@@ -29,8 +29,8 @@ const App = () => {
             <AdaptUIProvider>
               <AppRoot />
             </AdaptUIProvider>
-          </SafeAreaProvider>
-        </SafeAreaView>
+          </SafeAreaView>
+        </SafeAreaProvider>
       </NavigationContainer>
     </GestureHandlerRootView>
   );
