@@ -205,7 +205,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
         style={[
           circularProgressBoxDimensions,
           styleAdapter(style),
-          isIndeterminate ? animatedSvgStyle : {},
+          animatedSvgStyle,
         ]}
         {...otherProps}
       >
