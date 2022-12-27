@@ -25,7 +25,7 @@ export const ButtonScreen = () => {
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
   const [hasSuffix, setHasSuffix] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -48,7 +48,9 @@ export const ButtonScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -91,9 +93,7 @@ export const ButtonScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={hasPrefix}
@@ -102,6 +102,7 @@ export const ButtonScreen = () => {
             }
             size="md"
             label="Prefix"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={hasSuffix}
@@ -109,7 +110,7 @@ export const ButtonScreen = () => {
               setHasSuffix(value)
             }
             size="md"
-            style={tailwind.style("ml-1 ")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Suffix"
           />
           <Switch
@@ -118,7 +119,7 @@ export const ButtonScreen = () => {
               setIsLoading(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Loading"
           />
         </Box>

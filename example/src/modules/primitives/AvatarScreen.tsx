@@ -34,7 +34,7 @@ export const AvatarScreen = () => {
     useState<boolean>(false);
   const [parentsBackground, setParentsBackground] =
     useState<string>("bg-white-900");
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   useEffect(() => {
     switch (selectedVariant) {
@@ -86,7 +86,9 @@ export const AvatarScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -135,22 +137,21 @@ export const AvatarScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             label="squared"
             state={isSquared}
             onStateChange={setIsSquared}
             size="md"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             label="parents background"
             state={hasParentBackground}
             onStateChange={setHasParentBackground}
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
         </Box>
       </Box>

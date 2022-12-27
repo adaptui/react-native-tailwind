@@ -31,7 +31,7 @@ export const AvatarGroupScreen = () => {
   const [isMax, setIsMax] = useState<boolean>(false);
   const [maxNum, setMaxNum] = useState(10);
   const [parentsBackground, setParentsBackground] = useState("bg-white-900");
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   useEffect(() => {
     switch (selectedVariant) {
@@ -96,7 +96,7 @@ export const AvatarGroupScreen = () => {
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
         style={tailwind.style(
-          cx(`flex-1 px-2 justify-center items-center ${parentsBackground} `),
+          cx(`flex-1 justify-center items-center ${parentsBackground}`),
         )}
       >
         <AvatarGroup
@@ -128,7 +128,9 @@ export const AvatarGroupScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -160,29 +162,28 @@ export const AvatarGroupScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row items-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row items-start flex-wrap w-full")}
         >
           <Switch
             label="squared"
             state={isSquared}
             onStateChange={setIsSquared}
             size="md"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             label="parents background"
             state={hasParentsBackground}
             onStateChange={setHasParentsBackground}
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             label="ring"
             state={hasRing}
             onStateChange={setHasRing}
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
 
           <Switch
@@ -190,7 +191,7 @@ export const AvatarGroupScreen = () => {
             state={isMax}
             onStateChange={setIsMax}
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
         </Box>
       </Box>

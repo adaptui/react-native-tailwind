@@ -23,7 +23,7 @@ export const CheckboxScreen = () => {
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [isIndeterminate, setIsIndeterminate] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -48,7 +48,9 @@ export const CheckboxScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -74,9 +76,7 @@ export const CheckboxScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={isDisabled}
@@ -85,6 +85,7 @@ export const CheckboxScreen = () => {
             }
             size="md"
             label="Disabled"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={isInvalid}
@@ -92,7 +93,7 @@ export const CheckboxScreen = () => {
               setIsInvalid(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Invalid"
           />
           <Switch
@@ -101,7 +102,7 @@ export const CheckboxScreen = () => {
               setHasLabel(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Label"
           />
           <Switch
@@ -110,7 +111,7 @@ export const CheckboxScreen = () => {
               setHasDescription(value)
             }
             size="md"
-            style={tailwind.style(" mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Description"
           />
           <Switch
@@ -119,7 +120,7 @@ export const CheckboxScreen = () => {
               setIsIndeterminate(value)
             }
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Indeterminate"
           />
         </Box>

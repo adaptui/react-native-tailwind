@@ -26,7 +26,7 @@ export const TextAreaScreen = () => {
   const [size, setSize] = useState<TextAreaSizes>("sm");
   const suffix = hasSuffix ? <Icon icon={<Slot />} /> : null;
   const textAreaRef = useRef<any>(null);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   const handleFocusInOnPress = useCallback(() => {
     textAreaRef.current?.focus();
@@ -52,7 +52,9 @@ export const TextAreaScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -80,36 +82,35 @@ export const TextAreaScreen = () => {
         </RadioGroup>
 
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             label="Loading"
             state={isLoading}
             onStateChange={setIsLoading}
             size="md"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             label="Invalid"
             state={isInvalid}
             onStateChange={setIsInvalid}
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             label="Disabled"
             state={isDisabled}
             onStateChange={setIsDisabled}
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             label="Suffix"
             state={hasSuffix}
             onStateChange={setHasSuffix}
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
         </Box>
         <Box style={tailwind.style("flex-row justify-start py-2")}>

@@ -22,7 +22,7 @@ export const MeterComponentScreen = () => {
   const [hasIntervals, setHasIntervals] = useState<boolean>(false);
   const [hasHints, setHasHints] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -43,7 +43,9 @@ export const MeterComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -69,9 +71,7 @@ export const MeterComponentScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={hasLabel}
@@ -80,6 +80,7 @@ export const MeterComponentScreen = () => {
             }
             size="md"
             label="Label"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={hasHints}
@@ -87,7 +88,7 @@ export const MeterComponentScreen = () => {
               setHasHints(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Hints"
           />
           <Switch
@@ -96,7 +97,7 @@ export const MeterComponentScreen = () => {
               setHasIntervals(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Intervals"
           />
           <Switch
@@ -105,7 +106,7 @@ export const MeterComponentScreen = () => {
               setHasFlatBorders(value)
             }
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Flat Borders"
           />
         </Box>

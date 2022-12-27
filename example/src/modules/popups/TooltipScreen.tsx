@@ -18,7 +18,7 @@ export const TooltipScreen = () => {
 
   const [hasArrow, setHasArrow] = useState<boolean>(false);
   const [hasOffset, setHasOffset] = useState<boolean>(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   const [tooltipPlacement, setTooltipPlacement] =
     useState<TooltipPlacement>("right");
@@ -49,7 +49,9 @@ export const TooltipScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -74,7 +76,7 @@ export const TooltipScreen = () => {
             <Radio value="left top" label="left top" />
           </Group>
         </RadioGroup>
-        <Box style={tailwind.style("flex flex-row justify-start  w-full mt-2")}>
+        <Box style={tailwind.style("flex flex-row justify-start w-full")}>
           <Switch
             state={hasArrow}
             onStateChange={(value: SetStateAction<boolean>) =>
@@ -82,6 +84,7 @@ export const TooltipScreen = () => {
             }
             size="md"
             label="Has Arrow"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={hasOffset}
@@ -90,7 +93,7 @@ export const TooltipScreen = () => {
             }
             size="md"
             label="Has Offset"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
           />
         </Box>
       </Box>

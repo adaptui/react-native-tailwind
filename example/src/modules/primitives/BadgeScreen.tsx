@@ -23,7 +23,7 @@ export const BadgeScreen = () => {
   const [prefix, setPrefix] = useState(false);
   const [variant, setVariant] = useState<BadgeVariants>("outline");
   const [theme, setTheme] = useState<BadgeTheme>("base");
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -44,7 +44,9 @@ export const BadgeScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -93,7 +95,7 @@ export const BadgeScreen = () => {
             state={prefix}
             onStateChange={setPrefix}
             size="md"
-            style={tailwind.style("mt-2")}
+            style={tailwind.style("mt-2 ml-1")}
           />
         </Box>
       </Box>

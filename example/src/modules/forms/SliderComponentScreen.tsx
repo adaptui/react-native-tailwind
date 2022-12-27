@@ -26,7 +26,7 @@ export const SliderComponentScreen = () => {
   const [hasMaxValue, setHasMaxValue] = useState<boolean>(false);
   const [hasStep, setHasStep] = useState<boolean>(false);
   const [hasRange, setHasRange] = useState<boolean>(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -48,7 +48,9 @@ export const SliderComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -73,9 +75,7 @@ export const SliderComponentScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={isDisabled}
@@ -84,6 +84,7 @@ export const SliderComponentScreen = () => {
             }
             size="md"
             label="Disabled"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={hasRange}
@@ -91,7 +92,7 @@ export const SliderComponentScreen = () => {
               setHasRange(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Range"
           />
           <Switch
@@ -100,7 +101,7 @@ export const SliderComponentScreen = () => {
               setHasMaxValue(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Max Value"
           />
           <Switch
@@ -109,7 +110,7 @@ export const SliderComponentScreen = () => {
               setHasStep(value)
             }
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Step"
           />
           <Switch
@@ -118,7 +119,7 @@ export const SliderComponentScreen = () => {
               setHasTooltip(value)
             }
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Tooltip"
           />
           <Switch
@@ -127,7 +128,7 @@ export const SliderComponentScreen = () => {
               setHasKnobIcon(value)
             }
             size="md"
-            style={tailwind.style("ml-1 mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Knob Icon"
           />
         </Box>

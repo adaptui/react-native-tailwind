@@ -20,7 +20,7 @@ export const SwitchComponentScreen = () => {
 
   const [hasLabel, setHasLabel] = useState(false);
   const [hasDesc, setHasDesc] = useState(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   const [isSwitchDisabled, setIsSwitchDisabled] = useState<boolean>(false);
 
@@ -45,7 +45,9 @@ export const SwitchComponentScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -71,9 +73,7 @@ export const SwitchComponentScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={hasLabel}
@@ -82,6 +82,7 @@ export const SwitchComponentScreen = () => {
               setHasLabel(value)
             }
             label="Has Label"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={hasDesc}
@@ -89,7 +90,7 @@ export const SwitchComponentScreen = () => {
             onStateChange={(value: SetStateAction<boolean>) =>
               setHasDesc(value)
             }
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Has Description"
           />
           <Switch
@@ -98,7 +99,7 @@ export const SwitchComponentScreen = () => {
               setIsSwitchDisabled(value)
             }
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Disabled"
           />
         </Box>
