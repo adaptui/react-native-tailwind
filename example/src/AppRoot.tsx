@@ -1,5 +1,14 @@
-import React from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import React, { ReactNode } from "react";
+import {
+  createDrawerNavigator,
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+  DrawerItem,
+} from "@react-navigation/drawer";
+
+import { Divider } from "../../src/components";
+import { Box, Text } from "../../src/primitives";
+import { useTheme } from "../../src/theme";
 
 import {
   AvatarGroupScreen,
@@ -25,101 +34,179 @@ import {
 
 const Drawer = createDrawerNavigator();
 
+const CustomDrawerSection = (props: DrawerContentComponentProps) => {
+  const { state, descriptors, navigation } = props;
+  let lastGroupName = "";
+  let newGroup = true;
+  const tailwind = useTheme();
+  return (
+    <DrawerContentScrollView {...props}>
+      {state.routes.map(route => {
+        const {
+          title,
+          // @ts-ignore
+          groupName,
+          drawerActiveTintColor,
+          drawerInactiveTintColor,
+        } = descriptors[route.key].options;
+        if (lastGroupName !== groupName) {
+          newGroup = true;
+          lastGroupName = groupName;
+        } else {
+          newGroup = false;
+        }
+        return (
+          <Box key={title}>
+            {newGroup ? (
+              <Box>
+                <Divider
+                  labelPosition="center"
+                  label={groupName}
+                  dividerStyle={tailwind.style("my-4 bg-blue-700")}
+                />
+              </Box>
+            ) : null}
+            <DrawerItem
+              key={route.key}
+              label={({ color }) =>
+                (<Text style={[{ color }]}>{title}</Text>) as ReactNode
+              }
+              focused={
+                state.index ===
+                state.routes.findIndex(e => e.name === route.name)
+              }
+              activeTintColor={drawerActiveTintColor}
+              inactiveTintColor={drawerInactiveTintColor}
+              onPress={() => navigation.navigate(route.name)}
+            />
+          </Box>
+        );
+      })}
+    </DrawerContentScrollView>
+  );
+};
+
 const AppRoot = () => {
   return (
-    <Drawer.Navigator initialRouteName="AvatarScreen">
+    <Drawer.Navigator
+      drawerContent={CustomDrawerSection}
+      initialRouteName="AvatarScreen"
+    >
       <Drawer.Screen
-        options={{ title: "Avatar" }}
+        // @ts-ignore
+        options={{ title: "Avatar", groupName: "PRIMITIVES" }}
         name="AvatarScreen"
         component={AvatarScreen}
       />
       <Drawer.Screen
-        options={{ title: "Avatar Group" }}
+        // @ts-ignore
+        options={{ title: "Avatar Group", groupName: "PRIMITIVES" }}
         name="AvatarGroupScreen"
         component={AvatarGroupScreen}
       />
       <Drawer.Screen
-        options={{ title: "Badge" }}
+        // @ts-ignore
+        options={{ title: "Badge", groupName: "PRIMITIVES" }}
         name="BadgeScreen"
         component={BadgeScreen}
       />
       <Drawer.Screen
-        options={{ title: "Button" }}
+        // @ts-ignore
+        options={{ title: "Button", groupName: "PRIMITIVES" }}
         name="ButtonScreen"
         component={ButtonScreen}
       />
       <Drawer.Screen
-        options={{ title: "Checkbox" }}
-        name="CheckboxScreen"
-        component={CheckboxScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Checkbox Group" }}
-        name="CheckboxGroupScreen"
-        component={CheckboxGroupScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Circular Progress" }}
-        name="CircularProgressScreen"
-        component={CircularProgressScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Divider" }}
-        name="DividerScreen"
-        component={DividerScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Input" }}
-        name="InputScreen"
-        component={InputScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Meter" }}
-        name="MeterComponentScreen"
-        component={MeterComponentScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Select" }}
-        name="SelectScreen"
-        component={SelectScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Spinner" }}
-        name="SpinnerScreen"
-        component={SpinnerScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Progress " }}
-        name="ProgressScreen"
-        component={ProgressScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Radio" }}
-        name="RadioComponentScreen"
-        component={RadioScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Slider" }}
-        name="SliderComponentScreen"
-        component={SliderComponentScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Switch" }}
-        name="SwitchComponentScreen"
-        component={SwitchComponentScreen}
-      />
-      <Drawer.Screen
-        options={{ title: "Tag " }}
+        // @ts-ignore
+        options={{ title: "Tag ", groupName: "PRIMITIVES" }}
         name="TagScreen"
         component={TagScreen}
       />
       <Drawer.Screen
-        options={{ title: "Text Area" }}
+        // @ts-ignore
+        options={{ title: "Divider", groupName: "PRIMITIVES" }}
+        name="DividerScreen"
+        component={DividerScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Checkbox", groupName: "FORMS" }}
+        name="CheckboxScreen"
+        component={CheckboxScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Checkbox Group", groupName: "FORMS" }}
+        name="CheckboxGroupScreen"
+        component={CheckboxGroupScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Input", groupName: "FORMS" }}
+        name="InputScreen"
+        component={InputScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Radio", groupName: "FORMS" }}
+        name="RadioComponentScreen"
+        component={RadioScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Slider", groupName: "FORMS" }}
+        name="SliderComponentScreen"
+        component={SliderComponentScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Switch", groupName: "FORMS" }}
+        name="SwitchComponentScreen"
+        component={SwitchComponentScreen}
+      />
+
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Text Area", groupName: "FORMS" }}
         name="TextAreaScreen"
         component={TextAreaScreen}
       />
+
       <Drawer.Screen
-        options={{ title: "Tooltip" }}
+        // @ts-ignore
+        options={{ title: "Circular Progress", groupName: "FEEDBACK" }}
+        name="CircularProgressScreen"
+        component={CircularProgressScreen}
+      />
+
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Meter", groupName: "FEEDBACK" }}
+        name="MeterComponentScreen"
+        component={MeterComponentScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Select", groupName: "FEEDBACK" }}
+        name="SelectScreen"
+        component={SelectScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Spinner", groupName: "FEEDBACK" }}
+        name="SpinnerScreen"
+        component={SpinnerScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Progress ", groupName: "FEEDBACK" }}
+        name="ProgressScreen"
+        component={ProgressScreen}
+      />
+
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "Tooltip", groupName: "POPUPS" }}
         name="TooltipScreen"
         component={TooltipScreen}
       />
