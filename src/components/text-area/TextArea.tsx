@@ -253,6 +253,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
                 },
               })
             : {},
+          Platform.OS === "android" ? textAreaTheme.android : {},
           styleAdapter(textInputStyle),
         ]}
         multiline={true}
