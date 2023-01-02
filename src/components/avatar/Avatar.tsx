@@ -3,7 +3,7 @@ import { ImageProps, ImageSourcePropType } from "react-native";
 
 import { DefaultUser } from "../../icons";
 import { Box, BoxProps, Text } from "../../primitives";
-import { useTailwind, useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import { createComponent, cx, isUndefined, styleAdapter } from "../../utils";
 import { useAvatarGroup } from "../avatar-group";
 import { Icon } from "../icon";
@@ -128,6 +128,7 @@ const RNAvatar: React.FC<Partial<AvatarProps>> = forwardRef<
         <Text
           style={ts(
             cx(avatarTheme.initials.base, avatarTheme.initials.size[size]),
+            getTextFontFamily(avatarTheme.initials.base),
           )}
           adjustsFontSizeToFit
           allowFontScaling={false}

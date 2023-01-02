@@ -16,7 +16,7 @@ import {
 import { useControllableState } from "@chakra-ui/hooks";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import { cx, styleAdapter } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 
@@ -327,16 +327,19 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
         >
           {label && typeof label === "string" ? (
             <Text
-              style={tailwind.style(
-                cx(
-                  switchTheme.size[size]?.label?.text,
-                  disabled
-                    ? description
-                      ? switchTheme.themeColor[themeColor]?.label.default
-                      : switchTheme.themeColor[themeColor]?.label.disabled
-                    : "",
+              style={[
+                tailwind.style(
+                  cx(
+                    switchTheme.size[size]?.label?.text,
+                    disabled
+                      ? description
+                        ? switchTheme.themeColor[themeColor]?.label.default
+                        : switchTheme.themeColor[themeColor]?.label.disabled
+                      : "",
+                  ),
                 ),
-              )}
+                getTextFontFamily(switchTheme.size[size]?.label?.text),
+              ]}
             >
               {label}
             </Text>
@@ -345,11 +348,17 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
           )}
           {description && typeof description === "string" ? (
             <Text
-              style={tailwind.style(
-                cx(
+              style={[
+                tailwind.style(
+                  cx(
+                    switchTheme.size[size]?.labelWithDescription
+                      ?.descriptionText,
+                  ),
+                ),
+                getTextFontFamily(
                   switchTheme.size[size]?.labelWithDescription?.descriptionText,
                 ),
-              )}
+              ]}
             >
               {description}
             </Text>

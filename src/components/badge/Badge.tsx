@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 
 import { Box, BoxProps, Text, TextProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import { createComponent, cx, RenderPropType, styleAdapter } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -105,6 +105,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
                   badgeStyles.themeColor[themeColor]?.[variant]?.text,
                 ),
               ),
+              getTextFontFamily(badgeStyles.size[size]?.text),
               styleAdapter(textStyle),
             ]}
             {...otherTextProps}

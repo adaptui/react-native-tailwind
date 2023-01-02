@@ -15,7 +15,7 @@ import Animated, {
 import Svg, { Circle, G } from "react-native-svg";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import { createComponent, cx, styleAdapter } from "../../utils";
 
 Animated.addWhitelistedNativeProps({ text: true });
@@ -289,6 +289,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
                     circularProgressTheme.size[size]?.text,
                   ),
                 ),
+                getTextFontFamily(circularProgressTheme.text),
               ]}
             >
               {hint}

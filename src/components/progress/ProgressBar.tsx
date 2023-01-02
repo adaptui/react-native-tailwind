@@ -12,7 +12,7 @@ import {
 } from "react-native-reanimated";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
-import { useTheme } from "../../theme/context";
+import { getTextFontFamily, useTheme } from "../../theme";
 import { createComponent, cx, styleAdapter } from "../../utils";
 
 export type ProgressBarSizes = "sm" | "md" | "lg" | "xl";
@@ -134,6 +134,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
                   progressTheme.size[size]?.label,
                   hint ? progressTheme.label.hasHint : "",
                 ),
+                getTextFontFamily(progressTheme.label.common),
               )}
             >
               {label}
@@ -141,9 +142,12 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
           )}
           {label && hint && (
             <Text
-              style={tailwind.style(
-                cx(progressTheme.hint.common, progressTheme.size[size]?.hint),
-              )}
+              style={[
+                tailwind.style(
+                  cx(progressTheme.hint.common, progressTheme.size[size]?.hint),
+                ),
+                getTextFontFamily(progressTheme.hint.common),
+              ]}
             >
               {hint}
             </Text>

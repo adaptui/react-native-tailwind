@@ -8,7 +8,7 @@ import {
 
 import { RenderPropType } from "../../index";
 import { Box, Text, Touchable } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -227,6 +227,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
                   : "",
               ),
             ),
+            getTextFontFamily(buttonTheme.size[size]?.text),
             styleAdapter(textStyle),
           ]}
         >

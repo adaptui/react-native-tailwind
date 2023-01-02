@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from "react";
 import { LayoutChangeEvent } from "react-native";
 
 import { Box, Text } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import { createComponent } from "../../utils";
 
 import { MeterBar } from "./MeterBar";
@@ -108,21 +108,27 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
         <Box style={tailwind.style("flex-row")}>
           {label && (
             <Text
-              style={tailwind.style([
-                meterTheme.label.common,
-                meterTheme.size[size]?.label,
-                hint ? meterTheme.label.hasHint : "",
-              ])}
+              style={[
+                tailwind.style([
+                  meterTheme.label.common,
+                  meterTheme.size[size]?.label,
+                  hint ? meterTheme.label.hasHint : "",
+                ]),
+                getTextFontFamily(meterTheme.label.common),
+              ]}
             >
               {label}
             </Text>
           )}
           {label && hint && (
             <Text
-              style={tailwind.style([
-                meterTheme.hint.common,
-                meterTheme.size[size]?.hint,
-              ])}
+              style={[
+                tailwind.style([
+                  meterTheme.hint.common,
+                  meterTheme.size[size]?.hint,
+                ]),
+                getTextFontFamily(meterTheme.hint.common),
+              ]}
             >
               {hint}
             </Text>

@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import { Platform, PressableStateCallbackType } from "react-native";
 
 import { Box, Text, Touchable, TouchableProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -220,6 +220,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                 description
                   ? { lineHeight: radioTheme.size[size]?.text?.lineHeight }
                   : {},
+                getTextFontFamily(radioTheme.label?.text?.common),
               ]}
             >
               {label}
@@ -234,6 +235,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                     radioTheme.size[size]?.description?.default,
                   ),
                 ),
+                getTextFontFamily(radioTheme.description.common),
               ]}
             >
               {description}

@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { Platform, PressableStateCallbackType } from "react-native";
 
 import { Box, Text, Touchable } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -73,6 +73,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
                         selectOptionStyle.size[size]?.text?.lineHeight,
                     }
                   : {},
+                getTextFontFamily(selectOptionStyle.label?.text?.common),
               ]}
             >
               {label}

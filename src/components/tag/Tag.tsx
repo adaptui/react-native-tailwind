@@ -8,7 +8,7 @@ import {
 
 import { Close } from "../../icons";
 import { Box, Text, Touchable } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -159,6 +159,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
             ),
           ),
           styleAdapter(textStyle),
+          getTextFontFamily(tagTheme.size[size]?.text),
         ]}
         adjustsFontSizeToFit
         allowFontScaling={false}

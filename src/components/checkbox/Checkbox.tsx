@@ -10,7 +10,7 @@ import { useToggleState } from "@react-stately/toggle";
 
 import { Check, Dash } from "../../icons";
 import { Box, Text, Touchable, TouchableProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -303,6 +303,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                     description && checkboxTheme?.description?.labelText,
                   ),
                 ),
+                getTextFontFamily(checkboxTheme.label?.text?.common),
                 description
                   ? { lineHeight: checkboxTheme?.size[size]?.text?.lineHeight }
                   : {},
@@ -320,6 +321,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                     checkboxTheme?.size[size]?.description?.default,
                   ),
                 ),
+                getTextFontFamily(checkboxTheme?.description?.common),
               ]}
             >
               {description}
