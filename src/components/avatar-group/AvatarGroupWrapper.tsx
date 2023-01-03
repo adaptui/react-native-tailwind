@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Box, BoxProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { styleAdapter } from "../../utils";
 import { AvatarSizes } from "../avatar";
 
@@ -16,13 +16,10 @@ export const AvatarGroupWrapper: React.FC<AvatarGroupWrapperProps> = ({
   ...props
 }) => {
   const avatarTheme = useTheme("avatar");
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
 
   return (
-    <Box
-      {...props}
-      style={[tailwind.style([avatarTheme.group.base]), styleAdapter(style)]}
-    >
+    <Box {...props} style={[ts([avatarTheme.group.base]), styleAdapter(style)]}>
       {children}
     </Box>
   );

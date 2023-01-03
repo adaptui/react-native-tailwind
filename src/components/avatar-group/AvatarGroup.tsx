@@ -2,7 +2,7 @@ import React from "react";
 import { isUndefined } from "lodash";
 
 import { Box, BoxProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createContext, getValidChildren } from "../../utils";
 import { Avatar, AvatarProps } from "../avatar";
 
@@ -48,7 +48,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = props => {
     ...rest
   } = props;
   const validChildren = getValidChildren(children);
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const avatarTheme = useTheme("avatar");
   /**
    * Get the avatars within the max
@@ -67,7 +67,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = props => {
           <Box
             style={[
               avatarTheme.borderRadius.size[size],
-              tailwind.style([
+              ts([
                 index !== 0
                   ? avatarTheme.group.avatarWrapper.spacing[size]
                   : "",
@@ -87,7 +87,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = props => {
           <Box
             style={[
               avatarTheme.borderRadius.size[size],
-              tailwind.style([
+              ts([
                 avatarTheme.group.avatarWrapper.spacing[size],
                 !squared ? avatarTheme.group.avatarWrapper.circular : "",
                 showRing ? avatarTheme.group.avatarWrapper.ringStyle : "",

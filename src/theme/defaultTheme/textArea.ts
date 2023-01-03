@@ -145,4 +145,7 @@ export const textArea = {
       },
     },
   },
+  android: {
+    textAlignVertical: "top",
+  },
 };

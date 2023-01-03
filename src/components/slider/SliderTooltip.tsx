@@ -9,7 +9,7 @@ import Animated, {
 import Svg, { Path } from "react-native-svg";
 
 import { AnimatedBox, Box } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createComponent } from "../../utils";
 import { TooltipProps } from "../tooltip";
 
@@ -61,7 +61,7 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
     size = "md",
   } = props;
 
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const sliderTheme = useTheme("slider");
 
   const tooltipRef = useRef();
@@ -107,23 +107,15 @@ const RNSliderTooltip: React.FC<Partial<SliderTooltipProps>> = props => {
       onLayout={(e: LayoutChangeEvent) =>
         (tooltipWidth.value = Math.round(e.nativeEvent.layout.width))
       }
-      style={[
-        tailwind.style(sliderTheme?.tooltip?.default),
-        tooltipAnimatedStyle,
-      ]}
+      style={[ts(sliderTheme?.tooltip?.default), tooltipAnimatedStyle]}
     >
-      <Box
-        style={[
-          tailwind.style(sliderTheme?.tooltip?.wrapper),
-          getContainerStyle,
-        ]}
-      >
+      <Box style={[ts(sliderTheme?.tooltip?.wrapper), getContainerStyle]}>
         {content as React.ReactNode}
       </Box>
       <AnimatedBox
         style={[
           StyleSheet.absoluteFill,
-          tailwind.style(sliderTheme?.tooltip?.arrowWrapper),
+          ts(sliderTheme?.tooltip?.arrowWrapper),
           animatedArrowStyle,
         ]}
       >

@@ -3,7 +3,7 @@ import { ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
 
 import { AnimatedBox } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { cx } from "../../utils";
 
 import { SliderProps } from "./Slider";
@@ -18,13 +18,13 @@ export const SliderFilledTrack: React.FC<SliderFilledTrackProps> = ({
   animatedStyles,
   themeColor,
 }) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const sliderTheme = useTheme("slider");
 
   return (
     <AnimatedBox
       style={[
-        tailwind.style(
+        ts(
           cx(
             sliderTheme?.filledTrack,
             sliderTheme?.size[size]?.filledTrack,

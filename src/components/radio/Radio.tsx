@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import { Platform, PressableStateCallbackType } from "react-native";
 
 import { Box, Text, Touchable, TouchableProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -61,7 +61,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   const hasOnlyLabel = label && !description;
 
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const radioTheme = useTheme("radio");
 
   const radioRef = useRef(null);
@@ -122,7 +122,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
         )}
         <Box
           style={[
-            tailwind.style(
+            ts(
               cx(
                 radioTheme.icon?.common,
                 radioTheme.size[size]?.icon?.wrapper,
@@ -161,7 +161,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                     boxShadow: `${generateBoxShadow(
                       radioTheme.themeColor[themeColor]?.icon?.checked?.focus
                         ?.boxShadow?.offset,
-                      tailwind.getColor(
+                      gc(
                         cx(
                           isSelected
                             ? radioTheme.themeColor[themeColor]?.icon?.checked
@@ -177,7 +177,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
           ]}
         >
           <Box
-            style={tailwind.style(
+            style={ts(
               cx(
                 radioTheme.size[size]?.icon?.innerCircle?.default,
                 isSelected
@@ -207,7 +207,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
           {label && (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     radioTheme?.label?.common,
                     radioTheme.size[size]?.text?.default,
@@ -220,6 +220,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                 description
                   ? { lineHeight: radioTheme.size[size]?.text?.lineHeight }
                   : {},
+                getTextFontFamily(radioTheme.label?.text?.common),
               ]}
             >
               {label}
@@ -228,12 +229,13 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
           {label && description && (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     radioTheme.description.common,
                     radioTheme.size[size]?.description?.default,
                   ),
                 ),
+                getTextFontFamily(radioTheme.description.common),
               ]}
             >
               {description}
@@ -254,7 +256,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
       onBlur={onBlur}
       // Web Callbacks
       style={(touchState: PressableStateCallbackType) => [
-        tailwind.style([
+        ts([
           cx(
             radioTheme?.label?.common,
             index !== 0 ? radioTheme?.group[orientation]?.spacing : "",
@@ -277,7 +279,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                 boxShadow: hasOnlyLabel
                   ? `${generateBoxShadow(
                       radioTheme.themeColor[themeColor]?.label?.focus?.offset,
-                      tailwind.getColor(
+                      gc(
                         cx(
                           radioTheme.themeColor[themeColor]?.label?.focus
                             ?.color,
@@ -286,7 +288,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                     )}`
                   : "",
                 backgroundColor: hasOnlyLabel
-                  ? (tailwind.getColor(
+                  ? (gc(
                       cx(
                         radioTheme.themeColor[themeColor]?.label?.focus
                           ?.backgroundColor,

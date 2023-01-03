@@ -8,7 +8,7 @@ import {
 
 import { Close } from "../../icons";
 import { Box, Text, Touchable } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -74,7 +74,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
   typeof Touchable,
   Partial<TagProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const tagTheme = useTheme("tag");
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
@@ -100,17 +100,17 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     (prefix?.type === Icon ? (
       createIcon({
         icon: prefix,
-        iconFill: tailwind.getColor(
+        iconFill: gc(
           cx(
             props.disabled
               ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
               : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
           ),
         ),
-        iconStyle: tailwind.style(cx(tagTheme.size[size]?.prefix)),
+        iconStyle: ts(cx(tagTheme.size[size]?.prefix)),
       })
     ) : (
-      <Box style={tailwind.style(cx(tagTheme.size[size]?.prefix))}>
+      <Box style={ts(cx(tagTheme.size[size]?.prefix))}>
         {prefix as React.ReactNode}
       </Box>
     ));
@@ -127,17 +127,17 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     (suffix?.type === Icon ? (
       createIcon({
         icon: suffix,
-        iconFill: tailwind.getColor(
+        iconFill: gc(
           cx(
             props.disabled
               ? tagTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
               : tagTheme.themeColor[themeColor]?.[variant]?.icon?.default,
           ),
         ),
-        iconStyle: tailwind.style(cx(tagTheme.size[size]?.suffix)),
+        iconStyle: ts(cx(tagTheme.size[size]?.suffix)),
       })
     ) : (
-      <Box style={tailwind.style(cx(tagTheme.size[size]?.suffix))}>
+      <Box style={ts(cx(tagTheme.size[size]?.suffix))}>
         {suffix as React.ReactNode}
       </Box>
     ));
@@ -149,7 +149,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     typeof otherProps.children === "string" ? (
       <Text
         style={[
-          tailwind.style(
+          ts(
             cx(
               tagTheme.size[size]?.text,
               tagTheme.themeColor[themeColor]?.[variant]?.text?.default,
@@ -159,6 +159,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
             ),
           ),
           styleAdapter(textStyle),
+          getTextFontFamily(tagTheme.size[size]?.text),
         ]}
         adjustsFontSizeToFit
         allowFontScaling={false}
@@ -173,7 +174,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     <Touchable
       ref={ref}
       style={(touchState: PressableStateCallbackType) => [
-        tailwind.style(
+        ts(
           cx(
             tagTheme.base,
             tagTheme.size[size]?.default,
@@ -196,7 +197,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
                 boxShadow: `${generateBoxShadow(
                   tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
                     ?.offset,
-                  tailwind.getColor(
+                  gc(
                     cx(
                       tagTheme.themeColor[themeColor]?.[variant]?.container
                         ?.focus?.color,

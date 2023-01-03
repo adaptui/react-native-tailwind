@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import { Box, useTheme } from "@adaptui/react-native-tailwind";
 
+import { Box } from "../../primitives";
+import { useTailwind, useTheme } from "../../theme";
 import { createComponent, cx, styleAdapter } from "../../utils";
 import { Button, ButtonProps } from "../button";
 
@@ -46,27 +47,23 @@ const RNDivider = (props: Partial<DividerProps>) => {
     buttonProps,
     dividerStyle,
   } = props;
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const dividerTheme = useTheme("divider");
   return (
     <Box
-      style={tailwind.style(
+      style={ts(
         cx(dividerTheme[orientation].orientaion),
         orientation === "vertical" ? "overflow-hidden" : {},
       )}
     >
       <Box
         style={[
-          tailwind.style(cx(dividerTheme[orientation].lines)),
+          ts(cx(dividerTheme[orientation].lines)),
           styleAdapter(dividerStyle),
         ]}
       />
 
-      <Box
-        style={tailwind.style(
-          cx(dividerTheme[orientation]?.label[labelPosition]),
-        )}
-      >
+      <Box style={ts(cx(dividerTheme[orientation]?.label[labelPosition]))}>
         {label ? (
           <Button themeColor="base" variant="outline" {...buttonProps}>
             {label}

@@ -12,7 +12,7 @@ import {
 } from "react-native-reanimated";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
-import { useTheme } from "../../theme/context";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import { createComponent, cx, styleAdapter } from "../../utils";
 
 export type ProgressBarSizes = "sm" | "md" | "lg" | "xl";
@@ -62,7 +62,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   typeof AnimatedBox,
   Partial<ProgressProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const progressTheme = useTheme("progress");
   const {
     size = "lg",
@@ -121,19 +121,20 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   return (
     <Box
       ref={ref}
-      style={[tailwind.style([progressTheme.wrapper]), styleAdapter(style)]}
+      style={[ts([progressTheme.wrapper]), styleAdapter(style)]}
       {...otherProps}
     >
       {(label || hint) && (
-        <Box style={tailwind.style("flex-row")}>
+        <Box style={ts("flex-row")}>
           {label && (
             <Text
-              style={tailwind.style(
+              style={ts(
                 cx(
                   progressTheme.label.common,
                   progressTheme.size[size]?.label,
                   hint ? progressTheme.label.hasHint : "",
                 ),
+                getTextFontFamily(progressTheme.label.common),
               )}
             >
               {label}
@@ -141,9 +142,12 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
           )}
           {label && hint && (
             <Text
-              style={tailwind.style(
-                cx(progressTheme.hint.common, progressTheme.size[size]?.hint),
-              )}
+              style={[
+                ts(
+                  cx(progressTheme.hint.common, progressTheme.size[size]?.hint),
+                ),
+                getTextFontFamily(progressTheme.hint.common),
+              ]}
             >
               {hint}
             </Text>
@@ -152,7 +156,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
       )}
       <AnimatedBox
         style={[
-          tailwind.style(
+          ts(
             cx(
               progressTheme.size[size]?.container,
               progressTheme.themeColor[themeColor]?.track,
@@ -163,7 +167,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
         {isIndeterminate && (
           <AnimatedBox
             style={[
-              tailwind.style(
+              ts(
                 cx(
                   progressTheme.size[size]?.bar,
                   progressTheme.themeColor[themeColor]?.filled,
@@ -177,7 +181,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
         {!isIndeterminate && (
           <AnimatedBox
             style={[
-              tailwind.style(
+              ts(
                 cx(
                   progressTheme.size[size]?.bar,
                   progressTheme.themeColor[themeColor]?.filled,

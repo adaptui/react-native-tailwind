@@ -13,7 +13,7 @@ import Animated, {
 import Svg, { Circle, Defs, G, LinearGradient, Stop } from "react-native-svg";
 
 import { AnimatedBox, BoxProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createComponent, styleAdapter } from "../../utils";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -55,7 +55,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
   typeof AnimatedBox,
   Partial<SpinnerProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const spinnerTheme = useTheme("spinner");
 
   const {
@@ -73,8 +73,8 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
   const rotate = useSharedValue(0);
 
   const spinnerStroke = stroke
-    ? tailwind.getColor(stroke)
-    : tailwind.getColor(spinnerTheme.themeColor[themeColor]);
+    ? gc(stroke)
+    : gc(spinnerTheme.themeColor[themeColor]);
 
   const animatedSvgStyle = useAnimatedStyle(() => {
     const rotateValue = interpolate(rotate.value, [0, 1], [0, 360]);
@@ -133,7 +133,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
     <AnimatedBox
       ref={ref}
       style={[
-        tailwind.style(spinnerTheme.size[size]),
+        ts(spinnerTheme.size[size]),
         styleAdapter(style),
         animatedSvgStyle,
       ]}
@@ -148,7 +148,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
         <G rotation={"-90"} origin="50, 50">
           <Circle
             stroke={
-              tailwind.getColor(
+              gc(
                 track === "transparent"
                   ? spinnerTheme.track[track]
                   : spinnerTheme.track[track][themeColor],

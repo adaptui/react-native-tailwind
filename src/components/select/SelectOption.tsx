@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { Platform, PressableStateCallbackType } from "react-native";
 
 import { Box, Text, Touchable } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -35,7 +35,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
     size = "md",
     isSelected,
   } = props;
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const selectOptionStyle = useTheme("selectOption");
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
@@ -57,7 +57,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
           {label && (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     selectOptionStyle?.label?.common,
                     selectOptionStyle.size[size]?.text?.default,
@@ -73,6 +73,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
                         selectOptionStyle.size[size]?.text?.lineHeight,
                     }
                   : {},
+                getTextFontFamily(selectOptionStyle.label?.text?.common),
               ]}
             >
               {label}
@@ -81,7 +82,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
           {description && (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     selectOptionStyle.description.common,
                     selectOptionStyle.size[size]?.description?.default,
@@ -95,7 +96,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
         </Box>
         <Box
           style={[
-            tailwind.style(
+            ts(
               cx(
                 selectOptionStyle.icon?.common,
                 selectOptionStyle.size[size]?.icon?.wrapper,
@@ -141,7 +142,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
                     boxShadow: `${generateBoxShadow(
                       selectOptionStyle.themeColor[themeColor]?.icon?.checked
                         ?.focus?.boxShadow?.offset,
-                      tailwind.getColor(
+                      gc(
                         cx(
                           isSelected
                             ? selectOptionStyle.themeColor[themeColor]?.icon
@@ -157,7 +158,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
           ]}
         >
           <Box
-            style={tailwind.style(
+            style={ts(
               cx(
                 selectOptionStyle.size[size]?.icon?.innerCircle?.default,
                 isSelected
@@ -199,7 +200,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
       onBlur={onBlur}
       // Web Callbacks
       style={(touchState: PressableStateCallbackType) => [
-        tailwind.style([
+        ts([
           cx(
             selectOptionStyle?.label?.common,
             description ? selectOptionStyle?.label?.withDescription : "",
@@ -222,7 +223,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
                   ? `${generateBoxShadow(
                       selectOptionStyle.themeColor[themeColor]?.label?.focus
                         ?.offset,
-                      tailwind.getColor(
+                      gc(
                         cx(
                           selectOptionStyle.themeColor[themeColor]?.label?.focus
                             ?.color,
@@ -231,7 +232,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
                     )}`
                   : "",
                 backgroundColor: hasOnlyLabel
-                  ? (tailwind.getColor(
+                  ? (gc(
                       cx(
                         selectOptionStyle.themeColor[themeColor]?.label?.focus
                           ?.backgroundColor,

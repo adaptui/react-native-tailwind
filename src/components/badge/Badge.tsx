@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 
 import { Box, BoxProps, Text, TextProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import { createComponent, cx, RenderPropType, styleAdapter } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -58,7 +58,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
     },
     ref,
   ) => {
-    const tailwind = useTheme();
+    const { ts, gc } = useTailwind();
 
     const badgeStyles = useTheme("badge");
     const { style: boxStyle = {}, ...otherBoxProps } = props;
@@ -69,13 +69,11 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
       prefix?.type === Icon ? (
         createIcon({
           icon: prefix,
-          iconFill: tailwind.getColor(
-            cx(badgeStyles.themeColor[themeColor]?.[variant]?.text),
-          ),
-          iconStyle: tailwind.style(cx(badgeStyles.size[size]?.prefix)),
+          iconFill: gc(cx(badgeStyles.themeColor[themeColor]?.[variant]?.text)),
+          iconStyle: ts(cx(badgeStyles.size[size]?.prefix)),
         })
       ) : (
-        <Box style={tailwind.style(cx(badgeStyles.size[size]?.prefix))}>
+        <Box style={ts(cx(badgeStyles.size[size]?.prefix))}>
           {prefix as React.ReactNode}
         </Box>
       );
@@ -84,7 +82,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
       <Box
         ref={ref}
         style={[
-          tailwind.style(
+          ts(
             cx(
               badgeStyles.baseContainer,
               badgeStyles.themeColor[themeColor]?.[variant]?.container,
@@ -99,12 +97,13 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
         {typeof props.children === "string" ? (
           <Text
             style={[
-              tailwind.style(
+              ts(
                 cx(
                   badgeStyles.size[size]?.text,
                   badgeStyles.themeColor[themeColor]?.[variant]?.text,
                 ),
               ),
+              getTextFontFamily(badgeStyles.size[size]?.text),
               styleAdapter(textStyle),
             ]}
             {...otherTextProps}
