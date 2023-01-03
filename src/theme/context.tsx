@@ -48,7 +48,7 @@ function useTheme<T extends ThemeKeys>(
   return context;
 }
 
-type TWType = typeof tw;
+export type TWType = typeof tw;
 
 const AdaptUIProvider: React.FC<
   Partial<ThemeContextType & { children: React.ReactNode }>

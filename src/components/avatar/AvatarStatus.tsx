@@ -11,7 +11,7 @@ import {
 import Svg, { Path } from "react-native-svg";
 
 import { AnimatedBox, Box } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { cx } from "../../utils";
 
 import { AvatarProps, AvatarSizes } from "./Avatar";
@@ -27,7 +27,7 @@ interface AnimatedDotProps {
 }
 
 const AnimatedDot: React.FC<AnimatedDotProps> = ({ size, delay }) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const avatarStatusTheme = useTheme("avatar");
   const dotAnimation = useSharedValue(0);
   React.useEffect(() => {
@@ -52,7 +52,7 @@ const AnimatedDot: React.FC<AnimatedDotProps> = ({ size, delay }) => {
   return (
     <AnimatedBox
       style={[
-        tailwind.style(
+        ts(
           cx(
             avatarStatusTheme.status.typing.innerDots.base,
             avatarStatusTheme.status.typing.innerDots.size[size],
@@ -68,7 +68,7 @@ const TypingComponent: React.FC<TypingStatusProps> = ({
   size,
   parentsBackground,
 }) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const avatarStatusTheme = useTheme("avatar");
 
   const delays = ["xl", "2xl", "3xl"].includes(size) ? [0, 333, 667] : [0, 500];
@@ -76,16 +76,16 @@ const TypingComponent: React.FC<TypingStatusProps> = ({
   return (
     <Box
       style={[
-        tailwind.style(cx(avatarStatusTheme.status.typing.container)),
+        ts(cx(avatarStatusTheme.status.typing.container)),
         avatarStatusTheme.status.position,
         {
-          borderColor: tailwind.getColor(parentsBackground),
-          backgroundColor: tailwind.getColor(parentsBackground),
+          borderColor: gc(parentsBackground),
+          backgroundColor: gc(parentsBackground),
         },
       ]}
     >
       <Box
-        style={tailwind.style(
+        style={ts(
           cx(
             avatarStatusTheme.status.typing.base,
             avatarStatusTheme.status.typing.size[size],
@@ -103,20 +103,21 @@ const TypingComponent: React.FC<TypingStatusProps> = ({
 export const AvatarStatus: React.FC<
   Pick<AvatarProps, "status" | "size" | "parentsBackground">
 > = ({ status, size, parentsBackground }) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
+
   const avatarStatusTheme = useTheme("avatar");
   switch (status) {
     case "active": {
       return (
         <Box
           style={[
-            tailwind.style(cx(avatarStatusTheme.status.active.container)),
+            ts(cx(avatarStatusTheme.status.active.container)),
             avatarStatusTheme.status.position,
-            { borderColor: tailwind.getColor(parentsBackground) },
+            { borderColor: gc(parentsBackground) },
           ]}
         >
           <Box
-            style={tailwind.style(
+            style={ts(
               cx(
                 avatarStatusTheme.status.active.base,
                 avatarStatusTheme.status.active.size[size],
@@ -130,23 +131,21 @@ export const AvatarStatus: React.FC<
       return (
         <Box
           style={[
-            tailwind.style(cx(avatarStatusTheme.status.away.container)),
+            ts(cx(avatarStatusTheme.status.away.container)),
             avatarStatusTheme.status.position,
             {
-              borderColor: tailwind.getColor(parentsBackground),
-              backgroundColor: tailwind.getColor(parentsBackground),
+              borderColor: gc(parentsBackground),
+              backgroundColor: gc(parentsBackground),
             },
           ]}
         >
-          <Box
-            style={tailwind.style(cx(avatarStatusTheme.status.away.size[size]))}
-          >
+          <Box style={ts(cx(avatarStatusTheme.status.away.size[size]))}>
             <Svg width="100%" height="100%" viewBox="0 0 4 4" fill="none">
               <Path
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M2 4C3.10457 4 4 3.10457 4 2C4 0.895431 3.10457 0 2 0C0.895431 0 0 0.895431 0 2C0 3.10457 0.895431 4 2 4ZM2 3.25C2.69036 3.25 3.25 2.69036 3.25 2C3.25 1.30964 2.69036 0.75 2 0.75C1.30964 0.75 0.75 1.30964 0.75 2C0.75 2.69036 1.30964 3.25 2 3.25Z"
-                fill={tailwind.getColor("text-gray-600")}
+                fill={gc("text-gray-600")}
               />
             </Svg>
           </Box>
@@ -157,23 +156,19 @@ export const AvatarStatus: React.FC<
       return (
         <Box
           style={[
-            tailwind.style(cx(avatarStatusTheme.status.sleep.container)),
+            ts(cx(avatarStatusTheme.status.sleep.container)),
             avatarStatusTheme.status.position,
             {
-              borderColor: tailwind.getColor(parentsBackground),
-              backgroundColor: tailwind.getColor(parentsBackground),
+              borderColor: gc(parentsBackground),
+              backgroundColor: gc(parentsBackground),
             },
           ]}
         >
-          <Box
-            style={tailwind.style(
-              cx(avatarStatusTheme.status.sleep.size[size]),
-            )}
-          >
+          <Box style={ts(cx(avatarStatusTheme.status.sleep.size[size]))}>
             <Svg width="100%" height="100%" viewBox="0 0 4 4" fill="none">
               <Path
                 d="M3.97107 2.35964C3.98707 2.27194 3.88243 2.2173 3.8072 2.26514C3.57467 2.413 3.29869 2.49864 3.00271 2.49864C2.17354 2.49864 1.50136 1.82646 1.50136 0.997285C1.50136 0.701308 1.587 0.425334 1.73486 0.192796C1.7827 0.117568 1.72806 0.0129337 1.64036 0.0289269C0.707321 0.199076 0 1.01603 0 1.99819C0 3.10376 0.896241 4 2.00181 4C2.98397 4 3.80092 3.29268 3.97107 2.35964Z"
-                fill={tailwind.getColor("text-gray-600")}
+                fill={gc("text-gray-600")}
               />
             </Svg>
           </Box>
@@ -186,5 +181,4 @@ export const AvatarStatus: React.FC<
       );
     }
   }
-  return null;
 };

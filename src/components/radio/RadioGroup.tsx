@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 import { getFocusableTreeWalker } from "@react-aria/focus";
 
 import { Box, BoxProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   createContext,
@@ -94,7 +94,7 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
     onChange,
   } as RadioGroupProps;
 
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const radioGroupTheme = useTheme("radio");
 
   const [focusableIndex, setFocusableIndex] = useState(0);
@@ -159,7 +159,7 @@ const RNRadioGroup: React.FC<Partial<RadioGroupProps>> = forwardRef<
   return (
     <Box
       style={[
-        tailwind.style(cx(radioGroupTheme.group[orientation]?.common)),
+        ts(cx(radioGroupTheme.group[orientation]?.common)),
         styleAdapter(style),
       ]}
       ref={ref}

@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode, useMemo, useRef, useState } from "react";
 import { Platform, TextInputProps } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import {
   cx,
   generateBoxShadow,
@@ -110,7 +110,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
     accessibilityLabel,
     ...restProps
   } = props;
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const inputTheme = useTheme("input");
 
   const { style: wrapperStyle = {}, ...otherWrapperProps } =
@@ -120,7 +120,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
   const [prefixWidth, setPrefixWidth] = React.useState(0);
 
   const placeholderTextColor = useMemo(() => {
-    return tailwind.getColor(
+    return gc(
       cx(
         editable
           ? isHovered.value
@@ -161,7 +161,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
       prefix?.type === Icon
         ? createIcon({
             icon: prefix,
-            iconFill: tailwind.getColor(
+            iconFill: gc(
               cx(
                 editable
                   ? invalid
@@ -201,7 +201,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
       suffix?.type === Icon
         ? createIcon({
             icon: suffix,
-            iconFill: tailwind.getColor(
+            iconFill: gc(
               cx(
                 editable
                   ? invalid
@@ -221,7 +221,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
           })
         : suffix;
 
-    const spinnerStroke = tailwind.getColor(
+    const spinnerStroke = gc(
       cx(
         editable
           ? inputTheme.variant[variant]?.default?.suffix
@@ -249,10 +249,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
 
   return (
     <Box
-      style={[
-        tailwind.style(cx(inputTheme.wrapper)),
-        styleAdapter(wrapperStyle),
-      ]}
+      style={[ts(cx(inputTheme.wrapper)), styleAdapter(wrapperStyle)]}
       onHoverIn={onHoverIn}
       onHoverOut={onHoverOut}
       {...otherWrapperProps}
@@ -269,7 +266,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
       )}
       <RNTextInput
         style={[
-          tailwind.style(
+          ts(
             cx(
               inputTheme.size[size]?.base?.default,
               !prefix || !suffix
@@ -295,7 +292,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
                   outline: 0,
                   boxShadow: generateBoxShadow(
                     inputTheme.variant[variant]?.focus?.base?.boxShadow?.offset,
-                    tailwind.getColor(
+                    gc(
                       inputTheme.variant[variant]?.focus?.base?.boxShadow
                         ?.color,
                     ) as string,

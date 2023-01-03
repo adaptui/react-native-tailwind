@@ -6,7 +6,7 @@ import {
 } from "@react-stately/checkbox";
 
 import { Box, BoxProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   createContext,
@@ -85,14 +85,14 @@ const RNCheckboxGroup: React.FC<Partial<CheckboxGroupProps>> = forwardRef<
   };
   const state = useCheckboxGroupState(checkboxGroupProps);
 
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const checkboxGroupTheme = useTheme("checkbox");
 
   const validChildren = getValidChildren(children);
   return (
     <Box
       style={[
-        tailwind.style(cx(checkboxGroupTheme.group[orientation]?.common)),
+        ts(cx(checkboxGroupTheme.group[orientation]?.common)),
         styleAdapter(style),
       ]}
       // @ts-ignore Web Only Prop

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Touchable, TouchableProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { cx } from "../../utils";
 
 import { InputProps } from "./Input";
@@ -15,14 +15,14 @@ export const InputPrefix: React.FC<InputPrefixProps> = ({
   variant,
   ...props
 }) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const inputTheme = useTheme("input");
 
   return (
     <Touchable
       focusable={false}
       style={[
-        tailwind.style(
+        ts(
           cx(
             inputTheme.prefixWrapper,
             inputTheme.size[size]?.prefix,

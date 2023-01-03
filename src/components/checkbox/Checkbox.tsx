@@ -10,7 +10,7 @@ import { useToggleState } from "@react-stately/toggle";
 
 import { Check, Dash } from "../../icons";
 import { Box, Text, Touchable, TouchableProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -90,7 +90,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   typeof Touchable,
   Partial<CheckboxProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const checkboxTheme = useTheme("checkbox");
 
   const checkboxGroupState = useCheckboxGroupContext();
@@ -193,7 +193,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         )}
         <Box
           style={[
-            tailwind.style(
+            ts(
               cx(
                 checkboxTheme.icon?.common,
                 checkboxTheme.size[size]?.icon?.wrapper,
@@ -257,7 +257,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                             ?.checked?.boxShadow?.offset
                         : checkboxTheme.themeColor[themeColor]?.focus?.icon
                             ?.unChecked?.boxShadow?.offset,
-                      tailwind.getColor(
+                      gc(
                         cx(
                           isIndeterminate
                             ? checkboxTheme.themeColor[themeColor]?.focus?.icon
@@ -278,23 +278,21 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
           {icon &&
             createIcon({
               icon,
-              iconFill: tailwind.getColor(
+              iconFill: gc(
                 cx(
                   isDisabled
                     ? checkboxTheme.themeColor[themeColor]?.disabled?.iconFill
                     : checkboxTheme.themeColor[themeColor]?.default?.iconFill,
                 ),
               ),
-              iconStyle: tailwind.style(
-                cx(checkboxTheme.size[size]?.icon?.iconSize),
-              ),
+              iconStyle: ts(cx(checkboxTheme.size[size]?.icon?.iconSize)),
             })}
         </Box>
         <Box style={checkboxTheme.labelDescWrapper}>
           {label && (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     checkboxTheme.size[size]?.text?.default,
                     isDisabled
@@ -303,6 +301,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                     description && checkboxTheme?.description?.labelText,
                   ),
                 ),
+                getTextFontFamily(checkboxTheme.label?.text?.common),
                 description
                   ? { lineHeight: checkboxTheme?.size[size]?.text?.lineHeight }
                   : {},
@@ -314,12 +313,13 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
           {label && description && (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     checkboxTheme?.description?.common,
                     checkboxTheme?.size[size]?.description?.default,
                   ),
                 ),
+                getTextFontFamily(checkboxTheme?.description?.common),
               ]}
             >
               {description}
@@ -349,7 +349,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
       onAccessibilityTap={handleChange}
       // A11y Props
       style={(touchState: PressableStateCallbackType) => [
-        tailwind.style(
+        ts(
           cx(
             checkboxTheme?.label?.common,
             index !== 0
@@ -375,7 +375,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                   ? `${generateBoxShadow(
                       checkboxTheme.themeColor[themeColor]?.focus?.label
                         ?.boxShadow?.offset,
-                      tailwind.getColor(
+                      gc(
                         cx(
                           checkboxTheme.themeColor[themeColor]?.focus?.label
                             ?.boxShadow?.color,
@@ -384,7 +384,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                     )}`
                   : "",
                 backgroundColor: hasOnlyLabel
-                  ? (tailwind.getColor(
+                  ? (gc(
                       cx(
                         checkboxTheme.themeColor[themeColor]?.focus?.label
                           ?.default,

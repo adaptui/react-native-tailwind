@@ -9,10 +9,11 @@ import { BottomSheetFlatList, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { isUndefined } from "lodash";
 
 import { Text, Touchable } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   createContext,
+  cx,
   RenderPropType,
   styleAdapter,
   useOnHover,
@@ -96,7 +97,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
   typeof Touchable,
   Partial<SelectProps>
 >((props, _ref) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const selectStyle = useTheme("select");
 
   const {
@@ -173,16 +174,18 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         // Web Callbacks
         onPress={handlePresentModalPress}
         style={(touchState: PressableStateCallbackType) => [
-          tailwind.style([
-            selectStyle.base.common,
-            selectStyle.base.size[size].common,
-            !prefix ? selectStyle.base.size[size].withoutAddon : "",
-            selectStyle.base.variant[variant].default,
-            invalid ? selectStyle.base.variant[variant].invalid : "",
-            disabled ? selectStyle.base.variant[variant].disabled : "",
-            touchState.pressed || hovered.value
-              ? selectStyle.base.variant[variant].pressedOrHovered
-              : "",
+          ts([
+            cx(
+              selectStyle.base.common,
+              selectStyle.base.size[size].common,
+              !prefix ? selectStyle.base.size[size].withoutAddon : "",
+              selectStyle.base.variant[variant].default,
+              invalid ? selectStyle.base.variant[variant].invalid : "",
+              disabled ? selectStyle.base.variant[variant].disabled : "",
+              touchState.pressed || hovered.value
+                ? selectStyle.base.variant[variant].pressedOrHovered
+                : "",
+            ),
           ]),
           styleAdapter(style, touchState),
         ]}
@@ -206,18 +209,24 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 isDefaultState={isUndefined(selectState)}
               />
               <Text
-                style={tailwind.style([
-                  selectStyle.base.text.size[size],
-                  touchState.pressed || hovered.value
-                    ? selectStyle.base.text.variant[variant].pressedOrHovered
-                    : disabled
-                    ? selectStyle.base.text.variant[variant].disabled
-                    : isUndefined(selectState)
-                    ? selectStyle.base.text.variant[variant].default
-                    : selectStyle.base.text.variant[variant].filled,
-                  prefix ? `pl-[${prefixWidth}px]` : "",
-                  `pr-[${suffixWidth}px]`,
-                ])}
+                style={[
+                  ts([
+                    cx(
+                      selectStyle.base.text.size[size],
+                      touchState.pressed || hovered.value
+                        ? selectStyle.base.text.variant[variant]
+                            .pressedOrHovered
+                        : disabled
+                        ? selectStyle.base.text.variant[variant].disabled
+                        : isUndefined(selectState)
+                        ? selectStyle.base.text.variant[variant].default
+                        : selectStyle.base.text.variant[variant].filled,
+                      prefix ? `pl-[${prefixWidth}px]` : "",
+                      `pr-[${suffixWidth}px]`,
+                    ),
+                  ]),
+                  getTextFontFamily(selectStyle.base.text.size[size]),
+                ]}
               >
                 {isUndefined(selectState)
                   ? placeholder
@@ -244,13 +253,13 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={snapPoints}
-        style={tailwind.style("rounded-t-lg shadow-lg")}
+        style={ts("rounded-t-lg shadow-lg")}
       >
         <BottomSheetFlatList
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
-          contentContainerStyle={tailwind.style("px-4")}
+          contentContainerStyle={ts("px-4")}
           extraData={selectState}
         />
       </BottomSheetModal>

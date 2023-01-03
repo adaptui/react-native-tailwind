@@ -23,7 +23,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { AnimatedBox, Box } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createComponent, cx, RenderPropType } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -128,7 +128,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   typeof Box,
   Partial<SliderProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const sliderTheme = useTheme("slider");
   const {
     size = "md",
@@ -504,7 +504,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
   return (
     <AnimatedBox
       onLayout={onLayout}
-      style={tailwind.style(cx(sliderTheme.wrapper))}
+      style={ts(cx(sliderTheme.wrapper))}
       ref={ref}
     >
       <SliderTrack size={size} themeColor={themeColor} />
@@ -541,7 +541,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         onMagicTap={() => (isKnobOneDragging.value = true)}
         animatedProps={knobOneAnimatedProps}
         style={[
-          tailwind.style(
+          ts(
             cx(
               sliderTheme.knob.common,
               sliderTheme.size[size].knob.size,
@@ -555,20 +555,15 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
       >
         <GestureDetector gesture={knobOnePanGestureHandler}>
           <AnimatedBox
-            style={[
-              StyleSheet.absoluteFill,
-              tailwind.style(cx(sliderTheme.iconWrapper)),
-            ]}
+            style={[StyleSheet.absoluteFill, ts(cx(sliderTheme.iconWrapper))]}
             ref={knobOneRef}
           >
             {/* @ts-ignore */}
             {knobIcon && knobIcon?.type === Icon
               ? createIcon({
                   icon: knobIcon,
-                  iconStyle: tailwind.style(
-                    cx(sliderTheme.size[size]?.knobIcon?.default),
-                  ),
-                  iconFill: tailwind.getColor(
+                  iconStyle: ts(cx(sliderTheme.size[size]?.knobIcon?.default)),
+                  iconFill: gc(
                     cx(
                       disabled
                         ? sliderTheme.knobIcon.disabled
@@ -589,7 +584,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             <AnimatedTextInput
               underlineColorAndroid="transparent"
               editable={false}
-              style={[tailwind.style(cx(sliderTheme.tooltip.common))]}
+              style={[ts(cx(sliderTheme.tooltip.common))]}
               animatedProps={knobOneAnimatedTextProps}
             />
           }
@@ -623,7 +618,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
           animatedProps={knobTwoAnimatedProps}
           onMagicTap={() => (isKnobTwoDragging.value = true)}
           style={[
-            tailwind.style(
+            ts(
               cx(
                 sliderTheme.knob.common,
                 sliderTheme.size[size]?.knob?.size,
@@ -637,20 +632,17 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
         >
           <GestureDetector gesture={knobTwoPanGestureHandler}>
             <AnimatedBox
-              style={[
-                StyleSheet.absoluteFill,
-                tailwind.style(cx(sliderTheme.iconWrapper)),
-              ]}
+              style={[StyleSheet.absoluteFill, ts(cx(sliderTheme.iconWrapper))]}
               ref={knobTwoRef}
             >
               {/* @ts-ignore */}
               {knobIcon && knobIcon?.type === Icon
                 ? createIcon({
                     icon: knobIcon,
-                    iconStyle: tailwind.style(
+                    iconStyle: ts(
                       cx(cx(sliderTheme.size[size]?.knobIcon?.default)),
                     ),
-                    iconFill: tailwind.getColor(
+                    iconFill: gc(
                       disabled
                         ? sliderTheme.knobIcon.disabled
                         : sliderTheme.knobIcon.activeFill,
@@ -670,7 +662,7 @@ const RNSlider: React.FC<Partial<SliderProps>> = forwardRef<
             <AnimatedTextInput
               underlineColorAndroid="transparent"
               editable={false}
-              style={[tailwind.style(cx(sliderTheme.tooltip.common))]}
+              style={[ts(cx(sliderTheme.tooltip.common))]}
               animatedProps={knobTwoAnimatedTextProps}
             />
           }

@@ -7,7 +7,7 @@ import {
 } from "react-native-reanimated";
 
 import { AnimatedBox, Box } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createComponent } from "../../utils";
 
 import { MeterProps } from "./Meter";
@@ -38,7 +38,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
 >((props, ref) => {
   const { percent, barStyle, themeColor = "base" } = props;
   const percentValue = useDerivedValue(() => (percent ? percent : 0));
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const meterTheme = useTheme("meter");
   const animatedMeterStyle = useAnimatedStyle(() => {
     return {
@@ -49,7 +49,7 @@ const RNMeterBar: React.FC<Partial<MeterBarProps>> = forwardRef<
     <AnimatedBox
       ref={ref}
       style={[
-        tailwind.style([meterTheme.themeColor[themeColor]?.bar.common]),
+        ts([meterTheme.themeColor[themeColor]?.bar.common]),
         animatedMeterStyle,
         barStyle,
       ]}

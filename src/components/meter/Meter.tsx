@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from "react";
 import { LayoutChangeEvent } from "react-native";
 
 import { Box, Text } from "../../primitives";
-import { useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import { createComponent } from "../../utils";
 
 import { MeterBar } from "./MeterBar";
@@ -77,7 +77,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
   typeof Box,
   Partial<MeterProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const meterTheme = useTheme("meter");
   const [meterWidth, setMeterWidth] = useState<number>(0);
   const {
@@ -101,35 +101,38 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
       onLayout={(event: LayoutChangeEvent) =>
         setMeterWidth(event.nativeEvent.layout.width)
       }
-      style={tailwind.style([meterTheme.wrapper])}
+      style={ts([meterTheme.wrapper])}
       ref={ref}
     >
       {(label || hint) && (
-        <Box style={tailwind.style("flex-row")}>
+        <Box style={ts("flex-row")}>
           {label && (
             <Text
-              style={tailwind.style([
-                meterTheme.label.common,
-                meterTheme.size[size]?.label,
-                hint ? meterTheme.label.hasHint : "",
-              ])}
+              style={[
+                ts([
+                  meterTheme.label.common,
+                  meterTheme.size[size]?.label,
+                  hint ? meterTheme.label.hasHint : "",
+                ]),
+                getTextFontFamily(meterTheme.label.common),
+              ]}
             >
               {label}
             </Text>
           )}
           {label && hint && (
             <Text
-              style={tailwind.style([
-                meterTheme.hint.common,
-                meterTheme.size[size]?.hint,
-              ])}
+              style={[
+                ts([meterTheme.hint.common, meterTheme.size[size]?.hint]),
+                getTextFontFamily(meterTheme.hint.common),
+              ]}
             >
               {hint}
             </Text>
           )}
         </Box>
       )}
-      <Box style={tailwind.style(meterTheme.barWrapper)}>
+      <Box style={ts(meterTheme.barWrapper)}>
         {intervals >= 1
           ? Array(intervals)
               .fill(0)
@@ -140,7 +143,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
                   <Box
                     key={`interval-${interval}`}
                     style={[
-                      tailwind.style([
+                      ts([
                         meterTheme.themeColor[themeColor]?.track.common,
                         meterTheme.size[size]?.track,
                         `w-[${segmentWidth}px]`,
@@ -151,7 +154,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
                           : i === intervals - 1
                           ? meterTheme.flatBorders.flatLeftBorders
                           : i !== 0 && i !== intervals - 1
-                          ? tailwind.style(meterTheme.borderNone)
+                          ? ts(meterTheme.borderNone)
                           : {}
                         : {},
                     ]}
@@ -167,7 +170,7 @@ const RNMeter: React.FC<Partial<MeterProps>> = forwardRef<
                               : i === intervals - 1
                               ? meterTheme.flatBorders.flatLeftBorders
                               : i !== 0 && i !== intervals - 1
-                              ? tailwind.style(meterTheme.borderNone)
+                              ? ts(meterTheme.borderNone)
                               : {}
                             : {},
                         ]}

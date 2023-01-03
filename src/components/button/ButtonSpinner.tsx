@@ -1,7 +1,7 @@
 import React, { isValidElement } from "react";
 
 import { Box } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { cx } from "../../utils";
 import { Spinner, SpinnerSizes } from "../spinner";
 
@@ -55,11 +55,6 @@ export const ButtonSpinner: React.FC<ButtonSpinnerProps> = ({
       : spinnerSizes[size]?.iconOnly
   ) as SpinnerSizes;
 
-  console.log(
-    buttonTheme.themeColor[themeColor]?.[variant]?.spinner?.disabled,
-    isValidElement(spinner),
-  );
-
   return isValidElement(spinner) ? (
     React.cloneElement(spinner, {
       //  @ts-ignore
@@ -80,12 +75,12 @@ export const ButtonFullWidthSpinner: React.FC<ButtonFullWidthSpinnerProps> = ({
   variant,
   children,
 }) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const buttonTheme = useTheme("button");
 
   return (
     <>
-      <Box style={tailwind.style(cx(buttonTheme.loading.wrapper))}>
+      <Box style={ts(cx(buttonTheme.loading.wrapper))}>
         <ButtonSpinner
           spinner={spinner}
           size={size}
@@ -93,9 +88,7 @@ export const ButtonFullWidthSpinner: React.FC<ButtonFullWidthSpinnerProps> = ({
           variant={variant}
         />
       </Box>
-      <Box style={[tailwind.style(buttonTheme.loading.children)]}>
-        {children}
-      </Box>
+      <Box style={[ts(buttonTheme.loading.children)]}>{children}</Box>
     </>
   );
 };

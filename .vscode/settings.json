@@ -24,7 +24,8 @@
     "divider",
     "select",
     "text-area",
-    "types"
+    "types",
+    "theme"
   ],
   "git.branchProtection": ["main"]
 }
