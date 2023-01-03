@@ -8,7 +8,7 @@ import {
 
 import { RenderPropType } from "../../index";
 import { Box, Text, Touchable } from "../../primitives";
-import { getTextFontFamily, useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
@@ -113,7 +113,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
     },
     ref,
   ) => {
-    const tailwind = useTheme();
+    const { ts, gc } = useTailwind();
     const buttonTheme = useTheme("button");
 
     const { onHoverIn, onHoverOut, hovered } = useOnHover();
@@ -131,12 +131,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       prefix?.type === Icon ? (
         createIcon({
           icon: prefix,
-          iconFill: tailwind.getColor(
+          iconFill: gc(
             isButtonDisabled
               ? buttonTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
               : buttonTheme.themeColor[themeColor]?.[variant]?.icon?.default,
           ),
-          iconStyle: tailwind.style(cx(buttonTheme.size[size]?.prefix)),
+          iconStyle: ts(cx(buttonTheme.size[size]?.prefix)),
         })
       ) : (
         <ButtonPrefix size={size}>{prefix as React.ReactNode}</ButtonPrefix>
@@ -165,12 +165,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       suffix?.type === Icon ? (
         createIcon({
           icon: suffix,
-          iconFill: tailwind.getColor(
+          iconFill: gc(
             isButtonDisabled
               ? buttonTheme.themeColor[themeColor]?.[variant]?.icon?.disabled
               : buttonTheme.themeColor[themeColor]?.[variant]?.icon?.default,
           ),
-          iconStyle: tailwind.style(cx(buttonTheme.size[size]?.suffix)),
+          iconStyle: ts(cx(buttonTheme.size[size]?.suffix)),
         })
       ) : (
         <ButtonSuffix size={size}>{suffix as React.ReactNode}</ButtonSuffix>
@@ -194,7 +194,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       iconOnly ? (
         <Box
           style={[
-            tailwind.style(
+            ts(
               cx(
                 buttonTheme.size[size]?.icon,
                 loading ? buttonTheme.loading.children : "",
@@ -205,7 +205,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
         >
           {/* @ts-ignore */}
           {React.cloneElement(iconOnly, {
-            color: tailwind.getColor(
+            color: gc(
               isButtonDisabled
                 ? buttonTheme.themeColor[themeColor]?.[variant]?.icon.disabled
                 : buttonTheme.themeColor[themeColor]?.[variant]?.icon.default,
@@ -218,7 +218,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           allowFontScaling={false}
           selectable={false}
           style={[
-            tailwind.style(
+            ts(
               cx(
                 buttonTheme.size[size]?.text,
                 buttonTheme.themeColor[themeColor]?.[variant]?.text.default,
@@ -269,7 +269,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       <Touchable
         style={(touchState: PressableStateCallbackType) => {
           return [
-            tailwind.style(
+            ts(
               cx(
                 buttonTheme.base,
                 buttonTheme.size[size]?.default,
@@ -296,7 +296,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
                     boxShadow: `${generateBoxShadow(
                       buttonTheme.themeColor[themeColor]?.[variant]?.container
                         ?.focus?.offset,
-                      tailwind.getColor(
+                      gc(
                         cx(
                           buttonTheme.themeColor[themeColor]?.[variant]
                             ?.container?.focus?.color,

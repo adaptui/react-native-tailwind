@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo, useRef, useState } from "react";
 import { Platform, TextInputProps } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import {
   cx,
   generateBoxShadow,
@@ -116,7 +116,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
     accessibilityInvalid,
     ...restProps
   } = props;
-  const tailwind = useTheme();
+  const { gc, ts } = useTailwind();
   const textAreaTheme = useTheme("textArea");
 
   const { style: wrapperStyle = {}, ...otherWrapperProps } =
@@ -126,7 +126,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
 
   /* A memoized function that returns the color of the placeholder text. */
   const placeholderTextColor = useMemo(() => {
-    return tailwind.getColor(
+    return gc(
       cx(
         editable
           ? isHovered.value
@@ -161,7 +161,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
       suffix?.type === Icon
         ? createIcon({
             icon: suffix,
-            iconFill: tailwind.getColor(
+            iconFill: gc(
               cx(
                 editable
                   ? invalid
@@ -181,7 +181,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
           })
         : suffix;
 
-    const spinnerStroke = tailwind.getColor(
+    const spinnerStroke = gc(
       cx(
         editable
           ? textAreaTheme.variant[variant]?.default?.suffix
@@ -209,17 +209,14 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
 
   return (
     <Box
-      style={[
-        tailwind.style(cx(textAreaTheme.wrapper)),
-        styleAdapter(wrapperStyle),
-      ]}
+      style={[ts(cx(textAreaTheme.wrapper)), styleAdapter(wrapperStyle)]}
       onHoverIn={onHoverIn}
       onHoverOut={onHoverOut}
       {...otherWrapperProps}
     >
       <RNTextInput
         style={[
-          tailwind.style(
+          ts(
             cx(
               textAreaTheme.size[size]?.base?.default,
               !suffix ? textAreaTheme.size[size]?.base?.withoutAddon : "",
@@ -245,7 +242,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
                   boxShadow: generateBoxShadow(
                     textAreaTheme.variant[variant]?.focus?.base?.boxShadow
                       ?.offset,
-                    tailwind.getColor(
+                    gc(
                       textAreaTheme.variant[variant]?.focus?.base?.boxShadow
                         ?.color,
                     ) as string,

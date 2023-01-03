@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Box, BoxProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
@@ -27,7 +27,7 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
   isDefaultState,
   ...props
 }) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const selectPrefixStyles = useTheme("select");
 
   // Icon Stroke Color based on Select State
@@ -48,7 +48,7 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
         ? createIcon({
             icon: prefix,
             iconSize: selectPrefixStyles.base.icon.size[size],
-            iconFill: tailwind.getColor(iconColor),
+            iconFill: gc(iconColor),
           })
         : prefix;
     return selectPrefix;
@@ -57,7 +57,7 @@ export const SelectPrefix: React.FC<SelectPrefixProps> = ({
 
   return (
     <Box
-      style={tailwind.style(
+      style={ts(
         selectPrefixStyles.prefix.default,
         selectPrefixStyles.prefix.size[size],
         selectPrefixStyles.prefix.variant[variant].wrapper,

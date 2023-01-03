@@ -16,7 +16,7 @@ import {
 import { useControllableState } from "@chakra-ui/hooks";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
-import { getTextFontFamily, useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import { cx, styleAdapter } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 
@@ -100,7 +100,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
   typeof TapGestureHandler,
   Partial<SwitchProps>
 >((props, _ref) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const switchTheme = useTheme("switchTheme");
 
   const {
@@ -132,35 +132,35 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
    * Setting Active/Inactive and Default Colors
    */
   const onStateColor = disabled
-    ? (tailwind.getColor(
+    ? (gc(
         cx(switchTheme.themeColor[themeColor]?.activeWrapper?.disabled),
       ) as string)
     : onStateColorFromProps ||
-      (tailwind.getColor(
+      (gc(
         cx(switchTheme.themeColor[themeColor]?.activeWrapper?.default),
       ) as string);
 
   const offStateColor = disabled
-    ? (tailwind.getColor(
+    ? (gc(
         cx(switchTheme.themeColor[themeColor]?.inActiveWrapper?.disabled),
       ) as string)
     : offStateColorFromProps ||
-      (tailwind.getColor(
+      (gc(
         cx(switchTheme.themeColor[themeColor]?.inActiveWrapper?.default),
       ) as string);
 
   const offStatePressedColor =
     offStatePressedColorFromProps ||
-    (tailwind.getColor(
+    (gc(
       cx(switchTheme.themeColor[themeColor]?.inActiveWrapper?.active),
     ) as string);
   const onStatePressedColor =
     onStatePressedColorFromProps ||
-    (tailwind.getColor(
+    (gc(
       cx(switchTheme.themeColor[themeColor]?.activeWrapper?.active),
     ) as string);
   const thumbTintColor =
-    thumbTintColorFromProps || tailwind.getColor(cx(switchTheme.thumbColor));
+    thumbTintColorFromProps || gc(cx(switchTheme.thumbColor));
   /**
    * Setting Active/Inactive and Default Colors
    */
@@ -212,10 +212,10 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
     };
   });
 
-  const activeContainerState = tailwind.getColor(
+  const activeContainerState = gc(
     cx(switchTheme.themeColor[themeColor]?.container?.active),
   ) as string;
-  const defaultContainerState = tailwind.getColor(
+  const defaultContainerState = gc(
     cx(switchTheme.themeColor[themeColor]?.container?.default),
   ) as string;
 
@@ -299,7 +299,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
     <GestureDetector gesture={switchTapGesture}>
       <AnimatedBox
         style={[
-          tailwind.style(
+          ts(
             cx(
               label
                 ? description
@@ -314,7 +314,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
         {...otherProps}
       >
         <Box
-          style={tailwind.style(
+          style={ts(
             cx(
               label
                 ? description
@@ -328,7 +328,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
           {label && typeof label === "string" ? (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     switchTheme.size[size]?.label?.text,
                     disabled
@@ -349,7 +349,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
           {description && typeof description === "string" ? (
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     switchTheme.size[size]?.labelWithDescription
                       ?.descriptionText,
@@ -368,13 +368,13 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
         </Box>
         <AnimatedBox
           style={[
-            tailwind.style(cx(switchTheme.size[size]?.switchContainerStyle)),
+            ts(cx(switchTheme.size[size]?.switchContainerStyle)),
             animatedSwitchBackground,
           ]}
         >
           <AnimatedBox
             style={[
-              tailwind.style(cx(switchTheme.size[size]?.thumbStyle)),
+              ts(cx(switchTheme.size[size]?.thumbStyle)),
               animatedThumbStyle,
             ]}
           />

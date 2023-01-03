@@ -2,7 +2,7 @@ import React from "react";
 
 import { UpDownArrow } from "../../icons";
 import { Box, BoxProps } from "../../primitives";
-import { useTheme } from "../../theme";
+import { useTailwind, useTheme } from "../../theme";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
 
@@ -28,7 +28,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
   isDefaultState,
   ...props
 }) => {
-  const tailwind = useTheme();
+  const { ts, gc } = useTailwind();
   const selectSuffixStyles = useTheme("select");
 
   // Icon Stroke Color based on Select State
@@ -49,7 +49,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
         ? createIcon({
             icon: suffix,
             iconSize: selectSuffixStyles.base.icon.size[size],
-            iconFill: tailwind.getColor(iconColor),
+            iconFill: gc(iconColor),
           })
         : suffix;
     return selectSuffix as React.ReactNode;
@@ -58,7 +58,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
 
   return (
     <Box
-      style={tailwind.style([
+      style={ts([
         selectSuffixStyles.suffix.default,
         selectSuffixStyles.suffix.size[size],
         selectSuffixStyles.suffix.variant[variant].wrapper,
@@ -71,7 +71,7 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
         <Icon
           icon={<UpDownArrow />}
           size={selectSuffixStyles.base.icon.size[size]}
-          color={tailwind.getColor(iconColor)}
+          color={gc(iconColor)}
         />
       )}
     </Box>

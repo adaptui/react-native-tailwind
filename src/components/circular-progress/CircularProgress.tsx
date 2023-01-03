@@ -15,7 +15,7 @@ import Animated, {
 import Svg, { Circle, G } from "react-native-svg";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
-import { getTextFontFamily, useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import { createComponent, cx, styleAdapter } from "../../utils";
 
 Animated.addWhitelistedNativeProps({ text: true });
@@ -94,7 +94,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
     },
     ref,
   ) => {
-    const tailwind = useTheme();
+    const { ts, gc } = useTailwind();
     const circularProgressTheme = useTheme("circularProgress");
 
     // Indeterminate Check
@@ -215,7 +215,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
               stroke={
                 trackColor
                   ? trackColor
-                  : tailwind.getColor(
+                  : gc(
                       cx(
                         circularProgressTheme.themeColor[themeColor]
                           ?.trackColor,
@@ -233,7 +233,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
                 stroke={
                   progressTrackColor
                     ? progressTrackColor
-                    : tailwind.getColor(
+                    : gc(
                         cx(
                           circularProgressTheme.themeColor[themeColor]
                             ?.progressTrackColor,
@@ -255,7 +255,7 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
                 stroke={
                   progressTrackColor
                     ? progressTrackColor
-                    : tailwind.getColor(
+                    : gc(
                         cx(
                           circularProgressTheme.themeColor[themeColor]
                             ?.progressTrackColor,
@@ -278,12 +278,12 @@ const RNCircularProgress: React.FC<Partial<CircularProgressProps>> = forwardRef<
           <Box
             style={[
               StyleSheet.absoluteFillObject,
-              tailwind.style("justify-center items-center bg-transparent"),
+              ts("justify-center items-center bg-transparent"),
             ]}
           >
             <Text
               style={[
-                tailwind.style(
+                ts(
                   cx(
                     circularProgressTheme.text,
                     circularProgressTheme.size[size]?.text,

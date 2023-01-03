@@ -9,7 +9,7 @@ import { BottomSheetFlatList, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { isUndefined } from "lodash";
 
 import { Text, Touchable } from "../../primitives";
-import { getTextFontFamily, useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   createContext,
@@ -97,7 +97,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
   typeof Touchable,
   Partial<SelectProps>
 >((props, _ref) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const selectStyle = useTheme("select");
 
   const {
@@ -174,7 +174,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         // Web Callbacks
         onPress={handlePresentModalPress}
         style={(touchState: PressableStateCallbackType) => [
-          tailwind.style([
+          ts([
             cx(
               selectStyle.base.common,
               selectStyle.base.size[size].common,
@@ -210,7 +210,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
               />
               <Text
                 style={[
-                  tailwind.style([
+                  ts([
                     cx(
                       selectStyle.base.text.size[size],
                       touchState.pressed || hovered.value
@@ -253,13 +253,13 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={snapPoints}
-        style={tailwind.style("rounded-t-lg shadow-lg")}
+        style={ts("rounded-t-lg shadow-lg")}
       >
         <BottomSheetFlatList
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
-          contentContainerStyle={tailwind.style("px-4")}
+          contentContainerStyle={ts("px-4")}
           extraData={selectState}
         />
       </BottomSheetModal>

@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { ViewStyle } from "react-native";
 
 import { Box } from "../../primitives";
-import { useTheme } from "../../theme/context";
+import { useTailwind } from "../../theme";
 import { createComponent, RenderPropType } from "../../utils";
 
 export interface IconComponentProps {
@@ -29,15 +29,12 @@ const RNIcon: React.FC<Partial<IconComponentProps>> = forwardRef<
   typeof Box,
   Partial<IconComponentProps>
 >((props, ref) => {
-  const tailwind = useTheme();
+  const { ts } = useTailwind();
   const { icon, style, size, color } = props;
   const iconAspectRatio = 1;
   const sizer = size ? `w-[${size}px]` : "";
   return (
-    <Box
-      ref={ref}
-      style={[tailwind.style(sizer), style, { aspectRatio: iconAspectRatio }]}
-    >
+    <Box ref={ref} style={[ts(sizer), style, { aspectRatio: iconAspectRatio }]}>
       {/* @ts-ignore */}
       {React.cloneElement(icon, { fill: color })}
     </Box>
