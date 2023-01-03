@@ -62,14 +62,20 @@ const CustomDrawerSection = (props: DrawerContentComponentProps) => {
                 <Divider
                   labelPosition="center"
                   label={groupName}
-                  dividerStyle={tailwind.style("my-4 bg-blue-700")}
+                  dividerStyle={tailwind.style(
+                    "my-4 border-blue-700 bg-blue-700",
+                  )}
                 />
               </Box>
             ) : null}
             <DrawerItem
               key={route.key}
               label={({ color }) =>
-                (<Text style={[{ color }]}>{title}</Text>) as ReactNode
+                (
+                  <Text style={[{ color }, tailwind.style("font-medium")]}>
+                    {title}
+                  </Text>
+                ) as ReactNode
               }
               focused={
                 state.index ===
