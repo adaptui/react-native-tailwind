@@ -5,11 +5,13 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AdaptUIProvider, Box } from "@adaptui/react-native-tailwind";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
+import * as ScreenOrientation from "expo-screen-orientation";
 import * as SplashScreen from "expo-splash-screen";
 import tailwind from "twrnc";
 
 import AppRoot from "./AppRoot";
 
+ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
 LogBox.ignoreAllLogs();
 
 const AdaptUIApp = () => {
