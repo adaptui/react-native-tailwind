@@ -23,7 +23,7 @@ export const CheckboxGroupScreen = () => {
   const [selectedSize, setSelectedSize] = useState<CheckboxSizes>("md");
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -52,7 +52,9 @@ export const CheckboxGroupScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -78,9 +80,7 @@ export const CheckboxGroupScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={isDisabled}
@@ -89,6 +89,7 @@ export const CheckboxGroupScreen = () => {
             }
             size="md"
             label="Disabled"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={isInvalid}
@@ -96,7 +97,7 @@ export const CheckboxGroupScreen = () => {
               setIsInvalid(value)
             }
             size="md"
-            style={tailwind.style("ml-1 ")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Invalid"
           />
         </Box>

@@ -27,7 +27,7 @@ export const InputScreen = () => {
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
   const suffix = hasSuffix ? <Icon icon={<Slot />} /> : null;
   const prefix = hasPrefix ? <Icon icon={<Slot />} /> : null;
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   const inputRef = useRef<any>(null);
 
@@ -55,7 +55,9 @@ export const InputScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -85,9 +87,7 @@ export const InputScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={isDisabled}
@@ -96,6 +96,7 @@ export const InputScreen = () => {
             }
             size="md"
             label="Disabled"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={isInvalid}
@@ -103,7 +104,7 @@ export const InputScreen = () => {
               setIsInvalid(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Invalid"
           />
           <Switch
@@ -112,7 +113,7 @@ export const InputScreen = () => {
               setHasSuffix(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Suffix"
           />
           <Switch
@@ -121,7 +122,7 @@ export const InputScreen = () => {
               setHasPrefix(value)
             }
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Prefix"
           />
         </Box>

@@ -20,7 +20,7 @@ export const SpinnerScreen = () => {
   const [selectedSize, setSelectedSize] = useState<SpinnerSizes>("md");
   const [selectedSpinnerTrackVisibility, setSelectedSpinnerTrackVisibility] =
     useState<SpinnerTrackVisibility>("transparent");
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -38,7 +38,9 @@ export const SpinnerScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup

@@ -87,7 +87,7 @@ export const SelectScreen = () => {
   const [isSelectInvalid, setIsSelectInvalid] = useState<boolean>(false);
   const [isSelectDisabled, setIsSelectDisabled] = useState<boolean>(false);
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   const [changeSuffix, setChangeSuffix] = useState(false);
 
@@ -110,7 +110,9 @@ export const SelectScreen = () => {
         </Box>
         <Box
           style={tailwind.style(
-            `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+            `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 android:pb-[${
+              bottom === 0 ? 16 : bottom
+            }px]`,
           )}
         >
           <RadioGroup
@@ -141,7 +143,7 @@ export const SelectScreen = () => {
           </RadioGroup>
           <Box
             style={tailwind.style(
-              "flex flex-row justify-start flex-wrap w-full mt-2",
+              "flex flex-row justify-start flex-wrap w-full",
             )}
           >
             <Switch
@@ -151,6 +153,7 @@ export const SelectScreen = () => {
               }
               size="md"
               label="Invalid"
+              style={tailwind.style("mt-2 ml-1")}
             />
             <Switch
               state={isSelectDisabled}
@@ -158,7 +161,7 @@ export const SelectScreen = () => {
                 setIsSelectDisabled(value)
               }
               size="md"
-              style={tailwind.style("ml-1")}
+              style={tailwind.style("mt-2 ml-1")}
               label="Disabled"
             />
             <Switch
@@ -167,7 +170,7 @@ export const SelectScreen = () => {
                 setHasPrefix(value)
               }
               size="md"
-              style={tailwind.style("ml-1")}
+              style={tailwind.style("mt-2 ml-1")}
               label="Prefix"
             />
             <Switch
@@ -176,7 +179,7 @@ export const SelectScreen = () => {
                 setChangeSuffix(value)
               }
               size="md"
-              style={tailwind.style("mt-1")}
+              style={tailwind.style("mt-2 ml-1")}
               label="Change suffix"
             />
           </Box>

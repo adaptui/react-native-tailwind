@@ -23,7 +23,7 @@ export const DividerScreen = () => {
   const [hasLabel, setHasLabel] = useState<boolean>(false);
   const [selectedLabelPosition, setSelectedLabelPosition] =
     useState<DividerLabelPosition>("center");
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -51,7 +51,9 @@ export const DividerScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -80,9 +82,7 @@ export const DividerScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={hasLabel}
@@ -91,6 +91,7 @@ export const DividerScreen = () => {
             }
             size="md"
             label="Label"
+            style={tailwind.style("mt-2 ml-1")}
           />
           <Switch
             state={hasCustomStyle}
@@ -98,7 +99,7 @@ export const DividerScreen = () => {
               setHasCustomStyle(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Custom style"
           />
         </Box>

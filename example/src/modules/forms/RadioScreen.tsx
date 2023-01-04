@@ -20,7 +20,7 @@ export const RadioScreen = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [hasLabel, setHasLabel] = useState<boolean>(true);
-  const safeAreaInsets = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
@@ -73,7 +73,9 @@ export const RadioScreen = () => {
       </Box>
       <Box
         style={tailwind.style(
-          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${safeAreaInsets.bottom}]`,
+          `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
+            bottom === 0 ? 16 : bottom
+          }px]`,
         )}
       >
         <RadioGroup
@@ -99,9 +101,7 @@ export const RadioScreen = () => {
           </Group>
         </RadioGroup>
         <Box
-          style={tailwind.style(
-            "flex flex-row justify-start flex-wrap w-full mt-2",
-          )}
+          style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
           <Switch
             state={isDisabled}
@@ -109,6 +109,7 @@ export const RadioScreen = () => {
               setIsDisabled(value)
             }
             size="md"
+            style={tailwind.style("mt-2 ml-1")}
             label="Disabled"
           />
           <Switch
@@ -117,7 +118,7 @@ export const RadioScreen = () => {
               setIsInvalid(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Invalid"
           />
           <Switch
@@ -126,7 +127,7 @@ export const RadioScreen = () => {
               setHasLabel(value)
             }
             size="md"
-            style={tailwind.style("ml-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Label"
           />
           <Switch
@@ -135,7 +136,7 @@ export const RadioScreen = () => {
               setHasDescription(value)
             }
             size="md"
-            style={tailwind.style("mt-1")}
+            style={tailwind.style("mt-2 ml-1")}
             label="Description"
           />
         </Box>
