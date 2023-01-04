@@ -136,6 +136,7 @@ export const SelectScreen = () => {
                 setSelectedVariant(value as SelectVariants)
               }
               orientation="horizontal"
+              style={tailwind.style("flex-wrap")}
             >
               <Radio value="outline" label="outline" />
               <Radio value="subtle" label="subtle" />

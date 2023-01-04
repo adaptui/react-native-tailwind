@@ -83,6 +83,7 @@ export const ButtonScreen = () => {
             value={selectedTheme}
             onChange={(value: string) => setSelectedTheme(value as ButtonTheme)}
             orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
           >
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />

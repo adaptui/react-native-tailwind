@@ -63,6 +63,7 @@ export const SpinnerScreen = () => {
               setSelectedTheme(value as SpinnerTheme)
             }
             orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
           >
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />

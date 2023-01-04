@@ -138,6 +138,7 @@ export const AvatarGroupScreen = () => {
             value={selectedSize}
             onChange={(value: string) => setSelectedSize(value as AvatarSizes)}
             orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
           >
             <Radio value="xs" label="xs" />
             <Radio value="sm" label="sm" />

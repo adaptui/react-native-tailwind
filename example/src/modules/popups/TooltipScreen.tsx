@@ -61,6 +61,7 @@ export const TooltipScreen = () => {
               setTooltipPlacement(value as TooltipPlacement)
             }
             orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
           >
             <Radio value="top" label="top" />
             <Radio value="bottom" label="bottom" />

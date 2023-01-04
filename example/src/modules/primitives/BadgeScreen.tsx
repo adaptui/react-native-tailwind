@@ -76,6 +76,7 @@ export const BadgeScreen = () => {
             value={theme}
             onChange={(value: string) => setTheme(value as BadgeTheme)}
             orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
           >
             <Radio value="base" label="base" />
             <Radio value="danger" label="danger" />
