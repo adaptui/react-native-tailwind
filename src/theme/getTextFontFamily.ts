@@ -47,12 +47,12 @@ export const getTextFontFamily = (tClassNames: string): TextStyle => {
   const fontFamily = keys.find(className => tailwindClass.includes(className));
 
   const textStyle =
-    Platform.OS === "android"
+    Platform.OS === "ios"
       ? {
-          fontFamily: fontFamily ? fontFamilies[fontFamily] : "Inter-Regular",
+          fontFamily: "System",
         }
       : {
-          fontFamily: "System",
+          fontFamily: fontFamily ? fontFamilies[fontFamily] : "Inter-Regular",
         };
   return textStyle;
 };
