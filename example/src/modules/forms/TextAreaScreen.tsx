@@ -57,30 +57,31 @@ export const TextAreaScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={size}
-          onChange={(value: string) => setSize(value as TextAreaSizes)}
-          orientation="horizontal"
-        >
-          <Group label="Sizes">
+        <Group label="Sizes">
+          <RadioGroup
+            value={size}
+            onChange={(value: string) => setSize(value as TextAreaSizes)}
+            orientation="horizontal"
+          >
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
             <Radio value="lg" label="lg" />
             <Radio value="xl" label="xl" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={hasvariant}
-          onChange={(value: string) => setHasVariant(value as TextAreaVariants)}
-          orientation="horizontal"
-        >
-          <Group label="Variant" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Variant" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={hasvariant}
+            onChange={(value: string) =>
+              setHasVariant(value as TextAreaVariants)
+            }
+            orientation="horizontal"
+          >
             <Radio value="subtle" label="subtle" />
             <Radio value="outline" label="outline" />
             <Radio value="underline" label="underline" />
-          </Group>
-        </RadioGroup>
-
+          </RadioGroup>
+        </Group>
         <Box
           style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >

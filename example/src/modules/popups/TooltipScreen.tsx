@@ -54,14 +54,14 @@ export const TooltipScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={tooltipPlacement}
-          onChange={(value: string) =>
-            setTooltipPlacement(value as TooltipPlacement)
-          }
-          orientation="horizontal"
-        >
-          <Group label="Position">
+        <Group label="Position">
+          <RadioGroup
+            value={tooltipPlacement}
+            onChange={(value: string) =>
+              setTooltipPlacement(value as TooltipPlacement)
+            }
+            orientation="horizontal"
+          >
             <Radio value="top" label="top" />
             <Radio value="bottom" label="bottom" />
             <Radio value="left" label="left" />
@@ -74,8 +74,8 @@ export const TooltipScreen = () => {
             <Radio value="right top" label="right top" />
             <Radio value="left bottom" label="left bottom" />
             <Radio value="left top" label="left top" />
-          </Group>
-        </RadioGroup>
+          </RadioGroup>
+        </Group>
         <Box style={tailwind.style("flex flex-row justify-start w-full")}>
           <Switch
             state={hasArrow}

@@ -91,12 +91,12 @@ export const AvatarScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={selectedSize}
-          onChange={(value: string) => setSelectedSize(value as AvatarSizes)}
-          orientation="horizontal"
-        >
-          <Group label="Sizes">
+        <Group label="Sizes">
+          <RadioGroup
+            value={selectedSize}
+            onChange={(value: string) => setSelectedSize(value as AvatarSizes)}
+            orientation="horizontal"
+          >
             <Radio value="xs" label="xs" />
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
@@ -104,38 +104,36 @@ export const AvatarScreen = () => {
             <Radio value="xl" label="xl" />
             <Radio value="2xl" label="2xl" />
             <Radio value="3xl" label="3xl" />
-          </Group>
-        </RadioGroup>
-
-        <RadioGroup
-          value={selectedVariant}
-          onChange={(value: undefined | string) => {
-            setSelectedVariant(value);
-          }}
-          orientation="horizontal"
-        >
-          <Group label="Variants" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Variants" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedVariant}
+            onChange={(value: undefined | string) => {
+              setSelectedVariant(value);
+            }}
+            orientation="horizontal"
+          >
             <Radio value={undefined} label="default" />
             <Radio value="withInitials" label="initials" />
             <Radio value="withImage" label="image" />
-          </Group>
-        </RadioGroup>
-
-        <RadioGroup
-          value={selectedStatus}
-          onChange={(value: string) =>
-            setSelectedStatus(value as AvatarStatusType)
-          }
-          orientation="horizontal"
-        >
-          <Group label="Status" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Status" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedStatus}
+            onChange={(value: string) =>
+              setSelectedStatus(value as AvatarStatusType)
+            }
+            orientation="horizontal"
+          >
             <Radio value={undefined} label="default" />
             <Radio value="active" label="active" />
             <Radio value="away" label="away" />
             <Radio value="sleep" label="sleep" />
             <Radio value="typing" label="typing" />
-          </Group>
-        </RadioGroup>
+          </RadioGroup>
+        </Group>
         <Box
           style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
