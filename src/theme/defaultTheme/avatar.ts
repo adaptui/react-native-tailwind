@@ -117,7 +117,7 @@ export const avatar = {
     },
   },
   group: {
-    base: "flex-row items-center",
+    base: "relative flex-row items-center",
     avatarWrapper: {
       ringStyle: "border-2",
       circular: "rounded-full",
