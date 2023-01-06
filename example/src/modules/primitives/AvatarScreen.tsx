@@ -44,7 +44,7 @@ export const AvatarScreen = () => {
         break;
       case "withImage":
         setImageUri({
-          uri: "https://i.pravatar.cc/300??img=5",
+          uri: "https://i.pravatar.cc/300?img=68",
           cache: "reload",
         });
         setName(undefined);

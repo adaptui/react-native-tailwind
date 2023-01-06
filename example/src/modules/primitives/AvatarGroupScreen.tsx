@@ -70,24 +70,23 @@ export const AvatarGroupScreen = () => {
 
   const avatars = [
     {
-      uri: "https://i.pravatar.cc/300??img=6",
+      uri: "https://i.pravatar.cc/300?img=41",
       name: "Navin Moorthy",
     },
     {
-      uri: "https://i.pravatar.cc/300??img=13",
+      uri: "https://i.pravatar.cc/300?img=13",
       name: "Karthik Balasubramanian",
     },
-
     {
-      uri: "https://i.pravatar.cc/300??img=25",
+      uri: "https://i.pravatar.cc/300?img=32",
       name: "Sandeep Prabhakaran",
     },
     {
-      uri: "https://i.pravatar.cc/300??img=33",
+      uri: "https://i.pravatar.cc/300?img=26",
       name: "Abhishek MG",
     },
     {
-      uri: "https://i.pravatar.cc/300??img=45",
+      uri: "https://i.pravatar.cc/300?img=57",
       name: "Udhaya Chandran",
     },
   ];
