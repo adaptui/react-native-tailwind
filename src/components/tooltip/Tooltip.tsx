@@ -85,7 +85,7 @@ export const RNTooltip: React.FC<Partial<TooltipProps>> = props => {
     crossOffset = 0,
     hasArrow = false,
     shouldFlip = true,
-    action = Platform.OS === "web" ? "hover" : "press",
+    action = Platform.OS === "web" ? undefined : "press",
   } = props;
 
   return (
