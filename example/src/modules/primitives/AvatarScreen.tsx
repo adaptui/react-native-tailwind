@@ -44,7 +44,7 @@ export const AvatarScreen = () => {
         break;
       case "withImage":
         setImageUri({
-          uri: "https://i.pravatar.cc/300??img=5",
+          uri: "https://i.pravatar.cc/300?img=68",
           cache: "reload",
         });
         setName(undefined);
@@ -96,6 +96,7 @@ export const AvatarScreen = () => {
             value={selectedSize}
             onChange={(value: string) => setSelectedSize(value as AvatarSizes)}
             orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
           >
             <Radio value="xs" label="xs" />
             <Radio value="sm" label="sm" />
@@ -126,6 +127,7 @@ export const AvatarScreen = () => {
               setSelectedStatus(value as AvatarStatusType)
             }
             orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
           >
             <Radio value={undefined} label="default" />
             <Radio value="active" label="active" />
