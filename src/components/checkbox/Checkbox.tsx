@@ -9,7 +9,13 @@ import { Platform, PressableStateCallbackType } from "react-native";
 import { useToggleState } from "@react-stately/toggle";
 
 import { Check, Dash } from "../../icons";
-import { Box, Text, Touchable, TouchableProps } from "../../primitives";
+import {
+  AnimatedBox,
+  Box,
+  Text,
+  Touchable,
+  TouchableProps,
+} from "../../primitives";
 import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
@@ -18,6 +24,7 @@ import {
   styleAdapter,
   useOnFocus,
   useOnHover,
+  useScaleAnimation,
 } from "../../utils";
 import { mergeRefs } from "../../utils/mergeRefs";
 import { createIcon } from "../create-icon";
@@ -173,6 +180,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
   const { onFocus, onBlur, focused } = useOnFocus();
+  const { handlers, animatedStyle } = useScaleAnimation();
 
   const children = ({
     pressed = false,
@@ -331,92 +339,95 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   };
 
   return (
-    <Touchable
-      onPress={handleChange}
-      // Web Callbacks
-      onHoverIn={onHoverIn}
-      onHoverOut={onHoverOut}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      // Web Callbacks
-      // A11y Props
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="checkbox"
-      accessibilityState={{
-        checked: isIndeterminate ? "mixed" : checkboxToggleState.isSelected,
-      }}
-      accessibilityValue={{ text: props?.value }}
-      onAccessibilityTap={handleChange}
-      // A11y Props
-      style={(touchState: PressableStateCallbackType) => [
-        ts(
-          cx(
-            checkboxTheme?.label?.common,
-            index !== 0
-              ? checkboxTheme?.group[checkboxGroupState?.orientation]?.spacing
-              : "",
-            description ? checkboxTheme?.label?.withDescription : "",
-            checkboxTheme.size[size]?.label?.wrapper,
-            touchState.pressed
-              ? hasOnlyLabel
-                ? checkboxTheme.themeColor[themeColor]?.press?.label
-                : ""
-              : "",
-            hovered.value && hasOnlyLabel
-              ? checkboxTheme.themeColor[themeColor]?.hover?.label
-              : "",
+    <AnimatedBox style={animatedStyle}>
+      <Touchable
+        onPress={handleChange}
+        // Web Callbacks
+        onHoverIn={onHoverIn}
+        onHoverOut={onHoverOut}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        // Web Callbacks
+        // A11y Props
+        accessibilityLabel={accessibilityLabel}
+        accessibilityRole="checkbox"
+        accessibilityState={{
+          checked: isIndeterminate ? "mixed" : checkboxToggleState.isSelected,
+        }}
+        accessibilityValue={{ text: props?.value }}
+        onAccessibilityTap={handleChange}
+        // A11y Props
+        style={(touchState: PressableStateCallbackType) => [
+          ts(
+            cx(
+              checkboxTheme?.label?.common,
+              index !== 0
+                ? checkboxTheme?.group[checkboxGroupState?.orientation]?.spacing
+                : "",
+              description ? checkboxTheme?.label?.withDescription : "",
+              checkboxTheme.size[size]?.label?.wrapper,
+              touchState.pressed
+                ? hasOnlyLabel
+                  ? checkboxTheme.themeColor[themeColor]?.press?.label
+                  : ""
+                : "",
+              hovered.value && hasOnlyLabel
+                ? checkboxTheme.themeColor[themeColor]?.hover?.label
+                : "",
+            ),
           ),
-        ),
-        focused.value
-          ? Platform.select({
-              web: {
-                outline: 0,
-                boxShadow: hasOnlyLabel
-                  ? `${generateBoxShadow(
-                      checkboxTheme.themeColor[themeColor]?.focus?.label
-                        ?.boxShadow?.offset,
-                      gc(
+          focused.value
+            ? Platform.select({
+                web: {
+                  outline: 0,
+                  boxShadow: hasOnlyLabel
+                    ? `${generateBoxShadow(
+                        checkboxTheme.themeColor[themeColor]?.focus?.label
+                          ?.boxShadow?.offset,
+                        gc(
+                          cx(
+                            checkboxTheme.themeColor[themeColor]?.focus?.label
+                              ?.boxShadow?.color,
+                          ),
+                        ) as string,
+                      )}`
+                    : "",
+                  backgroundColor: hasOnlyLabel
+                    ? (gc(
                         cx(
                           checkboxTheme.themeColor[themeColor]?.focus?.label
-                            ?.boxShadow?.color,
+                            ?.default,
                         ),
-                      ) as string,
-                    )}`
-                  : "",
-                backgroundColor: hasOnlyLabel
-                  ? (gc(
-                      cx(
-                        checkboxTheme.themeColor[themeColor]?.focus?.label
-                          ?.default,
-                      ),
-                    ) as string)
-                  : "transparent",
-              },
-            })
-          : {},
-        styleAdapter(style, touchState),
-      ]}
-      ref={checkboxRef}
-      //@ts-ignore - Web only - Checkbox toggle on Spacebar Press
-      onKeyDown={Platform.select({
-        web: (e: any) => {
-          if (e.code === "Space") {
-            e.preventDefault();
-            handleChange();
-          }
-        },
-        default: undefined,
-      })}
-      disabled={isDisabled}
-    >
-      {(touchState: PressableStateCallbackType) =>
-        children({
-          pressed: touchState.pressed,
-          isHovered: !!hovered.value,
-          isFocussed: !!focused.value,
-        })
-      }
-    </Touchable>
+                      ) as string)
+                    : "transparent",
+                },
+              })
+            : {},
+          styleAdapter(style, touchState),
+        ]}
+        ref={checkboxRef}
+        //@ts-ignore - Web only - Checkbox toggle on Spacebar Press
+        onKeyDown={Platform.select({
+          web: (e: any) => {
+            if (e.code === "Space") {
+              e.preventDefault();
+              handleChange();
+            }
+          },
+          default: undefined,
+        })}
+        disabled={isDisabled}
+        {...(description ? {} : handlers)}
+      >
+        {(touchState: PressableStateCallbackType) =>
+          children({
+            pressed: touchState.pressed,
+            isHovered: !!hovered.value,
+            isFocussed: !!focused.value,
+          })
+        }
+      </Touchable>
+    </AnimatedBox>
   );
 });
 
