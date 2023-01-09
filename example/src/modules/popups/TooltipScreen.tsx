@@ -1,11 +1,12 @@
 import React, { SetStateAction, useState } from "react";
+import { Platform, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
-  Button,
   Radio,
   RadioGroup,
   Switch,
+  Text,
   Tooltip,
   TooltipPlacement,
   useTheme,
@@ -34,13 +35,11 @@ export const TooltipScreen = () => {
           hasArrow={hasArrow}
           placement={tooltipPlacement}
           trigger={
-            <Button
-              style={tailwind.style("my-1")}
-              themeColor="success"
-              size="sm"
-            >
-              Click here
-            </Button>
+            <Pressable>
+              <Text>
+                {Platform.OS === "web" ? "Hover here" : "Click here"}{" "}
+              </Text>
+            </Pressable>
           }
           content="2 out 3 tasks completed"
           mainOffset={hasOffset ? 15 : 0}
