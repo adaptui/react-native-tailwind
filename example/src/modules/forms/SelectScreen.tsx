@@ -94,7 +94,7 @@ export const SelectScreen = () => {
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <BottomSheetModalProvider>
-        <Box style={tailwind.style("flex-1 px-2  justify-center")}>
+        <Box style={tailwind.style("flex-1 px-2 items-center justify-center")}>
           <Select
             size={selectedSize}
             variant={selectedVariant}
@@ -110,37 +110,39 @@ export const SelectScreen = () => {
         </Box>
         <Box
           style={tailwind.style(
-            `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 android:pb-[${
+            `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
               bottom === 0 ? 16 : bottom
             }px]`,
           )}
         >
-          <RadioGroup
-            value={selectedSize}
-            onChange={(value: string) => setSelectedSize(value as SelectSizes)}
-            orientation="horizontal"
-          >
-            <Group label="Sizes">
+          <Group label="Sizes">
+            <RadioGroup
+              value={selectedSize}
+              onChange={(value: string) =>
+                setSelectedSize(value as SelectSizes)
+              }
+              orientation="horizontal"
+            >
               <Radio value="sm" label="sm" />
               <Radio value="md" label="md" />
               <Radio value="lg" label="lg" />
               <Radio value="xl" label="xl" />
-            </Group>
-          </RadioGroup>
-          <RadioGroup
-            value={selectedVariant}
-            onChange={(value: string) =>
-              setSelectedVariant(value as SelectVariants)
-            }
-            orientation="horizontal"
-          >
-            <Group label="Variant" style={tailwind.style("mt-2")}>
+            </RadioGroup>
+          </Group>
+          <Group label="Variant" style={tailwind.style("mt-2")}>
+            <RadioGroup
+              value={selectedVariant}
+              onChange={(value: string) =>
+                setSelectedVariant(value as SelectVariants)
+              }
+              orientation="horizontal"
+            >
               <Radio value="outline" label="outline" />
               <Radio value="subtle" label="subtle" />
               <Radio value="underline" label="underline" />
               <Radio value="ghost" label="ghost" />
-            </Group>
-          </RadioGroup>
+            </RadioGroup>
+          </Group>
           <Box
             style={tailwind.style(
               "flex flex-row justify-start flex-wrap w-full",
