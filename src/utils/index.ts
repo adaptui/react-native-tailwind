@@ -11,3 +11,4 @@ export * from "./isUndefined";
 export * from "./react";
 export * from "./styleAdapter";
 export * from "./types";
+export * from "./useScaleAnimation";
