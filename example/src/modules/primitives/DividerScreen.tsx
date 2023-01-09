@@ -56,31 +56,31 @@ export const DividerScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={selectedLabelPosition}
-          onChange={(value: string) =>
-            setSelectedLabelPosition(value as DividerLabelPosition)
-          }
-          orientation="horizontal"
-        >
-          <Group label="Position">
+        <Group label="Position">
+          <RadioGroup
+            value={selectedLabelPosition}
+            onChange={(value: string) =>
+              setSelectedLabelPosition(value as DividerLabelPosition)
+            }
+            orientation="horizontal"
+          >
             <Radio value="start" label="start" />
             <Radio value="center" label="center" />
             <Radio value="end" label="end" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedOrientation}
-          onChange={(value: string) =>
-            setSelectedOrientation(value as DividerOrientation)
-          }
-          orientation="horizontal"
-        >
-          <Group label="Orientation" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Orientation" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedOrientation}
+            onChange={(value: string) =>
+              setSelectedOrientation(value as DividerOrientation)
+            }
+            orientation="horizontal"
+          >
             <Radio value="horizontal" label="horizontal" />
             <Radio value="vertical" label="vertical" />
-          </Group>
-        </RadioGroup>
+          </RadioGroup>
+        </Group>
         <Box
           style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >

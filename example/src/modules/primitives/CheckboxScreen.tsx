@@ -53,28 +53,32 @@ export const CheckboxScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={selectedSize}
-          onChange={(value: string) => setSelectedSize(value as CheckboxSizes)}
-          orientation="horizontal"
-        >
-          <Group label="Sizes">
+        <Group label="Sizes">
+          <RadioGroup
+            value={selectedSize}
+            onChange={(value: string) =>
+              setSelectedSize(value as CheckboxSizes)
+            }
+            orientation="horizontal"
+          >
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
             <Radio value="lg" label="lg" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedTheme}
-          onChange={(value: string) => setSelectedTheme(value as CheckboxTheme)}
-          orientation="horizontal"
-        >
-          <Group label="Theme" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Theme" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedTheme}
+            onChange={(value: string) =>
+              setSelectedTheme(value as CheckboxTheme)
+            }
+            orientation="horizontal"
+          >
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />
             <Radio value="danger" label="danger" />
-          </Group>
-        </RadioGroup>
+          </RadioGroup>
+        </Group>
         <Box
           style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >

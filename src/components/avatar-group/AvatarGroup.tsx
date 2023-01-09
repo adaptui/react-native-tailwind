@@ -77,6 +77,7 @@ export const AvatarGroup: React.FC<Partial<AvatarGroupProps>> = props => {
               showRing
                 ? { borderColor: ringColor, backgroundColor: ringColor }
                 : {},
+              { zIndex: childrenWithinMax.length - index },
             ]}
             key={index}
           >

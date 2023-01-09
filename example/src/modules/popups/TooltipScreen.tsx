@@ -39,7 +39,7 @@ export const TooltipScreen = () => {
               themeColor="success"
               size="sm"
             >
-              Tooltip
+              Click here
             </Button>
           }
           content="2 out 3 tasks completed"
@@ -54,14 +54,15 @@ export const TooltipScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={tooltipPlacement}
-          onChange={(value: string) =>
-            setTooltipPlacement(value as TooltipPlacement)
-          }
-          orientation="horizontal"
-        >
-          <Group label="Position">
+        <Group label="Position">
+          <RadioGroup
+            value={tooltipPlacement}
+            onChange={(value: string) =>
+              setTooltipPlacement(value as TooltipPlacement)
+            }
+            orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
+          >
             <Radio value="top" label="top" />
             <Radio value="bottom" label="bottom" />
             <Radio value="left" label="left" />
@@ -74,9 +75,11 @@ export const TooltipScreen = () => {
             <Radio value="right top" label="right top" />
             <Radio value="left bottom" label="left bottom" />
             <Radio value="left top" label="left top" />
-          </Group>
-        </RadioGroup>
-        <Box style={tailwind.style("flex flex-row justify-start w-full")}>
+          </RadioGroup>
+        </Group>
+        <Box
+          style={tailwind.style("flex flex-row justify-start w-full flex-wrap")}
+        >
           <Switch
             state={hasArrow}
             onStateChange={(value: SetStateAction<boolean>) =>

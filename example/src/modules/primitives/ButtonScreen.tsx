@@ -35,7 +35,6 @@ export const ButtonScreen = () => {
         )}
       >
         <Button
-          style={tailwind.style("mx-1")}
           variant={selectedVariant}
           themeColor={selectedTheme}
           size={selectedSize}
@@ -53,45 +52,46 @@ export const ButtonScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={selectedSize}
-          onChange={(value: string) => setSelectedSize(value as ButtonSizes)}
-          orientation="horizontal"
-        >
-          <Group label="Sizes">
+        <Group label="Sizes">
+          <RadioGroup
+            value={selectedSize}
+            onChange={(value: string) => setSelectedSize(value as ButtonSizes)}
+            orientation="horizontal"
+          >
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
             <Radio value="lg" label="lg" />
             <Radio value="xl" label="xl" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedVariant}
-          onChange={(value: string) =>
-            setSelectedVariant(value as ButtonVariants)
-          }
-          orientation="horizontal"
-        >
-          <Group label="Variants" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Variants" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedVariant}
+            onChange={(value: string) =>
+              setSelectedVariant(value as ButtonVariants)
+            }
+            orientation="horizontal"
+          >
             <Radio value="outline" label="outline" />
             <Radio value="ghost" label="ghost" />
             <Radio value="solid" label="solid" />
             <Radio value="subtle" label="subtle" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedTheme}
-          onChange={(value: string) => setSelectedTheme(value as ButtonTheme)}
-          orientation="horizontal"
-        >
-          <Group label="Theme" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Theme" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedTheme}
+            onChange={(value: string) => setSelectedTheme(value as ButtonTheme)}
+            orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
+          >
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />
             <Radio value="secondary" label="secondary" />
             <Radio value="success" label="success" />
             <Radio value="danger" label="danger" />
-          </Group>
-        </RadioGroup>
+          </RadioGroup>
+        </Group>
         <Box
           style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >

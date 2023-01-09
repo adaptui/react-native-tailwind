@@ -43,44 +43,47 @@ export const SpinnerScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={selectedSize}
-          onChange={(value: string) => setSelectedSize(value as SpinnerSizes)}
-          orientation="horizontal"
-        >
-          <Group label="Sizes">
+        <Group label="Sizes">
+          <RadioGroup
+            value={selectedSize}
+            onChange={(value: string) => setSelectedSize(value as SpinnerSizes)}
+            orientation="horizontal"
+          >
             <Radio value="xs" label="xs" />
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
             <Radio value="lg" label="lg" />
             <Radio value="xl" label="xl" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedTheme}
-          onChange={(value: string) => setSelectedTheme(value as SpinnerTheme)}
-          orientation="horizontal"
-        >
-          <Group label="Theme" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Theme" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedTheme}
+            onChange={(value: string) =>
+              setSelectedTheme(value as SpinnerTheme)
+            }
+            orientation="horizontal"
+            style={tailwind.style("flex-wrap")}
+          >
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />
             <Radio value="secondary" label="secondary" />
             <Radio value="success" label="success" />
             <Radio value="danger" label="danger" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedSpinnerTrackVisibility}
-          onChange={(value: string) =>
-            setSelectedSpinnerTrackVisibility(value as SpinnerTrackVisibility)
-          }
-          orientation="horizontal"
-        >
-          <Group label="Track" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Track" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedSpinnerTrackVisibility}
+            onChange={(value: string) =>
+              setSelectedSpinnerTrackVisibility(value as SpinnerTrackVisibility)
+            }
+            orientation="horizontal"
+          >
             <Radio value="visible" label="visible" />
             <Radio value="transparent" label="transparent" />
-          </Group>
-        </RadioGroup>
+          </RadioGroup>
+        </Group>
       </Box>
     </Box>
   );

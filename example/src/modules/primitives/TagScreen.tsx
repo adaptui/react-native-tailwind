@@ -40,7 +40,6 @@ export const TagScreen = () => {
           prefix={hasPrefix ? <Icon icon={<Slot />} /> : null}
           suffix={hasSuffix ? <Icon icon={<Slot />} /> : null}
           closable={isClosable}
-          style={tailwind.style("mx-1")}
         >
           Continue
         </Tag>
@@ -53,39 +52,41 @@ export const TagScreen = () => {
           }px]`,
         )}
       >
-        <RadioGroup
-          value={selectedSize}
-          onChange={(value: string) => setSelectedSize(value as TagSize)}
-          orientation="horizontal"
-        >
-          <Group label="Sizes">
+        <Group label="Sizes">
+          <RadioGroup
+            value={selectedSize}
+            onChange={(value: string) => setSelectedSize(value as TagSize)}
+            orientation="horizontal"
+          >
             <Radio value="sm" label="sm" />
             <Radio value="md" label="md" />
             <Radio value="lg" label="lg" />
             <Radio value="xl" label="xl" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedVariant}
-          onChange={(value: string) => setSelectedVariant(value as TagVariant)}
-          orientation="horizontal"
-        >
-          <Group label="Variant" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Variant" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedVariant}
+            onChange={(value: string) =>
+              setSelectedVariant(value as TagVariant)
+            }
+            orientation="horizontal"
+          >
             <Radio value="outline" label="outline" />
             <Radio value="subtle" label="subtle" />
             <Radio value="solid" label="solid" />
-          </Group>
-        </RadioGroup>
-        <RadioGroup
-          value={selectedTheme}
-          onChange={(value: string) => setSelectedTheme(value as TagTheme)}
-          orientation="horizontal"
-        >
-          <Group label="Theme" style={tailwind.style("mt-2")}>
+          </RadioGroup>
+        </Group>
+        <Group label="Theme" style={tailwind.style("mt-2")}>
+          <RadioGroup
+            value={selectedTheme}
+            onChange={(value: string) => setSelectedTheme(value as TagTheme)}
+            orientation="horizontal"
+          >
             <Radio value="base" label="base" />
             <Radio value="primary" label="primary" />
-          </Group>
-        </RadioGroup>
+          </RadioGroup>
+        </Group>
         <Box
           style={tailwind.style("flex flex-row justify-start flex-wrap w-full")}
         >
