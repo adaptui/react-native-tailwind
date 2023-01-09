@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo, useRef, useState } from "react";
 import { Platform, TextInputProps } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
-import { useTailwind, useTheme } from "../../theme";
+import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   cx,
   generateBoxShadow,
@@ -235,6 +235,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
               _suffix ? `pr-[${suffixWidth}px]` : "",
             ),
           ),
+          getTextFontFamily(textAreaTheme.size[size]?.base?.default),
           isFocussedWeb.value
             ? Platform.select({
                 web: {

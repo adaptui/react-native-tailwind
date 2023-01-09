@@ -94,7 +94,7 @@ export const radio = {
           },
         },
         checked: {
-          default: "bg-gray-900 border-gray-900",
+          default: "bg-gray-900 border-gray-900 border-0",
           hover: "bg-gray-800 border-gray-800 shadow shadow-color-opacity-10",
           press: "bg-gray-700 border-gray-700",
           disabled: "bg-gray-200 border-gray-200",
@@ -146,7 +146,7 @@ export const radio = {
           },
         },
         checked: {
-          default: "bg-blue-600 border-blue-600",
+          default: "bg-blue-600 border-blue-600 border-0",
           hover: "bg-blue-700 border-blue-700 shadow shadow-color-opacity-10",
           press: "bg-blue-800 border-blue-800",
           disabled: "bg-blue-100 border-blue-100",
@@ -198,7 +198,7 @@ export const radio = {
           },
         },
         checked: {
-          default: "bg-red-600 border-red-600",
+          default: "bg-red-600 border-red-600 border-0",
           hover: "bg-red-700 border-red-700 shadow shadow-color-opacity-10",
           press: "bg-red-800 border-red-800",
           disabled: "bg-red-100 border-red-100",
