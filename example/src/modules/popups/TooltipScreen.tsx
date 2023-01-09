@@ -1,14 +1,19 @@
 import React, { SetStateAction, useState } from "react";
-import { Platform, Pressable } from "react-native";
+import { Platform, Pressable, PressableStateCallbackType } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
+  cx,
+  generateBoxShadow,
   Radio,
   RadioGroup,
   Switch,
   Text,
   Tooltip,
   TooltipPlacement,
+  useOnFocus,
+  useOnHover,
+  useTailwind,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
@@ -16,6 +21,10 @@ import { Group } from "../../components";
 
 export const TooltipScreen = () => {
   const tailwind = useTheme();
+  const buttonTheme = useTheme("button");
+  const { gc, ts } = useTailwind();
+  const { hovered } = useOnHover();
+  const { focused } = useOnFocus();
 
   const [hasArrow, setHasArrow] = useState<boolean>(false);
   const [hasOffset, setHasOffset] = useState<boolean>(false);
@@ -35,9 +44,49 @@ export const TooltipScreen = () => {
           hasArrow={hasArrow}
           placement={tooltipPlacement}
           trigger={
-            <Pressable>
-              <Text>
-                {Platform.OS === "web" ? "Hover here" : "Click here"}{" "}
+            <Pressable
+              style={(touchState: PressableStateCallbackType) => {
+                return [
+                  ts(
+                    cx(
+                      buttonTheme.base,
+                      buttonTheme.size.lg?.default,
+                      buttonTheme.themeColor.success?.solid?.container?.wrapper,
+                      hovered.value
+                        ? buttonTheme.themeColor.success?.solid?.container
+                            ?.hover
+                        : "",
+                      touchState.pressed
+                        ? buttonTheme.themeColor.success?.solid?.container
+                            ?.pressed
+                        : "",
+                    ),
+                  ),
+                  focused.value
+                    ? Platform.select({
+                        web: {
+                          outline: 0,
+                          boxShadow: `${generateBoxShadow(
+                            buttonTheme.themeColor.success?.solid?.container
+                              ?.focus?.offset,
+                            gc(
+                              cx(
+                                buttonTheme.themeColor.success?.solid?.container
+                                  ?.focus?.color,
+                              ),
+                            ) as string,
+                          )}`,
+                          borderColor:
+                            buttonTheme.themeColor.success?.solid?.container
+                              ?.focus?.borderColor,
+                        },
+                      })
+                    : {},
+                ];
+              }}
+            >
+              <Text style={tailwind.style("font-bold text-white-900")}>
+                {Platform.OS === "web" ? "Hover here" : "Click here"}
               </Text>
             </Pressable>
           }
