@@ -39,7 +39,7 @@ type AnimationTypes = SpringAnimation | TimingAnimation;
 const DefaultSpringConfig: WithSpringConfig = {
   mass: 1,
   damping: 17,
-  stiffness: 230,
+  stiffness: 250,
   overshootClamping: false,
   restSpeedThreshold: 0.001,
   restDisplacementThreshold: 0.001,
