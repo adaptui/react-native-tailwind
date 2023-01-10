@@ -127,7 +127,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
     const { ts, gc } = useTailwind();
     const buttonTheme = useTheme("button");
     const { handlers, animatedStyle } = useScaleAnimation();
-    const { hapticMedium } = useHaptic();
+    const hapticMedium = useHaptic("medium");
     const { onHoverIn, onHoverOut, hovered } = useOnHover();
     const { onFocus, onBlur, focused } = useOnFocus();
 

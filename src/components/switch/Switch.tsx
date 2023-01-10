@@ -135,7 +135,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
   });
 
   const thumbAnimated = useSharedValue(switchState ? 1 : 0);
-  const { hapticSelection } = useHaptic();
+  const hapticSelection = useHaptic();
   /**
    * Setting Active/Inactive and Default Colors
    */
