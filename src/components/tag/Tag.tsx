@@ -89,7 +89,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
   const { onFocus, onBlur, focused } = useOnFocus();
   const { handlers, animatedStyle } = useScaleAnimation();
-  const { hapticSelection } = useHaptic();
+  const hapticSelection = useHaptic();
 
   const {
     size = "md",

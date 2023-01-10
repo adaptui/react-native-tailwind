@@ -87,7 +87,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
   const { onFocus, onBlur, focused } = useOnFocus();
-  const { hapticSelection } = useHaptic();
+  const hapticSelection = useHaptic();
   const { handlers, animatedStyle } = useScaleAnimation();
   const state = useRadioGroupContext();
 
