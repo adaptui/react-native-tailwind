@@ -1,5 +1,5 @@
 import React, { SetStateAction, useState } from "react";
-import { Platform, Pressable, PressableStateCallbackType } from "react-native";
+import { Platform, PressableStateCallbackType } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
@@ -11,6 +11,7 @@ import {
   Text,
   Tooltip,
   TooltipPlacement,
+  Touchable,
   useOnFocus,
   useOnHover,
   useTailwind,
@@ -44,7 +45,7 @@ export const TooltipScreen = () => {
           hasArrow={hasArrow}
           placement={tooltipPlacement}
           trigger={
-            <Pressable
+            <Touchable
               style={(touchState: PressableStateCallbackType) => {
                 return [
                   ts(
@@ -88,7 +89,7 @@ export const TooltipScreen = () => {
               <Text style={tailwind.style("font-bold text-white-900")}>
                 {Platform.OS === "web" ? "Hover here" : "Click here"}
               </Text>
-            </Pressable>
+            </Touchable>
           }
           content="2 out 3 tasks completed"
           mainOffset={hasOffset ? 15 : 0}
