@@ -1,33 +1,25 @@
 import { useCallback, useMemo } from "react";
 import * as Haptics from "expo-haptics";
 
-export const hapticOptions = {
-  enableVibrateFallback: true,
-  ignoreAndroidSystemSettings: true,
-};
+type FeedbackType = "light" | "medium" | "heavy" | "selection";
 
-export const useHaptic = () => {
-  const hapticHeavy = useCallback(
-    () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy),
+export const useHaptic = (feedbackType: FeedbackType = "selection") => {
+  const createHapticHandler = useCallback(
+    (type: Haptics.ImpactFeedbackStyle) => {
+      return () => Haptics.impactAsync(type);
+    },
     [],
   );
-  const hapticMedium = useCallback(
-    () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium),
-    [],
-  );
-  const hapticLight = useCallback(
-    () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
-    [],
-  );
-  const hapticSelection = useCallback(() => Haptics.selectionAsync(), []);
-  const hapticHandlers = useMemo(() => {
-    return {
-      hapticLight,
-      hapticMedium,
-      hapticHeavy,
-      hapticSelection,
-    };
-  }, [hapticHeavy, hapticLight, hapticMedium, hapticSelection]);
 
-  return hapticHandlers;
+  const hapticHandlers = useMemo(
+    () => ({
+      light: createHapticHandler(Haptics.ImpactFeedbackStyle.Light),
+      medium: createHapticHandler(Haptics.ImpactFeedbackStyle.Medium),
+      heavy: createHapticHandler(Haptics.ImpactFeedbackStyle.Heavy),
+      selection: Haptics.selectionAsync,
+    }),
+    [createHapticHandler],
+  );
+
+  return hapticHandlers[feedbackType];
 };
