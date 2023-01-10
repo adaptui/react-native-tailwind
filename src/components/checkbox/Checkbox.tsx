@@ -22,6 +22,7 @@ import {
   cx,
   generateBoxShadow,
   styleAdapter,
+  useHaptic,
   useOnFocus,
   useOnHover,
   useScaleAnimation,
@@ -91,6 +92,12 @@ export interface CheckboxProps extends TouchableProps {
    * Checkbox State Value if inside CheckboxGroup
    */
   value: string;
+  /**
+   * When set to true, The Tap creates a Touch Feedback
+   * Check more -> https://docs.expo.dev/versions/latest/sdk/haptics/
+   * @default true
+   */
+  hapticEnabled: boolean;
 }
 
 const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
@@ -117,11 +124,17 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     setSelected,
     isInvalid,
     accessibilityLabel = "Check me",
+    hapticEnabled = true,
     isIndeterminate,
     isDisabled,
     style,
     index,
   } = props;
+
+  const { onHoverIn, onHoverOut, hovered } = useOnHover();
+  const { onFocus, onBlur, focused } = useOnFocus();
+  const { handlers, animatedStyle } = useScaleAnimation();
+  const { hapticSelection } = useHaptic();
 
   const hasOnlyLabel = label && !description;
 
@@ -165,6 +178,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   }, [checkboxToggleState.isSelected, isIndeterminate]);
 
   const handleChange = useCallback(() => {
+    hapticEnabled && hapticSelection();
     if (checkboxGroupState) {
       if (props.value) {
         if (checkboxToggleState.isSelected) {
@@ -176,11 +190,8 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
     } else {
       checkboxToggleState.toggle();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkboxGroupState, checkboxToggleState, props.value]);
-
-  const { onHoverIn, onHoverOut, hovered } = useOnHover();
-  const { onFocus, onBlur, focused } = useOnFocus();
-  const { handlers, animatedStyle } = useScaleAnimation();
 
   const children = ({
     pressed = false,

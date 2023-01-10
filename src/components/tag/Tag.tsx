@@ -1,5 +1,6 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useCallback } from "react";
 import {
+  GestureResponderEvent,
   Platform,
   PressableProps,
   PressableStateCallbackType,
@@ -15,6 +16,7 @@ import {
   generateBoxShadow,
   RenderPropType,
   styleAdapter,
+  useHaptic,
   useOnFocus,
   useOnHover,
   useScaleAnimation,
@@ -69,6 +71,12 @@ export interface TagProps extends PressableProps {
    * VoiceOver will read this string when a user selects the associated element.
    */
   accesibilityLabel: string;
+  /**
+   * When set to true, The Tap creates a Touch Feedback
+   * Check more -> https://docs.expo.dev/versions/latest/sdk/haptics/
+   * @default true
+   */
+  hapticEnabled: boolean;
 }
 
 const RNTag: React.FC<Partial<TagProps>> = forwardRef<
@@ -81,6 +89,8 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
   const { onFocus, onBlur, focused } = useOnFocus();
   const { handlers, animatedStyle } = useScaleAnimation();
+  const { hapticSelection } = useHaptic();
+
   const {
     size = "md",
     variant = "solid",
@@ -91,8 +101,16 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     style,
     textStyle,
     accesibilityLabel,
+    hapticEnabled = true,
+    onPress,
     ...otherProps
   } = props;
+
+  const handlePress = useCallback((event: GestureResponderEvent) => {
+    onPress && onPress(event);
+    hapticEnabled && hapticSelection();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /* Prefix Slot */
   const _prefix =
@@ -226,6 +244,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
         accessibilityRole="button"
         accessibilityLabel={accesibilityLabel}
         {...handlers}
+        onPress={handlePress}
       >
         <>
           {_prefix}
