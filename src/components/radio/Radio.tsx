@@ -14,6 +14,7 @@ import {
   cx,
   generateBoxShadow,
   styleAdapter,
+  useHaptic,
   useOnFocus,
   useOnHover,
   useScaleAnimation,
@@ -49,6 +50,12 @@ export interface RadioProps extends TouchableProps {
    * @default "Tap me"
    */
   accesibilityLabel: string;
+  /**
+   * When set to true, The Tap creates a Touch Feedback
+   * Check more -> https://docs.expo.dev/versions/latest/sdk/haptics/
+   * @default true
+   */
+  hapticEnabled: boolean;
 }
 
 const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
@@ -61,6 +68,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
     isInvalid = false,
     isDisabled: isDisabledFromProps,
     accesibilityLabel = "Tap me",
+    hapticEnabled = true,
     style,
     index,
     focusable,
@@ -79,8 +87,10 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
   const { onFocus, onBlur, focused } = useOnFocus();
+  const { hapticSelection } = useHaptic();
   const { handlers, animatedStyle } = useScaleAnimation();
   const state = useRadioGroupContext();
+
   const {
     themeColor: themeColorFromGroupContext,
     size: sizeFromGroupContext,
@@ -101,9 +111,11 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   }, [index, props?.value, selectedValue, setFocusableIndex]);
 
   const handleChange = useCallback(() => {
+    hapticEnabled && hapticSelection();
     // @ts-ignore
     setSelectedValue(props?.value);
     setFocusableIndex(index as number);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, props?.value, setFocusableIndex, setSelectedValue]);
 
   const size = sizeFromGroupContext;

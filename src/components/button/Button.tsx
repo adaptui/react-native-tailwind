@@ -1,5 +1,6 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useCallback } from "react";
 import {
+  GestureResponderEvent,
   Platform,
   PressableProps,
   PressableStateCallbackType,
@@ -14,6 +15,7 @@ import {
   cx,
   generateBoxShadow,
   styleAdapter,
+  useHaptic,
   useOnFocus,
   useOnHover,
   useScaleAnimation,
@@ -91,6 +93,12 @@ export interface ButtonProps extends PressableProps {
    * VoiceOver will read this string when a user selects the associated element.
    */
   accesibilityLabel: string;
+  /**
+   * When set to true, The Tap creates a Touch Feedback
+   * Check more -> https://docs.expo.dev/versions/latest/sdk/haptics/
+   * @default true
+   */
+  hapticEnabled: boolean;
 }
 
 const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
@@ -103,6 +111,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       variant = "solid",
       themeColor = "base",
       loading = false,
+      hapticEnabled = true,
       prefix,
       suffix,
       iconOnly,
@@ -110,6 +119,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
       textStyle,
       style,
       accesibilityLabel,
+      onPress,
       ...props
     },
     ref,
@@ -117,12 +127,19 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
     const { ts, gc } = useTailwind();
     const buttonTheme = useTheme("button");
     const { handlers, animatedStyle } = useScaleAnimation();
+    const { hapticMedium } = useHaptic();
     const { onHoverIn, onHoverOut, hovered } = useOnHover();
     const { onFocus, onBlur, focused } = useOnFocus();
 
     const iconAspectRatio = 1;
 
     const isButtonDisabled = props.disabled || loading;
+
+    const handlePress = useCallback((event: GestureResponderEvent) => {
+      onPress && onPress(event);
+      hapticEnabled && hapticMedium();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     /**
      * Button Prefix Component
@@ -329,6 +346,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           ref={ref}
           disabled={isButtonDisabled}
           {...handlers}
+          onPress={handlePress}
         >
           {children}
         </Touchable>
