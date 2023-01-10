@@ -29,11 +29,7 @@ export const ButtonScreen = () => {
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
-      <Box
-        style={tailwind.style(
-          "flex-1 px-2 justify-center items-center bg-white-900",
-        )}
-      >
+      <Box style={tailwind.style("flex-1 px-2 justify-center bg-white-900")}>
         <Button
           variant={selectedVariant}
           themeColor={selectedTheme}
