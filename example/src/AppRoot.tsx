@@ -10,6 +10,7 @@ import { Divider } from "../../src/components";
 import { Box, Text } from "../../src/primitives";
 import { useTheme } from "../../src/theme";
 
+import AboutScreen from "./pages/AboutScreen";
 import {
   AvatarGroupScreen,
   AvatarScreen,
@@ -88,6 +89,7 @@ const CustomDrawerSection = (props: DrawerContentComponentProps) => {
           </Box>
         );
       })}
+      <Box style={tailwind.style("h-8 w-full")} />
     </DrawerContentScrollView>
   );
 };
@@ -209,12 +211,17 @@ const AppRoot = () => {
         name="ProgressScreen"
         component={ProgressScreen}
       />
-
       <Drawer.Screen
         // @ts-ignore
         options={{ title: "Tooltip", groupName: "POPUPS" }}
         name="TooltipScreen"
         component={TooltipScreen}
+      />
+      <Drawer.Screen
+        // @ts-ignore
+        options={{ title: "About" }}
+        name="AboutScreen"
+        component={AboutScreen}
       />
     </Drawer.Navigator>
   );
