@@ -28,9 +28,8 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=4096"
-          yarn install
+        env: NODE_OPTIONS: "--max_old_space_size=4096"
+        run: yarn install
 
       - name: Build
         run: yarn build
