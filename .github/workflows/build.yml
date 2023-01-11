@@ -29,8 +29,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-        export NODE_OPTIONS="--max_old_space_size=4096"
-        yarn install
+          export NODE_OPTIONS="--max_old_space_size=4096"
+          yarn install
 
       - name: Build
         run: yarn build
