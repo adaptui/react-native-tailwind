@@ -116,7 +116,7 @@ const AboutScreen = ({ navigation }) => {
           </Text>
           <Text style={tailwind.style("font-medium")}>
             Made with 💖 by
-            <Text style={tailwind.style("font-bold")}>Timeless</Text>
+            <Text style={tailwind.style("font-bold")}> Timeless</Text>
           </Text>
         </Box>
 
