@@ -5,8 +5,10 @@ import {
   DrawerContentScrollView,
   DrawerItem,
 } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import { Divider } from "../../src/components";
+import { Button, Divider, Icon } from "../../src/components";
+import { FastBackward } from "../../src/icons";
 import { Box, Text } from "../../src/primitives";
 import { useTheme } from "../../src/theme";
 
@@ -32,6 +34,8 @@ import {
   TextAreaScreen,
   TooltipScreen,
 } from "./modules";
+
+const Stack = createStackNavigator();
 
 const Drawer = createDrawerNavigator();
 
@@ -94,11 +98,25 @@ const CustomDrawerSection = (props: DrawerContentComponentProps) => {
   );
 };
 
-const AppRoot = () => {
+const DrawerNavigator = ({ navigation }) => {
+  const tailwind = useTheme();
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawerSection}
       initialRouteName="AvatarScreen"
+      screenOptions={{
+        headerRight: () => (
+          <Box style={tailwind.style("mr-2")}>
+            <Button
+              variant="ghost"
+              size="md"
+              onPress={() => navigation.navigate("About")}
+            >
+              <Icon size={18} icon={<FastBackward />} />
+            </Button>
+          </Box>
+        ),
+      }}
     >
       <Drawer.Screen
         // @ts-ignore
@@ -217,13 +235,24 @@ const AppRoot = () => {
         name="TooltipScreen"
         component={TooltipScreen}
       />
-      <Drawer.Screen
-        // @ts-ignore
-        options={{ title: "About" }}
-        name="AboutScreen"
-        component={AboutScreen}
-      />
     </Drawer.Navigator>
+  );
+};
+
+const AppRoot = () => {
+  return (
+    <Stack.Navigator initialRouteName="About">
+      <Stack.Screen
+        name="About"
+        component={AboutScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Components"
+        component={DrawerNavigator}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
   );
 };
 

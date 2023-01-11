@@ -7,7 +7,7 @@ import Constants from "expo-constants";
 
 import { Group } from "../components";
 
-const AboutScreen = () => {
+const AboutScreen = ({ navigation }) => {
   const { bottom } = useSafeAreaInsets();
   const tailwind = useTheme();
 
@@ -120,13 +120,22 @@ const AboutScreen = () => {
           </Text>
         </Box>
 
-        <Group label="" style={tailwind.style("mt-2 mt-auto")}>
+        <Group label="" style={tailwind.style("mt-auto shadow-xl")}>
           <Box style={tailwind.style("flex-col w-full p-2")}>
+            <Button
+              onPress={() => {
+                navigation.navigate("Components");
+              }}
+              size="lg"
+            >
+              View Components
+            </Button>
             <Button
               onPress={() => {
                 Linking.openURL("https://timeless.co");
               }}
               size="lg"
+              style={tailwind.style("mt-6")}
             >
               Visit our website
             </Button>
@@ -135,7 +144,7 @@ const AboutScreen = () => {
                 Linking.openURL("https://twitter.com/timelessco");
               }}
               size="lg"
-              style={tailwind.style("mt-3")}
+              style={tailwind.style("mt-6")}
             >
               Follow us on Twitter
             </Button>
@@ -144,7 +153,7 @@ const AboutScreen = () => {
                 Linking.openURL("mailto:hello@timeless.co");
               }}
               size="lg"
-              style={tailwind.style("mt-3")}
+              style={tailwind.style("mt-6")}
             >
               Contact Us
             </Button>

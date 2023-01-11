@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { Keyboard } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
@@ -11,6 +12,7 @@ import {
   TextArea,
   TextAreaSizes,
   TextAreaVariants,
+  TouchableWithoutFeedback,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
@@ -38,18 +40,20 @@ export const TextAreaScreen = () => {
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
-      <Box style={tailwind.style("flex-1 px-2 justify-center")}>
-        <TextArea
-          placeholder={"Type Something...."}
-          size={size}
-          variant={hasvariant}
-          loading={isLoading}
-          invalid={isInvalid}
-          suffix={suffix}
-          editable={!isDisabled}
-          ref={textAreaRef}
-        />
-      </Box>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <Box style={tailwind.style("flex-1 px-2 justify-center")}>
+          <TextArea
+            placeholder={"Type Something...."}
+            size={size}
+            variant={hasvariant}
+            loading={isLoading}
+            invalid={isInvalid}
+            suffix={suffix}
+            editable={!isDisabled}
+            ref={textAreaRef}
+          />
+        </Box>
+      </TouchableWithoutFeedback>
       <Box
         style={tailwind.style(
           `rounded-t-lg shadow-lg bg-gray-100 justify-end px-2 pt-2 pb-[${
