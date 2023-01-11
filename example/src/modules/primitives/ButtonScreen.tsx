@@ -25,13 +25,17 @@ export const ButtonScreen = () => {
   const [hasPrefix, setHasPrefix] = useState<boolean>(false);
   const [hasSuffix, setHasSuffix] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [fullWidth, setFullWidth] = useState<boolean>(false);
+
   const { bottom } = useSafeAreaInsets();
 
   return (
     <Box style={tailwind.style("flex-1 justify-center bg-white-900")}>
       <Box
         style={tailwind.style(
-          "flex-1 px-2 justify-center items-center bg-white-900",
+          `flex-1 px-2 justify-center bg-white-900 ${
+            fullWidth ? "" : "items-center"
+          }`,
         )}
       >
         <Button
@@ -121,6 +125,15 @@ export const ButtonScreen = () => {
             size="md"
             style={tailwind.style("mt-2 ml-1")}
             label="Loading"
+          />
+          <Switch
+            state={fullWidth}
+            onStateChange={(value: SetStateAction<boolean>) =>
+              setFullWidth(value)
+            }
+            size="md"
+            style={tailwind.style("mt-2 ml-1")}
+            label="Full Width"
           />
         </Box>
       </Box>

@@ -1,15 +1,23 @@
 import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import { Platform, PressableStateCallbackType } from "react-native";
 
-import { Box, Text, Touchable, TouchableProps } from "../../primitives";
+import {
+  AnimatedBox,
+  Box,
+  Text,
+  Touchable,
+  TouchableProps,
+} from "../../primitives";
 import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
   cx,
   generateBoxShadow,
   styleAdapter,
+  useHaptic,
   useOnFocus,
   useOnHover,
+  useScaleAnimation,
 } from "../../utils";
 import { mergeRefs } from "../../utils/mergeRefs";
 
@@ -42,6 +50,12 @@ export interface RadioProps extends TouchableProps {
    * @default "Tap me"
    */
   accesibilityLabel: string;
+  /**
+   * When set to true, The Tap creates a Touch Feedback
+   * Check more -> https://docs.expo.dev/versions/latest/sdk/haptics/
+   * @default true
+   */
+  hapticEnabled: boolean;
 }
 
 const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
@@ -54,6 +68,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
     isInvalid = false,
     isDisabled: isDisabledFromProps,
     accesibilityLabel = "Tap me",
+    hapticEnabled = true,
     style,
     index,
     focusable,
@@ -72,8 +87,10 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
   const { onFocus, onBlur, focused } = useOnFocus();
-
+  const hapticSelection = useHaptic();
+  const { handlers, animatedStyle } = useScaleAnimation();
   const state = useRadioGroupContext();
+
   const {
     themeColor: themeColorFromGroupContext,
     size: sizeFromGroupContext,
@@ -94,9 +111,11 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   }, [index, props?.value, selectedValue, setFocusableIndex]);
 
   const handleChange = useCallback(() => {
+    hapticEnabled && hapticSelection();
     // @ts-ignore
     setSelectedValue(props?.value);
     setFocusableIndex(index as number);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, props?.value, setFocusableIndex, setSelectedValue]);
 
   const size = sizeFromGroupContext;
@@ -247,89 +266,92 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   };
 
   return (
-    <Touchable
-      onPress={handleChange}
-      // Web Callbacks
-      onHoverIn={onHoverIn}
-      onHoverOut={onHoverOut}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      // Web Callbacks
-      style={(touchState: PressableStateCallbackType) => [
-        ts([
-          cx(
-            radioTheme?.label?.common,
-            index !== 0 ? radioTheme?.group[orientation]?.spacing : "",
-            description ? radioTheme?.label?.withDescription : "",
-            radioTheme.size[size]?.label?.wrapper,
-            touchState.pressed
-              ? hasOnlyLabel
-                ? radioTheme.themeColor[themeColor]?.label?.pressed
-                : ""
-              : "",
-            hovered.value && hasOnlyLabel
-              ? radioTheme.themeColor[themeColor]?.label?.hover
-              : "",
-          ),
-        ]),
-        focused.value
-          ? Platform.select({
-              web: {
-                outline: 0,
-                boxShadow: hasOnlyLabel
-                  ? `${generateBoxShadow(
-                      radioTheme.themeColor[themeColor]?.label?.focus?.offset,
-                      gc(
+    <AnimatedBox style={animatedStyle}>
+      <Touchable
+        onPress={handleChange}
+        // Web Callbacks
+        onHoverIn={onHoverIn}
+        onHoverOut={onHoverOut}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        // Web Callbacks
+        style={(touchState: PressableStateCallbackType) => [
+          ts([
+            cx(
+              radioTheme?.label?.common,
+              index !== 0 ? radioTheme?.group[orientation]?.spacing : "",
+              description ? radioTheme?.label?.withDescription : "",
+              radioTheme.size[size]?.label?.wrapper,
+              touchState.pressed
+                ? hasOnlyLabel
+                  ? radioTheme.themeColor[themeColor]?.label?.pressed
+                  : ""
+                : "",
+              hovered.value && hasOnlyLabel
+                ? radioTheme.themeColor[themeColor]?.label?.hover
+                : "",
+            ),
+          ]),
+          focused.value
+            ? Platform.select({
+                web: {
+                  outline: 0,
+                  boxShadow: hasOnlyLabel
+                    ? `${generateBoxShadow(
+                        radioTheme.themeColor[themeColor]?.label?.focus?.offset,
+                        gc(
+                          cx(
+                            radioTheme.themeColor[themeColor]?.label?.focus
+                              ?.color,
+                          ),
+                        ) as string,
+                      )}`
+                    : "",
+                  backgroundColor: hasOnlyLabel
+                    ? (gc(
                         cx(
                           radioTheme.themeColor[themeColor]?.label?.focus
-                            ?.color,
+                            ?.backgroundColor,
                         ),
-                      ) as string,
-                    )}`
-                  : "",
-                backgroundColor: hasOnlyLabel
-                  ? (gc(
-                      cx(
-                        radioTheme.themeColor[themeColor]?.label?.focus
-                          ?.backgroundColor,
-                      ),
-                    ) as string)
-                  : "transparent",
-              },
-            })
-          : {},
-        styleAdapter(style, touchState),
-      ]}
-      ref={radioboxRef}
-      disabled={isDisabled}
-      // A11y Props
-      accessible={true}
-      accessibilityLabel={accesibilityLabel}
-      accessibilityRole="radio"
-      accessibilityState={{ selected: isSelected }}
-      accessibilityValue={{ text: props?.value }}
-      onAccessibilityTap={handleChange}
-      // A11y Props
-      // Web Only - Radio Toggle on Spacebar Press
-      onKeyDown={Platform.select({
-        web: (e: any) => {
-          if (e.code === "Space") {
-            e.preventDefault();
-            handleChange();
-          }
-        },
-        default: undefined,
-      })}
-      focusable={Platform.OS === "web" ? focusable : undefined}
-    >
-      {(touchState: PressableStateCallbackType) =>
-        children({
-          pressed: touchState.pressed,
-          isHovered: !!hovered.value,
-          isFocussed: !!focused.value,
-        })
-      }
-    </Touchable>
+                      ) as string)
+                    : "transparent",
+                },
+              })
+            : {},
+          styleAdapter(style, touchState),
+        ]}
+        ref={radioboxRef}
+        disabled={isDisabled}
+        // A11y Props
+        accessible={true}
+        accessibilityLabel={accesibilityLabel}
+        accessibilityRole="radio"
+        accessibilityState={{ selected: isSelected }}
+        accessibilityValue={{ text: props?.value }}
+        onAccessibilityTap={handleChange}
+        // A11y Props
+        // Web Only - Radio Toggle on Spacebar Press
+        onKeyDown={Platform.select({
+          web: (e: any) => {
+            if (e.code === "Space") {
+              e.preventDefault();
+              handleChange();
+            }
+          },
+          default: undefined,
+        })}
+        focusable={Platform.OS === "web" ? focusable : undefined}
+        {...(description ? {} : handlers)}
+      >
+        {(touchState: PressableStateCallbackType) =>
+          children({
+            pressed: touchState.pressed,
+            isHovered: !!hovered.value,
+            isFocussed: !!focused.value,
+          })
+        }
+      </Touchable>
+    </AnimatedBox>
   );
 });
 

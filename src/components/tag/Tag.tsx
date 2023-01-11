@@ -1,5 +1,6 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useCallback } from "react";
 import {
+  GestureResponderEvent,
   Platform,
   PressableProps,
   PressableStateCallbackType,
@@ -7,7 +8,7 @@ import {
 } from "react-native";
 
 import { Close } from "../../icons";
-import { Box, Text, Touchable } from "../../primitives";
+import { AnimatedBox, Box, Text, Touchable } from "../../primitives";
 import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
 import {
   createComponent,
@@ -15,8 +16,10 @@ import {
   generateBoxShadow,
   RenderPropType,
   styleAdapter,
+  useHaptic,
   useOnFocus,
   useOnHover,
+  useScaleAnimation,
 } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -68,6 +71,12 @@ export interface TagProps extends PressableProps {
    * VoiceOver will read this string when a user selects the associated element.
    */
   accesibilityLabel: string;
+  /**
+   * When set to true, The Tap creates a Touch Feedback
+   * Check more -> https://docs.expo.dev/versions/latest/sdk/haptics/
+   * @default true
+   */
+  hapticEnabled: boolean;
 }
 
 const RNTag: React.FC<Partial<TagProps>> = forwardRef<
@@ -79,6 +88,8 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
   const { onFocus, onBlur, focused } = useOnFocus();
+  const { handlers, animatedStyle } = useScaleAnimation();
+  const hapticSelection = useHaptic();
 
   const {
     size = "md",
@@ -90,8 +101,16 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     style,
     textStyle,
     accesibilityLabel,
+    hapticEnabled = true,
+    onPress,
     ...otherProps
   } = props;
+
+  const handlePress = useCallback((event: GestureResponderEvent) => {
+    onPress && onPress(event);
+    hapticEnabled && hapticSelection();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /* Prefix Slot */
   const _prefix =
@@ -171,64 +190,69 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     );
 
   return (
-    <Touchable
-      ref={ref}
-      style={(touchState: PressableStateCallbackType) => [
-        ts(
-          cx(
-            tagTheme.base,
-            tagTheme.size[size]?.default,
-            tagTheme.themeColor[themeColor]?.[variant]?.container?.wrapper,
-            props.disabled
-              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.disabled
-              : "",
-            hovered.value
-              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.hover
-              : "",
-            touchState.pressed
-              ? tagTheme.themeColor[themeColor]?.[variant]?.container?.pressed
-              : "",
+    <AnimatedBox style={animatedStyle}>
+      <Touchable
+        ref={ref}
+        style={(touchState: PressableStateCallbackType) => [
+          ts(
+            cx(
+              tagTheme.base,
+              tagTheme.size[size]?.default,
+              tagTheme.themeColor[themeColor]?.[variant]?.container?.wrapper,
+              props.disabled
+                ? tagTheme.themeColor[themeColor]?.[variant]?.container
+                    ?.disabled
+                : "",
+              hovered.value
+                ? tagTheme.themeColor[themeColor]?.[variant]?.container?.hover
+                : "",
+              touchState.pressed
+                ? tagTheme.themeColor[themeColor]?.[variant]?.container?.pressed
+                : "",
+            ),
           ),
-        ),
-        focused.value
-          ? Platform.select({
-              web: {
-                outline: 0,
-                boxShadow: `${generateBoxShadow(
-                  tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
-                    ?.offset,
-                  gc(
-                    cx(
-                      tagTheme.themeColor[themeColor]?.[variant]?.container
-                        ?.focus?.color,
-                    ),
-                  ) as string,
-                )}`,
-                borderColor:
-                  tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
-                    ?.borderColor,
-              },
-            })
-          : {},
-        styleAdapter(style, touchState),
-      ]}
-      {...otherProps}
-      // Web Callbacks
-      onHoverIn={onHoverIn}
-      onHoverOut={onHoverOut}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      // Web Callbacks
-      accessible
-      accessibilityRole="button"
-      accessibilityLabel={accesibilityLabel}
-    >
-      <>
-        {_prefix}
-        {children}
-        {_suffix}
-      </>
-    </Touchable>
+          focused.value
+            ? Platform.select({
+                web: {
+                  outline: 0,
+                  boxShadow: `${generateBoxShadow(
+                    tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
+                      ?.offset,
+                    gc(
+                      cx(
+                        tagTheme.themeColor[themeColor]?.[variant]?.container
+                          ?.focus?.color,
+                      ),
+                    ) as string,
+                  )}`,
+                  borderColor:
+                    tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
+                      ?.borderColor,
+                },
+              })
+            : {},
+          styleAdapter(style, touchState),
+        ]}
+        {...otherProps}
+        // Web Callbacks
+        onHoverIn={onHoverIn}
+        onHoverOut={onHoverOut}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        // Web Callbacks
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel={accesibilityLabel}
+        {...handlers}
+        onPress={handlePress}
+      >
+        <>
+          {_prefix}
+          {children}
+          {_suffix}
+        </>
+      </Touchable>
+    </AnimatedBox>
   );
 });
 

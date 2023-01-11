@@ -44,6 +44,30 @@ export default App;
 
 ```
 
+## Further Instructions
+
+### Fonts Loading (Android)
+Our components look well with the Inter font on Android. 
+
+You can pick the fonts from [here](../font-assets/)
+
+And link and load it up in your React Native project using [expo-font](https://docs.expo.dev/versions/latest/sdk/font/) library if using Expo.
+
+The library works well with bare React Native workflow too.
+
+Check out blogs on getting to know about [Adding Fonts to React Native](https://medium.com/@_iam_karthik/list/adding-fonts-to-react-native-93aee6bace40) in our [Publication](https://medium.com/timeless).
+
+### Haptics
+
+Haptics is a technology that allows devices to provide tactile feedback to users, simulating the sense of touch. So it can be used to enhance the user experience in a variety of ways, such as providing feedback when a button is pressed, alerting the user to an event, or guiding the user through a task.
+
+In AdaptUI we have enabled the Haptics to all our Tappable components (Button, Tag, Radio, Checkbox and Switch) through [expo-haptics](https://docs.expo.dev/versions/latest/sdk/haptics/).
+
+You will have to install this as a dependency to get your haptics working on our Tappable components. 
+
+You can use the haptics through our hook [`useHaptics`](../src//utils//useHaptic.ts)
+
+
 ## Simple Usage
 
 Code below will render an [Avatar](./Avatar.md)

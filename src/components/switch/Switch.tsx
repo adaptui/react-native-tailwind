@@ -17,7 +17,7 @@ import { useControllableState } from "@chakra-ui/hooks";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
 import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
-import { cx, styleAdapter } from "../../utils";
+import { cx, styleAdapter, useHaptic } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 
 export type SwitchSize = "sm" | "md" | "lg" | "xl";
@@ -85,6 +85,12 @@ export interface SwitchProps extends BoxProps {
    * The Description of the switch component.
    */
   description: string | null;
+  /**
+   * When set to true, The Tap creates a Touch Feedback
+   * Check more -> https://docs.expo.dev/versions/latest/sdk/haptics/
+   * @default true
+   */
+  hapticEnabled: boolean;
 }
 
 const SPRING_CONFIG = {
@@ -115,6 +121,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
     onStatePressedColor: onStatePressedColorFromProps,
     thumbTintColor: thumbTintColorFromProps,
     themeColor = "base",
+    hapticEnabled = true,
     label,
     description,
     style,
@@ -128,6 +135,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
   });
 
   const thumbAnimated = useSharedValue(switchState ? 1 : 0);
+  const hapticSelection = useHaptic();
   /**
    * Setting Active/Inactive and Default Colors
    */
@@ -283,6 +291,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
         thumbAnimated.value = withSpring(1, SPRING_CONFIG);
       }
       runOnJS(setSwitchState)(!switchState);
+      hapticEnabled && runOnJS(hapticSelection)();
     })
     .onTouchesCancelled(() => {
       if (switchState) {

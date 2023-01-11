@@ -25,7 +25,8 @@
     "select",
     "text-area",
     "types",
-    "theme"
+    "theme",
+    "components"
   ],
   "git.branchProtection": ["main"]
 }
