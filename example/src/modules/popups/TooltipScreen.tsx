@@ -1,13 +1,20 @@
 import React, { SetStateAction, useState } from "react";
+import { Platform, PressableStateCallbackType } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Box,
-  Button,
+  cx,
+  generateBoxShadow,
   Radio,
   RadioGroup,
   Switch,
+  Text,
   Tooltip,
   TooltipPlacement,
+  Touchable,
+  useOnFocus,
+  useOnHover,
+  useTailwind,
   useTheme,
 } from "@adaptui/react-native-tailwind";
 
@@ -15,6 +22,10 @@ import { Group } from "../../components";
 
 export const TooltipScreen = () => {
   const tailwind = useTheme();
+  const buttonTheme = useTheme("button");
+  const { gc, ts } = useTailwind();
+  const { hovered } = useOnHover();
+  const { focused } = useOnFocus();
 
   const [hasArrow, setHasArrow] = useState<boolean>(false);
   const [hasOffset, setHasOffset] = useState<boolean>(false);
@@ -34,13 +45,51 @@ export const TooltipScreen = () => {
           hasArrow={hasArrow}
           placement={tooltipPlacement}
           trigger={
-            <Button
-              style={tailwind.style("my-1")}
-              themeColor="success"
-              size="sm"
+            <Touchable
+              style={(touchState: PressableStateCallbackType) => {
+                return [
+                  ts(
+                    cx(
+                      buttonTheme.base,
+                      buttonTheme.size.lg?.default,
+                      buttonTheme.themeColor.success?.solid?.container?.wrapper,
+                      hovered.value
+                        ? buttonTheme.themeColor.success?.solid?.container
+                            ?.hover
+                        : "",
+                      touchState.pressed
+                        ? buttonTheme.themeColor.success?.solid?.container
+                            ?.pressed
+                        : "",
+                    ),
+                  ),
+                  focused.value
+                    ? Platform.select({
+                        web: {
+                          outline: 0,
+                          boxShadow: `${generateBoxShadow(
+                            buttonTheme.themeColor.success?.solid?.container
+                              ?.focus?.offset,
+                            gc(
+                              cx(
+                                buttonTheme.themeColor.success?.solid?.container
+                                  ?.focus?.color,
+                              ),
+                            ) as string,
+                          )}`,
+                          borderColor:
+                            buttonTheme.themeColor.success?.solid?.container
+                              ?.focus?.borderColor,
+                        },
+                      })
+                    : {},
+                ];
+              }}
             >
-              Click here
-            </Button>
+              <Text style={tailwind.style("font-bold text-white-900")}>
+                {Platform.OS === "web" ? "Hover here" : "Click here"}
+              </Text>
+            </Touchable>
           }
           content="2 out 3 tasks completed"
           mainOffset={hasOffset ? 15 : 0}

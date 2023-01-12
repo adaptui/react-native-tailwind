@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from "react";
 import { View, ViewProps } from "react-native";
 import {
   Box,
+  cx,
   styleAdapter,
   Text,
   useTheme,
@@ -22,10 +23,15 @@ export const Group = (props: PropsWithChildren<GroupType>) => {
       ]}
       {...other}
     >
-      <Text style={tailwind.style("ml-3 font-bold")}>{label}</Text>
+      {label ? (
+        <Text style={tailwind.style("ml-3 font-bold")}>{label}</Text>
+      ) : null}
       <Box
         style={tailwind.style(
-          "flex flex-row flex-wrap justify-start items-center mt-2 ml-0",
+          cx(
+            "flex flex-row flex-wrap justify-start items-center ml-0",
+            label ? "mt-2" : "",
+          ),
         )}
       >
         {children}

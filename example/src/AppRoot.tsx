@@ -1,15 +1,22 @@
 import React, { ReactNode } from "react";
 import {
+  Box,
+  Button,
+  Divider,
+  Icon,
+  Text,
+  Timeless,
+  useTheme,
+} from "@adaptui/react-native-tailwind";
+import {
   createDrawerNavigator,
   DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerItem,
 } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import { Divider } from "../../src/components";
-import { Box, Text } from "../../src/primitives";
-import { useTheme } from "../../src/theme";
-
+import AboutScreen from "./pages/AboutScreen";
 import {
   AvatarGroupScreen,
   AvatarScreen,
@@ -31,6 +38,8 @@ import {
   TextAreaScreen,
   TooltipScreen,
 } from "./modules";
+
+const Stack = createStackNavigator();
 
 const Drawer = createDrawerNavigator();
 
@@ -88,15 +97,34 @@ const CustomDrawerSection = (props: DrawerContentComponentProps) => {
           </Box>
         );
       })}
+      <Box style={tailwind.style("h-8 w-full")} />
     </DrawerContentScrollView>
   );
 };
 
-const AppRoot = () => {
+const ScreenOptions = ({ navigation }) => {
+  const tailwind = useTheme();
+  return {
+    headerRight: () => (
+      <Box style={tailwind.style("mr-2")}>
+        <Button
+          variant="ghost"
+          size="md"
+          onPress={() => navigation.navigate("About")}
+        >
+          <Icon size={25} icon={<Timeless />} />
+        </Button>
+      </Box>
+    ),
+  };
+};
+
+const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawerSection}
       initialRouteName="AvatarScreen"
+      screenOptions={ScreenOptions}
     >
       <Drawer.Screen
         // @ts-ignore
@@ -209,7 +237,6 @@ const AppRoot = () => {
         name="ProgressScreen"
         component={ProgressScreen}
       />
-
       <Drawer.Screen
         // @ts-ignore
         options={{ title: "Tooltip", groupName: "POPUPS" }}
@@ -217,6 +244,23 @@ const AppRoot = () => {
         component={TooltipScreen}
       />
     </Drawer.Navigator>
+  );
+};
+
+const AppRoot = () => {
+  return (
+    <Stack.Navigator initialRouteName="About">
+      <Stack.Screen
+        name="About"
+        component={AboutScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Components"
+        component={DrawerNavigator}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
   );
 };
 
