@@ -111,7 +111,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   }, [index, props?.value, selectedValue, setFocusableIndex]);
 
   const handleChange = useCallback(() => {
-    hapticEnabled && hapticSelection();
+    hapticEnabled && hapticSelection?.();
     // @ts-ignore
     setSelectedValue(props?.value);
     setFocusableIndex(index as number);
