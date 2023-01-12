@@ -178,7 +178,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   }, [checkboxToggleState.isSelected, isIndeterminate]);
 
   const handleChange = useCallback(() => {
-    hapticEnabled && hapticSelection();
+    hapticEnabled && hapticSelection?.();
     if (checkboxGroupState) {
       if (props.value) {
         if (checkboxToggleState.isSelected) {

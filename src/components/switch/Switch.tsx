@@ -291,7 +291,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
         thumbAnimated.value = withSpring(1, SPRING_CONFIG);
       }
       runOnJS(setSwitchState)(!switchState);
-      hapticEnabled && runOnJS(hapticSelection)();
+      hapticEnabled && hapticSelection && runOnJS(hapticSelection)();
     })
     .onTouchesCancelled(() => {
       if (switchState) {

@@ -137,7 +137,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
 
     const handlePress = useCallback((event: GestureResponderEvent) => {
       onPress && onPress(event);
-      hapticEnabled && hapticMedium();
+      hapticEnabled && hapticMedium?.();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

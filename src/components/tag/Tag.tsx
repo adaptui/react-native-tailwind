@@ -108,7 +108,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
 
   const handlePress = useCallback((event: GestureResponderEvent) => {
     onPress && onPress(event);
-    hapticEnabled && hapticSelection();
+    hapticEnabled && hapticSelection?.();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
