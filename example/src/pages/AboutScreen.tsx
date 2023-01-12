@@ -20,7 +20,7 @@ const AboutScreen = ({ navigation }) => {
   const tailwind = useTheme();
 
   return (
-    <Box style={tailwind.style("flex-1")}>
+    <Box style={tailwind.style("flex-1 mx-2 ")}>
       <Background color={tailwind.getColor("text-gray-300")} />
       <Box
         style={tailwind.style(
@@ -39,55 +39,49 @@ const AboutScreen = ({ navigation }) => {
           </Text>
         </Box>
 
-        <Box
-          style={tailwind.style(
-            "flex-row flex-wrap justify-center items-center mt-auto",
-          )}
-        >
-          <Box style={tailwind.style("justify-center items-center w-full")}>
-            <Button
-              onPress={() => {
-                navigation.navigate("Components");
-              }}
-              size="xl"
-            >
-              View Components
-            </Button>
-          </Box>
-
-          <Box
-            style={tailwind.style(
-              " flex-row justify-center items-center w-full mt-4",
-            )}
+        <Box style={tailwind.style("justify-center w-full mt-auto")}>
+          <Button
+            onPress={() => {
+              navigation.navigate("Components");
+            }}
+            size="lg"
+            style={tailwind.style("w-full")}
           >
-            <Button
-              prefix={
-                <Icon
-                  icon={<Github fill={tailwind.getColor("text-white-500")} />}
-                />
-              }
-              onPress={() => {
-                Linking.openURL("https://github.com/timelessco");
-              }}
-              size="xl"
-            >
-              Github
-            </Button>
-            <Button
-              prefix={
-                <Icon
-                  icon={<Dribble fill={tailwind.getColor("text-white-500")} />}
-                />
-              }
-              onPress={() => {
-                Linking.openURL("https://dribbble.com/timelessco");
-              }}
-              size="xl"
-              style={tailwind.style("ml-2")}
-            >
-              Dribble
-            </Button>
-          </Box>
+            View Components
+          </Button>
+        </Box>
+
+        <Box style={tailwind.style("flex-row w-full justify-center mt-4")}>
+          <Button
+            prefix={
+              <Icon
+                icon={<Github fill={tailwind.getColor("text-white-500")} />}
+              />
+            }
+            onPress={() => {
+              Linking.openURL(
+                "https://github.com/adaptui/react-native-tailwind",
+              );
+            }}
+            size="lg"
+          >
+            Github
+          </Button>
+
+          <Button
+            prefix={
+              <Icon
+                icon={<Dribble fill={tailwind.getColor("text-white-500")} />}
+              />
+            }
+            onPress={() => {
+              Linking.openURL("https://dribbble.com/timelessco");
+            }}
+            style={tailwind.style("ml-3")}
+            size="lg"
+          >
+            Dribble
+          </Button>
         </Box>
         <Text style={tailwind.style("font-medium pt-2")}>
           version: {Constants.manifest.version}(5)
