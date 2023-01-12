@@ -1,16 +1,20 @@
 import React, { ReactNode } from "react";
 import {
+  Box,
+  Button,
+  Divider,
+  Icon,
+  Text,
+  Timeless,
+  useTheme,
+} from "@adaptui/react-native-tailwind";
+import {
   createDrawerNavigator,
   DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerItem,
 } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
-
-import { Button, Divider, Icon } from "../../src/components";
-import { FastBackward } from "../../src/icons";
-import { Box, Text } from "../../src/primitives";
-import { useTheme } from "../../src/theme";
 
 import AboutScreen from "./pages/AboutScreen";
 import {
@@ -98,25 +102,29 @@ const CustomDrawerSection = (props: DrawerContentComponentProps) => {
   );
 };
 
-const DrawerNavigator = ({ navigation }) => {
+const ScreenOptions = ({ navigation }) => {
   const tailwind = useTheme();
+  return {
+    headerRight: () => (
+      <Box style={tailwind.style("mr-2")}>
+        <Button
+          variant="ghost"
+          size="md"
+          onPress={() => navigation.navigate("About")}
+        >
+          <Icon size={25} icon={<Timeless />} />
+        </Button>
+      </Box>
+    ),
+  };
+};
+
+const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawerSection}
       initialRouteName="AvatarScreen"
-      screenOptions={{
-        headerRight: () => (
-          <Box style={tailwind.style("mr-2")}>
-            <Button
-              variant="ghost"
-              size="md"
-              onPress={() => navigation.navigate("About")}
-            >
-              <Icon size={18} icon={<FastBackward />} />
-            </Button>
-          </Box>
-        ),
-      }}
+      screenOptions={ScreenOptions}
     >
       <Drawer.Screen
         // @ts-ignore
