@@ -52,36 +52,40 @@ const AboutScreen = ({ navigation }) => {
         </Box>
 
         <Box style={tailwind.style("flex-row w-full justify-center mt-4")}>
-          <Button
-            prefix={
-              <Icon
-                icon={<Github fill={tailwind.getColor("text-white-500")} />}
-              />
-            }
-            onPress={() => {
-              Linking.openURL(
-                "https://github.com/adaptui/react-native-tailwind",
-              );
-            }}
-            size="lg"
-          >
-            Github
-          </Button>
+          <Box style={tailwind.style("flex-1")}>
+            <Button
+              prefix={
+                <Icon
+                  icon={<Github fill={tailwind.getColor("text-white-500")} />}
+                />
+              }
+              onPress={() => {
+                Linking.openURL(
+                  "https://github.com/adaptui/react-native-tailwind",
+                );
+              }}
+              size="lg"
+            >
+              Github
+            </Button>
+          </Box>
 
-          <Button
-            prefix={
-              <Icon
-                icon={<Dribble fill={tailwind.getColor("text-white-500")} />}
-              />
-            }
-            onPress={() => {
-              Linking.openURL("https://dribbble.com/timelessco");
-            }}
-            style={tailwind.style("ml-3")}
-            size="lg"
-          >
-            Dribble
-          </Button>
+          <Box style={tailwind.style("flex-1")}>
+            <Button
+              prefix={
+                <Icon
+                  icon={<Dribble fill={tailwind.getColor("text-white-500")} />}
+                />
+              }
+              onPress={() => {
+                Linking.openURL("https://dribbble.com/timelessco");
+              }}
+              style={tailwind.style("ml-3")}
+              size="lg"
+            >
+              Dribble
+            </Button>
+          </Box>
         </Box>
         <Text style={tailwind.style("font-medium pt-2")}>
           version: {Constants.manifest.version}(5)
