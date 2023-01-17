@@ -217,21 +217,21 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 style={[
                   ts([
                     cx(
-                      selectStyle.base.text.size[size],
+                      selectStyle.base.size[size].text,
                       touchState.pressed || hovered.value
-                        ? selectStyle.base.text.variant[variant]
+                        ? selectStyle.base.variant[variant].text
                             .pressedOrHovered
                         : disabled
-                        ? selectStyle.base.text.variant[variant].disabled
+                        ? selectStyle.base.variant[variant].text.disabled
                         : isUndefined(selectState)
-                        ? selectStyle.base.text.variant[variant].default
-                        : selectStyle.base.text.variant[variant].filled,
+                        ? selectStyle.base.variant[variant].text.default
+                        : selectStyle.base.variant[variant].text.filled,
                       prefix ? `pl-[${prefixWidth}px]` : "",
                       `pr-[${suffixWidth}px]`,
                     ),
                   ]),
-                  getTextFontFamily(selectStyle.base.text.size[size]),
-                  getTextLineHeight(selectStyle.base.text.size[size]),
+                  getTextFontFamily(selectStyle.base.size[size].text),
+                  getTextLineHeight(selectStyle.base.size[size].text),
                 ]}
               >
                 {isUndefined(selectState)
