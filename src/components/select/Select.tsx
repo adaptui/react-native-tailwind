@@ -9,7 +9,12 @@ import { BottomSheetFlatList, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { isUndefined } from "lodash";
 
 import { Text, Touchable } from "../../primitives";
-import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
+import {
+  getTextFontFamily,
+  getTextLineHeight,
+  useTailwind,
+  useTheme,
+} from "../../theme";
 import {
   createComponent,
   createContext,
@@ -226,6 +231,7 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                     ),
                   ]),
                   getTextFontFamily(selectStyle.base.text.size[size]),
+                  getTextLineHeight(selectStyle.base.text.size[size]),
                 ]}
               >
                 {isUndefined(selectState)

@@ -16,7 +16,12 @@ import {
 import { useControllableState } from "@chakra-ui/hooks";
 
 import { AnimatedBox, Box, BoxProps, Text } from "../../primitives";
-import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
+import {
+  getTextFontFamily,
+  getTextLineHeight,
+  useTailwind,
+  useTheme,
+} from "../../theme";
 import { cx, styleAdapter, useHaptic } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 
@@ -348,6 +353,7 @@ const RNSwitch: React.FC<Partial<SwitchProps>> = forwardRef<
                   ),
                 ),
                 getTextFontFamily(switchTheme.size[size]?.label?.text),
+                getTextLineHeight(switchTheme.size[size]?.label?.text),
               ]}
             >
               {label}

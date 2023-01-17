@@ -2,7 +2,12 @@ import React, { forwardRef, ReactNode, useMemo, useRef, useState } from "react";
 import { Platform, TextInputProps } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
-import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
+import {
+  getTextFontFamily,
+  getTextLineHeight,
+  useTailwind,
+  useTheme,
+} from "../../theme";
 import {
   cx,
   generateBoxShadow,
@@ -287,6 +292,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
             ),
           ),
           getTextFontFamily(inputTheme.size[size]?.base?.default),
+          getTextLineHeight(inputTheme.size[size]?.base?.default),
           isFocussedWeb.value
             ? Platform.select({
                 web: {

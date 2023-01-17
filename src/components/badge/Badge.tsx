@@ -1,7 +1,12 @@
 import React, { forwardRef } from "react";
 
 import { Box, BoxProps, Text, TextProps } from "../../primitives";
-import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
+import {
+  getTextFontFamily,
+  getTextLineHeight,
+  useTailwind,
+  useTheme,
+} from "../../theme";
 import { createComponent, cx, RenderPropType, styleAdapter } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -104,6 +109,7 @@ const RNBadge: React.FC<Partial<BadgeProps>> = forwardRef<
                 ),
               ),
               getTextFontFamily(badgeStyles.size[size]?.text),
+              getTextLineHeight(badgeStyles.size[size]?.text),
               styleAdapter(textStyle),
             ]}
             {...otherTextProps}

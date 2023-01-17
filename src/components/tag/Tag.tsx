@@ -9,7 +9,12 @@ import {
 
 import { Close } from "../../icons";
 import { AnimatedBox, Box, Text, Touchable } from "../../primitives";
-import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
+import {
+  getTextFontFamily,
+  getTextLineHeight,
+  useTailwind,
+  useTheme,
+} from "../../theme";
 import {
   createComponent,
   cx,
@@ -179,6 +184,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
           ),
           styleAdapter(textStyle),
           getTextFontFamily(tagTheme.size[size]?.text),
+          getTextLineHeight(tagTheme.size[size]?.text),
         ]}
         adjustsFontSizeToFit
         allowFontScaling={false}
