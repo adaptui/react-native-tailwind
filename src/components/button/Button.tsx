@@ -9,7 +9,12 @@ import {
 
 import { RenderPropType } from "../../index";
 import { AnimatedBox, Box, Text, Touchable } from "../../primitives";
-import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
+import {
+  getTextFontFamily,
+  getTextLineHeight,
+  useTailwind,
+  useTheme,
+} from "../../theme";
 import {
   createComponent,
   cx,
@@ -246,6 +251,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
               ),
             ),
             getTextFontFamily(buttonTheme.size[size]?.text),
+            getTextLineHeight(buttonTheme.size[size]?.text),
             styleAdapter(textStyle),
           ]}
         >

@@ -9,7 +9,12 @@ import { BottomSheetFlatList, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { isUndefined } from "lodash";
 
 import { Text, Touchable } from "../../primitives";
-import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
+import {
+  getTextFontFamily,
+  getTextLineHeight,
+  useTailwind,
+  useTheme,
+} from "../../theme";
 import {
   createComponent,
   createContext,
@@ -176,14 +181,14 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
         style={(touchState: PressableStateCallbackType) => [
           ts([
             cx(
-              selectStyle.base.common,
-              selectStyle.base.size[size].common,
-              !prefix ? selectStyle.base.size[size].withoutAddon : "",
-              selectStyle.base.variant[variant].default,
-              invalid ? selectStyle.base.variant[variant].invalid : "",
-              disabled ? selectStyle.base.variant[variant].disabled : "",
+              selectStyle.base?.common,
+              selectStyle.base?.size[size]?.common,
+              !prefix ? selectStyle.base?.size[size]?.withoutAddon : "",
+              selectStyle.base?.variant[variant]?.default,
+              invalid ? selectStyle.base?.variant[variant]?.invalid : "",
+              disabled ? selectStyle.base?.variant[variant]?.disabled : "",
               touchState.pressed || hovered.value
-                ? selectStyle.base.variant[variant].pressedOrHovered
+                ? selectStyle.base?.variant[variant]?.pressedOrHovered
                 : "",
             ),
           ]),
@@ -212,20 +217,21 @@ const RNSelect: React.FC<Partial<SelectProps>> = forwardRef<
                 style={[
                   ts([
                     cx(
-                      selectStyle.base.text.size[size],
+                      selectStyle.base?.size[size]?.text,
                       touchState.pressed || hovered.value
-                        ? selectStyle.base.text.variant[variant]
-                            .pressedOrHovered
+                        ? selectStyle.base?.variant[variant]?.text
+                            ?.pressedOrHovered
                         : disabled
-                        ? selectStyle.base.text.variant[variant].disabled
+                        ? selectStyle.base?.variant[variant]?.text?.disabled
                         : isUndefined(selectState)
-                        ? selectStyle.base.text.variant[variant].default
-                        : selectStyle.base.text.variant[variant].filled,
+                        ? selectStyle.base?.variant[variant]?.text?.default
+                        : selectStyle.base?.variant[variant]?.text?.filled,
                       prefix ? `pl-[${prefixWidth}px]` : "",
                       `pr-[${suffixWidth}px]`,
                     ),
                   ]),
-                  getTextFontFamily(selectStyle.base.text.size[size]),
+                  getTextFontFamily(selectStyle.base?.size[size]?.text),
+                  getTextLineHeight(selectStyle.base?.size[size]?.text),
                 ]}
               >
                 {isUndefined(selectState)

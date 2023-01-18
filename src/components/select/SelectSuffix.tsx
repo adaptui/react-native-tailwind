@@ -33,14 +33,14 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
 
   // Icon Stroke Color based on Select State
   const iconColor = isPressedOrHovered
-    ? selectSuffixStyles.suffix.variant[variant].pressedOrHovered
+    ? selectSuffixStyles.base.variant[variant].suffix.pressedOrHovered
     : disabled
-    ? selectSuffixStyles.suffix.variant[variant].disabled
+    ? selectSuffixStyles.base.variant[variant].suffix.disabled
     : invalid
-    ? selectSuffixStyles.suffix.variant[variant].invalid
+    ? selectSuffixStyles.base.variant[variant].suffix.invalid
     : isDefaultState
-    ? selectSuffixStyles.suffix.variant[variant].default
-    : selectSuffixStyles.suffix.variant[variant].filled;
+    ? selectSuffixStyles.base.variant[variant].suffix.default
+    : selectSuffixStyles.base.variant[variant].suffix.filled;
 
   const _suffix: SelectProps["suffix"] = React.useMemo(() => {
     const selectSuffix =
@@ -59,9 +59,9 @@ export const SelectSuffix: React.FC<SelectSuffixProps> = ({
   return (
     <Box
       style={ts([
-        selectSuffixStyles.suffix.default,
-        selectSuffixStyles.suffix.size[size],
-        selectSuffixStyles.suffix.variant[variant].wrapper,
+        selectSuffixStyles.suffixWrapper,
+        selectSuffixStyles.base.size[size].suffix,
+        selectSuffixStyles.base.variant[variant].suffix.wrapper,
       ])}
       {...props}
     >

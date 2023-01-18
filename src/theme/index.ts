@@ -1,3 +1,3 @@
 export * from "./context";
-export * from "./getTextFontFamily";
+export * from "./textStyles";
 export * from "./useTailwind";
