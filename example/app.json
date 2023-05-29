@@ -18,9 +18,18 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.timelessco.adaptuireactnative"
     },
+    "web": {
+      "bundler": "webpack",
+      "favicon": "./assets/icon.png"
+    },
     "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "com.timelessco.adaptuireactnative"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4b51abdb-b7cf-4ec7-940e-2784588162fa"
+      }
     }
   }
 }
