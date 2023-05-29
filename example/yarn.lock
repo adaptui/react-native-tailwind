@@ -5538,6 +5538,39 @@ expo-constants@~14.2.0, expo-constants@~14.2.1:
     "@expo/config" "~8.0.0"
     uuid "^3.3.2"
 
+expo-dev-client@~2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/expo-dev-client/-/expo-dev-client-2.2.1.tgz#3abdb875e9c9ed30e1f6dadc2f80b392d15b1c1e"
+  integrity sha512-BDhKyni82LiT6PypgBns1/FLqo3cGDBluaj4/Pojx9P7x9iwOFcesepO8r6BCWb4LuBjdB+z2yQ1fMXxzNC3qQ==
+  dependencies:
+    expo-dev-launcher "2.2.1"
+    expo-dev-menu "2.2.0"
+    expo-dev-menu-interface "1.1.1"
+    expo-manifests "~0.5.0"
+    expo-updates-interface "~0.9.0"
+
+expo-dev-launcher@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/expo-dev-launcher/-/expo-dev-launcher-2.2.1.tgz#db9eec550487400cdac9c2aeedd3b6791fd49469"
+  integrity sha512-TP9SOrNIKF5Whju7uhtBsJeOvf9idUSg7snhHNVRpm2mA5kReckeD3PFv4HsvBHdnrfoslpeq4spOdS6UUx3XA==
+  dependencies:
+    expo-dev-menu "2.2.0"
+    resolve-from "^5.0.0"
+    semver "^7.3.5"
+
+expo-dev-menu-interface@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/expo-dev-menu-interface/-/expo-dev-menu-interface-1.1.1.tgz#8a0d979f62d9a192696f66a77f75d8fab79e604b"
+  integrity sha512-doT+7WrSBnxCcTGZw9QIEZoL+43U4RywbG8XZwbhkcsFWGsh9scp0y/bv3ieFHxRtIdImxbxOoYh7fy1O6g28w==
+
+expo-dev-menu@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/expo-dev-menu/-/expo-dev-menu-2.2.0.tgz#849ec3601f1dc228ad2858e4a25614a72932a61c"
+  integrity sha512-ImRUD7IVyLme7t3S+pNsOOgCBorkriVNo+ryEmkAjzRTKlpiklhoc1GEdQUU3qvO6e66gUguMbs4wnaP6o4NEw==
+  dependencies:
+    expo-dev-menu-interface "1.1.1"
+    semver "^7.3.5"
+
 expo-file-system@~15.2.0, expo-file-system@~15.2.2:
   version "15.2.2"
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-15.2.2.tgz#a1ddf8aabf794f93888a146c4f5187e2004683a3"
@@ -5557,10 +5590,22 @@ expo-haptics@~12.2.1:
   resolved "https://registry.yarnpkg.com/expo-haptics/-/expo-haptics-12.2.1.tgz#9705c245663fcf317ca19adc2e8bbcb5270562e7"
   integrity sha512-XRZtmIQi901Q4+/cZnVrULRFOqShsgCuSP0SCbVEhnq8sK0OA4jgun12O93Pu5aGvTyoqsAcIArE8tX+8AEqRA==
 
+expo-json-utils@~0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/expo-json-utils/-/expo-json-utils-0.5.1.tgz#fcb01050b8aa66592eea2024a48979f2d090c6f9"
+  integrity sha512-Y5boshyf40vPjwxNnOIfacZPNkOymecZRQ1k+TSXlq6gnw5XRsnM5hnP0VLVYhdv8x+9CX6E1fDsDUNvsK38Dg==
+
 expo-keep-awake@~12.0.1:
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-12.0.1.tgz#19c5ab55391394ded3f6c262b0707c7140658a11"
   integrity sha512-hqeCnb4033TyuZaXs93zTK7rjVJ3bywXATyMmKmKkLEsH2PKBAl/VmjlCOPQL/2Ncqz6aj7Wo//tjeJTARBD4g==
+
+expo-manifests@~0.5.0:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/expo-manifests/-/expo-manifests-0.5.2.tgz#60f91ad196cd5a37248c28c6f307df806c5a27ad"
+  integrity sha512-WnsTlE2le3pV/B/AJPKTOSjb2K9AT1mPDCfQxTQ/KMCwF95saoXYt2OPF3hxZNaMAV6VIAhXgd5Y6wpcH9ruPQ==
+  dependencies:
+    expo-json-utils "~0.5.0"
 
 expo-modules-autolinking@0.8.1:
   version "0.8.1"
@@ -5620,6 +5665,11 @@ expo-status-bar@~1.4.4:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.4.4.tgz#6874ccfda5a270d66f123a9f220735a76692d114"
   integrity sha512-5DV0hIEWgatSC3UgQuAZBoQeaS9CqeWRZ3vzBR9R/+IUD87Adbi4FGhU10nymRqFXOizGsureButGZIXPs7zEA==
+
+expo-updates-interface@~0.9.0:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-0.9.1.tgz#e81308d551ed5a4c35c8770ac61434f6ca749610"
+  integrity sha512-wk88LLhseQ7LJvxdN7BTKiryyqALxnrvr+lyHK3/prg76Yy0EGi2Q/oE/rtFyyZ1JmQDRbO/5pdX0EE6QqVQXQ==
 
 expo@^48.0.0:
   version "48.0.5"
@@ -10370,10 +10420,10 @@ react-native-screens@~3.20.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-svg@^13.8.0:
-  version "13.8.0"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.8.0.tgz#b6a22cf77f8098f910490a13aeb160a37e182f97"
-  integrity sha512-G8Mx6W86da+vFimZBJvA93POw8yz0fgDS5biy6oIjMWVJVQSDzCyzwO/zY0yuZmCDhKSZzogl5m0wXXvW2OcTA==
+react-native-svg@^13.9.0:
+  version "13.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.9.0.tgz#8df8a690dd00362601f074dec5d3a86dd0f99c7f"
+  integrity sha512-Ey18POH0dA0ob/QiwCBVrxIiwflhYuw0P0hBlOHeY4J5cdbs8ngdKHeWC/Kt9+ryP6fNoEQ1PUgPYw2Bs/rp5Q==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"

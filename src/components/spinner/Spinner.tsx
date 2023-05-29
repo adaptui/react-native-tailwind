@@ -155,7 +155,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
               ) as ColorValue
             }
             strokeWidth={10}
-            fill="transparent"
+            fill={"transparent"}
             r={radius}
             cx={50}
             cy={50}
@@ -164,6 +164,7 @@ const RNSpinner: React.FC<Partial<SpinnerProps>> = forwardRef<
             stroke="url(#gradient)"
             strokeWidth={10}
             r={radius}
+            fill={"transparent"}
             cx={50}
             cy={50}
             strokeLinecap="round"
