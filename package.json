@@ -76,8 +76,9 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@chakra-ui/hooks": "2.0.0",
-    "@gorhom/bottom-sheet": "^4",
+    "@gorhom/bottom-sheet": "4.4.6",
     "@react-aria/focus": "^3.10.0",
     "@react-aria/visually-hidden": "^3.6.0",
     "@react-native-aria/checkbox": "^0.2.3",
@@ -117,7 +118,7 @@
     "react-native": "0.71.3",
     "react-native-builder-bob": "0.18.3",
     "react-native-gesture-handler": "^2.9.0",
-    "react-native-reanimated": "^3.0.1",
+    "react-native-reanimated": "^3.1.0",
     "react-native-svg": "13.9.0",
     "release-it": "15.10.3",
     "sort-package-json": "2.0.0",
@@ -129,7 +130,7 @@
     "react-dom": "18.2.0",
     "react-native": "0.71.3",
     "react-native-gesture-handler": "2.9.0",
-    "react-native-reanimated": "3.0.1",
+    "react-native-reanimated": "3.1.0",
     "react-native-svg": "13.4.0"
   },
   "publishConfig": {

@@ -18,6 +18,10 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.timelessco.adaptuireactnative"
     },
+    "web": {
+      "bundler": "webpack",
+      "favicon": "./assets/icon.png"
+    },
     "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "com.timelessco.adaptuireactnative"
