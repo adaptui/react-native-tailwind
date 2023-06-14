@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from "react";
+import React, { forwardRef } from "react";
 import {
   GestureResponderEvent,
   Platform,
@@ -135,11 +135,10 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
 
     const isButtonDisabled = props.disabled || loading;
 
-    const handlePress = useCallback((event: GestureResponderEvent) => {
+    const handlePress = (event: GestureResponderEvent) => {
       onPress && onPress(event);
       hapticEnabled && hapticMedium?.();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    };
 
     /**
      * Button Prefix Component
@@ -356,7 +355,6 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
 );
 
 RNButton.displayName = "RNButton";
-
 export const Button = createComponent<Partial<ButtonProps>>(RNButton, {
   shouldMemo: true,
 });
