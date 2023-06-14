@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactNode, useMemo, useRef, useState } from "react";
-import { Platform, TextInputProps } from "react-native";
+import { Platform, TextInputProps, TextStyle } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
 import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
@@ -298,7 +298,7 @@ const RNInput: React.FC<Partial<InputProps>> = forwardRef<
                         ?.color,
                     ) as string,
                   ),
-                },
+                } as TextStyle,
               })
             : {},
           styleAdapter(textInputStyle),
