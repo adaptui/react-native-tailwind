@@ -1,5 +1,144 @@
 
 
+## [1.0.0-alpha.12](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.9...1.0.0-alpha.12) (2023-06-16)
+
+
+### Bug Fixes
+
+* :ambulance: fix text inputs to have Inter as the font ([d2e5c21](https://github.com/adaptui/react-native-tailwind/commit/d2e5c21b89ce115508ebf2d5517c8d9e7972324b))
+* :ambulance: fix text inputs to have Inter as the font ([a483b32](https://github.com/adaptui/react-native-tailwind/commit/a483b3237e302b425e827c36f539f9edbfa41140))
+* **avatar:** :zap: resolve avatar stacking issue by setting zIndex values ([9f562b1](https://github.com/adaptui/react-native-tailwind/commit/9f562b1c89994383ec2c77b7894f042bc5d401e3))
+* **avatar:** :zap: resolve avatar stacking issue by setting zIndex values ([07f30dc](https://github.com/adaptui/react-native-tailwind/commit/07f30dcf76c9effb8d56d7675d905a64c9204fbd))
+* **button:** :ambulance: possible fix for the button onPress not reflecting to state updates ([d9e3ca2](https://github.com/adaptui/react-native-tailwind/commit/d9e3ca21a0a281207b02c9e22e4368a6c57e1d4e))
+* **circular-progress:** :zap: fix circular progress hint rotate issue ([217db07](https://github.com/adaptui/react-native-tailwind/commit/217db07fc769fcc101879e3943675d7ef2ef8a60))
+* **components:** :ambulance: add conditional call by checking if the haptics function is available ([1e39fb8](https://github.com/adaptui/react-native-tailwind/commit/1e39fb81ef26fb2a03703c6ff7d730de9db28723))
+* **components:** :ambulance: add conditional call by checking if the haptics function is available ([ac03ad5](https://github.com/adaptui/react-native-tailwind/commit/ac03ad566b024d97f753d906062a503137609315))
+* **divider:** :bug: update divider height to 1px ([2b8b7f2](https://github.com/adaptui/react-native-tailwind/commit/2b8b7f2bd9509e2e69df83c005323d67ef0b687e))
+* **divider:** :bug: update divider height to 1px ([02d1fc2](https://github.com/adaptui/react-native-tailwind/commit/02d1fc231d275f68b5d843f79d78afce685cd640))
+* **example-app:** :ambulance: wrap <SafeAreaView/> inside <SafeAreaProvider/> ([62284d9](https://github.com/adaptui/react-native-tailwind/commit/62284d97e6a977ef170bebdf790ccd07a1181448))
+* **example-app:** :bug: add flex-wrap as temp fix to align the prop control items ([1735f0f](https://github.com/adaptui/react-native-tailwind/commit/1735f0f8aaf764fda2f27c72f890e5093666fd81))
+* **example-app:** :bug: add null check for label in group component ([2f76fab](https://github.com/adaptui/react-native-tailwind/commit/2f76fab3c822b3f004927302fe5f1a85140b3c9a))
+* **example-app:** :bug: fix components wraped with group component ([9747b41](https://github.com/adaptui/react-native-tailwind/commit/9747b4118629903c38f0aa591d83d28b916ad30b))
+* **example-app:** :bug: fix metro config which caused web build fail ([ff4d9e1](https://github.com/adaptui/react-native-tailwind/commit/ff4d9e158eae8c317192ae4e326cd727055d1156))
+* **example-app:** :bug: fix react18 error for rn-web ([50c0777](https://github.com/adaptui/react-native-tailwind/commit/50c07779c81e2cc53e66adc3b36783315144621b))
+* **example-app:** :bug: fix warnings refactor code add icons ([03a6739](https://github.com/adaptui/react-native-tailwind/commit/03a67392237100770998b11c881e10d7079721a0))
+* **example-app:** :bug: wrap App inside SafeAreaProvider ([08cd1e4](https://github.com/adaptui/react-native-tailwind/commit/08cd1e4f44a1775176e5bac512c6f9cf0c35f082))
+* **example-app:** :recycle: add button styles to tooltip example ([f295821](https://github.com/adaptui/react-native-tailwind/commit/f295821ab443a4493b65b8b165271de67988b805))
+* **example-app:** :sparkles: add sharp-cli for bundling images on web ([daf3049](https://github.com/adaptui/react-native-tailwind/commit/daf30495fa81531f337767a834464d31cb1eb55b))
+* **input:** :label: add type assertion to the web focussed style ([cb62474](https://github.com/adaptui/react-native-tailwind/commit/cb62474cf60eaa3d57ac31007c920b324daa1c8a))
+* **radio:** :ambulance: possible fix for the white stroked line checked state radio in android ([9421a50](https://github.com/adaptui/react-native-tailwind/commit/9421a50e3f192d1ffdb66aeba6ee9cc1623f34f9))
+* **radio:** :ambulance: possible fix for the white stroked line checked state radio in android ([0400caf](https://github.com/adaptui/react-native-tailwind/commit/0400caf6bb4bf8275e881170f5220b7e67641493))
+* **spinner:** :bug: fix spinner fill background ([708dd14](https://github.com/adaptui/react-native-tailwind/commit/708dd14f6ec47c6c025de55bc9730d0b56755fe0))
+* **text-area:** :art: fix textareas alignement in android ([a372b31](https://github.com/adaptui/react-native-tailwind/commit/a372b31c9aa4d3ebf4c04f432370051a8936678f))
+* **tooltip:** :bug: show tooltip on hover in web ([436f98c](https://github.com/adaptui/react-native-tailwind/commit/436f98cf264a1b61b844d8415f1148d4bd5e7c84))
+* **tooltip:** :bug: show tooltip on hover in web and onclick on native apps ([5fb72c0](https://github.com/adaptui/react-native-tailwind/commit/5fb72c0514840066d42c68f5ef2f2eae89fe25ee))
+* **utils:** :ambulance: remove haptics case on web ([469b71f](https://github.com/adaptui/react-native-tailwind/commit/469b71f3faebf4a6f3e5f1b070b52d78f98a47ce))
+* **utils:** :ambulance: remove haptics case on web ([7bd140f](https://github.com/adaptui/react-native-tailwind/commit/7bd140f66c725ec671d5b06458768020a93d900f))
+* **utils:** :zap: update stiffness to 250 in default spring config ([6590f71](https://github.com/adaptui/react-native-tailwind/commit/6590f717157c7ba06ea4f5acaa6a793dd122e9c5))
+* **utils:** :zap: update stiffness to 250 in default spring config ([9077325](https://github.com/adaptui/react-native-tailwind/commit/907732558898903bd54bbaceda63ab1364457412))
+
+
+### Documentation Changes
+
+* **readme:** :memo: update docs with instructions on fonts linking and haptics package dependency ([728b892](https://github.com/adaptui/react-native-tailwind/commit/728b892830e317c21eba71f9679c8074f9c0b7ae))
+* **readme:** :memo: update docs with instructions on fonts linking and haptics package dependency ([03952f2](https://github.com/adaptui/react-native-tailwind/commit/03952f2a07bb6be39d1a1900f3a0c0b2d3858fbb))
+* **readme:** 📝 fix header size for Haptics ([1498249](https://github.com/adaptui/react-native-tailwind/commit/14982495aa2701cd4f1f5ef830f179d564229d09))
+* **readme:** 📝 fix header size for Haptics ([7db5b36](https://github.com/adaptui/react-native-tailwind/commit/7db5b3625394a153a03db35f015d07f28e30422e))
+* **select:** :bug: fix messed up select component docs ([5ae7ade](https://github.com/adaptui/react-native-tailwind/commit/5ae7adea6a03e6683b8c977214783fce95d0bcee))
+* **tooltip:** :bug: refactored table content, and rendering of info content ([471ad89](https://github.com/adaptui/react-native-tailwind/commit/471ad89498c2053056480b21436dc26a7a63914b))
+* **tooltip:** 📝 update docs with preview ([510d203](https://github.com/adaptui/react-native-tailwind/commit/510d2038b6c255cb9eadb9fd21824ed781f9b850))
+
+
+### Feature Updates
+
+* :pencil2: use Font Family helper function to set font as Inter for android ([9af122d](https://github.com/adaptui/react-native-tailwind/commit/9af122d6b85f0ce08708fe9524d99eef60589177))
+* :sparkles: use short hand function `ts` instead of tailwind.style from useTailwind hook ([ec3719d](https://github.com/adaptui/react-native-tailwind/commit/ec3719d1b5d87ee4fd26ee7ebbf67819ec97404a))
+* **avatar:** :sparkles: update avatar component to use the shorthand function from useTailwind hook ([d7ca8d1](https://github.com/adaptui/react-native-tailwind/commit/d7ca8d1f011b22b524ff1f852027133307b7ac50))
+* **components:** :rocket: add Haptic feedback to tappable components ([aabea3f](https://github.com/adaptui/react-native-tailwind/commit/aabea3feb9be83d5a061bc6e69c6d1ba12e9dd8b))
+* **components:** :rocket: add Haptic feedback to tappable components ([1b5f605](https://github.com/adaptui/react-native-tailwind/commit/1b5f6052dd3d5397b51c67ecca322611e5d24bce))
+* **components:** :sparkles: add useScaleAnimation hook which add scale down to tappable components ([94ff4c9](https://github.com/adaptui/react-native-tailwind/commit/94ff4c9989952e2e350bbe1f86b5d8a0fce60158))
+* **components:** :sparkles: add useScaleAnimation hook which add scale down to tappable components ([54f5764](https://github.com/adaptui/react-native-tailwind/commit/54f57645f5c4fdbd87908044be0f657d74404538))
+* **example-app:** :art: integrate Inter font for android apk ([5fcfe0d](https://github.com/adaptui/react-native-tailwind/commit/5fcfe0db114095915818563a52e3708b7881c12a))
+* **example-app:** :sparkles: add about screen ([808e539](https://github.com/adaptui/react-native-tailwind/commit/808e5395b5061ffd0e7c0e1652e72480783ed3b8))
+* **example-app:** :zap: add full width buttons ([4f26171](https://github.com/adaptui/react-native-tailwind/commit/4f261714b08753948d2c2d26096954a8f0919d9a))
+* **example-app:** :zap: add grouping of Drawer Screens ([3ecbe64](https://github.com/adaptui/react-native-tailwind/commit/3ecbe64a293b58b5daa0a3bd7e0303fd7c0eb2b5))
+* **switch:** :zap: add Haptic feedback prop ([4b12bae](https://github.com/adaptui/react-native-tailwind/commit/4b12bae9f86209fc613a15d9be3a947f65a1b8f7))
+* **switch:** :zap: add Haptic feedback prop ([5274a2c](https://github.com/adaptui/react-native-tailwind/commit/5274a2c7d45495bbcbb9da1c64e09e9433e3e340))
+* **theme:** :art: add useTailwind hook to create short hand for tailwind functions ([a683b48](https://github.com/adaptui/react-native-tailwind/commit/a683b4825964e65fc8c17aab2149cabe0b79861c))
+* **utils:** :sparkles: add helper function getTextFontFamily ([c88dcbf](https://github.com/adaptui/react-native-tailwind/commit/c88dcbfdb847628dea13e78a7b182c0737ac902b))
+* **utils:** :sparkles: create useScaleAnimation hook for Tappable components ([88aff54](https://github.com/adaptui/react-native-tailwind/commit/88aff5467c13e28d718b655fefb58f2c975a0163))
+* **utils:** :sparkles: create useScaleAnimation hook for Tappable components ([4024544](https://github.com/adaptui/react-native-tailwind/commit/4024544f0c8f5ddccf74ed5c48bdbfe918f15af2))
+* **utils:** :zap: add useHaptics hook returning functions for specific haptics ([872ba19](https://github.com/adaptui/react-native-tailwind/commit/872ba1944f42f3939d22544e46dced3d22a4fabc))
+* **utils:** :zap: add useHaptics hook returning functions for specific haptics ([916000e](https://github.com/adaptui/react-native-tailwind/commit/916000e6fedb9737f154d45137d37ff37b8460b3))
+* **utils:** :zap: update font helper function to use Inter font on web ([cedf1ef](https://github.com/adaptui/react-native-tailwind/commit/cedf1ef54c70f79b9b8a5a53add20c5f6689882d))
+
+
+### Maintanance Updates
+
+* :adhesive_bandage: yarn install changes ([c8d5435](https://github.com/adaptui/react-native-tailwind/commit/c8d543567620504ce5a62eb2d674c90d241c2eff))
+* :arrow_up: pin react-native to latest version ([98ebc69](https://github.com/adaptui/react-native-tailwind/commit/98ebc6982ed8b07decced6236a4115b24dd7c858))
+* :arrow_up: upgrade dependencies and bump expo version for example app ([1686467](https://github.com/adaptui/react-native-tailwind/commit/16864673f7de3c73fb9f0777633274a59e02a1aa))
+* :bento: add font-assets for Android ([7e76486](https://github.com/adaptui/react-native-tailwind/commit/7e764866bad30c43cc6a5ec15f7e54bf2729148f))
+* :bento: add font-assets for Android ([d8495a3](https://github.com/adaptui/react-native-tailwind/commit/d8495a3abe681733533bfbf78ba358691d21c15e))
+* :bento: compress font files required for android ([f9cd0f6](https://github.com/adaptui/react-native-tailwind/commit/f9cd0f6971ff0eafbcd27fc9f8997d9b89c621ec))
+* :bento: compress font files required for android ([c90f60d](https://github.com/adaptui/react-native-tailwind/commit/c90f60d9fe471263ac121a5a2cf4a9b06897fc3f))
+* :bookmark: bump version ([01b441b](https://github.com/adaptui/react-native-tailwind/commit/01b441ba63cfa3ffa0c34fff979434e63e6140f1))
+* :building_construction: possible fix for github throwing error as invalid workflow file ([8693af1](https://github.com/adaptui/react-native-tailwind/commit/8693af1cd98da46bdcbc6da12ff61c6a4b9bcc97))
+* :building_construction: possible fix for github throwing error as invalid workflow file ([376a6eb](https://github.com/adaptui/react-native-tailwind/commit/376a6eb04cda25c3a0146117e06a0e4d0bb19138))
+* :building_construction: possible fix for github throwing error as invalid workflow file ([73cbc39](https://github.com/adaptui/react-native-tailwind/commit/73cbc39ddc74b2dbcb9533c59d64fb7da9c088d1))
+* :building_construction: possible fix for github throwing error as invalid workflow file ([c59c748](https://github.com/adaptui/react-native-tailwind/commit/c59c748b9f919445fcc50ec88d3435ebae2b0600))
+* :building_construction: possible fix for github throwing error as invalid workflow file ([5c87153](https://github.com/adaptui/react-native-tailwind/commit/5c87153574d7d828296d3b8aed42b2fb9c9585e9))
+* :building_construction: possible fix for github throwing error as invalid workflow file ([f6eeb70](https://github.com/adaptui/react-native-tailwind/commit/f6eeb70aff68f906a5aa1e2e7a5cce9da9605b70))
+* :green_heart: possible fix for JavaScript heap out of memory ([f746b59](https://github.com/adaptui/react-native-tailwind/commit/f746b59d6c0d60449ecbca3275281d092df92b3f))
+* :green_heart: possible fix for JavaScript heap out of memory ([102ab0d](https://github.com/adaptui/react-native-tailwind/commit/102ab0da23d7d9511d55a632ddd9ade50eca174d))
+* :green_heart: possible fix for JavaScript heap out of memory ([437c353](https://github.com/adaptui/react-native-tailwind/commit/437c3531f31fe6b5d917c76d6da4e4fa0b228de6))
+* :green_heart: possible fix for JavaScript heap out of memory ([d2dc4e0](https://github.com/adaptui/react-native-tailwind/commit/d2dc4e0fde3ed7c5f3f35c33b1dba8c54e1b3ddd))
+* :package: add expo-haptics as peer dependencies ([3263679](https://github.com/adaptui/react-native-tailwind/commit/3263679bee59f27a74e51002f6bd986f609c89ce))
+* :package: add expo-haptics as peer dependencies ([8969289](https://github.com/adaptui/react-native-tailwind/commit/8969289978b928c2f438269d1d3687fcf9d9386e))
+* :package: lock changes from yarn install ([fbb1147](https://github.com/adaptui/react-native-tailwind/commit/fbb11475f21da099fa4eb953f3dc001b87059d1c))
+* :package: lock changes from yarn install ([9e95e56](https://github.com/adaptui/react-native-tailwind/commit/9e95e56a35637b2aa187c6f4740a1a23e45770f5))
+* :package: update package dependencies ([6608b46](https://github.com/adaptui/react-native-tailwind/commit/6608b460d1964ac8fda637b04962b889ed959799))
+* :rewind: revert changes ([ad62ffa](https://github.com/adaptui/react-native-tailwind/commit/ad62ffae46e22a2f3e05d4636da4d4d370a8cc9b))
+* :rewind: revert changes ([02f7a30](https://github.com/adaptui/react-native-tailwind/commit/02f7a30ddbf9bc5ced44a35b5169291e1e58410b))
+* :rewind: revert version ([b2f7927](https://github.com/adaptui/react-native-tailwind/commit/b2f7927b5e7e1881b4ef2b989c36132de556ce06))
+* :wrench: add components scope ([0fd5b25](https://github.com/adaptui/react-native-tailwind/commit/0fd5b25e7900fcb97ba2d3e40934dbe07dd6968d))
+* :wrench: add components scope ([9c4da3f](https://github.com/adaptui/react-native-tailwind/commit/9c4da3f21db277f46ac24d092532f01b277203e1))
+* add `theme` scope ([e59b33e](https://github.com/adaptui/react-native-tailwind/commit/e59b33e8622d6ed5d444f592406d0700ea2822ac))
+* **button:** :mute: remove console log ([41aa48b](https://github.com/adaptui/react-native-tailwind/commit/41aa48b9cacc101e5184e1e43cdd0c64123a8469))
+* **example-app:** :art: add full-width controllable for button component render ([bad60b4](https://github.com/adaptui/react-native-tailwind/commit/bad60b475fff9794d22cc90556b1a3e54beb406e))
+* **example-app:** :art: add full-width controllable for button component render ([a57659b](https://github.com/adaptui/react-native-tailwind/commit/a57659b0d4b06d62a1e9698ca8919c6ad8da2e9f))
+* **example-app:** :art: make buttons full width ([bfff4e1](https://github.com/adaptui/react-native-tailwind/commit/bfff4e17a5ded6c9fd0c40a15e7711df90c83c1a))
+* **example-app:** :art: make buttons full width ([cc98f1d](https://github.com/adaptui/react-native-tailwind/commit/cc98f1d1d406c3771e21d6d0c0e4c97880340e36))
+* **example-app:** :package: add expo-haptics package ([fb9c8ef](https://github.com/adaptui/react-native-tailwind/commit/fb9c8efb945a22b5510323a9d8fa1bfd2108c7f0))
+* **example-app:** :package: add expo-haptics package ([9b0c705](https://github.com/adaptui/react-native-tailwind/commit/9b0c70577f1936a54f2cc91eec6a8a09b52b476c))
+* **example-app:** :pencil2: bump the build number ([2c080a6](https://github.com/adaptui/react-native-tailwind/commit/2c080a6a93bbce227a7874dda14a36c7656eb859))
+
+
+### Code Refactors
+
+* **components:** :recycle: update components to use refactored useHaptic hook ([2fc9ef8](https://github.com/adaptui/react-native-tailwind/commit/2fc9ef8311891bfa03d20ccfd5a57b1ec9582984))
+* **components:** :recycle: update components to use refactored useHaptic hook ([f503fb6](https://github.com/adaptui/react-native-tailwind/commit/f503fb672b1bb3de488a333525177976d33e8749))
+* **example-app:** :art: update spacing between prop controls and container padding ([ac68a19](https://github.com/adaptui/react-native-tailwind/commit/ac68a1924fd0be50ac123126c7fb07a9b34e8750))
+* **example-app:** :recycle: add space in about page text component ([3eb429b](https://github.com/adaptui/react-native-tailwind/commit/3eb429b255f4474a69ebbd12619914d03135b103))
+* **example-app:** :recycle: align buttons ([31f5bfd](https://github.com/adaptui/react-native-tailwind/commit/31f5bfd4e3b8c39735bcad24279ec1c2e12bce74))
+* **example-app:** :recycle: change avatar background images ([37db410](https://github.com/adaptui/react-native-tailwind/commit/37db410a3591157de588ba1cc50d75950e9d41d9))
+* **example-app:** :recycle: change tooltip text to click here ([3ad71aa](https://github.com/adaptui/react-native-tailwind/commit/3ad71aa1a0bc83972e01d9c10663581fb979df0e))
+* **example-app:** :recycle: make about screen as the initial screen ([7bdbe2f](https://github.com/adaptui/react-native-tailwind/commit/7bdbe2f5d0950bc992fb3d62e5bba1c319e32179))
+* **example-app:** :recycle: use touchable component instead of pressable ([35640fa](https://github.com/adaptui/react-native-tailwind/commit/35640fa49e3a40df484128f2f4082ab3a0e766ac))
+* **example-app:** :speech_balloon: update app version in about screen ([24d2670](https://github.com/adaptui/react-native-tailwind/commit/24d267035ef9d2d134f62da607137e61c135a725))
+* **utils:** :recycle: change useHaptic hook to return specific function based on arg passed ([3132087](https://github.com/adaptui/react-native-tailwind/commit/3132087760aa5e7e7b8308c3cba141a5479af920))
+* **utils:** :recycle: change useHaptic hook to return specific function based on arg passed ([568bdb3](https://github.com/adaptui/react-native-tailwind/commit/568bdb3451b41aadad3a6d4af0216d2a94e84521))
+
+
+### Build Updates
+
+* :bug: podfile ([2efe4cd](https://github.com/adaptui/react-native-tailwind/commit/2efe4cd8ce2025c44a76f909d15efb29251e131c))
+* :package: add eslint plugin ([1261d4f](https://github.com/adaptui/react-native-tailwind/commit/1261d4fe9b8e0f7c6cd4d5ee6c1b06091498babe))
+* :package: release alpha 1.0.0-alpha.12 ([3e46717](https://github.com/adaptui/react-native-tailwind/commit/3e467178089a5deb8a3fb05f45ae6f04fda075f3))
+* :pushpin: fix react-native-reanimated and upgrade deps ([ffba3c3](https://github.com/adaptui/react-native-tailwind/commit/ffba3c362befe1509987810c8b6bba24d676f598))
+* :zap: add release signing key ([bbe5756](https://github.com/adaptui/react-native-tailwind/commit/bbe5756c6cb6abf0d1da063bc78a5b173cfc1964))
+* **example-app:** :sparkles: add build configs and assets for iOS test flight ([f1ecfea](https://github.com/adaptui/react-native-tailwind/commit/f1ecfea0b3e63c89bcea040b16760402780a41e6))
+
 ## [1.0.0-alpha.9](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.8...1.0.0-alpha.9) (2022-12-16)
 
 
