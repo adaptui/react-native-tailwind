@@ -1,6 +1,6 @@
 {
   "name": "@adaptui/react-native-tailwind",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-alpha.11",
   "description": "Collection of components that are accessible, composable, customizable from low level to build your own UI & Design System",
   "keywords": [
     "react-native",
@@ -103,6 +103,7 @@
     "all-contributors-cli": "6.20.0",
     "commitlint": "17.0.3",
     "eslint": "8.20.0",
+    "eslint-plugin-ft-flow": "^2.0.3",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-simple-import-sort": "8.0.0",
     "expo-haptics": "12.2.1",

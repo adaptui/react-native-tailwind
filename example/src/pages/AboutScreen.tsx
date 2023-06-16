@@ -88,7 +88,7 @@ const AboutScreen = ({ navigation }) => {
           </Box>
         </Box>
         <Text style={tailwind.style("font-medium pt-2")}>
-          version: {Constants.manifest.version}(5)
+          version: {Constants.manifest.version}(11)
         </Text>
       </Box>
     </Box>
