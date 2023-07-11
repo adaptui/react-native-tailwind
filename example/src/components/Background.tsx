@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Path, Pattern, Rect, Svg } from "react-native-svg";
 import { useTheme } from "@adaptui/react-native-tailwind";
 
-const Background = props => {
+const Background = (props: any) => {
   const tailwind = useTheme();
   const { color, stroke, gap, transform } = props;
   const { x, y, k } = transform || { x: 0, y: 0, k: 1 };
