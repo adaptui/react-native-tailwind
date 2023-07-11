@@ -14,8 +14,9 @@ import {
 } from "../../utils";
 import { createComponent } from "../../utils/createComponent";
 import { composeEventHandlers, mergeRefs } from "../../utils/mergeRefs";
+import { createIcon } from "../create-icon";
+import { Icon } from "../icon";
 import { Spinner } from "../spinner";
-import { createIcon, Icon } from "..";
 
 import { InputPrefix } from "./InputPrefix";
 import { InputSuffix } from "./InputSuffix";
