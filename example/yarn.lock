@@ -4889,10 +4889,10 @@ expo-pwa@0.0.124:
     commander "2.20.0"
     update-check "1.5.3"
 
-expo-screen-orientation@~5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/expo-screen-orientation/-/expo-screen-orientation-5.1.1.tgz#d586f035cca8eb4e4620a774f9510bd77083258d"
-  integrity sha512-rYpHUwHpuKlEErxupl3wM+KWcySrSJTXb5Une5gDINMmjWbLBx0N1P2MG1aSPA2eT7bShTO/xDJyegjf438l8w==
+expo-screen-orientation@~6.0.0:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/expo-screen-orientation/-/expo-screen-orientation-6.0.2.tgz#c5632b46119c76db76b037409625c191fc266680"
+  integrity sha512-roqUjygbEFZUlnPinm/7psY+M9Z/sAqNOrW8HmudRgAouUwKygbbJ43D9bXyXMDyQFneIqlzq1vzXLAEdpfeIw==
 
 expo-splash-screen@~0.18.2:
   version "0.18.2"
