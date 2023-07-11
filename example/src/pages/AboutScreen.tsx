@@ -10,14 +10,19 @@ import {
   Text,
   useTheme,
 } from "@adaptui/react-native-tailwind";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import Constants from "expo-constants";
 
 import Background from "../components/Background";
 import EasingLogo from "../components/EasingLogo";
+import { RootStackParamList } from "../types";
 
-const AboutScreen = ({ navigation }) => {
+const AboutScreen = () => {
   const { bottom } = useSafeAreaInsets();
   const tailwind = useTheme();
+
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <Box style={tailwind.style("flex-1 mx-2 ")}>
@@ -31,7 +36,7 @@ const AboutScreen = ({ navigation }) => {
           <EasingLogo />
           <Text style={tailwind.style("font-bold text-2xl")}>AdaptUI</Text>
           <Text style={tailwind.style("p-2 text-center")}>
-            {Constants.manifest.description}
+            {Constants.manifest?.description}
           </Text>
           <Text style={tailwind.style("font-medium")}>
             Made with 💖 by
@@ -88,7 +93,7 @@ const AboutScreen = ({ navigation }) => {
           </Box>
         </Box>
         <Text style={tailwind.style("font-medium pt-2")}>
-          version: {Constants.manifest.version}(11)
+          version: {Constants.manifest?.version}(11)
         </Text>
       </Box>
     </Box>

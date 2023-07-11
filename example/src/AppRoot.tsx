@@ -14,7 +14,11 @@ import {
   DrawerContentScrollView,
   DrawerItem,
 } from "@react-navigation/drawer";
-import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from "@react-navigation/stack";
 
 import AboutScreen from "./pages/AboutScreen";
 import {
@@ -38,10 +42,11 @@ import {
   TextAreaScreen,
   TooltipScreen,
 } from "./modules";
+import { DrawerParamList, RootStackParamList } from "./types";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 const CustomDrawerSection = (props: DrawerContentComponentProps) => {
   const { state, descriptors, navigation } = props;
@@ -102,8 +107,9 @@ const CustomDrawerSection = (props: DrawerContentComponentProps) => {
   );
 };
 
-const ScreenOptions = ({ navigation }) => {
+const ScreenOptions = () => {
   const tailwind = useTheme();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return {
     headerRight: () => (
       <Box style={tailwind.style("mr-2")}>
