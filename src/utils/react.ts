@@ -17,7 +17,8 @@ export function passProps<T extends AnyObject = AnyObject, S = AnyObject>(
         // @ts-ignore
         ...component.props,
       })
-    : runIfFn(component, { ...props });
+    : //@ts-ignore
+      runIfFn(component, { ...props });
 }
 
 export function runIfFn<T extends AnyObject = AnyObject>(

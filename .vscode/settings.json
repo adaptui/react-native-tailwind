@@ -28,5 +28,5 @@
     "theme",
     "components"
   ],
-  "git.branchProtection": ["main"]
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

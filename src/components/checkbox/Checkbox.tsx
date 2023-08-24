@@ -263,6 +263,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                   : "",
               ),
             ),
+            //@ts-ignore - Web only - Checkbox toggle on Spacebar Press
             isFocussed && !hasOnlyLabel
               ? Platform.select({
                   web: {

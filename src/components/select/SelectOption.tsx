@@ -135,6 +135,7 @@ const RNSelectOption: React.FC<SelectOptionProps> = forwardRef<
                   : "",
               ),
             ),
+            //@ts-ignore
             isFocussed && !hasOnlyLabel
               ? Platform.select({
                   web: {

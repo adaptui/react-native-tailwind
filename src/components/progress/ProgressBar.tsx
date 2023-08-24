@@ -84,6 +84,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   const progressValue = useDerivedValue(() =>
     !isIndeterminate ? `${value || 0}%` : "0%",
   );
+  //@ts-ignore
   const animatingWidth = useAnimatedStyle(() => {
     return {
       width: withSpring(progressValue.value, SPRING_CONFIG),

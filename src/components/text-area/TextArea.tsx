@@ -236,6 +236,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
             ),
           ),
           getTextFontFamily(textAreaTheme.size[size]?.base?.default),
+          //@ts-ignore
           isFocussedWeb.value
             ? Platform.select({
                 web: {
@@ -251,6 +252,7 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
                 },
               })
             : {},
+          //@ts-ignore
           Platform.OS === "android" ? textAreaTheme.android : {},
           styleAdapter(textInputStyle),
         ]}
