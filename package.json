@@ -78,7 +78,7 @@
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@chakra-ui/hooks": "2.2.0",
-    "@gorhom/bottom-sheet": "4.4.7",
+    "@gorhom/bottom-sheet": "5.0.0-alpha.3",
     "@react-aria/focus": "^3.14.0",
     "@react-aria/visually-hidden": "^3.8.3",
     "@react-stately/toggle": "^3.6.1",
