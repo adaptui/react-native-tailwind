@@ -26,17 +26,26 @@ import React from "react";
 import { SafeAreaView, StatusBar } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AdaptUIProvider } from "@adaptui/react-native-tailwind";
-import tailwind from "twrnc";
+
+const AppContainer = () => {
+  const tailwind = useTheme();
+
+  return (
+    <GestureHandlerRootView style={tailwind.style("flex-1")}>
+      <NavigationContainer>
+        <SafeAreaProvider>
+          // your app here
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </GestureHandlerRootView>
+  );
+};
 
 const App = () => {
   return (
-    <GestureHandlerRootView style={tailwind.style("flex-1")}>
-      <SafeAreaView style={tailwind.style(`flex-1 android:mt-[${StatusBar.currentHeight || 0}px]`)}>
-        <AdaptUIProvider>
-          // Your App Root here
-        </AdaptUIProvider>
-      </SafeAreaView>
-    </GestureHandlerRootView>
+    <AdaptUIProvider>
+      <AppContainer />
+    </AdaptUIProvider>
   );
 };
 
@@ -47,7 +56,8 @@ export default App;
 ## Further Instructions
 
 ### Fonts Loading (Android)
-Our components look well with the Inter font on Android. 
+
+Our components look well with the Inter font on Android.
 
 You can pick the fonts from [here](../font-assets/)
 
@@ -63,10 +73,9 @@ Haptics is a technology that allows devices to provide tactile feedback to users
 
 In AdaptUI we have enabled the Haptics to all our Tappable components (Button, Tag, Radio, Checkbox and Switch) through [expo-haptics](https://docs.expo.dev/versions/latest/sdk/haptics/).
 
-You will have to install this as a dependency to get your haptics working on our Tappable components. 
+You will have to install this as a dependency to get your haptics working on our Tappable components.
 
 You can use the haptics through our hook [`useHaptics`](../src//utils//useHaptic.ts)
-
 
 ## Simple Usage
 
