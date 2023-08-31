@@ -14,11 +14,9 @@ export function passProps<T extends AnyObject = AnyObject, S = AnyObject>(
   return React.isValidElement(component)
     ? React.cloneElement(component, {
         ...props,
-        // @ts-ignore
         ...component.props,
       })
-    : //@ts-ignore
-      runIfFn(component, { ...props });
+    : runIfFn(component, { ...props });
 }
 
 export function runIfFn<T extends AnyObject = AnyObject>(

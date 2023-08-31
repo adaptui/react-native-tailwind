@@ -84,6 +84,7 @@ export const RNProgressBar: React.FC<Partial<ProgressProps>> = forwardRef<
   const progressValue = useDerivedValue(() =>
     !isIndeterminate ? `${value || 0}%` : "0%",
   );
+  //TODO: Fix types for animatingWidth, width not compatible type
   //@ts-ignore
   const animatingWidth = useAnimatedStyle(() => {
     return {

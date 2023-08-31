@@ -173,7 +173,6 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                   : "",
               ),
             ),
-            //@ts-ignore - web only
             isFocussed && !hasOnlyLabel
               ? Platform.select({
                   web: {
