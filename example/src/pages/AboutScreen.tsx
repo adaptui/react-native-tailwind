@@ -36,7 +36,7 @@ const AboutScreen = () => {
           <EasingLogo />
           <Text style={tailwind.style("font-bold text-2xl")}>AdaptUI</Text>
           <Text style={tailwind.style("p-2 text-center")}>
-            {Constants.manifest?.description}
+            {Constants.expoConfig?.description}
           </Text>
           <Text style={tailwind.style("font-medium")}>
             Made with 💖 by
@@ -93,7 +93,7 @@ const AboutScreen = () => {
           </Box>
         </Box>
         <Text style={tailwind.style("font-medium pt-2")}>
-          version: {Constants.manifest?.version}(11)
+          version: {Constants.expoConfig?.version}(11)
         </Text>
       </Box>
     </Box>

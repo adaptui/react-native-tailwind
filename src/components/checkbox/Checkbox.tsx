@@ -263,6 +263,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                   : "",
               ),
             ),
+            // - Web only - Checkbox toggle on Spacebar Press
             isFocussed && !hasOnlyLabel
               ? Platform.select({
                   web: {
@@ -417,7 +418,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
           styleAdapter(style, touchState),
         ]}
         ref={checkboxRef}
-        //@ts-ignore - Web only - Checkbox toggle on Spacebar Press
         onKeyDown={Platform.select({
           web: (e: any) => {
             if (e.code === "Space") {
