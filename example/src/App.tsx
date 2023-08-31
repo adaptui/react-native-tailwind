@@ -2,12 +2,11 @@ import React, { useCallback } from "react";
 import { LogBox, StatusBar } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { AdaptUIProvider, Box } from "@adaptui/react-native-tailwind";
+import { AdaptUIProvider, Box, useTheme } from "@adaptui/react-native-tailwind";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import * as ScreenOrientation from "expo-screen-orientation";
 import * as SplashScreen from "expo-splash-screen";
-import tailwind from "twrnc";
 
 import AppRoot from "./AppRoot";
 
@@ -15,6 +14,8 @@ ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
 LogBox.ignoreAllLogs();
 
 const AdaptUIApp = () => {
+  const tailwind = useTheme();
+
   const [fontsLoaded] = useFonts({
     "Inter-Black": require("../assets/fonts/Inter-Black.ttf"),
     "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),
@@ -42,14 +43,14 @@ const AdaptUIApp = () => {
         backgroundColor={"transparent"}
         barStyle="dark-content"
       />
-      <AdaptUIProvider>
-        <AppRoot />
-      </AdaptUIProvider>
+      <AppRoot />
     </Box>
   );
 };
 
-const App = () => {
+const AppContainer = () => {
+  const tailwind = useTheme();
+
   return (
     <GestureHandlerRootView style={tailwind.style("flex-1")}>
       <NavigationContainer>
@@ -58,6 +59,14 @@ const App = () => {
         </SafeAreaProvider>
       </NavigationContainer>
     </GestureHandlerRootView>
+  );
+};
+
+const App = () => {
+  return (
+    <AdaptUIProvider>
+      <AppContainer />
+    </AdaptUIProvider>
   );
 };
 
