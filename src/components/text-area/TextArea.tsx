@@ -1,5 +1,5 @@
 import React, { forwardRef, useMemo, useRef, useState } from "react";
-import { Platform, TextInputProps } from "react-native";
+import { Platform, TextInputProps, TextStyleAndroid } from "react-native";
 
 import { Box, BoxProps, RNTextInput, TouchableProps } from "../../primitives";
 import { getTextFontFamily, useTailwind, useTheme } from "../../theme";
@@ -236,6 +236,12 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
             ),
           ),
           getTextFontFamily(textAreaTheme.size[size]?.base?.default),
+          /**
+           * * The TypeScript error arises due to an inconsistency between the expected ViewStyle type
+           * * and the specific styling provided for the web platform,
+           * * which includes outline and boxShadow properties not defined in the ViewStyle type.
+           */
+          // @ts-ignore
           isFocussedWeb.value
             ? Platform.select({
                 web: {
@@ -251,7 +257,9 @@ const RNTextArea: React.FC<Partial<TextAreaProps>> = forwardRef<
                 },
               })
             : {},
-          Platform.OS === "android" ? textAreaTheme.android : {},
+          Platform.OS === "android"
+            ? (textAreaTheme.android as TextStyleAndroid)
+            : {},
           styleAdapter(textInputStyle),
         ]}
         multiline={true}

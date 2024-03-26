@@ -173,6 +173,12 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                   : "",
               ),
             ),
+            /**
+             * * The TypeScript error arises due to an inconsistency between the expected ViewStyle type
+             * * and the specific styling provided for the web platform,
+             * * which includes outline and boxShadow properties not defined in the ViewStyle type.
+             */
+            // @ts-ignore
             isFocussed && !hasOnlyLabel
               ? Platform.select({
                   web: {
