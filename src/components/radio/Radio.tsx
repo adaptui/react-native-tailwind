@@ -15,9 +15,9 @@ import {
   generateBoxShadow,
   styleAdapter,
   useHaptic,
-  useOnFocus,
   useOnHover,
   useScaleAnimation,
+  useWebFocusRing,
 } from "../../utils";
 import { mergeRefs } from "../../utils/mergeRefs";
 
@@ -86,7 +86,7 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
   ]) as unknown as React.MutableRefObject<null>;
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
-  const { onFocus, onBlur, focused } = useOnFocus();
+  const { focusProps, isFocusVisible, isFocused } = useWebFocusRing();
   const hapticSelection = useHaptic();
   const { handlers, animatedStyle } = useScaleAnimation();
   const state = useRadioGroupContext();
@@ -278,9 +278,13 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
         // Web Callbacks
         onHoverIn={onHoverIn}
         onHoverOut={onHoverOut}
-        onFocus={onFocus}
-        onBlur={onBlur}
         // Web Callbacks
+        /**
+         * * The TypeScript error arises due to an inconsistency between the expected ViewStyle type
+         * * and the specific styling provided for the web platform,
+         * * which includes outline and boxShadow properties not defined in the ViewStyle type.
+         */
+        // @ts-ignore
         style={(touchState: PressableStateCallbackType) => [
           ts([
             cx(
@@ -298,10 +302,10 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
                 : "",
             ),
           ]),
-          focused.value
+          Platform.OS === "web" ? radioTheme.web : {},
+          isFocused && isFocusVisible
             ? Platform.select({
                 web: {
-                  outline: 0,
                   boxShadow: hasOnlyLabel
                     ? `${generateBoxShadow(
                         radioTheme.themeColor[themeColor]?.label?.focus?.offset,
@@ -348,12 +352,13 @@ const RNRadio: React.FC<Partial<RadioProps>> = forwardRef<
         })}
         focusable={Platform.OS === "web" ? focusable : undefined}
         {...(description ? {} : handlers)}
+        {...focusProps}
       >
         {(touchState: PressableStateCallbackType) =>
           children({
             pressed: touchState.pressed,
             isHovered: !!hovered.value,
-            isFocussed: !!focused.value,
+            isFocussed: !!(isFocused && isFocusVisible),
           })
         }
       </Touchable>

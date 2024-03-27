@@ -16,9 +16,9 @@ import {
   generateBoxShadow,
   styleAdapter,
   useHaptic,
-  useOnFocus,
   useOnHover,
   useScaleAnimation,
+  useWebFocusRing,
 } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -129,7 +129,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
     const { handlers, animatedStyle } = useScaleAnimation();
     const hapticMedium = useHaptic("medium");
     const { onHoverIn, onHoverOut, hovered } = useOnHover();
-    const { onFocus, onBlur, focused } = useOnFocus();
+    const { focusProps, isFocusVisible, isFocused } = useWebFocusRing();
 
     const iconAspectRatio = 1;
 
@@ -285,6 +285,12 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
     return (
       <AnimatedBox style={animatedStyle}>
         <Touchable
+          /**
+           * * The TypeScript error arises due to an inconsistency between the expected ViewStyle type
+           * * and the specific styling provided for the web platform,
+           * * which includes outline and boxShadow properties not defined in the ViewStyle type.
+           */
+          // @ts-ignore
           style={(touchState: PressableStateCallbackType) => {
             return [
               ts(
@@ -307,10 +313,10 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
                     : "",
                 ),
               ),
-              focused.value
+              Platform.OS === "web" ? buttonTheme.web : {},
+              isFocusVisible && isFocused
                 ? Platform.select({
                     web: {
-                      outline: 0,
                       boxShadow: `${generateBoxShadow(
                         buttonTheme.themeColor[themeColor]?.[variant]?.container
                           ?.focus?.offset,
@@ -334,8 +340,7 @@ const RNButton: React.FC<Partial<ButtonProps>> = forwardRef<
           // Web Callbacks
           onHoverIn={onHoverIn}
           onHoverOut={onHoverOut}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          {...focusProps}
           // Web Callbacks
           // A11y Props
           accessible
