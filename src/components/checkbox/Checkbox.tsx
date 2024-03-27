@@ -363,7 +363,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         // Web Callbacks
         onHoverIn={onHoverIn}
         onHoverOut={onHoverOut}
-        {...focusProps}
         // Web Callbacks
         // A11y Props
         accessibilityLabel={accessibilityLabel}
@@ -441,6 +440,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         })}
         disabled={isDisabled}
         {...(description ? {} : handlers)}
+        {...focusProps}
       >
         {(touchState: PressableStateCallbackType) =>
           children({
