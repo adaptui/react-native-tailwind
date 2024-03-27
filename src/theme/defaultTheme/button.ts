@@ -527,4 +527,6 @@ export const button = {
       text: "text-base font-medium",
     },
   },
+
+  web: { outline: 0 },
 };

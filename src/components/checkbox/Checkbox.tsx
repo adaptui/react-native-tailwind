@@ -23,9 +23,9 @@ import {
   generateBoxShadow,
   styleAdapter,
   useHaptic,
-  useOnFocus,
   useOnHover,
   useScaleAnimation,
+  useWebFocusRing,
 } from "../../utils";
 import { mergeRefs } from "../../utils/mergeRefs";
 import { createIcon } from "../create-icon";
@@ -132,7 +132,7 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
   } = props;
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
-  const { onFocus, onBlur, focused } = useOnFocus();
+  const { focusProps, isFocusVisible, isFocused } = useWebFocusRing();
   const { handlers, animatedStyle } = useScaleAnimation();
   const hapticSelection = useHaptic();
 
@@ -264,6 +264,12 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
               ),
             ),
             // - Web only - Checkbox toggle on Spacebar Press
+            /**
+             * * The TypeScript error arises due to an inconsistency between the expected ViewStyle type
+             * * and the specific styling provided for the web platform,
+             * * which includes outline and boxShadow properties not defined in the ViewStyle type.
+             */
+            // @ts-ignore
             isFocussed && !hasOnlyLabel
               ? Platform.select({
                   web: {
@@ -357,8 +363,6 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         // Web Callbacks
         onHoverIn={onHoverIn}
         onHoverOut={onHoverOut}
-        onFocus={onFocus}
-        onBlur={onBlur}
         // Web Callbacks
         // A11y Props
         accessibilityLabel={accessibilityLabel}
@@ -369,6 +373,12 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         accessibilityValue={{ text: props?.value }}
         onAccessibilityTap={handleChange}
         // A11y Props
+        /**
+         * * The TypeScript error arises due to an inconsistency between the expected ViewStyle type
+         * * and the specific styling provided for the web platform,
+         * * which includes outline and boxShadow properties not defined in the ViewStyle type.
+         */
+        // @ts-ignore
         style={(touchState: PressableStateCallbackType) => [
           ts(
             cx(
@@ -388,7 +398,8 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
                 : "",
             ),
           ),
-          focused.value
+          Platform.OS === "web" ? checkboxTheme.web : {},
+          isFocusVisible && isFocused
             ? Platform.select({
                 web: {
                   outline: 0,
@@ -429,12 +440,13 @@ const RNCheckbox: React.FC<Partial<CheckboxProps>> = forwardRef<
         })}
         disabled={isDisabled}
         {...(description ? {} : handlers)}
+        {...focusProps}
       >
         {(touchState: PressableStateCallbackType) =>
           children({
             pressed: touchState.pressed,
             isHovered: !!hovered.value,
-            isFocussed: !!focused.value,
+            isFocussed: !!(isFocusVisible && isFocused),
           })
         }
       </Touchable>

@@ -17,9 +17,9 @@ import {
   RenderPropType,
   styleAdapter,
   useHaptic,
-  useOnFocus,
   useOnHover,
   useScaleAnimation,
+  useWebFocusRing,
 } from "../../utils";
 import { createIcon } from "../create-icon";
 import { Icon } from "../icon";
@@ -87,7 +87,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
   const tagTheme = useTheme("tag");
 
   const { onHoverIn, onHoverOut, hovered } = useOnHover();
-  const { onFocus, onBlur, focused } = useOnFocus();
+  const { focusProps, isFocusVisible, isFocused } = useWebFocusRing();
   const { handlers, animatedStyle } = useScaleAnimation();
   const hapticSelection = useHaptic();
 
@@ -193,6 +193,12 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
     <AnimatedBox style={animatedStyle}>
       <Touchable
         ref={ref}
+        /**
+         * * The TypeScript error arises due to an inconsistency between the expected ViewStyle type
+         * * and the specific styling provided for the web platform,
+         * * which includes outline and boxShadow properties not defined in the ViewStyle type.
+         */
+        // @ts-ignore
         style={(touchState: PressableStateCallbackType) => [
           ts(
             cx(
@@ -211,10 +217,10 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
                 : "",
             ),
           ),
-          focused.value
+          Platform.OS === "web" ? tagTheme.web : {},
+          isFocusVisible && isFocused
             ? Platform.select({
                 web: {
-                  outline: 0,
                   boxShadow: `${generateBoxShadow(
                     tagTheme.themeColor[themeColor]?.[variant]?.container?.focus
                       ?.offset,
@@ -237,8 +243,7 @@ const RNTag: React.FC<Partial<TagProps>> = forwardRef<
         // Web Callbacks
         onHoverIn={onHoverIn}
         onHoverOut={onHoverOut}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        {...focusProps}
         // Web Callbacks
         accessible
         accessibilityRole="button"
