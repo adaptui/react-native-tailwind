@@ -85,7 +85,7 @@
     "@react-stately/toggle": "^3.6.1",
     "lodash": "^4.17.21",
     "react-native-popper": "^0.3.2",
-    "tailwind-merge": "^1.14.0",
+    "tailwind-merge": "^2.0.0",
     "tailwindcss": "^3.3.3",
     "twrnc": "^3.6.4"
   },
