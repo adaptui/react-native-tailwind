@@ -11728,10 +11728,10 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
-twrnc@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/twrnc/-/twrnc-3.6.4.tgz#95252421f460986289926d5ec6ae78d8c3f34dd3"
-  integrity sha512-4yw0TS65X6OelJFmc4aCRS8JWI4fIK26Z9nSUOIVMpv7Z/GeAc9BXSnZ7SkD95uOkgmz/gLDS7a4BK6GHOl5Xg==
+twrnc@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/twrnc/-/twrnc-4.2.0.tgz#865ec4b06ae048ca62053d283ec4755e824efdce"
+  integrity sha512-W0frl6Xt4KlrGOBBQHX4ijNDziHZR/9nWyeVbpF2qwEd15wNrMJpTmJT2PmleMbuuDl+/5DgRMmloXKXUBevdQ==
   dependencies:
     tailwindcss ">=2.0.0"
 
