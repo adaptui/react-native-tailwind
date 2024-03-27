@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.js": "/static/js/main.324042da.js",
+    "static/js/585.938cdfcd.js": "/static/js/585.938cdfcd.js",
+    "static/media/logo.png": "/static/media/logo.199b914d6184b9fab0e2.png",
+    "static/media/Inter-ExtraBold.ttf": "/static/media/Inter-ExtraBold.f24bb23839d39ad9777d.ttf",
+    "static/media/Inter-Black.ttf": "/static/media/Inter-Black.5bc9c4d5770576fe98af.ttf",
+    "static/media/Inter-Bold.ttf": "/static/media/Inter-Bold.ebce8ab6b102e9804476.ttf",
+    "static/media/Inter-SemiBold.ttf": "/static/media/Inter-SemiBold.b530b95d6280f6ad602c.ttf",
+    "static/media/Inter-Medium.ttf": "/static/media/Inter-Medium.9cbff87dc577185b8630.ttf",
+    "static/media/Inter-Regular.ttf": "/static/media/Inter-Regular.96ce55e3ba0d6a209090.ttf",
+    "static/media/Inter-Light.ttf": "/static/media/Inter-Light.076835a3cf402c01a97f.ttf",
+    "static/media/Inter-ExtraLight.ttf": "/static/media/Inter-ExtraLight.0e9d366c3932bbc534e4.ttf",
+    "static/media/Inter-Thin.ttf": "/static/media/Inter-Thin.c3c22e9477042e03f4a2.ttf",
+    "favicon.ico": "/favicon.ico",
+    "index.html": "/index.html",
+    "favicon-32.png": "/favicon-32.png",
+    "manifest.json": "/manifest.json",
+    "favicon-16.png": "/favicon-16.png",
+    "serve.json": "/serve.json",
+    "main.324042da.js.map": "/static/js/main.324042da.js.map",
+    "585.938cdfcd.js.map": "/static/js/585.938cdfcd.js.map"
+  },
+  "entrypoints": [
+    "static/js/585.938cdfcd.js",
+    "static/js/main.324042da.js"
+  ]
+}
