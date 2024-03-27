@@ -8,6 +8,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LayoutChangeEvent, Platform } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
+import {
+  FocusRingAria,
+  useFocusRing as useWebOnlyFocusRing,
+} from "@react-aria/focus";
 
 export const useOnFocus = () => {
   const focused = useSharedValue(0);
@@ -112,4 +116,21 @@ export const useLayout = () => {
   };
 
   return { onLayout, layout };
+};
+
+export const useWebFocusRing = () => {
+  let useFocusRingHook: () => FocusRingAria;
+
+  if (Platform.OS === "web") {
+    // Import the hook only if the platform is web
+    useFocusRingHook = useWebOnlyFocusRing;
+  } else {
+    // If not on web platform, provide a dummy implementation
+    useFocusRingHook = () => ({
+      isFocusVisible: false,
+      isFocused: false,
+      focusProps: {},
+    });
+  }
+  return useFocusRingHook();
 };
