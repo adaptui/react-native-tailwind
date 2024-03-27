@@ -241,4 +241,6 @@ export const radio = {
     labelText: "text-gray-900 font-medium",
     common: "text-gray-600 font-normal",
   },
+
+  web: { outline: 0 },
 };

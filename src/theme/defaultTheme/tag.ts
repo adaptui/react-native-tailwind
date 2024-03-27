@@ -180,4 +180,6 @@ export const tag = {
       text: "text-base font-medium",
     },
   },
+
+  web: { outline: 0 },
 };

@@ -325,4 +325,6 @@ export const checkbox = {
       },
     },
   },
+
+  web: { outline: 0 },
 };
