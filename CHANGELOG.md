@@ -1,5 +1,47 @@
 
 
+## [1.0.0](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.13...1.0.0) (2024-03-27)
+
+
+### Bug Fixes
+
+* **checkbox:** :green_heart: fix build ts definition ([f430579](https://github.com/adaptui/react-native-tailwind/commit/f4305790271cb6d034c5c9196b735b00f65911e6))
+* **example-app:** :bug: fix web focus issues ([01c495c](https://github.com/adaptui/react-native-tailwind/commit/01c495cedc4dd45d9df6909fcc50ee997b621036))
+* **types:** add comments for ignoring ts errors, and fix a ts error with Type assertion ([a931de3](https://github.com/adaptui/react-native-tailwind/commit/a931de3eba74d111c391eec01ce7def514648a11))
+
+
+### Documentation Changes
+
+* **readme:** :memo: update getting started guide ([19fce43](https://github.com/adaptui/react-native-tailwind/commit/19fce435792ba36e4eb1ec66526572a7a033e990))
+
+
+### Build Updates
+
+* :green_heart: fix github workflows to use node 16 ([affe8ac](https://github.com/adaptui/react-native-tailwind/commit/affe8ac44b59233c2af9b27ae54f4a3c9f30dbd2))
+* :green_heart: fix lint github workflow ([92fa561](https://github.com/adaptui/react-native-tailwind/commit/92fa561d733c029842c63dba7048f82b689e8326))
+* **example-app:** :rocket: deploy web version ([40b0b07](https://github.com/adaptui/react-native-tailwind/commit/40b0b0704ce3637b92e7f40f3a25b43c8111bc31))
+
+
+### Feature Updates
+
+* **components:** :zap: use useWebFocusRing hook, to remove the outline style ([ccf8d42](https://github.com/adaptui/react-native-tailwind/commit/ccf8d4298471684c08344a67b8e59b4802eaa51c))
+* **theme:** :art: add common web style to component default styles ([87f3227](https://github.com/adaptui/react-native-tailwind/commit/87f322763234331d3c5864d78a423645416ae446))
+* update react-native-svg package to latest fixing infinite console errors on web ([452cf1c](https://github.com/adaptui/react-native-tailwind/commit/452cf1c11790ea975cff244049f34036620e146d))
+* **utils:** :zap: add useWebFocusRing hook ([f400928](https://github.com/adaptui/react-native-tailwind/commit/f4009287f041896325a724a28ff68f0f93d91544))
+
+
+### Maintanance Updates
+
+* :package: add @react-aria/focus package ([7e18eaf](https://github.com/adaptui/react-native-tailwind/commit/7e18eaf7d511d4621e54278db3c4481babfa0ae3))
+* add ios & android build folders ([c8a70bb](https://github.com/adaptui/react-native-tailwind/commit/c8a70bb411a40e7e84755c8eb00da66806d7a5fc))
+* changes to get the published version code ([323b0b1](https://github.com/adaptui/react-native-tailwind/commit/323b0b176c5003de566823402a0d915eb8f2bcbc))
+* **components:** :fire: remove ts-ignore ([e653da2](https://github.com/adaptui/react-native-tailwind/commit/e653da2b8b10463176590c6422ab193d0f6aaf9f))
+* **example-app:** :arrow_up: upgrade to latest expo dependencies ([d64b309](https://github.com/adaptui/react-native-tailwind/commit/d64b3093fdc7b99e3de42533d0ffc74b6e21fc90))
+* **example-app:** :green_heart: fix npm scripts to use expo go ([a46da3c](https://github.com/adaptui/react-native-tailwind/commit/a46da3c3cdf3ed1727c73f58fbcdfd3c9d5cf4e2))
+* **example-app:** :heavy_minus_sign: remove twrnc from example app as library already imports ([bd65a20](https://github.com/adaptui/react-native-tailwind/commit/bd65a20d2845d54dfdd252b9055122a982ee8fa6))
+* **select:** :arrow_up: upgrade bottom-sheet to alpha-version ([0fbb51a](https://github.com/adaptui/react-native-tailwind/commit/0fbb51acee034775c66ae1343c35254041b6e741))
+* update packages to the latest supported version of expo ([94d584e](https://github.com/adaptui/react-native-tailwind/commit/94d584e134a4c0c06a79e0f81b200b48ed48780d))
+
 ## [1.0.0-alpha.9](https://github.com/adaptui/react-native-tailwind/compare/1.0.0-alpha.8...1.0.0-alpha.9) (2022-12-16)
 
 
