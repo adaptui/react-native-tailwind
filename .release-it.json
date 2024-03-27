@@ -8,8 +8,11 @@
   "git": {
     "requireBranch": "main",
     "commitMessage": "🚀 Release v${version}",
-    "commitArgs": ["--no-verify", "-S"],
-    "tagArgs": ["-s"]
+    "commitArgs": ["--no-verify"],
+    "tagArgs": []
+  },
+  "npm": {
+    "publish": false
   },
   "github": {
     "release": true,
