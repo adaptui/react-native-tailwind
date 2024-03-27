@@ -126,7 +126,7 @@
     "typescript": "^4.8.4"
   },
   "peerDependencies": {
-    "expo-haptics": "12.4.0",
+    "expo-haptics": "12.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.4",
