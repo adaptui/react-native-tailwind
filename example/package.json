@@ -11,7 +11,7 @@
     "start": "expo start -c"
   },
   "dependencies": {
-    "@expo/webpack-config": "^18.1.2",
+    "@expo/webpack-config": "^19.0.0",
     "@react-native-masked-view/masked-view": "0.2.9",
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
@@ -19,12 +19,12 @@
     "expo": "^49.0.8",
     "expo-application": "~5.3.0",
     "expo-haptics": "~12.4.0",
-    "expo-screen-orientation": "~6.0.5",
+    "expo-screen-orientation": "~6.0.6",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.72.4",
+    "react-native": "0.72.10",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-popper": "0.3.2",
     "react-native-reanimated": "~3.3.0",
