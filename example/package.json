@@ -46,7 +46,7 @@
     "babel-preset-expo": "^9.5.2"
   },
   "resolutions": {
-    "react-error-overlay": "6.0.9",
+    "react-error-overlay": "6.1.0",
     "react-native-reanimated": "3.3.0"
   }
 }
