@@ -33,7 +33,7 @@
     "react-native-svg": "15.1.0",
     "react-native-web": "~0.19.6",
     "setimmediate": "^1.0.5",
-    "sharp-cli": "^4.1.0"
+    "sharp-cli": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",
